@@ -1,0 +1,210 @@
+name: AI Daily Digest
+
+on:
+  schedule:
+    - cron: '3 23 * * *'   # 08:03 JST (23:03 UTC)
+  workflow_dispatch:         # Manual trigger for testing
+
+jobs:
+  generate-digest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate AI Daily Digest
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          DATE=$(date -u +%Y-%m-%d)
+          echo "=== AI Daily Digest: $DATE ==="
+
+          # ---- Step 1a: HuggingFace Daily Papers ----
+          echo "Fetching HuggingFace papers..."
+          HF_RAW=$(curl -sf --max-time 20 "https://huggingface.co/api/daily_papers" || echo "[]")
+          TOP_PAPERS=$(echo "$HF_RAW" | jq -r '
+            sort_by(.paper.upvotes // 0) | reverse | .[0:10] |
+            .[] | "- \(.paper.title // "Unknown") (upvotes: \(.paper.upvotes // 0), https://huggingface.co/papers/\(.paper.id // ""))"
+          ' 2>/dev/null || echo "(取得失敗)")
+
+          # ---- Step 1b: Claude Code releases ----
+          echo "Fetching Claude Code releases..."
+          CC_RAW=$(gh api repos/anthropics/claude-code/releases --jq '.[0:3] | .[] | "### \(.tag_name)\n\(.body // "" | .[0:300])\n"' 2>/dev/null || \
+            curl -sf --max-time 20 \
+              -H "Authorization: token $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/anthropics/claude-code/releases?per_page=3" | \
+            jq -r '.[] | "### \(.tag_name)\n\(.body // "" | .[0:300])\n"' 2>/dev/null || \
+            echo "(取得失敗)")
+
+          # ---- Step 1c: HackerNews AI news ----
+          echo "Fetching HackerNews AI news..."
+          HN_RAW=$(curl -sf --max-time 20 \
+            "https://hn.algolia.com/api/v1/search?query=AI+LLM+machine+learning&tags=story&hitsPerPage=10" || echo '{"hits":[]}')
+          HN_NEWS=$(echo "$HN_RAW" | jq -r '
+            .hits | sort_by(.points // 0) | reverse | .[0:5] |
+            .[] | "- \(.title // "Unknown") (score: \(.points // 0)) \(.url // "")"
+          ' 2>/dev/null || echo "(取得失敗)")
+
+          # ---- Step 2: Build prompt ----
+          PROMPT=$(cat <<PROMPT_EOF
+あなたは AI Daily Digest の日本語要約エージェントです。
+以下の情報をもとに、日本語のダイジェストを生成してください。
+
+## 収集データ
+
+### HuggingFace 注目論文 TOP 10
+${TOP_PAPERS}
+
+### Claude Code / Anthropic 最新リリース
+${CC_RAW}
+
+### AI ニュース（HackerNews）
+${HN_NEWS}
+
+## 出力フォーマット（厳守）
+
+以下のフォーマットで生成し、全体を1500文字以内に収めてください。
+Markdownを使用してください。
+
+# AI Daily Digest — ${DATE}
+
+## 今日のハイライト
+（最も重要な動き3件、各1-2文）
+
+## Claude Code / Anthropic アップデート
+（新バージョン情報。なければ「本日の更新なし」）
+
+## 注目論文 TOP 5
+各論文:
+- **タイトル（日本語訳）** — 手法の概要と重要性（1-2文）[原文リンク]
+
+## AI ニュース
+- 主要動向3-4件（各1-2文）
+
+---
+PROMPT_EOF
+)
+
+          # ---- Step 3: Call Anthropic API ----
+          echo "Calling Anthropic API..."
+          REQUEST_JSON=$(jq -n \
+            --arg model "claude-sonnet-4-6" \
+            --arg prompt "$PROMPT" \
+            '{
+              model: $model,
+              max_tokens: 2048,
+              messages: [{role: "user", content: $prompt}]
+            }')
+
+          RESPONSE=$(curl -sf --max-time 60 \
+            -X POST "https://api.anthropic.com/v1/messages" \
+            -H "x-api-key: ${ANTHROPIC_API_KEY}" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "Content-Type: application/json" \
+            -d "$REQUEST_JSON")
+
+          DIGEST=$(echo "$RESPONSE" | jq -r '.content[0].text // ""')
+
+          if [ -z "$DIGEST" ]; then
+            echo "ERROR: Anthropic API returned empty digest"
+            echo "Response: $RESPONSE"
+            exit 1
+          fi
+
+          echo "Digest generated (${#DIGEST} chars)"
+
+          # ---- Step 4: Post to Discord (split every 1800 chars) ----
+          echo "Posting to Discord..."
+
+          # Split digest into 1800-char chunks at newline boundaries
+          REMAINING="$DIGEST"
+          PARTS=()
+          while [ -n "$REMAINING" ]; do
+            if [ ${#REMAINING} -le 1800 ]; then
+              PARTS+=("$REMAINING")
+              break
+            fi
+            # Find last newline within first 1800 chars
+            CHUNK="${REMAINING:0:1800}"
+            LAST_NL=$(echo "$CHUNK" | awk '
+              BEGIN{max=0; pos=0}
+              {
+                for(i=1;i<=length($0);i++){
+                  pos += 1;
+                  if(substr($0,i,1)=="\n") max=pos
+                }
+              }
+              END{print max}
+            ')
+            if [ -z "$LAST_NL" ] || [ "$LAST_NL" -eq 0 ]; then
+              LAST_NL=1800
+            fi
+            PARTS+=("${REMAINING:0:$LAST_NL}")
+            REMAINING="${REMAINING:$LAST_NL}"
+          done
+
+          TOTAL=${#PARTS[@]}
+          echo "Split into $TOTAL part(s)"
+
+          FAILED_PARTS=""
+          for i in "${!PARTS[@]}"; do
+            PART_NUM=$((i + 1))
+            PART_TEXT="${PARTS[$i]}"
+            PART_LABELED="($PART_NUM/$TOTAL) $PART_TEXT"
+
+            JSON_BODY=$(jq -n --arg content "$PART_LABELED" '{"content": $content}')
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$DISCORD_WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -d "$JSON_BODY")
+
+            if [ "$HTTP_CODE" != "204" ] && [ "$HTTP_CODE" != "200" ]; then
+              echo "WARNING: Discord part $PART_NUM/$TOTAL failed (HTTP $HTTP_CODE)"
+              FAILED_PARTS="$FAILED_PARTS $PART_NUM"
+            else
+              echo "Discord part $PART_NUM/$TOTAL posted (HTTP $HTTP_CODE)"
+            fi
+
+            if [ "$PART_NUM" -lt "$TOTAL" ]; then
+              sleep 1
+            fi
+          done
+
+          if [ -n "$FAILED_PARTS" ]; then
+            echo "WARNING: Failed parts:$FAILED_PARTS"
+          fi
+
+          # ---- Step 5: Save to GitHub ----
+          echo "Saving to GitHub..."
+          FILEPATH="digests/${DATE}.json"
+
+          JSON_CONTENT=$(jq -n \
+            --arg date "$DATE" \
+            --arg fetched_at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg content "$DIGEST" \
+            '{date: $date, fetched_at: $fetched_at, content: $content}')
+
+          BASE64=$(printf '%s' "$JSON_CONTENT" | base64 -w 0)
+
+          # Get existing SHA if file exists
+          SHA_RESP=$(gh api "repos/${{ github.repository }}/contents/${FILEPATH}" 2>/dev/null || echo "")
+          EXISTING_SHA=$(echo "$SHA_RESP" | jq -r '.sha // empty' 2>/dev/null || echo "")
+
+          if [ -z "$EXISTING_SHA" ]; then
+            gh api "repos/${{ github.repository }}/contents/${FILEPATH}" \
+              -X PUT -f message="digest: ${DATE}" -f content="$BASE64" -f branch="main" \
+              && echo "GitHub: created ${FILEPATH}" \
+              || echo "WARNING: GitHub save failed"
+          else
+            gh api "repos/${{ github.repository }}/contents/${FILEPATH}" \
+              -X PUT -f message="digest: ${DATE}" -f content="$BASE64" -f branch="main" -f sha="$EXISTING_SHA" \
+              && echo "GitHub: updated ${FILEPATH}" \
+              || echo "WARNING: GitHub save failed"
+          fi
+
+          echo "=== Done ==="
