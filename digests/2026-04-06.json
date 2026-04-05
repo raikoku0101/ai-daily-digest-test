@@ -1,0 +1,371 @@
+{
+  "date": "2026-04-06",
+  "content": "# AI Daily Digest — 2026-04-06\n\n## 今日のハイライト\n\n- **DataFlex**: LLMのデータ中心動的訓練を統合するフレームワークが大きな注目を集める（170 upvotes）\n- **Claude Code v2.1.92**: Bedrock設定ウィザード追加・フェイルクローズドポリシーでエンタープライズ対応強化\n- **旧AIが新AIを上回る**: 世代交代の常識を覆す実証事例がHackerNewsで話題\n\n---\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.92 (2026-04-04)\n- `forceRemoteSettingsRefresh` ポリシー追加：リモート設定取得失敗時にフェイルクローズド動作\n- Bedrockインタラクティブ設定ウィザード追加（ログイン画面からAWS認証・リージョン・モデル固定まで対話式設定）\n- `/cost` コマンドにモデル別・キャッシュヒット別の内訳表示を追加（サブスクリプションユーザー向け）\n- `/release-notes` がインタラクティブなバージョン選択UIに変更\n- Remote Controlセッション名がホスト名をデフォルトプレフィックスとして使用（`--remote-control-session-name-prefix` で上書き可）\n\n### v2.1.91 (2026-04-02)\n- MCPツール結果に `_meta[\"anthropic/maxResultSizeChars\"]` アノテーションで最大500Kまで拡張可能に\n- スキル・スラッシュコマンド内のインラインシェル実行を無効化する `disableSkillShellExecution` 設定を追加\n- プラグインが `bin/` 以下に実行ファイルを同梱しBashツールから直接呼び出し可能に\n- `--resume` 時に非同期トランスクリプト書き込み失敗で会話履歴が失われるバグを修正\n\n### v2.1.90 (2026-04-01)\n- `/powerup` コマンド追加：アニメーションデモ付きのClaude Code機能学習インタラクティブレッスン\n- `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE` 環境変数追加：オフライン環境でgit pull失敗時に既存キャッシュ維持\n- レート制限ダイアログが無限ループしてセッションクラッシュするバグを修正\n- PostToolUseフックがファイルを書き換えた際に `Edit`/`Write` が \"File content has changed\" エラーになるバグを修正\n\n---\n\n## 注目論文 TOP 5\n\n**1. DataFlex: LLM向けデータ中心動的訓練統合フレームワーク** | 170 upvotes | [arxiv](https://arxiv.org/abs/2603.26164)\n訓練データの選択・混合・拡張を動的に最適化する統合パイプラインを提案。静的データセットの問題を解消。\nLLMの継続的学習・ファインチューニング効率を向上させ、産業規模のモデル更新フローに直接応用可能。\n\n**2. The Latent Space: 基盤・進化・メカニズム・能力・展望** | 123 upvotes | [arxiv](https://arxiv.org/abs/2604.02029)\nLLMの潜在空間の性質を体系的にサーベイし、表現の形成メカニズムと能力の源泉を多角的に分析。\nLLMの解釈可能性研究・能力向上・制御技術の共通理論基盤となる包括的参照資料として意義大。\n\n**3. Generative World Renderer（生成的ワールドレンダラー）** | 87 upvotes | [arxiv](https://arxiv.org/abs/2604.02329)\n生成モデルを用いて一貫した3Dワールドをリアルタイムレンダリングする新手法を提案。\nゲーム・シミュレーション・自動運転の仮想環境生成に応用でき、世界モデル研究の前進を示す。\n\n**4. SKILL0: スキル内在化のためのインコンテキスト強化学習** | 83 upvotes | [arxiv](https://arxiv.org/abs/2604.02268)\nエージェントがコンテキスト内RLを通じて繰り返しスキルを内在化・再利用する仕組みを構築。\n外部ツール依存を減らしながらエージェントの汎化能力を高める、自律エージェント実装の新方向性。\n\n**5. Steerable Visual Representations（操舵可能な視覚表現）** | 43 upvotes | [arxiv](https://arxiv.org/abs/2604.02327)\n視覚モデルの内部表現を意味的に「操舵」可能にする手法を提案し、制御可能な視覚理解を実現。\n画像編集・視覚的条件付き生成・マルチモーダルモデルの表現制御に応用できる基礎技術。\n\n---\n\n## AI ニュース\n\n**旧AIが新AIを上回る — その理由とは** | 4 pts | [qz.com](https://qz.com/ai-generative-chatbots-llm-machine-learning)\n最新世代のLLMが旧世代に特定タスクで負けるケースが実証され、「新しいほど優秀」という前提を検証。\nモデル評価の複雑さと、用途特化型チューニングの重要性を示す事例として業界の注目を集めている。\n\n**「I love you」「too」: LLMアテンション機構をわかりやすく解説** | 4 pts | [kaamvaam.com](https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/)\nTransformerのアテンション機構を具体的な文例で直感的に説明した教育コンテンツ。\nLLMの仕組みへの理解を深める入門記事として、開発者・学習者コミュニティで好評。\n\n**LLM実験シリーズ Part 1: ファインチューニング** | 3 pts | [adamfallon.com](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html)\nOpenAIモデルのファインチューニングを実際に試した知見・手順・ハマりどころをまとめた実践記事。\n実務でのLLMカスタマイズに役立つノウハウとして、実装者向けに参考価値が高い。\n\n**LLM実験シリーズ: OpenAI Functions** | 2 pts | [adamfallon.com](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html)\nOpenAI Function Callingを実験的に活用した際の実装パターンと知見を共有するブログ記事。\nツール呼び出し・エージェント実装の基礎理解に有用な実験レポート。\n\n**LLM実験シリーズ: Vector DBとEmbeddings** | 2 pts | [adamfallon.com](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html)\nベクターデータベースとEmbeddingを組み合わせたRAG構築の実験結果を詳細に記録した記事。\nRAGシステム構築の入門・比較資料として継続的に参照される実用的コンテンツ。",
+  "fetched_at": "2026-04-05T23:02:46.034803+00:00",
+  "papers": [
+    {
+      "title": "DataFlex: A Unified Framework for Data-Centric Dynamic Training of Large Language Models",
+      "upvotes": 170,
+      "url": "https://arxiv.org/abs/2603.26164"
+    },
+    {
+      "title": "The Latent Space: Foundation, Evolution, Mechanism, Ability, and Outlook",
+      "upvotes": 123,
+      "url": "https://arxiv.org/abs/2604.02029"
+    },
+    {
+      "title": "Generative World Renderer",
+      "upvotes": 87,
+      "url": "https://arxiv.org/abs/2604.02329"
+    },
+    {
+      "title": "SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization",
+      "upvotes": 83,
+      "url": "https://arxiv.org/abs/2604.02268"
+    },
+    {
+      "title": "Steerable Visual Representations",
+      "upvotes": 43,
+      "url": "https://arxiv.org/abs/2604.02327"
+    },
+    {
+      "title": "CORAL: Towards Autonomous Multi-Agent Evolution for Open-Ended Discovery",
+      "upvotes": 41,
+      "url": "https://arxiv.org/abs/2604.01658"
+    },
+    {
+      "title": "EgoSim: Egocentric World Simulator for Embodied Interaction Generation",
+      "upvotes": 34,
+      "url": "https://arxiv.org/abs/2604.01001"
+    },
+    {
+      "title": "VOID: Video Object and Interaction Deletion",
+      "upvotes": 29,
+      "url": "https://arxiv.org/abs/2604.02296"
+    },
+    {
+      "title": "LatentUM: Unleashing the Potential of Interleaved Cross-Modal Reasoning via a Latent-Space Unified Model",
+      "upvotes": 27,
+      "url": "https://arxiv.org/abs/2604.02097"
+    },
+    {
+      "title": "NearID: Identity Representation Learning via Near-identity Distractors",
+      "upvotes": 26,
+      "url": "https://arxiv.org/abs/2604.01973"
+    },
+    {
+      "title": "Therefore I am. I Think",
+      "upvotes": 21,
+      "url": "https://arxiv.org/abs/2604.01202"
+    },
+    {
+      "title": "Omni-SimpleMem: Autoresearch-Guided Discovery of Lifelong Multimodal Agent Memory",
+      "upvotes": 21,
+      "url": "https://arxiv.org/abs/2604.01007"
+    },
+    {
+      "title": "ASI-Evolve: AI Accelerates AI",
+      "upvotes": 19,
+      "url": "https://arxiv.org/abs/2603.29640"
+    },
+    {
+      "title": "UniDriveVLA: Unifying Understanding, Perception, and Action Planning for Autonomous Driving",
+      "upvotes": 18,
+      "url": "https://arxiv.org/abs/2604.02190"
+    },
+    {
+      "title": "Gated Condition Injection without Multimodal Attention: Towards Controllable Linear-Attention Transformers",
+      "upvotes": 14,
+      "url": "https://arxiv.org/abs/2603.27666"
+    },
+    {
+      "title": "Investigating Autonomous Agent Contributions in the Wild: Activity Patterns and Code Change over Time",
+      "upvotes": 13,
+      "url": "https://arxiv.org/abs/2604.00917"
+    },
+    {
+      "title": "AIBench: Evaluating Visual-Logical Consistency in Academic Illustration Generation",
+      "upvotes": 9,
+      "url": "https://arxiv.org/abs/2603.28068"
+    },
+    {
+      "title": "Tex3D: Objects as Attack Surfaces via Adversarial 3D Textures for Vision-Language-Action Models",
+      "upvotes": 9,
+      "url": "https://arxiv.org/abs/2604.01618"
+    },
+    {
+      "title": "GPA: Learning GUI Process Automation from Demonstrations",
+      "upvotes": 9,
+      "url": "https://arxiv.org/abs/2604.01676"
+    },
+    {
+      "title": "Video Models Reason Early: Exploiting Plan Commitment for Maze Solving",
+      "upvotes": 8,
+      "url": "https://arxiv.org/abs/2603.30043"
+    },
+    {
+      "title": "Omni123: Exploring 3D Native Foundation Models with Limited 3D Data by Unifying Text to 2D and 3D Generation",
+      "upvotes": 8,
+      "url": "https://arxiv.org/abs/2604.02289"
+    },
+    {
+      "title": "DynaVid: Learning to Generate Highly Dynamic Videos using Synthetic Motion Data",
+      "upvotes": 8,
+      "url": "https://arxiv.org/abs/2604.01666"
+    },
+    {
+      "title": "VideoZeroBench: Probing the Limits of Video MLLMs with Spatio-Temporal Evidence Verification",
+      "upvotes": 8,
+      "url": "https://arxiv.org/abs/2604.01569"
+    },
+    {
+      "title": "MDPBench: A Benchmark for Multilingual Document Parsing in Real-World Scenarios",
+      "upvotes": 7,
+      "url": "https://arxiv.org/abs/2603.28130"
+    },
+    {
+      "title": "AutoMIA: Improved Baselines for Membership Inference Attack via Agentic Self-Exploration",
+      "upvotes": 7,
+      "url": "https://arxiv.org/abs/2604.01014"
+    },
+    {
+      "title": "Efficient and Principled Scientific Discovery through Bayesian Optimization: A Tutorial",
+      "upvotes": 6,
+      "url": "https://arxiv.org/abs/2604.01328"
+    },
+    {
+      "title": "T5Gemma-TTS Technical Report",
+      "upvotes": 6,
+      "url": "https://arxiv.org/abs/2604.01760"
+    },
+    {
+      "title": "Forecasting Supply Chain Disruptions with Foresight Learning",
+      "upvotes": 5,
+      "url": "https://arxiv.org/abs/2604.01298"
+    },
+    {
+      "title": "LinguDistill: Recovering Linguistic Ability in Vision- Language Models via Selective Cross-Modal Distillation",
+      "upvotes": 5,
+      "url": "https://arxiv.org/abs/2604.00829"
+    },
+    {
+      "title": "Apriel-Reasoner: RL Post-Training for General-Purpose and Efficient Reasoning",
+      "upvotes": 5,
+      "url": "https://arxiv.org/abs/2604.02007"
+    },
+    {
+      "title": "FlowSlider: Training-Free Continuous Image Editing via Fidelity-Steering Decomposition",
+      "upvotes": 5,
+      "url": "https://arxiv.org/abs/2604.02088"
+    },
+    {
+      "title": "PixelPrune: Pixel-Level Adaptive Visual Token Reduction via Predictive Coding",
+      "upvotes": 5,
+      "url": "https://arxiv.org/abs/2604.00886"
+    },
+    {
+      "title": "When Users Change Their Mind: Evaluating Interruptible Agents in Long-Horizon Web Navigation",
+      "upvotes": 5,
+      "url": "https://arxiv.org/abs/2604.00892"
+    },
+    {
+      "title": "S0 Tuning: Zero-Overhead Adaptation of Hybrid Recurrent-Attention Models",
+      "upvotes": 5,
+      "url": "https://arxiv.org/abs/2604.01168"
+    },
+    {
+      "title": "Working Notes on Late Interaction Dynamics: Analyzing Targeted Behaviors of Late Interaction Models",
+      "upvotes": 4,
+      "url": "https://arxiv.org/abs/2603.26259"
+    },
+    {
+      "title": "ActionParty: Multi-Subject Action Binding in Generative Video Games",
+      "upvotes": 4,
+      "url": "https://arxiv.org/abs/2604.02330"
+    },
+    {
+      "title": "Ask or Assume? Uncertainty-Aware Clarification-Seeking in Coding Agents",
+      "upvotes": 4,
+      "url": "https://arxiv.org/abs/2603.26233"
+    },
+    {
+      "title": "UniRecGen: Unifying Multi-View 3D Reconstruction and Generation",
+      "upvotes": 4,
+      "url": "https://arxiv.org/abs/2604.01479"
+    },
+    {
+      "title": "Woosh: A Sound Effects Foundation Model",
+      "upvotes": 4,
+      "url": "https://arxiv.org/abs/2604.01929"
+    },
+    {
+      "title": "Consistency Amplifies: How Behavioral Variance Shapes Agent Accuracy",
+      "upvotes": 4,
+      "url": "https://arxiv.org/abs/2603.25764"
+    },
+    {
+      "title": "LOME: Learning Human-Object Manipulation with Action-Conditioned Egocentric World Model",
+      "upvotes": 3,
+      "url": "https://arxiv.org/abs/2603.27449"
+    },
+    {
+      "title": "MultiGen: Level-Design for Editable Multiplayer Worlds in Diffusion Game Engines",
+      "upvotes": 3,
+      "url": "https://arxiv.org/abs/2603.06679"
+    },
+    {
+      "title": "Memory-Augmented Vision-Language Agents for Persistent and Semantically Consistent Object Captioning",
+      "upvotes": 3,
+      "url": "https://arxiv.org/abs/2603.24257"
+    },
+    {
+      "title": "Executing as You Generate: Hiding Execution Latency in LLM Code Generation",
+      "upvotes": 3,
+      "url": "https://arxiv.org/abs/2604.00491"
+    },
+    {
+      "title": "Automatic Image-Level Morphological Trait Annotation for Organismal Images",
+      "upvotes": 3,
+      "url": "https://arxiv.org/abs/2604.01619"
+    },
+    {
+      "title": "Signals: Trajectory Sampling and Triage for Agentic Interactions",
+      "upvotes": 2,
+      "url": "https://arxiv.org/abs/2604.00356"
+    },
+    {
+      "title": "Brainstacks: Cross-Domain Cognitive Capabilities via Frozen MoE-LoRA Stacks for Continual LLM Learning",
+      "upvotes": 2,
+      "url": "https://arxiv.org/abs/2604.01152"
+    },
+    {
+      "title": "Friends and Grandmothers in Silico: Localizing Entity Cells in Language Models",
+      "upvotes": 2,
+      "url": "https://arxiv.org/abs/2604.01404"
+    },
+    {
+      "title": "AgentWatcher: A Rule-based Prompt Injection Monitor",
+      "upvotes": 2,
+      "url": "https://arxiv.org/abs/2604.01194"
+    },
+    {
+      "title": "An Empirical Recipe for Universal Phone Recognition",
+      "upvotes": 1,
+      "url": "https://arxiv.org/abs/2603.29042"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.92",
+      "url": "",
+      "body": "## What's changed\n\n- Added `forceRemoteSettingsRefresh` policy setting: when set, the CLI blocks startup until remote managed settings are freshly fetched, and exits if the fetch fails (fail-closed)\n- Added interactive Bedrock setup wizard accessible from the login screen when selecting \"3rd-party platform\" — guides you through AWS authentication, region configuration, credential verification, and model pinning\n- Added per-model and cache-hit breakdown to `/cost` for subscription users\n- `/release-notes` is now an interactive version picker\n- Remote Control session names now use your hostname as the default prefix (e.g. `myhost-graceful-unicorn`), overridable with `--remote-control-session-name-prefix`\n- Pro users now see a footer hint when returning to a session after the prompt cache has expired, showing roughly how many tokens the next turn will send uncached\n- Fixed subagent spawning permanently failing with \"Could not determine pane count\" after tmux windows are killed or renumbered during a long-running session\n- Fixed prompt-type Stop hooks incorrectly failing when the small fast model returns `ok:false`, and restored `preventContinuation:true` semantics for non-Stop prompt-type hooks\n- Fixed tool input validation failures when streaming emits array/object fields as JSON-encoded strings\n- Fixed an API 400 error that could occur when extended thinking produced a whitespace-only text block alongside real content\n- Fixed accidental feedback survey submissions from auto-pilot keypresses and consecutive-prompt digit collisions\n- Fixed misleading \"esc to interrupt\" hint appearing alongside \"esc to clear\" when a text selection exists in fullscreen mode during processing\n- Fixed Homebrew install update prompts to use the cask's release channel (`claude-code` → stable, `claude-code@latest` → latest)\n- Fixed `ctrl+e` jumping to the end of the next line when already at end of line in multiline prompts\n- Fixed an issue where the same message could appear at two positions"
+    },
+    {
+      "tag_name": "v2.1.91",
+      "url": "",
+      "body": "## What's changed\n\n- Added MCP tool result persistence override via `_meta[\"anthropic/maxResultSizeChars\"]` annotation (up to 500K), allowing larger results like DB schemas to pass through without truncation\n- Added `disableSkillShellExecution` setting to disable inline shell execution in skills, custom slash commands, and plugin commands\n- Added support for multi-line prompts in `claude-cli://open?q=` deep links (encoded newlines `%0A` no longer rejected)\n- Plugins can now ship executables under `bin/` and invoke them as bare commands from the Bash tool\n- Fixed transcript chain breaks on `--resume` that could lose conversation history when async transcript writes fail silently\n- Fixed `cmd+delete` not deleting to start of line on iTerm2, kitty, WezTerm, Ghostty, and Windows Terminal\n- Fixed plan mode in remote sessions losing track of the plan file after a container restart, which caused permission prompts on plan edits and an empty plan-approval modal\n- Fixed JSON schema validation for `permissions.defaultMode: \"auto\"` in settings.json\n- Fixed Windows version cleanup not protecting the active version's rollback copy\n- `/feedback` now explains why it's unavailable instead of disappearing from the slash menu\n- Improved `/claude-api` skill guidance for agent design patterns including tool surface decisions, context management, and caching strategy\n- Improved performance: faster `stripAnsi` on Bun by routing through `Bun.stripANSI`\n- Edit tool now uses shorter `old_string` anchors, reducing output tokens\n"
+    },
+    {
+      "tag_name": "v2.1.90",
+      "url": "",
+      "body": "## What's changed\n\n- Added `/powerup` — interactive lessons teaching Claude Code features with animated demos\n- Added `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE` env var to keep the existing marketplace cache when `git pull` fails, useful in offline environments\n- Added `.husky` to protected directories (acceptEdits mode)\n- Fixed an infinite loop where the rate-limit options dialog would repeatedly auto-open after hitting your usage limit, eventually crashing the session\n- Fixed `--resume` causing a full prompt-cache miss on the first request for users with deferred tools, MCP servers, or custom agents (regression since v2.1.69)\n- Fixed `Edit`/`Write` failing with \"File content has changed\" when a PostToolUse format-on-save hook rewrites the file between consecutive edits\n- Fixed `PreToolUse` hooks that emit JSON to stdout and exit with code 2 not correctly blocking the tool call\n- Fixed collapsed search/read summary badge appearing multiple times in fullscreen scrollback when a CLAUDE.md file auto-loads during a tool call\n- Fixed auto mode not respecting explicit user boundaries (\"don't push\", \"wait for X before Y\") even when the action would otherwise be allowed\n- Fixed click-to-expand hover text being nearly invisible on light terminal themes\n- Fixed UI crash when malformed tool input reached the permission dialog\n- Fixed headers disappearing when scrolling `/model`, `/config`, and other selection screens\n- Hardened PowerShell tool permission checks: fixed trailing `&` background job bypass, `-ErrorAction Break` debugger hang, archive-extraction TOCTOU, and parse-fail fallback deny-rule degradation\n- Improved performance: eliminated per-turn JSON.stringify of MCP tool schemas on cache-key lookup\n- Improved performance: SSE transport now handles large streamed frames in linear time (was quadratic)\n- Improved performance: SDK sessions with long conversations no longer slow down quadratically on transcript writes\n- Improved `/resume` all-projects view to load p"
+    },
+    {
+      "tag_name": "v2.1.89",
+      "url": "",
+      "body": "## What's changed\n\n- Added `\"defer\"` permission decision to `PreToolUse` hooks — headless sessions can pause at a tool call and resume with `-p --resume` to have the hook re-evaluate\n- Added `CLAUDE_CODE_NO_FLICKER=1` environment variable to opt into flicker-free alt-screen rendering with virtualized scrollback\n- Added `PermissionDenied` hook that fires after auto mode classifier denials — return `{retry: true}` to tell the model it can retry\n- Added named subagents to `@` mention typeahead suggestions\n- Added `MCP_CONNECTION_NONBLOCKING=true` for `-p` mode to skip the MCP connection wait entirely, and bounded `--mcp-config` server connections at 5s instead of blocking on the slowest server\n- Auto mode: denied commands now show a notification and appear in `/permissions` → Recent tab where you can retry with `r`\n- Fixed `Edit(//path/**)` and `Read(//path/**)` allow rules to check the resolved symlink target, not just the requested path\n- Fixed voice push-to-talk not activating for some modifier-combo bindings, and voice mode on Windows failing with \"WebSocket upgrade rejected with HTTP 101\"\n- Fixed Edit/Write tools doubling CRLF on Windows and stripping Markdown hard line breaks (two trailing spaces)\n- Fixed `StructuredOutput` schema cache bug causing ~50% failure rate when using multiple schemas\n- Fixed memory leak where large JSON inputs were retained as LRU cache keys in long-running sessions\n- Fixed a crash when removing a message from very large session files (over 50MB)\n- Fixed LSP server zombie state after crash — server now restarts on next request instead of failing until session restart\n- Fixed prompt history entries containing CJK or emoji being silently dropped when they fall on a 4KB boundary in `~/.claude/history.jsonl`\n- Fixed `/stats` undercounting tokens by excluding subagent usage, and losing historical data beyond 30 days when the stats cache format changes\n- Fixed `-p --resume` hangs when the deferred tool input exceeds 64KB or no deferred marker"
+    },
+    {
+      "tag_name": "v2.1.87",
+      "url": "",
+      "body": "## What's changed\n\n- Fixed messages in Cowork Dispatch not getting delivered\n"
+    },
+    {
+      "tag_name": "v2.1.86",
+      "url": "",
+      "body": "## What's changed\n\n- Added `X-Claude-Code-Session-Id` header to API requests so proxies can aggregate requests by session without parsing the body\n- Added `.jj` and `.sl` to VCS directory exclusion lists so Grep and file autocomplete don't descend into Jujutsu or Sapling metadata\n- Fixed `--resume` failing with \"tool_use ids were found without tool_result blocks\" on sessions created before v2.1.85\n- Fixed Write/Edit/Read failing on files outside the project root (e.g., `~/.claude/CLAUDE.md`) when conditional skills or rules are configured\n- Fixed unnecessary config disk writes on every skill invocation that could cause performance issues and config corruption on Windows\n- Fixed potential out-of-memory crash when using `/feedback` on very long sessions with large transcript files\n- Fixed `--bare` mode dropping MCP tools in interactive sessions and silently discarding messages enqueued mid-turn\n- Fixed the `c` shortcut copying only ~20 characters of the OAuth login URL instead of the full URL\n- Fixed masked input (e.g., OAuth code paste) leaking the start of the token when wrapping across multiple lines on narrow terminals\n- Fixed official marketplace plugin scripts failing with \"Permission denied\" on macOS/Linux since v2.1.83\n- Fixed statusline showing another session's model when running multiple Claude Code instances and using `/model` in one of them\n- Fixed scroll not following new messages after wheel scroll or click-to-select at the bottom of a long conversation\n- Fixed `/plugin` uninstall dialog: pressing `n` now correctly uninstalls the plugin while preserving its data directory\n- Fixed a regression where pressing Enter after clicking could leave the transcript blank until the response arrived\n- Fixed `ultrathink` hint lingering after deleting the keyword\n- Fixed memory growth in long sessions from markdown/highlight render caches retaining full content strings\n- Reduced startup event-loop stalls when many claude.ai MCP connectors are configured (macOS keychai"
+    },
+    {
+      "tag_name": "v2.1.85",
+      "url": "",
+      "body": "## What's changed\n\n- Added `CLAUDE_CODE_MCP_SERVER_NAME` and `CLAUDE_CODE_MCP_SERVER_URL` environment variables to MCP `headersHelper` scripts, allowing one helper to serve multiple servers\n- Added conditional `if` field for hooks using permission rule syntax (e.g., `Bash(git *)`) to filter when they run, reducing process spawning overhead\n- Added timestamp markers in transcripts when scheduled tasks (`/loop`, `CronCreate`) fire\n- Added trailing space after `[Image #N]` placeholder when pasting images\n- Deep link queries (`claude-cli://open?q=…`) now support up to 5,000 characters, with a \"scroll to review\" warning for long pre-filled prompts\n- MCP OAuth now follows RFC 9728 Protected Resource Metadata discovery to find the authorization server\n- Plugins blocked by organization policy (`managed-settings.json`) can no longer be installed or enabled, and are hidden from marketplace views\n- PreToolUse hooks can now satisfy `AskUserQuestion` by returning `updatedInput` alongside `permissionDecision: \"allow\"`, enabling headless integrations that collect answers via their own UI\n- `tool_parameters` in OpenTelemetry tool_result events are now gated behind `OTEL_LOG_TOOL_DETAILS=1`\n- Fixed `/compact` failing with \"context exceeded\" when the conversation has grown too large for the compact request itself to fit\n- Fixed `/plugin enable` and `/plugin disable` failing when a plugin's install location differs from where it's declared in settings\n- Fixed `--worktree` exiting with an error in non-git repositories before the `WorktreeCreate` hook could run\n- Fixed `deniedMcpServers` setting not blocking claude.ai MCP servers\n- Fixed `switch_display` in the computer-use tool returning \"not available in this session\" on multi-monitor setups\n- Fixed crash when `OTEL_LOGS_EXPORTER`, `OTEL_METRICS_EXPORTER`, or `OTEL_TRACES_EXPORTER` is set to `none`\n- Fixed diff syntax highlighting not working in non-native builds\n- Fixed MCP step-up authorization failing when a refresh token exists — "
+    },
+    {
+      "tag_name": "v2.1.84",
+      "url": "",
+      "body": "## What's changed\n\n- Added PowerShell tool for Windows as an opt-in preview. Learn more at https://code.claude.com/docs/en/tools-reference#powershell-tool\n- Added `ANTHROPIC_DEFAULT_{OPUS,SONNET,HAIKU}_MODEL_SUPPORTS` env vars to override effort/thinking capability detection for pinned default models for 3p (Bedrock, Vertex, Foundry), and `_MODEL_NAME`/`_DESCRIPTION` to customize the `/model` picker label\n- Added `CLAUDE_STREAM_IDLE_TIMEOUT_MS` env var to configure the streaming idle watchdog threshold (default 90s)\n- Added `TaskCreated` hook that fires when a task is created via `TaskCreate`\n- Added `WorktreeCreate` hook support for `type: \"http\"` — return the created worktree path via `hookSpecificOutput.worktreePath` in the response JSON\n- Added `allowedChannelPlugins` managed setting for team/enterprise admins to define a channel plugin allowlist\n- Added `x-client-request-id` header to API requests for debugging timeouts\n- Added idle-return prompt that nudges users returning after 75+ minutes to `/clear`, reducing unnecessary token re-caching on stale sessions\n- Deep links (`claude-cli://`) now open in your preferred terminal instead of whichever terminal happens to be first in the detection list\n- Rules and skills `paths:` frontmatter now accepts a YAML list of globs\n- MCP tool descriptions and server instructions are now capped at 2KB to prevent OpenAPI-generated servers from bloating context\n- MCP servers configured both locally and via claude.ai connectors are now deduplicated — the local config wins\n- Background bash tasks that appear stuck on an interactive prompt now surface a notification after ~45 seconds\n- Token counts ≥1M now display as \"1.5m\" instead of \"1512.6k\"\n- Global system-prompt caching now works when `ToolSearch` is enabled, including for users with MCP tools configured\n- Fixed voice push-to-talk: holding the voice key no longer leaks characters into the text input, and transcripts now insert at the correct position\n- Fixed up/down arrow keys"
+    },
+    {
+      "tag_name": "v2.1.83",
+      "url": "",
+      "body": "## What's changed\n\n- Added `managed-settings.d/` drop-in directory alongside `managed-settings.json`, letting separate teams deploy independent policy fragments that merge alphabetically\n- Added `CwdChanged` and `FileChanged` hook events for reactive environment management (e.g., direnv)\n- Added `sandbox.failIfUnavailable` setting to exit with an error when sandbox is enabled but cannot start, instead of running unsandboxed\n- Added `disableDeepLinkRegistration` setting to prevent `claude-cli://` protocol handler registration\n- Added `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB=1` to strip Anthropic and cloud provider credentials from subprocess environments (Bash tool, hooks, MCP stdio servers)\n- Added transcript search — press `/` in transcript mode (`Ctrl+O`) to search, `n`/`N` to step through matches\n- Added `Ctrl+X Ctrl+E` as an alias for opening the external editor (readline-native binding; `Ctrl+G` still works)\n- Pasted images now insert an `[Image #N]` chip at the cursor so you can reference them positionally in your prompt\n- Agents can now declare `initialPrompt` in frontmatter to auto-submit a first turn\n- `chat:killAgents` and `chat:fastMode` are now rebindable via `~/.claude/keybindings.json`\n- Fixed mouse tracking escape sequences leaking to shell prompt after exit\n- Fixed Claude Code hanging on exit on macOS\n- Fixed screen flashing blank after being idle for a few seconds\n- Fixed a hang when diffing very large files with few common lines — diffs now time out after 5 seconds and fall back gracefully\n- Fixed a 1–8 second UI freeze on startup when voice input was enabled, caused by eagerly loading the native audio module\n- Fixed a startup regression where Claude Code would wait ~3s for claude.ai MCP config fetch before proceeding\n- Fixed `--mcp-config` CLI flag bypassing `allowedMcpServers`/`deniedMcpServers` managed policy enforcement\n- Fixed claude.ai MCP connectors (Slack, Gmail, etc.) not being available in single-turn `--print` mode\n- Fixed `caffeinate` process "
+    },
+    {
+      "tag_name": "v2.1.81",
+      "url": "",
+      "body": "## What's changed\n\n- Added `--bare` flag for scripted `-p` calls — skips hooks, LSP, plugin sync, and skill directory walks; requires `ANTHROPIC_API_KEY` or an `apiKeyHelper` via `--settings` (OAuth and keychain auth disabled); auto-memory fully disabled\n- Added `--channels` permission relay — channel servers that declare the permission capability can forward tool approval prompts to your phone\n- Fixed multiple concurrent Claude Code sessions requiring repeated re-authentication when one session refreshes its OAuth token\n- Fixed voice mode silently swallowing retry failures and showing a misleading \"check your network\" message instead of the actual error\n- Fixed voice mode audio not recovering when the server silently drops the WebSocket connection\n- Fixed `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` not suppressing the structured-outputs beta header, causing 400 errors on proxy gateways forwarding to Vertex/Bedrock\n- Fixed `--channels` bypass for Team/Enterprise orgs with no other managed settings configured\n- Fixed a crash on Node.js 18\n- Fixed unnecessary permission prompts for Bash commands containing dashes in strings\n- Fixed plugin hooks blocking prompt submission when the plugin directory is deleted mid-session\n- Fixed a race condition where background agent task output could hang indefinitely when the task completed between polling intervals\n- Resuming a session that was in a worktree now switches back to that worktree\n- Fixed `/btw` not including pasted text when used during an active response\n- Fixed a race where fast Cmd+Tab followed by paste could beat the clipboard copy under tmux\n- Fixed terminal tab title not updating with an auto-generated session description\n- Fixed invisible hook attachments inflating the message count in transcript mode\n- Fixed Remote Control sessions showing a generic title instead of deriving from the first prompt\n- Fixed `/rename` not syncing the title for Remote Control sessions\n- Fixed Remote Control `/exit` not reliably archivin"
+    }
+  ],
+  "news": [
+    {
+      "title": "Old AI is beating new AI. Here's why",
+      "url": "https://qz.com/ai-generative-chatbots-llm-machine-learning",
+      "score": 4,
+      "source": "HackerNews"
+    },
+    {
+      "title": "\"I love you\" \"too\": LLM Attention Explained",
+      "url": "https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/",
+      "score": 4,
+      "source": "HackerNews"
+    },
+    {
+      "title": "Experiments in LLMs – Everything I've learned (so far) – Part One – Fine tuning",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html",
+      "score": 3,
+      "source": "HackerNews"
+    },
+    {
+      "title": "Experiments in LLMs – OpenAI Functions",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html",
+      "score": 2,
+      "source": "HackerNews"
+    },
+    {
+      "title": "Experiments in LLMs – Vector DBs and Embeddings",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html",
+      "score": 2,
+      "source": "HackerNews"
+    },
+    {
+      "title": "Hex-LLM: High-efficiency large language model serving on TPUs",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/hex-llm-on-tpus-in-vertex-ai-model-garden/",
+      "score": 2,
+      "source": "HackerNews"
+    },
+    {
+      "title": "Ask HN: Best resources on learning AI, LLMs etc. (both paid and free)",
+      "url": "https://news.ycombinator.com/item?id=41292443",
+      "score": 2,
+      "source": "HackerNews"
+    },
+    {
+      "title": "Mistral Large, Mistral AI's Flagship LLM, Debuts on Azure AI Models-as-a-Service",
+      "url": "https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/mistral-large-mistral-ai-s-flagship-llm-debuts-on-azure-ai/ba-p/4066996",
+      "score": 2,
+      "source": "HackerNews"
+    },
+    {
+      "title": "Local LLM and machine learning for plant care",
+      "url": "https://www.viam.com/post/practical-ai-local-llm-and-machine-learning-for-plant-care",
+      "score": 1,
+      "source": "HackerNews"
+    },
+    {
+      "title": "From Traditional Machine Learning Governance to LLM-Centric AI Governance",
+      "url": "https://www.guardrailsai.com/blog/from-traditional-machine-learning-governance-to-llm-centric-ai-governance/",
+      "score": 1,
+      "source": "HackerNews"
+    }
+  ]
+}
