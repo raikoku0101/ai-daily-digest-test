@@ -1,68 +1,71 @@
 # AI Daily Digest — 2026-04-07
 
 ## 今日のハイライト
-- Self-Distilled RLVR が82 upvotesで最注目：強化学習を自己蒸留で改善する新手法が話題
-- Claude Code v2.1.92リリース：Bedrockセットアップウィザードとper-model cost breakdownを追加
-- HackerNewsでは「古いAIが新しいAIを上回る理由」と LLM Attention 解説記事が同率首位
+- VLAモデルの言い換え頑健性を評価するベンチマーク「LIBERO-Para」が70 upvotesでトップ注目論文に
+- Claude Code v2.1.94リリース: Amazon Bedrock (Mantle) 対応とデフォルト努力レベルの高精度化
+- 旧世代AIが新世代AIを上回るケースとその理由についてHackerNewsで議論が注目を集める
 
 ## Claude Code / Anthropic アップデート
-**v2.1.92** (2026-04-04)
+
+### v2.1.94 (2026-04-07)
+- Amazon Bedrock powered by Mantle のサポートを追加
+- 各種ユーザー向けにデフォルト努力レベルをmediumからhighに変更
+- Slackヘッダーをクリック可能なリンク付きコンパクト表示に改善
+- 429レートリミットエラーおよびmacOSのConsoleログイン失敗を修正
+
+### v2.1.92 (2026-04-04)
 - `forceRemoteSettingsRefresh` ポリシー設定を追加
-- Bedrock インタラクティブセットアップウィザードを追加
-- モデル別コスト内訳（per-model cost breakdown）表示を追加
-- サブエージェント起動失敗・prompt-type Stop フックのバグ修正
+- インタラクティブなBedrockセットアップウィザードを追加
+- `/cost` コマンドにモデル別・キャッシュヒット内訳を追加
+- サブエージェント生成問題・Stop hookの失敗・ツール入力バリデーション問題を修正
 
-**v2.1.91** (2026-04-02)
-- アノテーション経由で MCP ツール結果の永続化オーバーライドに対応
+### v2.1.91 (2026-04-02)
+- アノテーションによるMCPツール結果の永続化オーバーライドを追加
 - `disableSkillShellExecution` 設定を追加
-- ディープリンクでのマルチライン入力をサポート
-- `bin/` ディレクトリ配下のプラグイン実行ファイルに対応
-
-**v2.1.90** (2026-04-01)
-- `/powerup` インタラクティブレッスン機能を追加
-- `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE` 環境変数を追加
-- レート制限ダイアログの無限ループとプロンプトキャッシュミスのリグレッションを修正
+- ディープリンクでのマルチラインプロンプトをサポート
+- `bin/` 配下のプラグイン実行ファイルをサポート
+- トランスクリプトチェーンの断絶および複数端末でのキーボードショートカットを修正
 
 ## 注目論文 TOP 5
 
-1. **Self-Distilled RLVR（自己蒸留強化学習）** — 82 upvotes — https://huggingface.co/papers/2604.03128
-   手法：強化学習（RLVR）において、モデル自身の出力を蒸留ターゲットとして利用し、外部報酬なしに推論能力を向上させる。
-   意義：ラベルなしデータで継続的な自己改善が可能になり、LLMの自律的な能力向上に道を開く。
+**1. LIBERO-Para: VLAモデルにおける言い換え頑健性の診断ベンチマークと評価指標** | 70 upvotes | https://huggingface.co/papers/2603.28301
+手法: Vision-Language-Action (VLA) モデルへの入力指示を言い換えた際のロボット動作の安定性を定量評価するベンチマークと指標群を設計
+結果: 現状のVLAモデルが言い換えに脆弱であることを示し、ロボット制御の実用化に向けた重要な課題を提起
 
-2. **A Simple Baseline for Streaming Video Understanding（ストリーミング動画理解のシンプルなベースライン）** — 55 upvotes — https://huggingface.co/papers/2604.02317
-   手法：リアルタイムのストリーミング動画に対してシンプルなフレームサンプリング＋言語モデルを組み合わせた軽量なベースラインを提案。
-   意義：複雑なアーキテクチャ不要で高い性能を達成し、動画LLMの評価基準として実用性が高い。
+**2. Adam's Law: 大規模言語モデルにおけるテキスト頻度法則** | 45 upvotes | https://huggingface.co/papers/2604.02176
+手法: LLMの出力とトレーニングデータのテキスト頻度分布の関係を実証的に分析し、「Adam's Law」と名付けた統計的法則を導出
+結果: LLMが高頻度テキストパターンを過剰生成する傾向を定量化し、モデル評価・データキュレーションへの応用可能性を示す
 
-3. **Token Warping Helps MLLMs Look from Nearby Viewpoints（トークンワーピングで多視点認識を改善）** — 23 upvotes — https://huggingface.co/papers/2604.02870
-   手法：マルチモーダルLLM（MLLM）に視点変換を模倣するトークンワーピング機構を導入し、隣接視点からの見え方を推定。
-   意義：ロボティクスや自動運転など、多視点理解が求められる実世界応用への展開が期待される。
+**3. グループ相対的・自己蒸留型ポリシー最適化のサンプルルーティングによる統合** | 23 upvotes | https://huggingface.co/papers/2604.02288
+手法: GRPOとDPO/自己蒸留法をサンプルルーティングの枠組みで統一的に理論化し、LLMの強化学習における安定化手法を提案
+結果: 複数の最適化手法を単一フレームワークで扱え、LLM訓練の効率化・品質向上に貢献
 
-4. **Agentic-MME: What Agentic Capability Really Brings to Multimodal Intelligence?（エージェント型マルチモーダル評価）** — 22 upvotes — https://huggingface.co/papers/2604.03016
-   手法：マルチモーダルモデルのエージェント的能力（計画・ツール利用・自律実行）を多段階タスクで定量評価するベンチマークを構築。
-   意義：単純なVQAを超えた実用的なエージェント評価指標として、モデル選定・開発の指針になる。
+**4. PLUME: 潜在的推論に基づく汎用マルチモーダル埋め込み** | 8 upvotes | https://huggingface.co/papers/2604.02073
+手法: 潜在空間での推論を活用し、テキスト・画像・音声など複数モダリティを統一的に埋め込む新手法を提案
+結果: 汎用的なマルチモーダル検索・分類タスクで既存手法を上回り、クロスモーダルAIシステムへの応用が期待される
 
-5. **Test-Time Scaling Makes Overtraining Compute-Optimal（テスト時スケーリングで過学習を最適化）** — 15 upvotes — https://huggingface.co/papers/2604.01411
-   手法：推論時の計算量を増やす「テスト時スケーリング」により、訓練時の過学習を計算コスト最適な形に変換する理論的枠組みを提示。
-   意義：モデルの訓練コスト削減と推論精度の両立に向けた設計指針を提供し、効率的なLLM開発に貢献。
+**5. ONE-SHOT: 空間分離動作注入とハイブリッドコンテキスト統合による人間-環境映像合成** | 7 upvotes | https://huggingface.co/papers/2604.01043
+手法: 人物と背景環境を空間的に分離してモーションを注入し、1枚の参照画像からリアルな合成動画を生成
+結果: 単一ショットでの高品質映像合成を実現し、映像制作・VR/ARコンテンツ生成への応用が広がる
 
 ## AI ニュース
 
-1. **「I love you」「too」：LLM のアテンション機構を解説** — 4pts — https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/
-   内容：Transformer のアテンション機構を「I love you」という具体例を使ってわかりやすく図解した解説記事。
-   注目理由：初心者から中級者まで幅広く参考になる入門コンテンツとして HN コミュニティで評価されている。
+**1. 「I love you」「too」: LLMのアテンション機構を解説** | 4 pts | https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/
+内容: LLMにおけるアテンション機構の仕組みを、具体的な文例を通じてわかりやすく解説した記事
+重要性: アテンション理解はLLM活用・デバッグの基礎であり、開発者・研究者向けの教育コンテンツとして注目を集めている
 
-2. **古いAIが新しいAIを上回っている理由** — 4pts — https://qz.com/ai-generative-chatbots-llm-machine-learning
-   内容：最新のLLMが必ずしも旧世代モデルを上回らないケースを分析し、ベンチマーク設計や用途特化の重要性を論じた記事。
-   注目理由：「最新＝最良」という思い込みを問い直す視点が業界で議論を呼んでいる。
+**2. 旧世代AIが新世代AIに勝つケース、その理由とは** | 4 pts | https://qz.com/ai-generative-chatbots-llm-machine-learning
+内容: 最新の生成AIモデルが必ずしも旧世代より優れているわけではなく、特定タスクでは旧型が有利な場面を分析
+重要性: 「新しさ=優秀さ」という思い込みに疑問を呈し、モデル選定の重要性と評価手法の課題を示唆
 
-3. **LLM実験レポート Part 1：ファインチューニング** — 3pts — https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html
-   内容：実際にLLMをファインチューニングした経験から得られた知見・ノウハウをまとめた実践的レポート。
-   注目理由：ハンズオンの試行錯誤が詳細に記録されており、LLM開発者の参考資料として継続的に参照されている。
+**3. LLM実験まとめ (1): ファインチューニング編** | 3 pts | https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html
+内容: LLMのファインチューニングを実践した経験から得た知見を整理した技術ブログ記事
+重要性: 実務での試行錯誤ベースのノウハウがまとめられており、LLM応用開発者のリファレンスとして価値が高い
 
-4. **LLM実験レポート：OpenAI Functions の活用** — 2pts — https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html
-   内容：OpenAI の Function Calling 機能を使った実験と、ツール統合パターンの検証結果をレポート。
-   注目理由：Function Calling の初期実装知見として、エージェント開発者にとって参考価値が高い。
+**4. LLM実験まとめ (2): OpenAI Functions 活用** | 2 pts | https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html
+内容: OpenAI Functionsを使ったLLMの構造化出力・ツール呼び出しの実験と実装例を紹介
+重要性: Function Callingはエージェント開発の中核技術であり、実装例の共有が開発コミュニティの底上げに貢献
 
-5. **LLM実験レポート：ベクターDB と埋め込み** — 2pts — https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html
-   内容：ベクターデータベースと埋め込みモデルを組み合わせた RAG（検索拡張生成）の実験と比較検証。
-   注目理由：RAG 構築の基礎知識として今なお参照価値が高く、LLMアプリ開発の入門資料として機能している。
+**5. LLM実験まとめ (3): ベクターDBと埋め込み** | 2 pts | https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html
+内容: ベクターデータベースと埋め込みベクトルを用いたLLMの検索拡張手法 (RAG) の実装実験を解説
+重要性: RAGはLLMの知識拡張の主流アーキテクチャであり、実践的な知見の共有が業界全体の技術向上に寄与
