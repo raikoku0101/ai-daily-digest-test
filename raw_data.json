@@ -1,19 +1,19 @@
 {
   "papers": [
-    {"title": "Self-Distilled RLVR", "upvotes": 81, "paper_id": "2604.03128"},
+    {"title": "Self-Distilled RLVR", "upvotes": 82, "paper_id": "2604.03128"},
     {"title": "A Simple Baseline for Streaming Video Understanding", "upvotes": 55, "paper_id": "2604.02317"},
     {"title": "Token Warping Helps MLLMs Look from Nearby Viewpoints", "upvotes": 23, "paper_id": "2604.02870"},
     {"title": "Agentic-MME: What Agentic Capability Really Brings to Multimodal Intelligence?", "upvotes": 22, "paper_id": "2604.03016"},
     {"title": "Test-Time Scaling Makes Overtraining Compute-Optimal", "upvotes": 15, "paper_id": "2604.01411"}
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.92", "published_at": "2026-04-04T00:42:02Z", "body": "Added forceRemoteSettingsRefresh policy setting, interactive Bedrock setup wizard, per-model cost breakdown, and various fixes including subagent spawning failures and prompt-type Stop hook issues."},
-    {"tag_name": "v2.1.91", "published_at": "2026-04-02T23:45:35Z", "body": "Added MCP tool result persistence override via annotation, disableSkillShellExecution setting, multi-line prompt support in deep links, and plugin executable support under bin/ directory."},
-    {"tag_name": "v2.1.90", "published_at": "2026-04-01T23:41:31Z", "body": "Introduced /powerup for interactive feature lessons, added plugin marketplace offline support, fixed infinite rate-limit dialog loop and prompt-cache miss regression on --resume."}
+    {"tag_name": "v2.1.92", "published_at": "2026-04-04T00:42:02Z", "body": "Added forceRemoteSettingsRefresh policy setting, interactive Bedrock setup wizard, per-model cost breakdown, and fixed multiple issues including subagent spawning failures and prompt-type Stop hooks."},
+    {"tag_name": "v2.1.91", "published_at": "2026-04-02T23:45:35Z", "body": "Added MCP tool result persistence override via annotation, disableSkillShellExecution setting, multi-line prompt support in deep links, and plugin executables under bin/ directory."},
+    {"tag_name": "v2.1.90", "published_at": "2026-04-01T23:41:31Z", "body": "Added /powerup interactive lessons, CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE environment variable, and fixed infinite loop in rate-limit dialog and prompt-cache miss regression."}
   ],
   "news": [
     {"title": "\"I love you\" \"too\": LLM Attention Explained", "url": "https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/", "points": 4},
-    {"title": "Old AI is beating new AI. Here's why", "url": "https://qz.com/ai-generative-ai-chatbots-llm-machine-learning", "points": 4},
+    {"title": "Old AI is beating new AI. Here's why", "url": "https://qz.com/ai-generative-chatbots-llm-machine-learning", "points": 4},
     {"title": "Experiments in LLMs \u2013 Everything I've learned (so far) \u2013 Part One \u2013 Fine tuning", "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html", "points": 3},
     {"title": "Experiments in LLMs \u2013 OpenAI Functions", "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html", "points": 2},
     {"title": "Experiments in LLMs \u2013 Vector DBs and Embeddings", "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html", "points": 2}
