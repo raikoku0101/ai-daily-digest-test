@@ -1,0 +1,76 @@
+{
+  "date": "2026-04-09",
+  "content": "# AI Daily Digest — 2026-04-08\n\n## 今日のハイライト\n- Claude Code v2.1.97リリース: フォーカスビュー切替・ステータス行設定追加、CJKテキスト補完改善\n- LLMをQAエンジニアとして評価するゲームベンチマーク「GBQA」が最多36 upvotes獲得\n- ThinkTwice手法: LLMの推論と自己改善を同時最適化し推論精度を向上\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.97 (2026-04-08)\n- フォーカスビュートグルと`refreshInterval`ステータス行設定を追加\n- パーミッション問題・MCP接続・レジューム選択画面のバグを修正\n- 画像ハンドリングとCJKテキストのスラッシュコマンド補完を改善\n\n### v2.1.96 (2026-04-08)\n- Bedrock利用時に403エラーが発生するリグレッション（v2.1.94起因）を修正\n- `AWS_BEARER_TOKEN_BEDROCK` / `CLAUDE_CODE_SKIP_BEDROCK_AUTH` 環境変数が正常動作するよう復旧\n\n### v2.1.94 (2026-04-07)\n- Amazon Bedrock（Mantle経由）のサポートを追加\n- デフォルトのeffortレベルをhighに変更\n- エージェントのレート制限ハンドリング・プラグインスキルフック・CJKテキスト破損を修正\n\n## 注目論文 TOP 5\n\n1. **GBQA: LLMをQAエンジニアとして評価するゲームベンチマーク** ▲36 [論文](https://huggingface.co/papers/2604.02648)\n   ゲームを活用したQA（品質保証）タスクでLLMの能力を多角的に評価するベンチマークを構築\n   LLMがソフトウェアテストの自動化に使えるかを定量評価し、次世代QA自動化への道を開く\n\n2. **ThinkTwice: LLMの推論と自己改善を同時最適化する手法** ▲31 [論文](https://huggingface.co/papers/2604.01591)\n   推論ステップと自己修正ステップを統合的に学習する新しいトレーニング戦略を提案\n   複雑な推論タスクで精度と信頼性が向上し、自律的エラー修正能力を獲得\n\n3. **Vanast: 合成トリプレット監督による仮想試着・人物アニメーション** ▲28 [論文](https://huggingface.co/papers/2604.04934)\n   合成データによるトリプレット学習で衣服の仮想試着と人物動作アニメーションを統合\n   ファッションECや映像制作での高品質な試着・合成映像生成への応用が期待される\n\n4. **Watch Before You Answer: 視覚的根拠付きポスト学習** ▲23 [論文](https://huggingface.co/papers/2604.05117)\n   回答前に視覚情報を精査するポスト学習パイプラインでマルチモーダルモデルの精度を改善\n   視覚QAや医療画像診断など高精度な視覚理解が求められる分野への応用が見込まれる\n\n5. **LLMのアジェンティックスキルはリアル環境でどこまで使えるか？** ▲23 [論文](https://huggingface.co/papers/2604.04323)\n   実環境に近い設定でLLMのツール使用・タスク実行能力を体系的にベンチマーク\n   エージェントAIの実用化における課題を明らかにし、改善指針を提供\n\n## AI ニュース\n\n1. **旧来のAIが新しいAIを上回る—その理由とは** 4pts [記事](https://qz.com/ai-generative-chatbots-llm-machine-learning)\n   最新の大規模LLMが一部タスクで既存・特化型モデルに劣るという現象を分析\n   モデル規模やコストが必ずしも性能に直結しないことを示し、特化型AIの再評価を促す\n\n2. **「I love you」「too」: LLMのAttentionをわかりやすく解説** 4pts [記事](https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/)\n   具体的な文例を使ってTransformerのAttention機構の仕組みを直感的に説明\n   LLMの内部動作理解を深めたい開発者・研究者・学習者に有用な教育コンテンツ\n\n3. **ローカルLLMと機械学習で植物管理を実現** 1pts [記事](https://www.viam.com/post/practical-ai-local-llm-and-machine-learning-for-plant-care)\n   エッジデバイス上のローカルLLMと機械学習を組み合わせて植物の状態を自動監視\n   プライバシー重視のオフラインAI活用の可能性と農業・IoT分野への応用を示す\n\n4. **LLM実験録（その1）: ファインチューニングで学んだこと** 3pts [記事](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html)\n   実践的なLLMファインチューニング手法を試行錯誤した知見をまとめた技術ブログ\n   独自データでモデルをカスタマイズする際の実装上の注意点と成果を共有\n\n5. **LLM実験録（その3）: OpenAI Functionsを試す** 2pts [記事](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html)\n   OpenAI Functions（現Tool Use）の仕組みと実装パターンを実験ベースで解説\n   LLMに外部ツールを呼ばせる機能の基礎を学べる実践的チュートリアル\n",
+  "fetched_at": "2026-04-08T22:31:59.238789+00:00",
+  "papers": [
+    {
+      "title": "GBQA: A Game Benchmark for Evaluating LLMs as Quality Assurance Engineers",
+      "upvotes": 36,
+      "paper_id": "2604.02648"
+    },
+    {
+      "title": "ThinkTwice: Jointly Optimizing Large Language Models for Reasoning and Self-Refinement",
+      "upvotes": 31,
+      "paper_id": "2604.01591"
+    },
+    {
+      "title": "Vanast: Virtual Try-On with Human Image Animation via Synthetic Triplet Supervision",
+      "upvotes": 28,
+      "paper_id": "2604.04934"
+    },
+    {
+      "title": "Watch Before You Answer: Learning from Visually Grounded Post-Training",
+      "upvotes": 23,
+      "paper_id": "2604.05117"
+    },
+    {
+      "title": "How Well Do Agentic Skills Work in the Wild: Benchmarking LLM Skill Usage in Realistic Settings",
+      "upvotes": 23,
+      "paper_id": "2604.04323"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.97",
+      "published_at": "2026-04-08T21:52:34Z",
+      "body": "Added focus view toggle and refreshInterval status line setting. Fixed permission issues, MCP connections, and resume picker problems. Improved image handling and slash command completion for CJK text."
+    },
+    {
+      "tag_name": "v2.1.96",
+      "published_at": "2026-04-08T04:37:36Z",
+      "body": "Fixed Bedrock requests failing with 403 authorization error when using AWS_BEARER_TOKEN_BEDROCK or CLAUDE_CODE_SKIP_BEDROCK_AUTH (regression in 2.1.94)."
+    },
+    {
+      "tag_name": "v2.1.94",
+      "published_at": "2026-04-07T21:18:51Z",
+      "body": "Added Amazon Bedrock support via Mantle. Changed default effort level to high. Added compact Slack header. Fixed agent rate-limit handling, plugin skill hooks, and CJK text corruption in stream-json."
+    }
+  ],
+  "news": [
+    {
+      "title": "Old AI is beating new AI. Here's why",
+      "url": "https://qz.com/ai-generative-chatbots-llm-machine-learning",
+      "points": 4
+    },
+    {
+      "title": "\"I love you\" \"too\": LLM Attention Explained",
+      "url": "https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/",
+      "points": 4
+    },
+    {
+      "title": "Local LLM and machine learning for plant care",
+      "url": "https://www.viam.com/post/practical-ai-local-llm-and-machine-learning-for-plant-care",
+      "points": 1
+    },
+    {
+      "title": "Experiments in LLMs – Everything I've learned (so far) – Part One – Fine tuning",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html",
+      "points": 3
+    },
+    {
+      "title": "Experiments in LLMs – OpenAI Functions",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html",
+      "points": 2
+    }
+  ]
+}
