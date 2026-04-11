@@ -1,0 +1,76 @@
+{
+  "date": "2026-04-12",
+  "content": "# AI Daily Digest — 2026-04-11\n\n## 今日のハイライト\n- 推論SFTの汎化性能を条件付き分析で再検討する論文が189 upvotesで注目を集める\n- Claude Code v2.1.101リリース：チームオンボーディングやコマンドインジェクション脆弱性修正など多数の改善\n- AIエージェントによる日常オンラインタスク完遂能力を評価するClawBenchが101 upvotesで話題\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.101（2026-04-10）\n- チームオンボーディングコマンドを追加\n- OS CA証明書ストアの信頼サポートを追加\n- ultraplanの自動環境作成機能を追加\n- briefモードのリトライロジックを改善\n- フォーカスモードのサマリーを強化\n- ツール利用不可エラーメッセージを改善\n- レート制限メッセージを改善\n- コマンドインジェクション脆弱性およびメモリリークを修正\n\n### v2.1.100（2026-04-10）\n- リリースノートなし\n\n### v2.1.98（2026-04-09）\n- Google Vertex AI セットアップウィザードを追加\n- Perforceモード環境変数を追加\n- Monitorツールを追加\n- Linuxでのサブプロセスサンドボックスを追加\n- Bashツール権限バイパスなどセキュリティ修正\n- MCP OAuth改善\n\n## 注目論文 TOP 5\n\n1. **推論SFTにおける汎化の再考：最適化・データ・モデル能力の条件付き分析**（189 upvotes）[論文リンク](https://huggingface.co/papers/2604.06628)\n   推論タスクに対するSFT（教師あり微調整）の汎化性能を、最適化手法・データ・モデル能力の観点から条件付きで分析。\n   汎化の失敗要因を体系的に特定し、推論能力向上のための実践的指針を提供する。\n\n2. **ClawBench：AIエージェントは日常のオンラインタスクを完遂できるか？**（101 upvotes）[論文リンク](https://huggingface.co/papers/2604.08523)\n   ブラウザ操作・フォーム入力など現実の日常タスクをAIエージェントが実行できるかを評価するベンチマーク。\n   現状のAIエージェントの限界を明らかにし、より実用的なエージェント開発への道筋を示す。\n\n3. **構造化蒸留によるウェブエージェント能力の汎化**（15 upvotes）[論文リンク](https://huggingface.co/papers/2604.07776)\n   大規模ウェブエージェントの能力を構造化蒸留によって小規模モデルに転移する手法を提案。\n   未見のウェブタスクへの汎化性能を高め、効率的なウェブエージェントの実用展開を実現する。\n\n4. **小型VLMは長時間動画理解のスマートな圧縮器**（12 upvotes）[論文リンク](https://huggingface.co/papers/2604.08120)\n   小型ビジョン言語モデルを動画フレームの圧縮器として活用し、長時間動画の効率的な理解を実現。\n   計算コストを大幅削減しながら長時間動画QAで高い精度を達成し、実用的な動画AI応用に貢献する。\n\n5. **ViVa：ロボット強化学習のための動画生成価値モデル**（11 upvotes）[論文リンク](https://huggingface.co/papers/2604.08168)\n   動画生成モデルを価値関数として活用し、ロボットの強化学習を効率化する新アプローチ。\n   実世界ロボットタスクでの学習効率を向上させ、少ないサンプルで高性能なロボット制御を実現する。\n\n## AI ニュース\n\n1. **「I love you」「too」: LLMのアテンション機構を解説**（4 pts）[リンク](https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/)\n   大規模言語モデルにおけるアテンション機構の仕組みを、具体的な文例を用いてわかりやすく解説。\n   LLMの内部動作への理解を深める入門コンテンツとして、開発者・研究者から注目を集める。\n\n2. **古いAIが新しいAIに勝っている — その理由とは**（4 pts）[リンク](https://qz.com/ai-generative-chatbots-llm-machine-learning)\n   最新のAIモデルが常に旧モデルを上回るわけではない事例・傾向を分析した記事。\n   AI開発の評価基準やベンチマークの限界を問い直す、業界の重要な議論を提起する。\n\n3. **LLM実験記録 パート1：ファインチューニングで学んだこと**（3 pts）[リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html)\n   実際のLLMファインチューニング実験から得られた知見・手法を体系的にまとめた実践的記事。\n   現場エンジニアによるリアルな試行錯誤の記録として、実務者の参考になる情報を提供する。\n\n4. **LLM実験記録：OpenAI Functions**（2 pts）[リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html)\n   OpenAI Functions APIを用いた構造化出力と関数呼び出しの実験結果を報告。\n   LLMと外部ツール統合の初期事例として、エージェント開発のベースラインを示す。\n\n5. **LLM実験記録：ベクターDBと埋め込み**（2 pts）[リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html)\n   ベクターデータベースと埋め込みベクトルを組み合わせたRAG的アプローチの実験を解説。\n   LLMの長期記憶・知識拡張手法として今日でも広く使われる技術の基礎を丁寧に説明する。\n",
+  "fetched_at": "2026-04-11T22:06:27.464886+00:00",
+  "papers": [
+    {
+      "title": "Rethinking Generalization in Reasoning SFT: A Conditional Analysis on Optimization, Data, and Model Capability",
+      "upvotes": 189,
+      "paper_id": "2604.06628"
+    },
+    {
+      "title": "ClawBench: Can AI Agents Complete Everyday Online Tasks?",
+      "upvotes": 101,
+      "paper_id": "2604.08523"
+    },
+    {
+      "title": "Structured Distillation of Web Agent Capabilities Enables Generalization",
+      "upvotes": 15,
+      "paper_id": "2604.07776"
+    },
+    {
+      "title": "Small Vision-Language Models are Smart Compressors for Long Video Understanding",
+      "upvotes": 12,
+      "paper_id": "2604.08120"
+    },
+    {
+      "title": "ViVa: A Video-Generative Value Model for Robot Reinforcement Learning",
+      "upvotes": 11,
+      "paper_id": "2604.08168"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.101",
+      "published_at": "2026-04-10T19:03:41Z",
+      "body": "Added team onboarding command, OS CA certificate store trust, ultraplan auto-environment creation, improved brief mode retry logic, enhanced focus mode summaries, better tool-unavailable errors, improved rate-limit messages, and numerous bug fixes including command injection vulnerability and memory leaks."
+    },
+    {
+      "tag_name": "v2.1.100",
+      "published_at": "2026-04-10T05:16:35Z",
+      "body": "No release notes provided for this version."
+    },
+    {
+      "tag_name": "v2.1.98",
+      "published_at": "2026-04-09T19:18:28Z",
+      "body": "Added Google Vertex AI setup wizard, Perforce mode environment variable, Monitor tool, subprocess sandboxing on Linux, and various security fixes including Bash tool permission bypass and MCP OAuth improvements."
+    }
+  ],
+  "news": [
+    {
+      "title": "\"I love you\" \"too\": LLM Attention Explained",
+      "url": "https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/",
+      "points": 4
+    },
+    {
+      "title": "Old AI is beating new AI. Here's why",
+      "url": "https://qz.com/ai-generative-chatbots-llm-machine-learning",
+      "points": 4
+    },
+    {
+      "title": "Experiments in LLMs – Everything I've learned (so far) – Part One – Fine tuning",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html",
+      "points": 3
+    },
+    {
+      "title": "Experiments in LLMs – OpenAI Functions",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html",
+      "points": 2
+    },
+    {
+      "title": "Experiments in LLMs – Vector DBs and Embeddings",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html",
+      "points": 2
+    }
+  ]
+}
