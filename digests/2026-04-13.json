@@ -1,0 +1,76 @@
+{
+  "date": "2026-04-13",
+  "content": "# AI Daily Digest — 2026-04-12\n\n## 今日のハイライト\n- 推論SFTの汎化を再考：最適化・データ・モデル能力の条件分析が290 upvotesで首位（HuggingFace Daily Papers）\n- Claude Code v2.1.101リリース：`/team-onboarding`コマンド追加、企業TLSプロキシ対応を標準化\n- AIエージェントが日常的なオンラインタスクをこなせるか検証するClawBenchが241 upvotesで注目\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.101（2026-04-10）\n- `/team-onboarding`コマンド追加：ローカルのClaude Code使用状況からチームメンバー向けランプアップガイドを自動生成\n- OS CAストアをデフォルトで信頼：追加設定なしで企業TLSプロキシが利用可能に\n\n### v2.1.100（2026-04-10）\n- リリースノートなし（内部修正・安定性改善と推測）\n\n### v2.1.98（2026-04-09）\n- Google Vertex AI対話型セットアップウィザードをログイン画面から起動可能に追加\n- `CLAUDE_CODE_PERFORCE_MODE`環境変数を追加\n- Linux上でPID名前空間分離によるサブプロセスサンドボックス化を実装\n\n## 注目論文 TOP 5\n\n**1. 推論SFTにおける汎化の再考：最適化・データ・モデル能力の条件分析** ▲290 [論文](https://huggingface.co/papers/2604.06628)\n手法: SFT（教師あり微調整）による推論能力の汎化を、最適化戦略・データ品質・モデル規模の3軸で条件付き分析\n意義: どの条件でSFT済み推論が汎化・失敗するかを明らかにし、より効果的なファインチューニング設計の指針を提供\n\n**2. ClawBench：AIエージェントは日常的なオンラインタスクをこなせるか？** ▲241 [論文](https://huggingface.co/papers/2604.08523)\n手法: 購入・予約・フォーム入力などの実際のWebタスクを体系化し、複数AIエージェントの実力を定量評価するベンチマーク\n意義: 実世界Webエージェントの標準評価基盤として、エージェント研究の進捗を客観的に測定できる指標を提供\n\n**3. Webエージェント能力の構造的蒸留による汎化の実現** ▲17 [論文](https://huggingface.co/papers/2604.07776)\n手法: 大規模WebエージェントのPolicy知識を構造的に蒸留し、小型モデルへ転移することで汎化性能を向上\n意義: 軽量モデルでも多様なWebタスクに対応可能であることを示し、エッジ展開や低コスト運用への道を拓く\n\n**4. ViVa：ロボット強化学習のためのビデオ生成価値モデル** ▲13 [論文](https://huggingface.co/papers/2604.08168)\n手法: ビデオ生成モデルを価値関数として活用し、ロボット強化学習における報酬設計と状態評価を改善\n意義: 物理シミュレーター不要でロボット制御の学習を効率化し、実環境への適用コストを大幅削減\n\n**5. 小型VLMは長時間動画理解の高性能コンプレッサー** ▲13 [論文](https://huggingface.co/papers/2604.08120)\n手法: 小型Vision-Language Modelを動画フレームの情報圧縮器として用い、長尺動画の重要情報を効率的に抽出\n意義: 少ない計算資源でも長時間動画を理解可能であることを示し、コスト効率の高い動画AIアプリへの応用が期待\n\n## AI ニュース\n\n**1. 旧来のAIが新しいAIを上回る理由とは** 4pts [記事](https://qz.com/ai-generative-chatbots-llm-machine-learning)\n内容: 最新の生成AI・LLMよりも旧世代AIが特定タスクで優れたパフォーマンスを示す現象とその背景を分析した記事\n注目理由: 新しいモデルが必ずしも万能でないことを指摘し、用途に応じたモデル選択の重要性を再認識させる論考\n\n**2. 「愛してる」「も」：LLMのアテンション機構をわかりやすく解説** 4pts [記事](https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/)\n内容: LLMのAttentionメカニズムを具体的な文例を通じて直感的に説明した教育的解説記事\n注目理由: トランスフォーマーの核心技術を非専門家にも理解しやすく解説し、AI教育コンテンツとして高評価を獲得\n\n**3. LLM実験録 パート1：ファインチューニングで学んだこと** 3pts [記事](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html)\n内容: 実際にLLMのファインチューニングを試みた開発者が、試行錯誤で得た知見と失敗談を共有する実践レポート\n注目理由: ファインチューニングの落とし穴と成功のコツが具体的に詳述されており、実装者にとって即戦力となる情報源\n\n**4. LLM実験録：OpenAI Functionsの活用** 2pts [記事](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html)\n内容: OpenAI Functions（現在のFunction Calling）を実際のプロジェクトで試用した体験と実装例を紹介\n注目理由: Function Callingの実装パターンと注意点が具体例で示されており、LLMアプリ開発の参考になる実践的内容\n\n**5. ローカルLLMと機械学習で植物ケアを自動化** 1pt [記事](https://www.viam.com/post/practical-ai-local-llm-and-machine-learning-for-plant-care)\n内容: ローカルで動作するLLMとMLモデルを組み合わせてスマート植物ケアシステムを構築した実践事例\n注目理由: プライバシーを守りながらエッジAIを日常生活に活用するユニークな応用例として業界の注目を集める\n",
+  "fetched_at": "2026-04-12T22:09:17.074825+00:00",
+  "papers": [
+    {
+      "title": "Rethinking Generalization in Reasoning SFT: A Conditional Analysis on Optimization, Data, and Model Capability",
+      "upvotes": 290,
+      "paper_id": "2604.06628"
+    },
+    {
+      "title": "ClawBench: Can AI Agents Complete Everyday Online Tasks?",
+      "upvotes": 241,
+      "paper_id": "2604.08523"
+    },
+    {
+      "title": "Structured Distillation of Web Agent Capabilities Enables Generalization",
+      "upvotes": 17,
+      "paper_id": "2604.07776"
+    },
+    {
+      "title": "ViVa: A Video-Generative Value Model for Robot Reinforcement Learning",
+      "upvotes": 13,
+      "paper_id": "2604.08168"
+    },
+    {
+      "title": "Small Vision-Language Models are Smart Compressors for Long Video Understanding",
+      "upvotes": 13,
+      "paper_id": "2604.08120"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.101",
+      "published_at": "2026-04-10T19:03:41Z",
+      "body": "Added `/team-onboarding` command to generate a teammate ramp-up guide from your local Claude Code usage. Added OS CA certificate store trust by default, so enterprise TLS proxies work without extra setup."
+    },
+    {
+      "tag_name": "v2.1.100",
+      "published_at": "2026-04-10T05:16:35Z",
+      "body": "No details provided in release notes."
+    },
+    {
+      "tag_name": "v2.1.98",
+      "published_at": "2026-04-09T19:18:28Z",
+      "body": "Added interactive Google Vertex AI setup wizard accessible from the login screen. Added `CLAUDE_CODE_PERFORCE_MODE` env var and subprocess sandboxing with PID namespace isolation on Linux."
+    }
+  ],
+  "news": [
+    {
+      "title": "Old AI is beating new AI. Here's why",
+      "url": "https://qz.com/ai-generative-chatbots-llm-machine-learning",
+      "points": 4
+    },
+    {
+      "title": "\"I love you\" \"too\": LLM Attention Explained",
+      "url": "https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/",
+      "points": 4
+    },
+    {
+      "title": "Experiments in LLMs – Everything I've learned (so far) – Part One – Fine tuning",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html",
+      "points": 3
+    },
+    {
+      "title": "Experiments in LLMs – OpenAI Functions",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html",
+      "points": 2
+    },
+    {
+      "title": "Local LLM and machine learning for plant care",
+      "url": "https://www.viam.com/post/practical-ai-local-llm-and-machine-learning-for-plant-care",
+      "points": 1
+    }
+  ]
+}
