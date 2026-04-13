@@ -1,0 +1,76 @@
+{
+  "date": "2026-04-14",
+  "content": "# AI Daily Digest — 2026-04-13\n\n## 今日のハイライト\n- Claude Code v2.1.105 がリリース: PreCompact フック、/proactive エイリアス、バックグラウンドモニタなど多数の機能追加\n- 胸部X線レポート自動生成モデル ECHO が HuggingFace で最多upvotes（14）を獲得\n- マルチユーザー LLM エージェント研究が注目、複数ユーザーが協調してAIエージェントを活用する新フレームワークを提案\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.105（2026-04-13）\n- EnterWorktree ツールに `path` パラメータを追加\n- PreCompact フックのサポートを追加\n- プラグイン向けバックグラウンドモニターサポートを追加\n- `/loop` の別名として `/proactive` エイリアスを追加\n- API ストリーム停止時の処理を改善\n- ネットワークエラーメッセージを改善\n- ファイル書き込み表示を改善\n- `/doctor` レイアウトを改善\n\n### v2.1.104（2026-04-13）\n- 詳細なチェンジログなし\n\n### v2.1.101（2026-04-10）\n- `/team-onboarding` コマンドを追加\n- OS CA 証明書ストアをデフォルトで信頼するように変更\n- `/ultraplan` がクラウド環境を自動作成するように改善\n- ブリーフモードのリトライを改善\n- フォーカスモードのサマリーを改善\n- ツール利用不可エラーのメッセージを改善\n\n## 注目論文 TOP 5\n\n1. **ECHO: 効率的な胸部X線レポート生成（1ステップブロック拡散）** ⬆️ 14 | [論文リンク](https://huggingface.co/papers/2604.09450)\n   ワンステップのブロック拡散モデルを用いて、胸部X線画像から医療レポートを効率的に生成する手法を提案。\n   従来手法より高速かつ高精度なレポート生成を実現し、医療現場での診断支援への応用が期待される。\n\n2. **マルチユーザー大規模言語モデルエージェント** ⬆️ 11 | [論文リンク](https://huggingface.co/papers/2604.08567)\n   複数ユーザーが協調してLLMエージェントを操作・管理する新しいフレームワークを構築。\n   チームでのAIエージェント活用や組織的なタスク自動化の基盤となる研究として注目。\n\n3. **分散型ポストトレーニングへのバックドア攻撃** ⬆️ 10 | [論文リンク](https://huggingface.co/papers/2604.02372)\n   分散型LLMファインチューニングプロセスにおけるバックドア攻撃の脆弱性を分析・実証。\n   AIセキュリティの重要課題を提起し、分散学習環境の防衛策の必要性を示す。\n\n4. **AgentSwing: 長期Webエージェント向け適応的並列コンテキスト管理ルーティング** ⬆️ 7 | [論文リンク](https://huggingface.co/papers/2603.27490)\n   長期間のWebタスクを実行するエージェントに対し、コンテキストを並列かつ適応的に管理・ルーティングする手法を提案。\n   複雑なWebオートメーションタスクの成功率を向上させ、実用的なAIエージェント開発に貢献。\n\n5. **ScheMatiQ: 研究課題から構造化データへ（インタラクティブなスキーマ探索）** ⬆️ 5 | [論文リンク](https://huggingface.co/papers/2604.09237)\n   研究者が自然言語の問いから構造化データを取得できるよう、インタラクティブなスキーマ探索プロセスを実現。\n   データサイエンスや学術研究の効率化に寄与し、非エキスパートでも複雑なデータ構造を扱える環境を提供。\n\n## AI ニュース\n\n1. **「I love you」「too」: LLM アテンション機構の解説** 4pts | [リンク](https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/)\n   LLMのアテンション機構を直感的な対話例で分かりやすく解説した記事。\n   技術的な背景知識がなくても理解できる説明が注目され、AI 入門コンテンツとして広く読まれている。\n\n2. **旧世代AIが新世代AIを凌ぐ理由** 4pts | [リンク](https://qz.com/ai-generative-chatbots-llm-machine-learning)\n   最新の生成AIモデルが必ずしも旧モデルを上回らないケースが増えている現象を分析。\n   モデルの大型化だけでなく、特定タスクへの最適化や効率性の重要性を業界に再認識させる内容。\n\n3. **LLM実験記 — ファインチューニング編（前編）** 3pts | [リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html)\n   実際のLLMファインチューニング体験をまとめた実践的なブログ記事。\n   開発者コミュニティでの知見共有として人気を集め、LLMカスタマイズの実態を紹介。\n\n4. **LLM実験記 — OpenAI Functions 編** 2pts | [リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html)\n   OpenAI の Function Calling 機能を実際に試した体験記と実装例を紹介。\n   ツール統合型AIアプリの設計パターンを学べる実践的なリソースとして注目。\n\n5. **LLM実験記 — ベクターDB & 埋め込み編** 2pts | [リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html)\n   ベクターデータベースと埋め込みベクトルを活用したLLMアプリの構築体験をまとめた記事。\n   RAG（検索拡張生成）の基礎となる技術を実践的に解説し、AI開発入門として価値が高い。\n",
+  "fetched_at": "2026-04-13T22:23:58.365003+00:00",
+  "papers": [
+    {
+      "title": "ECHO: Efficient Chest X-ray Report Generation with One-step Block Diffusion",
+      "upvotes": 14,
+      "paper_id": "2604.09450"
+    },
+    {
+      "title": "Multi-User Large Language Model Agents",
+      "upvotes": 11,
+      "paper_id": "2604.08567"
+    },
+    {
+      "title": "Backdoor Attacks on Decentralised Post-Training",
+      "upvotes": 10,
+      "paper_id": "2604.02372"
+    },
+    {
+      "title": "AgentSwing: Adaptive Parallel Context Management Routing for Long-Horizon Web Agents",
+      "upvotes": 7,
+      "paper_id": "2603.27490"
+    },
+    {
+      "title": "ScheMatiQ: From Research Question to Structured Data through Interactive Schema Discovery",
+      "upvotes": 5,
+      "paper_id": "2604.09237"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.105",
+      "published_at": "2026-04-13T21:53:13Z",
+      "body": "Added path parameter to EnterWorktree tool, PreCompact hook support, background monitor support for plugins, /proactive alias for /loop, improved stalled API stream handling, improved network error messages, improved file write display, improved /doctor layout"
+    },
+    {
+      "tag_name": "v2.1.104",
+      "published_at": "2026-04-13T01:45:26Z",
+      "body": "No detailed changelog provided for this release."
+    },
+    {
+      "tag_name": "v2.1.101",
+      "published_at": "2026-04-10T19:03:41Z",
+      "body": "Added /team-onboarding command, OS CA certificate store trust by default, /ultraplan auto-creates cloud environment, improved brief mode retry, improved focus mode summaries, improved tool-not-available errors"
+    }
+  ],
+  "news": [
+    {
+      "title": "\"I love you\" \"too\": LLM Attention Explained",
+      "url": "https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/",
+      "points": 4
+    },
+    {
+      "title": "Old AI is beating new AI. Here's why",
+      "url": "https://qz.com/ai-generative-chatbots-llm-machine-learning",
+      "points": 4
+    },
+    {
+      "title": "Experiments in LLMs – Everything I've learned (so far) – Part One – Fine tuning",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html",
+      "points": 3
+    },
+    {
+      "title": "Experiments in LLMs – OpenAI Functions",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html",
+      "points": 2
+    },
+    {
+      "title": "Experiments in LLMs – Vector DBs and Embeddings",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html",
+      "points": 2
+    }
+  ]
+}
