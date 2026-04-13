@@ -1,64 +1,73 @@
-# AI Daily Digest — 2026-04-12
+# AI Daily Digest — 2026-04-13
 
 ## 今日のハイライト
-- 推論SFTの汎化を再考：最適化・データ・モデル能力の条件分析が290 upvotesで首位（HuggingFace Daily Papers）
-- Claude Code v2.1.101リリース：`/team-onboarding`コマンド追加、企業TLSプロキシ対応を標準化
-- AIエージェントが日常的なオンラインタスクをこなせるか検証するClawBenchが241 upvotesで注目
+- Claude Code v2.1.105 がリリース: PreCompact フック、/proactive エイリアス、バックグラウンドモニタなど多数の機能追加
+- 胸部X線レポート自動生成モデル ECHO が HuggingFace で最多upvotes（14）を獲得
+- マルチユーザー LLM エージェント研究が注目、複数ユーザーが協調してAIエージェントを活用する新フレームワークを提案
 
 ## Claude Code / Anthropic アップデート
 
+### v2.1.105（2026-04-13）
+- EnterWorktree ツールに `path` パラメータを追加
+- PreCompact フックのサポートを追加
+- プラグイン向けバックグラウンドモニターサポートを追加
+- `/loop` の別名として `/proactive` エイリアスを追加
+- API ストリーム停止時の処理を改善
+- ネットワークエラーメッセージを改善
+- ファイル書き込み表示を改善
+- `/doctor` レイアウトを改善
+
+### v2.1.104（2026-04-13）
+- 詳細なチェンジログなし
+
 ### v2.1.101（2026-04-10）
-- `/team-onboarding`コマンド追加：ローカルのClaude Code使用状況からチームメンバー向けランプアップガイドを自動生成
-- OS CAストアをデフォルトで信頼：追加設定なしで企業TLSプロキシが利用可能に
-
-### v2.1.100（2026-04-10）
-- リリースノートなし（内部修正・安定性改善と推測）
-
-### v2.1.98（2026-04-09）
-- Google Vertex AI対話型セットアップウィザードをログイン画面から起動可能に追加
-- `CLAUDE_CODE_PERFORCE_MODE`環境変数を追加
-- Linux上でPID名前空間分離によるサブプロセスサンドボックス化を実装
+- `/team-onboarding` コマンドを追加
+- OS CA 証明書ストアをデフォルトで信頼するように変更
+- `/ultraplan` がクラウド環境を自動作成するように改善
+- ブリーフモードのリトライを改善
+- フォーカスモードのサマリーを改善
+- ツール利用不可エラーのメッセージを改善
 
 ## 注目論文 TOP 5
 
-**1. 推論SFTにおける汎化の再考：最適化・データ・モデル能力の条件分析** ▲290 [論文](https://huggingface.co/papers/2604.06628)
-手法: SFT（教師あり微調整）による推論能力の汎化を、最適化戦略・データ品質・モデル規模の3軸で条件付き分析
-意義: どの条件でSFT済み推論が汎化・失敗するかを明らかにし、より効果的なファインチューニング設計の指針を提供
+1. **ECHO: 効率的な胸部X線レポート生成（1ステップブロック拡散）** ⬆️ 14 | [論文リンク](https://huggingface.co/papers/2604.09450)
+   ワンステップのブロック拡散モデルを用いて、胸部X線画像から医療レポートを効率的に生成する手法を提案。
+   従来手法より高速かつ高精度なレポート生成を実現し、医療現場での診断支援への応用が期待される。
 
-**2. ClawBench：AIエージェントは日常的なオンラインタスクをこなせるか？** ▲241 [論文](https://huggingface.co/papers/2604.08523)
-手法: 購入・予約・フォーム入力などの実際のWebタスクを体系化し、複数AIエージェントの実力を定量評価するベンチマーク
-意義: 実世界Webエージェントの標準評価基盤として、エージェント研究の進捗を客観的に測定できる指標を提供
+2. **マルチユーザー大規模言語モデルエージェント** ⬆️ 11 | [論文リンク](https://huggingface.co/papers/2604.08567)
+   複数ユーザーが協調してLLMエージェントを操作・管理する新しいフレームワークを構築。
+   チームでのAIエージェント活用や組織的なタスク自動化の基盤となる研究として注目。
 
-**3. Webエージェント能力の構造的蒸留による汎化の実現** ▲17 [論文](https://huggingface.co/papers/2604.07776)
-手法: 大規模WebエージェントのPolicy知識を構造的に蒸留し、小型モデルへ転移することで汎化性能を向上
-意義: 軽量モデルでも多様なWebタスクに対応可能であることを示し、エッジ展開や低コスト運用への道を拓く
+3. **分散型ポストトレーニングへのバックドア攻撃** ⬆️ 10 | [論文リンク](https://huggingface.co/papers/2604.02372)
+   分散型LLMファインチューニングプロセスにおけるバックドア攻撃の脆弱性を分析・実証。
+   AIセキュリティの重要課題を提起し、分散学習環境の防衛策の必要性を示す。
 
-**4. ViVa：ロボット強化学習のためのビデオ生成価値モデル** ▲13 [論文](https://huggingface.co/papers/2604.08168)
-手法: ビデオ生成モデルを価値関数として活用し、ロボット強化学習における報酬設計と状態評価を改善
-意義: 物理シミュレーター不要でロボット制御の学習を効率化し、実環境への適用コストを大幅削減
+4. **AgentSwing: 長期Webエージェント向け適応的並列コンテキスト管理ルーティング** ⬆️ 7 | [論文リンク](https://huggingface.co/papers/2603.27490)
+   長期間のWebタスクを実行するエージェントに対し、コンテキストを並列かつ適応的に管理・ルーティングする手法を提案。
+   複雑なWebオートメーションタスクの成功率を向上させ、実用的なAIエージェント開発に貢献。
 
-**5. 小型VLMは長時間動画理解の高性能コンプレッサー** ▲13 [論文](https://huggingface.co/papers/2604.08120)
-手法: 小型Vision-Language Modelを動画フレームの情報圧縮器として用い、長尺動画の重要情報を効率的に抽出
-意義: 少ない計算資源でも長時間動画を理解可能であることを示し、コスト効率の高い動画AIアプリへの応用が期待
+5. **ScheMatiQ: 研究課題から構造化データへ（インタラクティブなスキーマ探索）** ⬆️ 5 | [論文リンク](https://huggingface.co/papers/2604.09237)
+   研究者が自然言語の問いから構造化データを取得できるよう、インタラクティブなスキーマ探索プロセスを実現。
+   データサイエンスや学術研究の効率化に寄与し、非エキスパートでも複雑なデータ構造を扱える環境を提供。
 
 ## AI ニュース
 
-**1. 旧来のAIが新しいAIを上回る理由とは** 4pts [記事](https://qz.com/ai-generative-chatbots-llm-machine-learning)
-内容: 最新の生成AI・LLMよりも旧世代AIが特定タスクで優れたパフォーマンスを示す現象とその背景を分析した記事
-注目理由: 新しいモデルが必ずしも万能でないことを指摘し、用途に応じたモデル選択の重要性を再認識させる論考
+1. **「I love you」「too」: LLM アテンション機構の解説** 4pts | [リンク](https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/)
+   LLMのアテンション機構を直感的な対話例で分かりやすく解説した記事。
+   技術的な背景知識がなくても理解できる説明が注目され、AI 入門コンテンツとして広く読まれている。
 
-**2. 「愛してる」「も」：LLMのアテンション機構をわかりやすく解説** 4pts [記事](https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/)
-内容: LLMのAttentionメカニズムを具体的な文例を通じて直感的に説明した教育的解説記事
-注目理由: トランスフォーマーの核心技術を非専門家にも理解しやすく解説し、AI教育コンテンツとして高評価を獲得
+2. **旧世代AIが新世代AIを凌ぐ理由** 4pts | [リンク](https://qz.com/ai-generative-chatbots-llm-machine-learning)
+   最新の生成AIモデルが必ずしも旧モデルを上回らないケースが増えている現象を分析。
+   モデルの大型化だけでなく、特定タスクへの最適化や効率性の重要性を業界に再認識させる内容。
 
-**3. LLM実験録 パート1：ファインチューニングで学んだこと** 3pts [記事](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html)
-内容: 実際にLLMのファインチューニングを試みた開発者が、試行錯誤で得た知見と失敗談を共有する実践レポート
-注目理由: ファインチューニングの落とし穴と成功のコツが具体的に詳述されており、実装者にとって即戦力となる情報源
+3. **LLM実験記 — ファインチューニング編（前編）** 3pts | [リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html)
+   実際のLLMファインチューニング体験をまとめた実践的なブログ記事。
+   開発者コミュニティでの知見共有として人気を集め、LLMカスタマイズの実態を紹介。
 
-**4. LLM実験録：OpenAI Functionsの活用** 2pts [記事](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html)
-内容: OpenAI Functions（現在のFunction Calling）を実際のプロジェクトで試用した体験と実装例を紹介
-注目理由: Function Callingの実装パターンと注意点が具体例で示されており、LLMアプリ開発の参考になる実践的内容
+4. **LLM実験記 — OpenAI Functions 編** 2pts | [リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html)
+   OpenAI の Function Calling 機能を実際に試した体験記と実装例を紹介。
+   ツール統合型AIアプリの設計パターンを学べる実践的なリソースとして注目。
 
-**5. ローカルLLMと機械学習で植物ケアを自動化** 1pt [記事](https://www.viam.com/post/practical-ai-local-llm-and-machine-learning-for-plant-care)
-内容: ローカルで動作するLLMとMLモデルを組み合わせてスマート植物ケアシステムを構築した実践事例
-注目理由: プライバシーを守りながらエッジAIを日常生活に活用するユニークな応用例として業界の注目を集める
+5. **LLM実験記 — ベクターDB & 埋め込み編** 2pts | [リンク](https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html)
+   ベクターデータベースと埋め込みベクトルを活用したLLMアプリの構築体験をまとめた記事。
+   RAG（検索拡張生成）の基礎となる技術を実践的に解説し、AI開発入門として価値が高い。
