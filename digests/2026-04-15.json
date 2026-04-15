@@ -1,0 +1,76 @@
+{
+  "date": "2026-04-15",
+  "content": "# AI Daily Digest — 2026-04-15\n\n## 今日のハイライト\n- GUI エージェント統合フレームワーク「ClawGUI」が113 upvotesを獲得、HuggingFace今日のトップ論文に\n- Claude Code v2.1.108でプロンプトキャッシュTTL・セッションリキャップなど大型アップデート（v2.1.109も同日リリース）\n- 「古いAIが新しいAIに勝っている」という逆説的分析記事がHNで注目を集める\n\n## Claude Code / Anthropic アップデート\n**v2.1.109**（2025-04-15）\n- 拡張思考インジケーターを回転式プログレスヒントに改善\n\n**v2.1.108**（2025-04-14）\n- プロンプトキャッシュTTLオプション追加（ENABLE_PROMPT_CACHING_1H、FORCE_PROMPT_CACHING_5M）\n- セッションコンテキスト向けリキャップ機能追加\n- Skill ツール経由のスラッシュコマンド自動探索機能\n- /model・/resume コマンド改善、エラーメッセージ改善、メモリ使用量削減\n\n**v2.1.107**（2025-04-14）\n- 長時間処理中の思考ヒントをより早い段階で表示\n\n## 注目論文 TOP 5\n1. **ClawGUI: GUIエージェントの統合トレーニング・評価・デプロイフレームワーク** | 113 upvotes | https://huggingface.co/papers/2604.11784\n   GUIエージェントのトレーニング・評価・デプロイを一元管理する統合フレームワークを提案。\n   GUI操作自動化の研究開発サイクルを大幅に効率化し、実用デプロイまでの障壁を低減。\n\n2. **KnowRL: 最小限の知識ガイダンスでLLM推論を強化する強化学習手法** | 59 upvotes | https://huggingface.co/papers/2604.12627\n   必要最小限の知識ガイダンスを組み込んだ強化学習によってLLMの推論能力を向上させる手法を提案。\n   少ない外部知識介入で高い推論精度を達成し、効率的なLLM推論強化に貢献。\n\n3. **長期的なエージェント型マルチモーダル検索に向けて** | 14 upvotes | https://huggingface.co/papers/2604.12890\n   マルチモーダル情報を活用した長期的な検索エージェントのアーキテクチャを探求。\n   複雑な検索タスクにおける継続的推論能力の向上を実証し、汎用エージェント研究を前進。\n\n4. **条件シフトによる自己敵対的ワンステップ生成** | 11 upvotes | https://huggingface.co/papers/2604.12322\n   条件シフトを利用した自己敵対的ワンステップ生成手法を提案し、生成速度と品質を両立。\n   生成モデルの高速化と品質維持を同時に実現し、リアルタイム生成への応用が期待される。\n\n5. **LLMエージェントにおける多階層命令階層** | 8 upvotes | https://huggingface.co/papers/2604.09443\n   LLMエージェントの多階層命令階層構造を提案し、優先度管理の枠組みを体系化。\n   エージェントの安全性・制御性向上に直結し、信頼性の高いAIエージェント設計に貢献。\n\n## AI ニュース\n1. **「I love you」と「too」：LLMのアテンション機構をわかりやすく解説** | 4pts | https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/\n   LLMのアテンション機構を具体的な例を用いて直感的に解説した記事。\n   技術入門書として、エンジニア・研究者双方に有用な学習リソースとして注目される。\n\n2. **古いAIが新しいAIに勝っている理由** | 4pts | https://qz.com/ai-generative-chatbots-llm-machine-learning\n   最新の生成AIより旧来のAIシステムが特定タスクで優れるケースを分析した記事。\n   AIモデル選択の実用的視点を提供し、「最新=最良」という業界通念に疑問を呈する。\n\n3. **LLM実験録 Part 1：ファインチューニングで学んだすべて** | 3pts | https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html\n   実践的なLLMファインチューニングの知見・注意点を詳しくまとめた実験レポート。\n   具体的な実験から得た教訓が豊富で、LLM開発者の実務に直結する情報源として価値が高い。\n\n4. **LLM実験録：OpenAI Functions活用ガイド** | 2pts | https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html\n   OpenAI Functionsを使った構造化出力・ツール呼び出しの実装を実験的に検証した記事。\n   関数呼び出し機能の活用パターンを解説し、エージェント設計の参考になる。\n\n5. **LLM実験録：ベクターDBと埋め込みの活用** | 2pts | https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html\n   ベクターデータベースと埋め込みベクトルを組み合わせたLLM応用手法を実験解説。\n   RAGシステム構築の基礎知識として、セマンティック検索実装の学習に有用。\n",
+  "fetched_at": "2026-04-15T11:16:21.032704+00:00",
+  "papers": [
+    {
+      "title": "ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents",
+      "upvotes": 113,
+      "paper_id": "2604.11784"
+    },
+    {
+      "title": "KnowRL: Boosting LLM Reasoning via Reinforcement Learning with Minimal-Sufficient Knowledge Guidance",
+      "upvotes": 59,
+      "paper_id": "2604.12627"
+    },
+    {
+      "title": "Towards Long-horizon Agentic Multimodal Search",
+      "upvotes": 14,
+      "paper_id": "2604.12890"
+    },
+    {
+      "title": "Self-Adversarial One Step Generation via Condition Shifting",
+      "upvotes": 11,
+      "paper_id": "2604.12322"
+    },
+    {
+      "title": "Many-Tier Instruction Hierarchy in LLM Agents",
+      "upvotes": 8,
+      "paper_id": "2604.09443"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.109",
+      "published_at": "2025-04-15",
+      "body": "Improved the extended-thinking indicator with a rotating progress hint"
+    },
+    {
+      "tag_name": "v2.1.108",
+      "published_at": "2025-04-14",
+      "body": "Added prompt caching TTL options (ENABLE_PROMPT_CACHING_1H, FORCE_PROMPT_CACHING_5M), recap feature for session context, built-in slash command discovery via Skill tool, improved /model and /resume, better error messages, reduced memory footprint, and numerous fixes"
+    },
+    {
+      "tag_name": "v2.1.107",
+      "published_at": "2025-04-14",
+      "body": "Show thinking hints sooner during long operations"
+    }
+  ],
+  "news": [
+    {
+      "title": "\"I love you\" \"too\": LLM Attention Explained",
+      "url": "https://kaamvaam.com/machine-learning-ai/llm-attention-explanation/",
+      "points": 4
+    },
+    {
+      "title": "Old AI is beating new AI. Here's why",
+      "url": "https://qz.com/ai-generative-chatbots-llm-machine-learning",
+      "points": 4
+    },
+    {
+      "title": "Experiments in LLMs – Everything I've learned (so far) – Part One – Fine tuning",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/18/experiments-in-llms.html",
+      "points": 3
+    },
+    {
+      "title": "Experiments in LLMs – OpenAI Functions",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/2023/06/30/experiments-in-llms-3.html",
+      "points": 2
+    },
+    {
+      "title": "Experiments in LLMs – Vector DBs and Embeddings",
+      "url": "https://adamfallon.com/ai/llms/deep-learning/machine-learning/artificial-intelligence/openai/vector/embeddings/2023/06/23/experiments-in-llms-2.html",
+      "points": 2
+    }
+  ]
+}
