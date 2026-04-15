@@ -1,0 +1,76 @@
+{
+  "date": "2026-04-16",
+  "content": "# AI Daily Digest — 2026-04-15\n\n## 今日のハイライト\n- GUIエージェント統合フレームワーク「ClawGUI」が119 upvotesで圧倒的人気——学習・評価・デプロイを一元化する新標準候補\n- Claude Code v2.1.110リリース：`/tui`コマンド追加・MCPツール呼び出しハング修正など大型UI改善\n- Apple、SiriエンジニアにAIコーディングブートキャンプを実施——AI競争での人材底上げを本格化\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.110 (2025-04-15)\n- `/tui` コマンドを追加（フリッカーフリーレンダリング対応）\n- `Ctrl+O` を詳細トランスクリプト表示トグルに変更\n- `autoScrollEnabled` 設定オプションを追加\n- `/plugin` の Installed タブ表示を改善\n- MCPツール呼び出しハング問題を修正\n- Bashツールのタイムアウト強制適用を改善\n\n### v2.1.109 (2025-04-15)\n- 拡張思考インジケーターを改善（長時間処理中のローテーションプログレスヒントでビジュアルフィードバック向上）\n\n### v2.1.108 (2025-04-14)\n- `ENABLE_PROMPT_CACHING_1H` 環境変数を追加（1時間キャッシュTTL）\n- セッションコンテキスト用 recap 機能を追加\n- Skill ツール経由でビルトインスラッシュコマンドのモデル探索を有効化\n- resume・MCPサーバー・プラグイン管理の各種バグ修正\n\n## 注目論文 TOP 5\n\n1. **ClawGUI: GUIエージェント学習・評価・デプロイ統合フレームワーク** ▲119 [論文](https://arxiv.org/abs/2604.11784)\n   複数モデル・タスクに対応した統一パイプラインでGUIエージェントを学習・評価・デプロイできるシステムを構築。\n   Webブラウザやスマホ操作など実用的なAIエージェント開発の標準基盤となる可能性があり、GUI自動化研究の加速が期待される。\n\n2. **Turing Test on Screen: モバイルGUIエージェントの人間らしさベンチマーク** ▲26 [論文](https://arxiv.org/abs/2604.09574)\n   チューリングテスト的アプローチでスマートフォンGUIエージェントの操作が人間らしいかを定量評価するベンチマークを構築。\n   ユーザー体験に近い評価軸を提供し、実用エージェントの品質保証指標として広く採用される可能性がある。\n\n3. **BERT-as-a-Judge: LLM評価のための効率的な参照ベース手法** ▲21 [論文](https://arxiv.org/abs/2604.09497)\n   BERTを評価モデルとして活用し、字句的手法より堅牢かつ高価なLLM-as-a-Judgeより低コストなLLM出力評価を実現。\n   大規模LLM評価の民主化につながる軽量評価インフラとして、研究・プロダクション両面での活用が期待される。\n\n4. **エージェント安全のブラインドスポット：善意の指示が露出するコンピュータ使用エージェントの脆弱性** ▲8 [論文](https://arxiv.org/abs/2604.10577)\n   無害に見えるユーザー指示がコンピュータ操作エージェントの安全機構を回避できることを実証し、攻撃パターンを体系的に分類。\n   AIエージェントのセキュリティ設計の盲点を指摘し、デプロイ前の安全評価プロセス整備の必要性を示す重要な警鐘論文。\n\n5. **GlotOCR Bench: OCRモデルは一握りのUnicodeスクリプト以外に依然苦戦** ▲4 [論文](https://arxiv.org/abs/2604.12978)\n   主要OCRモデルが限られたUnicodeスクリプト以外では精度が著しく低下することを多言語ベンチマークで明らかにした。\n   低資源言語・少数文字系への対応が急務であることを示し、多言語OCR研究の優先課題と方向性を定める基礎資料となる。\n\n## AI ニュース\n\n**Apple、SiriエンジニアをAIコーディングブートキャンプに派遣** 6pts [記事](https://www.macrumors.com/2026/04/15/siri-engineers-ai-coding-bootcamp/)\nAppleがSiri開発チームのエンジニアを対象にAIコーディング集中研修を実施していることが報じられた。\nAI開発競争での遅れを挽回すべく人材育成に本腰を入れており、Siriの大幅刷新に向けた体制構築とみられる。\n\n**アプリにも再帰的自己改善は可能** 4pts [記事](https://www.codecanary.ai/blog/recursive-self-improvement-is-possible-for-apps)\nLLMモデル単体でなくアプリケーションレベルでも再帰的な自己改善ループが実現可能であるという技術的考察を展開。\nAIソフトウェアが自律的に自分自身を改善していく可能性を示し、ソフトウェア開発の未来像として注目を集める。\n\n**AllBirds（靴ブランド）がAIに全力投資** 3pts [記事](https://12gramsofcarbon.com/p/tech-things-allbirds-goes-all-in)\nサステナブルシューズブランドのAllBirdsがAIを活用した事業変革に積極投資していることが報告された。\n非テック企業によるAI全面採用が加速しており、AIが業界横断的なビジネス変革の核となりつつあることを示す象徴的事例。\n\n**Cloudflare Browser Run：AIエージェント向けブラウザ実行環境** 3pts [記事](https://blog.cloudflare.com/browser-run-for-ai-agents/)\nCloudflareがAIエージェントのためのブラウザ実行サービス「Browser Run」を発表。エッジネットワーク上でブラウザ操作を提供。\nAIエージェントのWebアクセス基盤として、セキュアかつスケーラブルなインフラが整備され、エージェント開発エコシステム拡充が加速する。\n\n**Show HN: France Life MCP – フランス日常生活向け18の無料AIツール** 2pts [記事](https://github.com/giacomomaria81/france-life-mcp)\nフランスでの日常生活（ビザ・交通・行政手続きなど）をサポートする18種類の無料AIツールをMCPサーバーとして公開。\nMCPエコシステムが多様な実用ツールへ拡張されており、ローカル特化型AIアシスタントの普及を示す好事例。\n",
+  "fetched_at": "2026-04-15T22:10:01.435274+00:00",
+  "papers": [
+    {
+      "title": "ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents",
+      "upvotes": 119,
+      "paper_id": "2604.11784"
+    },
+    {
+      "title": "Turing Test on Screen: A Benchmark for Mobile GUI Agent Humanization",
+      "upvotes": 26,
+      "paper_id": "2604.09574"
+    },
+    {
+      "title": "BERT-as-a-Judge: A Robust Alternative to Lexical Methods for Efficient Reference-Based LLM Evaluation",
+      "upvotes": 21,
+      "paper_id": "2604.09497"
+    },
+    {
+      "title": "The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents",
+      "upvotes": 8,
+      "paper_id": "2604.10577"
+    },
+    {
+      "title": "GlotOCR Bench: OCR Models Still Struggle Beyond a Handful of Unicode Scripts",
+      "upvotes": 4,
+      "paper_id": "2604.12978"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.110",
+      "published_at": "2025-04-15",
+      "body": "Added /tui command for flicker-free rendering, changed Ctrl+O to toggle verbose transcript, added autoScrollEnabled config, improved /plugin Installed tab, fixed MCP tool call hangs, improved Bash tool timeout enforcement, and various UI/UX improvements."
+    },
+    {
+      "tag_name": "v2.1.109",
+      "published_at": "2025-04-15",
+      "body": "Improved the extended-thinking indicator with a rotating progress hint for better visual feedback during long operations."
+    },
+    {
+      "tag_name": "v2.1.108",
+      "published_at": "2025-04-14",
+      "body": "Added ENABLE_PROMPT_CACHING_1H env var for 1-hour cache TTL, added recap feature for session context, enabled model discovery of built-in slash commands via Skill tool, and fixed various issues with resume, MCP servers, and plugin management."
+    }
+  ],
+  "news": [
+    {
+      "title": "Apple is sending Siri Engineers to an AI Coding Bootcamp",
+      "url": "https://www.macrumors.com/2026/04/15/siri-engineers-ai-coding-bootcamp/",
+      "points": 6
+    },
+    {
+      "title": "Recursive self-improvement is possible for apps, too",
+      "url": "https://www.codecanary.ai/blog/recursive-self-improvement-is-possible-for-apps",
+      "points": 4
+    },
+    {
+      "title": "AllBirds (the one that sells shoes) Goes All in on AI",
+      "url": "https://12gramsofcarbon.com/p/tech-things-allbirds-goes-all-in",
+      "points": 3
+    },
+    {
+      "title": "Cloudflare Browser Run. Will it go around Cloudflare's own blocking?",
+      "url": "https://blog.cloudflare.com/browser-run-for-ai-agents/",
+      "points": 3
+    },
+    {
+      "title": "Show HN: France Life MCP - 18 free AI tools for daily life in France",
+      "url": "https://github.com/giacomomaria81/france-life-mcp",
+      "points": 2
+    }
+  ]
+}
