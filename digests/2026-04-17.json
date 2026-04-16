@@ -1,0 +1,76 @@
+{
+  "date": "2026-04-17",
+  "content": "# AI Daily Digest — 2026-04-16\n\n## 今日のハイライト\n- Claude Code v2.1.111 で Claude Opus 4.7 xhigh・Auto モード・PowerShell ツールなど大型アップデート\n- 視覚生成に推論報酬を導入し学習・推論両フェーズをスケールする RationalRewards 論文が 95 upvotes で注目\n- AIコンピュート資源の希少化が始まったとする分析記事が HN で最多ポイント獲得\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.112（2025-04-16）\n- `claude-opus-4-7 is temporarily unavailable` エラーを Auto モードで修正\n\n### v2.1.111（2025-04-16）\n- Claude Opus 4.7 xhigh 利用可能に（Max サブスクライバー向け Auto モード対応）\n- `/effort` スライダー・xhigh エフォートレベルを追加\n- Auto（端末テーマ追従）テーマ・`/ultrareview` コマンドを追加\n- Windows 向け PowerShell ツールを追加\n- `/setup-vertex`・`/setup-bedrock` の改善と多数のバグ修正・UX 改善\n\n### v2.1.110（2025-04-15）\n- `/tui` コマンドによるフリッカーなしレンダリングを追加\n- Remote Control 向けプッシュ通知ツールを追加\n- MCP ツールのハング・プラグイン依存関係・ターミナル表示の不具合を修正\n\n## 注目論文 TOP 5\n\n1. **RationalRewards: 推論報酬による視覚生成のトレーニング・テスト時スケーリング** — 95 upvotes | https://huggingface.co/papers/2604.11626\n   視覚生成モデルに強化学習の推論報酬を導入し、学習フェーズとテスト時計算の両方を統一的にスケール。\n   画像・動画生成の品質を評価なしでスケールできる可能性を示し、生成 AI の効率向上に寄与。\n\n2. **Memory Transfer Learning: コーディングエージェントにおける記憶のドメイン間転移** — 23 upvotes | https://huggingface.co/papers/2604.14004\n   コーディングエージェントが異なるドメイン間でタスク記憶をどのように転移・再利用するかを分析。\n   LLM エージェントの汎化性能改善に向けた知見を提供し、実用的なエージェント開発に応用可能。\n\n3. **P(y|x) から P(y) へ: 事前学習空間における強化学習の探究** — 23 upvotes | https://huggingface.co/papers/2604.14142\n   条件付き分布ではなく事前学習の潜在空間で強化学習を行うアプローチを検討・評価。\n   RLHF 等のアライメント手法の理論的基盤を深化させ、より効率的な学習方法の開発に繋がる。\n\n4. **言語モデルエージェントにおける探索・活用エラーの計測可能性** — 21 upvotes | https://huggingface.co/papers/2604.13151\n   LLM エージェントの探索（Exploration）と活用（Exploitation）の誤りを定量的に測定する手法を提案。\n   エージェントのデバッグや性能改善に直結する指標を与え、信頼性の高い自律エージェント構築を支援。\n\n5. **Target Policy Optimization** — 19 upvotes | https://huggingface.co/papers/2604.06159\n   目標方策を明示的に設定することで強化学習の最適化を安定化させる新手法を提案。\n   LLM のファインチューニングや RLHF 学習の収束改善に寄与し、高品質モデル開発を加速。\n\n## AI ニュース\n\n1. **AI における希少性の始まり** — 25 pts | https://tomtunguz.com/ai-compute-crisis-2026/\n   AI 開発を支えるコンピュート資源が 2026 年に本格的な希少フェーズへ突入しつつあると分析。\n   GPU・電力・冷却インフラの制約が AI スタートアップの競争環境を大きく塗り替える可能性を指摘。\n\n2. **ダクトテープ・旧カメラ・CNC マシンで AI 駆動ハードウェアハッキングアームを自作** — 10 pts | https://github.com/gainsec/autoprober\n   ローコストな物理部品と AI 視覚認識を組み合わせたハードウェアプローブ自動化ツール「autoprober」を公開。\n   セキュリティ研究者が低予算で物理デバイスの脆弱性解析を自動化できる点が注目を集めている。\n\n3. **Ask HN: なぜ Clojure は普及しなかったのか？** — 5 pts | https://news.ycombinator.com/item?id=47799142\n   HN コミュニティが Clojure の普及阻害要因（学習曲線・エコシステム・JVM 依存等）を議論。\n   AI ツール開発における関数型言語の採用可能性を再評価する文脈で注目されている。\n\n4. **AI 版ヴァル・キルマー主演の西部劇、予告編を公開** — 2 pts | https://www.theguardian.com/film/2026/apr/16/first-trailer-released-for-ai-val-kilmer-western\n   故人俳優の AI 再現を使った長編映画の予告編が初公開され、エンタメ業界に波紋を広げる。\n   AI による俳優・声優の再現に関する倫理・権利問題が改めて焦点となっている。\n\n5. **AI のリーダーたちはフォードやロックフェラーほど強力になれるか？** — 1 pts | https://www.economist.com/business/2026/04/16/could-ais-leading-men-become-as-powerful-as-ford-or-rockefeller\n   エコノミスト誌が AI 大手 CEO の独占的影響力を歴史上の産業資本家と比較分析。\n   規制当局・競合企業・社会がどう対応すべきかを問い、AI ガバナンス議論を加速させる内容。\n",
+  "fetched_at": "2026-04-16T22:12:04.928235+00:00",
+  "papers": [
+    {
+      "title": "RationalRewards: Reasoning Rewards Scale Visual Generation Both Training and Test Time",
+      "upvotes": 95,
+      "paper_id": "2604.11626"
+    },
+    {
+      "title": "Memory Transfer Learning: How Memories are Transferred Across Domains in Coding Agents",
+      "upvotes": 23,
+      "paper_id": "2604.14004"
+    },
+    {
+      "title": "From P(y|x) to P(y): Investigating Reinforcement Learning in Pre-train Space",
+      "upvotes": 23,
+      "paper_id": "2604.14142"
+    },
+    {
+      "title": "Exploration and Exploitation Errors Are Measurable for Language Model Agents",
+      "upvotes": 21,
+      "paper_id": "2604.13151"
+    },
+    {
+      "title": "Target Policy Optimization",
+      "upvotes": 19,
+      "paper_id": "2604.06159"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.112",
+      "published_at": "2025-04-16",
+      "body": "Fixed 'claude-opus-4-7 is temporarily unavailable' for auto mode"
+    },
+    {
+      "tag_name": "v2.1.111",
+      "published_at": "2025-04-16",
+      "body": "Claude Opus 4.7 xhigh now available. Auto mode available for Max subscribers. Added xhigh effort level, interactive /effort slider, Auto (match terminal) theme, /ultrareview command, PowerShell tool for Windows, improved /setup-vertex and /setup-bedrock, and numerous bug fixes and UX improvements."
+    },
+    {
+      "tag_name": "v2.1.110",
+      "published_at": "2025-04-15",
+      "body": "Added /tui command for flicker-free rendering. Changed Ctrl+O toggle behavior. Added push notification tool for Remote Control. Improved /plugin menu, /doctor, and transcript view. Fixed MCP tool hanging, non-streaming fallback retries, plugin dependencies, and terminal display issues."
+    }
+  ],
+  "news": [
+    {
+      "title": "The Beginning of Scarcity in AI",
+      "url": "https://tomtunguz.com/ai-compute-crisis-2026/",
+      "points": 25
+    },
+    {
+      "title": "Guy builds AI driven hardware hacker arm from duct tape, old cam and CNC machine",
+      "url": "https://github.com/gainsec/autoprober",
+      "points": 10
+    },
+    {
+      "title": "Ask HN: Why Hasn't Clojure Caught On?",
+      "url": "https://news.ycombinator.com/item?id=47799142",
+      "points": 5
+    },
+    {
+      "title": "First trailer released for western starring AI version of Val Kilmer",
+      "url": "https://www.theguardian.com/film/2026/apr/16/first-trailer-released-for-ai-val-kilmer-western",
+      "points": 2
+    },
+    {
+      "title": "Could AI's leading men become as powerful as Ford or Rockefeller?",
+      "url": "https://www.economist.com/business/2026/04/16/could-ais-leading-men-become-as-powerful-as-ford-or-rockefeller",
+      "points": 1
+    }
+  ]
+}
