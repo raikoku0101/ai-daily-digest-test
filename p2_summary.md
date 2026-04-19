@@ -1,6 +1,6 @@
-**2. GlobalSplat: グローバルシーントークンによる効率的フィードフォワード3D Gaussian Splatting**
-**著者**: GlobalSplat著者ら et al. (2025)
+**2. GlobalSplat: Efficient Feed-Forward 3D Gaussian Splatting via Global Scene Tokens**
+**著者**: GlobalSplat著者ら (2026)
 **arXiv**: https://arxiv.org/abs/2604.15284
 
 **まとめ**:
-3D Gaussian Splatting（3DGS）のフィードフォワード手法は入力ビュー数に比例してガウシアン数が増大する課題があった。GlobalSplatはグローバル潜在シーントークン（2048個固定）を先に構築してから幾何・外観を復号化する「整列第一」アーキテクチャにより、わずか16Kガウシアンで28.53 PSNR、推論時間77.88ms、GPU使用量1.79GBという高効率・高品質を同時に達成した。
+3D Gaussian Splatting（3DGS）のフィードフォワード手法が抱えるプリミティブ冗長・グローバル非一貫性問題を、グローバルシーントークンによる「先にアライン、後にデコード」原則で解決。RealEstate10KとACIDベンチマークで、わずか16K Gaussians・4MBフットプリント・78ms以下の超高速推論でリアルタイム品質の3D再構成を実現し、AR/VR・ロボティクスへの実用展開に道を開く。

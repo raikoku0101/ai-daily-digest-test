@@ -1,27 +1,23 @@
-## 1. Introduction (はじめに)
+## 1. はじめに (Introduction)
 
-Claude Code（v2.1.88）の公開TypeScriptソースコードを分析し、包括的なアーキテクチャを記述。シェルコマンド実行・ファイル編集・外部サービス呼び出しを自動化するエージェント型コーディングツールの内部構造を体系化。独立OSSシステム「OpenClaw」との比較で設計選択肢を明確化。
+AI エージェントシステムの急速な発展に伴い、その設計原則の体系的な理解が重要になっている。本研究はAnthropic社のClaude CodeのTypeScriptソースコードを公開情報として解析し、実用的なAIエージェントシステムの設計空間を明らかにすることを目的とする。独立した比較対象としてOpenClawも分析し、展開文脈の違いによる設計の多様性を検討する。
 
-## 2. Design Philosophies (設計哲学)
+## 2. 設計の価値と原則 (Design Values & Principles)
 
-5つの人間中心価値観：Human Decision Authority（人間の決定権）、Safety/Security/Privacy（安全性・プライバシー）、Reliable Execution（信頼できる実行）、Capability Amplification（能力増幅：内部調査で27%のタスクがツールなしでは試みられなかった）、Contextual Adaptability（文脈適応性：CLAUDE.md・スキル・MCP・フック・プラグインによる多層構成）。
+分析により5つの人間的価値・哲学・ニーズを特定: (1) 人間の意思決定権限（Human Decision Authority）、(2) 安全性とセキュリティ（Safety & Security）、(3) 信頼できる実行（Reliable Execution）、(4) 能力増幅（Capability Amplification）、(5) 文脈適応性（Contextual Adaptability）。これらが13の設計原則を通じて具体的な実装選択に反映されていることを追跡。
 
-## 3. Architecture Overview (アーキテクチャ概要)
+## 3. アーキテクチャ解析 (Architecture Analysis)
 
-7機能コンポーネント：UI層・コアエージェントループ（QueryEngineクラス）・権限管理（7権限モード：plan/default/acceptEdits/auto/dontAsk/bypassPermissions/bubble）・ツールプール（最大54個の組み込みツール）・状態・永続性層・実行環境。5層階層：Surface→Core→Safety/Action→State→Backend。
+システムの核心は「モデル呼び出し → ツール実行 → 繰り返し」のシンプルなwhileループである。しかし、コードの大部分はこのループを支える周辺システムに存在する: (1) 7モード+MLベース分類器によるパーミッションシステム、(2) 5層コンパクションパイプラインによるコンテキスト管理、(3) MCP・プラグイン・スキル・フックの4つの拡張メカニズム、(4) ワークツリー分離によるサブエージェント委任機構、(5) 追記指向のセッションストレージ。
 
-## 4. Permission and Safety Layers (権限と安全性)
+## 4. OpenClawとの比較 (Comparison with OpenClaw)
 
-7つの独立安全性層：ツール事前フィルタリング・Deny-first規則評価・権限モード制約・ML基盤自動分類器・シェルサンドボックス・再開時権限非復元・フックベース仲介。重要発見：ユーザーが権限プロンプトの93%を承認するため、対話型確認だけでは安全性が不十分と判断。多層独立安全機構を設計。
+マルチチャネル個人アシスタントゲートウェイOpenClawとの比較により、同じ設計問題が展開文脈により異なる解答を持つことを実証。アクションごとの安全分類 vs. ペリメーターレベルのアクセス制御、単一CLIループ vs. ゲートウェイコントロールプレーン内の組み込みランタイム、コンテキストウィンドウ拡張 vs. ゲートウェイ全体の機能登録、といった対比が明確に示された。
 
-## 5. Context Management (コンテキスト管理)
+## 5. 未解決の設計課題 (Open Design Directions)
 
-5段階圧縮パイプライン（Budget reduction→Snip→Microcompact→Context collapse→Auto-compact）。各層は異なるコスト・ベネフィット比を持ち、安い層が先に実行。4拡張メカニズム（MCPサーバー・プラグイン・スキル・フック）をコンテキストコスト別に階層化。27イベント型フック（うち5個が安全性関連）。
+最近の経験的・アーキテクチャ的・政策的文献に基づき、6つの未解決設計課題を提示: マルチエージェント協調パターン、より細粒度な信頼境界、動的な能力発見、長期エージェントの状態管理、エージェントの説明責任とログ記録、クロスシステム相互運用性。
 
-## 6. Subagent Delegation & Session Persistence (サブエージェント委任・セッション永続性)
+## 6. 結論 (Conclusion)
 
-サブエージェントは独立コンテキストで実行し概要のみ親に返却。Sidechain転写で親コンテキストを肥大化させない。append-only JSONLセッション転写でResume/Fork/Rewind操作をサポート。権限状態は復元されない（セキュリティのため）。
-
-## 7. Comparative Analysis & Future Directions (比較・将来方向)
-
-OpenClawとの比較：Claude Codeはシングルターン反応型ループ、OpenClawはマルチチャネルゲートウェイ。同じ設計問題が異なるデプロイメント文脈では異なる回答を生む。将来課題：静かな失敗の検出・セッション横断的永続性・監視機構のスケーリング・長期的な人間能力保持とのバランス。
+Claude Codeの詳細解析は、AIエージェントシステム設計の体系的な理解と共通語彙を提供する。安全性・能力・ユーザー制御のバランスをどう取るかという設計問題は普遍的だが、最適解は展開文脈に大きく依存することが明らかになった。本研究の知見は今後のエージェントシステム設計・評価・改善の基盤となることが期待される。
