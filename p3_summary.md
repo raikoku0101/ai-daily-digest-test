@@ -1,6 +1,6 @@
-**3. HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System**
-**著者**: HiVLA著者ら et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.14125
+**3. Web Retrieval-Aware Chunking (W-RAC) for Efficient and Cost-Effective RAG Systems**
+**著者**: （Hugging Face Daily Papers掲載）et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.04936
 
 **まとめ**:
-VLA（Vision-Language-Action）モデルのファインチューニング時に生じる「推論能力vs.制御精度」のトレードオフを、階層的分離アーキテクチャで解決。VLMプランナーがタスク分解とビジュアルグラウンディングを担い、フローマッチングDiffusion Transformer（DiT）エキスパートが物理制御を担う。シミュレーション・実環境実験で長期タスクと小物体精密操作の両方においてSOTAを達成。
+RAGシステムでのウェブ文書チャンキングをテキスト生成問題ではなくID計画問題として再構成するW-RACを提案。LLMに生のテキストではなく構造化されたIDのみをグループ化させることでハルシネーションを排除。出力トークン84.6%削減・処理コスト51.7%削減を達成しながら検索精度（Precision@3）を29%改善という、効率性と品質の両立を実現した実用的フレームワーク。

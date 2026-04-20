@@ -1,6 +1,6 @@
-**4. Dive into Claude Code: The Design Space of Today's and Future AI Agent Systems**
-**著者**: 研究チーム et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.14228
+**4. (1D) Ordered Tokens Enable Efficient Test-Time Search**
+**著者**: （Hugging Face Daily Papers掲載）et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.15453
 
 **まとめ**:
-Claude CodeのオープンなTypeScriptソースコードを詳細解析し、AIエージェントシステムの設計空間を体系化。5つの人間的価値・13設計原則・具体的実装への追跡可能なトレーサビリティを確立。パーミッションシステム・コンテキスト管理・拡張メカニズム・サブエージェント委任など主要コンポーネントを解明し、異なる展開文脈では同じ設計問題が異なる解答を生むことを独立実装との比較で実証した。
+1次元順序付きトークナイザー（coarse-to-fine構造）が画像生成のテスト時検索（test-time search）を大幅に効率化することを実証。粗粒度トークンが全体的な意味構造を符号化するため、ビームサーチによる検索が有効に機能する。学習不要のテキスト-画像生成も実現し、530Mモデルが十分な推論計算で3.4Bモデルを上回ることを示した。推論時スケーリングの新しい方向性を開く重要研究。

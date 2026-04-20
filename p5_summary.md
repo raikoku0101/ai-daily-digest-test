@@ -1,6 +1,6 @@
-**5. Switch-KD: Visual-Switch Knowledge Distillation for Vision-Language Models**
-**著者**: Switch-KD著者ら et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.14629
+**5. Where does output diversity collapse in post-training?**
+**著者**: （OLMo 3 / AI2 チーム）et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.16027
 
 **まとめ**:
-VLM（Vision-Language Model）への知識蒸留において、各モダリティを独立して監視することでマルチモーダルアライメントが一貫しない問題を解決。テキスト確率空間に統一したVisual-Switch Distillationと双方向DBiLD損失を提案。0.5B TinyLLaVAが3B教師から蒸留し、10マルチモーダルベンチマーク平均で+3.6ポイントの改善を達成。アーキテクチャ変更不要で軽量VLMのエッジ展開を加速。
+LLMのポスト学習後に発生する出力多様性崩壊の原因を、OLMo 3 7Bの13チェックポイントを追跡して分析。Think-SFTがベースモデル比62%の多様性を喪失するのに対し、Instruct-SFTは38%に留まり、崩壊程度を決定するのはポスト学習手法ではなく訓練データの構成であることを証明。多様性崩壊はモデル重みに埋め込まれており推論時の修正は不可能で、SFTデータの多様化とKLペナルティなしのRLが有効な対策として推奨される。

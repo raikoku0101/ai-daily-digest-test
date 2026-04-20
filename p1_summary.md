@@ -1,6 +1,6 @@
-**1. How to Fine-Tune a Reasoning Model? — Teacher-Student協調によるSFTデータ合成**
-**著者**: (TESSY著者ら) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.14164
+**1. Elucidating the SNR-t Bias of Diffusion Probabilistic Models**
+**著者**: （Hugging Face Daily Papers掲載）et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.16044
 
 **まとめ**:
-推論特化モデル（Qwen3-8Bなど）を強力な教師モデルの合成データでファインチューニングすると、スタイル分布の乖離により推論能力が劣化するという問題を発見。Teacher-Student協調フレームワーク「TESSY」を提案し、教師モデルと生徒モデルを交互に使って生徒スタイルに整合した合成データを生成。コード生成タスクでLiveCodeBench-Pro +11.25%、OJBench +6.68%の大幅改善を達成し、推論モデルのカスタマイズに新たな指針を示した。
+拡散確率モデル（DPM）の推論時に発生するSNR-タイムステップ（SNR-t）バイアスを初めて体系的に解明。訓練時と推論時でSNRの対応が崩れる根本原因を数学的に証明し、ウェーブレット領域で周波数成分ごとに補正するDCW（Differential Correction in Wavelet domain）を提案。学習不要・プラグイン可能な軽量手法でFIDを最大42.6%削減し、FLUX等の最新モデルでも画質改善を確認。
