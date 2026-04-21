@@ -1,6 +1,6 @@
-**3. Web Retrieval-Aware Chunking (W-RAC) for Efficient and Cost-Effective RAG Systems**
-**著者**: （Hugging Face Daily Papers掲載）et al. (2025)
-**arXiv**: https://arxiv.org/abs/2604.04936
+**3. On the Reliability of Computer Use Agents**
+**著者**: (Anonymous et al.) (2026)
+**arXiv**: https://arxiv.org/abs/2604.17849
 
 **まとめ**:
-RAGシステムでのウェブ文書チャンキングをテキスト生成問題ではなくID計画問題として再構成するW-RACを提案。LLMに生のテキストではなく構造化されたIDのみをグループ化させることでハルシネーションを排除。出力トークン84.6%削減・処理コスト51.7%削減を達成しながら検索精度（Precision@3）を29%改善という、効率性と品質の両立を実現した実用的フレームワーク。
+コンピュータ使用エージェント（ウェブナビゲーション・デスクトップ自動化等）は単回評価では人間超えの性能を示すが、同一タスク・同一モデルを繰り返し実行すると成功率が大きく変動することを体系的に実証。「一度成功したエージェント = 信頼できる」という産業界・学術界の共通仮定を実験的に否定し、本番展開前の信頼性評価フレームワーク導入を訴える重要な警告論文。
