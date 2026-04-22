@@ -1,6 +1,7 @@
-**2. Concrete Jungle: Towards Concreteness Paved Contrastive Negative Mining for Compositional Understanding**
-**著者**: (Anonymous et al.) (2026)
-**arXiv**: https://arxiv.org/abs/2604.13313
+**2. ShadowPEFT: Shadow Network for Parameter-Efficient Fine-Tuning**
+**著者**: ShadowPEFT Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.19254
+👍 upvotes: 18
 
 **まとめ**:
-Vision-Language Models（VLMs）が語順・属性バインディング等の構成的推論で示す脆弱性の根本原因を、識別力のある負例サンプルの不足と特定。「具体性（Concreteness）」に基づく対照的負例マイニング手法を提案し、VLM の構成的理解を訓練データレベルで強化することで、CLIP 系モデルのベンチマーク性能を大幅改善した研究。
+LoRA等の分散型PEFT手法に代わる「集中型」アプローチ。凍結バックボーンと並行して動作する共有シャドウネットワークにより、層をまたいだ統合的な適応を実現。同等パラメータ数でLoRA/DoRAを上回る性能を示し、エッジ向けの分離デプロイも可能な柔軟なアーキテクチャ。

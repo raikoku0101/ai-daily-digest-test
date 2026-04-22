@@ -1,6 +1,7 @@
-**5. VoxMind: An End-to-End Agentic Spoken Dialogue System**
-**著者**: (Anonymous et al.) (2026)
-**arXiv**: https://arxiv.org/abs/2604.15710
+**5. CityRAG: Stepping Into a City via Spatially-Grounded Video Generation**
+**著者**: CityRAG Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.19741
+👍 upvotes: 8
 
 **まとめ**:
-エンドツーエンドの音声対話モデルに「エージェント機能（Agentic Capabilities）」を統合したシステム VoxMind を提案。単純な会話を超え、ツール使用・外部 API 呼び出し・複数ステップ推論を音声インタフェースで直接実行可能にする。障害者支援・ハンズフリー環境向けの次世代音声アシスタントの設計原理を示した重要なシステム論文。
+Google Mapsの550万枚の街頭ビューパノラマから構築した地理登録データを活用し、実世界の都市を物理的に忠実に再現する動画生成モデル。Wan 2.1 (140億パラメータ) をベースに、任意の気象・照明条件と複雑な軌跡ナビゲーションをサポート。自動運転・ロボティクスシミュレーション向けに実世界再構成の新標準を打ち立てる。

@@ -1,6 +1,7 @@
-**1. The Illusion of Certainty: Decoupling Capability and Calibration in On-Policy Distillation**
-**著者**: (Anonymous et al.) (2026)
-**arXiv**: https://arxiv.org/abs/2604.16830
+**1. AnyRecon: Arbitrary-View 3D Reconstruction with Video Diffusion Model**
+**著者**: AnyRecon Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.19747
+👍 upvotes: 34
 
 **まとめ**:
-On-Policy Distillation (OPD) が LLM のポストトレーニングパラダイムとして普及する中、精度向上と引き換えにモデルが系統的に「過信」状態に陥る「誤キャリブレーションのスケーリング則」を発見。能力（Capability）とキャリブレーション（Calibration）のデカップリングにより、どちらかを犠牲にせず両立させる手法を提案し、医療・法律・安全分野への LLM 実用化における信頼性問題に警鐘を鳴らす研究。
+任意の視点数・順序に対応するスケーラブルな疎視点3D再構成フレームワーク。グローバルシーンメモリと幾何認識条件付けにより、従来手法が苦手とする大視点差・長軌跡シーンでも高品質な再構成を実現。自動運転・VR/ARシミュレーションへの即時応用が期待される今日最注目の論文（👍34）。

@@ -1,6 +1,7 @@
-**3. On the Reliability of Computer Use Agents**
-**著者**: (Anonymous et al.) (2026)
-**arXiv**: https://arxiv.org/abs/2604.17849
+**3. AJ-Bench: Benchmarking Agent-as-a-Judge for Environment-Aware Evaluation**
+**著者**: AJ-Bench Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.18240
+👍 upvotes: 11
 
 **まとめ**:
-コンピュータ使用エージェント（ウェブナビゲーション・デスクトップ自動化等）は単回評価では人間超えの性能を示すが、同一タスク・同一モデルを繰り返し実行すると成功率が大きく変動することを体系的に実証。「一度成功したエージェント = 信頼できる」という産業界・学術界の共通仮定を実験的に否定し、本番展開前の信頼性評価フレームワーク導入を訴える重要な警告論文。
+LLMエージェントの行動検証に特化した初の包括的ベンチマーク。検索・データシステム・GUIの3ドメイン、155タスク・516軌跡で構成。Agent-as-Judgeが同一ベースモデルのLLM-as-Judgeより平均13ポイントのF1改善を達成し、強化学習時代のエージェント評価インフラとして重要な基盤を提供する。

@@ -1,6 +1,7 @@
-**4. GenericAgent: A Token-Efficient Self-Evolving LLM Agent via Contextual Information Density Maximization (V1.0)**
-**著者**: (Anonymous et al.) (2026)
-**arXiv**: https://arxiv.org/abs/2604.17091
+**4. Understanding and Enforcing Weight Disentanglement in Task Arithmetic**
+**著者**: OrthoReg Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.17078
+👍 upvotes: 9
 
 **まとめ**:
-長期タスク LLM エージェントのコンテキスト長制約という根本問題に対し、「コンテキスト情報密度の最大化（CIDM; Contextual Information Density Maximization）」原理に基づく自己進化型エージェントを提案。ツール説明・メモリ・環境フィードバックの動的圧縮・選択により、トークン効率を大幅改善しながら長期タスク性能を維持・向上させることを実証した実用的研究。
+タスク算術の成功を「タスク特徴専門化 (TFS)」という新理論で説明し、その幾何学的帰結である直交性を強制する正則化手法「OrthoReg」を提案。ViT-L-14でのタスク加算がNon-linear Fine-tuningを84.07%→88.23%に向上させ、複数タスクのモデル統合・編集技術に理論的基盤を与える重要な研究。
