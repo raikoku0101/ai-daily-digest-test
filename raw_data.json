@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "The Illusion of Certainty: Decoupling Capability and Calibration in On-Policy Distillation", "upvotes": 10, "paper_id": "2604.16830", "abstract": "On-policy distillation (OPD) is an increasingly important paradigm for post-training language models. However, we identify a pervasive Scaling Law of Miscalibration: while OPD effectively improves task accuracy, it systematically traps models in se..."},
-    {"title": "Concrete Jungle: Towards Concreteness Paved Contrastive Negative Mining for Compositional Understanding", "upvotes": 8, "paper_id": "2604.13313", "abstract": "Vision-Language Models demonstrate remarkable capabilities but often struggle with compositional reasoning, exhibiting vulnerabilities regarding word order and attribute binding. This limitation arises from a scarcity of informative samples needed to dif..."},
-    {"title": "On the Reliability of Computer Use Agents", "upvotes": 7, "paper_id": "2604.17849", "abstract": "Computer-use agents have rapidly improved on real-world tasks such as web navigation, desktop automation, and software interaction, in some cases surpassing human performance. Yet even when the task and model are unchanged, an agent that succeeds once..."},
-    {"title": "GenericAgent: A Token-Efficient Self-Evolving LLM Agent via Contextual Information Density Maximization (V1.0)", "upvotes": 6, "paper_id": "2604.17091", "abstract": "Long-horizon large language model (LLM) agents are fundamentally limited by context. As interactions become longer, tool descriptions, retrieved memories, and raw environmental feedback accumulate and push out the information needed for decis..."},
-    {"title": "VoxMind: An End-to-End Agentic Spoken Dialogue System", "upvotes": 6, "paper_id": "2604.15710", "abstract": "Recent end-to-end spoken dialogue models enable natural interaction. However, as user demands become increasingly complex, models that rely solely on conversational abilities often struggle to cope. Incorporating agentic capabilities is therefore essent..."},
-    {"title": "Agents Explore but Agents Ignore: LLMs Lack Environmental Curiosity", "upvotes": 5, "paper_id": "2604.17609", "abstract": "LLM-based agents are assumed to integrate environmental observations into their reasoning: discovering highly relevant but unexpected information should naturally lead to a model exploiting its own discoveries. We show that this assumption is false for..."},
-    {"title": "River-LLM: Large Language Model Seamless Exit Based on KV Share", "upvotes": 2, "paper_id": "2604.18396", "abstract": "Large Language Models (LLMs) have demonstrated exceptional performance across diverse domains but are increasingly constrained by high inference latency. Early Exit has emerged as a promising solution to accelerate inference by dynamically bypassing red..."},
-    {"title": "When Background Matters: Breaking Medical Vision Language Models by Transferable Attack", "upvotes": 1, "paper_id": "2604.17318", "abstract": "Vision-Language Models (VLMs) are increasingly used in clinical diagnostics, yet their robustness to adversarial attacks remains largely unexplored, posing serious risks. Existing medical attacks focus on secondary objectives such as model stealing or..."},
-    {"title": "MARCO: Navigating the Unseen Space of Semantic Correspondence", "upvotes": 1, "paper_id": "2604.18267", "abstract": "Recent advances in semantic correspondence rely on dual-encoder architectures, combining DINOv2 with diffusion backbones. While accurate, these billion-parameter models generalize poorly beyond training keypoints, revealing a gap between benchmark perf..."},
-    {"title": "Modeling Sparse and Bursty Vulnerability Sightings: Forecasting Under Data Constraints", "upvotes": 1, "paper_id": "2604.16038", "abstract": "Understanding and anticipating vulnerability-related activity is a major challenge in cyber threat intelligence. This work investigates whether vulnerability sightings, such as proof-of-concept releases, detection templates, or online discussions, ca..."}
+    {
+      "title": "AnyRecon: Arbitrary-View 3D Reconstruction with Video Diffusion Model",
+      "upvotes": 34,
+      "paper_id": "2604.19747",
+      "abstract": "Sparse-view 3D reconstruction is essential for modeling scenes from casual captures, but remain challenging for non-generative reconstruction. Existing diffusion-based approaches mitigates this issues by synthesizing novel views, but they often condition on only one or two capture frames, which restricts geometric consistency and limits scalability to large or diverse scenes."
+    },
+    {
+      "title": "ShadowPEFT: Shadow Network for Parameter-Efficient Fine-Tuning",
+      "upvotes": 18,
+      "paper_id": "2604.19254",
+      "abstract": "Parameter-efficient fine-tuning (PEFT) reduces the training cost of full-parameter fine-tuning for large language models (LLMs) by training only a small set of task-specific parameters while freezing the pretrained backbone. However, existing approaches, such as Low-Rank Adaptation (LoRA), achieve adaptation by inserting independent low-rank perturbations directly to individual weights, resulting in a local parameterization of adaptation."
+    },
+    {
+      "title": "AJ-Bench: Benchmarking Agent-as-a-Judge for Environment-Aware Evaluation",
+      "upvotes": 11,
+      "paper_id": "2604.18240",
+      "abstract": "As reinforcement learning continues to scale the training of large language model-based agents, reliably verifying agent behaviors in complex environments has become increasingly challenging. Existing approaches rely on rule-based verifiers or LLM-as-a-Judge models, which struggle to generalize beyond narrow domains."
+    },
+    {
+      "title": "Understanding and Enforcing Weight Disentanglement in Task Arithmetic",
+      "upvotes": 9,
+      "paper_id": "2604.17078",
+      "abstract": "Task arithmetic provides an efficient, training-free way to edit pre-trained models, yet lacks a fundamental theoretical explanation for its success. The existing concept of weight disentanglement describes the ideal outcome of non-interfering task composition but does not reveal its underlying cause."
+    },
+    {
+      "title": "CityRAG: Stepping Into a City via Spatially-Grounded Video Generation",
+      "upvotes": 8,
+      "paper_id": "2604.19741",
+      "abstract": "We address the problem of generating a 3D-consistent, navigable environment that is spatially grounded: a simulation of a real location. Existing video generative models can produce a plausible sequence that is consistent with a text (T2V) or image (I2V) prompt."
+    },
+    {
+      "title": "RDP LoRA: Geometry-Driven Identification for Parameter-Efficient Adaptation in Large Language Models",
+      "upvotes": 4,
+      "paper_id": "2604.19321",
+      "abstract": "Fine-tuning Large Language Models (LLMs) remains structurally uncertain despite parameter-efficient methods such as Low-Rank Adaptation (LoRA), as the layer-specific roles of internal representations are poorly understood, leading to heuristic decisions about where adaptation should be applied."
+    },
+    {
+      "title": "SmartPhotoCrafter: Unified Reasoning, Generation and Optimization for Automatic Photographic Image Editing",
+      "upvotes": 4,
+      "paper_id": "2604.19587",
+      "abstract": "Traditional photographic image editing typically requires users to possess sufficient aesthetic understanding to provide appropriate instructions for adjusting image quality and camera parameters. However, this paradigm relies on explicit human instruction of aesthetic intent, which is often ambiguous, incomplete, or inaccessible to non-expert users."
+    },
+    {
+      "title": "HP-Edit: A Human-Preference Post-Training Framework for Image Editing",
+      "upvotes": 3,
+      "paper_id": "2604.19406",
+      "abstract": "Common image editing tasks typically adopt powerful generative diffusion models as the leading paradigm for real-world content editing. Meanwhile, although reinforcement learning (RL) methods such as Diffusion-DPO and Flow-GRPO have further improved generation quality, efficiently applying RLHF to diffusion-based editing remains largely unexplored."
+    },
+    {
+      "title": "UDM-GRPO: Stable and Efficient Group Relative Policy Optimization for Uniform Discrete Diffusion Models",
+      "upvotes": 3,
+      "paper_id": "2604.18518",
+      "abstract": "Uniform Discrete Diffusion Model (UDM) has recently emerged as a promising paradigm for discrete generative modeling; however, its integration with reinforcement learning remains largely unexplored. We observe that naively applying GRPO to UDM leads to training instability and marginal performance gains."
+    },
+    {
+      "title": "Accurate and scalable exchange-correlation with deep learning",
+      "upvotes": 2,
+      "paper_id": "2506.14665",
+      "abstract": "Density Functional Theory (DFT) underpins much of modern computational chemistry and materials science. Yet, the reliability of DFT-derived predictions of experimentally measurable properties remains fundamentally limited by the need to approximate the unknown exchange-correlation (XC) functional."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.116", "published_at": "2025-04-20", "body": "/resume on large sessions is significantly faster (up to 67% on 40MB+ sessions) and handles sessions with many dead-fork entries more efficiently. Faster MCP startup when multiple stdio servers are configured; resources/templates/list is now deferred to first @-mention. Smoother fullscreen scrolling in VS Code, Cursor, and Windsurf terminals. Thinking spinner now shows progress inline. /config search now matches option values. /doctor can now be opened while Claude is responding. /reload-plugins and background plugin auto-update now auto-install missing plugin dependencies. Bash tool now surfaces a hint when gh commands hit GitHub API rate limit. Security: sandbox auto-allow no longer bypasses the dangerous-path safety check for rm/rmdir targeting /, $HOME, or other critical system directories."},
-    {"tag_name": "v2.1.114", "published_at": "2025-04-18", "body": "Fixed a crash in the permission dialog when an agent teams teammate requested tool permission"},
-    {"tag_name": "v2.1.113", "published_at": "2025-04-17", "body": "Changed the CLI to spawn a native Claude Code binary (via a per-platform optional dependency) instead of bundled JavaScript. Added sandbox.network.deniedDomains setting to block specific domains even when a broader allowedDomains wildcard would otherwise permit them. Fullscreen mode: Shift+Up/Down now scrolls the viewport. Ctrl+A and Ctrl+E now move to the start/end of the current logical line in multiline input. Windows: Ctrl+Backspace now deletes the previous word. Long URLs in responses and bash output stay clickable when they wrap across lines. Improved /loop: pressing Esc now cancels pending wakeups."}
+    {
+      "tag_name": "v2.1.117",
+      "published_at": "2025-04-22",
+      "body": "Forked subagents can now be enabled on external builds by setting CLAUDE_CODE_FORK_SUBAGENT=1. Agent frontmatter mcpServers are now loaded for main-thread agent sessions via --agent. Improved /model: selections now persist across restarts even when the project pins a different model, and the startup header shows when the active model comes from a project or managed-settings pin. The /resume command now offers to summarize stale, large sessions before re-reading them, matching the existing --resume behavior. Faster startup when both local and claude.ai MCP servers are configured (concurrent connect now default)."
+    },
+    {
+      "tag_name": "v2.1.116",
+      "published_at": "2025-04-20",
+      "body": "/resume on large sessions is significantly faster (up to 67% on 40MB+ sessions) and handles sessions with many dead-fork entries more efficiently. Faster MCP startup when multiple stdio servers are configured; resources/templates/list is now deferred to first @-mention. Smoother fullscreen scrolling in VS Code, Cursor, and Windsurf terminals. Thinking spinner now shows progress inline, replacing the separate hint row."
+    },
+    {
+      "tag_name": "v2.1.114",
+      "published_at": "2025-04-18",
+      "body": "Fixed a crash in the permission dialog when an agent teams teammate requested tool permission."
+    }
   ]
 }
