@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-24",
+  "content": "# AI Daily Digest — 2026-04-24\n\n## 今日のハイライト\n- **NFPO が RLVR を刷新 (43 upvotes)**: 自己生成の「近未来軌跡」を擬似オフポリシーデータとして活用することで、外部データなしに LLM の強化学習収束速度と最終性能を向上。RLVR の実用コストを大幅に削減しうる重要な進展。\n- **Claude Code v2.1.118 リリース**: Vim ビジュアルモード・カスタムテーマ・MCP フック統合など体験向上機能が一斉追加。`DISABLE_UPDATES` 変数による更新制御強化はエンタープライズ展開に直結。\n- **OpenMobile がオープンなモバイルエージェントを拓く (22 upvotes)**: タスク・軌跡合成パイプラインでクローズドデータに依存せず高性能モバイルエージェントを訓練可能に。AndroidWorld でオープンモデル最高水準を達成し、エージェント研究の民主化を促進。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.118 (2025-04-23)\n**主要機能**\n- **Vim ビジュアルモード追加**: `v`（文字選択）と `V`（行選択）が実装され、選択範囲に対してオペレーター（削除・ヤンク等）とビジュアルフィードバックが利用可能に。\n- **/usage コマンド統合**: `/cost` と `/stats` が `/usage` に統合。タブ切り替えでコスト・統計両方を確認でき、旧コマンドもショートカットとして引き続き利用可能。\n- **カスタムテーマ機能**: `/theme` コマンドから名前付きカスタムテーマの作成・切り替えが可能。`~/.claude/themes/` の JSON ファイルを手動編集も可。プラグインも `themes/` ディレクトリ経由でテーマを配布可能。\n- **Hooks から MCP ツール呼び出し**: フックが `type: \"mcp_tool\"` で MCP ツールを直接呼び出せるようになり、自動化の幅が拡大。\n\n**バグ修正・その他**\n- `DISABLE_UPDATES` 環境変数を追加。`DISABLE_AUTOUPDATER` より厳格で、手動 `claude update` も含む全更新経路をブロック。\n\n**ユーザーへの影響**: Vim ユーザーはエディタ同様の選択操作が可能に。チーム管理者は更新ポリシーを強制できる。\n\n---\n\n### v2.1.117 (2025-04-22)\n**主要機能**\n- **フォークサブエージェント外部ビルド対応**: `CLAUDE_CODE_FORK_SUBAGENT=1` 環境変数でサードパーティビルドでもフォークサブエージェント有効化可能。\n- **/model 永続化改善**: モデル選択がプロジェクトピン設定をまたいで再起動後も維持。起動ヘッダーにアクティブモデルの出所（プロジェクト/マネージド設定）を表示。\n- **/resume の要約機能**: 古い大規模セッションを再読み込み前に要約するか提案する機能を追加（`--resume` オプションと同動作）。\n\n**バグ修正・その他**\n- `--agent` 経由のメインスレッドエージェントセッションでエージェント frontmatter の mcpServers を読み込むよう修正。\n- ローカルと claude.ai 両 MCP サーバー設定時の起動速度改善（並列接続をデフォルト化）。\n\n**ユーザーへの影響**: 大規模セッション再開がより快適に。モデル固定設定の透明性が向上。\n\n---\n\n### v2.1.116 (2025-04-20)\n**主要機能**\n- **/resume 高速化**: 40MB 超セッションで最大 67% 高速化。デッドフォークエントリが多いセッションも効率的に処理。\n- **MCP 起動高速化**: 複数 stdio サーバー設定時の起動が高速化。`resources/templates/list` を最初の @-メンション時まで遅延実行。\n- **スクロール改善**: VS Code、Cursor、Windsurf ターミナルでのフルスクリーンスクロールが滑らかに。`/terminal-setup` でエディタのスクロール感度を設定可能。\n- **Thinking スピナー改善**: 「still thinking」「thinking more」「almost done thinking」をインライン表示し、別行ヒント表示を廃止。\n\n**ユーザーへの影響**: 大規模プロジェクトでの操作応答性が全般的に改善。IDE 統合がより快適に。\n\n## 注目論文 TOP 10\n\n**1. Near-Future Policy Optimization** | upvotes: 43 | https://arxiv.org/abs/2604.20733\n🎯**背景**: RLVR（検証可能な報酬による強化学習）はLLMのポストトレーニングの中核手法。オフポリシー軌跡をオンポリシー探索に組み込むと収束加速・性能向上が期待できるが、良質なオフポリシーデータの獲得が課題。\n🔧**手法**: 現在のポリシーで生成した軌跡を「近未来の状態」として活用するNFPO（Near-Future Policy Optimization）を提案。モデル自身の近未来予測を擬似オフポリシーデータとして利用し、探索の多様性を担保。\n📊**結果**: 数学推論ベンチマーク（MATH, GSM8K 等）で既存 RLVR 手法を上回る収束速度と最終精度を達成。少ないサンプル数でも安定した学習が可能。\n💡**意義**: 外部データなしに自己生成データを活用できるため、データ収集コストを削減しつつRLVR性能を向上させる実用的なアプローチ。\n⚠️**限界**: 近未来予測の質がベースモデルの能力に依存。非常に弱いモデルでは有効な擬似データが生成できない可能性。\n\n---\n\n**2. OpenMobile: Building Open Mobile Agents with Task and Trajectory Synthesis** | upvotes: 22 | https://arxiv.org/abs/2604.15093\n🎯**背景**: VLMベースのモバイルエージェントはAndroidWorldで70%近い成功率を達成するが、トップモデルの学習データは非公開。オープンなモバイルエージェント構築のためのデータ合成手法が必要。\n🔧**手法**: タスクと軌跡の合成パイプラインを構築。UI スクリーンショット・操作ログからタスク記述と行動軌跡を自動生成し、オープンな VLM をファインチューニング。\n📊**結果**: AndroidWorld ベンチマークでオープンモデルとして最高水準の成功率を達成。既存オープンモバイルエージェントを大幅に上回る。\n💡**意義**: 合成データで高性能モバイルエージェントを訓練できることを示し、クローズドデータへの依存から脱却する道筋を提示。\n⚠️**限界**: 合成軌跡の多様性・品質が実環境の複雑さをカバーしきれない場合があり、アプリ固有の操作パターンへの汎化が課題。\n\n---\n\n**3. DeVI: Physics-based Dexterous Human-Object Interaction via Synthetic Video Imitation** | upvotes: 19 | https://arxiv.org/abs/2604.20841\n🎯**背景**: 人間の巧みな手と物体のインタラクション動作をロボット制御に移植するためには、リアルな動作データが必要だが、モーションキャプチャでは複雑な操作を捉えにくい。\n🔧**手法**: ビデオ生成モデルで合成した人間-物体インタラクション動画を模倣学習の教師信号として活用。物理シミュレータ上でポリシーを訓練し、物理的整合性を保ちながら器用な操作動作を再現。\n📊**結果**: 多様な物体カテゴリ・操作タスクで物理的に妥当な巧み手動作を生成。モーションキャプチャデータ不要で高品質な操作が実現。\n💡**意義**: 映像生成 AI と物理シミュレーションを橋渡しするフレームワークで、ロボティクス向けデータ収集の新たなパラダイムを示す。\n⚠️**限界**: 合成映像の物理的不整合がノイズになる場合があり、生成映像の品質に成功率が左右される。\n\n---\n\n**4. A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression** | upvotes: 15 | https://arxiv.org/abs/2604.19572\n🎯**背景**: ターミナル操作型エージェントは長期タスクで大量の観測履歴をコンテキストに保持する必要があり、トークン消費量の爆発とレイテンシが問題。\n🔧**手法**: 観測コンテキストを動的に圧縮する自己進化フレームワークを提案。重要な観測を選択的に保持し、冗長な環境フィードバックを要約・削除。フレームワーク自体がタスク経験から圧縮戦略を改善。\n📊**結果**: コンテキスト長を大幅に削減しながら、タスク成功率を維持または向上。推論コストを最大60%以上削減できるケースを報告。\n💡**意義**: エージェントの実用的な長期タスク実行コストを削減し、APIコスト制約のある実世界への展開を容易にする。\n⚠️**限界**: 圧縮時に重要な細部が失われるリスクがあり、タスク難易度が高いほど圧縮による情報損失の影響が顕在化。\n\n---\n\n**5. C-GenReg: Training-Free 3D Point Cloud Registration by Multi-View-Consistent Geometry-to-Image Generation** | upvotes: 10 | https://arxiv.org/abs/2604.16680\n🎯**背景**: 3D点群レジストレーション（位置合わせ）は学習ベース手法が主流だが、学習データ外の形状への汎化が弱い。事前学習不要な汎用的アプローチが求められている。\n🔧**手法**: 3D点群を複数視点から画像へ変換し、世界規模の生成モデル事前知識と視覚基盤モデル（VFM）を組み合わせた確率的モーダル融合で対応関係を推定。訓練データ不要のゼロショット方式。\n📊**結果**: 既存のトレーニングフリー手法を上回る精度を複数ベンチマークで達成。特に見知らぬ物体カテゴリで優位性を発揮。\n💡**意義**: 生成AI の豊富な形状知識を3D計測処理に直接活用する新しい方向性を示し、産業・医療用3D計測への応用可能性が高い。\n⚠️**限界**: 生成モデルへの依存により処理速度が遅く、リアルタイム用途には不向き。生成画像の品質ばらつきが精度に影響。\n\n---\n\n**6. Abstain-R1: Calibrated Abstention and Post-Refusal Clarification via Verifiable RL** | upvotes: 5 | https://arxiv.org/abs/2604.17073\n🎯**背景**: RLVR で推論能力を強化したモデルは回答不能な問いに対しても無理に答えようとする傾向（幻覚・推測）が強まる問題がある。汎用的な「断り」パターンを学習するだけでは不十分。\n🔧**手法**: 検証可能な RL を用いて「回答すべきか棄権すべきか」を検証報酬で学習する Abstain-R1 を提案。棄権後に何が不足しているかを明示的に説明する後続明確化（Post-Refusal Clarification）機能も追加。\n📊**結果**: 回答不能クエリへの棄権精度と回答可能クエリへの応答精度のトレードオフを改善。幻覚率を大幅に削減しつつ有用な応答を維持。\n💡**意義**: 信頼性の高い AI アシスタント構築において、「知らないことを知っている」能力の習得を RL で実現した点が重要。\n⚠️**限界**: 「回答可能/不可能」の境界が曖昧なケースの扱いが難しく、棄権判断の基準がタスク依存でチューニングが必要。\n\n---\n\n**7. Tadabur: A Large-Scale Quran Audio Dataset** | upvotes: 4 | https://arxiv.org/abs/2604.18932\n🎯**背景**: クルアーン音声研究はデータセットの規模・多様性が限られており、音声認識・朗誦評価・話者識別の研究が制限されていた。\n🔧**手法**: 600名以上の朗誦者による1400時間超の音声を収集・整理。多様な朗誦スタイル（タジュウィード規則の適用度）・音質・録音環境を網羅したマルチスピーカーデータセットを構築。\n📊**結果**: 既存クルアーン音声データセットを規模・多様性で大きく上回る。音声認識の基準モデル実験でデータセットの有効性を検証。\n💡**意義**: アラビア語 ASR・宗教音声研究・低資源言語処理の発展に貢献。イスラム世界の文化的デジタル化にも寄与。\n⚠️**限界**: 宗教的・文化的文脈が特殊で一般音声認識タスクへの直接転用は限定的。著作権・利用許諾の問題が一部の録音で残る可能性。\n\n---\n\n**8. Image Generators are Generalist Vision Learners** | upvotes: 4 | https://arxiv.org/abs/2604.20329\n🎯**背景**: LLM が生成学習から言語理解の創発能力を得るように、画像・動画生成モデルも視覚理解能力を内在的に持つという仮説が提唱されてきた。その検証と活用が課題。\n🔧**手法**: 事前学習済み画像生成モデルの内部表現を視覚認識タスクに転用するフレームワークを構築。ゼロショット・フューショット条件での物体認識・シーン理解等を評価。\n📊**結果**: 生成モデルの中間特徴量が識別タスクでも有効であることを実証。いくつかのベンチマークで識別特化モデルに匹敵する性能を達成。\n💡**意義**: 生成モデルと識別モデルの統合的理解を深め、生成AIの視覚認識能力の再利用によるコスト削減の可能性を示す。\n⚠️**限界**: 識別に特化したモデルと比べると精度で劣るタスクも多く、どの層・どの生成ステップが最適かの選定が煩雑。\n\n---\n\n**9. Visual Reasoning through Tool-supervised Reinforcement Learning** | upvotes: 3 | https://arxiv.org/abs/2604.19945\n🎯**背景**: 複雑な視覚推論タスクにおいてマルチモーダルLLMが適切なツールを選択・活用する能力の習得が課題。教師ありデータなしにツール使用を学ぶ方法が求められている。\n🔧**手法**: ToolsRL（Tool-supervised Reinforcement Learning）を提案。ツール実行結果を直接報酬信号として MLLM に与え、どのツールをいつ使うかをRL で習得。\n📊**結果**: 視覚QA・数学図形推論等のベンチマークで、ツール使用なし・教師ありツール使用と比較して高い精度を達成。\n💡**意義**: 外部ツール（計算機・検索等）を自律的に活用するMLLMの能力向上に向けたスケーラブルな学習フレームワークを提供。\n⚠️**限界**: 利用可能なツールセットが固定されており、未知のツールへの汎化は未検証。ツール呼び出しコストが推論時間を増加させる。\n\n---\n\n**10. SAVOIR: Learning Social Savoir-Faire via Shapley-based Reward Attribution** | upvotes: 3 | https://arxiv.org/abs/2604.18982\n🎯**背景**: 複雑な対人コミュニケーションを処理する社会的知性は言語エージェントにとって困難な課題。RLによる訓練では「どの発話が報酬に貢献したか」のクレジット割り当て問題が生じる。\n🔧**手法**: Shapley 値に基づく報酬配分機構（SAVOIR）を提案。マルチターン対話における各発話の報酬貢献度をシャープレー値で算出し、より精密な強化学習信号を生成。\n📊**結果**: ソーシャルシミュレーション環境での対話タスクで、通常の RL ベースラインより高い社会的適切性と目標達成率を達成。\n💡**意義**: 協議・交渉・共感など高度な社会的コミュニケーション能力を RL で習得するための理論的に根拠あるフレームワークを提示。\n⚠️**限界**: Shapley 値計算は指数的計算量であり、長い対話では近似が必要。社会的適切性の評価指標自体が主観的で文化依存。\n\n",
+  "fetched_at": "2026-04-23T22:27:48.237432+00:00",
+  "papers": [
+    {
+      "title": "Near-Future Policy Optimization",
+      "upvotes": 43,
+      "paper_id": "2604.20733",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has become a core post-training recipe. Introducing suitable off-policy trajectories into on-policy exploration accelerates RLVR convergence and raises the performance ceiling, yet finding a source of such"
+    },
+    {
+      "title": "OpenMobile: Building Open Mobile Agents with Task and Trajectory Synthesis",
+      "upvotes": 22,
+      "paper_id": "2604.15093",
+      "abstract": "Mobile agents powered by vision-language models have demonstrated impressive capabilities in automating mobile tasks, with recent leading models achieving a marked performance leap, e.g., nearly 70% success on AndroidWorld. However, these systems keep their training data"
+    },
+    {
+      "title": "DeVI: Physics-based Dexterous Human-Object Interaction via Synthetic Video Imitation",
+      "upvotes": 19,
+      "paper_id": "2604.20841",
+      "abstract": "Recent advances in video generative models enable the synthesis of realistic human-object interaction videos across a wide range of scenarios and object categories, including complex dexterous manipulations that are difficult to capture with motion capture systems."
+    },
+    {
+      "title": "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression",
+      "upvotes": 15,
+      "paper_id": "2604.19572",
+      "abstract": "As model capabilities advance, research has increasingly shifted toward long-horizon, multi-turn terminal-centric agentic tasks, where raw environment feedback is often preserved in the interaction history to support future decisions. However, repeatedly retaining such feedb"
+    },
+    {
+      "title": "C-GenReg: Training-Free 3D Point Cloud Registration by Multi-View-Consistent Geometry-to-Image Generation with Probabilistic Modalities Fusion",
+      "upvotes": 10,
+      "paper_id": "2604.16680",
+      "abstract": "We introduce C-GenReg, a training-free framework for 3D point cloud registration that leverages the complementary strengths of world-scale generative priors and registration-oriented Vision Foundation Models (VFMs)."
+    },
+    {
+      "title": "Abstain-R1: Calibrated Abstention and Post-Refusal Clarification via Verifiable RL",
+      "upvotes": 5,
+      "paper_id": "2604.17073",
+      "abstract": "Reinforcement fine-tuning improves the reasoning ability of large language models, but it can also encourage them to answer unanswerable queries by guessing or hallucinating missing information. Existing abstention methods either train models to produce generic refusals or"
+    },
+    {
+      "title": "Tadabur: A Large-Scale Quran Audio Dataset",
+      "upvotes": 4,
+      "paper_id": "2604.18932",
+      "abstract": "Despite growing interest in Quranic data research, existing Quran datasets remain limited in both scale and diversity. To address this gap, we present Tadabur, a large-scale Quran audio dataset comprising more than 1400+ hours of recitation audio from over 600 distinct"
+    },
+    {
+      "title": "Image Generators are Generalist Vision Learners",
+      "upvotes": 4,
+      "paper_id": "2604.20329",
+      "abstract": "Recent works show that image and video generators exhibit zero-shot visual understanding behaviors, in a way reminiscent of how LLMs develop emergent capabilities of language understanding and reasoning from generative pretraining."
+    },
+    {
+      "title": "Visual Reasoning through Tool-supervised Reinforcement Learning",
+      "upvotes": 3,
+      "paper_id": "2604.19945",
+      "abstract": "In this paper, we investigate the problem of how to effectively master tool-use to solve complex visual reasoning tasks for Multimodal Large Language Models. We propose a novel Tool-supervised Reinforcement Learning (ToolsRL) framework."
+    },
+    {
+      "title": "SAVOIR: Learning Social Savoir-Faire via Shapley-based Reward Attribution",
+      "upvotes": 3,
+      "paper_id": "2604.18982",
+      "abstract": "Social intelligence, the ability to navigate complex interpersonal interactions, presents a fundamental challenge for language agents. Training such agents via reinforcement learning requires solving the credit assignment problem."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.118",
+      "published_at": "2025-04-23",
+      "body": "Added vim visual mode (v) and visual-line mode (V) with selection, operators, and visual feedback. Merged /cost and /stats into /usage — both remain as typing shortcuts that open the relevant tab. Create and switch between named custom themes from /theme, or hand-edit JSON files in ~/.claude/themes/; plugins can also ship themes via a themes/ directory. Hooks can now invoke MCP tools directly via type: \"mcp_tool\". Added DISABLE_UPDATES env var to completely block all update paths including manual claude update — stricter than DISABLE_AUTOUPDATER."
+    },
+    {
+      "tag_name": "v2.1.117",
+      "published_at": "2025-04-22",
+      "body": "Forked subagents can now be enabled on external builds by setting CLAUDE_CODE_FORK_SUBAGENT=1. Agent frontmatter mcpServers are now loaded for main-thread agent sessions via --agent. Improved /model: selections now persist across restarts even when the project pins a different model, and the startup header shows when the active model comes from a project or managed-settings pin. The /resume command now offers to summarize stale, large sessions before re-reading them. Faster startup when both local and claude.ai MCP servers are configured."
+    },
+    {
+      "tag_name": "v2.1.116",
+      "published_at": "2025-04-20",
+      "body": "/resume on large sessions is significantly faster (up to 67% on 40MB+ sessions) and handles sessions with many dead-fork entries more efficiently. Faster MCP startup when multiple stdio servers are configured; resources/templates/list is now deferred to first @-mention. Smoother fullscreen scrolling in VS Code, Cursor, and Windsurf terminals. Thinking spinner now shows progress inline (\"still thinking\", \"thinking more\", \"almost done thinking\"), replacing the separate hint row. /config search now matches option values."
+    }
+  ]
+}
