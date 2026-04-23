@@ -1,7 +1,6 @@
-**3. AJ-Bench: Benchmarking Agent-as-a-Judge for Environment-Aware Evaluation**
-**著者**: AJ-Bench Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.18240
-👍 upvotes: 11
+**3. DeVI: Physics-based Dexterous Human-Object Interaction via Synthetic Video Imitation**
+**著者**: (Anonymous et al., 2026)
+**arXiv**: https://arxiv.org/abs/2604.20841
 
 **まとめ**:
-LLMエージェントの行動検証に特化した初の包括的ベンチマーク。検索・データシステム・GUIの3ドメイン、155タスク・516軌跡で構成。Agent-as-Judgeが同一ベースモデルのLLM-as-Judgeより平均13ポイントのF1改善を達成し、強化学習時代のエージェント評価インフラとして重要な基盤を提供する。
+映像生成モデルが合成した人間-物体インタラクション動画を模倣学習の教師信号として活用し、物理シミュレータ上でリアルな「器用な手操作（dexterous manipulation）」動作ポリシーを訓練する DeVI フレームワークを提案。モーションキャプチャ不要で多様な操作動作を再現でき、ロボティクス向けデータ収集の新パラダイムを示した。
