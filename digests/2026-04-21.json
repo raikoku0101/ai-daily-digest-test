@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-21",
+  "content": "# AI Daily Digest — 2026-04-21\n\n## 今日のハイライト\n- **Claude Code v2.1.113 大型アップデート**: ネイティブバイナリ化によるパフォーマンス向上・ネットワーク制限設定追加・UIの多数改善が一括提供。特にサブエージェントの安定性強化はマルチエージェントワークフローを本格実用レベルへ引き上げる。\n- **拡散モデルの推論バイアス解明 (67 upvotes)**: SNR-tバイアスを初めて定量化し学習不要の補正手法を提案。既存モデルに後付け適用可能な点が実用上重要で、画像生成品質の改善につながる基礎研究。\n- **ニューラルネット符号ビットフリップ攻撃 (38 upvotes)**: データ・最適化不要で壊滅的ダメージを与えるDNLを発見。AIハードウェアセキュリティの脆弱性評価を根本から変える可能性があり、防御設計の見直しが急務。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.114 (2025-04-18)\n**バグ修正**\n- エージェントチームのメンバーがツール権限をリクエストする際にパーミッションダイアログがクラッシュする問題を修正\n\n**ユーザーへの影響**: マルチエージェント環境での安定性が向上。エージェント連携ワークフローで権限プロンプトが正常に表示されるようになる。\n\n---\n\n### v2.1.113 (2025-04-17)\n**主要機能**\n- CLIがバンドルされたJavaScriptの代わりにプラットフォーム別のネイティブClause Codeバイナリを起動するよう変更（パフォーマンス向上）\n- `sandbox.network.deniedDomains` 設定を追加 — 特定ドメインへのネットワークアクセスをブロック可能に\n\n**UI / UX 改善**\n- フルスクリーンモード: `Shift+↑/↓` で選択範囲を可視領域外に拡張する際にビューポートがスクロール\n- `Ctrl+A` / `Ctrl+E` で複数行入力の論理行先頭/末尾に移動\n- Windows: `Ctrl+Backspace` で前の単語を削除\n- 長いURLがレスポンスやbash出力で折り返されても引き続きクリック可能\n\n**コマンド強化**\n- `/loop`: `Esc` で保留中のウェイクアップをキャンセル可能に\n- `/extra-usage`: リモートコントロールクライアントでも動作\n- リモートコントロールクライアントから `@` ファイルオートコンプリート候補を取得可能\n- `/ultrareview`: 並列チェックによる起動高速化、起動ダイアログにdiffstat表示、アニメーション起動状態を追加\n\n**安定性**\n- ストリーム途中でスタックしたサブエージェントは10分後に明確なエラーで失敗\n- 複数のセキュリティ改善とバグ修正\n\n**ユーザーへの影響**: 起動速度の向上、セキュリティ強化、マルチエージェントワークフローの安定性改善が一括提供される大型アップデート。\n\n---\n\n### v2.1.112 (2025-04-16)\n**バグ修正**\n- autoモードで「claude-opus-4-7 is temporarily unavailable」エラーが表示される問題を修正\n\n**ユーザーへの影響**: autoモード利用時のモデル切り替えが安定し、予期しないエラーが解消。\n\n## 注目論文 TOP 10\n\n**1. Elucidating the SNR-t Bias of Diffusion Probabilistic Models** | 👍 67 | [arxiv 2604.16044](https://arxiv.org/abs/2604.16044)\n🎯**背景**: 拡散確率モデル（DPM）は画像生成で優れた性能を示す一方、推論時に信号対雑音比（SNR）とタイムステップの間に系統的なバイアスが発生し、生成品質を低下させる問題が知られていなかった。\n🔧**手法**: 周波数成分を分離処理する微分補正法（differential correction）を提案。DPMの推論パスを解析し、SNR-tバイアスを定量化した上で、周波数ごとに補正係数を適用する手法を設計。\n📊**結果**: 標準ベンチマーク上で生成品質（FIDスコア等）が既存手法を上回り、ノイズ除去の安定性が改善。高周波・低周波成分のバランスが向上した画像を生成。\n💡**意義**: DPMの根本的な推論バイアスを初めて体系的に解明し、追加の学習なしに適用可能な軽量補正手法を提供。既存モデルへの後付け適用が可能。\n⚠️**限界**: 高解像度や動画生成タスクへの汎化性能は未検証。補正係数の最適化にはドメイン固有の調整が必要な場合がある。\n\n**2. Maximal Brain Damage Without Data or Optimization: Disrupting Neural Networks via Sign-Bit Flips** | 👍 38 | [arxiv 2502.07408](https://arxiv.org/abs/2502.07408)\n🎯**背景**: ニューラルネットワークの重みパラメータのビットを少数フリップするだけでモデルが壊滅的な誤動作を起こす「ビットフリップ攻撃」が注目されているが、従来手法はデータや最適化計算を必要とし実行コストが高かった。\n🔧**手法**: データも最適化も不要な「Deep Neural Lesion（DNL）」を提案。符号ビット（最上位ビット）に着目し、複数レイヤーにわたる重要パラメータを特定するスコアリング関数を設計。少数のビットフリップで最大のダメージを与えるターゲットを特定。\n📊**結果**: わずか数ビットのフリップで分類精度をランダム水準まで低下させることに成功。既存のデータ依存手法と同等以上の攻撃効果を、計算コストの大幅削減で達成。\n💡**意義**: AIハードウェアのサイドチャネル攻撃・物理的改ざんに対する脆弱性評価を大幅に簡易化。防御側の研究においても重要なベンチマークとなる。\n⚠️**限界**: 量子化モデルや耐タンパー設計されたハードウェアへの効果は限定的。物理的なメモリアクセスを前提としており、リモート攻撃には適用不可。\n\n**3. Web Retrieval-Aware Chunking (W-RAC) for Efficient and Cost-Effective RAG Systems** | 👍 22 | [arxiv 2604.04936](https://arxiv.org/abs/2604.04936)\n🎯**背景**: RAG（検索拡張生成）システムではウェブ文書の前処理が重要だが、従来のチャンキング手法はLLMのトークン使用量が多く、ハルシネーションリスクも高い問題があった。\n🔧**手法**: ウェブ文書の構造（見出し・段落・リスト等）を解析し、検索クエリとの関連性を考慮した動的チャンキングを実施。構造化コンテンツ表現と検索インデックスを統合したW-RACフレームワークを構築。\n📊**結果**: 従来手法と比較してLLMトークン使用量を大幅削減し、コスト効率が向上。RAGパイプライン全体での回答精度も維持または改善。\n💡**意義**: 実用的なRAGシステムの運用コストを削減しながら品質を維持するフレームワークを提供。ウェブスケールの文書処理に直接適用可能。\n⚠️**限界**: 構造化されていない文書（PDFスキャン等）には適用困難。特定ドメイン（法律・医療）での効果は別途検証が必要。\n\n**4. (1D) Ordered Tokens Enable Efficient Test-Time Search** | 👍 12 | [arxiv 2604.15453](https://arxiv.org/abs/2604.15453)\n🎯**背景**: テキスト生成での推論時スケーリング（test-time compute）の研究が進む一方、画像生成領域でのテスト時探索は未開拓だった。トークン構造の設計が推論効率に与える影響も不明確だった。\n🔧**手法**: 粗粒度から細粒度へのコース-トゥ-ファイン（coarse-to-fine）トークン構造を持つ自己回帰モデルを設計。画像テキスト検証器と組み合わせることで、追加学習なしにテキスト-画像生成のテスト時探索を実現。\n📊**結果**: テスト時計算量のスケーリングが既存手法より効率的で、画像品質と条件付き生成の精度が向上。訓練不要で推論時の改善が可能。\n💡**意義**: 1次元順序付きトークン構造が画像生成のテスト時スケーリングを可能にするという重要な知見。マルチモーダルモデルの推論効率化に応用可能。\n⚠️**限界**: 粗粒度トークンの設計に依存しており、既存のトークナイザーとの互換性に課題。高解像度画像への拡張コストが高い。\n\n**5. Where does output diversity collapse in post-training?** | 👍 9 | [arxiv 2604.16027](https://arxiv.org/abs/2604.16027)\n🎯**背景**: RLHF等のポスト学習後にLLMの出力多様性が低下する「多様性崩壊」が問題視されているが、どのポスト学習ステップで発生するか、また原因が訓練データかフォーマットかは不明だった。\n🔧**手法**: 複数のポスト学習手法（SFT・RLHF・DPO等）を体系的に比較し、各ステージでの出力多様性をtokenレベル・意味レベルで計測。訓練データ組成と生成フォーマットの効果を分離分析。\n📊**結果**: 多様性崩壊の主要因は生成フォーマットではなく訓練データの組成であることを特定。ポスト学習手法によって多様性への影響が異なり、データキュレーションが鍵と判明。\n💡**意義**: LLMの多様性問題に対する根本原因の特定。モデル開発者がポスト学習データ設計で多様性を維持するための実践的ガイダンスを提供。\n⚠️**限界**: 分析対象モデルの規模・アーキテクチャが限定的。多言語・多文化的な多様性への一般化は未検証。\n\n**6. Repurposing 3D Generative Model for Autoregressive Layout Generation** | 👍 9 | [arxiv 2604.16299](https://arxiv.org/abs/2604.16299)\n🎯**背景**: 3Dシーンのレイアウト生成は物体の空間配置・向き・スケールの整合性が必要で、従来の2D生成モデルでは空間的一貫性の維持が困難だった。\n🔧**手法**: LaviGenは既存の3D拡散モデルを3Dレイアウト生成に転用。デュアルガイダンスの自己ロールアウト蒸留（dual-guidance self-rollout distillation）を用いて自己回帰的なレイアウト生成を実現し、空間精度と効率性を改善。\n📊**結果**: 既存3Dレイアウト生成ベンチマーク上で空間精度・多様性・生成速度の全指標で競合手法を上回る成果を達成。\n💡**意義**: 3D生成モデルのレイアウト生成への転用という新しいアプローチを確立。ゲーム・建築・ロボティクスへの応用が期待される。\n⚠️**限界**: 大規模・複雑なシーン（多数の物体や依存関係）への拡張性は未検証。学習コストが高く、小規模研究グループには障壁。\n\n**7. AccelOpt: A Self-Improving LLM Agentic System for AI Accelerator Kernel Optimization** | 👍 2 | [arxiv 2511.15915](https://arxiv.org/abs/2511.15915)\n🎯**背景**: AIアクセラレータ（GPU/TPU等）向けのカーネル最適化は高度な専門知識を要し、手作業での最適化は時間がかかる。LLMを使った自動最適化の可能性が模索されていた。\n🔧**手法**: AccelOptはLLMエージェントが反復的な生成と最適化メモリ（optimization memory）を使って自律的にカーネルを最適化する自己改善システム。過去の最適化試行の結果を蓄積し、次の試行に活用。\n📊**結果**: 処理スループットを大幅に向上させ、計算コストを削減。人手による最適化と比較して競争力のある結果を自動で達成。\n💡**意義**: LLMエージェントによるハードウェアカーネル最適化の自動化という新境地。AIシステムの自己改善サイクルをハードウェア最適化に応用した先駆的研究。\n⚠️**限界**: 特定のアクセラレータアーキテクチャに依存。汎用性と最適化品質のトレードオフが存在。\n\n**8. Universal statistical signatures of evolution in artificial intelligence architectures** | 👍 1 | [arxiv 2604.10571](https://arxiv.org/abs/2604.10571)\n🎯**背景**: 生物進化と人工知能アーキテクチャの進化に共通のパターンがあるかどうか、統計的な観点からの検証がなかった。\n🔧**手法**: 935件のアブレーション実験データを収集・分析。適応度効果（fitness effects）の分布を測定し、生物進化で観察される統計法則との比較を実施。\n📊**結果**: AIアーキテクチャの進化における適応度効果の分布が、生物進化と同様の重尾分布（heavy-tailed distribution）に従うことを発見。\n💡**意義**: AIと生物進化の普遍的な統計的共通性を示す理論的知見。アーキテクチャ探索の設計原理に進化生物学の知識を活用できる可能性。\n⚠️**限界**: 相関関係であり因果関係の証明ではない。分析対象がアブレーション実験に限定されており、より広範な検証が必要。\n\n**9. RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies** | 👍 1 | [arxiv 2604.09860](https://arxiv.org/abs/2604.09860)\n🎯**背景**: ロボット政策（policy）の評価において、実世界実験はコストが高くスケールが困難。既存のシミュレーションベンチマークは現実性・多様性・制御性が不足していた。\n🔧**手法**: RoboLabはスケーラブルでリアルなタスク生成と、制御された摂動下でのロボット政策の系統的分析を可能にするシミュレーションフレームワーク。タスク汎化性能の評価に特化した設計。\n📊**結果**: 既存ベンチマークと比較して現実的なタスク多様性と評価精度を実現。汎化性能の弱点を精度高く特定可能。\n💡**意義**: 汎用ロボット政策の開発・評価サイクルの加速に貢献。研究コミュニティに標準化された評価基盤を提供。\n⚠️**限界**: シミュレーションと実世界のギャップ（sim-to-real gap）は依然として課題。特定のロボットプラットフォームへの依存がある可能性。\n\n**10. DiPO: Disentangled Perplexity Policy Optimization for Fine-grained Exploration-Exploitation Trade-Off** | 👍 1 | [arxiv 2604.13902](https://arxiv.org/abs/2604.13902)\n🎯**背景**: LLMの強化学習（RLHF等）では探索（exploration）と活用（exploitation）のトレードオフが重要だが、既存手法はこのバランスをきめ細かく制御できなかった。\n🔧**手法**: パープレキシティ（perplexity）に基づくサンプル分割と双方向報酬割り当て（bidirectional reward allocation）を組み合わせたDiPOを提案。高パープレキシティサンプルを探索、低パープレキシティサンプルを活用として分離処理。\n📊**結果**: 複数のLLMベンチマークで探索と活用のバランスが改善し、報酬モデルへの過適合（reward hacking）が軽減。多様性と性能を同時に向上。\n💡**意義**: パープレキシティという既存メトリクスを活用した、実装容易でありながら効果的なRL探索制御手法。既存のRLHFパイプラインへの容易な組み込みが可能。\n⚠️**限界**: パープレキシティ分割の閾値設定がハイパーパラメータとして残る。大規模モデルでのスケーラビリティは未検証。\n\n",
+  "fetched_at": "2026-04-20T22:08:57.284172+00:00",
+  "papers": [
+    {
+      "title": "Elucidating the SNR-t Bias of Diffusion Probabilistic Models",
+      "upvotes": 67,
+      "paper_id": "2604.16044",
+      "abstract": "Diffusion Probabilistic Models suffer from Signal-to-Noise Ratio-timestep bias during inference. We propose a differential correction method that processes frequency components separately, improving generation qual..."
+    },
+    {
+      "title": "Maximal Brain Damage Without Data or Optimization: Disrupting Neural Networks via Sign-Bit Flips",
+      "upvotes": 38,
+      "paper_id": "2502.07408",
+      "abstract": "Deep Neural Networks can be catastrophically disrupted by flipping only a handful of parameter bits. We introduce Deep Neural Lesion (DNL), a data-free method that locates critical parameters across multiple..."
+    },
+    {
+      "title": "Web Retrieval-Aware Chunking (W-RAC) for Efficient and Cost-Effective Retrieval-Augmented Generation Systems",
+      "upvotes": 22,
+      "paper_id": "2604.04936",
+      "abstract": "Web Retrieval-Aware Chunking (W-RAC) introduces a cost-efficient framework for web document processing that reduces LLM token usage and hallucination risks through structured content representation and retrieva..."
+    },
+    {
+      "title": "(1D) Ordered Tokens Enable Efficient Test-Time Search",
+      "upvotes": 12,
+      "paper_id": "2604.15453",
+      "abstract": "Autoregressive models with coarse-to-fine token structures show better test-time scaling and enable training-free text-to-image generation when combined with image-text verifiers for improved inference-time..."
+    },
+    {
+      "title": "Where does output diversity collapse in post-training?",
+      "upvotes": 9,
+      "paper_id": "2604.16027",
+      "abstract": "Output diversity collapse in post-trained language models is primarily driven by training data composition rather than generation format, with different post-training methods affecting diversity differently across..."
+    },
+    {
+      "title": "Repurposing 3D Generative Model for Autoregressive Layout Generation",
+      "upvotes": 9,
+      "paper_id": "2604.16299",
+      "abstract": "LaviGen introduces a 3D layout generation framework that uses an adapted 3D diffusion model with dual-guidance self-rollout distillation for improved efficiency and spatial accuracy in 3D scene generation..."
+    },
+    {
+      "title": "AccelOpt: A Self-Improving LLM Agentic System for AI Accelerator Kernel Optimization",
+      "upvotes": 2,
+      "paper_id": "2511.15915",
+      "abstract": "AccelOpt is a self-improving LLM agentic system that autonomously optimizes kernels for AI accelerators using iterative generation and optimization memory, achieving significant throughput improvements at redu..."
+    },
+    {
+      "title": "Universal statistical signatures of evolution in artificial intelligence architectures",
+      "upvotes": 1,
+      "paper_id": "2604.10571",
+      "abstract": "We test whether artificial intelligence architectural evolution obeys the same statistical laws as biological evolution. Compiling 935 ablation experiments, we show distribution of fitness effects follows heavy-t..."
+    },
+    {
+      "title": "RoboLab: A High-Fidelity Simulation Benchmark for Analysis of Task Generalist Policies",
+      "upvotes": 1,
+      "paper_id": "2604.09860",
+      "abstract": "RoboLab is a simulation benchmarking framework addressing limitations in robot policy evaluation by enabling scalable, realistic task generation and systematic analysis of policy behavior under controlled pert..."
+    },
+    {
+      "title": "DiPO: Disentangled Perplexity Policy Optimization for Fine-grained Exploration-Exploitation Trade-Off",
+      "upvotes": 1,
+      "paper_id": "2604.13902",
+      "abstract": "A novel reinforcement learning approach for large language models that addresses the exploration-exploitation trade-off through perplexity-based sample partitioning and bidirectional reward allocation mechani..."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.114",
+      "published_at": "2025-04-18",
+      "body": "Fixed a crash in the permission dialog when an agent teams teammate requested tool permission"
+    },
+    {
+      "tag_name": "v2.1.113",
+      "published_at": "2025-04-17",
+      "body": "Changed the CLI to spawn a native Claude Code binary (via a per-platform optional dependency) instead of bundled JavaScript. Added `sandbox.network.deniedDomains` setting to block specific domains. Fullscreen mode: Shift+↑/↓ now scrolls the viewport when extending a selection past the visible edge. `Ctrl+A` and `Ctrl+E` now move to the start/end of the current logical line in multiline input. Windows: `Ctrl+Backspace` now deletes the previous word. Long URLs in responses and bash output stay clickable when they wrap across lines. Improved `/loop`: pressing Esc now cancels pending wakeups. `/extra-usage` now works from Remote Control clients. Remote Control clients can now query `@`-file autocomplete suggestions. Improved `/ultrareview`: faster launch with parallelized checks, diffstat in the launch dialog, and animated launching state. Subagents that stall mid-stream now fail with a clear error after 10 minutes. Multiple security improvements and bug fixes."
+    },
+    {
+      "tag_name": "v2.1.112",
+      "published_at": "2025-04-16",
+      "body": "Fixed \"claude-opus-4-7 is temporarily unavailable\" for auto mode"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-22",
+  "content": "# AI Daily Digest — 2026-04-22\n\n## 今日のハイライト\n- **OPD の誤キャリブレーション問題**: On-Policy Distillation でモデルの精度は上がるが「過信」が系統的に生まれることを実証。医療・法律等の高信頼性分野への LLM 適用に直接影響する重要な発見。\n- **Claude Code v2.1.116 リリース**: 大容量セッションの再開が最大 67% 高速化、MCP 起動改善、危険パスへの rm コマンドのセキュリティホール修正など多数の実用的改善。\n- **コンピュータ使用エージェントの信頼性問題**: 人間超えの性能を示す場合でも同一条件で成功/失敗が混在することを実証。本番環境展開前の信頼性評価フレームワークの必要性を示す。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.116 (2025-04-20) — 最新\n\n**主要機能・改善**\n- **セッション再開の高速化**: 大容量セッション（40MB以上）で `/resume` が最大67%高速化。dead-fork エントリが多いセッションも効率的に処理。\n- **MCP 起動の高速化**: 複数の stdio サーバー設定時、`resources/templates/list` を最初の @-mention まで遅延評価することで起動が高速化。\n- **ターミナルスクロール改善**: VS Code・Cursor・Windsurf のフルスクリーンモードでスクロールが滑らかに。`/terminal-setup` でスクロール感度を自動設定。\n- **思考スピナーの改善**: 「still thinking」「thinking more」「almost done thinking」を進捗表示するインライン表示に変更。\n- **設定検索の強化**: `/config` 検索でオプション値にもマッチ（例: \"vim\" で Editor モード設定が見つかる）。\n- **プラグイン管理**: `/reload-plugins` とバックグラウンド自動更新で、登録済みマーケットプレイスからの依存関係を自動インストール。\n\n**バグ修正・セキュリティ**\n- GitHub API レート制限時に `gh` コマンドでヒント表示。\n- セキュリティ修正: サンドボックス自動許可が `/`・`$HOME` 等の危険パスへの `rm/rmdir` の安全チェックをバイパスしていた問題を修正。\n\n**ユーザーへの影響**: 大きなプロジェクト・長期セッションを使うユーザーに特に恩恵。MCP を多用する環境でも起動が体感で速くなる。\n\n---\n\n### v2.1.114 (2025-04-18)\n\n**バグ修正**\n- エージェントチームのメンバーがツール権限を要求した際にパーミッションダイアログがクラッシュする問題を修正。\n\n**ユーザーへの影響**: マルチエージェント環境での安定性が向上。\n\n---\n\n### v2.1.113 (2025-04-17)\n\n**主要機能・改善**\n- **ネイティブバイナリへの移行**: CLI がバンドルされた JavaScript の代わりにプラットフォーム別ネイティブ Claude Code バイナリを起動するよう変更。\n- **ネットワーク制御の強化**: `sandbox.network.deniedDomains` 設定で、ワイルドカードで許可された場合でも特定ドメインをブロック可能に。\n- **キーボード操作改善**: フルスクリーンモードで `Shift+↑/↓` によるビューポートスクロール、`Ctrl+A`/`Ctrl+E` での論理行頭/末への移動、Windows での `Ctrl+Backspace` で前単語削除。\n- **URL ハイパーリンク**: 長い URL が折り返されても OSC 8 対応ターミナルでクリック可能に維持。\n- **`/loop` 改善**: `Esc` で保留中のウェイクアップをキャンセル、ウェイクアップ時に明示的なメッセージを表示。\n\n**ユーザーへの影響**: ネイティブバイナリ化により起動速度・安定性が向上。セキュリティポリシーの細かい制御が可能に。\n\n## 注目論文 TOP 10\n\n**1. The Illusion of Certainty: Decoupling Capability and Calibration in On-Policy Distillation** | ⬆️ 10 | https://arxiv.org/abs/2604.16830\n🎯 **背景**: On-Policy Distillation (OPD) はポストトレーニングの主要パラダイムだが、精度向上とキャリブレーション（自信の正確さ）の関係が未解明。\n🔧 **手法**: OPD による「誤キャリブレーションのスケーリング則」を特定。能力向上とキャリブレーション劣化の分離メカニズムを分析し、デカップリング手法を提案。\n📊 **結果**: OPD は精度を効果的に向上させる一方、モデルを系統的に過信状態にトラップすることを実証。スケールに依存しない普遍的な現象として確認。\n💡 **意義**: LLM の「不確かさ」表現の信頼性問題を定量化。安全・医療・法律等、信頼性が重要な応用領域への警鐘。\n⚠️ **限界**: 特定の OPD 手法に対する実験であり、全ての蒸留手法への一般化は要検証。\n\n---\n\n**2. Concrete Jungle: Towards Concreteness Paved Contrastive Negative Mining for Compositional Understanding** | ⬆️ 8 | https://arxiv.org/abs/2604.13313\n🎯 **背景**: Vision-Language Models (VLMs) は語順・属性バインディング等の構成的推論で脆弱性を示す。原因は識別力のある負例サンプルの不足。\n🔧 **手法**: 「具体性」ベースの対照的負例マイニング手法を提案。具体的・識別力の高い負例を構成して VLM の構成的理解を強化。\n📊 **結果**: 既存 VLM の構成的推論ベンチマークで大幅な精度向上を達成。語順・属性バインディングの誤りが顕著に減少。\n💡 **意義**: VLM の根本的弱点を訓練データレベルで解決するアプローチ。CLIP 系モデル全般への適用可能性がある。\n⚠️ **限界**: 具体性の定義・測定が手法の品質に大きく依存。ドメイン外への汎化は未検証。\n\n---\n\n**3. On the Reliability of Computer Use Agents** | ⬆️ 7 | https://arxiv.org/abs/2604.17849\n🎯 **背景**: コンピュータ使用エージェントはウェブナビゲーション・デスクトップ自動化で急速に向上しているが、同一タスク・同一モデルでも結果が毎回異なる問題がある。\n🔧 **手法**: 複数回試行による信頼性評価フレームワークを構築。タスク・モデルを固定した上での成功率のばらつきを体系的に測定・分析。\n📊 **結果**: 人間を超える性能を示す場合でも、エージェントの信頼性は低いことを実証。同一条件下でも成功/失敗が混在。\n💡 **意義**: 「一度成功=信頼できる」という誤解を払拭。本番環境への展開前に信頼性評価が必須であることを示す重要な知見。\n⚠️ **限界**: 評価したエージェントのアーキテクチャ・タスクセットが限定的。汎用的な信頼性向上手法は未提案。\n\n---\n\n**4. GenericAgent: A Token-Efficient Self-Evolving LLM Agent via Contextual Information Density Maximization** | ⬆️ 6 | https://arxiv.org/abs/2604.17091\n🎯 **背景**: 長期タスクの LLM エージェントはコンテキスト長の制約が根本的課題。ツール説明・メモリ・環境フィードバックが蓄積し、必要情報を圧迫。\n🔧 **手法**: コンテキスト情報密度の最大化 (CIDM) 原理に基づく自己進化型エージェント。情報の重要度に応じて動的にコンテキストを圧縮・選択。\n📊 **結果**: トークン効率を大幅改善しつつ、長期タスクでの性能を維持・向上。従来手法比でコンテキスト利用効率が顕著に向上。\n💡 **意義**: トークン効率と性能のトレードオフを解消する新しいアプローチ。長期タスク自動化の実用化に貢献。\n⚠️ **限界**: V1.0 であり、多様なタスクドメインでの評価はこれから。CIDM の計算コストの詳細は要確認。\n\n---\n\n**5. VoxMind: An End-to-End Agentic Spoken Dialogue System** | ⬆️ 6 | https://arxiv.org/abs/2604.15710\n🎯 **背景**: エンドツーエンドの音声対話モデルは自然なインタラクションを実現するが、複雑なユーザー要求には単純な会話能力だけでは対応困難。\n🔧 **手法**: 音声対話にエージェント機能を統合したエンドツーエンドシステムを構築。ツール使用・外部 API 呼び出しを音声インタフェースに直接統合。\n📊 **結果**: 複雑なタスク（情報検索・計算・外部サービス連携等）を音声のみで完結できることを実証。従来の音声+テキスト混合システムと同等以上の性能。\n💡 **意義**: 音声アシスタントの次世代アーキテクチャ。障害者支援・ハンズフリー環境での複雑タスク実行への道を開く。\n⚠️ **限界**: 騒音環境・多話者環境での評価が不明。エージェント機能の範囲（どのツールに対応するか）の詳細は要確認。\n\n---\n\n**6. Agents Explore but Agents Ignore: LLMs Lack Environmental Curiosity** | ⬆️ 5 | https://arxiv.org/abs/2604.17609\n🎯 **背景**: LLM エージェントは環境の観察結果を推論に統合すると仮定されているが、予期しない高関連情報を発見した際の実際の挙動は未検証。\n🔧 **手法**: LLM エージェントが環境から予期しない重要情報を発見した場合に、それを実際に活用するかどうかを体系的に実験・評価。\n📊 **結果**: LLM エージェントは環境を探索するが、発見した予期しない情報を推論に活用しないことが多い。「環境的好奇心」が欠如していることを実証。\n💡 **意義**: エージェント設計の根本的な仮定を覆す重要な発見。オープンエンドタスクやアドホックな問題解決での信頼性に直接影響。\n⚠️ **限界**: 実験設計・エージェントの種類が限定的。好奇心欠如の根本原因（訓練データ・アーキテクチャ）の解明は今後の課題。\n\n---\n\n**7. River-LLM: Large Language Model Seamless Exit Based on KV Share** | ⬆️ 2 | https://arxiv.org/abs/2604.18396\n🎯 **背景**: LLM の推論レイテンシが高く、Early Exit（早期終了）が有望な解決策だが、従来手法は中間層での品質劣化が課題。\n🔧 **手法**: KV キャッシュ共有に基づくシームレスな Early Exit 機構を提案。層間で KV キャッシュを再利用することで、品質を維持しながら推論を動的に短縮。\n📊 **結果**: 従来の Early Exit 手法と比較して、品質劣化を抑えながら推論速度を改善。シームレスな層間遷移を実現。\n💡 **意義**: LLM の実用化における推論コスト問題への実用的なアプローチ。リアルタイム応用・エッジデプロイへの道を開く。\n⚠️ **限界**: タスクの複雑度による Early Exit の判断基準が不明確。全てのアーキテクチャへの適用可能性は要検証。\n\n---\n\n**8. When Background Matters: Breaking Medical Vision Language Models by Transferable Attack** | ⬆️ 1 | https://arxiv.org/abs/2604.17318\n🎯 **背景**: 医療 VLM が臨床診断に利用され始めているが、敵対的攻撃への堅牢性はほぼ未検証。背景情報が攻撃ベクターになる可能性がある。\n🔧 **手法**: 背景要素を活用した転送可能な敵対的攻撃を医療 VLM に対して実施。モデル間での攻撃転送性を評価。\n📊 **結果**: 医療 VLM が背景ベースの攻撃に対して脆弱であることを実証。攻撃が複数モデルに転送可能（ブラックボックス攻撃として機能）。\n💡 **意義**: 医療 AI の安全性・信頼性に対する重要な警告。規制・認証プロセスに堅牢性評価の組み込みを促進する。\n⚠️ **限界**: 攻撃の実用的な難易度（データアクセス等の前提条件）が不明。防御手法の提案は含まれていない。\n\n---\n\n**9. MARCO: Navigating the Unseen Space of Semantic Correspondence** | ⬆️ 1 | https://arxiv.org/abs/2604.18267\n🎯 **背景**: セマンティック対応（画像間の意味的マッチング）は DINOv2 と拡散モデルの組み合わせが主流だが、10億パラメータ規模で訓練キーポイント外への汎化が弱い。\n🔧 **手法**: デュアルエンコーダアーキテクチャの「未探索空間」を体系的にナビゲートする新手法 MARCO を提案。訓練キーポイント外への汎化を重視した設計。\n📊 **結果**: ベンチマーク性能と汎化性能のギャップを縮小。より小さなモデルサイズで競争力ある性能を達成。\n💡 **意義**: 大規模モデルへの依存を減らしながら実用的なセマンティック対応を実現。ロボティクス・AR 等への応用に有用。\n⚠️ **限界**: 特定のドメイン・シーンタイプでの評価に限定の可能性。リアルタイム処理での性能は未評価。\n\n---\n\n**10. Modeling Sparse and Bursty Vulnerability Sightings: Forecasting Under Data Constraints** | ⬆️ 1 | https://arxiv.org/abs/2604.16038\n🎯 **背景**: サイバー脅威インテリジェンスにおいて脆弱性関連アクティビティ（PoC リリース・検出テンプレート・オンライン議論）の予測は重要だが、データが疎でバースト的で困難。\n🔧 **手法**: スパース・バースト的な脆弱性観測データに特化した統計的予測モデルを開発。データ制約下でも機能するアプローチを採用。\n📊 **結果**: 限られたデータでも脆弱性アクティビティの予測が可能であることを示す。従来の時系列予測手法より適合性が高い。\n💡 **意義**: セキュリティチームが脆弱性の「次の波」を事前に予測できる実用ツールへの道を開く。パッチ優先順位付けに直接応用可能。\n⚠️ **限界**: 訓練データの品質・量に大きく依存。ゼロデイ脆弱性等、全く新しい脅威の予測は困難。\n\n",
+  "fetched_at": "2026-04-21T22:16:05.057997+00:00",
+  "papers": [
+    {
+      "title": "The Illusion of Certainty: Decoupling Capability and Calibration in On-Policy Distillation",
+      "upvotes": 10,
+      "paper_id": "2604.16830",
+      "abstract": "On-policy distillation (OPD) is an increasingly important paradigm for post-training language models. However, we identify a pervasive Scaling Law of Miscalibration: while OPD effectively improves task accuracy, it systematically traps models in se..."
+    },
+    {
+      "title": "Concrete Jungle: Towards Concreteness Paved Contrastive Negative Mining for Compositional Understanding",
+      "upvotes": 8,
+      "paper_id": "2604.13313",
+      "abstract": "Vision-Language Models demonstrate remarkable capabilities but often struggle with compositional reasoning, exhibiting vulnerabilities regarding word order and attribute binding. This limitation arises from a scarcity of informative samples needed to dif..."
+    },
+    {
+      "title": "On the Reliability of Computer Use Agents",
+      "upvotes": 7,
+      "paper_id": "2604.17849",
+      "abstract": "Computer-use agents have rapidly improved on real-world tasks such as web navigation, desktop automation, and software interaction, in some cases surpassing human performance. Yet even when the task and model are unchanged, an agent that succeeds once..."
+    },
+    {
+      "title": "GenericAgent: A Token-Efficient Self-Evolving LLM Agent via Contextual Information Density Maximization (V1.0)",
+      "upvotes": 6,
+      "paper_id": "2604.17091",
+      "abstract": "Long-horizon large language model (LLM) agents are fundamentally limited by context. As interactions become longer, tool descriptions, retrieved memories, and raw environmental feedback accumulate and push out the information needed for decis..."
+    },
+    {
+      "title": "VoxMind: An End-to-End Agentic Spoken Dialogue System",
+      "upvotes": 6,
+      "paper_id": "2604.15710",
+      "abstract": "Recent end-to-end spoken dialogue models enable natural interaction. However, as user demands become increasingly complex, models that rely solely on conversational abilities often struggle to cope. Incorporating agentic capabilities is therefore essent..."
+    },
+    {
+      "title": "Agents Explore but Agents Ignore: LLMs Lack Environmental Curiosity",
+      "upvotes": 5,
+      "paper_id": "2604.17609",
+      "abstract": "LLM-based agents are assumed to integrate environmental observations into their reasoning: discovering highly relevant but unexpected information should naturally lead to a model exploiting its own discoveries. We show that this assumption is false for..."
+    },
+    {
+      "title": "River-LLM: Large Language Model Seamless Exit Based on KV Share",
+      "upvotes": 2,
+      "paper_id": "2604.18396",
+      "abstract": "Large Language Models (LLMs) have demonstrated exceptional performance across diverse domains but are increasingly constrained by high inference latency. Early Exit has emerged as a promising solution to accelerate inference by dynamically bypassing red..."
+    },
+    {
+      "title": "When Background Matters: Breaking Medical Vision Language Models by Transferable Attack",
+      "upvotes": 1,
+      "paper_id": "2604.17318",
+      "abstract": "Vision-Language Models (VLMs) are increasingly used in clinical diagnostics, yet their robustness to adversarial attacks remains largely unexplored, posing serious risks. Existing medical attacks focus on secondary objectives such as model stealing or..."
+    },
+    {
+      "title": "MARCO: Navigating the Unseen Space of Semantic Correspondence",
+      "upvotes": 1,
+      "paper_id": "2604.18267",
+      "abstract": "Recent advances in semantic correspondence rely on dual-encoder architectures, combining DINOv2 with diffusion backbones. While accurate, these billion-parameter models generalize poorly beyond training keypoints, revealing a gap between benchmark perf..."
+    },
+    {
+      "title": "Modeling Sparse and Bursty Vulnerability Sightings: Forecasting Under Data Constraints",
+      "upvotes": 1,
+      "paper_id": "2604.16038",
+      "abstract": "Understanding and anticipating vulnerability-related activity is a major challenge in cyber threat intelligence. This work investigates whether vulnerability sightings, such as proof-of-concept releases, detection templates, or online discussions, ca..."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.116",
+      "published_at": "2025-04-20",
+      "body": "/resume on large sessions is significantly faster (up to 67% on 40MB+ sessions) and handles sessions with many dead-fork entries more efficiently. Faster MCP startup when multiple stdio servers are configured; resources/templates/list is now deferred to first @-mention. Smoother fullscreen scrolling in VS Code, Cursor, and Windsurf terminals. Thinking spinner now shows progress inline. /config search now matches option values. /doctor can now be opened while Claude is responding. /reload-plugins and background plugin auto-update now auto-install missing plugin dependencies. Bash tool now surfaces a hint when gh commands hit GitHub API rate limit. Security: sandbox auto-allow no longer bypasses the dangerous-path safety check for rm/rmdir targeting /, $HOME, or other critical system directories."
+    },
+    {
+      "tag_name": "v2.1.114",
+      "published_at": "2025-04-18",
+      "body": "Fixed a crash in the permission dialog when an agent teams teammate requested tool permission"
+    },
+    {
+      "tag_name": "v2.1.113",
+      "published_at": "2025-04-17",
+      "body": "Changed the CLI to spawn a native Claude Code binary (via a per-platform optional dependency) instead of bundled JavaScript. Added sandbox.network.deniedDomains setting to block specific domains even when a broader allowedDomains wildcard would otherwise permit them. Fullscreen mode: Shift+Up/Down now scrolls the viewport. Ctrl+A and Ctrl+E now move to the start/end of the current logical line in multiline input. Windows: Ctrl+Backspace now deletes the previous word. Long URLs in responses and bash output stay clickable when they wrap across lines. Improved /loop: pressing Esc now cancels pending wakeups."
+    }
+  ]
+}

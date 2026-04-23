@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-23",
+  "content": "# AI Daily Digest — 2026-04-23\n\n## 今日のハイライト\n- **AnyRecon が 3D 再構成を革新 (👍34)**: 少数の任意視点写真から高品質な 3D シーンを再構成するフレームワーク。既存手法より大幅にスケーラブルで、自動運転・VR/AR シミュレーションへの即時応用が期待される\n- **Claude Code v2.1.117 リリース**: フォークサブエージェントの外部有効化、MCP サーバーの並列起動高速化、/resume のスマート要約など、マルチエージェント開発ワークフローを強化する複数の重要機能が追加\n- **ディープラーニングで DFT の精度・効率トレードオフを打破 (Skala)**: 長年の計算化学の難題に突破口。訓練データ拡大により精度が系統的に向上するため、創薬・材料設計のシミュレーション精度向上が現実的に\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.117 (2025-04-22) — 最新リリース\n\n**主要機能**\n- **フォークサブエージェント外部有効化**: 環境変数 `CLAUDE_CODE_FORK_SUBAGENT=1` を設定することで、外部ビルドでもフォークサブエージェント機能が利用可能に\n- **エージェントフロントマター mcpServers 対応**: `--agent` フラグで起動したメインスレッドエージェントセッションで、エージェントのフロントマターに定義した MCP サーバーが読み込まれるように\n- **`/model` 改善**: プロジェクトで固定モデルが設定されていても、手動選択したモデルが再起動後も維持されるように。スタートアップヘッダーにアクティブモデルの出所（プロジェクト/管理設定）が表示される\n- **`/resume` スマート要約**: 古い大容量セッションを再開する際、再読み込み前に要約を提案する機能が追加（`--resume` オプションと同等の挙動）\n- **MCP 起動高速化**: ローカルと claude.ai の MCP サーバーが両方設定されている場合、デフォルトで並列接続に\n\n**ユーザーへの影響**: 大規模プロジェクトでの並列 MCP 接続により起動時間が短縮。サブエージェント活用の柔軟性が向上し、複雑なマルチエージェントワークフローの構築が容易に。\n\n---\n\n### v2.1.116 (2025-04-20)\n\n**主要機能**\n- **`/resume` 大幅高速化**: 40MB 超のセッションで最大 67% の速度改善。デッドフォークエントリが多いセッションも効率的に処理\n- **MCP 起動最適化**: 複数の stdio サーバー設定時の起動高速化。`resources/templates/list` は最初の `@` メンション時まで遅延実行\n- **VS Code / Cursor / Windsurf スクロール改善**: フルスクリーンスクロールの滑らかさが向上。`/terminal-setup` でエディタのスクロール感度を設定可能\n- **思考スピナー改善**: \"still thinking\" / \"thinking more\" / \"almost done thinking\" のインライン進捗表示に変更（別行のヒント表示を廃止）\n\n**ユーザーへの影響**: 長期セッションの再開が格段に速くなり、開発フローの中断が最小化。思考状態の視認性向上で UX が改善。\n\n---\n\n### v2.1.114 (2025-04-18)\n\n**バグ修正**\n- エージェントチームのメンバーがツール権限をリクエストした際に権限ダイアログでクラッシュが発生する問題を修正\n\n**ユーザーへの影響**: マルチエージェント環境での安定性が向上。\n\n## 注目論文 TOP 10\n\n**1. AnyRecon: Arbitrary-View 3D Reconstruction with Video Diffusion Model** | 👍 34 | [arxiv 2604.19747](https://arxiv.org/abs/2604.19747)\n🎯**背景**: スパースビュー（少数視点）からの3D再構成は、日常的な撮影シーンのモデリングに不可欠だが、既存の拡散モデルベースアプローチは1〜2フレームのみを条件とするため幾何学的整合性に限界があった。\n🔧**手法**: 任意数・非順序のスパース入力に対応するスケーラブルなフレームワーク「AnyRecon」を提案。持続的なグローバルシーンメモリ（キャプチャビューキャッシュ）を構築し、時間圧縮を排除してフレームレベルの対応関係を維持。幾何認識条件付け戦略と4ステップ拡散蒸留、スパースアテンションを組み合わせて効率化。\n📊**結果**: 不規則な入力、大視点差、長軌跡においてロバストかつスケーラブルな再構成を実証。\n💡**意義**: 自由視点3D再構成を一般ユーザーが日常の写真から実現できるレベルへ引き上げる可能性。自動運転・ロボティクス・VR/ARシミュレーションへの応用が期待される。\n⚠️**限界**: 計算コストはまだ高く、リアルタイム処理には課題が残る可能性がある。\n\n**2. ShadowPEFT: Shadow Network for Parameter-Efficient Fine-Tuning** | 👍 18 | [arxiv 2604.19254](https://arxiv.org/abs/2604.19254)\n🎯**背景**: LoRAなどの既存PEFTは各重み行列に独立した低ランク摂動を挿入する「局所的」パラメータ化で、層をまたいだ統合的な適応が難しかった。\n🔧**手法**: 深さ方向に共有された「シャドウモジュール」を用いて層レベルの洗練を行う集中型PEFTフレームワーク「ShadowPEFT」を提案。各Transformer層で並列シャドウ状態を維持し、繰り返し更新することで徐々に豊かな隠れ状態を生成。シャドウモジュールはバックボーンから切り離されているため深さ方向に再利用可能で、独立した事前学習も可能。\n📊**結果**: 同等のトレーニング可能パラメータ数でLoRAおよびDoRAと同等またはそれ以上の性能を生成・理解ベンチマークで達成。\n💡**意義**: エッジコンピューティング向けの分離展開モードなど、LLM適応の新しいパラダイムを提示。\n⚠️**限界**: シャドウ状態の追加管理によるメモリオーバーヘッドが生じる可能性がある。\n\n**3. AJ-Bench: Benchmarking Agent-as-a-Judge for Environment-Aware Evaluation** | 👍 11 | [arxiv 2604.18240](https://arxiv.org/abs/2604.18240)\n🎯**背景**: RLによるLLMエージェントのスケーリングが進む中、複雑な環境でのエージェント行動の信頼性検証が困難に。ルールベース検証器やLLM-as-a-Judgeは狭いドメインを超えた汎化に苦しんでいた。\n🔧**手法**: 環境・ツールと能動的にやり取りして検証可能な証拠を収集する「Agent-as-a-Judge」の能力を体系的に評価するベンチマーク「AJ-Bench」を構築。検索・データシステム・GUIの3ドメインにわたる155タスク、516アノテーション付き軌跡を収録。情報収集・状態検証・プロセス検証の3能力を評価。\n📊**結果**: LLM-as-a-Judgeベースラインを一貫して上回る性能を示しつつ、エージェントベース検証の重大な未解決課題も明らかに。\n💡**意義**: AI評価インフラの次世代標準として、自律エージェントの信頼性評価に実践的な基盤を提供。\n⚠️**限界**: エージェントの複雑さ増加に伴い計算コストが増大。特定ドメインへの偏りの可能性。\n\n**4. Understanding and Enforcing Weight Disentanglement in Task Arithmetic** | 👍 9 | [arxiv 2604.17078](https://arxiv.org/abs/2604.17078)\n🎯**背景**: タスク算術（Task Arithmetic）は学習済みモデルを効率的・訓練不要で編集できるが、その成功の理論的説明が不足していた。「重みの分離（weight disentanglement）」という概念が理想的な結果を記述するが、その根本原因は不明だった。\n🔧**手法**: 「タスク特徴特殊化（TFS: Task-Feature Specialization）」を基本原理として導入。TFSが重み分離の十分条件であることを証明し、重みベクトルの直交性という幾何学的結果をもたらすことを示す。この洞察から、ファインチューニング中に重み更新ΔWに直交構造を課す正則化手法「OrthoReg」を提案。\n📊**結果**: Qwen3-8B-BaseにOrthoRegを統合したLoRAファインチューニングでMMLU-Mathにて81.67%を達成（全36層適応の79.32%、ランダム13層選択の75.56%を上回る）。\n💡**意義**: モデルのマージや編集技術に理論的基盤を提供し、複数タスクへの同時適応を改善する実用的手法を確立。\n⚠️**限界**: OrthoRegの計算オーバーヘッドは評価されていない。他のモデルアーキテクチャへの汎化も未検証。\n\n**5. CityRAG: Stepping Into a City via Spatially-Grounded Video Generation** | 👍 8 | [arxiv 2604.19741](https://arxiv.org/abs/2604.19741)\n🎯**背景**: 実際の場所をシミュレートした3D一貫性のある探索可能環境の生成は、自動運転やロボティクスシミュレーションに不可欠だが、既存の動画生成モデルは現実世界の正確な再構成を苦手としていた。\n🔧**手法**: ジオ登録済みの大規模データコーパスをコンテキストとして活用し、物理的シーンに接地した動画生成モデル「CityRAG」を提案。時間的に非整列な訓練データにより、シーンの基礎的属性と一時的な属性（天気・照明等）を意味論的に分離することを学習。RAG（Retrieval-Augmented Generation）の概念を動画生成に応用。\n📊**結果**: 分単位の長さで物理的に接地した一貫性のある動画シーケンスを生成。天気・照明条件を数千フレームにわたって維持し、ループクロージャと複雑な軌跡ナビゲーションを実現。\n💡**意義**: 実世界地理の高品質再構成により、自動運転テスト・都市計画シミュレーション・ゲーム開発への応用が期待。\n⚠️**限界**: ジオ登録済みデータへの依存度が高く、データ取得コストが課題。任意の場所への汎化は限定的。\n\n\n**6. RDP LoRA: Geometry-Driven Identification for Parameter-Efficient Adaptation in Large Language Models** | 👍 4 | [arxiv 2604.19321](https://arxiv.org/abs/2604.19321)\n🎯**背景**: LLMのファインチューニングでLoRAなどのPEFT手法を使う際、どの層を適応させるかの選択は理論的根拠がなくヒューリスティックに依存していた。\n🔧**手法**: 隠れ状態の進化を高次元幾何学的軌跡としてモデル化し、Ramer-Douglas-Peucker（RDP）アルゴリズム（パラメータフリー・訓練不要のポリゴン簡略化手法）を適用してグローバル構造遷移を保持しつつ局所的な冗長変化を排除する重要なブレークポイントを特定。このブレークポイントをLoRAファインチューニングの層選択に直接活用。\n📊**結果**: Qwen3-8B-BaseでRDP選択した13層のみでMMLU-Mathにて81.67%（全36層: 79.32%、ランダム13層: 75.56%、ベースライン: 74.25%を上回る）。\n💡**意義**: 訓練不要の幾何学的分析で最適層を自動特定できるため、PEFTの設計コストを大幅削減。解釈可能性も向上。\n⚠️**限界**: RDP のハイパーパラメータ（許容誤差ε）の選択が結果に影響する可能性。他のモデルファミリーでの検証が必要。\n\n**7. SmartPhotoCrafter: Unified Reasoning, Generation and Optimization for Automatic Photographic Image Editing** | 👍 4 | [arxiv 2604.19587](https://arxiv.org/abs/2604.19587)\n🎯**背景**: 写真編集では適切な美的指示を与えるユーザーの専門知識が必要で、非専門家には使いにくかった。明示的な人間の指示なしに写真品質を自動改善するシステムが求められていた。\n🔧**手法**: 画像編集を「推論→生成」の密結合プロセスとして定式化。「Image Critic（画像品質評価）」モジュールが品質不足を特定し、「Photographic Artist（写真家）」モジュールがターゲット編集を実行。基盤事前訓練→推論ガイド付きマルチ編集監督による適応→推論・生成の協調強化学習という多段階訓練パイプラインを採用。\n📊**結果**: 既存生成モデルを自動写真拡張タスクで上回り、フォトリアリスティックな結果とトーン補正への高い感度を実現。\n💡**意義**: スマートフォンカメラアプリやプロ向け編集ツールへの組み込みにより、誰でも高品質な写真編集が可能に。\n⚠️**限界**: 特定の写真スタイルへの過学習リスク。多様な文化的審美観への対応が不十分な可能性。\n\n**8. HP-Edit: A Human-Preference Post-Training Framework for Image Editing** | 👍 3 | [arxiv 2604.19406](https://arxiv.org/abs/2604.19406)\n🎯**背景**: 拡散モデルベースの画像編集にRLHF（人間フィードバックからの強化学習）を適用する研究は、スケーラブルな人間選好データセットと多様な編集ニーズに対応したフレームワークの不足から、ほぼ未開拓だった。\n🔧**手法**: 人間選好整合型編集の後学習フレームワーク「HP-Edit」と、8つの一般タスクにわたる実世界データセット「RealPref-50K」を提案。少量の人間選好スコアリングデータと事前学習済みVLM（視覚大言語モデル）から自動評価器「HP-Scorer」を開発し、これをスケーラブルな選好データセット構築と後学習の報酬関数の両方に活用。\n📊**結果**: Qwen-Image-Edit-2509 などのモデルの性能を大幅に向上させ、人間選好との整合性を改善。\n💡**意義**: 画像編集AIの「人間好み」への自動アラインメントを効率的に実現する実用的フレームワーク。商用画像編集ツールの品質向上に直結。\n⚠️**限界**: 人間選好データの収集コストは依然高い。文化的・個人的な好みの多様性への対応が課題。\n\n**9. UDM-GRPO: Stable and Efficient Group Relative Policy Optimization for Uniform Discrete Diffusion Models** | 👍 3 | [arxiv 2604.18518](https://arxiv.org/abs/2604.18518)\n🎯**背景**: 離散生成モデリングの有望なパラダイムとして登場したUniform Discrete Diffusion Model（UDM）は、強化学習との統合がほぼ未探索の状態だった。単純にGRPOを適用すると訓練不安定性と性能向上の限界が生じた。\n🔧**手法**: UDMとRLを統合した初のフレームワーク「UDM-GRPO」を提案。(i)最終的なクリーンサンプルをアクションとして扱い最適化シグナルを安定化、(ii)拡散フォワードプロセスによる軌跡再構成で事前学習分布との整合を改善。効率化のためReduced-StepとCFG-Freeの2戦略も導入。\n📊**結果**: T2Iタスクで大幅な性能向上：GenEval精度が69%から96%、PickScoreが20.46から23.81へ（連続・離散両設定でSOTA）。OCRベンチマークでは8%から57%に向上。\n💡**意義**: 離散拡散モデルへのRL適用に実用的な解を提供。テキストから画像への高品質生成の新たな地平を開く。\n⚠️**限界**: 連続拡散モデルと比べたUDM固有の表現力の限界が残る可能性。大規模化時の安定性は未検証。\n\n**10. Accurate and scalable exchange-correlation with deep learning** | 👍 2 | [arxiv 2506.14665](https://arxiv.org/abs/2506.14665)\n🎯**背景**: 密度汎関数理論（DFT）は計算化学・材料科学の基盤だが、未知の交換相関（XC）汎関数の近似が精度を根本的に制限していた。精度向上は計算効率との長年のトレードオフを伴っていた。\n🔧**手法**: 電子構造の非局所表現をデータから直接学習するディープラーニングベースのXC汎関数「Skala」を導入。波動関数ベース手法からの大規模な高精度参照データを活用し、手作業で設計した特徴量に依存しない学習アプローチを採用。\n📊**結果**: メイングループ化学ベンチマークセット「GMTKN55」で最先端のハイブリッド汎関数を上回る精度（誤差2.8 kcal/mol）を達成しながら、半局所DFTの低い計算コストを維持。\n💡**意義**: 精度と効率のトレードオフを打破する歴史的な転換点。DFTシミュレーションが訓練データ拡大とともに系統的に改善可能であることを示し、第一原理シミュレーションの予測力が飛躍的に向上する可能性。\n⚠️**限界**: 訓練データの範囲外（アクチニドや重元素系など）での性能は未検証。ニューラルネットワークの解釈可能性が物理的洞察を得にくくする。\n\n",
+  "fetched_at": "2026-04-22T22:33:30.866083+00:00",
+  "papers": [
+    {
+      "title": "AnyRecon: Arbitrary-View 3D Reconstruction with Video Diffusion Model",
+      "upvotes": 34,
+      "paper_id": "2604.19747",
+      "abstract": "Sparse-view 3D reconstruction is essential for modeling scenes from casual captures, but remain challenging for non-generative reconstruction. Existing diffusion-based approaches mitigates this issues by synthesizing novel views, but they often condition on only one or two capture frames, which restricts geometric consistency and limits scalability to large or diverse scenes."
+    },
+    {
+      "title": "ShadowPEFT: Shadow Network for Parameter-Efficient Fine-Tuning",
+      "upvotes": 18,
+      "paper_id": "2604.19254",
+      "abstract": "Parameter-efficient fine-tuning (PEFT) reduces the training cost of full-parameter fine-tuning for large language models (LLMs) by training only a small set of task-specific parameters while freezing the pretrained backbone. However, existing approaches, such as Low-Rank Adaptation (LoRA), achieve adaptation by inserting independent low-rank perturbations directly to individual weights, resulting in a local parameterization of adaptation."
+    },
+    {
+      "title": "AJ-Bench: Benchmarking Agent-as-a-Judge for Environment-Aware Evaluation",
+      "upvotes": 11,
+      "paper_id": "2604.18240",
+      "abstract": "As reinforcement learning continues to scale the training of large language model-based agents, reliably verifying agent behaviors in complex environments has become increasingly challenging. Existing approaches rely on rule-based verifiers or LLM-as-a-Judge models, which struggle to generalize beyond narrow domains."
+    },
+    {
+      "title": "Understanding and Enforcing Weight Disentanglement in Task Arithmetic",
+      "upvotes": 9,
+      "paper_id": "2604.17078",
+      "abstract": "Task arithmetic provides an efficient, training-free way to edit pre-trained models, yet lacks a fundamental theoretical explanation for its success. The existing concept of weight disentanglement describes the ideal outcome of non-interfering task composition but does not reveal its underlying cause."
+    },
+    {
+      "title": "CityRAG: Stepping Into a City via Spatially-Grounded Video Generation",
+      "upvotes": 8,
+      "paper_id": "2604.19741",
+      "abstract": "We address the problem of generating a 3D-consistent, navigable environment that is spatially grounded: a simulation of a real location. Existing video generative models can produce a plausible sequence that is consistent with a text (T2V) or image (I2V) prompt."
+    },
+    {
+      "title": "RDP LoRA: Geometry-Driven Identification for Parameter-Efficient Adaptation in Large Language Models",
+      "upvotes": 4,
+      "paper_id": "2604.19321",
+      "abstract": "Fine-tuning Large Language Models (LLMs) remains structurally uncertain despite parameter-efficient methods such as Low-Rank Adaptation (LoRA), as the layer-specific roles of internal representations are poorly understood, leading to heuristic decisions about where adaptation should be applied."
+    },
+    {
+      "title": "SmartPhotoCrafter: Unified Reasoning, Generation and Optimization for Automatic Photographic Image Editing",
+      "upvotes": 4,
+      "paper_id": "2604.19587",
+      "abstract": "Traditional photographic image editing typically requires users to possess sufficient aesthetic understanding to provide appropriate instructions for adjusting image quality and camera parameters. However, this paradigm relies on explicit human instruction of aesthetic intent, which is often ambiguous, incomplete, or inaccessible to non-expert users."
+    },
+    {
+      "title": "HP-Edit: A Human-Preference Post-Training Framework for Image Editing",
+      "upvotes": 3,
+      "paper_id": "2604.19406",
+      "abstract": "Common image editing tasks typically adopt powerful generative diffusion models as the leading paradigm for real-world content editing. Meanwhile, although reinforcement learning (RL) methods such as Diffusion-DPO and Flow-GRPO have further improved generation quality, efficiently applying RLHF to diffusion-based editing remains largely unexplored."
+    },
+    {
+      "title": "UDM-GRPO: Stable and Efficient Group Relative Policy Optimization for Uniform Discrete Diffusion Models",
+      "upvotes": 3,
+      "paper_id": "2604.18518",
+      "abstract": "Uniform Discrete Diffusion Model (UDM) has recently emerged as a promising paradigm for discrete generative modeling; however, its integration with reinforcement learning remains largely unexplored. We observe that naively applying GRPO to UDM leads to training instability and marginal performance gains."
+    },
+    {
+      "title": "Accurate and scalable exchange-correlation with deep learning",
+      "upvotes": 2,
+      "paper_id": "2506.14665",
+      "abstract": "Density Functional Theory (DFT) underpins much of modern computational chemistry and materials science. Yet, the reliability of DFT-derived predictions of experimentally measurable properties remains fundamentally limited by the need to approximate the unknown exchange-correlation (XC) functional."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.117",
+      "published_at": "2025-04-22",
+      "body": "Forked subagents can now be enabled on external builds by setting CLAUDE_CODE_FORK_SUBAGENT=1. Agent frontmatter mcpServers are now loaded for main-thread agent sessions via --agent. Improved /model: selections now persist across restarts even when the project pins a different model, and the startup header shows when the active model comes from a project or managed-settings pin. The /resume command now offers to summarize stale, large sessions before re-reading them, matching the existing --resume behavior. Faster startup when both local and claude.ai MCP servers are configured (concurrent connect now default)."
+    },
+    {
+      "tag_name": "v2.1.116",
+      "published_at": "2025-04-20",
+      "body": "/resume on large sessions is significantly faster (up to 67% on 40MB+ sessions) and handles sessions with many dead-fork entries more efficiently. Faster MCP startup when multiple stdio servers are configured; resources/templates/list is now deferred to first @-mention. Smoother fullscreen scrolling in VS Code, Cursor, and Windsurf terminals. Thinking spinner now shows progress inline, replacing the separate hint row."
+    },
+    {
+      "tag_name": "v2.1.114",
+      "published_at": "2025-04-18",
+      "body": "Fixed a crash in the permission dialog when an agent teams teammate requested tool permission."
+    }
+  ]
+}
