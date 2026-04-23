@@ -1,7 +1,6 @@
-**1. AnyRecon: Arbitrary-View 3D Reconstruction with Video Diffusion Model**
-**著者**: AnyRecon Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.19747
-👍 upvotes: 34
+**1. Near-Future Policy Optimization (近未来ポリシー最適化)**
+**著者**: (Anonymous et al., 2026)
+**arXiv**: https://arxiv.org/abs/2604.20733
 
 **まとめ**:
-任意の視点数・順序に対応するスケーラブルな疎視点3D再構成フレームワーク。グローバルシーンメモリと幾何認識条件付けにより、従来手法が苦手とする大視点差・長軌跡シーンでも高品質な再構成を実現。自動運転・VR/ARシミュレーションへの即時応用が期待される今日最注目の論文（👍34）。
+RLVR（検証可能な報酬による強化学習）において、現在のポリシーが生成する「近未来の軌跡」を擬似的なオフポリシーデータとして活用する NFPO フレームワークを提案。外部データを必要とせず、自己生成データで探索多様性を高めることで収束速度・最終性能の双方を改善。数学推論ベンチマークでの実証実験で既存 RLVR 手法を上回ることを示した。
