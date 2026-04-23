@@ -1,7 +1,6 @@
-**4. Understanding and Enforcing Weight Disentanglement in Task Arithmetic**
-**著者**: OrthoReg Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.17078
-👍 upvotes: 9
+**4. A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression**
+**著者**: (Anonymous et al., 2026)
+**arXiv**: https://arxiv.org/abs/2604.19572
 
 **まとめ**:
-タスク算術の成功を「タスク特徴専門化 (TFS)」という新理論で説明し、その幾何学的帰結である直交性を強制する正則化手法「OrthoReg」を提案。ViT-L-14でのタスク加算がNon-linear Fine-tuningを84.07%→88.23%に向上させ、複数タスクのモデル統合・編集技術に理論的基盤を与える重要な研究。
+長期ターミナル操作エージェントが抱えるコンテキスト爆発問題に対し、観測履歴を動的に圧縮する自己進化フレームワークを提案。重要な観測のみを選択保持し、冗長なフィードバックを要約・削除することで推論コストを最大 60% 以上削減しながらタスク成功率を維持。フレームワーク自体がタスク経験から圧縮戦略を継続的に改善する自己進化機構を備える。
