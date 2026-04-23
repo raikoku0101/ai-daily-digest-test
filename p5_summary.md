@@ -1,7 +1,6 @@
-**5. CityRAG: Stepping Into a City via Spatially-Grounded Video Generation**
-**著者**: CityRAG Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.19741
-👍 upvotes: 8
+**5. C-GenReg: Training-Free 3D Point Cloud Registration by Multi-View-Consistent Geometry-to-Image Generation with Probabilistic Modalities Fusion**
+**著者**: (Anonymous et al., 2026)
+**arXiv**: https://arxiv.org/abs/2604.16680
 
 **まとめ**:
-Google Mapsの550万枚の街頭ビューパノラマから構築した地理登録データを活用し、実世界の都市を物理的に忠実に再現する動画生成モデル。Wan 2.1 (140億パラメータ) をベースに、任意の気象・照明条件と複雑な軌跡ナビゲーションをサポート。自動運転・ロボティクスシミュレーション向けに実世界再構成の新標準を打ち立てる。
+訓練データ不要の 3D 点群レジストレーション（位置合わせ）手法 C-GenReg を提案。点群を複数視点から画像に変換し、世界規模の生成モデル事前知識と視覚基盤モデル（VFM）を確率的に融合することで、未知物体カテゴリを含む幅広い形状に汎化する高精度な対応関係推定を実現した。
