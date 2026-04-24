@@ -1,6 +1,6 @@
-**4. A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression**
-**著者**: (Anonymous et al., 2026)
-**arXiv**: https://arxiv.org/abs/2604.19572
+**4. Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks**
+**著者**: COSPLAY Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.20987
 
 **まとめ**:
-長期ターミナル操作エージェントが抱えるコンテキスト爆発問題に対し、観測履歴を動的に圧縮する自己進化フレームワークを提案。重要な観測のみを選択保持し、冗長なフィードバックを要約・削除することで推論コストを最大 60% 以上削減しながらタスク成功率を維持。フレームワーク自体がタスク経験から圧縮戦略を継続的に改善する自己進化機構を備える。
+長期ホライズン環境でのスキル発見・保持・再利用の欠如という LLM エージェントの課題を解決するため、決定エージェントとスキルバンクエージェントを共進化させる COSPLAY フレームワークを提案。8B ベースモデルで 4 つの最先端 LLM ベースラインに対し 6 ゲーム環境平均で 25.1% 以上の報酬改善を達成。スキル再利用による長期計画能力の飛躍的向上を実証した。

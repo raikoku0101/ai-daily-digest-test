@@ -1,6 +1,6 @@
-**5. C-GenReg: Training-Free 3D Point Cloud Registration by Multi-View-Consistent Geometry-to-Image Generation with Probabilistic Modalities Fusion**
-**著者**: (Anonymous et al., 2026)
-**arXiv**: https://arxiv.org/abs/2604.16680
+**5. VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation**
+**著者**: VLAA-GUI Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.21375
 
 **まとめ**:
-訓練データ不要の 3D 点群レジストレーション（位置合わせ）手法 C-GenReg を提案。点群を複数視点から画像に変換し、世界規模の生成モデル事前知識と視覚基盤モデル（VFM）を確率的に融合することで、未知物体カテゴリを含む幅広い形状に汎化する高精度な対応関係推定を実現した。
+自律 GUI エージェントの「早期終了（フォールスサクセス）」と「繰り返しループ」という二大課題を解決するため、完全性検証器・ループ破壊器・検索エージェントの 3 モジュールからなる VLAA-GUI フレームワークを提案。OSWorld で 77.5% の成功率を達成し、初めて人間レベル性能（72.4%）を複数バックボーンで超過。Claude Opus 4.6 / Gemini 3.1 Pro 等が人間を超える。

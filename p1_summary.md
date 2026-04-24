@@ -1,6 +1,6 @@
-**1. Near-Future Policy Optimization (近未来ポリシー最適化)**
-**著者**: (Anonymous et al., 2026)
-**arXiv**: https://arxiv.org/abs/2604.20733
+**1. LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics**
+**著者**: LLaTiSA Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.17295
 
 **まとめ**:
-RLVR（検証可能な報酬による強化学習）において、現在のポリシーが生成する「近未来の軌跡」を擬似的なオフポリシーデータとして活用する NFPO フレームワークを提案。外部データを必要とせず、自己生成データで探索多様性を高めることで収束速度・最終性能の双方を改善。数学推論ベンチマークでの実証実験で既存 RLVR 手法を上回ることを示した。
+時系列推論 (TSR) を視覚認識からセマンティクスまで4段階の認知複雑度で体系化し、83,000 サンプルの階層的データセット HiTSR と、デュアルビュー入力 (プロット+数値テーブル) で視覚精度と数値精度を統合する LLaTiSA モデルを提案。GPT-4o と比較して L1〜L3 全難易度で大幅な精度向上 (L1: 47%→87%) を達成し、OOD ベンチマークでの汎化性能も実証した。時系列 AI 評価の統一基盤となる重要研究。
