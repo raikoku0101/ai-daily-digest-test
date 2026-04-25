@@ -1,6 +1,6 @@
 **3. StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition**
-**著者**: StyleID Team et al. (2026)
+**著者**: StyleID Authors et al. (2026)
 **arXiv**: https://arxiv.org/abs/2604.21689
 
 **まとめ**:
-漫画・スケッチ・絵画などのスタイライゼーション下での顔認識において、既存の ArcFace・AdaFace が分布シフトにより誤認識する問題を解決するため、68名の人間判定から構築した StyleBench-H と合成教師信号 StyleBench-S、そして CLIP-L + LoRA + ArcFace 損失で訓練した StyleID モデルを提案。スタイル化下での TPR が ArcFace 76.5%→90.2% に向上し、未見の手法・アーティスト手描きスケッチでも強い汎化性を示した。スタイル不変顔認識の初の人間知覚較正ベンチマーク。
+スタイル化（カートゥーン・スケッチ・絵画）後の顔同一性保持評価に特化した人間知覚対応フレームワーク StyleID を提案。68名から収集した 3,551 件の人間判定データ（StyleBench-H）と心理計測曲線由来の 224k 件教師データ（StyleBench-S）で CLIP-L+LoRA モデルをファインチューン。TPR 0.902・AUROC 0.971 で既存手法を大幅上回り、アーティスト描画にも汎化。生成 AI 時代の顔認証・コンテンツ保護に直結する基盤を提供。
