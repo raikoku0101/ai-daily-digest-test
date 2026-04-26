@@ -1,6 +1,6 @@
 **2. WorldMark: A Unified Benchmark Suite for Interactive Video World Models**
-**著者**: WorldMark Authors et al. (2026)
+**著者**: (WorldMark Authors) et al. (2026)
 **arXiv**: https://arxiv.org/abs/2604.21686
 
 **まとめ**:
-Genie・YUME・HY-World など急成長するインタラクティブビデオ生成モデルを公平に比較するため、統一アクションインターフェース・500 ケーステストスイート・多層評価ツールキットからなる WorldMark を構築。視覚品質と世界一貫性が相関しないという重要な知見を示し、自動評価指標が人間判定と高度一致（ρ>0.9）することを検証。オープンソース公開予定で新モデル追加には単一アダプター実装のみ必要。
+Genie・YUME・HY-World・Matrix-Game 等のインタラクティブ動画生成モデルが急発展する中、各モデルが独自ベンチマークで評価されておりクロスモデル比較が不可能だった問題を解決。WorldMark は同一シーン・同一アクションシーケンス・統一コントロールインターフェースを提供する初の共通評価フィールドを実現し、軌跡誤差・美的スコア・VLM 評価を標準化された条件下で比較可能にした。

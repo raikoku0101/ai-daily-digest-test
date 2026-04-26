@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics",
-      "upvotes": 80,
-      "paper_id": "2604.17295",
-      "abstract": "Comprehensive understanding of time series remains a significant challenge for Large Language Models (LLMs). Current research is hindered by fragmented task definitions and benchmarks with inherent ambiguities, precluding rigorous evaluation and the development of unified Time Series Reasoning Models"
-    },
-    {
-      "title": "WorldMark: A Unified Benchmark Suite for Interactive Video World Models",
-      "upvotes": 34,
-      "paper_id": "2604.21686",
-      "abstract": "Interactive video generation models such as Genie, YUME, HY-World, and Matrix-Game are advancing rapidly, yet every model is evaluated on its own benchmark with private scenes and trajectories, making fair cross-model comparison impossible."
-    },
-    {
-      "title": "StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition",
-      "upvotes": 20,
-      "paper_id": "2604.21689",
-      "abstract": "Creative face stylization aims to render portraits in diverse visual idioms such as cartoons, sketches, and paintings while retaining recognizable identity. However, current identity encoders exhibit severe brittleness under stylization."
-    },
-    {
-      "title": "Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks",
-      "upvotes": 16,
-      "paper_id": "2604.20987",
-      "abstract": "Long horizon interactive environments are a testbed for evaluating agents skill usage abilities. These environments demand multi step reasoning, the chaining of multiple skills over many timesteps, and robust decision making under delayed rewards and partial observability."
-    },
-    {
-      "title": "VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation",
-      "upvotes": 12,
-      "paper_id": "2604.21375",
-      "abstract": "Autonomous GUI agents face two fundamental challenges: early stopping, where agents prematurely declare success without verifiable evidence, and repetitive loops, where agents cycle through the same failing actions without recovery."
-    },
-    {
-      "title": "TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale",
-      "upvotes": 10,
-      "paper_id": "2604.21889",
-      "abstract": "Real-time detection and mitigation of technical anomalies are critical for large-scale cloud-native services, where even minutes of downtime can result in massive financial losses and diminished user trust."
-    },
-    {
-      "title": "Hybrid Policy Distillation for LLMs",
-      "upvotes": 10,
-      "paper_id": "2604.20244",
-      "abstract": "Knowledge distillation (KD) is a powerful paradigm for compressing large language models (LLMs), whose effectiveness depends on intertwined choices of divergence direction, optimization strategy, and data regime."
-    },
-    {
-      "title": "EditCrafter: Tuning-free High-Resolution Image Editing via Pretrained Diffusion Model",
-      "upvotes": 9,
-      "paper_id": "2604.10268",
-      "abstract": "We propose EditCrafter, a high-resolution image editing method that operates without tuning, leveraging pretrained text-to-image diffusion models to process images at resolutions significantly exceeding those used during training."
-    },
-    {
-      "title": "Context Unrolling in Omni Models",
-      "upvotes": 9,
-      "paper_id": "2604.21921",
-      "abstract": "We present Omni, a unified multimodal model natively trained on diverse modalities, including text, images, videos, 3D geometry, and hidden representations."
-    },
-    {
-      "title": "Vista4D: Video Reshooting with 4D Point Clouds",
-      "upvotes": 8,
-      "paper_id": "2604.21915",
-      "abstract": "We present Vista4D, a robust and flexible video reshooting framework that grounds the input video and target cameras in a 4D point cloud."
-    }
+    {"title": "LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics", "upvotes": 81, "paper_id": "2604.17295", "abstract": "Comprehensive understanding of time series remains a significant challenge for LLMs. Current research is hindered by fragmented task definitions and benchmarks with inherent ambiguities, precluding rigorous evaluation and the development of unified Time Series Reasoning Models(TSRMs)."},
+    {"title": "WorldMark: A Unified Benchmark Suite for Interactive Video World Models", "upvotes": 34, "paper_id": "2604.21686", "abstract": "Interactive video generation models such as Genie, YUME, HY-World, and Matrix-Game are advancing rapidly, yet every model is evaluated on its own benchmark with private scenes and trajectories, making fair cross-model comparison impossible."},
+    {"title": "StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition", "upvotes": 20, "paper_id": "2604.21689", "abstract": "Creative face stylization aims to render portraits in diverse visual idioms such as cartoons, sketches, and paintings while retaining recognizable identity. Current identity encoders exhibit severe brittleness under stylization."},
+    {"title": "Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks", "upvotes": 18, "paper_id": "2604.20987", "abstract": "Long horizon interactive environments are a testbed for evaluating agents skill usage abilities. We present COSPLAY, a co-evolution framework in which an LLM decision agent retrieves skills from a learnable skill bank."},
+    {"title": "VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation", "upvotes": 14, "paper_id": "2604.21375", "abstract": "Autonomous GUI agents face two fundamental challenges: early stopping and repetitive loops. We present VLAA-GUI, a modular framework built around three integrated components that guide the system on when to Stop, Recover, and Search."},
+    {"title": "TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale", "upvotes": 10, "paper_id": "2604.21889", "abstract": "Real-time detection and mitigation of technical anomalies are critical for large-scale cloud-native services. We present TingIS, an end-to-end system for enterprise-grade incident discovery using LLMs."},
+    {"title": "Hybrid Policy Distillation for LLMs", "upvotes": 10, "paper_id": "2604.20244", "abstract": "We propose Hybrid Policy Distillation (HPD), integrating forward and reverse KL to balance mode coverage and mode-seeking, combining off-policy data with lightweight on-policy sampling for LLM compression."},
+    {"title": "Vista4D: Video Reshooting with 4D Point Clouds", "upvotes": 9, "paper_id": "2604.21915", "abstract": "We present Vista4D, a video reshooting framework that grounds input video and target cameras in a 4D point cloud, enabling re-synthesis from different camera trajectories and viewpoints."},
+    {"title": "EditCrafter: Tuning-free High-Resolution Image Editing via Pretrained Diffusion Model", "upvotes": 9, "paper_id": "2604.10268", "abstract": "We propose EditCrafter, a high-resolution image editing method without tuning, leveraging pretrained text-to-image diffusion models to process images at resolutions significantly exceeding training resolutions."},
+    {"title": "Context Unrolling in Omni Models", "upvotes": 9, "paper_id": "2604.21921", "abstract": "We present Omni, a unified multimodal model trained on text, images, videos, 3D geometry, and hidden representations. Context Unrolling enables explicit reasoning across multiple modal representations before producing predictions."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.119",
-      "published_at": "2025-04-23",
-      "body": "/config settings (theme, editor mode, verbose, etc.) now persist to ~/.claude/settings.json and participate in project/local/policy override precedence. Added prUrlTemplate setting to point the footer PR badge at a custom code-review URL instead of github.com. Added CLAUDE_CODE_HIDE_CWD environment variable to hide the working directory in the startup logo. --from-pr now accepts GitLab merge-request, Bitbucket pull-request, and GitHub Enterprise PR URLs. --print mode now honors the agent's tools: and disallowedTools: frontmatter, matching interactive-mode behavior."
-    },
-    {
-      "tag_name": "v2.1.118",
-      "published_at": "2025-04-23",
-      "body": "Added vim visual mode (v) and visual-line mode (V) with selection, operators, and visual feedback. Merged /cost and /stats into /usage — both remain as typing shortcuts that open the relevant tab. Create and switch between named custom themes from /theme, or hand-edit JSON files in ~/.claude/themes/; plugins can also ship themes via a themes/ directory. Hooks can now invoke MCP tools directly via type: \"mcp_tool\". Added DISABLE_UPDATES env var to completely block all update paths including manual claude update."
-    },
-    {
-      "tag_name": "v2.1.117",
-      "published_at": "2025-04-22",
-      "body": "Forked subagents can now be enabled on external builds by setting CLAUDE_CODE_FORK_SUBAGENT=1. Agent frontmatter mcpServers are now loaded for main-thread agent sessions via --agent. Improved /model: selections now persist across restarts even when the project pins a different model, and the startup header shows when the active model comes from a project or managed-settings pin. The /resume command now offers to summarize stale, large sessions before re-reading them, matching the existing --resume behavior. Faster startup when both local and claude.ai MCP servers are configured."
-    }
+    {"tag_name": "v2.1.119", "published_at": "2025-04-23", "body": "/config settings (theme, editor mode, verbose, etc.) now persist to ~/.claude/settings.json and participate in project/local/policy override precedence. Added prUrlTemplate setting to point the footer PR badge at a custom code-review URL instead of github.com. Added CLAUDE_CODE_HIDE_CWD environment variable to hide the working directory in the startup logo. --from-pr now accepts GitLab merge-request, Bitbucket pull-request, and GitHub Enterprise PR URLs. --print mode now honors the agent's tools: and disallowedTools: frontmatter, matching interactive-mode behavior. --agent <name> now honors the agent definition's permissionMode for built-in agents. PowerShell tool commands can now be auto-approved in permission mode, matching Bash behavior."},
+    {"tag_name": "v2.1.118", "published_at": "2025-04-23", "body": "Added vim visual mode (v) and visual-line mode (V) with selection, operators, and visual feedback. Merged /cost and /stats into /usage — both remain as typing shortcuts that open the relevant tab. Create and switch between named custom themes from /theme, or hand-edit JSON files in ~/.claude/themes/; plugins can also ship themes via a themes/ directory. Hooks can now invoke MCP tools directly via type: \"mcp_tool\". Added DISABLE_UPDATES env var to completely block all update paths including manual claude update — stricter than DISABLE_AUTOUPDATER. WSL on Windows can now inherit Windows-side managed settings via the wslInheritsWindowsSettings policy key."},
+    {"tag_name": "v2.1.117", "published_at": "2025-04-22", "body": "Forked subagents can now be enabled on external builds by setting CLAUDE_CODE_FORK_SUBAGENT=1. Agent frontmatter mcpServers are now loaded for main-thread agent sessions via --agent. Improved /model: selections now persist across restarts even when the project pins a different model, and the startup header shows when the active model comes from a project or managed-settings pin. The /resume command now offers to summarize stale, large sessions before re-reading them, matching the existing --resume behavior. Faster startup when both local and claude.ai MCP servers are configured (concurrent connect now default)."}
   ]
 }
