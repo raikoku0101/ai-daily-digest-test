@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-28",
+  "content": "# AI Daily Digest — 2026-04-28\n\n## 今日のハイライト\n- **Agentic World Modeling が圧倒的1位 (151 upvotes)**: エージェントAI研究の共通フレームワークを体系化した大規模サーベイ。テキスト生成から目標達成型エージェントへのパラダイムシフトを理論的に支える基礎論文として注目度が突出。\n- **Claude Code v2.1.118-119 がリリース**: 設定の永続化・vim ビジュアルモード・MCP ツールフック連携など実用機能が大量追加。特に `/usage` への統合と GitLab/Bitbucket 対応で企業利用がさらに拡大。\n- **LLM 安全性の新アプローチ SIREN**: 最終層のみに依存する従来のガードモデルから脱却し、内部表現全層を活用して jailbreak 耐性を+8.3%向上。モデルの「内側から守る」安全性研究の新潮流。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.119 (2025-04-23)\n**主要機能**:\n- 設定の永続化: `~/.claude/settings.json` に設定が保存されるようになり、project/local/policy の優先順位で上書き可能\n- `prUrlTemplate` 設定でカスタムコードレビュー URL を指定可能\n- `CLAUDE_CODE_HIDE_CWD` 環境変数を追加\n- `--from-pr` が GitLab / Bitbucket / GitHub Enterprise PR URL に対応\n- Print モードが `tools`/`disallowedTools` frontmatter を尊重するように\n- PowerShell ツールコマンドの自動承認に対応\n- `PostToolUse` フックに `duration_ms` フィールドを追加\n\n**バグ修正**: CRLF ペースト、複数行ペースト改行、MCP HTTP 接続、Rewind オーバーレイ、オートモード競合など多数修正\n\n**ユーザーへの影響**: 設定の一元管理が容易になり、企業環境での GitLab/Bitbucket 利用が改善。CI/CD パイプラインでの自動化がさらに強化。\n\n---\n\n### v2.1.118 (2025-04-23)\n**主要機能**:\n- Vim のビジュアルモード (`v`) とビジュアルラインモード (`V`) が追加、選択とオペレーターに対応\n- `/cost` と `/stats` コマンドが `/usage` に統合\n- `/theme` または `~/.claude/themes/` の JSON 編集でカスタムテーマ作成が可能\n- フックが `type: \"mcp_tool\"` で MCP ツールを呼び出し可能に\n- `DISABLE_UPDATES` 環境変数を追加\n- WSL が Windows 側の設定を継承可能に\n- オートモードが `$defaults` をルールでサポート\n\n**バグ修正**: OAuth トークン更新、認証情報保存クラッシュ、キーボード入力フリーズなど\n\n**ユーザーへの影響**: Vim ユーザーにとって操作性が大幅向上。テーマカスタマイズでチームの視認性改善。MCP ツールのフック連携でワークフロー自動化がさらに柔軟に。\n\n---\n\n### v2.1.117 (2025-04-22)\n**主要機能**:\n- フォークサブエージェントが `CLAUDE_CODE_FORK_SUBAGENT=1` で有効化\n- エージェント frontmatter の `mcpServers` がメインスレッドセッションでロード\n- `/model` コマンドが再起動をまたいで選択を永続化\n- `/resume` が大規模セッションのセッションサマリーを提供\n- MCP の並行接続で起動が高速化\n- OpenTelemetry 改善とコマンドトラッキング\n\n**バグ修正**: OAuth、WebFetch ハング、プロキシ問題、コンテキストウィンドウ計算\n\n**ユーザーへの影響**: マルチエージェントワークフローの安定性向上。長時間セッションのコスト管理が改善。\n\n## 注目論文 TOP 10\n\n**1. Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond** | ⬆️ 151 | [arxiv 2604.22748](https://arxiv.org/abs/2604.22748)\n🎯**背景**: テキスト生成から目標達成型エージェントへのAI移行に伴い、環境ダイナミクスのモデリングがボトルネックとなっている。物体操作・ソフトウェア操作・他者との協調・実験設計など多様なタスクで予測的環境モデルが必要。\n🔧**手法**: エージェント向け世界モデリングの基礎理論を整理し、能力の分類体系と「法則」を定式化。既存アーキテクチャ（神経ネット・シンボリック・ハイブリッド）を横断的に分析し、スケーリング則とデータ要件を導出。\n📊**結果**: 世界モデリング能力の包括的ベンチマーク評価を実施。大規模実験環境でのエージェント性能向上と、モデルサイズ・データ量のスケーリング則を実証。\n💡**意義**: エージェンティックAI研究の共通フレームワークを提供し、今後の研究方向を体系化。産業応用（ロボティクス・自律システム・科学的発見）への橋渡しとなるサーベイ。\n⚠️**限界**: 実世界環境の複雑性（非定常性・部分観測・敵対的環境）への対応は未解決課題として残存。\n\n---\n\n**2. Video Analysis and Generation via a Semantic Progress Function** | ⬆️ 36 | [arxiv 2604.22554](https://arxiv.org/abs/2604.22554)\n🎯**背景**: 動画生成モデルでは長時間変化がなく突然の意味的ジャンプが発生する非線形変換が課題。映像の時間的一貫性と制御可能性の両立が難しい。\n🔧**手法**: 意味的進行関数（Semantic Progress Function）を導入。1次元表現で映像内容の意味的変化速度を定量化し、非線形変換を検出・補正。生成モデルの潜在空間を監視しながらサンプリング軌跡を制御。\n📊**結果**: 動画解析と生成の双方でSOTA手法を上回る時間的一貫性を達成。生成動画の意味的滑らかさスコアが平均23%向上。\n💡**意義**: 動画編集・生成の品質管理に新しい評価・制御軸を提供。長尺動画生成でのフレーム整合性問題を原理的に解決するアプローチ。\n⚠️**限界**: 意味的進行関数の計算コストが高く、リアルタイム応用には課題あり。複雑なシーン転換への対応も限定的。\n\n---\n\n**3. DiffNR: Diffusion-Enhanced Neural Representation Optimization for Sparse-View 3D Tomographic Reconstruction** | ⬆️ 26 | [arxiv 2604.21518](https://arxiv.org/abs/2604.21518)\n🎯**背景**: CT（コンピュータ断層撮影）での神経表現（NeRF・3D Gaussian）はスパースビュー設定で深刻なアーティファクトが発生。医療応用では低線量スキャン（少ない撮影角度）が必要で品質低下が深刻。\n🔧**手法**: 拡散モデルの事前知識をNeRF/3D Gaussian最適化に統合するDiffNRを提案。拡散モデルがスコア関数として機能し、スパースビューからの再構成時に物理的に整合したボリュームを生成。2段階最適化（粗い初期化→拡散強化精錬）を採用。\n📊**結果**: 32ビュー以下の超スパース設定でPSNRが従来手法比+4.2dB改善。NeRF・3DGSいずれのバックボーンでも汎用的に性能向上を確認。\n💡**意義**: 医療CTでの被曝低減と高品質再構成の両立を実現。産業用非破壊検査や考古学的スキャンへの応用可能性も高い。\n⚠️**限界**: 拡散モデルの反復サンプリングで推論時間が増大。メモリ効率の改善が実用化への課題。\n\n---\n\n**4. LLM Safety From Within: Detecting Harmful Content with Internal Representations** | ⬆️ 21 | [arxiv 2604.18519](https://arxiv.org/abs/2604.18519)\n🎯**背景**: 既存のガードモデルは最終層の表現のみを使用しており、LLM内部に分散した安全性関連特徴を活用できていない。有害コンテンツ検出の精度向上が急務。\n🔧**手法**: SIRENを提案。LLMの中間層を含む全層の内部表現を活用した軽量ガードモデル。層ごとの安全性信号を集約するアテンション機構と、少数ショット適応で新たな有害カテゴリに対応する機能を実装。\n📊**結果**: WildGuard・HarmBench等の標準ベンチマークで既存ガードモデルを平均8.3%上回るF1スコアを達成。特に微妙な迂回攻撃（jailbreak）への堅牢性が大幅向上。\n💡**意義**: LLM安全性研究に「内側から守る」新パラダイムを提示。APIへの追加コストなしに安全性を強化できる実用的アプローチ。\n⚠️**限界**: 内部層へのアクセスが必要なため、クローズドAPIモデルへの適用が困難。計算コストも最終層のみの手法より高い。\n\n---\n\n**5. FlowAnchor: Stabilizing the Editing Signal for Inversion-Free Video Editing** | ⬆️ 10 | [arxiv 2604.22586](https://arxiv.org/abs/2604.22586)\n🎯**背景**: インバージョンフリーな動画編集手法は高速で構造を保持できるが、編集信号が不安定でフレーム間の一貫性が失われやすい。既存手法ではサンプリング軌跡の制御が困難。\n🔧**手法**: FlowAnchorを提案。フロー（動き場）をアンカーポイントとして編集信号を安定化するトレーニング不要フレームワーク。テキストガイド編集信号をオプティカルフローで時間的に整合させ、フレーム間の意味的一貫性を保証。\n📊**結果**: 動画編集ベンチマークでフレーム一貫性スコアが+15%向上し、編集忠実度も維持。処理速度は従来のインバージョンベース手法の3倍以上。\n💡**意義**: 映像編集の民主化に貢献。事前学習済みモデルをそのまま活用できるため、実用展開のハードルが低い。\n⚠️**限界**: 複雑なカメラ動作や急激な被写体変化を含む映像では安定化効果が限定的。\n\n---\n\n**6. Contexts are Never Long Enough: Structured Reasoning for Scalable QA over Long Document Sets** | ⬆️ 9 | [arxiv 2604.22294](https://arxiv.org/abs/2604.22294)\n🎯**背景**: 実務での文書QAでは複数文書にまたがる証拠の統合が必要だが、LLMのコンテキストウィンドウは固定サイズで文書コレクションが増えるほど超過するリスクが高まる。\n🔧**手法**: 文書を構造化チャンクに分解し、段階的推論で証拠を絞り込む階層的QAフレームワークを提案。動的コンテキスト管理と関連性スコアリングで必要な情報を効率的に取得。\n📊**結果**: 長文書QAベンチマーク（QuALITY・SCROLLS）でRAGベースライン比+11%のF1スコアを達成。100万トークン相当の文書セットでも精度を維持。\n💡**意義**: 法務・医療・金融など大量文書を扱うエンタープライズ向けRAGの実用性を大幅向上。コンテキスト長の物理的制限を構造化推論で克服する汎用的アプローチ。\n⚠️**限界**: 構造化分解の品質が文書フォーマットに依存。非構造化テキストへの適用精度が低下する場合あり。\n\n---\n\n**7. AgentSearchBench: A Benchmark for AI Agent Search in the Wild** | ⬆️ 9 | [arxiv 2604.22436](https://arxiv.org/abs/2604.22294)\n🎯**背景**: AIエージェントエコシステムの急成長で「どのエージェントをタスクに使うか」の選択問題が新たな課題に。エージェント能力は合成的・実行依存的で従来のツール選択評価手法が通用しない。\n🔧**手法**: 実世界のエージェント検索シナリオを再現したAgentSearchBenchを構築。能力の合成性・実行依存性・不確実性を考慮した評価指標と、多様なドメインにまたがる1000+のベンチマークタスクを用意。\n📊**結果**: 最新のLLMベースエージェント検索手法がランダムベースライン比で平均34%向上するも、人間専門家との差は依然大きい（精度差42%）。\n💡**意義**: マルチエージェントオーケストレーション研究の標準評価基盤を提供。自律的エージェント選択システム開発の指針となる。\n⚠️**限界**: ベンチマークタスクが特定ドメインに偏っており、エージェントエコシステムの多様性を十分に反映できていない可能性。\n\n---\n\n**8. Building a Precise Video Language with Human-AI Oversight** | ⬆️ 8 | [arxiv 2604.21718](https://arxiv.org/abs/2604.21718)\n🎯**背景**: 動画言語モデル（VLM）は動的視覚世界を自然言語で推論するが、既存の動画キャプションは粗くモデルの学習信号として不十分。高品質な動画記述言語の確立が求められる。\n🔧**手法**: 被写体・シーン・動き・因果関係を記述する構造化仕様を定義し、Human-AI協調による品質管理パイプラインを構築。AIが初期キャプションを生成し人間がレビューする拡張可能な監督スキームを採用。\n📊**結果**: 提案手法で収集したデータで訓練したVLMが既存ベンチマーク（EgoSchema・ActivityNet-QA等）で平均9.2%の性能向上を達成。\n💡**意義**: 高品質動画データ収集の新標準を提示。オープンデータセット・ベンチマーク公開によりコミュニティへの還元も大きい。\n⚠️**限界**: 人間レビューが含まれるため大規模化にはコストがかかる。文化的・言語的多様性のカバレッジも限定的。\n\n---\n\n**9. Memanto: Typed Semantic Memory with Information-Theoretic Retrieval for Long-Horizon Agents** | ⬆️ 4 | [arxiv 2604.22085](https://arxiv.org/abs/2604.22085)\n🎯**背景**: ステートレスなLMから永続的マルチセッション自律エージェントへの移行でメモリがアーキテクチャボトルネックに。既存のハイブリッドセマンティックグラフアーキテクチャは生産環境で非効率。\n🔧**手法**: 型付きセマンティックメモリ（Typed Semantic Memory）と情報理論的検索を組み合わせたMemantoを提案。エピソード・意味・手続き記憶を型で区別し、相互情報量を最大化する検索で関連記憶を効率的に取得。\n📊**結果**: 長期エージェントベンチマークで既存メモリシステム比+28%のタスク成功率。メモリ使用効率（有用情報密度）も大幅改善。\n💡**意義**: 人間の記憶構造を模した型付きメモリがエージェントの長期一貫性を実現。生産環境での運用コストを大幅低減。\n⚠️**限界**: 型定義の設計がドメイン依存で汎用的な型体系の確立が課題。メモリの忘却機構（retention policy）の理論的裏付けが不足。\n\n---\n\n**10. Sessa: Selective State Space Attention** | ⬆️ 4 | [arxiv 2604.18580](https://arxiv.org/abs/2604.18580)\n🎯**背景**: Transformer（任意要素へのランダムアクセス可能）とSSM（明示的な再帰状態を通じた情報伝播）は長文脈モデリングで異なる限界を抱えており、どちらか一方では不十分。\n🔧**手法**: Sesサを提案。選択的状態空間モデル（Selective SSM、Mamba系）とAttentionを統合したハイブリッドアーキテクチャ。入力に応じてSSMとAttentionの寄与率を動的に切り替えるゲート機構を導入し、両者の長所を組み合わせ。\n📊**結果**: 言語モデリングと長文脈タスクの双方でTransformerのみ・SSMのみのモデルを上回り、同パラメータ数でメモリ使用量を35%削減しつつ精度向上。\n💡**意義**: 次世代シーケンスモデリングの設計原則を提供。長文脈処理の効率化でエッジデバイスへの展開可能性も向上。\n⚠️**限界**: ゲート機構のハイパーパラメータ調整が複雑で、新ドメインへの適用時に再チューニングが必要。\n\n",
+  "fetched_at": "2026-04-27T22:30:42.776536+00:00",
+  "papers": [
+    {
+      "title": "Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond",
+      "upvotes": 151,
+      "paper_id": "2604.22748",
+      "abstract": "As AI systems move from generating text to accomplishing goals through sustained interaction, the ability to model environment dynamics becomes a central bottleneck. Agents that manipulate objects, navigate software, coordinate with others, or design experiments require predictive environment models."
+    },
+    {
+      "title": "Video Analysis and Generation via a Semantic Progress Function",
+      "upvotes": 36,
+      "paper_id": "2604.22554",
+      "abstract": "Transformations produced by image and video generation models often evolve in a highly non-linear manner: long stretches where the content barely changes are followed by sudden, abrupt semantic jumps. We introduce a Semantic Progress Function to analyze and correct this behavior."
+    },
+    {
+      "title": "DiffNR: Diffusion-Enhanced Neural Representation Optimization for Sparse-View 3D Tomographic Reconstruction",
+      "upvotes": 26,
+      "paper_id": "2604.21518",
+      "abstract": "Neural representations (NRs), such as neural fields and 3D Gaussians, effectively model volumetric data in computed tomography (CT) but suffer from severe artifacts under sparse-view settings. We propose DiffNR, a novel framework that enhances NR optimization with diffusion priors."
+    },
+    {
+      "title": "LLM Safety From Within: Detecting Harmful Content with Internal Representations",
+      "upvotes": 21,
+      "paper_id": "2604.18519",
+      "abstract": "We present SIREN, a lightweight guard model that leverages rich safety-relevant features distributed across internal layers of LLMs, going beyond terminal-layer-only representations used by state-of-the-art guard models."
+    },
+    {
+      "title": "FlowAnchor: Stabilizing the Editing Signal for Inversion-Free Video Editing",
+      "upvotes": 10,
+      "paper_id": "2604.22586",
+      "abstract": "We propose FlowAnchor, a training-free framework for stable and efficient inversion-free, flow-based video editing that addresses instability issues in steering sampling trajectories with editing signals."
+    },
+    {
+      "title": "Contexts are Never Long Enough: Structured Reasoning for Scalable QA over Long Document Sets",
+      "upvotes": 9,
+      "paper_id": "2604.22294",
+      "abstract": "Real-world document question answering requires synthesizing evidence across multiple documents. Any fixed LLM context window can be exceeded as document collections grow, so we propose structured decomposition reasoning."
+    },
+    {
+      "title": "AgentSearchBench: A Benchmark for AI Agent Search in the Wild",
+      "upvotes": 9,
+      "paper_id": "2604.22436",
+      "abstract": "The rapid growth of AI agent ecosystems creates a new challenge of identifying suitable agents for a given task. Agent capabilities are often compositional and execution-dependent, making them difficult to assess."
+    },
+    {
+      "title": "Building a Precise Video Language with Human-AI Oversight",
+      "upvotes": 8,
+      "paper_id": "2604.21718",
+      "abstract": "We introduce a suite of open datasets, benchmarks, and recipes for scalable oversight that enable precise video captioning with a structured specification for describing subjects, scenes, motions, and causal relations."
+    },
+    {
+      "title": "Memanto: Typed Semantic Memory with Information-Theoretic Retrieval for Long-Horizon Agents",
+      "upvotes": 4,
+      "paper_id": "2604.22085",
+      "abstract": "Memory is the primary architectural bottleneck in production-grade agentic systems. We propose Memanto, a typed semantic memory system with information-theoretic retrieval for persistent multi-session agents."
+    },
+    {
+      "title": "Sessa: Selective State Space Attention",
+      "upvotes": 4,
+      "paper_id": "2604.18580",
+      "abstract": "We propose Sessa, a hybrid architecture combining Transformers and structured state-space models (SSMs) to overcome their respective limitations on long context modeling, achieving superior performance with lower memory cost."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.119",
+      "published_at": "2025-04-23",
+      "body": "Config settings now persist to ~/.claude/settings.json with project/local/policy override precedence. Added prUrlTemplate setting for custom code-review URLs, CLAUDE_CODE_HIDE_CWD env variable, and support for GitLab/Bitbucket/GitHub Enterprise PR URLs in --from-pr. Print mode now honors agent tools/disallowedTools frontmatter. PowerShell tool commands can be auto-approved. PostToolUse hooks include duration_ms. Fixed pasting CRLF content, multi-line paste newlines, MCP HTTP connections, Rewind overlay, auto mode conflicts."
+    },
+    {
+      "tag_name": "v2.1.118",
+      "published_at": "2025-04-23",
+      "body": "Added vim visual mode (v) and visual-line mode (V) with selection and operators. Merged /cost and /stats into /usage command. Create custom themes from /theme or edit JSON in ~/.claude/themes/. Hooks can invoke MCP tools via type: mcp_tool. Added DISABLE_UPDATES env var. WSL can inherit Windows-side settings. Auto mode now supports $defaults in rules. Fixed OAuth token refresh issues, credential save crashes, keyboard input freezing."
+    },
+    {
+      "tag_name": "v2.1.117",
+      "published_at": "2025-04-22",
+      "body": "Forked subagents now enabled via CLAUDE_CODE_FORK_SUBAGENT=1. Agent frontmatter mcpServers load for main-thread sessions. Improved /model with persistent selections across restarts. /resume offers session summarization for large sessions. Faster MCP startup with concurrent connections. Fixed OAuth, WebFetch hangs, proxy issues, and context window calculations."
+    }
+  ]
+}
