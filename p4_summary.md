@@ -1,6 +1,6 @@
-**4. Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks**
-**著者**: (COSPLAY Authors) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.20987
+**4. LLM Safety From Within: Detecting Harmful Content with Internal Representations**
+**著者**: (複数著者) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.18519
 
 **まとめ**:
-LLM エージェントが長期インタラクティブ環境でスキルを発見・保持・再利用できないという根本的問題を、共進化フレームワーク COSPLAY で解決。LLM 決定エージェントとスキルバンク管理エージェントが相互に進化する設計で、ラベルなしロールアウトから再利用可能スキルを自動発見し、複数エピソードにわたる一貫した長期意思決定を実現した。
+既存ガードモデルが最終層表現のみを使用するのに対し、LLM の全内部層に分散する安全性関連特徴を活用した軽量ガードモデル SIREN（Safety from Internal REpresentatioNs）を提案。層ごとの安全性信号を集約するアテンション機構と少数ショット適応で新たな有害カテゴリにも対応。標準ベンチマークで既存ガードモデルを大幅に上回り、jailbreak（脱獄）攻撃への堅牢性を向上させる「内側から守る」LLM 安全性の新パラダイム。

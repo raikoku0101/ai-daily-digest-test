@@ -1,6 +1,6 @@
-**5. VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation**
-**著者**: (VLAA-GUI Authors) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.21375
+**5. FlowAnchor: Stabilizing the Editing Signal for Inversion-Free Video Editing**
+**著者**: (複数著者) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.22586
 
 **まとめ**:
-自律 GUI エージェントの2大課題である「早期停止（成功の誤検知）」と「反復ループ（同じ失敗行動の繰り返し）」をモジュラーフレームワーク VLAA-GUI で解決。UI 観察可能な成功基準を強制する完全性検証器・失敗回復メカニズム・代替手段探索機能の3コンポーネントにより、自律タスク完了率を大幅に向上させた。
+反転不要（inversion-free）な流れベース動画編集で発生する「編集信号の不安定性」を初めて形式化し解決する FlowAnchor を提案。問題を「空間定位の不正確さ」と「フレーム長による振幅減衰」に分解し、Spatial-aware Attention Refinement（SAR）と Adaptive Magnitude Modulation（AMM）の二機構で対処。FiVE-Bench でテキスト整合性・構造保持・時間一貫性の全指標で最高性能を達成しつつ推論時間も最短を実現。

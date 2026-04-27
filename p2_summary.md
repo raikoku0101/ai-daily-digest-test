@@ -1,6 +1,6 @@
-**2. WorldMark: A Unified Benchmark Suite for Interactive Video World Models**
-**著者**: (WorldMark Authors) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.21686
+**2. Video Analysis and Generation via a Semantic Progress Function**
+**著者**: (複数著者) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.22554
 
 **まとめ**:
-Genie・YUME・HY-World・Matrix-Game 等のインタラクティブ動画生成モデルが急発展する中、各モデルが独自ベンチマークで評価されておりクロスモデル比較が不可能だった問題を解決。WorldMark は同一シーン・同一アクションシーケンス・統一コントロールインターフェースを提供する初の共通評価フィールドを実現し、軌跡誤差・美的スコア・VLM 評価を標準化された条件下で比較可能にした。
+動画生成モデルが生み出す変換シーケンスの非線形な意味的進行（長期間変化なし→突然の意味ジャンプ）を分析・修正するための Semantic Progress Function（SPF）を提案。SigLIP 埋め込みと角度メトリクスで意味変化速度を 1 次元で定量化し、RoPE 統合（ReTime）で追加学習なしに均等ペーシングを実現。88% のユーザー選好で意味ペーシング改善を確認した実用的フレームワーク。

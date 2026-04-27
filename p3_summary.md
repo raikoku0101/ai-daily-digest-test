@@ -1,6 +1,6 @@
-**3. StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition**
-**著者**: (StyleID Authors) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.21689
+**3. DiffNR: Diffusion-Enhanced Neural Representation Optimization for Sparse-View 3D Tomographic Reconstruction**
+**著者**: Shiyan Su, Ruyi Zha, Danli Shi, Hongdong Li, Xuelian Cheng (2026)
+**arXiv**: https://arxiv.org/abs/2604.21518
 
 **まとめ**:
-顔スタイライゼーション（漫画・スケッチ・絵画等）における ID 認識の根本的課題を解決する研究。既存 ID エンコーダーがテクスチャ・色変化を ID 変化と誤認する問題を、人間の知覚を考慮したデータセット StyleID と評価フレームワークで対処。多様なスタイルと強度にわたる ID 一貫性の評価・監督を可能にし、スタイル変換後の顔認識システムの信頼性向上に貢献する。
+CT（コンピュータ断層撮影）のスパースビュー設定で発生するアーティファクト問題を、拡散モデルの事前知識で解決する DiffNR を提案（AAAI 2026 採択）。単一ステップ拡散モデル SliceFixer が「疑似参照ボリューム（pseudo-reference volume）」を生成し、神経表現（NeRF・3D Gaussian）最適化の補助3D知覚監督として機能。従来の反復的ノイズ除去に比べて効率的で、平均 PSNR +3.99 dB の改善を実現。
