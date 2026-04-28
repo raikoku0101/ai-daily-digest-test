@@ -1,6 +1,6 @@
-**5. FlowAnchor: Stabilizing the Editing Signal for Inversion-Free Video Editing**
-**著者**: (複数著者) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.22586
+**5. TexOCR: Advancing Document OCR Models for Compilable Page-to-LaTeX Reconstruction (テックスOCR：コンパイル可能なページからLaTeX再構成のためのドキュメントOCRモデル)**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.22880
 
 **まとめ**:
-反転不要（inversion-free）な流れベース動画編集で発生する「編集信号の不安定性」を初めて形式化し解決する FlowAnchor を提案。問題を「空間定位の不正確さ」と「フレーム長による振幅減衰」に分解し、Spatial-aware Attention Refinement（SAR）と Adaptive Magnitude Modulation（AMM）の二機構で対処。FiVE-Bench でテキスト整合性・構造保持・時間一貫性の全指標で最高性能を達成しつつ推論時間も最短を実現。
+科学 PDF のページレベルからコンパイル可能な LaTeX への再構成に特化した研究。既存の OCR システムが一貫した見出し構造・正確な図表配置・有効なラベル参照などの重要な不変条件を頻繁に違反することを、TexOCR-Bench（21の最先端モデルを多次元評価）で実証。2B パラメータの TexOCR モデルは SFT と LaTeX ユニットテスト由来の検証可能な報酬を用いた強化学習（RL）を組み合わせ、コンパイル可能性と参照整合性（Referential Integrity）を直接的に強制することで既存手法を上回った。

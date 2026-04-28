@@ -1,23 +1,11 @@
-## 1. Introduction（はじめに）
-反転不要な流れベース動画編集（FlowEdit の動画拡張）では、複数オブジェクトシーンやフレーム数増加時に編集信号が不安定になる問題が発生します。高次元ビデオ潜在空間では密な時空間文脈がスパースな編集セマンティクスを圧倒し、「空間定位の不正確さ」と「フレーム長による振幅減衰」の 2 つの問題が生じます。FlowAnchor はこれらを系統的に解決する訓練不要フレームワークです。
+## 1. Introduction (はじめに)
+既存のドキュメントOCR（光学文字認識）技術は平文やMarkdownを主対象としており、科学出版に不可欠なLaTeXの構造的・実行可能な特性を失っている。本研究は科学PDFのページレベルからコンパイル可能なLaTeX形式への再構成に焦点を当て、TexOCR-Bench（ベンチマーク）とTexOCR-Train（大規模訓練コーパス）を構築し、専用モデルを提案する。
 
-## 2. Related Work（関連研究）
-ビデオ拡散モデルは Transformer ベースの DiT（Diffusion Transformer）アーキテクチャで急速に進歩しました。テキストベース動画編集は従来の反転ベース（DDIM inversion 等）から反転不要パラダイムへ転換しています。流れベース編集（FlowEdit 等）は反転の計算コストを回避しますが、ビデオへの拡張時の信号安定性が主要課題として残存していました。
+## 2. Method (手法)
+TexOCRモデルは2Bパラメータ規模で、教師あり微調整（SFT: Supervised Fine-Tuning）と強化学習（RL: Reinforcement Learning）を組み合わせて訓練。LaTeXユニットテストから導出される検証可能な報酬を使用し、compilability（コンパイル可能性）とreferential integrity（参照整合性）を直接的に強制する。RLベースのアプローチがSFT単独より構造的・コンパイル関連メトリクスで優れている。
 
-## 3. Problem Analysis（問題分析）
-FlowEdit の基本原理は「速度差分場（velocity differential field）」による編集軌跡の操舵です。しかし動画では密な時空間文脈が編集信号を希薄化します。マスク領域と IoU の低下が「ローカル CLIP-T スコア低下」と強く相関することを定量的に示し、2 つの独立した問題（空間不正確さ・振幅減衰）として形式化しています。
+## 3. Experiments & Results (実験と結果)
+TexOCR-Benchで21の最先端モデルを多次元評価。既存システムはconsistent section structure（一貫した見出し構造）、correct float placement（正確な図表配置）、valid label-reference links（有効なラベル参照リンク）などの重要な不変条件を頻繁に違反することが判明。TexOCRはこれらの指標で既存OCRシステムとLLMベースのアプローチを上回る。
 
-## 4. Spatial-aware Attention Refinement（SAR）
-SAR は 2 段階の交差注意マップ（cross-attention map）変調を実施します。テキストトークン変調：マスク内部で目標トークンを最大値に・非目標トークンを最小値に引き寄せ、編集を目標領域に正確に局在化。時空間変調：全フレーム間の注意重み一貫性を強制し、フレーム間ちらつきを防止。これらにより編集信号が意図した空間領域に安定して固定されます。
-
-## 5. Adaptive Magnitude Modulation（AMM）
-フレーム数 F の増加に伴う振幅減衰を補償するため、フレーム適応増幅係数 γ_F = γ·log(F)/log(F₀) を導入します。長いビデオほど強力な補正を自動的に適用し信号強度低下を防止。対比マップ（contrastive map）との組み合わせにより、意味的関連領域のみを選択的に強化します。
-
-## 6. Experiments（実験）
-評価データ：FiVE-Bench（419 編集ペア）・Anchor-Bench（74 編集ペア、多オブジェクト高難易度シーン）。比較手法：Tune-A-Video・Pix2Video・TokenFlow・FlowEdit・Wan-Edit 等。評価指標：テキスト整合性（Local CLIP-T）・構造保持（L.DINO）・時間一貫性（Warp-Error）。
-
-## 7. Results（結果）
-FlowAnchor は Local CLIP-T: 21.59、L.DINO: 0.8504、Warp-Err: 1.392 で全指標最高性能を達成。推論時間も全比較手法中最短。アブレーション：SAR 除去で局在化精度が顕著に低下、AMM 除去で信号強度が不十分になり編集効果が損失することを確認。
-
-## 8. Conclusion（結論）
-FlowAnchor は反転不要流れベース動画編集の「編集信号不安定性」を初めて形式化し、SAR・AMM の二機構で空間的固定化と振幅強化の両面から対処。訓練不要でプラグアンドプレイ的に既存モデルに適用可能なため、実用展開のハードルが低く映像編集の民主化に貢献します。
+## 4. Conclusion (結論)
+科学文書のデジタルアーカイブ・アクセシビリティ向上に貢献するTexOCRフレームワークを提案。コンパイル可能性と参照整合性を評価軸に取り入れたTexOCR-Benchは、将来の文書理解研究のための標準的評価環境として機能する。LaTeX編集支援ツールや学術データベース構築への応用が期待される。

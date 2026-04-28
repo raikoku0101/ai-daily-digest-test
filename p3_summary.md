@@ -1,6 +1,6 @@
-**3. DiffNR: Diffusion-Enhanced Neural Representation Optimization for Sparse-View 3D Tomographic Reconstruction**
-**著者**: Shiyan Su, Ruyi Zha, Danli Shi, Hongdong Li, Xuelian Cheng (2026)
-**arXiv**: https://arxiv.org/abs/2604.21518
+**3. UniGeo: Unifying Geometric Guidance for Camera-Controllable Image Editing via Video Models (ユニジオ：ビデオモデルによるカメラ制御可能な画像編集のための統一幾何学的ガイダンス)**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.17565
 
 **まとめ**:
-CT（コンピュータ断層撮影）のスパースビュー設定で発生するアーティファクト問題を、拡散モデルの事前知識で解決する DiffNR を提案（AAAI 2026 採択）。単一ステップ拡散モデル SliceFixer が「疑似参照ボリューム（pseudo-reference volume）」を生成し、神経表現（NeRF・3D Gaussian）最適化の補助3D知覚監督として機能。従来の反復的ノイズ除去に比べて効率的で、平均 PSNR +3.99 dB の改善を実現。
+UniGeoはカメラポーズ変化に対して幾何学的一貫性を保ちながら新規視点画像を生成するフレームワーク。従来の断片的な幾何学的ガイダンス（点群の単純注入等）の問題を、表現層・アーキテクチャ層・損失関数層の3段階で統一的に解決する。Frame-Decoupled Point Cloud Injection、Geometric Anchor Attention、Trajectory-Endpoint Geometric Supervisionの三モジュールを組み合わせることで、LPIPS を 0.3008→0.2377、PSNR を 16.95→17.82 に改善し既存手法を一貫して上回った。
