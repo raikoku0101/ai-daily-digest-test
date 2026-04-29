@@ -1,6 +1,6 @@
-**5. VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation**
-**著者**: VLAA-GUI Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.21375
+**5. TexOCR: Advancing Document OCR Models for Compilable Page-to-LaTeX Reconstruction (テックスOCR：コンパイル可能なページからLaTeX再構成のためのドキュメントOCRモデル)**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.22880
 
 **まとめ**:
-自律 GUI エージェントの「早期終了（フォールスサクセス）」と「繰り返しループ」という二大課題を解決するため、完全性検証器・ループ破壊器・検索エージェントの 3 モジュールからなる VLAA-GUI フレームワークを提案。OSWorld で 77.5% の成功率を達成し、初めて人間レベル性能（72.4%）を複数バックボーンで超過。Claude Opus 4.6 / Gemini 3.1 Pro 等が人間を超える。
+科学 PDF のページレベルからコンパイル可能な LaTeX への再構成に特化した研究。既存の OCR システムが一貫した見出し構造・正確な図表配置・有効なラベル参照などの重要な不変条件を頻繁に違反することを、TexOCR-Bench（21の最先端モデルを多次元評価）で実証。2B パラメータの TexOCR モデルは SFT と LaTeX ユニットテスト由来の検証可能な報酬を用いた強化学習（RL）を組み合わせ、コンパイル可能性と参照整合性（Referential Integrity）を直接的に強制することで既存手法を上回った。

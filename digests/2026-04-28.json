@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-28",
+  "content": "# AI Daily Digest — 2026-04-28\n\n## 今日のハイライト\n- **Claude Code v2.1.121 リリース**: `alwaysLoad` MCP設定・`claude plugin prune`・PostToolUseフックによる出力上書きなど多数の機能追加。フルスクリーンUXも大幅改善されAI開発ワークフロー全体の生産性が向上。\n- **マルチエージェント組織化の新フレームワーク OMC (65 upvotes)**: エージェントを「人材(Talent)」として管理し企業組織のように動的チーム編成するアーキテクチャが登場。複雑な業務自動化の実用化を大きく前進させる可能性がある。\n- **VLAモデルの安全性サーベイ (37 upvotes)**: 物理ロボット制御AIへの安全脅威を包括的に整理した論文が公開。AI規制・産業展開の観点から、ロボットAIのセキュリティ設計を考える上で必読の内容。\n\n\n## Claude Code / Anthropic アップデート\n\n**v2.1.121 (2025-04-28)**\n- `alwaysLoad` オプションをMCPサーバー設定に追加 — 特定ツールを常時利用可能にすることで、ツール呼び出しの安定性が向上\n- `claude plugin prune` コマンド追加でオーファン依存を自動削除、プラグイン管理が効率化\n- `/skills` にタイプ絞り込み検索を追加、PostToolUse フックがツール出力を上書き可能に\n- フルスクリーンモード改善（スクロールジャンプ解消・ダイアログスクロール対応・長URL クリック可能）、メモリリークや MCP 接続のバグ多数修正\n\n**v2.1.119 (2025-04-23)**\n- `/config` 設定が `~/.claude/settings.json` に永続保存されるように変更 — セッション跨ぎで設定が失われなくなる\n- `prUrlTemplate` 設定でカスタムコードレビューURL指定が可能、`CLAUDE_CODE_HIDE_CWD` 環境変数追加\n- `--from-pr` が GitLab/Bitbucket URL に対応、PowerShell ツールコマンドの自動承認サポート\n- フック出力に `duration_ms` 追加、ペースト・MCP OAuth・スラッシュコマンド・プラグインの複数バグ修正\n\n**v2.1.118 (2025-04-23)**\n- vim ビジュアルモード（`v`）とビジュアルライン（`V`）を追加 — キーボード操作派に大幅な操作性向上\n- `/cost` と `/stats` を `/usage` に統合、`/theme` からカスタムテーマ作成・JSONで直接編集も可能\n- フックが `type: \"mcp_tool\"` で MCP ツールを呼び出せるように拡張、`DISABLE_UPDATES` 環境変数追加\n- OAuth・MCP・テーマ・パフォーマンス関連の複数バグ修正\n\n## 注目論文 TOP 10\n\n**1. スキルから人材へ：異質エージェントを現実企業として組織化する** | 👍 65 upvotes | https://arxiv.org/abs/2604.22446\n🎯 背景・問題: マルチエージェントシステムでは動的なチーム編成や役割管理が困難で、固定的な構成では複雑タスクに対応できない\n🔧 手法: 「Talent」と呼ぶポータブルなエージェントIDと階層的意思決定プロセスを組み合わせたOneManCompany(OMC)フレームワークを提案\n📊 結果: 現実企業の組織構造を模したチーム動的編成・ガバナンス・改善サイクルをシミュレーションで実証\n💡 意義・応用: 企業内自動化や大規模タスク分解において、人間組織に近い柔軟なエージェント運用が実現可能になる\n\n**2. ReVSI：VLMの3D推論を正確に評価するための視覚的空間知能ベンチマーク再構築** | 👍 48 upvotes | https://arxiv.org/abs/2604.24300\n🎯 背景・問題: 既存の視空間知能ベンチマークはアノテーションの欠陥やフレームサンプリング条件のばらつきで評価精度が低い\n🔧 手法: 改良されたアノテーションと制御されたフレームサンプリング条件で再検証されたベンチマーク(ReVSI)を構築\n📊 結果: 既存評価との相関を維持しつつ、より安定した測定値でVLMの3D推論能力を正確に評価\n💡 意義・応用: ロボティクスや自動運転向けVLM開発において信頼性の高い評価基盤を提供する\n\n**3. Vision-Language-Action Safety：VLAモデルの脅威・課題・評価・対策の包括的調査** | 👍 37 upvotes | https://arxiv.org/abs/2604.23775\n🎯 背景・問題: 物理ロボットを制御するVLA(Vision-Language-Action)モデルはデータ汚染や敵対的攻撃など多様な安全脅威に晒されている\n🔧 手法: データ汚染・敵対的攻撃・分布シフトなど複数の脅威カテゴリを体系的に整理し統一的な評価フレームワークを提案\n📊 結果: 安全課題と既存対策を横断的にマッピングし、研究上の空白領域を明確化\n💡 意義・応用: 医療・製造・家庭向けロボット展開において安全なVLA設計の基盤となる重要ロードマップ\n\n**4. Tuna-2：ビジョンエンコーダ不要のピクセル埋め込みで実現するマルチモーダル理解と生成** | 👍 25 upvotes | https://arxiv.org/abs/2604.24763\n🎯 背景・問題: 既存マルチモーダルモデルは事前学習済みビジョンエンコーダに依存しており、アーキテクチャの柔軟性と汎化性に制限がある\n🔧 手法: ピクセル埋め込みから直接視覚理解と生成を行う統合マルチモーダルモデル Tuna-2 を提案\n📊 結果: ビジョンエンコーダなしで視覚理解・生成タスク両方において最先端の性能を達成\n💡 意義・応用: 軽量デバイスや新しいモダリティへの拡張が容易になり、次世代エンドツーエンドAI応用を促進\n\n**5. ClawMark：マルチターン・マルチ日・マルチモーダル協働エージェント向けリビングワールドベンチマーク** | 👍 22 upvotes | https://arxiv.org/abs/2604.23781\n🎯 背景・問題: 既存のエージェントベンチマークは単一セッション・静的環境が多く、現実業務の継続的・進化的な協働作業を評価できない\n🔧 手法: メール・カレンダー・スプレッドシートなど複数サービスにまたがる多日間の協働ワークフローをシミュレートするベンチマークを構築\n📊 結果: 複数エージェントが継続的に環境状態を変化させながらタスクを完遂する能力を評価可能に\n💡 意義・応用: 実際のオフィス自動化や長期エージェント展開の評価基盤として直接活用できる\n\n**6. DIVERT：多様性誘導ユーザーシミュレーションによる効率的エージェント評価** | 👍 9 upvotes | https://arxiv.org/abs/2604.21480\n🎯 背景・問題: LLMエージェントの評価はコスト・時間がかかり、会話パスの網羅性を確保しながら効率的にテストすることが難しい\n🔧 手法: 会話プレフィックスの再利用と分岐軌跡による多様な対話パス探索を組み合わせたカバレッジ誘導フレームワークDIVERTを提案\n📊 結果: 従来手法より少ないシミュレーション回数で高いカバレッジを達成し、評価コストを大幅削減\n💡 意義・応用: チャットボットや対話エージェントの品質保証において、スケーラブルな自動評価パイプラインを実現する\n\n**7. Stabilizing Efficient Reasoning with Step-Level Advantage Selection** | 👍 4 upvotes | https://arxiv.org/abs/2604.24003\n🎯 背景・問題: 効率的推論のためのトレーニングでは学習不安定性が生じ、精度と推論効率のトレードオフ最適化が困難\n🔧 手法: ステップレベルで推論ステップへの信頼度を選択的に調整するStep-Level Advantage Selection手法を提案\n📊 結果: 数学タスクで精度-効率トレードオフを改善し、学習安定性を向上\n💡 意義・応用: 推論コスト削減が求められる実用LLMアプリケーションで、より安定した高効率モデルの訓練に貢献\n\n**8. For-Value：LLM/VLMファインチューニング向け効率的前向きデータ評価** | 👍 3 upvotes | https://arxiv.org/abs/2508.10180\n🎯 背景・問題: 学習データの価値推定には勾配計算が必要で計算コストが高く、大規模LLM/VLMへのスケールが困難\n🔧 手法: 最終隠れ表現と予測誤差を用いた前向きパスのみでデータ価値を効率推定するFor-Valueフレームワークを提案\n📊 結果: 勾配計算なしでバッチ処理可能、既存手法と同等精度のデータ価値推定をより低コストで実現\n💡 意義・応用: 大規模モデルのデータ選択・カリキュラム学習において実用的なデータ品質管理ツールとなる\n\n**9. OmniShotCut：ショットクエリTransformerによる総合的関係型ショット境界検出** | 👍 3 upvotes | https://arxiv.org/abs/2604.24762\n🎯 背景・問題: 動画ショット境界検出は孤立した境界判定に留まりがちで、ショット間の関係性を活かした構造的予測が不十分\n🔧 手法: ショットクエリベースの高密度動画Transformerで境界検出を構造的関係予測として定式化、合成トランジション生成も導入\n📊 結果: 包括的ベンチマークで既存手法を上回る性能を達成\n💡 意義・応用: 映像編集自動化・コンテンツ検索・動画要約システムの精度向上に直接寄与する\n\n**10. ReTAS：弁証法的アライメントによるエージェントの行為者-観察者非対称性の制御** | 👍 2 upvotes | https://arxiv.org/abs/2604.19548\n🎯 背景・問題: LLMエージェントは自己の失敗を外部要因に帰属させ他者の失敗を内的要因に帰属させる認知バイアスを持ち、マルチエージェント協調を阻害する\n🔧 手法: 弁証法的推論を用いてエージェントに複数視点からの判断を促すReTASフレームワークを提案\n📊 結果: 視点不変な意思決定が改善され、マルチエージェント間の公平な評価能力が向上\n💡 意義・応用: 協調エージェントシステムの信頼性向上や、AI審査・デバッグシステムの公正性確保に応用可能\n\n",
+  "fetched_at": "2026-04-28T10:54:38.248087+00:00",
+  "papers": [
+    {
+      "title": "From Skills to Talent: Organising Heterogeneous Agents as a Real-World Company",
+      "upvotes": 65,
+      "paper_id": "2604.22446",
+      "abstract": "OneManCompany (OMC) introduces an organizational framework for multi-agent systems that enables dynamic team assembly, governance, and improvement through portable agent identities called Talents and hierarchical decision-making processes."
+    },
+    {
+      "title": "ReVSI: Rebuilding Visual Spatial Intelligence Evaluation for Accurate Assessment of VLM 3D Reasoning",
+      "upvotes": 48,
+      "paper_id": "2604.24300",
+      "abstract": "ReVSI addresses flaws in current spatial intelligence evaluation by creating a validated benchmark with improved annotations and controlled frame sampling conditions for vision-language models."
+    },
+    {
+      "title": "Vision-Language-Action Safety: Threats, Challenges, Evaluations, and Mechanisms",
+      "upvotes": 37,
+      "paper_id": "2604.23775",
+      "abstract": "Survey of safety challenges in Vision-Language-Action models covering threats from data poisoning to adversarial attacks, requiring unified approaches across multiple domains for secure deployment."
+    },
+    {
+      "title": "Tuna-2: Pixel Embeddings Beat Vision Encoders for Multimodal Understanding and Generation",
+      "upvotes": 25,
+      "paper_id": "2604.24763",
+      "abstract": "Tuna-2 is a unified multimodal model performing visual understanding and generation directly from pixel embeddings without pretrained vision encoders, achieving state-of-the-art performance."
+    },
+    {
+      "title": "ClawMark: A Living-World Benchmark for Multi-Turn, Multi-Day, Multimodal Coworker Agents",
+      "upvotes": 22,
+      "paper_id": "2604.23781",
+      "abstract": "Benchmark for evaluating language-model agents in multi-day collaborative workflows with evolving environmental states across multiple service domains like email, calendar, and spreadsheets."
+    },
+    {
+      "title": "Efficient Agent Evaluation via Diversity-Guided User Simulation",
+      "upvotes": 9,
+      "paper_id": "2604.21480",
+      "abstract": "DIVERT is a coverage-guided user simulation framework that efficiently evaluates large language models by reusing conversation prefixes and exploring diverse interaction paths through branching trajectories."
+    },
+    {
+      "title": "For-Value: Efficient Forward-Only Data Valuation for finetuning LLMs and VLMs",
+      "upvotes": 3,
+      "paper_id": "2508.10180",
+      "abstract": "For-Value framework efficiently estimates data value using final hidden representations and prediction errors, enabling scalable batch processing without gradient computations for LLMs and VLMs."
+    },
+    {
+      "title": "OmniShotCut: Holistic Relational Shot Boundary Detection with Shot-Query Transformer",
+      "upvotes": 3,
+      "paper_id": "2604.24762",
+      "abstract": "OmniShotCut formulates shot boundary detection as structured relational prediction using a shot query-based dense video Transformer with synthetic transition generation and comprehensive benchmark."
+    },
+    {
+      "title": "Taming Actor-Observer Asymmetry in Agents via Dialectical Alignment",
+      "upvotes": 2,
+      "paper_id": "2604.19548",
+      "abstract": "Large language model agents exhibit cognitive bias in error attribution; ReTAS framework uses dialectical reasoning to promote perspective-invariant decision making in multi-agent systems."
+    },
+    {
+      "title": "Stabilizing Efficient Reasoning with Step-Level Advantage Selection",
+      "upvotes": 4,
+      "paper_id": "2604.24003",
+      "abstract": "Step-level Advantage Selection addresses training instability in efficient reasoning by selectively adjusting confidence in reasoning steps, improving accuracy-efficiency trade-off in mathematical tasks."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.121",
+      "published_at": "2025-04-28",
+      "body": "Added `alwaysLoad` option to MCP server config for always-available tools. Added `claude plugin prune` to remove orphaned dependencies. Added type-to-filter search to `/skills`. PostToolUse hooks can now replace tool output. Fullscreen mode improvements: typing doesn't jump scroll, dialogs are scrollable, long URLs clickable. SDK supports `CLAUDE_CODE_FORK_SUBAGENT=1` in non-interactive sessions. Multiple bug fixes including memory leaks and MCP connection issues."
+    },
+    {
+      "tag_name": "v2.1.119",
+      "published_at": "2025-04-23",
+      "body": "`/config` settings now persist to `~/.claude/settings.json`. Added `prUrlTemplate` setting for custom code-review URLs. Added `CLAUDE_CODE_HIDE_CWD` env variable. `--from-pr` accepts GitLab/Bitbucket URLs. `--print` mode honors agent's `tools:` and `disallowedTools:`. PowerShell tool commands can be auto-approved. Hooks include `duration_ms`. Multiple fixes for pasting, MCP OAuth, slash commands, and plugins."
+    },
+    {
+      "tag_name": "v2.1.118",
+      "published_at": "2025-04-23",
+      "body": "Added vim visual mode (`v`) and visual-line mode (`V`). Merged `/cost` and `/stats` into `/usage`. Create custom themes from `/theme` or edit JSON in `~/.claude/themes/`. Hooks can invoke MCP tools via `type: \"mcp_tool\"`. Added `DISABLE_UPDATES` env var. Auto mode includes `\"$defaults\"` for custom rules. Multiple fixes for OAuth, MCP, themes, and performance."
+    }
+  ]
+}

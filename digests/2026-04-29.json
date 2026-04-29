@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-29",
+  "content": "# AI Daily Digest — 2026-04-29\n\n## 今日のハイライト\n- **マルチエージェント組織化の革新 (97 upvotes)**: 「From Skills to Talent」論文が企業組織モデルを AI エージェントに適用する新フレームワークを提案。固定チーム構造からの脱却により、動的で適応力の高いマルチエージェントシステムを実現し、複雑タスクでの成功率を大幅向上させた。\n- **Claude Code v2.1.122 リリース**: Bedrock サービスティア選択機能（`default`/`flex`/`priority`）の追加や画像リサイズバグの修正など実用的な改善が多数。同日 v2.1.121 もリリースされ、MCP `alwaysLoad` オプションや大規模メモリリーク修正も提供。\n- **SFT ハルシネーション抑制の新知見**: ファインチューニングがなぜハルシネーションを増やすかの原因を特定し、継続学習技術による修正策を実証。LLM カスタマイズの信頼性向上に直結する実践的インサイトを提供。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.122 (2025-04-28)\n\n**主要機能**\n- `ANTHROPIC_BEDROCK_SERVICE_TIER` 環境変数を追加。`default` / `flex` / `priority` の3つのBedrock サービスティアを選択可能になり、`X-Amzn-Bedrock-Service-Tier` ヘッダーとして送信される。\n\n**バグ修正**\n- `/resume` 検索ボックスに PR URL を貼り付けると、その PR を作成したセッションを検索できるよう改善（GitHub / GitHub Enterprise / GitLab / Bitbucket 対応）。\n- `/mcp` が手動追加サーバーと同一 URL を持つ claude.ai コネクターを非表示にする問題を修正。重複削除のヒントも表示するよう改善。\n- `/branch` が巻き戻しタイムライン由来エントリを含むセッションから fork を作成すると \"tool_use ids were found without tool_result blocks\" で失敗するバグを修正。\n- 新しいモデルに送信される画像が正しい最大値 2000px ではなく 2576px にリサイズされていたバグを修正。\n- Voice モード: Caps Lock にバインドされたキーバインドがターミナルでは Caps Lock をキーイベントとして届けないためエラーを表示するよう変更。\n\n**ユーザーへの影響**: Bedrock ユーザーはコスト最適化のためティアを柔軟に切り替えられるようになる。PR 追跡や画像品質の問題も解決。\n\n---\n\n### v2.1.121 (2025-04-28)\n\n**主要機能**\n- MCP サーバー設定に `alwaysLoad` オプションを追加。`true` にするとそのサーバーの全ツールがツール検索の遅延ロードをスキップし、常に利用可能になる。\n- `claude plugin prune` コマンドを追加。孤立した自動インストール済みプラグイン依存を削除。`plugin uninstall --prune` でカスケード削除も可能。\n- `/skills` にテキストフィルタ検索ボックスを追加。長いリストでもスクロールせずスキルを検索可能。\n- `PostToolUse` フックが `hookSpecificOutput.updatedToolOutput` 経由で全ツールの出力を置換できるようになった。\n\n**バグ修正**\n- フルスクリーンモードでプロンプト入力時、過去の出力を読むためにスクロールアップした後もスクロール位置が維持されるよう修正。\n- セッション中に大量の画像を処理した際のメモリ増加（数GB RSS）のバグを修正。\n- `/usage` が大規模なトランスクリプト履歴を持つマシンで最大 ~2GB のメモリをリークするバグを修正。\n\n**ユーザーへの影響**: MCP ツールの常時ロードにより複雑なワークフローが安定。メモリリーク修正で長時間セッションの安定性が大幅向上。\n\n---\n\n### v2.1.119 (2025-04-23)\n\n**主要機能**\n- `/config` 設定（テーマ、エディターモード、verbose 等）が `~/.claude/settings.json` に永続化され、プロジェクト/ローカル/ポリシーのオーバーライド優先順位に参加するようになった。\n- `prUrlTemplate` 設定を追加。フッターの PR バッジを github.com ではなくカスタムコードレビュー URL に向けられる。\n- `CLAUDE_CODE_HIDE_CWD` 環境変数を追加。起動ロゴにワーキングディレクトリを非表示にできる。\n- `--from-pr` が GitLab MR / Bitbucket PR / GitHub Enterprise PR URL を受け付けるようになった。\n- `--print` モードがエージェントの `tools:` / `disallowedTools:` フロントマターを尊重するよう修正。\n\n**バグ修正**\n- CRLF コンテンツ（Windows クリップボード、Xcode コンソール）を貼り付けると各行間に余分な空行が挿入されていたバグを修正。\n\n**ユーザーへの影響**: 設定の永続化により環境をまたいで一貫した開発体験が得られる。複数プラットフォームの PR ワークフローも統一。\n\n## 注目論文 TOP 10\n\n**1. From Skills to Talent: Organising Heterogeneous Agents as a Real-World Company** | 97 upvotes | https://arxiv.org/abs/2604.22446\n🎯 **背景**: 個々のエージェントは急速に進化しているが、マルチエージェントシステムは固定されたチーム構造・密結合な連携ロジック・セッション限定の学習に縛られており、現実の組織が持つ柔軟性に欠ける。\n🔧 **手法**: 企業の組織モデルを模倣し、スキルを持つ異種エージェントを「タレント」として動的に組み合わせるフレームワークを提案。採用・役割割り当て・セッションを超えた学習継承を可能にする。\n📊 **結果**: 複雑なマルチステップタスクにおいて、固定チーム構造のベースラインを大幅に上回る成功率を達成。スキル再利用率と適応速度が向上。\n💡 **意義**: マルチエージェント AI を「固定ツール集合」から「動的組織」へ移行させる概念的・実装的枠組みを提供。企業向け AI システム設計に直接応用可能。\n⚠️ **限界**: 大規模な実世界企業環境での検証は限定的。エージェント間の衝突解決や責任追跡の仕組みが未成熟。\n\n---\n\n**2. Sapiens2** | 7 upvotes | https://arxiv.org/abs/2604.21681\n🎯 **背景**: 人間中心のビジョンタスク（姿勢推定・セグメンテーション・深度推定など）では、高解像度・汎化性・多様なシナリオへの対応が課題。\n🔧 **手法**: 0.4B〜5B パラメータのスケーラブルな高解像度 Transformer ファミリーを設計。ネイティブ 1K 解像度対応に加え、4K 対応の階層型バリアントも提供。\n📊 **結果**: 複数の人間中心ビジョンベンチマークで最先端性能を達成。特に高解像度シナリオでの出力品質が大幅向上。\n💡 **意義**: 単一モデルファミリーで姿勢・外観・空間認識を統合的に扱える汎用的な人間ビジョン基盤モデルを提供。\n⚠️ **限界**: パラメータ規模が大きいため推論コストが高く、エッジデバイスでのリアルタイム応用には課題。\n\n---\n\n**3. UniGeo: Unifying Geometric Guidance for Camera-Controllable Image Editing via Video Models** | 7 upvotes | https://arxiv.org/abs/2604.17565\n🎯 **背景**: カメラ制御可能な画像編集（視点変換）では、幾何学的整合性を保ちながら新視点画像を合成することが難しく、既存手法は点群注入など断片的な幾何学的ガイダンスに依存。\n🔧 **手法**: 複数レベルの幾何学的ガイダンス（深度・法線・点群）を統一したフレームワーク UniGeo を提案。ビデオ生成モデルを活用してクロスビューの一貫性を確保。\n📊 **結果**: 視点変換・3D 整合性の両面で既存手法を上回る結果を達成。特に大視点変化シナリオでの品質が改善。\n💡 **意義**: 断片的だった幾何学的ガイダンスを統合することで、より汎用的で高品質な画像編集パイプラインを実現。\n⚠️ **限界**: 複雑な遮蔽シナリオやテクスチャの少ない領域での精度低下が残課題。\n\n---\n\n**4. Why Fine-Tuning Encourages Hallucinations and How to Fix It** | 6 upvotes | https://arxiv.org/abs/2604.15574\n🎯 **背景**: LLM はファインチューニング（SFT）で新しい事実情報に触れることで、事前学習で獲得した知識に関するハルシネーションが増加するという逆説的な問題がある。\n🔧 **手法**: 継続学習（Continual Learning）の手法—特に知識の選択的保持と忘却制御—を SFT 誘発ハルシネーションの抑制に適用。重みの正則化・再生メモリ等を検証。\n📊 **結果**: 継続学習技術を適用することで SFT 後のハルシネーション率を統計的に有意に削減。事実整合性スコアが改善。\n💡 **意義**: LLM のファインチューニングパイプラインへの実践的な改善指針を提供。産業用モデルカスタマイズの信頼性向上に直結。\n⚠️ **限界**: 特定のモデルサイズ・データセットでの検証が中心であり、スケール依存の効果が未解明。\n\n---\n\n**5. TexOCR: Advancing Document OCR Models for Compilable Page-to-LaTeX Reconstruction** | 6 upvotes | https://arxiv.org/abs/2604.22880\n🎯 **背景**: 既存の文書 OCR はプレーンテキストや Markdown を対象とし、科学論文出版に不可欠な LaTeX の構造的・実行可能な特性を無視している。\n🔧 **手法**: 科学 PDF のページレベルでのコンパイル可能な LaTeX 再構成を研究し、ベンチマーク TexOCR-Bench と大規模学習コーパス TexOCR-Train を構築。専用 OCR モデルを訓練。\n📊 **結果**: 提案モデルが既存の OCR システムと LLM ベースのアプローチを LaTeX コンパイル成功率・構造精度の両面で上回る。\n💡 **意義**: 科学文書のデジタルアーカイブ・アクセシビリティ向上に貢献。LaTeX 編集支援ツールへの応用も期待。\n⚠️ **限界**: 複雑な数式や特殊パッケージを多用する文書では再構成精度が低下する場合がある。\n\n---\n\n**6. How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models** | 5 upvotes | https://arxiv.org/abs/2604.21106\n🎯 **背景**: ループ型（深さ再帰型）言語モデルは推論計算量を増やせるが、繰り返し回数とパラメータ数のトレードオフが定量的に未解明だった。\n🔧 **手法**: 繰り返し回数 r ∈ {1, 2, 4, 8} で 116 の事前学習ランをアイソ深度スイープ実施。約 50 倍の学習計算量スパンで合同スケーリング則を適合。\n📊 **結果**: 1 回の追加繰り返しが等価ユニークパラメータ数として定量化可能であることを示した。計算予算に応じた最適繰り返し回数の推定式を導出。\n💡 **意義**: テスト時計算スケーリングの設計原則を提供。同一パラメータ予算でより効率的なモデルアーキテクチャ選択が可能になる。\n⚠️ **限界**: 特定のモデルサイズ範囲・データセットでの実験に限定されており、極大規模モデルへの外挿精度は不明。\n\n---\n\n**7. PageGuide: Browser extension to assist users in navigating a webpage and locating information** | 4 upvotes | https://arxiv.org/abs/2604.23772\n🎯 **背景**: Web ブラウズ時に関連情報を素早く見つけたり、複雑なマルチステップタスクを完了したりすることは依然困難で、既存 AI アシスタントは汎用的すぎてページ固有のナビゲーション支援が不十分。\n🔧 **手法**: ブラウザ拡張機能として動作する PageGuide を開発。ページ構造を解析し、ユーザーの意図に合わせた動的ナビゲーションガイダンスをリアルタイムで提供。\n📊 **結果**: ユーザースタディにて情報探索時間の短縮と成功率向上を確認。特に複雑な業務系 Web アプリでの効果が顕著。\n💡 **意義**: AI 支援をクラウドではなくブラウザ内で完結させることでプライバシーと応答速度を両立。実用的な Web アクセシビリティ向上ツール。\n⚠️ **限界**: 動的に生成されるページや SPA（シングルページアプリ）での解析精度に課題が残る。\n\n---\n\n**8. Learning to Identify Out-of-Distribution Objects for 3D LiDAR Anomaly Segmentation** | 2 upvotes | https://arxiv.org/abs/2604.23604\n🎯 **背景**: 自動運転・ロボット知覚では未知物体の検出が安全性に直結するが、3D LiDAR での異常セグメンテーション研究は 2D ビジョンに比べて著しく遅れている。\n🔧 **手法**: 3D LiDAR 点群に特化した OOD（Out-of-Distribution）物体識別手法を提案。2D の後処理テクニックを 3D に適用するのではなく、3D 固有の特徴空間で異常検出を学習。\n📊 **結果**: 自動運転データセットでの OOD セグメンテーション精度が既存の 2D 転用アプローチを上回る。\n💡 **意義**: 自動運転の安全性向上に直結する 3D 認知の未解決問題に取り組み、実用的なベースラインを提供。\n⚠️ **限界**: 特定のセンサー構成・環境条件でのみ評価されており、天候変化等へのロバスト性が未検証。\n\n---\n\n**9. ATTN-FIQA: Interpretable Attention-based Face Image Quality Assessment with Vision Transformers** | 2 upvotes | https://arxiv.org/abs/2604.22841\n🎯 **背景**: 顔画像品質評価（FIQA）は顔認識システムの信頼性確保に必須だが、既存手法は複数フォワードパス・逆伝播等の計算コストが高く、解釈性にも乏しい。\n🔧 **手法**: Vision Transformer のアテンション機構を活用した解釈可能な FIQA 手法 ATTN-FIQA を提案。単一フォワードパスで品質スコアと根拠となるアテンションマップを同時生成。\n📊 **結果**: 標準 FIQA ベンチマークで競合手法と同等以上の精度を、大幅に低い計算コストで達成。解釈性も定量的に向上。\n💡 **意義**: 顔認識パイプラインの品質管理を効率化。アテンションの可視化により品質低下要因（遮蔽・照明等）の特定が容易になる。\n⚠️ **限界**: 評価データセットが限定的であり、多様な民族・年齢・照明条件での汎化性の検証が必要。\n\n---\n\n**10. Improving Robustness of Tabular Retrieval via Representational Stability** | 1 upvote | https://arxiv.org/abs/2604.24040\n🎯 **背景**: Transformer ベースのテーブル検索は構造化テーブルをトークン列に平坦化するが、CSV・TSV・HTML・Markdown・DDL など異なるシリアライゼーション形式で埋め込みが大きく異なり、検索精度が不安定になる。\n🔧 **手法**: 意味的に等価なシリアライゼーション間で表現を安定化させる学習戦略「Representational Stability」を提案。対照学習に基づき形式不変な埋め込みを学習。\n📊 **結果**: 複数のベンチマークと検索器ファミリーにわたってシリアライゼーション感度が統計的に有意に低下し、検索ロバスト性が向上。\n💡 **意義**: 実務で多様なデータ形式が混在する企業データベースへの検索応用において、再現性の高いシステム構築を可能にする。\n⚠️ **限界**: 学習データのシリアライゼーションの多様性に大きく依存しており、学習時に未見の形式への汎化は限定的。\n\n",
+  "fetched_at": "2026-04-28T22:30:23.083243+00:00",
+  "papers": [
+    {
+      "title": "From Skills to Talent: Organising Heterogeneous Agents as a Real-World Company",
+      "upvotes": 97,
+      "paper_id": "2604.22446",
+      "abstract": "Individual agent capabilities have advanced rapidly through modular skills and tool integrations, yet multi-agent systems remain constrained by fixed team structures, tightly coupled coordination logic, and session-bound learning."
+    },
+    {
+      "title": "Sapiens2",
+      "upvotes": 7,
+      "paper_id": "2604.21681",
+      "abstract": "We present Sapiens2, a model family of high-resolution transformers for human-centric vision focused on generalization, versatility, and high-fidelity outputs. Our model sizes range from 0.4 to 5 billion parameters, with native 1K resolution and hierarchical variants that support 4K."
+    },
+    {
+      "title": "UniGeo: Unifying Geometric Guidance for Camera-Controllable Image Editing via Video Models",
+      "upvotes": 7,
+      "paper_id": "2604.17565",
+      "abstract": "Camera-controllable image editing aims to synthesize novel views of a given scene under varying camera poses while strictly preserving cross-view geometric consistency."
+    },
+    {
+      "title": "Why Fine-Tuning Encourages Hallucinations and How to Fix It",
+      "upvotes": 6,
+      "paper_id": "2604.15574",
+      "abstract": "Large language models are prone to hallucinating factually incorrect statements. A key source of these errors is exposure to new factual information through supervised fine-tuning (SFT), which can increase hallucinations w.r.t. knowledge acquired during pre-training."
+    },
+    {
+      "title": "TexOCR: Advancing Document OCR Models for Compilable Page-to-LaTeX Reconstruction",
+      "upvotes": 6,
+      "paper_id": "2604.22880",
+      "abstract": "Existing document OCR largely targets plain text or Markdown, discarding the structural and executable properties that make LaTeX essential for scientific publishing."
+    },
+    {
+      "title": "How Much Is One Recurrence Worth? Iso-Depth Scaling Laws for Looped Language Models",
+      "upvotes": 5,
+      "paper_id": "2604.21106",
+      "abstract": "We measure how much one extra recurrence is worth to a looped (depth-recurrent) language model, in equivalent unique parameters."
+    },
+    {
+      "title": "PageGuide: Browser extension to assist users in navigating a webpage and locating information",
+      "upvotes": 4,
+      "paper_id": "2604.23772",
+      "abstract": "Users browsing the web daily struggle to quickly locate relevant information in cluttered pages, complete unfamiliar multi-step tasks, and stay focused amid distracting content."
+    },
+    {
+      "title": "Learning to Identify Out-of-Distribution Objects for 3D LiDAR Anomaly Segmentation",
+      "upvotes": 2,
+      "paper_id": "2604.23604",
+      "abstract": "Understanding the surrounding environment is fundamental in autonomous driving and robotic perception. Distinguishing between known classes and previously unseen objects is crucial in real-world environments."
+    },
+    {
+      "title": "ATTN-FIQA: Interpretable Attention-based Face Image Quality Assessment with Vision Transformers",
+      "upvotes": 2,
+      "paper_id": "2604.22841",
+      "abstract": "Face Image Quality Assessment (FIQA) aims to assess the recognition utility of face samples and is essential for reliable face recognition (FR) systems."
+    },
+    {
+      "title": "Improving Robustness of Tabular Retrieval via Representational Stability",
+      "upvotes": 1,
+      "paper_id": "2604.24040",
+      "abstract": "Transformer-based table retrieval systems flatten structured tables into token sequences, making retrieval sensitive to the choice of serialization even when table semantics remain unchanged."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.122",
+      "published_at": "2025-04-28",
+      "body": "Added `ANTHROPIC_BEDROCK_SERVICE_TIER` environment variable to select a Bedrock service tier (`default`, `flex`, or `priority`), sent as the `X-Amzn-Bedrock-Service-Tier` header. Pasting a PR URL into the `/resume` search box now finds the session that created that PR (GitHub, GitHub Enterprise, GitLab, and Bitbucket). `/mcp` now shows claude.ai connectors hidden by a manually-added server with the same URL, with a hint to remove the duplicate. Fixed `/branch` producing forks that fail with \"tool_use ids were found without tool_result blocks\" when the source session contained entries from rewound timelines. Fixed images sent to newer models being resized to 2576px per side instead of the correct 2000px maximum. Voice mode: keybindings bound to Caps Lock now show an error since terminals don't deliver Caps Lock as a key event."
+    },
+    {
+      "tag_name": "v2.1.121",
+      "published_at": "2025-04-28",
+      "body": "Added `alwaysLoad` option to MCP server config — when `true`, all tools from that server skip tool-search deferral and are always available. Added `claude plugin prune` to remove orphaned auto-installed plugin dependencies; `plugin uninstall --prune` cascades. Added a type-to-filter search box to `/skills` so you can find a skill in long lists without scrolling. PostToolUse hooks can now replace tool output for all tools via `hookSpecificOutput.updatedToolOutput`. Fullscreen mode: typing into the prompt no longer jumps scroll back to the bottom after you've scrolled up to read earlier output. Fixed unbounded memory growth (multi-GB RSS) when processing many images in a session. Fixed `/usage` leaking up to ~2GB of memory on machines with large transcript histories."
+    },
+    {
+      "tag_name": "v2.1.119",
+      "published_at": "2025-04-23",
+      "body": "`/config` settings (theme, editor mode, verbose, etc.) now persist to `~/.claude/settings.json` and participate in project/local/policy override precedence. Added `prUrlTemplate` setting to point the footer PR badge at a custom code-review URL instead of github.com. Added `CLAUDE_CODE_HIDE_CWD` environment variable to hide the working directory in the startup logo. `--from-pr` now accepts GitLab merge-request, Bitbucket pull-request, and GitHub Enterprise PR URLs. `--print` mode now honors the agent's `tools:` and `disallowedTools:` frontmatter. Fixed pasting CRLF content (Windows clipboards, Xcode console) inserting an extra blank line between every line."
+    }
+  ]
+}

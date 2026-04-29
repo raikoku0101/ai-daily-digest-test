@@ -1,6 +1,6 @@
-**3. StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition**
-**著者**: StyleID Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.21689
+**3. UniGeo: Unifying Geometric Guidance for Camera-Controllable Image Editing via Video Models (ユニジオ：ビデオモデルによるカメラ制御可能な画像編集のための統一幾何学的ガイダンス)**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.17565
 
 **まとめ**:
-漫画・スケッチ・絵画などのスタイライゼーション下での顔認識において、既存の ArcFace・AdaFace が分布シフトにより誤認識する問題を解決するため、68名の人間判定から構築した StyleBench-H と合成教師信号 StyleBench-S、そして CLIP-L + LoRA + ArcFace 損失で訓練した StyleID モデルを提案。スタイル化下での TPR が ArcFace 76.5%→90.2% に向上し、未見の手法・アーティスト手描きスケッチでも強い汎化性を示した。スタイル不変顔認識の初の人間知覚較正ベンチマーク。
+UniGeoはカメラポーズ変化に対して幾何学的一貫性を保ちながら新規視点画像を生成するフレームワーク。従来の断片的な幾何学的ガイダンス（点群の単純注入等）の問題を、表現層・アーキテクチャ層・損失関数層の3段階で統一的に解決する。Frame-Decoupled Point Cloud Injection、Geometric Anchor Attention、Trajectory-Endpoint Geometric Supervisionの三モジュールを組み合わせることで、LPIPS を 0.3008→0.2377、PSNR を 16.95→17.82 に改善し既存手法を一貫して上回った。

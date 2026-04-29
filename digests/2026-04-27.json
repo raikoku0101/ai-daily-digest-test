@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-27",
+  "content": "# AI Daily Digest — 2026-04-27\n\n## 今日のハイライト\n- **LLaTiSA が時系列推論を革新 (81 upvotes)**: LLM による時系列データの理解を4段階の認知複雑度タクソノミーで体系化。83k サンプルの HiTSR データセットと視覚・数値統合モデルにより、LLM の時系列応用における精度と汎化性能を大幅向上させた。\n- **Claude Code v2.1.118-119 が同日2本リリース**: Vim ビジュアルモード追加・`/usage` への統合・カスタムテーマ機能・Hook から MCP ツール直接呼び出しなど大型機能追加。さらに設定の永続化・GitLab/Bitbucket 対応拡充と開発者体験を包括的に改善。\n- **WorldMark でインタラクティブ動画ワールドモデルの公平比較が初めて可能に**: Genie・YUME 等の急成長分野で各モデル固有のベンチマークによる比較不可能問題を解決。標準化された評価条件が研究加速の鍵となる。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.119 (2025-04-23)\n**主要機能**\n- `/config` 設定（テーマ・エディターモード・verbose 等）が `~/.claude/settings.json` に永続化され、プロジェクト／ローカル／ポリシーの優先順位に参加するようになった\n- `prUrlTemplate` 設定を追加：フッターの PR バッジを GitHub 以外のカスタムコードレビュー URL に向けられる\n- `CLAUDE_CODE_HIDE_CWD` 環境変数を追加：起動ロゴの作業ディレクトリ表示を非表示にできる\n- `--from-pr` が GitLab MR・Bitbucket PR・GitHub Enterprise PR URL を受け付けるようになった\n- `--print` モードが agent frontmatter の `tools:` / `disallowedTools:` を尊重（インタラクティブモードと同動作）\n- `--agent <name>` が組み込み agent 定義の `permissionMode` を尊重\n- PowerShell ツールコマンドの自動承認が Bash と同様に機能\n\n**ユーザーへの影響**: 設定の永続化により、セッションをまたいで環境設定を維持できる。GitLab / Bitbucket ユーザーへの対応拡充。\n\n---\n\n### v2.1.118 (2025-04-23)\n**主要機能**\n- Vim ビジュアルモード（`v`）とビジュアルラインモード（`V`）を追加（選択・演算子・視覚フィードバック対応）\n- `/cost` と `/stats` を `/usage` に統合（両コマンドは引き続き使用可能、対応タブが開く）\n- `/theme` からカスタムテーマの作成・切り替えが可能に。`~/.claude/themes/` JSON を手編集も可。プラグインも `themes/` ディレクトリでテーマを配布できる\n- Hook から MCP ツールを直接呼び出せる（`type: \"mcp_tool\"`）\n- `DISABLE_UPDATES` 環境変数を追加：手動 `claude update` 含むすべての更新パスをブロック（`DISABLE_AUTOUPDATER` より厳格）\n- WSL on Windows が `wslInheritsWindowsSettings` ポリシーキーで Windows 側の管理設定を継承可能に\n\n**ユーザーへの影響**: Vim ユーザーの操作性向上。テーマカスタマイズの大幅な拡張。企業環境での更新制御が柔軟に。\n\n---\n\n### v2.1.117 (2025-04-22)\n**主要機能**\n- `CLAUDE_CODE_FORK_SUBAGENT=1` でサードパーティビルドでもフォーク型サブエージェントを有効化\n- `--agent` 経由のメインスレッドエージェントセッションで agent frontmatter の `mcpServers` をロード\n- `/model` 選択がプロジェクトピンのモデルがあってもリスタート後に永続化。ヘッダーがアクティブモデルのソース（プロジェクト or 管理設定）を表示\n- `/resume` コマンドが大規模な古いセッションを再読み込み前に要約するよう提案（`--resume` の既存動作に一致）\n- ローカルと claude.ai MCP サーバーが両方設定されている場合の起動を高速化（並行接続がデフォルトに）\n\n**ユーザーへの影響**: 大規模エージェントプロジェクトの管理が向上。MCP を多用する環境での起動速度が改善。\n\n## 注目論文 TOP 10\n\n**1. LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics** | 81 upvotes | https://arxiv.org/abs/2604.17295\n🎯**背景**: LLM による時系列の包括的理解は困難で、断片的なタスク定義と曖昧なベンチマークが課題。認知的複雑さを段階的に評価する統一フレームワークが欠如していた。\n🔧**手法**: 4レベルの認知複雑度タクソノミーによる Time Series Reasoning (TSR) を定式化。83k サンプルと検証済み Chain-of-Thought 軌跡を持つ階層型データセット HiTSR を構築。視覚化パターンと精度校正済み数値テーブルを統合した TSRM「LLaTiSA」を提案し、多段階カリキュラム fine-tuning で学習。\n📊**結果**: LLaTiSA は多様な TSR タスクと実世界シナリオで優れた性能を達成。分布外データへの汎化においても堅牢性を示した。\n💡**意義**: 時系列推論の標準化された評価基準と、視覚・数値の両側面を統合した強力な基盤モデルを提供。LLM の時系列応用を大きく前進させる。\n⚠️**限界**: 83k サンプルの構築コストが高く、CoT 軌跡の検証プロセスが複雑。特定ドメインへの適用可能性は未検証。\n\n---\n\n**2. WorldMark: A Unified Benchmark Suite for Interactive Video World Models** | 34 upvotes | https://arxiv.org/abs/2604.21686\n🎯**背景**: Genie・YUME・HY-World・Matrix-Game 等のインタラクティブ動画生成モデルが急速に発展するも、各モデルが独自ベンチマークで評価されており、公平なクロスモデル比較が不可能だった。\n🔧**手法**: 同一シーン・同一アクションシーケンス・統一コントロールインターフェースを提供する WorldMark ベンチマークを設計。軌跡誤差・美的スコア・VLM ベース評価を標準化された条件下で実施可能にした。\n📊**結果**: 異種入力を持つインタラクティブ Image-to-Video ワールドモデルに対して初の共通評価フィールドを実現。既存モデル間の客観的比較が可能になった。\n💡**意義**: ワールドモデル研究の再現性・公正性を担保する基盤インフラ。今後の研究の標準ベンチマークとなる可能性が高い。\n⚠️**限界**: ベンチマークの多様性・カバレッジがまだ限られており、特定タスクやドメインへの偏りが懸念される。\n\n---\n\n**3. StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition** | 20 upvotes | https://arxiv.org/abs/2604.21689\n🎯**背景**: 顔スタイライゼーション（漫画・スケッチ・絵画等）は創造的な応用が広いが、既存の ID エンコーダーはテクスチャや色変化を ID の変化と誤認する問題があった。\n🔧**手法**: スタイルに依存しない顔 ID 認識のための人間の知覚を考慮したデータセットと評価フレームワーク StyleID を導入。多様なスタイルと強度にわたる ID 一貫性を評価・監督するためのスタイル非依存フレームワークを構築。\n📊**結果**: 既存手法がスタイライゼーション下で失敗するケースを定量化し、StyleID による評価で一貫した改善を示した。\n💡**意義**: 創造的 AI とバイオメトリクスの交差点における重要な研究。スタイル変換後の顔認証システム開発に不可欠な基盤を提供。\n⚠️**限界**: データセットの構築に人手による知覚評価が必要で、スケーラビリティに課題がある。\n\n---\n\n**4. Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks** | 18 upvotes | https://arxiv.org/abs/2604.20987\n🎯**背景**: LLM エージェントはゲームなどの長期インタラクティブ環境で、スキルの発見・保持・再利用のメカニズムが欠如しており、一貫した長期決定が困難だった。\n🔧**手法**: COSPLAY フレームワークを提案。LLM 決定エージェントがスキルバンクからスキルを取得して行動を決定し、エージェント管理パイプラインがラベルなしロールアウトから再利用可能なスキルを発見してバンクに蓄積する共進化構造を採用。\n📊**結果**: 長期タスクにおいて既存手法を上回る性能を達成。スキルの再利用により複数エピソードにわたる一貫した意思決定が可能になった。\n💡**意義**: LLM エージェントの「記憶」と「スキル蓄積」の問題を解決する実用的アプローチ。ゲーム AI から実世界タスクへの応用展開が期待される。\n⚠️**限界**: スキルバンクの品質がロールアウトの質に依存するため、初期段階でのブートストラップが困難。\n\n---\n\n**5. VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation** | 14 upvotes | https://arxiv.org/abs/2604.21375\n🎯**背景**: 自律 GUI エージェントの早期停止（成功の誤検知）と反復ループ（同じ失敗行動の繰り返し）という2つの根本的課題が未解決だった。\n🔧**手法**: VLAA-GUI はモジュラー GUI エージェントフレームワーク。UI 観察可能な成功基準を強制する完全性検証器・失敗回復メカニズム・代替手段探索機能の3コンポーネントを統合。各終了ステップで completion claim を視覚的証拠と照合して拒否。\n📊**結果**: 早期停止と反復ループの問題を大幅に低減し、自律タスク完了率が既存手法を上回った。\n💡**意義**: 実用的な GUI 自動化エージェントの信頼性向上に直結。RPA（ロボティックプロセス自動化）の次世代技術として重要。\n⚠️**限界**: 完全性検証のルールベース部分は GUI の多様性に対応しきれない場合があり、新しいアプリケーションへの適応に調整が必要。\n\n---\n\n**6. TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale** | 10 upvotes | https://arxiv.org/abs/2604.21889\n🎯**背景**: 大規模クラウドネイティブサービスでは技術的異常のリアルタイム検出が不可欠。カスタマーインシデントは重要なシグナルだが、ノイズの多さ・高スループット・意味的複雑さにより有用情報の抽出が困難だった。\n🔧**手法**: エンタープライズグレードのインシデント発見システム TingIS を開発。効率的なインデックス技術と LLM を組み合わせた多段階イベントリンクエンジンを核とし、イベントのマージに関する情報に基づいた意思決定を実現。\n📊**結果**: 実際の大規模クラウドサービス環境での運用で、ノイズの多いインシデントから有意義なリスクイベントをリアルタイムで抽出することに成功。\n💡**意義**: 企業規模でのインシデント管理に LLM を実用的に適用した先駆け。ダウンタイムの最小化と運用コスト削減に直接貢献。\n⚠️**限界**: 特定の企業環境と業種に最適化されており、汎用性に課題。LLM の推論コストがリアルタイム性と競合する可能性。\n\n---\n\n**7. Hybrid Policy Distillation for LLMs** | 10 upvotes | https://arxiv.org/abs/2604.20244\n🎯**背景**: 知識蒸留（KD）は LLM 圧縮の有力手法だが、発散方向・最適化戦略・データレジームの選択が複雑に絡み合い、最適設計が不明確だった。\n🔧**手法**: 既存 KD 手法をトークンレベルの重み付き対数尤度目標として統一的に再定式化。順方向 KL と逆方向 KL の相補的利点を統合した Hybrid Policy Distillation (HPD) を提案。オフポリシーデータと軽量オンポリシーサンプリングを組み合わせる。\n📊**結果**: 長文数学推論と短文対話・コードタスクの両方で HPD が既存 KD 手法を上回る性能を達成。モードカバレッジとモードシーキングのバランスが改善。\n💡**意義**: LLM 圧縮技術の理論的統一と実用的改善を同時に達成。より効率的な小型モデルの開発に直接応用可能。\n⚠️**限界**: ハイブリッドのバランスパラメータ調整が必要で、タスクごとに最適値が異なる可能性。\n\n---\n\n**8. Vista4D: Video Reshooting with 4D Point Clouds** | 9 upvotes | https://arxiv.org/abs/2604.21915\n🎯**背景**: 動画リシューティング（異なるカメラアングルから同シーンを再合成）は、動的シーンの深度推定アーティファクトと正確なカメラ制御の困難さにより既存手法が苦戦していた。\n🔧**手法**: 入力動画とターゲットカメラを 4D 点群で接地する Vista4D フレームワークを提案。静的ピクセルセグメンテーションと 4D 再構成により、見えているコンテンツを明示的に保持し豊かなカメラシグナルを提供。\n📊**結果**: 実世界の動的動画において、コンテンツの外観保持と困難なカメラ軌道制御の両方で既存手法を上回る品質を達成。\n💡**意義**: 映画・VR コンテンツ制作の革新的ツール。撮影後の視点変更を高品質に実現し、制作コスト削減と創造的自由度向上に貢献。\n⚠️**限界**: 4D 点群の構築に計算コストがかかり、リアルタイム処理は困難。急激な動きやオクルージョンへの対応に限界。\n\n---\n\n**9. EditCrafter: Tuning-free High-Resolution Image Editing via Pretrained Diffusion Model** | 9 upvotes | https://arxiv.org/abs/2604.10268\n🎯**背景**: 拡散モデルベースの画像編集は高品質な結果を出せるが、学習解像度（512×512 や 1024×1024）以外の任意のアスペクト比や高解像度画像への適用が困難だった。\n🔧**手法**: チューニング不要で任意解像度に対応する EditCrafter を提案。学習済み T2I 拡散モデルの生成事前知識を活用し、パッチワイズ編集の非現実的構造や繰り返しアーティファクトを回避する新手法を採用。\n📊**結果**: 学習解像度を大幅に超える高解像度画像において、既存手法を上回る編集品質を達成。チューニング不要のため即座に利用可能。\n💡**意義**: プロフェッショナルな写真・デザイン分野への実用展開が容易。任意解像度対応により、実際のワークフローへの組み込みが大幅に簡素化。\n⚠️**限界**: 極端に高い解像度ではメモリ要件が増大。テキストプロンプトの記述精度に依存する部分が残る。\n\n---\n\n**10. Context Unrolling in Omni Models** | 9 upvotes | https://arxiv.org/abs/2604.21921\n🎯**背景**: 単一モデルでテキスト・画像・動画・3D ジオメトリ等の多様なモダリティを統一的に扱うことは難しく、モダリティ間の相補的情報を効果的に活用する手法が確立されていなかった。\n🔧**手法**: テキスト・画像・動画・3D ジオメトリ・隠れ表現を含む多様なモダリティでネイティブ学習した統合マルチモーダルモデル Omni を開発。Context Unrolling により、予測前に複数のモーダル表現をまたいで明示的に推論するプロセスを実現。\n📊**結果**: マルチモーダル生成と理解の両ベンチマークで強力な性能を達成。文中でのテキスト・画像・動画・3D ジオメトリの生成を含む高度なマルチモーダル推論能力を示した。\n💡**意義**: 真の意味でのマルチモーダル統合 AI への重要な一歩。異種モダリティの情報を組み合わせた推論が実用的に可能になることを示した。\n⚠️**限界**: 学習データと計算リソースの要件が非常に高い。各モダリティ専門モデルと比べて特定タスクでは性能が劣る場合がある。\n\n",
+  "fetched_at": "2026-04-26T22:19:40.856035+00:00",
+  "papers": [
+    {
+      "title": "LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics",
+      "upvotes": 81,
+      "paper_id": "2604.17295",
+      "abstract": "Comprehensive understanding of time series remains a significant challenge for LLMs. Current research is hindered by fragmented task definitions and benchmarks with inherent ambiguities, precluding rigorous evaluation and the development of unified Time Series Reasoning Models(TSRMs)."
+    },
+    {
+      "title": "WorldMark: A Unified Benchmark Suite for Interactive Video World Models",
+      "upvotes": 34,
+      "paper_id": "2604.21686",
+      "abstract": "Interactive video generation models such as Genie, YUME, HY-World, and Matrix-Game are advancing rapidly, yet every model is evaluated on its own benchmark with private scenes and trajectories, making fair cross-model comparison impossible."
+    },
+    {
+      "title": "StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition",
+      "upvotes": 20,
+      "paper_id": "2604.21689",
+      "abstract": "Creative face stylization aims to render portraits in diverse visual idioms such as cartoons, sketches, and paintings while retaining recognizable identity. Current identity encoders exhibit severe brittleness under stylization."
+    },
+    {
+      "title": "Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks",
+      "upvotes": 18,
+      "paper_id": "2604.20987",
+      "abstract": "Long horizon interactive environments are a testbed for evaluating agents skill usage abilities. We present COSPLAY, a co-evolution framework in which an LLM decision agent retrieves skills from a learnable skill bank."
+    },
+    {
+      "title": "VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation",
+      "upvotes": 14,
+      "paper_id": "2604.21375",
+      "abstract": "Autonomous GUI agents face two fundamental challenges: early stopping and repetitive loops. We present VLAA-GUI, a modular framework built around three integrated components that guide the system on when to Stop, Recover, and Search."
+    },
+    {
+      "title": "TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale",
+      "upvotes": 10,
+      "paper_id": "2604.21889",
+      "abstract": "Real-time detection and mitigation of technical anomalies are critical for large-scale cloud-native services. We present TingIS, an end-to-end system for enterprise-grade incident discovery using LLMs."
+    },
+    {
+      "title": "Hybrid Policy Distillation for LLMs",
+      "upvotes": 10,
+      "paper_id": "2604.20244",
+      "abstract": "We propose Hybrid Policy Distillation (HPD), integrating forward and reverse KL to balance mode coverage and mode-seeking, combining off-policy data with lightweight on-policy sampling for LLM compression."
+    },
+    {
+      "title": "Vista4D: Video Reshooting with 4D Point Clouds",
+      "upvotes": 9,
+      "paper_id": "2604.21915",
+      "abstract": "We present Vista4D, a video reshooting framework that grounds input video and target cameras in a 4D point cloud, enabling re-synthesis from different camera trajectories and viewpoints."
+    },
+    {
+      "title": "EditCrafter: Tuning-free High-Resolution Image Editing via Pretrained Diffusion Model",
+      "upvotes": 9,
+      "paper_id": "2604.10268",
+      "abstract": "We propose EditCrafter, a high-resolution image editing method without tuning, leveraging pretrained text-to-image diffusion models to process images at resolutions significantly exceeding training resolutions."
+    },
+    {
+      "title": "Context Unrolling in Omni Models",
+      "upvotes": 9,
+      "paper_id": "2604.21921",
+      "abstract": "We present Omni, a unified multimodal model trained on text, images, videos, 3D geometry, and hidden representations. Context Unrolling enables explicit reasoning across multiple modal representations before producing predictions."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.119",
+      "published_at": "2025-04-23",
+      "body": "/config settings (theme, editor mode, verbose, etc.) now persist to ~/.claude/settings.json and participate in project/local/policy override precedence. Added prUrlTemplate setting to point the footer PR badge at a custom code-review URL instead of github.com. Added CLAUDE_CODE_HIDE_CWD environment variable to hide the working directory in the startup logo. --from-pr now accepts GitLab merge-request, Bitbucket pull-request, and GitHub Enterprise PR URLs. --print mode now honors the agent's tools: and disallowedTools: frontmatter, matching interactive-mode behavior. --agent <name> now honors the agent definition's permissionMode for built-in agents. PowerShell tool commands can now be auto-approved in permission mode, matching Bash behavior."
+    },
+    {
+      "tag_name": "v2.1.118",
+      "published_at": "2025-04-23",
+      "body": "Added vim visual mode (v) and visual-line mode (V) with selection, operators, and visual feedback. Merged /cost and /stats into /usage — both remain as typing shortcuts that open the relevant tab. Create and switch between named custom themes from /theme, or hand-edit JSON files in ~/.claude/themes/; plugins can also ship themes via a themes/ directory. Hooks can now invoke MCP tools directly via type: \"mcp_tool\". Added DISABLE_UPDATES env var to completely block all update paths including manual claude update — stricter than DISABLE_AUTOUPDATER. WSL on Windows can now inherit Windows-side managed settings via the wslInheritsWindowsSettings policy key."
+    },
+    {
+      "tag_name": "v2.1.117",
+      "published_at": "2025-04-22",
+      "body": "Forked subagents can now be enabled on external builds by setting CLAUDE_CODE_FORK_SUBAGENT=1. Agent frontmatter mcpServers are now loaded for main-thread agent sessions via --agent. Improved /model: selections now persist across restarts even when the project pins a different model, and the startup header shows when the active model comes from a project or managed-settings pin. The /resume command now offers to summarize stale, large sessions before re-reading them, matching the existing --resume behavior. Faster startup when both local and claude.ai MCP servers are configured (concurrent connect now default)."
+    }
+  ]
+}

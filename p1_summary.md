@@ -1,6 +1,6 @@
-**1. LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics**
-**著者**: LLaTiSA Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.17295
+**1. From Skills to Talent: Organising Heterogeneous Agents as a Real-World Company (スキルからタレントへ：現実の企業として異種エージェントを組織化する)**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.22446
 
 **まとめ**:
-時系列推論 (TSR) を視覚認識からセマンティクスまで4段階の認知複雑度で体系化し、83,000 サンプルの階層的データセット HiTSR と、デュアルビュー入力 (プロット+数値テーブル) で視覚精度と数値精度を統合する LLaTiSA モデルを提案。GPT-4o と比較して L1〜L3 全難易度で大幅な精度向上 (L1: 47%→87%) を達成し、OOD ベンチマークでの汎化性能も実証した。時系列 AI 評価の統一基盤となる重要研究。
+本論文はマルチエージェント AI システムを企業組織として設計する OneManCompany (OMC) フレームワークを提案。エージェントを「Talent（認知アイデンティティ）」と「Container（実行環境）」に分離することで、LangGraph・Claude Code 等の異種バックエンドを単一組織層で統合する。E²R（Explore-Execute-Review）ツリー探索と DAG ベースのタスク管理により PRDBench で 84.67% の成功率を達成し、従来最高の 69.19% を 15 ポイント以上上回った。自己進化機構により組織レベルの学習と個人レベルの改善が継続的に行われる点が、既存フレームワークとの決定的な差別化要因。
