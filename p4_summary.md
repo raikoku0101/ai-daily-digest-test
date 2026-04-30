@@ -1,6 +1,7 @@
-**4. Step-Audio-R1.5 Technical Report: 音声推論モデルにおける RLHF 統合**
-**著者**: Step-Audio-R1.5 Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.25719
+**4. ClawGym: A Scalable Framework for Building Effective Claw Agents**
+**著者**: ClawGym Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.26904
+**upvotes**: 37
 
 **まとめ**:
-大規模音声言語モデルにおける「検証可能報酬トラップ (Verifiable Reward Trap)」— RLVR が客観指標を改善する一方で会話の自然さを損なう問題 — を RLHF 統合で解決。Step-Audio-R1.5 は分析的推論を維持しながら多ターン対話品質を向上させ、32B パラメータ規模で平均スコア 77.97 を達成。Gemini ファミリーに次ぐ競争力を示す。
+ローカルファイル・ツール・永続ワークスペースを扱う Claw スタイルエージェントの開発を体系化する ClawGym フレームワークを提案。ペルソナ駆動「上向き合成」とスキル駆動「下向き合成」の二重経路で 13,500 タスクを自動生成し、24,500 件の高品質軌跡で SFT を実施。Qwen3-30B-A3B を微調整したエージェントが PinchBench で 54.7% 向上し、より大規模な Qwen3-235B-A23B を上回る性能を実現。

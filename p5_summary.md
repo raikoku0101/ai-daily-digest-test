@@ -1,6 +1,7 @@
-**5. Co-Director: エージェント型生成ビデオストーリーテリング**
-**著者**: Co-Director Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.24842
+**5. Turning the TIDE: Cross-Architecture Distillation for Diffusion Large Language Models**
+**著者**: TIDE Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.26951
+**upvotes**: 35
 
 **まとめ**:
-複数の動画生成エージェントを統合し「ストーリーテリングを全体最適化問題」として定式化するフレームワーク。Multi-Armed Bandit (MAB) によるグローバル最適化とマルチモーダル自己精錬ループにより、セマンティックドリフトと連鎖的失敗を根本的に解消。新ベンチマーク GenAd-Bench (400シナリオ) で平均 81.4 を達成し、最強ベースライン (63.6) を大幅に上回る。
+拡散型 LLM (dLLM) のアーキテクチャをまたいだ知識蒸留フレームワーク TIDE を提案。教師・生徒が異なるアーキテクチャ・注意機構・トークナイザーを持つ場合にも対応する初の統合アプローチ。Tidal (動的蒸留強度調整)・CompDemo (補完的デモンストレーション)・Reverse Calm (異トークナイザー間射影) の 3 モジュールにより、16B MoE 教師から 0.6B 学生へ蒸留し 8 ベンチマーク平均 +1.53 ポイント、HumanEval で同規模自己回帰モデルを +16.48 ポイント上回る性能を実現。

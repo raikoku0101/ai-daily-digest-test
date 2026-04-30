@@ -1,6 +1,7 @@
-**3. Mutual Forcing: 高速オートリグレッシブ音声ビデオキャラクター生成**
-**著者**: Mutual Forcing Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.25819
+**3. RADIO-ViPE: Online Tightly Coupled Multi-Modal Fusion for Open-Vocabulary Semantic SLAM in Dynamic Environments**
+**著者**: RADIO-ViPE Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.26067
+**upvotes**: 48
 
 **まとめ**:
-テキスト指示から音声と映像を同時生成する「Mutual Forcing」フレームワークを提案。デュアルモード自己進化 (Dual-Mode Self-Evolution) により、従来50ステップ必要だった生成品質をわずか4〜8ステップ (NFE) で達成。教師モデル不要で長期音声ビデオ同期を維持しながら、単一GPU で3.5FPS のリアルタイム近傍生成を実現。
+未較正の単眼 RGB ビデオのみから動的環境でオープン語彙セマンティック SLAM を実現する RADIO-ViPE を提案。RADIO 基盤モデルから導出した密集マルチモーダル埋め込みと幾何学的情報を結合バンドル調整内で共同最適化し、カメラ較正・深度センサー・姿勢初期化なしにリアルタイム動作。TUM-RGBD 動的シーンで DynaSLAM を上回る平均 ATE 1.63cm を達成し、Replica セマンティックセグメンテーションでも上位性能を維持。
