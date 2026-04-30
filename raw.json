@@ -1,44 +1,44 @@
 {
-  "title": "Week 15 · April 6–10, 2026",
-  "subtitle": "Ultraplan cloud planning, the Monitor tool with self-pacing /loop, /team-onboarding for packaging your setup, and /autofix-pr from your terminal.",
+  "title": "Week 17 · April 20–24, 2026",
+  "subtitle": "/ultrareview opens as a research preview, automatic session recaps when you return to a terminal, custom color themes you can build and ship in plugins, and a redesigned Claude Code on the web.",
   "features": [
     {
-      "title": "Ultraplan",
+      "title": "/ultrareview",
       "pill": "research preview",
-      "lede": "Kick off plan mode in the cloud from your terminal, then review the result in your browser. Claude drafts the plan in a Claude Code on the web session while your terminal stays free; when it's ready you comment on individual sections, ask for revisions, and choose to execute remotely or send it back to your CLI. As of v2.1.101 the first run auto-creates a default cloud environment, so there's no web setup step before you can try it.",
-      "link": "/en/ultraplan"
+      "lede": "Now in public research preview. Ultrareview runs a fleet of bug-hunting agents in the cloud against your branch or a PR, and findings land back in the CLI or Desktop automatically. Run it before merging critical changes such as auth or data migrations.",
+      "link": "/docs/en/ultrareview"
     },
     {
-      "title": "Monitor tool",
-      "pill": "v2.1.98",
-      "lede": "A new built-in tool that spawns a background watcher and streams its events into the conversation: each event lands as a new transcript message that Claude reacts to immediately. Tail a training run, babysit a PR's CI, or auto-fix a dev server crash the moment it happens, all without a Bash sleep loop holding the turn open.",
-      "link": "/en/tools-reference#monitor-tool"
-    },
-    {
-      "title": "/autofix-pr",
+      "title": "Session recap",
       "pill": "CLI",
-      "lede": "PR auto-fix landed on the web in Week 13. Now you can turn it on without leaving your terminal: /autofix-pr infers the open PR for your current branch and enables auto-fix for it on Claude Code on the web in one step. Push your branch, run the command, walk away; Claude watches CI and review comments and pushes fixes until it's green.",
-      "link": "/en/claude-code-on-the-web#auto-fix-pull-requests"
+      "lede": "Switch focus away from a session and come back to a one-line recap of what happened while you were gone. Helpful for staying in flow while running several Claude sessions at once.",
+      "link": "/docs/en/interactive-mode#session-recap"
     },
     {
-      "title": "/team-onboarding",
-      "pill": "v2.1.101",
-      "lede": "Generates a teammate ramp-up guide from your local Claude Code usage. Run it in a project you know well and hand the output to a new teammate so they can replay your setup instead of starting from defaults.",
-      "link": "/en/commands"
+      "title": "Custom themes",
+      "pill": "v2.1.118",
+      "lede": "Build and switch between named color themes from /theme, or hand-edit JSON files in ~/.claude/themes/. Each theme picks a base preset and overrides only the tokens you care about. Plugins can ship themes too.",
+      "link": "/docs/en/terminal-config#create-a-custom-theme"
+    },
+    {
+      "title": "Claude Code on the web",
+      "pill": "web",
+      "lede": "A new look for claude.ai/code that matches the redesigned desktop app: sessions sidebar, drag-and-drop layout, and a refreshed routines view. Key parts were rebuilt for quicker responses and a more reliable experience.",
+      "link": "/docs/en/claude-code-on-the-web"
     }
   ],
   "other_wins": [
-    "Focus view: press Ctrl+O in flicker-free mode to collapse the view to your last prompt, a one-line tool summary with diffstats, and Claude's final response",
-    "Guided Bedrock and Vertex AI setup wizards on the login screen: pick \"3rd-party platform\" for step-by-step auth, region, credential check, and model pinning",
-    "/agents gets a tabbed layout: a Running tab shows live subagents with a ● N running count, plus Run agent and View running instance actions in the Library tab",
-    "Default effort level is now high for API-key, Bedrock, Vertex, Foundry, Team, and Enterprise users (control with /effort)",
-    "/cost shows a per-model and cache-hit breakdown for subscription users",
-    "/release-notes is now an interactive version picker",
-    "Status line: new refreshInterval setting re-runs the command every N seconds, and workspace.git_worktree in the JSON input",
-    "CLAUDE_CODE_PERFORCE_MODE: Edit/Write fail on read-only files with a p4 edit hint instead of silently overwriting",
-    "OS CA certificate store is now trusted by default, so enterprise TLS proxies work without extra setup (CLAUDE_CODE_CERT_STORE=bundled to opt out)",
-    "Amazon Bedrock powered by Mantle: set CLAUDE_CODE_USE_MANTLE=1",
-    "Hardened Bash tool permissions: backslash-escaped flags, env-var prefixes, /dev/tcp redirects, and compound commands now prompt correctly",
-    "UserPromptSubmit hooks can set the session title via hookSpecificOutput.sessionTitle"
+    "Vim visual mode: press v for character selection or V for line selection in the prompt input, with operators and visual feedback",
+    "Hooks can now call MCP tools directly via type: \"mcp_tool\", so a hook can hit an already-connected server without spawning a process",
+    "/cost and /stats are merged into /usage; the old names still work as typing shortcuts that open the relevant tab",
+    "/config changes (theme, editor mode, verbose, and similar) now persist to ~/.claude/settings.json and follow the same project/local/policy precedence as other settings",
+    "Forked subagents can be enabled on external builds with CLAUDE_CODE_FORK_SUBAGENT=1: a fork inherits your full conversation context instead of starting fresh",
+    "Default effort level for Pro and Max subscribers on Opus 4.6 and Sonnet 4.6 is now high (was medium)",
+    "Native macOS and Linux builds replace the Glob and Grep tools with embedded bfs and ugrep available through Bash, for faster searches without a separate tool round-trip",
+    "--from-pr now accepts GitLab merge request, Bitbucket pull request, and GitHub Enterprise PR URLs in addition to github.com",
+    "Auto mode: include \"$defaults\" in autoMode.allow, soft_deny, or environment to add custom rules alongside the built-in list instead of replacing it",
+    "New claude plugin tag command creates release git tags for plugins with version validation",
+    "Opus 4.7 sessions now compute against the model's native 1M context window, fixing inflated /context percentages and premature autocompaction",
+    "/resume on large sessions is up to 67% faster and now offers to summarize stale, large sessions before re-reading them"
   ]
 }
