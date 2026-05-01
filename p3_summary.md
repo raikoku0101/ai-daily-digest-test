@@ -1,7 +1,6 @@
-**3. RADIO-ViPE: Online Tightly Coupled Multi-Modal Fusion for Open-Vocabulary Semantic SLAM in Dynamic Environments**
-**著者**: RADIO-ViPE Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2604.26067
-**upvotes**: 48
+**3. StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition**
+**著者**: StyleID Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.21689
 
 **まとめ**:
-未較正の単眼 RGB ビデオのみから動的環境でオープン語彙セマンティック SLAM を実現する RADIO-ViPE を提案。RADIO 基盤モデルから導出した密集マルチモーダル埋め込みと幾何学的情報を結合バンドル調整内で共同最適化し、カメラ較正・深度センサー・姿勢初期化なしにリアルタイム動作。TUM-RGBD 動的シーンで DynaSLAM を上回る平均 ATE 1.63cm を達成し、Replica セマンティックセグメンテーションでも上位性能を維持。
+漫画・スケッチ・絵画などのスタイライゼーション下での顔認識において、既存の ArcFace・AdaFace が分布シフトにより誤認識する問題を解決するため、68名の人間判定から構築した StyleBench-H と合成教師信号 StyleBench-S、そして CLIP-L + LoRA + ArcFace 損失で訓練した StyleID モデルを提案。スタイル化下での TPR が ArcFace 76.5%→90.2% に向上し、未見の手法・アーティスト手描きスケッチでも強い汎化性を示した。スタイル不変顔認識の初の人間知覚較正ベンチマーク。

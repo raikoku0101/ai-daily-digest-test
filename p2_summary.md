@@ -1,7 +1,6 @@
-**2. Large Language Models Explore by Latent Distilling**
-**著者**: ESamp Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2604.24927
-**upvotes**: 52
+**2. WorldMark: A Unified Benchmark Suite for Interactive Video World Models**
+**著者**: WorldMark Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.21686
 
 **まとめ**:
-標準的な確率的サンプリングが語彙レベルの変動にとどまる問題に対し、Exploratory Sampling (ESamp) を提案。軽量な潜在蒸留器 (Latent Distiller) をテスト時にオンライン学習させ、LLM の浅層→深層隠れ表現の写像予測誤差を「意味的新規性 (Semantic Novelty)」として活用。並列生成間で蒸留器を共有することで協調的な意味領域の分散探索を実現し、サンプリング予算を大幅削減しながら推理・コード生成・創作文章で性能向上を達成。
+Genie・YUME・HY-World・Matrix-Game など 6 つのインタラクティブ動画生成モデルが各自のプライベートベンチマークで評価されており公正比較が不可能だった問題を解決する統一ベンチマーク WorldMark を提案。WASD スタイルの共通アクション語彙と統一制御インターフェースで異なる入力形式を吸収し、500 評価ケース (Easy/Medium/Hard) で同一シーン・同一アクション列による初の標準化比較を実現。視覚品質と世界一貫性は相関しないなど重要な知見も得られた。

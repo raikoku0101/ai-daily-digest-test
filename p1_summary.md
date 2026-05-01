@@ -1,7 +1,6 @@
-**1. GLM-5V-Turbo: Toward a Native Foundation Model for Multimodal Agents**
-**著者**: GLM Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2604.26752
-**upvotes**: 71
+**1. LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics**
+**著者**: LLaTiSA Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.17295
 
 **まとめ**:
-GLM-5V-Turbo は、画像・動画・GUI・ドキュメントなど異種コンテキストを統合的に知覚・推論・実行できるマルチモーダルエージェント向けネイティブ基盤モデル。新規視覚エンコーダ CogViT と大規模マルチモーダル強化学習により、GUI 操作・Web ブラウジング・コード生成など幅広いエージェントタスクで最先端性能を達成。30 以上のタスク領域にわたる訓練で知覚・推論・エージェント機能を共進化させた点が特徴的。
+時系列推論 (TSR) を視覚認識からセマンティクスまで4段階の認知複雑度で体系化し、83,000 サンプルの階層的データセット HiTSR と、デュアルビュー入力 (プロット+数値テーブル) で視覚精度と数値精度を統合する LLaTiSA モデルを提案。GPT-4o と比較して L1〜L3 全難易度で大幅な精度向上 (L1: 47%→87%) を達成し、OOD ベンチマークでの汎化性能も実証した。時系列 AI 評価の統一基盤となる重要研究。

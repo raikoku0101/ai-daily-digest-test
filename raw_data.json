@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "GLM-5V-Turbo: Toward a Native Foundation Model for Multimodal Agents",
-      "upvotes": 71,
-      "paper_id": "2604.26752",
-      "abstract": "We present GLM-5V-Turbo, a step toward native foundation models for multimodal agents. As foundation models are increasingly deployed in real environments, agentic capability depends not only on language reasoning, but also on the ability to perceive, interpret, and act over heterogeneous contexts such as images, videos, webpages, documents, GUIs."
-    },
-    {
-      "title": "Large Language Models Explore by Latent Distilling",
-      "upvotes": 52,
-      "paper_id": "2604.24927",
-      "abstract": "Generating diverse responses is crucial for test-time scaling of large language models (LLMs), yet standard stochastic sampling mostly yields surface-level lexical variation, limiting semantic exploration. In this paper, we propose Exploratory Sampling (ESamp), a decoding approach that explicitly encourages semantic diversity during generation."
-    },
-    {
-      "title": "RADIO-ViPE: Online Tightly Coupled Multi-Modal Fusion for Open-Vocabulary Semantic SLAM in Dynamic Environments",
-      "upvotes": 48,
-      "paper_id": "2604.26067",
-      "abstract": "We present RADIO-ViPE (Reduce All Domains Into One -- Video Pose Engine), an online semantic SLAM system that enables geometry-aware open-vocabulary grounding, associating arbitrary natural language queries with localized 3D regions and objects in dynamic environments. Unlike existing approaches that require calibrated, posed RGB-D input, RADIO-ViPE operates directly on raw monocular RGB video streams,"
-    },
-    {
-      "title": "ClawGym: A Scalable Framework for Building Effective Claw Agents",
-      "upvotes": 37,
-      "paper_id": "2604.26904",
-      "abstract": "Claw-style environments support multi-step workflows over local files, tools, and persistent workspace states. However, scalable development around these environments remains constrained by the absence of a systematic framework, especially one for synthesizing verifiable training data and integrating it with agent training and diagnostic evaluation."
-    },
-    {
-      "title": "Turning the TIDE: Cross-Architecture Distillation for Diffusion Large Language Models",
-      "upvotes": 35,
-      "paper_id": "2604.26951",
-      "abstract": "Diffusion large language models (dLLMs) offer parallel decoding and bidirectional context, but state-of-the-art dLLMs require billions of parameters for competitive performance. While existing distillation methods for dLLMs reduce inference steps within a single architecture, none address cross-architecture knowledge transfer, in which the teacher and student differ in architecture,"
-    },
-    {
-      "title": "Diffusion Templates: A Unified Plugin Framework for Controllable Diffusion",
-      "upvotes": 6,
-      "paper_id": "2604.24351",
-      "abstract": "Controllable diffusion methods have substantially expanded the practical utility of diffusion models, but they are typically developed as isolated, backbone-specific systems with incompatible training pipelines, parameter formats, and runtime hooks. This fragmentation makes it difficult to reuse infrastructure across tasks, transfer capabilities across backbones, or compose multiple controls within a single generation pipeline."
-    },
-    {
-      "title": "Operating-Layer Controls for Onchain Language-Model Agents Under Real Capital",
-      "upvotes": 3,
-      "paper_id": "2604.26091",
-      "abstract": "We study reliability in autonomous language-model agents that translate user mandates into validated tool actions under real capital. The setting is DX Terminal Pro, a 21-day deployment in which 3,505 user-funded agents traded real ETH in a bounded onchain market."
-    },
-    {
-      "title": "FAMA: Failure-Aware Meta-Agentic Framework for Open-Source LLMs in Interactive Tool Use Environments",
-      "upvotes": 3,
-      "paper_id": "2604.25135",
-      "abstract": "Large Language Models are being increasingly deployed as the decision-making core of autonomous agents capable of effecting change in external environments. Yet, in conversational benchmarks, which simulate real-world customer-centric issue resolution scenarios, these agents frequently fail due to the cascading effects of incorrect decision-making."
-    },
-    {
-      "title": "Accelerating RL Post-Training Rollouts via System-Integrated Speculative Decoding",
-      "upvotes": 3,
-      "paper_id": "2604.26779",
-      "abstract": "RL post-training of frontier language models is increasingly bottlenecked by autoregressive rollout generation, making rollout acceleration a central systems challenge. We study speculative decoding as a lossless acceleration primitive for RL rollouts."
-    },
-    {
-      "title": "A Survey on LLM-based Conversational User Simulation",
-      "upvotes": 2,
-      "paper_id": "2604.24977",
-      "abstract": "User simulation has long played a vital role in computer science due to its potential to support a wide range of applications. Recent advancements in large language models (LLMs) have significantly catalyzed progress in simulating conversational behavior."
-    }
+    {"title": "LLaTiSA: Towards Difficulty-Stratified Time Series Reasoning from Visual Perception to Semantics", "upvotes": 75, "paper_id": "2604.17295", "abstract": "Comprehensive understanding of time series remains a significant challenge for Large Language Models (LLMs). Current research is hindered by fragmented task definitions and benchmarks with inherent ambiguities, precluding rigorous evaluation and the development of unified Time Series Reasoning Models(TSRMs)."},
+    {"title": "WorldMark: A Unified Benchmark Suite for Interactive Video World Models", "upvotes": 29, "paper_id": "2604.21686", "abstract": "Interactive video generation models such as Genie, YUME, HY-World, and Matrix-Game are advancing rapidly, yet every model is evaluated on its own benchmark with private scenes and trajectories, making fair cross-model comparison impossible."},
+    {"title": "StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition", "upvotes": 18, "paper_id": "2604.21689", "abstract": "Creative face stylization aims to render portraits in diverse visual idioms such as cartoons, sketches, and paintings while retaining recognizable identity. However, current identity encoders exhibit severe brittleness under stylization."},
+    {"title": "Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks", "upvotes": 14, "paper_id": "2604.20987", "abstract": "Long horizon interactive environments are a testbed for evaluating agents skill usage abilities. These environments demand multi step reasoning, the chaining of multiple skills over many timesteps, and robust decision making under delayed rewards and partial observability."},
+    {"title": "VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation", "upvotes": 10, "paper_id": "2604.21375", "abstract": "Autonomous GUI agents face two fundamental challenges: early stopping, where agents prematurely declare success without verifiable evidence, and repetitive loops, where agents cycle through the same failing actions without recovery."},
+    {"title": "TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale", "upvotes": 9, "paper_id": "2604.21889", "abstract": "Real-time detection and mitigation of technical anomalies are critical for large-scale cloud-native services, where even minutes of downtime can result in massive financial losses and diminished user trust."},
+    {"title": "Hybrid Policy Distillation for LLMs", "upvotes": 9, "paper_id": "2604.20244", "abstract": "Knowledge distillation (KD) is a powerful paradigm for compressing large language models (LLMs), whose effectiveness depends on intertwined choices of divergence direction, optimization strategy, and data regime."},
+    {"title": "EditCrafter: Tuning-free High-Resolution Image Editing via Pretrained Diffusion Model", "upvotes": 5, "paper_id": "2604.10268", "abstract": "We propose EditCrafter, a high-resolution image editing method that operates without tuning, leveraging pretrained text-to-image (T2I) diffusion models to process images at resolutions significantly exceeding those used during training."},
+    {"title": "Context Unrolling in Omni Models", "upvotes": 5, "paper_id": "2604.21921", "abstract": "We present Omni, a unified multimodal model natively trained on diverse modalities, including text, images, videos, 3D geometry, and hidden representations."},
+    {"title": "Vista4D: Video Reshooting with 4D Point Clouds", "upvotes": 3, "paper_id": "2604.21915", "abstract": "We present Vista4D, a robust and flexible video reshooting framework that grounds the input video and target cameras in a 4D point cloud."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.123",
-      "published_at": "2025-04-29",
-      "body": "Fixed OAuth authentication failing with a 401 retry loop when `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` is set"
-    },
-    {
-      "tag_name": "v2.1.122",
-      "published_at": "2025-04-28",
-      "body": "Added `ANTHROPIC_BEDROCK_SERVICE_TIER` environment variable to select a Bedrock service tier (`default`, `flex`, or `priority`), sent as the `X-Amzn-Bedrock-Service-Tier` header. Pasting a PR URL into the `/resume` search box now finds the session that created that PR (GitHub, GitHub Enterprise, GitLab, and Bitbucket). `/mcp` now shows claude.ai connectors hidden by a manually-added server with the same URL, with a hint to remove the duplicate. Clarified the `/mcp` message shown when an MCP server is still unauthorized after the browser sign-in flow. OpenTelemetry: numeric attributes on `api_request`/`api_error` log events are now emitted as numbers, not strings. OpenTelemetry: added `claude_code.at_mention` log event for `@`-mention resolution."
-    },
-    {
-      "tag_name": "v2.1.121",
-      "published_at": "2025-04-28",
-      "body": "Added `alwaysLoad` option to MCP server config — when `true`, all tools from that server skip tool-search deferral and are always available. Added `claude plugin prune` to remove orphaned auto-installed plugin dependencies; `plugin uninstall --prune` cascades. Added a type-to-filter search box to `/skills` so you can find a skill in long lists without scrolling. PostToolUse hooks can now replace tool output for all tools via `hookSpecificOutput.updatedToolOutput` (previously MCP-only). Fullscreen mode: typing into the prompt no longer jumps scroll back to the bottom after you've scrolled up to read earlier output."
-    }
+    {"tag_name": "v2.1.119", "published_at": "2025-04-23", "body": "/config settings (theme, editor mode, verbose, etc.) now persist to ~/.claude/settings.json and participate in project/local/policy override precedence. Added prUrlTemplate setting to point the footer PR badge at a custom code-review URL instead of github.com. Added CLAUDE_CODE_HIDE_CWD environment variable to hide the working directory in the startup logo. --from-pr now accepts GitLab merge-request, Bitbucket pull-request, and GitHub Enterprise PR URLs. --print mode now honors the agent's tools: and disallowedTools: frontmatter, matching interactive-mode behavior."},
+    {"tag_name": "v2.1.118", "published_at": "2025-04-23", "body": "Added vim visual mode (v) and visual-line mode (V) with selection, operators, and visual feedback. Merged /cost and /stats into /usage — both remain as typing shortcuts that open the relevant tab. Create and switch between named custom themes from /theme, or hand-edit JSON files in ~/.claude/themes/; plugins can also ship themes via a themes/ directory. Hooks can now invoke MCP tools directly via type: \"mcp_tool\". Added DISABLE_UPDATES env var to completely block all update paths including manual claude update — stricter than DISABLE_AUTOUPDATER."},
+    {"tag_name": "v2.1.117", "published_at": "2025-04-22", "body": "Forked subagents can now be enabled on external builds by setting CLAUDE_CODE_FORK_SUBAGENT=1. Agent frontmatter mcpServers are now loaded for main-thread agent sessions via --agent. Improved /model: selections now persist across restarts even when the project pins a different model, and the startup header shows when the active model comes from a project or managed-settings pin. The /resume command now offers to summarize stale, large sessions before re-reading them, matching the existing --resume behavior. Faster startup when both local and claude.ai MCP servers are configured (concurrent connect now default)."}
   ]
 }

@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-02",
+  "content": "# AI Daily Digest — 2026-05-02\n\n## 今日のハイライト\n- **CoPD が多専門能力統合の新標準に**: RLVR と方策蒸留の弱点を克服する「共進化蒸留」が34 upvotes で最注目。単一モデルでの複数タスク高精度化という業界課題への直接的解答であり、マルチタスク AI の実用展開を加速する可能性がある。\n- **Claude Code v2.1.126 が本日リリース**: `claude project purge`、ゲートウェイ対応モデルピッカー、WSL2/SSH 環境での OAuth コード貼り付け認証など実用機能が多数追加。リモート開発・ゲートウェイ環境での利便性が大幅に向上。\n- **消費者向け GPU での LLM 訓練が現実的に**: RoundPipe がパイプラインバブルの根本原因「weight binding 問題」を解決し23 upvotes を獲得。高価なクラスター不要でのファインチューニングが一般研究者にも手の届く技術となりつつある。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.126 (2025-05-01) — 最新リリース\n\n**主要機能:**\n- **ゲートウェイ対応モデルピッカー**: `ANTHROPIC_BASE_URL` がゲートウェイを指している場合、`/model` ピッカーが `/v1/models` エンドポイントのモデル一覧を表示するように。カスタムモデルルーティング環境での利便性が向上。\n- **`claude project purge`**: プロジェクトの Claude Code 状態（トランスクリプト、タスク、ファイル履歴、設定エントリ）を一括削除するコマンドを追加。`--dry-run`、`-y/--yes`、`-i/--interactive`、`--all` オプション付き。\n- **パーミッション強化**: `--dangerously-skip-permissions` が `.claude/`、`.git/`、`.vscode/`、シェル設定ファイルへの書き込みプロンプトもバイパス可能に。ただし破壊的コマンドは引き続き確認プロンプトあり。\n- **WSL2/SSH/コンテナ対応認証**: `claude auth login` でブラウザコールバックが localhost に到達できない環境でも、OAuth コードをターミナルに貼り付けることで認証可能に。\n- **OpenTelemetry 改善**: `claude_code.skill_activated` イベントに `invocation_trigger` 属性（`\"user-slash\"`、`\"claude-proactive\"`、`\"nested-skill\"`）を追加。\n- **UX 改善**: Auto モードでパーミッションチェックが止まるとスピナーが赤色に変わり視認性向上。\n\n**ユーザーへの影響**: ゲートウェイ利用者はモデル選択がより直感的に。プロジェクト管理機能が充実し、リモート開発環境での認証問題が解消。\n\n---\n\n### v2.1.123 (2025-04-29)\n\n**バグ修正:**\n- `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` 設定時に OAuth 認証が 401 リトライループで失敗する問題を修正。\n\n---\n\n### v2.1.122 (2025-04-28)\n\n**主要機能:**\n- **Bedrock サービスティア選択**: `ANTHROPIC_BEDROCK_SERVICE_TIER` 環境変数で `default`/`flex`/`priority` を選択可能に（`X-Amzn-Bedrock-Service-Tier` ヘッダーとして送信）。\n- **PR URL での `/resume` 検索**: PR URL を `/resume` の検索ボックスに貼り付けることで、その PR を作成したセッションを検索可能に（GitHub、GitHub Enterprise、GitLab、Bitbucket 対応）。\n- **OpenTelemetry 強化**: `api_request`/`api_error` の数値属性が文字列ではなく数値として出力されるように修正。`@`メンション解決の `claude_code.at_mention` ログイベントを追加。\n\n**バグ修正:**\n- `/branch` でリワインドされたタイムラインを含むセッションからフォークすると「tool_use ids were found without tool_result blocks」エラーになる問題を修正。\n\n## 注目論文 TOP 10\n\n**1. Co-Evolving Policy Distillation** | ⬆️ 34 upvotes | https://arxiv.org/abs/2604.27083\n🎯**背景**: LLMのポストトレーニングでは RLVR（強化学習）と OPD（方策蒸留）が標準的手法だが、複数の専門能力を1つのモデルに統合する際、それぞれに異なる欠点がある。\n🔧**手法**: CoPD（Co-Evolving Policy Distillation）は専門家モデルを並行訓練しながら、完全な訓練完了後ではなく各専門家の RLVR 訓練中に OPD を導入。専門家同士が相互に教師役（双方向 OPD）となり共進化する。\n📊**結果**: 単一 RLVR・逐次 OPD と比較して能力統合効率が大幅向上、能力損失を軽減。\n💡**意義**: 複数タスクを1モデルで高精度処理するスケーラブルな訓練フレームワーク。マルチタスク AI の実用化を加速。\n⚠️**限界**: 専門家モデルの並行訓練はリソース消費が大きく、タスク間の相互干渉リスクも残る。\n\n---\n\n**2. ExoActor: Exocentric Video Generation as Generalizable Interactive Humanoid Control** | ⬆️ 31 upvotes | https://arxiv.org/abs/2604.27711\n🎯**背景**: ヒューマノイドロボットが物体や環境と豊かなインタラクションを行う制御は難題。従来の教師あり学習では空間的文脈・時系列・ロボット動作・タスク意図を同時に大規模で捉えることが困難。\n🔧**手法**: ExoActor は大規模映像生成モデルの汎化能力を活用し、三人称視点（外部視点）の映像生成をインタラクション動力学のモデリング統一インターフェースとして使用。\n📊**結果**: 多様なインタラクションタスクで従来手法を上回る汎化性能を実証。\n💡**意義**: 映像生成モデルをロボット制御に橋渡しする革新的アプローチ。汎用ヒューマノイドロボット実現への重要な一歩。\n⚠️**限界**: 外部カメラ視点依存のため、自律移動中の視点変化への対応が課題。実環境でのリアルタイム性も検証が必要。\n\n---\n\n**3. Efficient Training on Multiple Consumer GPUs with RoundPipe** | ⬆️ 23 upvotes | https://arxiv.org/abs/2604.27085\n🎯**背景**: コンシューマー向け GPU（RTX 4090 など）でLLMをファインチューニングする際、GPU メモリ不足と低速 PCIe インターコネクトがボトルネック。既存のパイプライン並列処理は「weight binding 問題」（不均等なモデルステージが最重負荷 GPU に律速される）により深刻なパイプラインバブルが発生。\n🔧**手法**: RoundPipe は weight binding 制約を破る新しいパイプラインスケジュールを提案。GPU 間のロードバランシングを動的に最適化し、CPU オフロードと組み合わせることでスループットを最大化。\n📊**結果**: 既存 PP スケジュールと比較してスループット大幅改善、パイプラインバブルを削減。\n💡**意義**: 高価なクラスターなしで研究者・個人がLLMファインチューニングを実施できる民主化技術。\n⚠️**限界**: PCIe 帯域幅の根本的制限は残存。超大規模モデルへの適用には依然として限界がある。\n\n---\n\n**4. Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows** | ⬆️ 17 upvotes | https://arxiv.org/abs/2604.28139\n🎯**背景**: 既存のエージェントベンチマークはリリース時点でタスクセットが固定されており、最終応答のみ評価するため、進化するワークフロー需要への適応や実際のタスク実行検証が困難。\n🔧**手法**: Claw-Eval-Live は更新可能なシグナル層（リリースをまたいで更新）と再現可能なタイムスタンプ付きリリーススナップショットを分離。ClawHub Top-500 スキルを使用し、固定フィクスチャ・サービス・ワークスペース・グレーダーで管理されたタスクを構成。\n📊**結果**: 現実のワークフロー需要に基づく動的評価が可能となり、エージェントの実行検証精度が向上。\n💡**意義**: 静的ベンチマークの陳腐化問題を解決。実世界のワークフロー変化に追随できる「生きたベンチマーク」の新パラダイム。\n⚠️**限界**: ライブ更新により再現性が低下するトレードオフあり。評価インフラの維持コストが継続的に発生。\n\n---\n\n**5. Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling** | ⬆️ 16 upvotes | https://arxiv.org/abs/2604.27039\n🎯**背景**: LLMの生成長は推論コストと推論性能の両方に直接影響するが、既存手法はシーケンスレベルの粗い長さ制御しか行えず、トークンレベルの細粒度な長さモデリングが欠如している。\n🔧**手法**: LenVM（Length Value Model）はトークンレベルで残り生成長をモデル化するフレームワーク。長さモデリングを価値推定問題として定式化し、各生成トークンに定数負報酬を与えることで、単調な残り生成ホライゾンの代理指標として機能する有界割引リターンを予測。\n📊**結果**: トークンレベルの長さ予測精度が向上し、推論コストの予測可能性が改善。スケーラブルな事前訓練パラダイムとして有効性を実証。\n💡**意義**: LLM推論の効率化に向けた根本的アプローチ。コスト予測・動的計算割り当てへの応用が期待される。\n⚠️**限界**: 事前訓練コストの追加が必要。長さ推定誤差が蓄積した場合の影響、および多様なタスクへの汎化性の検証が必要。\n\n---\n\n**6. Leveraging Verifier-Based Reinforcement Learning in Image Editing** | ⬆️ 15 upvotes | https://arxiv.org/abs/2604.27505\n🎯**背景**: RLHF はテキスト→画像生成では普及しているが、画像編集への応用はほぼ未開拓。画像編集に汎用的な強力な報酬モデルが存在せず、既存の編集報酬モデルは全体スコアのみで詳細チェックを行わないためバイアスが生じる。\n🔧**手法**: Edit-R1 はチェーン・オブ・ソート（CoT）ベースの検証型推論報酬モデル（RRM）を構築し、単純なスコアラーからリーズニング検証器への転換を実現。この RRM を下流の画像編集タスクに活用。\n📊**結果**: 多様な編集タスクで既存 RLHF ベースの手法を上回る精度を達成。公平でバイアスの少ない報酬評価が可能に。\n💡**意義**: 推論型 AI の能力を画像編集フィードバックループに統合する先駆的研究。マルチモーダル RL の新境地を開拓。\n⚠️**限界**: CoT 検証器の構築と訓練に追加コスト。高度な編集指示の解釈では検証器自体が誤る可能性がある。\n\n---\n\n**7. InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?** | ⬆️ 8 upvotes | https://arxiv.org/abs/2604.27419\n🎯**背景**: マルチモーダル LLM とコーディングエージェントの発展でウェブサイト開発はエージェントベースに移行しつつあるが、非専門家ユーザーの曖昧な指示とモデル理解の意味的ミスマッチ（「盲目的実行」）が重大なボトルネック。\n🔧**手法**: InteractWeb-Bench は非専門家・ローコードユーザー条件下でのウェブサイト生成に特化した初のマルチモーダル・インタラクティブベンチマーク。曖昧な入力と静的実行設定を排除した現実的な評価環境を構築。\n📊**結果**: 現行のマルチモーダルエージェントが非専門家指示下での盲目的実行に陥りやすいことを定量的に実証。\n💡**意義**: 実世界のウェブ開発シナリオに即した評価基準を確立。エージェントのインタラクティブ性・文脈理解能力の改善指針を提供。\n⚠️**限界**: ベンチマーク自体の網羅性・更新頻度が課題。特定の言語・文化背景への偏りがある可能性。\n\n---\n\n**8. Compliance versus Sensibility: On the Reasoning Controllability in Large Language Models** | ⬆️ 5 upvotes | https://arxiv.org/abs/2604.27251\n🎯**背景**: LLM は事前訓練データの共有推論パターンを通じて推論能力を獲得するが、帰納・演繹・仮説的推論などの基本的推論パターンが特定問題インスタンスから切り離せるかどうかは、モデル制御可能性の重要課題。\n🔧**手法**: 推論競合（parametric 情報と contextual 情報の明示的緊張）のレンズを通じて推論制御可能性を初めて系統的に調査。対象タスクで期待されるスキーマから逸脱する論理スキーマを義務付けることで競合を誘発。\n📊**結果**: LLM は文脈的に指示された推論スキーマに従う「コンプライアンス」と、パラメトリックに期待される推論を行う「センシビリティ」の間で一貫したトレードオフを示すことが判明。\n💡**意義**: AI の推論制御可能性理解の基礎研究。信頼性の高い推論 AI システム設計に不可欠な洞察を提供。\n⚠️**限界**: 制御された実験設定であり、実世界の複雑な推論シナリオへの一般化には追加検証が必要。\n\n---\n\n**9. Instruction-Guided Poetry Generation in Arabic and Its Dialects** | ⬆️ 1 upvote | https://arxiv.org/abs/2604.27766\n🎯**背景**: アラビア語詩はアラブ文化の中心的芸術形式だが、LLM のアラビア語詩研究は主に解析タスク（解釈、韻律・タイトル予測等）に偏り、実際の詩創作支援が未開拓。\n🔧**手法**: 現代標準アラビア語（MSA）および様々なアラビア方言における制御可能な詩生成能力を導入するため、大規模な指示ベースデータセットを慎重にキュレーション。\n📊**結果**: 制御可能な詩生成においてアラビア語特化の改善を実証。多方言対応により地域的多様性への対応力が向上。\n💡**意義**: AI を使った文化・言語的に多様な創作活動支援の拡張。アラビア語話者コミュニティ向け AI ツールの可能性を開く。\n⚠️**限界**: 詩の質の主観的評価が困難。方言データの収集・品質担保が難しく、稀少方言への対応は限定的。\n\n---\n\n**10. ViPO: Visual Preference Optimization at Scale** | ⬆️ 1 upvote | https://arxiv.org/abs/2604.24953\n🎯**背景**: 嗜好最適化は視覚生成モデル改善に重要だが、スケーリングの方法論は未開拓。既存オープンソースデータセットは競合する嗜好パターンを含み、naive な最適化では嗜好学習が失敗する。\n🔧**手法**: Poly-DPO は DPO 目的関数に追加の多項式項を導入。データセット特性に基づいてモデルの信頼度を動的調整し、多様なデータ分布での効果的な学習を実現。\n📊**結果**: ノイズの多い嗜好データセットへのロバスト性が向上し、スケーリングに伴う性能向上を実証。\n💡**意義**: 視覚生成モデルの嗜好学習スケーリング問題を解決する汎用フレームワーク。大規模オープンソースデータセット活用の道を開く。\n⚠️**限界**: 多項式項のハイパーパラメータ調整が新たな課題。非常に大規模なスケールでの計算コストの評価が必要。\n\n",
+  "fetched_at": "2026-05-01T22:28:42.200208+00:00",
+  "papers": [
+    {
+      "title": "Co-Evolving Policy Distillation",
+      "upvotes": 34,
+      "paper_id": "2604.27083",
+      "abstract": "RLVR and OPD have become standard paradigms for post-training. We provide a unified analysis of these two paradigms in consolidating multiple expert capabilities into a single model, identifying capability loss in different ways: mixed RLVR suffers from inter-capability divergence cost, while the pipeline of first training experts and then performing OPD, though avoiding divergence, fails to fully absorb teacher capabilities due to large behavioral pattern gaps between teacher and student. We propose Co-Evolving Policy Distillation (CoPD)."
+    },
+    {
+      "title": "ExoActor: Exocentric Video Generation as Generalizable Interactive Humanoid Control",
+      "upvotes": 31,
+      "paper_id": "2604.27711",
+      "abstract": "Humanoid control systems have made significant progress in recent years, yet modeling fluent interaction-rich behavior between a robot, its surrounding environment, and task-relevant objects remains a fundamental challenge. We propose ExoActor, a novel framework that leverages the generalization capabilities of large-scale video generation models to address this problem."
+    },
+    {
+      "title": "Efficient Training on Multiple Consumer GPUs with RoundPipe",
+      "upvotes": 23,
+      "paper_id": "2604.27085",
+      "abstract": "Fine-tuning Large Language Models (LLMs) on consumer-grade GPUs is highly cost-effective, yet constrained by limited GPU memory and slow PCIe interconnects. We propose RoundPipe, a novel pipeline schedule that breaks the weight binding constraint on consumer GPU servers."
+    },
+    {
+      "title": "Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows",
+      "upvotes": 17,
+      "paper_id": "2604.28139",
+      "abstract": "LLM agents are expected to complete end-to-end units of work across software tools, business services, and local workspaces. We introduce Claw-Eval-Live, a live benchmark for workflow agents that separates a refreshable signal layer from a reproducible, time-stamped release snapshot."
+    },
+    {
+      "title": "Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling",
+      "upvotes": 16,
+      "paper_id": "2604.27039",
+      "abstract": "We introduce the Length Value Model (LenVM), a token-level framework that models the remaining generation length. By formulating length modeling as a value estimation problem and assigning a constant negative reward to each generated token, LenVM predicts a bounded, discounted return."
+    },
+    {
+      "title": "Leveraging Verifier-Based Reinforcement Learning in Image Editing",
+      "upvotes": 15,
+      "paper_id": "2604.27505",
+      "abstract": "We introduce Edit-R1, a framework that builds a chain-of-thought (CoT) verifier-based reasoning reward model (RRM) and then leverages it for downstream image editing. A key bottleneck is the lack of a robust general reward model for all editing tasks."
+    },
+    {
+      "title": "InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?",
+      "upvotes": 8,
+      "paper_id": "2604.27419",
+      "abstract": "We introduce InteractWeb-Bench, the first multimodal interactive benchmark for website generation under non-expert low-code user conditions. Real-world development is constrained by semantic misalignment between ambiguous instructions and model understanding."
+    },
+    {
+      "title": "Compliance versus Sensibility: On the Reasoning Controllability in Large Language Models",
+      "upvotes": 5,
+      "paper_id": "2604.27251",
+      "abstract": "We present the first systematic investigation of reasoning controllability through the lens of reasoning conflicts: an explicit tension between parametric and contextual information induced by mandating logical schemata that deviate from those expected for a target task."
+    },
+    {
+      "title": "Instruction-Guided Poetry Generation in Arabic and Its Dialects",
+      "upvotes": 1,
+      "paper_id": "2604.27766",
+      "abstract": "We present a large-scale, carefully curated instruction-based dataset in Modern Standard Arabic (MSA) and various Arabic dialects, addressing the practical aspect of poetry creation in Arabic by introducing controllable generation capabilities."
+    },
+    {
+      "title": "ViPO: Visual Preference Optimization at Scale",
+      "upvotes": 1,
+      "paper_id": "2604.24953",
+      "abstract": "We propose Poly-DPO, which extends the DPO objective with an additional polynomial term that dynamically adjusts model confidence based on dataset characteristics, enabling effective learning across diverse data distributions."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.126",
+      "published_at": "2025-05-01",
+      "body": "The `/model` picker now lists models from your gateway's `/v1/models` endpoint when `ANTHROPIC_BASE_URL` points at an Anthropic-compatible gateway. Added `claude project purge [path]` to delete all Claude Code state for a project (transcripts, tasks, file history, config entry) — supports `--dry-run`, `-y/--yes`, `-i/--interactive`, and `--all`. `--dangerously-skip-permissions` now bypasses prompts for writes to `.claude/`, `.git/`, `.vscode/`, shell config files, and other previously-protected paths (catastrophic removal commands still prompt as a safety net). `claude auth login` now accepts the OAuth code pasted into the terminal when the browser callback can't reach localhost (WSL2, SSH, containers). Auto mode: the spinner now turns red when a permission check stalls."
+    },
+    {
+      "tag_name": "v2.1.123",
+      "published_at": "2025-04-29",
+      "body": "Fixed OAuth authentication failing with a 401 retry loop when `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` is set."
+    },
+    {
+      "tag_name": "v2.1.122",
+      "published_at": "2025-04-28",
+      "body": "Added `ANTHROPIC_BEDROCK_SERVICE_TIER` environment variable to select a Bedrock service tier (`default`, `flex`, or `priority`). Pasting a PR URL into the `/resume` search box now finds the session that created that PR. `/mcp` now shows claude.ai connectors hidden by a manually-added server with the same URL. OpenTelemetry: numeric attributes on `api_request`/`api_error` log events are now emitted as numbers, not strings. Fixed `/branch` producing forks that fail with tool_use ids were found without tool_result blocks."
+    }
+  ]
+}

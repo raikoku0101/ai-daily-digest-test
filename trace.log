@@ -1,8 +1,7 @@
-22:01:34 00 start
-22:06:13 03 github
-22:06:41 04 discord main
-22:08:05 05.1 paper 1 arxiv posted
-22:09:32 05.2 paper 2 arxiv posted
-22:10:49 05.3 paper 3 arxiv posted
-22:12:05 05.4 paper 4 arxiv posted
-22:13:17 05.5 paper 5 arxiv posted
+22:24:25 00 start
+22:26:08 01 fetch done
+22:26:17 02a header
+22:26:41 02b cc
+22:27:29 02c papers 1-5
+22:28:17 02d papers 6-10
+22:28:34 02e highlights
