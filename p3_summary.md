@@ -1,6 +1,6 @@
-**3. StyleID: A Perception-Aware Dataset and Metric for Stylization-Agnostic Facial Identity Recognition**
-**著者**: StyleID Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.21689
+**3. Efficient Training on Multiple Consumer GPUs with RoundPipe**
+**著者**: Anonymous et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.27085
 
 **まとめ**:
-漫画・スケッチ・絵画などのスタイライゼーション下での顔認識において、既存の ArcFace・AdaFace が分布シフトにより誤認識する問題を解決するため、68名の人間判定から構築した StyleBench-H と合成教師信号 StyleBench-S、そして CLIP-L + LoRA + ArcFace 損失で訓練した StyleID モデルを提案。スタイル化下での TPR が ArcFace 76.5%→90.2% に向上し、未見の手法・アーティスト手描きスケッチでも強い汎化性を示した。スタイル不変顔認識の初の人間知覚較正ベンチマーク。
+コンシューマー GPU（RTX 4090 × 8台）でのLLMファインチューニングを阻む「weight binding 問題」を解決する RoundPipe を提案。GPUをステートレスな実行ワーカープールとして扱いラウンドロビン方式で計算ステージを動的割り当て、パイプラインバブルをほぼゼロに削減。1.7B〜32Bモデルで最大2.16倍高速化、単一サーバーでQwen3-235BのLoRAファインチューニングを実現した民主化技術。

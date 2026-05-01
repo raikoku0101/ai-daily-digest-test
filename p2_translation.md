@@ -1,14 +1,15 @@
 ## 1. Introduction (はじめに)
-現在のインタラクティブビデオ生成モデル（Genie、YUME、HY-World 等）は急速に進化しているが、各モデルが独自のベンチマークで評価されているため公平な交差比較が不可能という問題がある。本論文は WorldMark という統合ベンチマークスイートを提案する。共通の WASD スタイルアクション語彙と統一制御インターフェースを通じて、異なる入力形式を持つ 6 つの主要モデルを同一シーン・同一アクション列で評価できる。500 評価ケースの階層的テストスイート（Easy/Medium/Hard）により一人称・三人称視点、フォトリアル・スタイル化シーン、20〜60 秒の複雑なアクション列に対応する。
 
-## 2. Related Work (関連研究)
-ビデオ生成技術は GAN・VAE ベースから拡散モデル（Diffusion Models）、さらに Sora 等の大規模 Video Diffusion Transformers へ進化してきた。MineWorld や Open-Oasis がゲーム環境でのインタラクティブ生成を先駆けし、Matrix-Game 2.0 や HY-World 1.5 はフォトリアル世界へ拡張した。しかし各モデルは独自の私的ベンチマークで報告するため真の性能比較ができない。既存の VBench、WorldScore 等は有用なメトリクスを提供するが統一テスト条件が欠落している。
+ヒューマノイドロボットの制御システムは近年大きな進歩を遂げていますが、「ロボット、環境、タスク関連オブジェクト間の豊かな相互作用（interaction-rich behavior）をモデル化すること」が根本的な課題として残っています。従来の教師あり学習（supervised learning）では、空間コンテキスト（spatial context）・時間力学（temporal dynamics）・ロボット動作（robot actions）・タスク意図（task intent）を大規模かつ同時に捉えることが困難です。ExoActorはこの課題を根本から解決する新しいフレームワークとして提案されました。
 
-## 3. Method (手法)
-WorldMark は 5 要素で構成される: (1) Visual Quality（視覚品質）・Control Alignment（制御整合性）・World Consistency（世界一貫性）の 8 メトリクス評価次元、(2) 50 参照画像の画像スイート、(3) 複雑度が段階的に上昇する 15 アクション軌跡、(4) WASD+L/R 語彙を各モデルのネイティブ形式に変換する統一アクションインターフェース、(5) 統合評価ワークフロー。YUME はキャプションプロンプト、HY-World は Pose パラメータ、Matrix-Game は Action API など異なる形式をセマンティック上等価な入力に統一することで初めて公平比較が可能になる。評価は DROID-SLAM による幾何学的誤差と VLM による意味的一貫性評価を組み合わせる。
+## 2. Method (手法)
 
-## 4. Experiments & Results (実験・結果)
-YUME 1.5、Matrix-Game 2.0、HY-World 1.5、HY-GameCraft、Open-Oasis、Genie 3 の 6 モデルを評価。YUME が最高の美的品質スコア 56.94 を記録したが世界一貫性は低い。Genie 3 は視覚品質は中程度だが世界一貫性で優位という対照的パターン。三人称視点では Matrix-Game の回転誤差が約 20 倍に悪化するなど視点固有の課題が浮上した。
+ExoActorの核心となるアイデアは、三人称（外部視点、exocentric）映像生成を相互作用力学（interaction dynamics）のモデリング統一インターフェースとして使用することです。大規模映像生成モデル（large-scale video generation model）の汎化能力を活用し、タスク指示とシーン文脈から、ロボット・環境・オブジェクト間の協調相互作用を暗黙的に符号化した実行プロセスを合成します。生成された映像から人間モーション推定（human motion estimation）を行い、汎用モーションコントローラ（general motion controller）で実行可能なヒューマノイド行動列（humanoid action sequence）に変換します。
 
-## 5. Key Findings & Conclusion (主要知見・結論)
-4 つの重要知見: (1) 視覚品質と世界一貫性はほぼ無相関、(2) 精密な制御整合性が全体品質を保証しない、(3) 三人称生成は顕著な弱点、(4) 訓練データドメイン外での性能大幅低下。ヒト選好との Spearman 相関 ρ>0.9 で自動メトリクスの妥当性を検証。データ・評価コード・モデル出力を全公開予定。オンラインプラットフォーム「World Model Arena」でリアルタイム比較も可能にする。
+## 3. Experiments & Results (実験と結果)
+
+ExoActorは新しいシナリオへの汎化性能（generalization performance）を実証しています。追加の実世界データ収集（real-world data collection）なしに、未見の相互作用シナリオへの適応能力を検証。従来のヒューマノイド制御手法と比較して、インタラクション豊かなタスクでの汎化精度が大幅に向上しています。映像生成モデルが持つ世界の物理的動力学に関する暗黙知識が、制御への転移を可能にしています。
+
+## 4. Conclusion (結論)
+
+ExoActorは「相互作用豊かなヒューマノイド行動をモデル化するスケーラブルなアプローチ」を提供し、大規模生成モデル（large-scale generative model）が汎用ヒューマノイド知能（generalizable humanoid intelligence）の進展を促進する新しい道を開きます。映像生成とロボット制御の統合という新パラダイムは、今後のエンボディドAI（embodied AI）研究の方向性を示す重要な成果です。

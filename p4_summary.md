@@ -1,6 +1,6 @@
-**4. Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks**
-**著者**: COSPLAY Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.20987
+**4. Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows**
+**著者**: Anonymous et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.28139
 
 **まとめ**:
-長期ホライズン環境でのスキル発見・保持・再利用の欠如という LLM エージェントの課題を解決するため、決定エージェントとスキルバンクエージェントを共進化させる COSPLAY フレームワークを提案。8B ベースモデルで 4 つの最先端 LLM ベースラインに対し 6 ゲーム環境平均で 25.1% 以上の報酬改善を達成。スキル再利用による長期計画能力の飛躍的向上を実証した。
+静的タスクセットと最終応答のみの評価という既存ベンチマークの限界を打破する「ライブベンチマーク」を提案。更新可能なシグナル層と再現可能なスナップショットを分離し、ClawHub Top-500スキルから105タスクを構築。13モデルを評価したところ最高スコアでも66.7%止まりで、HR・マルチシステムワークフローが持続的ボトルネックと判明した現実的評価基盤。

@@ -1,14 +1,15 @@
 ## 1. Introduction (はじめに)
-創作的な顔スタイライゼーション（漫画・スケッチ・絵画）は消費者アプリやアバタープラットフォームで一般的になっているが、標準的な身元認識エンコーダはテクスチャや色パレットの変化を身元変化と誤認識する傾向がある。この問題は身元エンコーダが自然写真で訓練・キャリブレーションされている一方でスタイル化画像に適用される際の分布シフト（distribution shift）に起因する。スタイル化パイプラインを身元保存の観点で比較する証拠に基づいた手段が欠如していた。
 
-## 2. Related Work (関連研究)
-(1) 身元認識: ArcFace・AdaFace など角度マージンベース手法が標準だが写真領域に限定。(2) 顔認識データセット: 大規模だが全て写真的でスタイル化対応なし。(3) 顔スタイライゼーション: 拡散モデル・フロー・マッチング技術まで進化したが身元保存評価は人間知覚と不一致。先行研究 StylizedFace は人間判断との較正がなく非公開という限界があった。
+消費者向けGPU（consumer-grade GPU）でのLLMファインチューニングは費用対効果に優れますが、GPUメモリ制限とPCIe接続の低帯域幅が大きな制約です。パイプライン並列処理（pipeline parallelism）とCPUオフローディング（CPU offloading）を組み合わせることでこれらを緩和できます。しかし既存のパイプラインスケジュールには「weight binding 問題（重み結合問題）」という根本的制限があり、LMヘッドなど不均等なモデルステージが最重負荷 GPU にボトルネックを生じさせ、深刻なパイプラインバブル（pipeline bubble）が発生します。
 
-## 3. Method (手法)
-StyleBench-H（人間判定ベンチマーク）: IP-Adapter・InstantID・InfiniteYou の 3 拡散手法を複数スタイル強度で生成した画像ペアについて 68 名の参加者から 2AFC（二者強制選択）判定を収集（3,551 有効データポイント）。StyleBench-S（合成教師信号セット）: 心理測定関数から 4,073 身元 × 55 スタイル化画像（224k 標本）を生成。StyleID: CLIP-L 視覚エンコーダを LoRA（低ランク適応）で微調整し ArcFace 損失・教師ありコントラスト学習・埋め込み正則化を組み合わせて訓練。
+## 2. Method (手法)
 
-## 4. Experiments & Results (実験・結果)
-StyleID は StyleBench-H クロスアイデンティティ分割で TPR（真陽性率）0.902 を達成。ArcFace（0.765）・AdaFace（0.784）・CLIP（0.256）を大幅に上回る。未見手法（FLUX.2・MTG）への汎化でも 0.744 TPR を保持。アーティスト手描きスケッチデータセット（SKSF-A）で 0.889 TPR。AUROC 0.971。JoJoGAN スタイライゼーションに組み込むと 90% 近くのユーザーが StyleID ベース出力を好んだ。軽量変種 StyleID_tiny は計算量 20 倍削減でも競争力を維持。
+RoundPipeは weight binding 制約を打破する革新的なパイプラインスケジュール手法です。GPUをステートレスな実行ワーカープール（stateless execution worker pool）として扱い、計算ステージ（computation stage）をラウンドロビン方式で動的に割り当てることで、ほぼゼロバブル（near-zero bubble）のパイプラインを実現します。技術的には以下の3要素を統合: (1) 優先度認識転送スケジューリングエンジン（priority-aware transfer scheduling engine）、(2) 細粒度分散イベント同期プロトコル（fine-grained distributed event synchronization protocol）、(3) 自動レイヤー分割アルゴリズム（automatic layer partitioning algorithm）。
 
-## 5. Conclusion (結論)
-StyleID はデータセット + メトリクス + モデルの統合フレームワークとして、スタイライゼーション下での身元評価の欠けていた基準を提供する。StyleBench-H は人間判定の信頼できる参照であり StyleBench-S はスケーラブルな教師信号を供給する。人口統計学的偏り（若い白人被験者に偏向）や極端なポーズ・遮蔽への未対応が課題として残る。
+## 3. Experiments & Results (実験と結果)
+
+8×RTX 4090サーバーでの評価では、1.7B〜32Bパラメータモデルのファインチューニングにおいて、最先端ベースラインと比較して1.48〜2.16倍のスループット向上を達成しました。特に重要な成果として、単一サーバーでQwen3-235Bモデルの31Kシーケンス長（sequence length）のLoRA（Low-Rank Adaptation）ファインチューニングが可能になりました。これは従来、大規模クラスターが必要とされていた規模のモデルです。
+
+## 4. Conclusion (結論)
+
+RoundPipeはオープンソースのPythonライブラリとして公開されており、包括的なドキュメントとともに提供されています。高価なクラスター環境なしに、個人研究者や小規模チームでも大規模LLMのファインチューニングが現実的に行えるようになり、AI研究の民主化（democratization of AI research）に大きく貢献します。

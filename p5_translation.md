@@ -1,14 +1,15 @@
 ## 1. Introduction (はじめに)
-自律型 GUI エージェントは 2 つの根本的課題に直面している。第一に早期終了問題: エージェントが検証可能な証拠なしに成功を宣言する。第二に繰り返しループ: 同じ失敗アクションを循環実行する。本論文は「いつ停止すべきか（STOP）、回復すべきか（RECOVER）、検索すべきか（SEARCH）」を判断する VLAA-GUI フレームワークを提案する。完全性検証器（Completeness Verifier）・ループ破壊器（Loop Breaker）・検索エージェント（Search Agent）の 3 統合コンポーネントにより OSWorld で 77.5% の成功率を達成し、初めて人間レベル性能（72.4%）を超えた。
 
-## 2. Related Work (関連研究)
-GUI エージェントベンチマーク（OSWorld・WindowsAgentArena 等）が標準評価環境を提供。GUI エージェント実装では UI-TARS・CogAgent 等の専門モデルと Agent S family 等のモジュラーフレームワークが主流。自己検証とエラー回復では ReAct・Reflexion 等が提案されているが、GUI 特有の「完全性検証の欠如」と「多層ループ検出の不足」は未解決だった。
+現代の自動回帰モデル（autoregressive model）において、トークンは計算の基本単位であり、生成長（generation length）は推論コスト（inference cost）と推論性能（reasoning performance）の両方に直接影響します。しかし既存アプローチは粗粒度のシーケンスレベル（sequence-level）処理が中心で、細粒度のトークンレベル（token-level）長さモデリングが不足しています。この欠如により、動的な計算予算配分（dynamic budget allocation）や生成制御が困難です。
 
-## 3. Method (手法)
-VLAA-GUI はマネージャーエージェントを中核とし 5 ツールで構成される。完全性検証器は「完全性ゲート」（マネージャープロンプト内の自己検証）と「検証モデル判定」（独立 MLLM による二次審査）の 2 層構造で UI 上の成功基準を毎ステップ検証する。ループ破壊器は 3 段階エスカレーション: ①同じアクション・対象が連続無変化→インタラクションモード切替、②同じ画面状態反復→戦略変更、③外部モデル判定で強制戦略変更。検索エージェントは LLM ネイティブ検索で「How to」クエリに平文手順を返す。
+## 2. Method (手法)
 
-## 4. Experiments & Results (実験・結果)
-OSWorld-Verified（361 タスク）と WindowsAgentArena（154 タスク）で 5 バックボーン（Opus 4.6・Opus 4.5・Sonnet 4.6・Gemini 3.1 Pro・Gemini 3 Flash）を評価。Opus 4.6 で 77.5%（OSWorld）・61.0%（WAA）を達成。3 バックボーンが人間性能（72.4%）を超過。Sonnet 4.6 は 15 ステップで既発表 50 ステップシステムを超過。アブレーション: 完全性検証器+3.1%、ループ破壊器+4.2%、検索エージェント Windows タスクで+11.0%。偽完了率は失敗の 86% 以上で発生し検証器により 3.9% 削減。
+Length Value Model（LenVM）は残余生成長（remaining generation length）をトークンレベルで予測するフレームワークです。各生成トークンに一定の負の報酬（constant negative reward）を割り当て、長さモデリングを価値推定問題（value estimation problem）として定式化します。この設定により、アノテーション不要で密度高く不偏な教師信号（unbiased supervision signal）を獲得できます。予測するのは残り生成ホライゾン（remaining generation horizon）の単調プロキシとして機能する有界割引リターン（bounded discounted return）です。スケーラブルな事前訓練パラダイム（scalable pretraining paradigm）として設計されています。
 
-## 5. Conclusion (結論)
-VLAA-GUI は完全性検証・多層ループ検出・オンデマンド知識検索により GUI エージェントの信頼性を大幅向上。初めて複数バックボーンで人間レベル性能を達成した。今後は長期計画機構の強化と検証済み軌跡を用いたエンドツーエンドモデル蒸留が課題となる。
+## 3. Experiments & Results (実験と結果)
+
+LIFEBench正確長マッチング（exact-length matching）タスクでは、7Bモデルの長さスコアを「30.9から64.8へ改善」し、最先端の閉鎖ソースモデルを大幅に上回りました。GSM8K（トークン予算200、token budget 200）ではLenVMが63%の精度を維持する一方、基準手法は6%に留まるという顕著な差を示しました。トークンレベルの価値推定値（token-level value estimates）は生成ダイナミクス（generation dynamics）の解釈可能な視点も提供します。
+
+## 4. Conclusion (結論)
+
+LenVMは性能と効率のトレードオフを継続的に制御でき、プロンプト境界からの総生成長を高精度に予測します。将来の強化学習訓練（RL training）を支援する長さ特化価値信号（length-specific value signal）としての応用が期待され、LLM推論の効率化と予測可能性向上に向けた重要な基盤技術となります。

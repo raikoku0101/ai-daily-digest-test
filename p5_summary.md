@@ -1,6 +1,6 @@
-**5. VLAA-GUI: Knowing When to Stop, Recover, and Search, A Modular Framework for GUI Automation**
-**著者**: VLAA-GUI Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.21375
+**5. Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling**
+**著者**: Anonymous et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.27039
 
 **まとめ**:
-自律 GUI エージェントの「早期終了（フォールスサクセス）」と「繰り返しループ」という二大課題を解決するため、完全性検証器・ループ破壊器・検索エージェントの 3 モジュールからなる VLAA-GUI フレームワークを提案。OSWorld で 77.5% の成功率を達成し、初めて人間レベル性能（72.4%）を複数バックボーンで超過。Claude Opus 4.6 / Gemini 3.1 Pro 等が人間を超える。
+LLMの生成長をトークンレベルで予測する Length Value Model（LenVM）を提案。各トークンへの定数負報酬で長さモデリングを価値推定問題として定式化し、アノテーション不要な密度高い教師信号を獲得。LIFEBenchで7Bモデルの長さスコアを30.9→64.8へ大幅改善し、GSM8Kでもトークン予算200制約下で63%精度を維持（基準6%）した実用的な推論効率化技術。
