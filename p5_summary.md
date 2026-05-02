@@ -1,6 +1,6 @@
-**5. Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.27039
+**5. Leveraging Verifier-Based Reinforcement Learning in Image Editing**
+**著者**: Hanzhong Guo, Jie Wu, Jie Liu et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.27505
 
 **まとめ**:
-LLMの生成長をトークンレベルで予測する Length Value Model（LenVM）を提案。各トークンへの定数負報酬で長さモデリングを価値推定問題として定式化し、アノテーション不要な密度高い教師信号を獲得。LIFEBenchで7Bモデルの長さスコアを30.9→64.8へ大幅改善し、GSM8Kでもトークン予算200制約下で63%精度を維持（基準6%）した実用的な推論効率化技術。
+RLHF がテキスト→画像生成で成功した一方、画像編集への適用は未探索だった主因「バイアスある全体スコア型報酬モデル」を克服するため、推論型検証器（Verifier）を用いた RL フレームワーク「Edit-R1」を提案。Chain-of-Thought を活用した報酬モデルが編集画像を個別原則ごとに評価し、グループ対照的選好最適化（Group Contrastive Preference Optimization）という RL 手法と人間のペアワイズ選好データを組み合わせて学習する。FLUX.1 などの最先端編集モデルの性能を大幅に改善し、スケーラブルな自動検証器による画像編集改善の有効性を実証した。

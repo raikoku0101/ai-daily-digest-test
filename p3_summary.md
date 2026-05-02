@@ -1,6 +1,6 @@
 **3. Efficient Training on Multiple Consumer GPUs with RoundPipe**
-**著者**: Anonymous et al. (2026)
+**著者**: Yibin Luo, Shiwei Gao, Huichuan Zheng et al. (2025)
 **arXiv**: https://arxiv.org/abs/2604.27085
 
 **まとめ**:
-コンシューマー GPU（RTX 4090 × 8台）でのLLMファインチューニングを阻む「weight binding 問題」を解決する RoundPipe を提案。GPUをステートレスな実行ワーカープールとして扱いラウンドロビン方式で計算ステージを動的割り当て、パイプラインバブルをほぼゼロに削減。1.7B〜32Bモデルで最大2.16倍高速化、単一サーバーでQwen3-235BのLoRAファインチューニングを実現した民主化技術。
+コンシューマーグレード GPU での LLM ファインチューニングを高速化する新パイプラインスケジュール手法「RoundPipe」を提案。既存手法の「重み結合問題（weight-binding problem）」を解消し、GPU をステートレスワーカーのプールとして扱うことでラウンドロビン方式の動的ステージ配分を実現する。8×RTX 4090 サーバーで 1.7B〜32B モデルのファインチューニングを既存比 1.48〜2.16 倍に高速化し、単一サーバーで Qwen3-235B の LoRA ファインチューニングを可能にした。高価なサーバーグレード GPU なしに大規模 LLM の民主的な学習を実現する実用的成果。

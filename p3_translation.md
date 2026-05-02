@@ -1,15 +1,14 @@
-## 1. Introduction (はじめに)
+## 1. Abstract（概要）
+コンシューマーグレード GPU（消費者向け GPU）での LLM（大規模言語モデル）ファインチューニングは費用対効果が高い一方、限られた GPU メモリと低速な PCIe 接続がボトルネック。既存のパイプライン並列処理（Pipeline Parallelism）+ CPU オフロード手法には「重み結合問題（Weight-binding Problem）」という根本的制限があり、最も負荷の大きい GPU がシステム全体のスループットを制限してしまう。RoundPipe はこの制約を解消する新規スケジュール手法として提案される。
 
-消費者向けGPU（consumer-grade GPU）でのLLMファインチューニングは費用対効果に優れますが、GPUメモリ制限とPCIe接続の低帯域幅が大きな制約です。パイプライン並列処理（pipeline parallelism）とCPUオフローディング（CPU offloading）を組み合わせることでこれらを緩和できます。しかし既存のパイプラインスケジュールには「weight binding 問題（重み結合問題）」という根本的制限があり、LMヘッドなど不均等なモデルステージが最重負荷 GPU にボトルネックを生じさせ、深刻なパイプラインバブル（pipeline bubble）が発生します。
+## 2. Introduction（はじめに）
+GPT-4 クラスのモデルを企業・研究者がカスタマイズするために、コンシューマー GPU クラスタでのファインチューニングが注目されている。RTX 4090 などの高性能コンシューマー GPU は H100 等のサーバーグレード GPU と比べてコストが大幅に低いが、NVLink や InfiniBand のような高速インターコネクトが使えないため、通信効率が課題となる。本研究は PCIe 接続の限界を工夫で克服することを目的とする。
 
-## 2. Method (手法)
+## 3. Method（手法）
+RoundPipe の核心は「GPU をステートレス実行ワーカーとして扱う」設計にある。従来のパイプライン並列では各 GPU に固定のモデルステージが割り当てられるが（重み結合）、RoundPipe ではラウンドロビン方式でマイクロバッチ（micro-batch）のステージをGPU に動的配分する。これにより負荷不均衡が解消され、ほぼゼロバブル（zero-bubble）のパイプライン実行を実現。CPU オフロードと組み合わせることで、単一 GPU のメモリ容量を超えるモデルも処理可能。
 
-RoundPipeは weight binding 制約を打破する革新的なパイプラインスケジュール手法です。GPUをステートレスな実行ワーカープール（stateless execution worker pool）として扱い、計算ステージ（computation stage）をラウンドロビン方式で動的に割り当てることで、ほぼゼロバブル（near-zero bubble）のパイプラインを実現します。技術的には以下の3要素を統合: (1) 優先度認識転送スケジューリングエンジン（priority-aware transfer scheduling engine）、(2) 細粒度分散イベント同期プロトコル（fine-grained distributed event synchronization protocol）、(3) 自動レイヤー分割アルゴリズム（automatic layer partitioning algorithm）。
+## 4. Experiments（実験）
+評価環境: 8×RTX 4090（24GB VRAM each）のコンシューマー GPU サーバー。対象モデル: Qwen-1.7B から Qwen3-32B まで、さらに Qwen3-235B の LoRA ファインチューニング。シーケンス長: 最大 31K トークン。比較手法: Megatron-LM、DeepSpeed、標準パイプライン並列。
 
-## 3. Experiments & Results (実験と結果)
-
-8×RTX 4090サーバーでの評価では、1.7B〜32Bパラメータモデルのファインチューニングにおいて、最先端ベースラインと比較して1.48〜2.16倍のスループット向上を達成しました。特に重要な成果として、単一サーバーでQwen3-235Bモデルの31Kシーケンス長（sequence length）のLoRA（Low-Rank Adaptation）ファインチューニングが可能になりました。これは従来、大規模クラスターが必要とされていた規模のモデルです。
-
-## 4. Conclusion (結論)
-
-RoundPipeはオープンソースのPythonライブラリとして公開されており、包括的なドキュメントとともに提供されています。高価なクラスター環境なしに、個人研究者や小規模チームでも大規模LLMのファインチューニングが現実的に行えるようになり、AI研究の民主化（democratization of AI research）に大きく貢献します。
+## 5. Conclusion（結論）
+RoundPipe は 1.7B〜32B モデルで既存手法比 1.48〜2.16 倍のスループット向上を達成し、単一コンシューマー GPU サーバーで 235B 規模のモデルの LoRA ファインチューニングを実現した。「重み結合問題」という構造的課題を根本から解決するアプローチであり、サーバーグレード GPU なしに大規模 LLM の学習環境を民主化する実用的貢献として評価できる。今後は NVMe オフロードとの組み合わせや自動ステージ最適化が研究課題として挙げられている。
