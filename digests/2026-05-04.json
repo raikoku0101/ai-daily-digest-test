@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-04",
+  "content": "# AI Daily Digest — 2026-05-04\n\n## 今日のハイライト\n- **CoPD（共進化ポリシー蒸留）**: テキスト・画像・動画の推論能力を単一モデルに all-in-one 統合する新パラダイム。専門家の RLVR 訓練中に双方向蒸留を実施し、混合 RLVR やドメイン特化専門家すら凌駕する成果。マルチモーダル LLM の能力統合の常識を変える可能性。\n- **Claude Code v2.1.126**: カスタムゲートウェイ対応の `/model` ピッカー、新コマンド `claude project purge`、OAuth 認証の安定化など、実用的な改善が多数。企業利用・ゲートウェイ環境のユーザーに直接的恩恵。\n- **RoundPipe**: 8× RTX 4090 などの消費者向け GPU で 32B モデルを 2 倍以上高速にファインチューニングできる革新的パイプラインスケジュール。235B モデルの LoRA 訓練も単一サーバーで実現し、大規模モデル訓練の民主化に貢献。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.126 (2025-05-01)\n**主要機能**:\n- `/model` ピッカーが `ANTHROPIC_BASE_URL` をカスタムゲートウェイに向けたとき、ゲートウェイの `/v1/models` エンドポイントからモデル一覧を自動取得するようになった\n- `claude project purge [path]` コマンドを追加。指定プロジェクトの全 Claude Code 状態を削除可能\n- `--dangerously-skip-permissions` が `.claude/`、`.git/`、`.vscode/`、シェル設定ファイルへの書き込みプロンプトもバイパスするよう拡張\n- `claude auth login` でターミナルへの OAuth コード貼り付けによる認証に対応\n\n**バグ修正**:\n- 画像貼り付け・OAuth タイムアウト・メモリリーク・サブエージェントでのツール可用性の不具合を修正\n- Auto モードスピナーが権限チェック停止時に赤く変わるよう改善\n\n**ユーザーへの影響**: カスタム Anthropic 互換ゲートウェイを使う企業ユーザーはモデル一覧取得が自動化され、プロジェクト管理が容易になる。OAuth 認証の安定性向上でログイン失敗が減少。\n\n---\n\n### v2.1.123 (2025-04-29)\n**バグ修正**:\n- `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` 設定時に OAuth 認証が 401 リトライループで失敗する問題を修正\n\n**ユーザーへの影響**: ベータ機能を無効化した環境でも OAuth 認証が安定して動作するようになった。\n\n---\n\n### v2.1.122 (2025-04-28)\n**主要機能**:\n- `ANTHROPIC_BEDROCK_SERVICE_TIER` 環境変数を追加。Bedrock サービスティア（`default`/`flex`/`priority`）を環境変数で選択可能\n- `/resume` 検索ボックスへの PR URL 貼り付けで、そのPRを作成したセッションを検索\n- `/mcp` で手動追加サーバーに隠れていた claude.ai コネクタを表示するよう改善\n\n**バグ修正**:\n- `/branch` でのツール使用エラー付きフォーク生成を修正\n- Vertex AI の `invalid_request_error` を修正\n- 画像リサイズの不正確さとリモートコントロールセッションのアイドル状態の再描画問題を修正\n\n**ユーザーへの影響**: AWS Bedrock ユーザーはサービスティアを柔軟に切り替え可能になった。セッション検索・MCP コネクタ管理の利便性が向上。\n\n## 注目論文 TOP 10\n\n**1. Co-Evolving Policy Distillation** | 45 upvotes | https://arxiv.org/abs/2604.27083\n🎯**背景**: RLVR（強化学習による推論強化）と OPD（オフポリシー蒸留）は LLM のポストトレーニングで標準的手法だが、複数の専門能力を単一モデルに統合する際に能力喪失が生じることが問題だった。\n🔧**手法**: CoPD（Co-Evolving Policy Distillation）を提案。専門家の並列 RLVR 訓練中にリアルタイムで OPD を実施し、専門家同士が互いに教師となる双方向 OPD で共進化させる。完全訓練後の蒸留ではなく訓練中の継続的蒸留が核心。\n📊**結果**: テキスト・画像・動画推論の all-in-one 統合を実現し、混合 RLVR や MOPD などの強力ベースラインを大幅に上回る。ドメイン特化専門家すら凌駕。\n💡**意義**: 単一モデルでの多モーダル推論統合の新パラダイムを提示。並列訓練パターンは新たなスケーリングパラダイムへの示唆を持つ。\n⚠️**限界**: 専門家数増加に伴う計算コスト増大。各専門家間の双方向蒸留の収束保証が未検証。\n\n---\n\n**2. ExoActor: Exocentric Video Generation as Generalizable Interactive Humanoid Control** | 36 upvotes | https://arxiv.org/abs/2604.27711\n🎯**背景**: ヒューマノイドロボット制御では、ロボット・環境・対象物体の間のインタラクションを同時に捉えることが根本課題。従来の教師あり学習では空間的文脈・時間的ダイナミクス・タスク意図の統合が困難だった。\n🔧**手法**: 大規模ビデオ生成モデルを活用し、三人称視点ビデオ生成を統一インターフェースとして使用。タスク指示とシーン文脈から実行プロセスを合成し、人体動作推定→汎用動作コントローラーでヒューマノイド行動に変換。\n📊**結果**: 追加の実世界データ収集なしで新規シナリオへの汎化を実証。エンドツーエンドシステムとして実装・検証済み。\n💡**意義**: 生成モデルをロボット制御に橋渡しするスケーラブルなアプローチ。汎用ヒューマノイド知能への新たな道筋を提示。\n⚠️**限界**: ビデオ生成の物理的整合性への依存。実ロボットへの転移における誤差蓄積問題が未解決。\n\n---\n\n**3. Efficient Training on Multiple Consumer GPUs with RoundPipe** | 33 upvotes | https://arxiv.org/abs/2604.27085\n🎯**背景**: 消費者向け GPU での LLM ファインチューニングは、限られた VRAM と低速 PCIe 接続が制約。既存のパイプライン並列化は「重みバインディング問題」（不均一ステージが最重負荷 GPU にスループットを縛る）で深刻なパイプラインバブルが発生。\n🔧**手法**: RoundPipe は GPU をステートレス実行ワーカープールとして扱い、計算ステージをラウンドロビンで動的ディスパッチ。優先度考慮転送スケジューリングエンジン・分散イベントベース同期プロトコル・自動レイヤ分割アルゴリズムを統合。\n📊**結果**: 8× RTX 4090 サーバーで 1.7B〜32B モデルのファインチューニング時に最先端比 1.48〜2.16 倍の高速化。単一サーバーで Qwen3-235B モデルの 31K シーケンス長での LoRA ファインチューニングを実現。\n💡**意義**: 高価なクラウド GPU なしに大規模モデルの訓練を民主化。オープンソース Python ライブラリとして公開済み。\n⚠️**限界**: ラウンドロビンスケジューリングの通信オーバーヘッド増加リスク。超大規模モデルでの評価が未実施。\n\n---\n\n**4. Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows** | 30 upvotes | https://arxiv.org/abs/2604.28139\n🎯**背景**: 既存の LLM エージェントベンチマークはリリース時点でタスクを固定し最終応答のみを評価するため、進化するワークフロー需要やタスクの実際の実行検証が困難だった。\n🔧**手法**: リフレッシュ可能なシグナル層（ClawHub Top-500 スキル使用）と再現可能なリリーススナップショットを分離。固定フィクスチャ・サービス・ワークスペース・グレーダーを持つ管理タスクとして具現化。実行トレース・監査ログ・サービス状態・後処理ワークスペース成果物を記録し、決定論的チェックと構造化 LLM 判定を使用。\n📊**結果**: 105 タスク・13 フロンティアモデルを評価。トップモデルの通過率は 66.7% に留まり、70% を超えるモデルはゼロ。HR・管理・マルチシステムビジネスワークフローが持続的ボトルネック。\n💡**意義**: ワークフローエージェント評価に「外部需要での根拠付け」と「検証可能なエージェント行動」の両方が必要と示す。ライブベンチマークの新標準を提案。\n⚠️**限界**: ClawHub スキルへの依存により特定ワークフロードメインに偏る可能性。LLM 判定の主観性が残る。\n\n---\n\n**5. Leveraging Verifier-Based Reinforcement Learning in Image Editing** | 28 upvotes | https://arxiv.org/abs/2604.27505\n🎯**背景**: RLHF は画像生成では標準化されているが、画像編集への応用はほぼ未開拓。既存の編集報酬モデルは詳細なチェックなしに全体スコアを与えるため、異なる指示要件を無視した偏った報酬が問題だった。\n🔧**手法**: Edit-R1 フレームワークを提案。チェーン・オブ・ソート検証器ベースの推論報酬モデル（Edit-RRM）を構築。指示を個別の原則に分解し、各原則に対して編集画像を評価・集約。SFT による cold-start → GCPO（グループ対照選好最適化）→ GRPO での編集モデル訓練という 3 段階。\n📊**結果**: Edit-RRM は Seed-1.5-VL・Seed-1.6-VL などの強力な VLM を編集特化報酬モデルとして凌駕。3B→7B でのスケーリング傾向も確認。FLUX.1-kontext などの編集モデルを改善。\n💡**意義**: 画像編集に特化した推論型報酬モデルの確立。シンプルなスコアラーから推論検証器へのパラダイムシフトを示す。\n⚠️**限界**: 原則分解が指示の種類に依存するため、訓練外の編集タイプへの汎化が不明。計算コストが高い。\n\n---\n\n**6. Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling** | 19 upvotes | https://arxiv.org/abs/2604.27039\n🎯**背景**: 現代の自己回帰モデルにおいてトークンは計算の基本単位であり、生成長は推論コストと推論性能の両方に影響する。しかし既存手法は粗粒度のシーケンスレベルの長さモデリングに留まっており、トークンレベルの細粒度制御が欠けていた。\n🔧**手法**: LenVM（Length Value Model）はトークンレベルで残余生成長を予測する価値推定フレームワーク。各生成トークンに一定の負の報酬を割り当て、割引累積報酬として単調な生成ホライズンのプロキシを学習。アノテーション不要・密な教師信号・偏りなし・スケーラブルという特性を持つ。\n📊**結果**: LIFEBench の正確な長さマッチングタスクで 7B モデルへの適用後、長さスコアが 30.9 → 64.8 に向上し、フロンティアクローズドソースモデルを凌駕。GSM8K でのトークン予算 200 での精度 63%（ベースラインの 6% に対して）。\n💡**意義**: 長さ制御・効率性トレードオフ・生成ダイナミクスの解釈可能な視点を提供。将来の RL 訓練への長さ特化価値信号としての汎用フレームワーク。\n⚠️**限界**: 固定の負報酬設計が多様な生成タスクに最適とは限らない。長さの正確な予測が品質と競合する場面の評価が不十分。\n\n---\n\n**7. Nemotron 3 Nano Omni: Efficient and Open Multimodal Intelligence** | 16 upvotes | https://arxiv.org/abs/2604.24954\n🎯**背景**: マルチモーダル LLM の多くはテキスト・画像・動画に対応するが、音声入力のネイティブサポートは少ない。特に効率的なアーキテクチャでの全モダリティ統合は未開拓だった。\n🔧**手法**: Nemotron 3 Nano 30B-A3B バックボーン上に構築し、マルチモーダルトークン削減技術を統合。BF16・FP8・FP4 フォーマットのチェックポイントとトレーニングデータ・コードベースの一部を公開。\n📊**結果**: 前モデル Nemotron Nano V2 VL に対して全モダリティで精度向上。実世界文書理解・長尺音声動画理解・エージェント的コンピュータ使用でリーディングな結果。類似サイズのモデルより大幅に低いレイテンシと高いスループットを実現。\n💡**意義**: 音声を含む全モダリティ統合の効率的オープンモデルの提供。FP4 対応により消費者向け GPU での展開が容易化。\n⚠️**限界**: 30B パラメータでも推論コストは依然高い。音声理解の詳細な評価データが不透明。\n\n---\n\n**8. Step-level Optimization for Efficient Computer-use Agents** | 13 upvotes | https://arxiv.org/abs/2604.27151\n🎯**背景**: コンピュータ使用エージェントはほぼ全インタラクションステップで大型マルチモーダルモデルを呼び出すが、この均一な計算割り当ては長期 GUI タスクには非効率。多くのステップは日常的で安価なポリシーで十分処理できる。\n🔧**手法**: デフォルトでは小型ポリシーを実行し、軽量な学習済みモニターがリスク上昇を検知したときのみ強力モデルにエスカレーション。進捗停滞を検知する Stuck Monitor と意味的マイルストーンを識別する Milestone Monitor の 2 つの補完的シグナルを組み合わせる。\n📊**結果**: 常時フロンティアモデル推論をオンデマンドの適応的計算割り当てに変換。モジュラー設計により既存エージェントアーキテクチャの変更なしにレイヤリング可能。\n💡**意義**: 計算コスト削減と性能維持の両立。エージェント評価フレームワークとしてのリスク検知の体系化。\n⚠️**限界**: モニターの誤検知・見逃し率の詳細評価が不明。エスカレーション遅延がクリティカルなステップで問題となる可能性。\n\n---\n\n**9. InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?** | 9 upvotes | https://arxiv.org/abs/2604.27419\n🎯**背景**: ウェブサイト開発がエージェントベースのコード合成にシフトする中、既存ベンチマークは構造化された情報豊富な入力と静的実行設定を前提とし、非専門ユーザーからの曖昧・低品質な指示への対応（「盲目的実行」問題）を評価できていない。\n🔧**手法**: 4 種類のユーザーエージェントとペルソナ駆動の指示摂動（要求工学の欠陥分類に基づく曖昧性・冗長性・矛盾のシミュレーション）を導入。Clarify・Implement・Verify・Submit の統一アクション空間で反復的意図精緻化を可能にする実行環境を開発。\n📊**結果**: フロンティア MLLM ベースエージェントは依然として盲目的実行に陥り、意図認識と適応的インタラクションの限界を露呈。\n💡**意義**: 非専門ユーザー条件下でのウェブサイト生成という現実的シナリオの初のベンチマーク。エージェントの対話的意図精緻化能力の標準評価基盤を提供。\n⚠️**限界**: ウェブサイト生成ドメインに特化しており、他のソフトウェア開発タスクへの汎化は不明。\n\n---\n\n**10. Compliance versus Sensibility: On the Reasoning Controllability in Large Language Models** | 5 upvotes | https://arxiv.org/abs/2604.27251\n🎯**背景**: LLM は事前学習データの共有推論パターンを通じて推論能力を獲得するが、帰納・演繹・仮説推論などの基本推論パターンが特定問題インスタンスから切り離し制御できるかどうかが未解明だった。\n🔧**手法**: 推論対立の体系的調査：期待される推論スキーマから逸脱する論理スキーマを強制することでパラメトリック情報と文脈情報間の明示的緊張を生成。中間〜後期レイヤでの推論タイプの線形エンコーディングを確認するプロービング実験。\n📊**結果**: LLM は一貫して遵守より理性を優先（タスク適切な推論パターンを採用）。対立エピソード中でも高い性能を維持し、モデルサイズ増加で内在化パラメトリックメモリへの依存が強化。活性化レベルの介入で遵守率を最大 29% 向上。\n💡**意義**: LLM の推論制御可能性の初の体系的分析。活性化介入による論理スキーマのデータからの切り離しの可能性を示す。\n⚠️**限界**: 実験的な活性化介入が本番環境で実用的かどうか不明。特定の推論タイプに限定した評価。\n\n",
+  "fetched_at": "2026-05-03T22:16:58.085402+00:00",
+  "papers": [
+    {
+      "title": "Co-Evolving Policy Distillation",
+      "upvotes": 45,
+      "paper_id": "2604.27083",
+      "abstract": "RLVR and OPD have become standard paradigms for post-training. We propose Co-Evolving Policy Distillation (CoPD), which encourages parallel training of experts and introduces OPD during each expert's ongoing RLVR training rather than after complete expert training, with experts serving as mutual teachers to co-evolve. Achieves all-in-one integration of text, image, and video reasoning capabilities."
+    },
+    {
+      "title": "ExoActor: Exocentric Video Generation as Generalizable Interactive Humanoid Control",
+      "upvotes": 36,
+      "paper_id": "2604.27711",
+      "abstract": "We propose ExoActor, a novel framework that leverages large-scale video generation models for humanoid control. Uses third-person video generation as a unified interface for modeling interaction dynamics. Synthesizes plausible execution processes that implicitly encode coordinated interactions between robot, environment, and objects."
+    },
+    {
+      "title": "Efficient Training on Multiple Consumer GPUs with RoundPipe",
+      "upvotes": 33,
+      "paper_id": "2604.27085",
+      "abstract": "We propose RoundPipe, a novel pipeline schedule that breaks the weight binding constraint on consumer GPU servers. Treats GPUs as a pool of stateless execution workers and dynamically dispatches computation stages in a round-robin manner, achieving near-zero-bubble pipeline. Achieves 1.48-2.16x speedups over baselines."
+    },
+    {
+      "title": "Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows",
+      "upvotes": 30,
+      "paper_id": "2604.28139",
+      "abstract": "We introduce Claw-Eval-Live, a live benchmark for workflow agents that separates a refreshable signal layer from a reproducible release snapshot. Contains 105 tasks spanning controlled business services. The leading model passes only 66.7% of tasks."
+    },
+    {
+      "title": "Leveraging Verifier-Based Reinforcement Learning in Image Editing",
+      "upvotes": 28,
+      "paper_id": "2604.27505",
+      "abstract": "We introduce Edit-R1, a framework that builds a chain-of-thought verifier-based reasoning reward model for downstream image editing. The Edit-RRM breaks instructions into distinct principles and aggregates checks into fine-grained reward. Surpasses powerful VLMs such as Seed-1.5-VL as an editing-specific reward model."
+    },
+    {
+      "title": "Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling",
+      "upvotes": 19,
+      "paper_id": "2604.27039",
+      "abstract": "We introduce the Length Value Model (LenVM), a token-level framework that models the remaining generation length as a value estimation problem. On LIFEBench, applying LenVM to a 7B model improves the length score from 30.9 to 64.8, outperforming frontier closed-source models."
+    },
+    {
+      "title": "Nemotron 3 Nano Omni: Efficient and Open Multimodal Intelligence",
+      "upvotes": 16,
+      "paper_id": "2604.24954",
+      "abstract": "We introduce Nemotron 3 Nano Omni, the first in the Nemotron series to natively support audio inputs alongside text, images, and video. Delivers leading results in document understanding, long audio-video comprehension, and agentic computer use with multimodal token-reduction techniques."
+    },
+    {
+      "title": "Step-level Optimization for Efficient Computer-use Agents",
+      "upvotes": 13,
+      "paper_id": "2604.27151",
+      "abstract": "We propose an event-driven, step-level cascade for computer-use agents that runs a small policy by default and escalates to a stronger model only when lightweight monitors detect elevated risk. Combines a Stuck Monitor and a Milestone Monitor for adaptive compute allocation."
+    },
+    {
+      "title": "InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?",
+      "upvotes": 9,
+      "paper_id": "2604.27419",
+      "abstract": "We introduce InteractWeb-Bench, the first multimodal interactive benchmark for website generation under non-expert low-code user conditions. Introduces user agents simulating ambiguity, redundancy, and contradiction. Frontier MLLM-based agents remain trapped in blind execution."
+    },
+    {
+      "title": "Compliance versus Sensibility: On the Reasoning Controllability in Large Language Models",
+      "upvotes": 5,
+      "paper_id": "2604.27251",
+      "abstract": "We present systematic investigation of reasoning conflicts: tension between parametric and contextual information. LLMs consistently prioritize sensibility over compliance. Leveraging insights, we steer models towards compliance, increasing instruction following by up to 29%."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.126",
+      "published_at": "2025-05-01",
+      "body": "The /model picker now lists models from your gateway's /v1/models endpoint when ANTHROPIC_BASE_URL points at an Anthropic-compatible gateway. Added `claude project purge [path]` to delete all Claude Code state for a project. --dangerously-skip-permissions now bypasses prompts for writes to .claude/, .git/, .vscode/, and shell config files. claude auth login now accepts OAuth code pasted into terminal. Auto mode spinner turns red when permission check stalls. Fixed various issues including image pasting, OAuth timeouts, memory leaks, and tool availability in subagents."
+    },
+    {
+      "tag_name": "v2.1.123",
+      "published_at": "2025-04-29",
+      "body": "Fixed OAuth authentication failing with a 401 retry loop when CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 is set."
+    },
+    {
+      "tag_name": "v2.1.122",
+      "published_at": "2025-04-28",
+      "body": "Added ANTHROPIC_BEDROCK_SERVICE_TIER environment variable to select Bedrock service tier (default, flex, or priority). Pasting a PR URL into /resume search box now finds the session that created that PR. /mcp shows claude.ai connectors hidden by manually-added servers. Fixed /branch producing forks with tool_use errors, Vertex AI returning invalid_request_error, images being resized incorrectly, and remote control session idle status redrawing issues."
+    }
+  ]
+}
