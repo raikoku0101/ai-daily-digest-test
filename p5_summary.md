@@ -1,6 +1,6 @@
-**5. Leveraging Verifier-Based Reinforcement Learning in Image Editing (Edit-R1)**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.27505
+**5. From Skill Text to Skill Structure: The Scheduling-Structural-Logical Representation for Agent Skills**
+**著者**: SSL Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.24026
 
 **まとめ**:
-画像編集への強化学習応用として Edit-R1 フレームワークを提案。CoT（チェーン・オブ・ソート）ベースの推論報酬モデル（RRM）が編集指示を複数原則に分解して細粒度の検証を実施。SFT cold-start → GCPO → GRPO の 3 段階訓練により、Seed-1.5-VL などの強力 VLM を上回る編集特化報酬モデルを実現し、FLUX.1-kontext などの編集モデルの性能向上にも貢献した。
+LLMエージェントのSKILL.mdスタイルのテキスト依存スキル表現を機械可読な3層構造(Scheduling・Structural・Logical)に変換するSSL表現を提案。スキル発見タスクでMRR 0.573→0.707、リスク評価タスクでマクロF1 0.744→0.787への改善を達成。LLMベース正規化器が既存SKILLファイルを自動変換し、大規模スキルライブラリ管理と安全性審査を実用的に向上させる。

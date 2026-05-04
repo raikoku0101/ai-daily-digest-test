@@ -1,6 +1,6 @@
-**4. Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.28139
+**4. Prox-E: Fine-Grained 3D Shape Editing via Primitive-Based Abstractions**
+**著者**: Prox-E Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.23774
 
 **まとめ**:
-進化するワークフロー需要に対応したライブ LLM エージェントベンチマーク Claw-Eval-Live を提案。リフレッシュ可能なシグナル層と再現可能なスナップショットを分離する新設計で、実行トレース・監査ログ・サービス状態による検証可能な評価を実現。105 タスク・13 フロンティアモデルを評価した結果、最高モデルですら 66.7% の成功率に留まり、信頼性の高いワークフロー自動化は未解決課題であることを示した。
+「テーブルの脚を1.5倍に伸ばす」等の細粒度3D構造編集を実現するトレーニング不要フレームワーク。スーパーコアドリック (Superquadric) プリミティブへの分解・VLMによるJSON編集・プロキシ誘導ノイズ除去の3段階で精密な局所変形を全体形状保持しながら実現。ShapeTalkでVQAスコア最高0.71・ユーザー研究で全ベースライン超えを達成。

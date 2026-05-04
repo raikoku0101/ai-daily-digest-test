@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "Co-Evolving Policy Distillation", "upvotes": 45, "paper_id": "2604.27083", "abstract": "RLVR and OPD have become standard paradigms for post-training. We propose Co-Evolving Policy Distillation (CoPD), which encourages parallel training of experts and introduces OPD during each expert's ongoing RLVR training rather than after complete expert training, with experts serving as mutual teachers to co-evolve. Achieves all-in-one integration of text, image, and video reasoning capabilities."},
-    {"title": "ExoActor: Exocentric Video Generation as Generalizable Interactive Humanoid Control", "upvotes": 36, "paper_id": "2604.27711", "abstract": "We propose ExoActor, a novel framework that leverages large-scale video generation models for humanoid control. Uses third-person video generation as a unified interface for modeling interaction dynamics. Synthesizes plausible execution processes that implicitly encode coordinated interactions between robot, environment, and objects."},
-    {"title": "Efficient Training on Multiple Consumer GPUs with RoundPipe", "upvotes": 33, "paper_id": "2604.27085", "abstract": "We propose RoundPipe, a novel pipeline schedule that breaks the weight binding constraint on consumer GPU servers. Treats GPUs as a pool of stateless execution workers and dynamically dispatches computation stages in a round-robin manner, achieving near-zero-bubble pipeline. Achieves 1.48-2.16x speedups over baselines."},
-    {"title": "Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows", "upvotes": 30, "paper_id": "2604.28139", "abstract": "We introduce Claw-Eval-Live, a live benchmark for workflow agents that separates a refreshable signal layer from a reproducible release snapshot. Contains 105 tasks spanning controlled business services. The leading model passes only 66.7% of tasks."},
-    {"title": "Leveraging Verifier-Based Reinforcement Learning in Image Editing", "upvotes": 28, "paper_id": "2604.27505", "abstract": "We introduce Edit-R1, a framework that builds a chain-of-thought verifier-based reasoning reward model for downstream image editing. The Edit-RRM breaks instructions into distinct principles and aggregates checks into fine-grained reward. Surpasses powerful VLMs such as Seed-1.5-VL as an editing-specific reward model."},
-    {"title": "Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling", "upvotes": 19, "paper_id": "2604.27039", "abstract": "We introduce the Length Value Model (LenVM), a token-level framework that models the remaining generation length as a value estimation problem. On LIFEBench, applying LenVM to a 7B model improves the length score from 30.9 to 64.8, outperforming frontier closed-source models."},
-    {"title": "Nemotron 3 Nano Omni: Efficient and Open Multimodal Intelligence", "upvotes": 16, "paper_id": "2604.24954", "abstract": "We introduce Nemotron 3 Nano Omni, the first in the Nemotron series to natively support audio inputs alongside text, images, and video. Delivers leading results in document understanding, long audio-video comprehension, and agentic computer use with multimodal token-reduction techniques."},
-    {"title": "Step-level Optimization for Efficient Computer-use Agents", "upvotes": 13, "paper_id": "2604.27151", "abstract": "We propose an event-driven, step-level cascade for computer-use agents that runs a small policy by default and escalates to a stronger model only when lightweight monitors detect elevated risk. Combines a Stuck Monitor and a Milestone Monitor for adaptive compute allocation."},
-    {"title": "InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?", "upvotes": 9, "paper_id": "2604.27419", "abstract": "We introduce InteractWeb-Bench, the first multimodal interactive benchmark for website generation under non-expert low-code user conditions. Introduces user agents simulating ambiguity, redundancy, and contradiction. Frontier MLLM-based agents remain trapped in blind execution."},
-    {"title": "Compliance versus Sensibility: On the Reasoning Controllability in Large Language Models", "upvotes": 5, "paper_id": "2604.27251", "abstract": "We present systematic investigation of reasoning conflicts: tension between parametric and contextual information. LLMs consistently prioritize sensibility over compliance. Leveraging insights, we steer models towards compliance, increasing instruction following by up to 29%."}
+    {
+      "title": "UniVidX: A Unified Multimodal Framework for Versatile Video Generation via Diffusion Priors",
+      "upvotes": 67,
+      "paper_id": "2605.00658",
+      "abstract": "Recent progress has shown that video diffusion models (VDMs) can be repurposed for diverse multimodal graphics tasks. However, existing methods often train separate models for each problem setting, which fixes the input-output mapping and limits the modeling of correlations across modalities. We present UniVidX"
+    },
+    {
+      "title": "Web2BigTable: A Bi-Level Multi-Agent LLM System for Internet-Scale Information Search and Extraction",
+      "upvotes": 25,
+      "paper_id": "2604.27221",
+      "abstract": "Agentic web search increasingly faces two distinct demands: deep reasoning over a single target, and structured aggregation across many entities and heterogeneous sources. Current systems struggle on both fronts. Web2BigTable adopts a bi-level architecture for web-to-table search supporting both regimes."
+    },
+    {
+      "title": "Map2World: Segment Map Conditioned Text to 3D World Generation",
+      "upvotes": 13,
+      "paper_id": "2605.00781",
+      "abstract": "3D world generation is essential for applications such as immersive content creation or autonomous driving simulation. We introduce Map2World, enabling 3D world generation conditioned on user-defined segment maps of arbitrary shapes and scales, ensuring global-scale consistency."
+    },
+    {
+      "title": "Prox-E: Fine-Grained 3D Shape Editing via Primitive-Based Abstractions",
+      "upvotes": 12,
+      "paper_id": "2604.23774",
+      "abstract": "Text-based 2D image editing models have reached impressive maturity. We propose Prox-E, a training-free framework that enables fine-grained 3D control through explicit, primitive-based geometric abstraction, addressing limitations in fine-grained structural 3D editing."
+    },
+    {
+      "title": "From Skill Text to Skill Structure: The Scheduling-Structural-Logical Representation for Agent Skills",
+      "upvotes": 10,
+      "paper_id": "2604.24026",
+      "abstract": "LLM agents increasingly rely on reusable skills. We introduce SSL representation (Scheduling-Structural-Logical) for agent skills, enabling machine-readable skill management beyond text-heavy SKILL.md-style artifacts."
+    },
+    {
+      "title": "Learning while Deploying: Fleet-Scale Reinforcement Learning for Generalist Robot Policies",
+      "upvotes": 9,
+      "paper_id": "2605.00416",
+      "abstract": "We present Learning While Deploying (LWD), a fleet-scale offline-to-online reinforcement learning framework for continual post-training of generalist Vision-Language-Action (VLA) policies during deployment."
+    },
+    {
+      "title": "Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance",
+      "upvotes": 9,
+      "paper_id": "2605.00553",
+      "abstract": "We propose Stable-GFN (S-GFN), which eliminates partition function Z estimation in GFN and reduces training instability for LLM red-teaming, achieving diverse and robust attack generation."
+    },
+    {
+      "title": "Trees to Flows and Back: Unifying Decision Trees and Diffusion Models",
+      "upvotes": 4,
+      "paper_id": "2605.00414",
+      "abstract": "This work unifies decision trees and diffusion models by establishing a mathematical correspondence between hierarchical decision trees and diffusion processes, revealing a shared optimization principle: Global Trajectory Score Matching."
+    },
+    {
+      "title": "When Do Diffusion Models learn to Generate Multiple Objects?",
+      "upvotes": 4,
+      "paper_id": "2605.00273",
+      "abstract": "We study multi-object generation failures in text-to-image diffusion models, introducing mosaic (Multi-Object Spatial relations, AttrIbution, Counting) as a controlled framework for dataset generation and analysis."
+    },
+    {
+      "title": "Odysseus: Scaling VLMs to 100+ Turn Decision-Making in Games via Reinforcement Learning",
+      "upvotes": 2,
+      "paper_id": "2605.00347",
+      "abstract": "We study RL-based training of VLMs for long-horizon decision-making in Super Mario Land, requiring 100+ turns of interaction with coordinated perception, reasoning, and action."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.126", "published_at": "2025-05-01", "body": "The /model picker now lists models from your gateway's /v1/models endpoint when ANTHROPIC_BASE_URL points at an Anthropic-compatible gateway. Added `claude project purge [path]` to delete all Claude Code state for a project. --dangerously-skip-permissions now bypasses prompts for writes to .claude/, .git/, .vscode/, and shell config files. claude auth login now accepts OAuth code pasted into terminal. Auto mode spinner turns red when permission check stalls. Fixed various issues including image pasting, OAuth timeouts, memory leaks, and tool availability in subagents."},
-    {"tag_name": "v2.1.123", "published_at": "2025-04-29", "body": "Fixed OAuth authentication failing with a 401 retry loop when CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 is set."},
-    {"tag_name": "v2.1.122", "published_at": "2025-04-28", "body": "Added ANTHROPIC_BEDROCK_SERVICE_TIER environment variable to select Bedrock service tier (default, flex, or priority). Pasting a PR URL into /resume search box now finds the session that created that PR. /mcp shows claude.ai connectors hidden by manually-added servers. Fixed /branch producing forks with tool_use errors, Vertex AI returning invalid_request_error, images being resized incorrectly, and remote control session idle status redrawing issues."}
+    {
+      "tag_name": "v2.1.126",
+      "published_at": "2025-05-01",
+      "body": "The `/model` picker now lists models from your gateway's `/v1/models` endpoint when `ANTHROPIC_BASE_URL` points at an Anthropic-compatible gateway. Added `claude project purge [path]` to delete all Claude Code state for a project. `--dangerously-skip-permissions` now bypasses prompts for writes to `.claude/`, `.git/`, `.vscode/`, shell config files. `claude auth login` now accepts OAuth code pasted into terminal. Auto mode spinner turns red when permission check stalls. Fixed image pasting larger than 2000px, OAuth login timeouts, and many other issues."
+    },
+    {
+      "tag_name": "v2.1.123",
+      "published_at": "2025-04-29",
+      "body": "Fixed OAuth authentication failing with a 401 retry loop when `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` is set."
+    },
+    {
+      "tag_name": "v2.1.122",
+      "published_at": "2025-04-28",
+      "body": "Added `ANTHROPIC_BEDROCK_SERVICE_TIER` environment variable to select Bedrock service tier. Pasting PR URL into `/resume` search now finds the session that created it. `/mcp` shows claude.ai connectors hidden by manual servers. OpenTelemetry improvements. Fixed `/branch` producing forks with tool_use errors, `/model` Effort option for Bedrock ARNs, Vertex AI structured-output errors, and many other fixes."
+    }
   ]
 }

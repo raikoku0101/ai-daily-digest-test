@@ -1,6 +1,6 @@
-**1. Co-Evolving Policy Distillation (共進化ポリシー蒸留)**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.27083
+**1. UniVidX: A Unified Multimodal Framework for Versatile Video Generation via Diffusion Priors**
+**著者**: UniVidX Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.00658
 
 **まとめ**:
-RLVR と OPD（オフポリシー蒸留）を統合した新パラダイム CoPD を提案。複数専門家を並列 RLVR 訓練しながら、各段階で専門家同士が互いに教師となる双方向蒸留を実施することで、テキスト・画像・動画推論能力を単一モデルに統合。混合 RLVR・MOPD などの強力ベースラインを上回り、ドメイン特化専門家すら凌駕する結果を達成。
+VDM (Video Diffusion Model) の事前学習済み知識を活用し、単一モデルで15種以上のマルチモーダルタスク（RGB・深度・法線・アルファマット等）を統一的に処理するフレームワーク。SCM・DGL・CMSAの3手法でモダリティ間の相関を維持しながら固定マッピングの制約を打破。1000本未満の限定データで最先端性能を達成し、動画生成の開発コストを大幅削減できる。
