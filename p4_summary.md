@@ -1,6 +1,6 @@
-**4. Prox-E: Fine-Grained 3D Shape Editing via Primitive-Based Abstractions**
-**著者**: Prox-E Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2604.23774
+**4. PatRe: A Full-Stage Office Action and Rebuttal Generation Benchmark for Patent Examination**
+**著者**: PatRe 研究チーム et al. (2026)
+**arXiv**: https://arxiv.org/abs/2605.03571
 
 **まとめ**:
-「テーブルの脚を1.5倍に伸ばす」等の細粒度3D構造編集を実現するトレーニング不要フレームワーク。スーパーコアドリック (Superquadric) プリミティブへの分解・VLMによるJSON編集・プロキシ誘導ノイズ除去の3段階で精密な局所変形を全体形状保持しながら実現。ShapeTalkでVQAスコア最高0.71・ユーザー研究で全ベースライン超えを達成。
+特許審査の「審査官（オフィスアクション生成）」と「申請者（反論生成）」双方をシミュレートする初の全段階ベンチマーク PatRe を提案（480 件の実際の特許審査記録）。現在の LLM は反応的防御（反論）では高スコアを示す一方、能動的問題発見（OA 生成）では困難があり、ハイパークリティカルバイアスや法定条文の過度適用といった固有の弱点を体系的に特定した。

@@ -1,6 +1,6 @@
-**2. Web2BigTable: A Bi-Level Multi-Agent LLM System for Internet-Scale Information Search and Extraction**
-**著者**: Web2BigTable Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2604.27221
+**2. WindowsWorld: A Process-Centric Benchmark of Autonomous GUI Agents in Professional Cross-Application Environments**
+**著者**: WindowsWorld 研究チーム et al. (2026)
+**arXiv**: https://arxiv.org/abs/2604.27776
 
 **まとめ**:
-LLMエージェントによるウェブ検索で「深い単一推論」と「多エンティティ構造化集約」を両立する二層型マルチエージェントシステム。オーケストレーターがタスク分解し、最大10並列ワーカーが共有ワークボードで協調実行。WideSearchベンチマークで次点の7.5倍の成功率38.50を達成し、LLM微調整なしで自己進化するスキルバンクが鍵。
+単一アプリに限定されてきた既存 GUI エージェントベンチマークの限界を超え、17 個のデスクトップアプリを横断する 181 タスク（78% が複数アプリ対応）のプロセス中心ベンチマークを提案。最高性能の Gemini-3-flash でも複数アプリタスクで約 20% の成功率に留まり、現在の GUI エージェントの根本的限界を明らかにした。チェックポイントベースのスコアリングで部分的進捗も定量化可能。

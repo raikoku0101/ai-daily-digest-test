@@ -1,6 +1,6 @@
-**3. Map2World: Segment Map Conditioned Text to 3D World Generation**
-**著者**: Map2World Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.00781
+**3. HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness**
+**著者**: HeavySkill 研究チーム et al. (2026)
+**arXiv**: https://arxiv.org/abs/2605.02396
 
 **まとめ**:
-ユーザー定義のセグメントマップを条件としてグリッド制約なし・任意形状で大規模3D世界を生成するフレームワーク。TRELLIS事前学習モデルをベースに3段階パイプライン(空間拡張→詳細強化→デコーダ微調整)を構築。World Qualityメトリクスで7.76を達成し既存手法(SynCity 7.25, GaussianCube 5.08)を上回り、グローバルスケール一貫性を保証。
+複雑なエージェントフレームワーク内で性能を実際に駆動するメカニズムを「Heavy Thinking（深い思考）」として特定・定式化。同一問題に対して複数の独立推論軌跡を並列生成し、別の LLM が逐次的熟考で統合する 2 段階フレームワークを提案。「Heavy-Pass@K ≥ Heavy-Mean@K ≥ Vote@K ≥ Mean@K」の性能階層を確認し、テスト時計算スケーリングの有効戦略として確立。

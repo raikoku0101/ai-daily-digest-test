@@ -1,121 +1,73 @@
-# AI Daily Digest — 2026-05-05
+# AI Daily Digest — 2026-05-06
 
 ## 今日のハイライト
-- **UniVidX が動画生成を統一 (👍67)**: 従来はタスクごとに個別モデルが必要だった動画・深度・フロー推定などを単一VDMで統一処理。SCM・DGL・CMSAの3手法で精度を維持しながら開発コストを大幅削減できる点が業界注目の的。
-- **Claude Code v2.1.126 リリース**: ゲートウェイのモデル一覧自動取得・`project purge`コマンド追加・OAuth改善など実用機能が多数追加。Bedrock/Vertex AIユーザーの安定性も直近3リリースで継続改善中。
-- **LLMエージェント基盤の成熟**: Web2BigTable（構造化ウェブ情報抽出）・SSL Skill表現・Stable-GFNレッドチーミングなど、エージェントシステムの信頼性・安全性・スケーラビリティを支える基盤研究が同日に複数登場し、実用化フェーズへの移行を示す。
+- **SFT→RL の分布ドリフト問題**: 最多 upvote (25) の論文が、マルチモーダル LLM の標準ポストトレーニングである SFT→RL パイプラインの根本的問題を指摘。ブラックボックス蒸留による事前アライメントで解決策を提示。
+- **Claude Code v2.1.129 リリース**: URL から直接プラグインを取得する `--plugin-url` フラグや自動アップデート機能を追加。`skillOverrides` 設定のバグも修正。
+- **エージェント基盤研究の加速**: GUI エージェント (WindowsWorld)、Heavy Thinking (HeavySkill)、マルチエージェント RL (Orchestration Traces) と、エージェント系の論文が複数ランクイン。
 
 
-## Claude Code / Anthropic アップデート
+## Claude Code アップデート
+
+### v2.1.129 (2025-05-06)
+- `--plugin-url <url>` フラグ追加：URLから `.zip` プラグインを取得してセッションに適用
+- `CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` 環境変数：Emacs `eat` など自動検出が失敗するターミナルで同期出力を強制有効化
+- `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE`：Homebrew/WinGet インストール時にバックグラウンドでアップグレードし再起動を促す
+- Plugin manifests: `themes`/`monitors` は `"experimental": { ... }` 配下で宣言するよう変更（旧形式は警告）
+- Gateway `/v1/models` モデル探索が `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` でオプトインに変更
+- Ctrl+R 履歴ピッカーが全プロジェクト横断検索をデフォルトに戻した（Ctrl+S で現在プロジェクトに絞り込み）
+- `skillOverrides` 設定が動作するように修正
+
+### v2.1.128 (2025-05-04)
+- `/color`（引数なし）でランダムセッションカラーを選択
+- `/mcp` でサーバーのツール数を表示、0ツールのサーバーをフラグ表示
+- `--plugin-dir` が `.zip` アーカイブを直接受け入れるように
+- `EnterWorktree` がドキュメント通り `origin/<default-branch>` ではなくローカル HEAD から新しいブランチを作成するように修正
 
 ### v2.1.126 (2025-05-01)
-**主要機能**
-- `/model` ピッカーが `ANTHROPIC_BASE_URL` をカスタムゲートウェイに向けている場合、ゲートウェイの `/v1/models` エンドポイントからモデル一覧を取得するようになった
-- `claude project purge [path]` コマンドを追加 — プロジェクトの Claude Code 状態を一括削除できる
-- `--dangerously-skip-permissions` が `.claude/`、`.git/`、`.vscode/`、シェル設定ファイルへの書き込みプロンプトもバイパスするよう拡張
-- `claude auth login` がターミナルへの OAuth コード貼り付けに対応
-
-**バグ修正**
-- 2000px 超の画像貼り付けが失敗する問題を修正
-- OAuth ログインタイムアウトを修正
-- Auto モードスピナーが権限チェック停止時に赤く点滅するよう改善
-
-**ユーザーへの影響**: ゲートウェイ利用者はモデル一覧の自動取得が可能に。プロジェクト状態の一括クリーンアップが簡単になった。
-
----
-
-### v2.1.123 (2025-04-29)
-**バグ修正**
-- `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` 設定時に OAuth 認証が 401 リトライループで失敗する問題を修正
-
-**ユーザーへの影響**: Experimental Betas を無効にした環境での認証安定性が向上。
-
----
-
-### v2.1.122 (2025-04-28)
-**主要機能**
-- `ANTHROPIC_BEDROCK_SERVICE_TIER` 環境変数を追加 — Bedrock サービスティアを選択できる
-- `/resume` 検索に PR URL を貼り付けるとそのセッションを検索できるように
-- `/mcp` が手動サーバーにより非表示になっていた claude.ai コネクタを表示するよう改善
-- OpenTelemetry の改善
-
-**バグ修正**
-- `/branch` が `tool_use` エラーのフォークを生成する問題を修正
-- Bedrock ARN での `/model` Effort オプションの問題を修正
-- Vertex AI の structured-output エラーを修正
-- 画像リサイズおよびリモートコントロール関連の複数の問題を修正
-
-**ユーザーへの影響**: Bedrock・Vertex AI ユーザーの安定性が大幅に向上。セッション再開のワークフローが改善された。
+- `/model` ピッカーがゲートウェイの `/v1/models` エンドポイントからモデルを一覧表示
+- `claude project purge [path]` コマンド追加：プロジェクトの全 Claude Code 状態を削除
+- `--dangerously-skip-permissions` が `.claude/`、`.git/`、`.vscode/` への書き込みプロンプトもバイパス
+- `claude auth login` がブラウザコールバック未到達時（WSL2、SSH、コンテナ）に端末貼り付けで OAuth コードを受付
 
 ## 注目論文 TOP 10
 
-**1. UniVidX: A Unified Multimodal Framework for Versatile Video Generation via Diffusion Priors** | 👍 67 | https://arxiv.org/abs/2605.00658
-🎯 **背景**: 動画拡散モデル(VDM)は多様なマルチモーダル生成タスクに流用できるが、既存手法はタスクごとに個別モデルを学習するため、入出力マッピングが固定され、モダリティ間の相関モデリングが困難だった。
-🔧 **手法**: UniVidXは3つの設計を導入。①Stochastic Condition Masking (SCM)でモダリティをランダム分割し全方位条件付き生成を実現、②Decoupled Gated LoRA (DGL)でモダリティ別LoRAを活性化しVDMの事前知識を保持、③Cross-Modal Self-Attention (CMSA)でモダリティ間の情報共有とアライメントを促進。
-📊 **結果**: 単一モデルで映像生成・深度推定・光学フロー・セグメンテーション等のピクセルアライメントタスクを統一的に処理し、各専用モデルと競合する性能を達成。
-💡 **意義**: 複数のマルチモーダルタスクを1つのモデルで扱えることで、大規模VDMの開発・運用コストを大幅に削減できる可能性がある。
-⚠️ **限界**: 論文中の評価は特定のVDMバックボーンに依存しており、他アーキテクチャへの汎化性や推論コストの増加については追検証が必要。
+**1. Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL**
+- upvotes: 25 | arXiv: https://arxiv.org/abs/2604.28123
+- SFT→RL という標準的なポストトレーニングレシピにおける分布ドリフト問題を指摘。SFT がモデルの元の能力を損ない、監督分布とも一致しないという課題に対し、ブラックボックスオンポリシー蒸留による「事前アライメント」手法を提案。マルチモーダル推論タスクでの性能を改善。
 
-**2. Web2BigTable: A Bi-Level Multi-Agent LLM System for Internet-Scale Information Search and Extraction** | 👍 25 | https://arxiv.org/abs/2604.27221
-🎯 **背景**: エージェント型ウェブ検索には「単一ターゲットの深い推論」と「多数エンティティの構造化集約」という相反する要求があり、既存システムはどちらか一方しか対応できなかった。
-🔧 **手法**: 上位オーケストレーターがタスクをサブ問題に分解し、下位ワーカーエージェントが並列で解く双層アーキテクチャを採用。スキーマアライメントと広範なカバレッジを両立するウェブ→テーブル変換を実現。
-📊 **結果**: 複数エンティティ・異種ソースを横断した構造化情報抽出において、単一エージェントシステムや既存のウェブ検索ツールを上回る精度とカバレッジを示した。
-💡 **意義**: 研究者・ビジネスアナリストが大規模なウェブ情報を自動でテーブル形式に整理できるようになり、データ収集の労力を大幅削減できる。
-⚠️ **限界**: オーケストレーターとワーカー間の調整オーバーヘッドにより、単純なクエリでは従来のシングルエージェント手法より非効率になる場合がある。
+**2. WindowsWorld: A Process-Centric Benchmark of Autonomous GUI Agents in Professional Cross-Application Environments**
+- upvotes: 9 | arXiv: https://arxiv.org/abs/2604.27776
+- OSWorld 等の既存ベンチマークが単一アプリに限定されている問題を解決。複数アプリを横断する職業特化ワークフローを評価する「プロセス中心」ベンチマークを提案。実際のビジネス環境に近い複雑なタスク遂行能力を評価可能。
 
-**3. Map2World: Segment Map Conditioned Text to 3D World Generation** | 👍 13 | https://arxiv.org/abs/2605.00781
-🎯 **背景**: 3Dワールド生成はVRコンテンツ制作や自動運転シミュレーションに不可欠だが、既存手法はグリッドレイアウトに拘束され、ワールド全体でオブジェクトスケールの一貫性に欠けていた。
-🔧 **手法**: ユーザー定義のセグメントマップを条件として受け取り、任意形状・スケールの3Dワールドを生成するMap2Worldフレームワークを提案。セグメントマップによりグローバルスケール整合性を確保。
-📊 **結果**: 任意形状の広大な3D環境を一貫したスケールで生成でき、従来のグリッドベース手法と比較してレイアウトの自由度と空間整合性が向上。
-💡 **意義**: ユーザーが直感的なセグメントマップで3D世界のレイアウトをコントロールできるため、ゲーム開発・都市シミュレーション・映像制作の民主化に貢献する。
-⚠️ **限界**: セグメントマップ作成自体がユーザーの負担となる場合があり、非常に細かいジオメトリ詳細の再現精度については評価が限られている。
+**3. HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness**
+- upvotes: 6 | arXiv: https://arxiv.org/abs/2605.02396
+- 複雑なエージェントフレームワーク内で実際に性能を駆動するメカニズムを解明。「Heavy Thinking（深い思考）」をエージェントのインナースキルとして位置づけ、複雑な推論タスクにおける性能向上の本質的要因を特定。
 
-**4. Prox-E: Fine-Grained 3D Shape Editing via Primitive-Based Abstractions** | 👍 12 | https://arxiv.org/abs/2604.23774
-🎯 **背景**: 2D画像編集モデルを活用した3D編集手法が主流だが、局所的な構造変更を行いながらオブジェクトの全体的なアイデンティティを厳密に保持する細粒度3D編集は未解決課題だった。
-🔧 **手法**: プリミティブベースの幾何学的抽象化を用いたトレーニング不要フレームワーク「Prox-E」を提案。プリミティブ(基本形状)への分解により、精密な局所変形を全体形状を保ちながら実現。
-📊 **結果**: 既存の2D駆動3D編集手法と比較して、局所構造変更時のアイデンティティ保持が向上し、細粒度の形状制御が可能に。
-💡 **意義**: 3Dモデリングの専門知識なしに、テキスト指示だけで精密な3D形状編集が可能になり、プロダクトデザインや3Dコンテンツ制作に応用できる。
-⚠️ **限界**: プリミティブ分解の品質が入力形状の複雑さに依存するため、非常に有機的・複雑な形状への適用は困難な場合がある。
+**4. PatRe: A Full-Stage Office Action and Rebuttal Generation Benchmark for Patent Examination**
+- upvotes: 3 | arXiv: https://arxiv.org/abs/2605.03571
+- 特許審査を分類・抽出タスクとしてのみ捉えていた既存研究を超え、審査意見書と意見書反論の生成を含む完全な反復プロセスをベンチマーク化。学術的なピアレビューと同様のインタラクティブな性質を評価。
 
-**5. From Skill Text to Skill Structure: The Scheduling-Structural-Logical Representation for Agent Skills** | 👍 10 | https://arxiv.org/abs/2604.24026
-🎯 **背景**: LLMエージェントはSKILL.mdスタイルのテキスト重視のスキル表現に依存しており、機械可読な実行構造・制約・ツール呼び出し情報が自然言語に埋め込まれたまま管理が困難だった。
-🔧 **手法**: SSL (Scheduling-Structural-Logical) 表現を導入。スケジューリング(実行順序)、構造(制御フロー)、論理(制約・条件)の3層でスキルを形式化し、テキスト依存を排除。
-📊 **結果**: SSL表現を用いたエージェントシステムがスキルの検索・管理・再利用において、テキストベース手法より高い精度と効率性を示した。
-💡 **意義**: 大規模スキルライブラリを持つエージェントシステムの構築・保守が容易になり、複雑なマルチエージェントワークフローの信頼性向上に直結する。
-⚠️ **限界**: SSL表現への移行には既存スキルの変換コストが発生し、構造化が難しい自由形式のスキルへの対応については未検討の部分が残る。
+**5. Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces**
+- upvotes: 2 | arXiv: https://arxiv.org/abs/2605.02801
+- LLM エージェントが孤立したツール利用者から協調チームへ進化する中、タスクの生成・委任・通信・集約・停止を含むオーケストレーショントレース（時系列インタラクショングラフ）を通じた強化学習手法を研究。
 
-**6. Learning while Deploying: Fleet-Scale Reinforcement Learning for Generalist Robot Policies** | 👍 9 | https://arxiv.org/abs/2605.00416
-🎯 **背景**: 汎用ロボットポリシーは大規模事前学習で性能向上するが、オフラインデータだけでは分布シフト・長尾失敗・タスクバリエーションへの対応が不十分で、実環境デプロイが困難だった。
-🔧 **手法**: LWD (Learning While Deploying) フレームワークを提案。フリート規模(複数台同時)でオフライン→オンラインRLへ移行し、Vision-Language-Action (VLA) ポリシーをデプロイ中も継続訓練する仕組みを構築。
-📊 **結果**: 実環境のフリートデプロイ中に継続的に性能向上し、静的オフライン学習ポリシーと比較してタスク成功率が大幅に改善された。
-💡 **意義**: 工場・物流倉庫等の実環境でロボットが経験から学び続けられるようになり、汎用ロボットの実用化を加速させる重要な一歩。
-⚠️ **限界**: フリート規模の実装には大規模なインフラ(通信・同期)が必要で、小規模導入への適用コストや安全性の保証については課題が残る。
+**6. SVGS: Enhancing Gaussian Splatting Using Primitives with Spatially Varying Colors**
+- upvotes: 2 | arXiv: https://arxiv.org/abs/2411.18966
+- 既存の Gaussian Splatting が単一の視点依存色と不透明度のみを持つ非コンパクト表現という限界を克服。空間的に変化する色を持つプリミティブを導入し、多視点再構成の品質と表現効率を改善。
 
-**7. Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance** | 👍 9 | https://arxiv.org/abs/2605.00553
-🎯 **背景**: LLMの脆弱性を事前に発見するレッドチーミングは安全性確保に不可欠だが、攻撃の多様性と有効性を同時に達成することは困難で、GFNは学習不安定性とモード崩壊の問題を抱えていた。
-🔧 **手法**: 分配関数Zの推定を排除した Stable-GFN (S-GFN) を提案。Contrastive Trajectory Balance損失でGFNの学習安定性を改善し、不安定な報酬下でも多様な攻撃生成を維持。
-📊 **結果**: 従来のGFNベース手法や他のレッドチーミング手法と比較して、攻撃の多様性と成功率の両方で優れた結果を示した。
-💡 **意義**: より多様で効果的なLLM安全性テストが可能になり、現在市場に展開されているLLMの未知の脆弱性発見を支援できる。
-⚠️ **限界**: 評価対象LLMのサイズや種類によって効果が変動する可能性があり、防御側のモデル更新に対する継続的な有効性は保証されない。
+**7. SymptomAI: Towards a Conversational AI Agent for Everyday Symptom Assessment**
+- upvotes: 2 | arXiv: https://arxiv.org/abs/2605.04012
+- 臨床専門家と同等以上の診断能力を示す言語モデルを、実際の患者が日常生活で症状を報告するシナリオに適用。複雑な症例ではなく日常的な症状報告における AI の実用性を検証した実証研究。
 
-**8. Trees to Flows and Back: Unifying Decision Trees and Diffusion Models** | 👍 4 | https://arxiv.org/abs/2605.00414
-🎯 **背景**: 決定木と拡散モデルは一見全く異なるモデルクラス(離散階層的 vs 連続動的)であり、両者の関係は未解明のままだった。
-🔧 **手法**: 適切な極限レジームにおける階層的決定木と拡散プロセスの数学的対応関係を確立。共通の最適化原理「Global Trajectory Score Matching (GTSM)」を発見し、理想化版の勾配ブースティングが漸近最適であることを証明。
-📊 **結果**: TreeFlowが表形式データで競合する生成品質を達成しつつ2倍の計算高速化を実現。DSMTreeが決定ロジックをニューラルネットに蒸留し、多くのベンチマークで教師モデルの2%以内の性能を達成。
-💡 **意義**: 機械学習の主要なモデルファミリー間の理論的統一は、新たなハイブリッドアルゴリズムの設計指針を提供し、解釈可能性向上にも寄与する。
-⚠️ **限界**: 理論的結果は理想化された条件下での漸近的対応であり、実用的な設定での適用範囲については今後の検証が必要。
+**8. Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies**
+- upvotes: 2 | arXiv: https://arxiv.org/abs/2605.03596
+- ワーカーのワークスペース内の異種ファイル間の明示的・暗示的な依存関係を AI エージェントが識別・推論・活用・更新する能力を評価。既存ベンチマークの合成ファイルの限界を超え、実世界の大規模ファイル依存関係を扱う。
 
-**9. When Do Diffusion Models learn to Generate Multiple Objects?** | 👍 4 | https://arxiv.org/abs/2605.00273
-🎯 **背景**: テキスト→画像拡散モデルは視覚的忠実度は高いが複数オブジェクト生成では信頼性が低く、その根本原因は不明なままだった。
-🔧 **手法**: データ自体の影響を切り離すため、mosaic (Multi-Object Spatial relations, AttrIbution, Counting) という制御された評価フレームワークを導入。概念汎化と構成的汎化の2つのレジームで異なるデータセットサイズ下での挙動を体系的に分析。
-📊 **結果**: データの不均衡分布と学習レジームが複数オブジェクト生成失敗の主要因として特定され、データキュレーションの重要性が定量的に示された。
-💡 **意義**: 拡散モデルの多オブジェクト生成改善に向けたデータ設計の具体的な指針を提供し、画像生成AIの信頼性向上への明確な道筋を示す。
-⚠️ **限界**: mosaicフレームワークは合成データを使用しており、実世界の複雑な画像分布への一般化可能性については追検証が必要。
+**9. SplAttN: Bridging 2D and 3D with Gaussian Soft Splatting and Attention for Point Cloud Completion**
+- upvotes: 1 | arXiv: https://arxiv.org/abs/2605.01466
+- 点群補完における 2D-3D マルチモーダル学習のメカニズムを解明。標準的なハード投影が疎な点群から視覚的事前情報の伝播を妨げることを特定し、Gaussian Soft Splatting とアテンションで解決。
 
-**10. Odysseus: Scaling VLMs to 100+ Turn Decision-Making in Games via Reinforcement Learning** | 👍 2 | https://arxiv.org/abs/2605.00347
-🎯 **背景**: VLM(視覚言語モデル)をゲームなどのインタラクティブ意思決定タスクに拡張することは有望だが、既存のRL手法は通常20-30ターンの短期ホライズンに留まっており、長期的な意思決定への対応が課題だった。
-🔧 **手法**: スーパーマリオランドを舞台に100+ターンの長期ホライズン意思決定のためのRLベース学習を研究。知覚・推論・行動を統合したVLMのRLトレーニングパイプラインを構築。
-📊 **結果**: 100ターン以上の長期ゲームプレイにおいて、SFTベースラインや短期RL手法を上回る性能を達成し、長期的な戦略的意思決定能力を示した。
-💡 **意義**: VLMが長期的な計画・推論を要する実世界タスク(ロボット制御、複雑なナビゲーション等)へ応用できる可能性を示す重要な基礎研究。
-⚠️ **限界**: スーパーマリオランドという特定の視覚環境での評価であり、より複雑なゲームや実世界タスクへの汎化性については未確認。
+**10. TCDA: Thread-Constrained Discourse-Aware Modeling for Conversational Sentiment Quadruple Analysis**
+- upvotes: 1 | arXiv: https://arxiv.org/abs/2605.01717
+- 会話型アスペクトベース感情4要素分析（DiaASQ）において、GCN の構造ノイズと標準 RoPE の平坦な相対距離捉え方という問題を解決。スレッド制約と談話認識モデリングで複数ラウンド対話の複雑な相互関係を効果的に捉える。
 

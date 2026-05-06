@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "UniVidX: A Unified Multimodal Framework for Versatile Video Generation via Diffusion Priors",
-      "upvotes": 67,
-      "paper_id": "2605.00658",
-      "abstract": "Recent progress has shown that video diffusion models (VDMs) can be repurposed for diverse multimodal graphics tasks. However, existing methods often train separate models for each problem setting, which fixes the input-output mapping and limits the modeling of correlations across modalities. We present UniVidX"
-    },
-    {
-      "title": "Web2BigTable: A Bi-Level Multi-Agent LLM System for Internet-Scale Information Search and Extraction",
-      "upvotes": 25,
-      "paper_id": "2604.27221",
-      "abstract": "Agentic web search increasingly faces two distinct demands: deep reasoning over a single target, and structured aggregation across many entities and heterogeneous sources. Current systems struggle on both fronts. Web2BigTable adopts a bi-level architecture for web-to-table search supporting both regimes."
-    },
-    {
-      "title": "Map2World: Segment Map Conditioned Text to 3D World Generation",
-      "upvotes": 13,
-      "paper_id": "2605.00781",
-      "abstract": "3D world generation is essential for applications such as immersive content creation or autonomous driving simulation. We introduce Map2World, enabling 3D world generation conditioned on user-defined segment maps of arbitrary shapes and scales, ensuring global-scale consistency."
-    },
-    {
-      "title": "Prox-E: Fine-Grained 3D Shape Editing via Primitive-Based Abstractions",
-      "upvotes": 12,
-      "paper_id": "2604.23774",
-      "abstract": "Text-based 2D image editing models have reached impressive maturity. We propose Prox-E, a training-free framework that enables fine-grained 3D control through explicit, primitive-based geometric abstraction, addressing limitations in fine-grained structural 3D editing."
-    },
-    {
-      "title": "From Skill Text to Skill Structure: The Scheduling-Structural-Logical Representation for Agent Skills",
-      "upvotes": 10,
-      "paper_id": "2604.24026",
-      "abstract": "LLM agents increasingly rely on reusable skills. We introduce SSL representation (Scheduling-Structural-Logical) for agent skills, enabling machine-readable skill management beyond text-heavy SKILL.md-style artifacts."
-    },
-    {
-      "title": "Learning while Deploying: Fleet-Scale Reinforcement Learning for Generalist Robot Policies",
-      "upvotes": 9,
-      "paper_id": "2605.00416",
-      "abstract": "We present Learning While Deploying (LWD), a fleet-scale offline-to-online reinforcement learning framework for continual post-training of generalist Vision-Language-Action (VLA) policies during deployment."
-    },
-    {
-      "title": "Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance",
-      "upvotes": 9,
-      "paper_id": "2605.00553",
-      "abstract": "We propose Stable-GFN (S-GFN), which eliminates partition function Z estimation in GFN and reduces training instability for LLM red-teaming, achieving diverse and robust attack generation."
-    },
-    {
-      "title": "Trees to Flows and Back: Unifying Decision Trees and Diffusion Models",
-      "upvotes": 4,
-      "paper_id": "2605.00414",
-      "abstract": "This work unifies decision trees and diffusion models by establishing a mathematical correspondence between hierarchical decision trees and diffusion processes, revealing a shared optimization principle: Global Trajectory Score Matching."
-    },
-    {
-      "title": "When Do Diffusion Models learn to Generate Multiple Objects?",
-      "upvotes": 4,
-      "paper_id": "2605.00273",
-      "abstract": "We study multi-object generation failures in text-to-image diffusion models, introducing mosaic (Multi-Object Spatial relations, AttrIbution, Counting) as a controlled framework for dataset generation and analysis."
-    },
-    {
-      "title": "Odysseus: Scaling VLMs to 100+ Turn Decision-Making in Games via Reinforcement Learning",
-      "upvotes": 2,
-      "paper_id": "2605.00347",
-      "abstract": "We study RL-based training of VLMs for long-horizon decision-making in Super Mario Land, requiring 100+ turns of interaction with coordinated perception, reasoning, and action."
-    }
+    {"title": "Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL", "upvotes": 25, "paper_id": "2604.28123", "abstract": "The standard post-training recipe for large multimodal models (LMMs) applies supervised fine-tuning (SFT) on curated demonstrations followed by reinforcement learning with verifiable rewards (RLVR). However, SFT introduces distributional drift that neither preserves the model's original capabilities nor faithfully matches the supervision distribution. This problem is further amplified in multimodal reasoning,"},
+    {"title": "WindowsWorld: A Process-Centric Benchmark of Autonomous GUI Agents in Professional Cross-Application Environments", "upvotes": 9, "paper_id": "2604.27776", "abstract": "While GUI agents have shown impressive capabilities in common computer-use tasks such as OSWorld, current benchmarks mainly focus on isolated and single-application tasks. This overlooks a critical real-world requirement of coordinating across multiple applications to accomplish complex profession-specific workflows."},
+    {"title": "HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness", "upvotes": 6, "paper_id": "2605.02396", "abstract": "Recent advances in agentic harness with orchestration frameworks that coordinate multiple agents with memory, skills, and tool use have achieved remarkable success in complex reasoning tasks. However, the underlying mechanism that truly drives performance remains obscured behind intricate system designs."},
+    {"title": "PatRe: A Full-Stage Office Action and Rebuttal Generation Benchmark for Patent Examination", "upvotes": 3, "paper_id": "2605.03571", "abstract": "Patent examination is a complex, multi-stage process requiring both technical expertise and legal reasoning, increasingly challenged by rising application volumes. Prior benchmarks predominantly view patent examination as discriminative classification or static extraction, failing to capture its inherently interactive and iterative nature."},
+    {"title": "Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces", "upvotes": 2, "paper_id": "2605.02801", "abstract": "As large language model (LLM) agents evolve from isolated tool users into coordinated teams, reinforcement learning (RL) must optimize not only individual actions but also how work is spawned, delegated, communicated, aggregated, and stopped."},
+    {"title": "SVGS: Enhancing Gaussian Splatting Using Primitives with Spatially Varying Colors", "upvotes": 2, "paper_id": "2411.18966", "abstract": "Gaussian Splatting demonstrates impressive results in multi-view reconstruction based on Gaussian explicit representations. However, the current Gaussian primitives only have a single view-dependent color and an opacity to represent the appearance and geometry of the scene, resulting in a non-compact representation."},
+    {"title": "SymptomAI: Towards a Conversational AI Agent for Everyday Symptom Assessment", "upvotes": 2, "paper_id": "2605.04012", "abstract": "Language models excel at diagnostic assessments on currated medical case-studies and vignettes, performing on par with, or better than, clinical professionals. However, existing studies focus on complex scenarios with rich context."},
+    {"title": "Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies", "upvotes": 2, "paper_id": "2605.03596", "abstract": "Workspace learning requires AI agents to identify, reason over, exploit, and update explicit and implicit dependencies among heterogeneous files in a worker's workspace, enabling them to complete both routine and advanced tasks effectively."},
+    {"title": "SplAttN: Bridging 2D and 3D with Gaussian Soft Splatting and Attention for Point Cloud Completion", "upvotes": 1, "paper_id": "2605.01466", "abstract": "Although multi-modal learning has advanced point cloud completion, the theoretical mechanisms remain unclear. Recent works attribute success to the connection between modalities, yet standard hard projection severs this connection."},
+    {"title": "TCDA: Thread-Constrained Discourse-Aware Modeling for Conversational Sentiment Quadruple Analysis", "upvotes": 1, "paper_id": "2605.01717", "abstract": "Conversational Aspect-based Sentiment Quadruple Analysis (DiaASQ) needs to capture the complex interrelationships in multiple rounds of dialogues. Existing methods usually employ simple Graph Convolutional Networks (GCN), which introduce structural noise."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.126",
-      "published_at": "2025-05-01",
-      "body": "The `/model` picker now lists models from your gateway's `/v1/models` endpoint when `ANTHROPIC_BASE_URL` points at an Anthropic-compatible gateway. Added `claude project purge [path]` to delete all Claude Code state for a project. `--dangerously-skip-permissions` now bypasses prompts for writes to `.claude/`, `.git/`, `.vscode/`, shell config files. `claude auth login` now accepts OAuth code pasted into terminal. Auto mode spinner turns red when permission check stalls. Fixed image pasting larger than 2000px, OAuth login timeouts, and many other issues."
-    },
-    {
-      "tag_name": "v2.1.123",
-      "published_at": "2025-04-29",
-      "body": "Fixed OAuth authentication failing with a 401 retry loop when `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` is set."
-    },
-    {
-      "tag_name": "v2.1.122",
-      "published_at": "2025-04-28",
-      "body": "Added `ANTHROPIC_BEDROCK_SERVICE_TIER` environment variable to select Bedrock service tier. Pasting PR URL into `/resume` search now finds the session that created it. `/mcp` shows claude.ai connectors hidden by manual servers. OpenTelemetry improvements. Fixed `/branch` producing forks with tool_use errors, `/model` Effort option for Bedrock ARNs, Vertex AI structured-output errors, and many other fixes."
-    }
+    {"tag_name": "v2.1.129", "published_at": "2025-05-06", "body": "Added `--plugin-url <url>` flag to fetch a plugin `.zip` archive from a URL for the current session\nAdded `CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` env var to force-enable synchronized output on terminals that auto-detection misses (e.g. Emacs `eat`)\nAdded `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE`: when set on Homebrew or WinGet installations, Claude Code runs the upgrade command in the background and prompts to restart\nPlugin manifests: `themes` and `monitors` should now be declared under `\"experimental\": { ... }`\nGateway `/v1/models` discovery for the `/model` picker is now opt-in via `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1`\nCtrl+R history picker now defaults to searching all prompts across all projects\n`skillOverrides` setting now works: `off` hides from model and `/`"},
+    {"tag_name": "v2.1.128", "published_at": "2025-05-04", "body": "Bare `/color` (no args) now picks a random session color\n`/mcp` now shows the tool count for connected servers and flags servers that connected with 0 tools\n`--plugin-dir` now accepts `.zip` plugin archives in addition to directories\n`EnterWorktree` now creates the new branch from local HEAD as documented, instead of `origin/<default-branch>`"},
+    {"tag_name": "v2.1.126", "published_at": "2025-05-01", "body": "The `/model` picker now lists models from your gateway's `/v1/models` endpoint\nAdded `claude project purge [path]` to delete all Claude Code state for a project\n`--dangerously-skip-permissions` now bypasses prompts for writes to `.claude/`, `.git/`, `.vscode/`\n`claude auth login` now accepts the OAuth code pasted into the terminal when the browser callback can't reach localhost"}
   ]
 }
