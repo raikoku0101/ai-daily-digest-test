@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-06",
+  "content": "# AI Daily Digest — 2026-05-06\n\n## 今日のハイライト\n- **SFT→RL の分布ドリフト問題**: 最多 upvote (25) の論文が、マルチモーダル LLM の標準ポストトレーニングである SFT→RL パイプラインの根本的問題を指摘。ブラックボックス蒸留による事前アライメントで解決策を提示。\n- **Claude Code v2.1.129 リリース**: URL から直接プラグインを取得する `--plugin-url` フラグや自動アップデート機能を追加。`skillOverrides` 設定のバグも修正。\n- **エージェント基盤研究の加速**: GUI エージェント (WindowsWorld)、Heavy Thinking (HeavySkill)、マルチエージェント RL (Orchestration Traces) と、エージェント系の論文が複数ランクイン。\n\n\n## Claude Code アップデート\n\n### v2.1.129 (2025-05-06)\n- `--plugin-url <url>` フラグ追加：URLから `.zip` プラグインを取得してセッションに適用\n- `CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` 環境変数：Emacs `eat` など自動検出が失敗するターミナルで同期出力を強制有効化\n- `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE`：Homebrew/WinGet インストール時にバックグラウンドでアップグレードし再起動を促す\n- Plugin manifests: `themes`/`monitors` は `\"experimental\": { ... }` 配下で宣言するよう変更（旧形式は警告）\n- Gateway `/v1/models` モデル探索が `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` でオプトインに変更\n- Ctrl+R 履歴ピッカーが全プロジェクト横断検索をデフォルトに戻した（Ctrl+S で現在プロジェクトに絞り込み）\n- `skillOverrides` 設定が動作するように修正\n\n### v2.1.128 (2025-05-04)\n- `/color`（引数なし）でランダムセッションカラーを選択\n- `/mcp` でサーバーのツール数を表示、0ツールのサーバーをフラグ表示\n- `--plugin-dir` が `.zip` アーカイブを直接受け入れるように\n- `EnterWorktree` がドキュメント通り `origin/<default-branch>` ではなくローカル HEAD から新しいブランチを作成するように修正\n\n### v2.1.126 (2025-05-01)\n- `/model` ピッカーがゲートウェイの `/v1/models` エンドポイントからモデルを一覧表示\n- `claude project purge [path]` コマンド追加：プロジェクトの全 Claude Code 状態を削除\n- `--dangerously-skip-permissions` が `.claude/`、`.git/`、`.vscode/` への書き込みプロンプトもバイパス\n- `claude auth login` がブラウザコールバック未到達時（WSL2、SSH、コンテナ）に端末貼り付けで OAuth コードを受付\n\n## 注目論文 TOP 10\n\n**1. Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL**\n- upvotes: 25 | arXiv: https://arxiv.org/abs/2604.28123\n- SFT→RL という標準的なポストトレーニングレシピにおける分布ドリフト問題を指摘。SFT がモデルの元の能力を損ない、監督分布とも一致しないという課題に対し、ブラックボックスオンポリシー蒸留による「事前アライメント」手法を提案。マルチモーダル推論タスクでの性能を改善。\n\n**2. WindowsWorld: A Process-Centric Benchmark of Autonomous GUI Agents in Professional Cross-Application Environments**\n- upvotes: 9 | arXiv: https://arxiv.org/abs/2604.27776\n- OSWorld 等の既存ベンチマークが単一アプリに限定されている問題を解決。複数アプリを横断する職業特化ワークフローを評価する「プロセス中心」ベンチマークを提案。実際のビジネス環境に近い複雑なタスク遂行能力を評価可能。\n\n**3. HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness**\n- upvotes: 6 | arXiv: https://arxiv.org/abs/2605.02396\n- 複雑なエージェントフレームワーク内で実際に性能を駆動するメカニズムを解明。「Heavy Thinking（深い思考）」をエージェントのインナースキルとして位置づけ、複雑な推論タスクにおける性能向上の本質的要因を特定。\n\n**4. PatRe: A Full-Stage Office Action and Rebuttal Generation Benchmark for Patent Examination**\n- upvotes: 3 | arXiv: https://arxiv.org/abs/2605.03571\n- 特許審査を分類・抽出タスクとしてのみ捉えていた既存研究を超え、審査意見書と意見書反論の生成を含む完全な反復プロセスをベンチマーク化。学術的なピアレビューと同様のインタラクティブな性質を評価。\n\n**5. Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces**\n- upvotes: 2 | arXiv: https://arxiv.org/abs/2605.02801\n- LLM エージェントが孤立したツール利用者から協調チームへ進化する中、タスクの生成・委任・通信・集約・停止を含むオーケストレーショントレース（時系列インタラクショングラフ）を通じた強化学習手法を研究。\n\n**6. SVGS: Enhancing Gaussian Splatting Using Primitives with Spatially Varying Colors**\n- upvotes: 2 | arXiv: https://arxiv.org/abs/2411.18966\n- 既存の Gaussian Splatting が単一の視点依存色と不透明度のみを持つ非コンパクト表現という限界を克服。空間的に変化する色を持つプリミティブを導入し、多視点再構成の品質と表現効率を改善。\n\n**7. SymptomAI: Towards a Conversational AI Agent for Everyday Symptom Assessment**\n- upvotes: 2 | arXiv: https://arxiv.org/abs/2605.04012\n- 臨床専門家と同等以上の診断能力を示す言語モデルを、実際の患者が日常生活で症状を報告するシナリオに適用。複雑な症例ではなく日常的な症状報告における AI の実用性を検証した実証研究。\n\n**8. Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies**\n- upvotes: 2 | arXiv: https://arxiv.org/abs/2605.03596\n- ワーカーのワークスペース内の異種ファイル間の明示的・暗示的な依存関係を AI エージェントが識別・推論・活用・更新する能力を評価。既存ベンチマークの合成ファイルの限界を超え、実世界の大規模ファイル依存関係を扱う。\n\n**9. SplAttN: Bridging 2D and 3D with Gaussian Soft Splatting and Attention for Point Cloud Completion**\n- upvotes: 1 | arXiv: https://arxiv.org/abs/2605.01466\n- 点群補完における 2D-3D マルチモーダル学習のメカニズムを解明。標準的なハード投影が疎な点群から視覚的事前情報の伝播を妨げることを特定し、Gaussian Soft Splatting とアテンションで解決。\n\n**10. TCDA: Thread-Constrained Discourse-Aware Modeling for Conversational Sentiment Quadruple Analysis**\n- upvotes: 1 | arXiv: https://arxiv.org/abs/2605.01717\n- 会話型アスペクトベース感情4要素分析（DiaASQ）において、GCN の構造ノイズと標準 RoPE の平坦な相対距離捉え方という問題を解決。スレッド制約と談話認識モデリングで複数ラウンド対話の複雑な相互関係を効果的に捉える。\n\n",
+  "fetched_at": "2026-05-06T06:53:08.073622+00:00",
+  "papers": [
+    {
+      "title": "Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL",
+      "upvotes": 25,
+      "paper_id": "2604.28123",
+      "abstract": "The standard post-training recipe for large multimodal models (LMMs) applies supervised fine-tuning (SFT) on curated demonstrations followed by reinforcement learning with verifiable rewards (RLVR). However, SFT introduces distributional drift that neither preserves the model's original capabilities nor faithfully matches the supervision distribution. This problem is further amplified in multimodal reasoning,"
+    },
+    {
+      "title": "WindowsWorld: A Process-Centric Benchmark of Autonomous GUI Agents in Professional Cross-Application Environments",
+      "upvotes": 9,
+      "paper_id": "2604.27776",
+      "abstract": "While GUI agents have shown impressive capabilities in common computer-use tasks such as OSWorld, current benchmarks mainly focus on isolated and single-application tasks. This overlooks a critical real-world requirement of coordinating across multiple applications to accomplish complex profession-specific workflows."
+    },
+    {
+      "title": "HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness",
+      "upvotes": 6,
+      "paper_id": "2605.02396",
+      "abstract": "Recent advances in agentic harness with orchestration frameworks that coordinate multiple agents with memory, skills, and tool use have achieved remarkable success in complex reasoning tasks. However, the underlying mechanism that truly drives performance remains obscured behind intricate system designs."
+    },
+    {
+      "title": "PatRe: A Full-Stage Office Action and Rebuttal Generation Benchmark for Patent Examination",
+      "upvotes": 3,
+      "paper_id": "2605.03571",
+      "abstract": "Patent examination is a complex, multi-stage process requiring both technical expertise and legal reasoning, increasingly challenged by rising application volumes. Prior benchmarks predominantly view patent examination as discriminative classification or static extraction, failing to capture its inherently interactive and iterative nature."
+    },
+    {
+      "title": "Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces",
+      "upvotes": 2,
+      "paper_id": "2605.02801",
+      "abstract": "As large language model (LLM) agents evolve from isolated tool users into coordinated teams, reinforcement learning (RL) must optimize not only individual actions but also how work is spawned, delegated, communicated, aggregated, and stopped."
+    },
+    {
+      "title": "SVGS: Enhancing Gaussian Splatting Using Primitives with Spatially Varying Colors",
+      "upvotes": 2,
+      "paper_id": "2411.18966",
+      "abstract": "Gaussian Splatting demonstrates impressive results in multi-view reconstruction based on Gaussian explicit representations. However, the current Gaussian primitives only have a single view-dependent color and an opacity to represent the appearance and geometry of the scene, resulting in a non-compact representation."
+    },
+    {
+      "title": "SymptomAI: Towards a Conversational AI Agent for Everyday Symptom Assessment",
+      "upvotes": 2,
+      "paper_id": "2605.04012",
+      "abstract": "Language models excel at diagnostic assessments on currated medical case-studies and vignettes, performing on par with, or better than, clinical professionals. However, existing studies focus on complex scenarios with rich context."
+    },
+    {
+      "title": "Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies",
+      "upvotes": 2,
+      "paper_id": "2605.03596",
+      "abstract": "Workspace learning requires AI agents to identify, reason over, exploit, and update explicit and implicit dependencies among heterogeneous files in a worker's workspace, enabling them to complete both routine and advanced tasks effectively."
+    },
+    {
+      "title": "SplAttN: Bridging 2D and 3D with Gaussian Soft Splatting and Attention for Point Cloud Completion",
+      "upvotes": 1,
+      "paper_id": "2605.01466",
+      "abstract": "Although multi-modal learning has advanced point cloud completion, the theoretical mechanisms remain unclear. Recent works attribute success to the connection between modalities, yet standard hard projection severs this connection."
+    },
+    {
+      "title": "TCDA: Thread-Constrained Discourse-Aware Modeling for Conversational Sentiment Quadruple Analysis",
+      "upvotes": 1,
+      "paper_id": "2605.01717",
+      "abstract": "Conversational Aspect-based Sentiment Quadruple Analysis (DiaASQ) needs to capture the complex interrelationships in multiple rounds of dialogues. Existing methods usually employ simple Graph Convolutional Networks (GCN), which introduce structural noise."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.129",
+      "published_at": "2025-05-06",
+      "body": "Added `--plugin-url <url>` flag to fetch a plugin `.zip` archive from a URL for the current session\nAdded `CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` env var to force-enable synchronized output on terminals that auto-detection misses (e.g. Emacs `eat`)\nAdded `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE`: when set on Homebrew or WinGet installations, Claude Code runs the upgrade command in the background and prompts to restart\nPlugin manifests: `themes` and `monitors` should now be declared under `\"experimental\": { ... }`\nGateway `/v1/models` discovery for the `/model` picker is now opt-in via `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1`\nCtrl+R history picker now defaults to searching all prompts across all projects\n`skillOverrides` setting now works: `off` hides from model and `/`"
+    },
+    {
+      "tag_name": "v2.1.128",
+      "published_at": "2025-05-04",
+      "body": "Bare `/color` (no args) now picks a random session color\n`/mcp` now shows the tool count for connected servers and flags servers that connected with 0 tools\n`--plugin-dir` now accepts `.zip` plugin archives in addition to directories\n`EnterWorktree` now creates the new branch from local HEAD as documented, instead of `origin/<default-branch>`"
+    },
+    {
+      "tag_name": "v2.1.126",
+      "published_at": "2025-05-01",
+      "body": "The `/model` picker now lists models from your gateway's `/v1/models` endpoint\nAdded `claude project purge [path]` to delete all Claude Code state for a project\n`--dangerously-skip-permissions` now bypasses prompts for writes to `.claude/`, `.git/`, `.vscode/`\n`claude auth login` now accepts the OAuth code pasted into the terminal when the browser callback can't reach localhost"
+    }
+  ]
+}
