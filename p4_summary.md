@@ -1,6 +1,6 @@
-**4. PatRe: A Full-Stage Office Action and Rebuttal Generation Benchmark for Patent Examination**
-**著者**: PatRe 研究チーム et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.03571
+**4. HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness**
+**著者**: HeavySkill Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2605.02396
 
 **まとめ**:
-特許審査の「審査官（オフィスアクション生成）」と「申請者（反論生成）」双方をシミュレートする初の全段階ベンチマーク PatRe を提案（480 件の実際の特許審査記録）。現在の LLM は反応的防御（反論）では高スコアを示す一方、能動的問題発見（OA 生成）では困難があり、ハイパークリティカルバイアスや法定条文の過度適用といった固有の弱点を体系的に特定した。
+HeavySkill は「重い思考 (Heavy Thinking)」を並列推論フェーズ (K個の独立した推論軌跡生成) と順序的熟慮フェーズ (メモリキャッシュを用いた統合) の2段階パイプラインとして実装し、コード修正なしに複数の協調フレームワークに統合可能な「読み取り可能スキル」として提供する。Heavy-Mean@4 メトリクスが従来の Mean@K を一貫して上回り、強力なモデルでは Pass@K 理論上限に接近。エージェント内部スキルとして Heavy Thinking を内在化する新視点を提示した。

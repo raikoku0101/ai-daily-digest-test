@@ -1,6 +1,6 @@
-**5. Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces**
-**著者**: RL-MAS 研究チーム et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.02801
+**5. Video Generation with Predictive Latents**
+**著者**: PV-VAE Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2605.02134
 
 **まとめ**:
-LLM エージェントの孤立ツール利用からチーム協調への進化において、タスク生成・委任・通信・集約・停止を含む「オーケストレーショントレース」（時系列インタラクショングラフ）を中心概念として RL 設計を統一的に分析。8 つの報酬族と 8 つのクレジット割当階層を体系化し、Kimi Agent Swarm（最大 300 サブエージェント）等の産業事例と 15 の未解決研究課題を整理したサーベイ論文。
+PV-VAE (Predictive Video VAE) は、動画 VAE の潜在空間に予測的再構成を統合する新手法。ランダムに未来フレームを破棄し、過去観測のみをエンコードしてデコーダが再構成と未来予測を同時実行することで、時間的ダイナミクスを潜在空間に自然に符号化する。UCF101 で 52% の高速化と 34.42 FVD 改善を達成し、光流推定・次フレーム予測・点追跡の下流タスクでも一貫した改善を確認した。
