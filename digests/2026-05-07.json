@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-07",
+  "content": "# AI Daily Digest — 2026-05-07\n\n## 今日のハイライト\n- **ARIS が自律研究ハーネスをオープンソース公開 (👍68)**: LLMエージェントが睡眠中にも自律的に研究を進める「オートパイロット研究」システムを実証。エージェント性能はモデルウェイトとハーネス設計の両方に依存することを示し、AI 研究自動化の実用化に向けた重要な一歩。\n- **Claude Code v2.1.129/v2.1.131 同日リリース**: プラグイン URL 指定フラグ、自動アップデート機能、Ctrl+R 全プロジェクト横断検索などの利便性向上と、Windows VS Code 拡張の致命的バグ修正が同日投入。頻繁なアップデートによる高い開発ペースが継続。\n- **マルチモーダル RL の新パラダイム「事前アライメント」(👍35)**: SFT を経ずにオンポリシー蒸留で RL を適用する手法が、従来の SFT→RL パイプラインの分布ドリフト問題を解消。LMM のポストトレーニング設計の常識を覆す可能性。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.131 (2025-05-06)\n**バグ修正**\n- VS Code 拡張機能が Windows で起動失敗する問題を修正 (createRequire ポリフィルのバグによるハードコードされたビルドパス)\n- Mantle エンドポイント認証で `x-api-key` ヘッダーが欠落する問題を修正\n\n**ユーザーへの影響**: Windows で VS Code + Claude Code を使用しているユーザーは今すぐアップデートを推奨。\n\n---\n\n### v2.1.129 (2025-05-06)\n**主要新機能**\n- `--plugin-url <url>` フラグ追加 — URL から .zip プラグインをセッション用にフェッチ可能に\n- `CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` 環境変数 — Emacs `eat` など自動検出が効かないターミナルで同期出力を強制\n- `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` — Homebrew/WinGet インストールで自動アップグレード + 再起動プロンプト\n- Ctrl+R 履歴ピッカーが全プロジェクト横断検索をデフォルトに (Ctrl+S で現プロジェクト絞り込み)\n- `skillOverrides` 設定が機能するように: `off` でモデルと `/` から非表示、`user-invocable-only` でモデルのみ非表示\n\n**変更点**\n- Plugin マニフェストの `themes`/`monitors` は `\"experimental\": { ... }` 配下に移動 (旧形式は警告付きで継続動作)\n- Gateway `/v1/models` 探索は `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1` でオプトイン化\n\n**ユーザーへの影響**: プラグイン開発者はマニフェスト構造の更新が必要。Homebrew/WinGet ユーザーは自動アップデート機能の恩恵を受けられる。\n\n---\n\n### v2.1.128 (2025-05-04)\n**主要新機能**\n- `/color` 引数なしでランダムなセッションカラーを選択\n- `/mcp` でサーバーのツール数を表示、0ツールで接続したサーバーをフラグ表示\n- `--plugin-dir` が `.zip` アーカイブを直接受け付けるように\n- `--channels` がコンソール (API キー) 認証でも動作\n- MCP 再接続時にツール名リストをフラッド送信しなくなった (サーバープレフィックスで要約)\n\n**変更点**\n- サブプロセス (Bash, hooks, MCP, LSP) が `OTEL_*` 環境変数を継承しなくなった\n- MCP: `workspace` は予約済みサーバー名に — 既存の同名サーバーはスキップされ警告表示\n\n**ユーザーへの影響**: OTEL を使用している開発者は環境変数の再設定が必要。`workspace` という名前の MCP サーバーは改名が必要。\n\n## 注目論文 TOP 10\n\n**1. ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration** | 👍 68 | https://arxiv.org/abs/2605.03042\n🎯 背景: LLMエージェントを活用した自律研究システムの構築は、研究効率化の観点から注目されているが、マルチエージェント協調における信頼性・整合性の確保が課題だった。\n🔧 手法: 敵対的マルチエージェント協調 (Adversarial Multi-Agent Collaboration) アーキテクチャを採用。複数エージェントが相互批判しながら研究を推進し、アシュランス機構で品質を保証。オープンソース研究ハーネスとして実装。\n📊 結果: 実際の研究タスクへの早期デプロイ経験を報告。エージェントシステムの性能がモデルウェイトとハーネス設計の両方に依存することを実証的に確認。\n💡 意義: AI が自律的に研究サイクルを回す「オートパイロット研究」の実用化に向けた重要なマイルストーン。オープンソース公開により再現性・拡張性を確保。\n⚠️ 限界: 初期デプロイ段階のレポートであり、長期的な研究品質や誤情報生成リスクの体系的評価はこれから。\n\n---\n\n**2. Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL** | 👍 35 | https://arxiv.org/abs/2604.28123\n🎯 背景: 大規模マルチモーダルモデル (LMM) の標準的なポストトレーニングレシピ (SFT → RLVR) では、SFT が分布ドリフトを引き起こし、元のモデル能力が損なわれる問題があった。\n🔧 手法: SFT を経由せず、ブラックボックスオンポリシー蒸留 (Black-Box On-Policy Distillation) による「事前アライメント」を導入。教師モデルの出力分布を直接追跡しながら RL を適用することで、分布ドリフトを回避。\n📊 結果: 従来の SFT-to-RL パイプラインと比較して、元のモデル能力を維持しながら RL による性能向上を達成。マルチモーダルタスクでの有効性を確認。\n💡 意義: マルチモーダル RL の標準パイプラインを根本的に見直す提案。SFT 不要の新しいアライメント手法として、訓練コスト削減と性能向上の両立が期待できる。\n⚠️ 限界: ブラックボックス蒸留のため、教師モデルへのアクセスが必要。汎化性能の評価はさらなる検証が必要。\n\n---\n\n**3. X2SAM: Any Segmentation in Images and Videos** | 👍 16 | https://arxiv.org/abs/2605.00891\n🎯 背景: マルチモーダル LLM は画像レベルの理解は強力だが、ピクセルレベルの知覚 (セグメンテーション) が弱い。SAM 系モデルは高品質マスクを生成できるが、複雑な対話的指示への対応が困難だった。\n🔧 手法: MLLM の言語理解能力と SAM のセグメンテーション能力を統合。画像・動画の両方で「あらゆる」セグメンテーションを処理できるユニファイドフレームワーク X2SAM を構築。\n📊 結果: 画像・動画セグメンテーションの複数ベンチマークで SOTA レベルを達成。自然言語による複雑な指示への対応を実現。\n💡 意義: 「言葉で指示するだけでどんな物体でもセグメント」という直感的なインターフェースを実現。医療画像解析や自動運転など応用範囲が広い。\n⚠️ 限界: リアルタイム処理への対応や、非常に細かいオブジェクトへの対処は今後の課題。\n\n---\n\n**4. HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness** | 👍 11 | https://arxiv.org/abs/2605.02396\n🎯 背景: エージェントオーケストレーションフレームワーク (複数エージェント + メモリ + ツール) が複雑推論タスクで成果を上げているが、何が本当に性能を駆動しているかは不明確だった。\n🔧 手法: 「Heavy Thinking (深い思考)」を単なるオーケストレーションの実行単位ではなく、モデルパラメータに内在化されたスキルとして捉える HeavySkill の観点を提案。オーケストレーターが複雑タスクを解決するための内部スキルとして機能させる。\n📊 結果: Heavy Thinking をインナースキルとして活用することで、複雑推論ベンチマークにおいて既存のオーケストレーション手法を上回る性能を達成。\n💡 意義: エージェント性能の源泉を「ハーネス設計」ではなく「モデル内部スキル」に求める新しい視点。将来の効率的なエージェント設計指針になる可能性。\n⚠️ 限界: 「Heavy Thinking」の定義が曖昧であり、他のアーキテクチャへの一般化は未検証。\n\n---\n\n**5. Video Generation with Predictive Latents** | 👍 8 | https://arxiv.org/abs/2605.02134\n🎯 背景: 動画 VAE は潜在空間で動画生成モデルを訓練するが、再構成品質の最適化が必ずしも生成品質の向上に繋がらないというギャップが存在していた。\n🔧 手法: 予測的潜在表現 (Predictive Latents) を導入。VAE の潜在空間に将来フレームの予測情報を組み込むことで、生成モデルが時系列的に整合性の高い動画を生成できるよう設計。\n📊 結果: 動画生成品質のベンチマークで改善を確認。特に時間的一貫性と動き表現の自然さが向上。\n💡 意義: 動画 VAE の設計に「予測性」という新軸を導入。生成モデルのアーキテクチャ改善に留まらず、動画理解・予測タスクへの波及効果も期待。\n⚠️ 限界: 計算コストが増加する可能性があり、長尺動画への適用は検討段階。\n\n---\n\n**6. PatRe: A Full-Stage Office Action and Rebuttal Generation Benchmark for Patent Examination** | 👍 4 | https://arxiv.org/abs/2605.03571\n🎯 背景: 特許審査は技術的専門知識と法律的推論の両方を必要とする複雑なプロセスで、出願件数の増加により審査官の負担が増大。既存ベンチマークは分類・抽出の静的タスクに偏り、実際の対話的・反復的プロセスを捉えられていなかった。\n🔧 手法: 特許審査の全ステージ (Office Action 生成 → 応答/反論生成) をカバーするベンチマーク PatRe を構築。学術査読・反論プロセスに類似した形式で、LLM の特許審査能力を多段階で評価。\n📊 結果: 既存 LLM の特許審査タスクにおける能力と限界を定量的に評価。特に反論生成の難しさが明確化。\n💡 意義: 特許審査の自動化・支援 AI 開発の基盤となるベンチマーク。知的財産 AI の社会実装に向けた評価基準を提供。\n⚠️ 限界: 特定の特許分野や言語に偏る可能性あり。審査官の主観的判断を完全に定量化することの難しさも残る。\n\n---\n\n**7. SVGS: Enhancing Gaussian Splatting Using Primitives with Spatially Varying Colors** | 👍 4 | https://arxiv.org/abs/2411.18966\n🎯 背景: Gaussian Splatting は多視点再構成で高い性能を示すが、各ガウシアンプリミティブが単一の視点依存色と不透明度しか持たず、表現能力が制限されていた。\n🔧 手法: 空間変化色・不透明度 (Spatially Varying Colors and Opacity) を単一ガウシアンプリミティブ内に導入する SVGS を提案。1つのプリミティブで複雑な外観・形状を表現できるようにし、表現のコンパクト性を向上。\n📊 結果: 従来の Gaussian Splatting と比較して、より少ないプリミティブ数で同等以上の再構成品質を達成。コンパクトな表現でメモリ効率も向上。\n💡 意義: 3D シーン表現の効率化に貢献。VR/AR や自動運転のリアルタイム3D再構成への実用化を後押し。\n⚠️ 限界: 空間変化パラメータの最適化が計算的に複雑化する可能性。動的シーンへの適用は未検討。\n\n---\n\n**8. Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces** | 👍 3 | https://arxiv.org/abs/2605.02801\n🎯 背景: LLM エージェントが孤立したツールユーザーから協調チームへと進化する中で、RL はサブエージェントの生成・委任・通信・集約・停止決定など、個々のアクションだけでなくオーケストレーション全体を最適化する必要が生じていた。\n🔧 手法: オーケストレーショントレース (サブエージェント生成、委任、通信、ツール使用、集約、停止決定を含む時系列インタラクショングラフ) を通じて LLM マルチエージェントシステムの RL を研究。\n📊 結果: オーケストレーショントレースを活用した RL により、マルチエージェントシステムの協調品質が向上。特に委任と停止判断の最適化に効果的。\n💡 意義: マルチエージェント RL の新しい視点を提供。実用的な AI システム設計に直結する知見を含む。\n⚠️ 限界: トレースの収集・ラベリングコストが高く、スケールアップが課題。\n\n---\n\n**9. SplAttN: Bridging 2D and 3D with Gaussian Soft Splatting and Attention for Point Cloud Completion** | 👍 2 | https://arxiv.org/abs/2605.01466\n🎯 背景: マルチモーダル学習による点群補完 (Point Cloud Completion) では、通常のハードプロジェクションがモダリティ間の接続を断絶し、視覚的事前分布の伝播を妨げる「クロスモーダルエントロピー崩壊」という失敗モードが存在する。\n🔧 手法: ガウシアンソフトスプラッティング (Gaussian Soft Splatting) とアテンション機構を組み合わせた SplAttN を提案。2D 画像と 3D 点群の橋渡しを滑らかに行い、クロスモーダルな情報伝播を改善。\n📊 結果: 点群補完ベンチマークで競合手法を上回る性能。特に疎な点群入力での補完精度が向上。\n💡 意義: 2D-3D クロスモーダル学習の理論的基盤を整備。ロボティクスや自動運転の3D認識向上に貢献。\n⚠️ 限界: ガウシアンスプラッティングの計算コストが高く、リアルタイム処理への適用は課題。\n\n---\n\n**10. StateSMix: Online Lossless Compression via Mamba State Space Models and Sparse N-gram Context Mixing** | 👍 2 | https://arxiv.org/abs/2605.02904\n🎯 背景: オンライン無損失圧縮は事前学習済みモデルなしで動作する必要があるが、従来手法は GPU 依存や外部依存が多く、汎用性に欠けていた。\n🔧 手法: Mamba スタイルの状態空間モデル (SSM) とスパース N-gram コンテキストミキシングおよび算術符号化を組み合わせた StateSMix を提案。ゼロから初期化し、圧縮対象ファイルをトークンバイトークンでオンライン訓練。\n📊 結果: GPU・事前学習済みウェイト・外部依存なしで、既存のオンライン圧縮手法と競合する圧縮率を達成。\n💡 意義: 完全自己完結型の圧縮器として、エッジデバイスや制限環境での応用が期待。SSM のオンライン学習能力を実証した点も理論的に重要。\n⚠️ 限界: 大規模ファイルへのスケールアップ時の速度・メモリ効率は未検証。GPU なしのため大規模データには時間がかかる。\n\n",
+  "fetched_at": "2026-05-06T22:04:45.880044+00:00",
+  "papers": [
+    {
+      "title": "ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration",
+      "upvotes": 68,
+      "paper_id": "2605.03042",
+      "abstract": "This report describes ARIS (Auto-Research-in-sleep), an open-source research harness for autonomous research, including its architecture, assurance mechanisms, and early deployment experience. The performance of agent systems built on LLMs depends on both the model weights and the harness around them, which governs what information to store, retrieve, and present to the model."
+    },
+    {
+      "title": "Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL",
+      "upvotes": 35,
+      "paper_id": "2604.28123",
+      "abstract": "The standard post-training recipe for large multimodal models (LMMs) applies supervised fine-tuning (SFT) on curated demonstrations followed by reinforcement learning with verifiable rewards (RLVR). However, SFT introduces distributional drift that neither preserves the model's original capabilities nor faithfully matches the supervision distribution."
+    },
+    {
+      "title": "X2SAM: Any Segmentation in Images and Videos",
+      "upvotes": 16,
+      "paper_id": "2605.00891",
+      "abstract": "Multimodal Large Language Models (MLLMs) have demonstrated strong image-level visual understanding and reasoning, yet their pixel-level perception across both images and videos remains limited. Foundation segmentation models such as the SAM series produce high-quality masks, but they rely on low-level visual prompts and cannot natively interpret complex conversational instructions."
+    },
+    {
+      "title": "HeavySkill: Heavy Thinking as the Inner Skill in Agentic Harness",
+      "upvotes": 11,
+      "paper_id": "2605.02396",
+      "abstract": "Recent advances in agentic harness with orchestration frameworks that coordinate multiple agents with memory, skills, and tool use have achieved remarkable success in complex reasoning tasks. However, the underlying mechanism that truly drives performance remains obscured behind intricate system designs. In this paper, we propose HeavySkill, a perspective that views heavy thinking not only as a minimal execution unit in orchestration harness but also as an inner skill internalized within the model's parameters."
+    },
+    {
+      "title": "Video Generation with Predictive Latents",
+      "upvotes": 8,
+      "paper_id": "2605.02134",
+      "abstract": "Video Variational Autoencoder (VAE) enables latent video generative modeling by mapping the visual world into compact spatiotemporal latent spaces, improving training efficiency and stability. While existing video VAEs achieve commendable reconstruction quality, continued optimization of reconstruction does not necessarily translate into improved generative performance."
+    },
+    {
+      "title": "PatRe: A Full-Stage Office Action and Rebuttal Generation Benchmark for Patent Examination",
+      "upvotes": 4,
+      "paper_id": "2605.03571",
+      "abstract": "Patent examination is a complex, multi-stage process requiring both technical expertise and legal reasoning, increasingly challenged by rising application volumes. Prior benchmarks predominantly view patent examination as discriminative classification or static extraction, failing to capture its inherently interactive and iterative nature."
+    },
+    {
+      "title": "SVGS: Enhancing Gaussian Splatting Using Primitives with Spatially Varying Colors",
+      "upvotes": 4,
+      "paper_id": "2411.18966",
+      "abstract": "Gaussian Splatting demonstrates impressive results in multi-view reconstruction based on Gaussian explicit representations. However, the current Gaussian primitives only have a single view-dependent color and an opacity to represent the appearance and geometry of the scene, resulting in a non-compact representation."
+    },
+    {
+      "title": "Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces",
+      "upvotes": 3,
+      "paper_id": "2605.02801",
+      "abstract": "As large language model (LLM) agents evolve from isolated tool users into coordinated teams, reinforcement learning (RL) must optimize not only individual actions but also how work is spawned, delegated, communicated, aggregated, and stopped."
+    },
+    {
+      "title": "SplAttN: Bridging 2D and 3D with Gaussian Soft Splatting and Attention for Point Cloud Completion",
+      "upvotes": 2,
+      "paper_id": "2605.01466",
+      "abstract": "Although multi-modal learning has advanced point cloud completion, the theoretical mechanisms remain unclear. Recent works attribute success to the connection between modalities, yet we identify that standard hard projection severs this connection: projecting a sparse point cloud onto the image plane yields an extremely sparse support, which hinders visual prior propagation."
+    },
+    {
+      "title": "StateSMix: Online Lossless Compression via Mamba State Space Models and Sparse N-gram Context Mixing",
+      "upvotes": 2,
+      "paper_id": "2605.02904",
+      "abstract": "We present StateSMix, a fully self-contained lossless compressor that couples an online-trained Mamba-style State Space Model (SSM) with sparse n-gram context mixing and arithmetic coding. The model is initialised from scratch and trained token-by-token on the file being compressed, requiring no pre-trained weights, no GPU, and no external dependencies."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.131",
+      "published_at": "2025-05-06",
+      "body": "Fixed VS Code extension failing to activate on Windows due to a hardcoded build path in the bundled SDK (createRequire polyfill bug). Fixed Mantle endpoint authentication failing with missing x-api-key header."
+    },
+    {
+      "tag_name": "v2.1.129",
+      "published_at": "2025-05-06",
+      "body": "Added `--plugin-url <url>` flag to fetch a plugin .zip archive from a URL for the current session. Added `CLAUDE_CODE_FORCE_SYNC_OUTPUT=1` env var to force-enable synchronized output on terminals that auto-detection misses (e.g. Emacs `eat`). Added `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE`: when set on Homebrew or WinGet installations, Claude Code runs the upgrade command in the background and prompts to restart. Plugin manifests: `themes` and `monitors` should now be declared under `\"experimental\": { ... }`. Top-level declarations still work but `claude plugin validate` will warn. Gateway `/v1/models` discovery for the `/model` picker is now opt-in via `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1`. Ctrl+R history picker now defaults to searching all prompts across all projects. Press Ctrl+S to narrow to the current project or session. `skillOverrides` setting now works."
+    },
+    {
+      "tag_name": "v2.1.128",
+      "published_at": "2025-05-04",
+      "body": "Bare `/color` (no args) now picks a random session color. `/mcp` now shows the tool count for connected servers and flags servers that connected with 0 tools. `--plugin-dir` now accepts `.zip` plugin archives in addition to directories. `--channels` now works with console (API key) authentication. Updated `/model` picker: collapsed duplicate Opus 4.7 entries. Subprocesses (Bash, hooks, MCP, LSP) no longer inherit `OTEL_*` environment variables. MCP: `workspace` is now a reserved server name. Reconnecting MCP servers no longer flood the conversation with full tool-name lists on every reconnect."
+    }
+  ]
+}
