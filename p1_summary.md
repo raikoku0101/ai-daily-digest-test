@@ -1,6 +1,6 @@
-**1. ARIS: Autonomous Research via Adversarial Multi-Agent Collaboration**
-**著者**: ARIS Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.03042
+**1. Stream-R1: Reliability-Perplexity Aware Reward Distillation for Streaming Video Generation**
+**著者**: Anonymous et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.03849
 
 **まとめ**:
-ARIS は LLM を用いた自律研究ハーネスで、敵対的マルチエージェント協調により機械学習研究を自動化する。実行エージェントと異なるモデルファミリーのレビュアーを組み合わせることで相関誤差を回避し、3段階の監査カスケードにより実験誠実性と報告忠実性を保証する。アイデア発見から論文執筆・反論まで5つのエンドツーエンドワークフローをオープンソースで提供し、AI主導の自律研究実用化に向けた重要な基盤を提示した。
+ストリーミング動画生成の蒸留（DMD）において、全ロールアウト・フレーム・ピクセルを均等に扱う従来手法の限界を打破。「信頼性（Inter-Reliability）」と「困惑度（Intra-Perplexity）」という2軸で蒸留監督を重み付けし、高品質な時空間領域に最適化圧力を集中させることで、推論コスト追加なしに教師モデルを上回る品質を達成。

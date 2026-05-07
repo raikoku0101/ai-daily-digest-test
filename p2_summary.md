@@ -1,6 +1,6 @@
-**2. Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL (PRISM)**
-**著者**: PRISM Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2604.28123
+**2. Stream-T1: Test-Time Scaling for Streaming Video Generation**
+**著者**: Anonymous et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.04461
 
 **まとめ**:
-PRISMは、SFT→RLVRという標準的なポストトレーニングパイプラインの中間にブラックボックス敵対的オンポリシー蒸留 (Black-Box Adversarial On-Policy Distillation) 段階を挿入する新手法。混合専門家 (MoE) 判別器が知覚ドリフトと推論ドリフトを個別に修正し、SFTで生じた分布ずれを RL 前に矯正する。MathVista等の複数ベンチマークで標準手法比 +4.4〜+6.0ポイントの平均精度向上を達成し、マルチモーダル RL の新パラダイムを提示した。
+ストリーミング動画生成にテスト時スケーリング（TTS）を初めて包括的に適用するフレームワーク。チャンク単位の逐次生成の特性を活かし、ノイズ伝播・報酬ベースのプルーニング・メモリシンキングの3コンポーネントで時間的一貫性と視覚品質を向上。推論時の計算予算を柔軟にコントロールしながら、既存の蒸留ベース手法より優れた動画品質を達成した。
