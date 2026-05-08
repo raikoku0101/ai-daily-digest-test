@@ -1,0 +1,21 @@
+{
+  "date": "2026-05-09",
+  "fetched_at": "2026-05-08T22:09:40.066365+00:00",
+  "papers": [
+    {"title": "Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction", "upvotes": 45, "paper_id": "2605.05242"},
+    {"title": "RaguTeam at SemEval-2026 Task 8: Meno and Friends in a Judge-Orchestrated LLM Ensemble for Faithful Multi-Turn Response Generation", "upvotes": 35, "paper_id": "2605.04523"},
+    {"title": "When to Trust Imagination: Adaptive Action Execution for World Action Models", "upvotes": 33, "paper_id": "2605.06222"},
+    {"title": "Audio-Visual Intelligence in Large Foundation Models", "upvotes": 17, "paper_id": "2605.04045"},
+    {"title": "StraTA: Incentivizing Agentic Reinforcement Learning with Strategic Trajectory Abstraction", "upvotes": 10, "paper_id": "2605.06642"},
+    {"title": "RemoteZero: Geospatial Reasoning with Zero Human Annotations", "upvotes": 5, "paper_id": "2605.04451"},
+    {"title": "Prescriptive Scaling Laws for Data Constrained Training", "upvotes": 3, "paper_id": "2605.01640"},
+    {"title": "PianoCoRe: Combined and Refined Piano MIDI Dataset", "upvotes": 1, "paper_id": "2605.06627"},
+    {"title": "GeoStack: A Framework for Quasi-Abelian Knowledge Composition in VLMs", "upvotes": 1, "paper_id": "2605.06477"},
+    {"title": "Sparkle: Realizing Lively Instruction-Guided Video Background Replacement via Decoupled Guidance", "upvotes": 1, "paper_id": "2605.06535"}
+  ],
+  "cc_updates": [
+    {"tag_name": "v2.1.136", "published_at": "2025-05-08"},
+    {"tag_name": "v2.1.133", "published_at": "2025-05-07"},
+    {"tag_name": "v2.1.132", "published_at": "2025-05-06"}
+  ]
+}
