@@ -1,6 +1,6 @@
-**5. Awaking Spatial Intelligence in Unified Multimodal Understanding and Generation**
-**著者**: Anonymous et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.04128
+**5. StraTA: Incentivizing Agentic Reinforcement Learning with Strategic Trajectory Abstraction**
+**著者**: (2605.06642) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2605.06642
 
 **まとめ**:
-視覚理解・テキストから画像生成・空間的画像編集を統合したマルチモーダル基盤モデル「JoyAI-Image」を提案。空間強化 MLLM と 16B パラメータの MMDiT を共有インターフェースで結合し、300万件の空間理解データセット（OpenSpatial-3M）で訓練。13ベンチマークで平均64.4スコアを達成し Gemini-2.5-Pro と同等の空間理解性能を実現、長文テキスト生成精度 0.963 を記録した。
+LLM ベースエージェントの長期意思決定を改善する「戦略的軌跡抽象化 (Strategic Trajectory Abstraction, StraTA)」フレームワーク。初期タスク状態から圧縮された戦略をサンプリングし、階層型 GRPO ロールアウトで戦略生成と行動実行を共同学習。ALFWorld 93.1%・WebShop 84.2%・SciWorld 63.5% を達成し、クローズドソースのフロンティアモデルを上回った。エージェント RL におけるクレジット割り当て問題への実用的解法を提供。

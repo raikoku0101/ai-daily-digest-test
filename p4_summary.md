@@ -1,6 +1,6 @@
-**4. Lightning Unified Video Editing via In-Context Sparse Attention**
-**著者**: Anonymous et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.04569
+**4. Audio-Visual Intelligence in Large Foundation Models**
+**著者**: (2605.04045) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2605.04045
 
 **まとめ**:
-In-Context Learning（ICL）パラダイムの動画編集における二乗オーダーのアテンション計算コストを解決するスパースアテンション手法「ISA」を提案。コンテキストトークンの低サリエンシー特性とクエリシャープネスと近似誤差の相関を理論的に証明し、FlashAttention-3 比で 1.47 倍の高速化を実現しながら視覚品質をほぼ維持。1.7M の高品質動画編集ペアデータセットも構築した。
+大規模基盤モデル時代における Audio-Visual Intelligence (AVI) の初の包括的サーベイ (56 ページ)。理解・生成・インタラクションの 3 カテゴリで AVI タスクを体系化し、モダリティトークン化・クロスモーダル融合・自己回帰生成の方法論的基盤を整理。Meta MovieGen・Google Veo-3 のような産業界の最前線事例も分析し、同期精度・空間推論・制御可能性・安全性が今後の重要課題であることを明示。今後の研究の基準文献となることを目指す。
