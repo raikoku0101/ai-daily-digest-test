@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-10",
+  "content": "# AI Daily Digest — 2026-05-10\n\n## 今日のハイライト\n- **エージェント型検索の革命 (DCI)**: 従来の埋め込み検索を完全に廃し、grep・シェルコマンドで生コーパスに直接アクセスする手法が BRIGHT/BEIR で SOTA を達成。強いエージェントには「検索 API」より「ターミナルアクセス」が有効であることを示す重大な示唆。\n- **Claude Code v2.1.136 の大規模バグ修正**: MCP OAuth の二重リフレッシュ問題・VSCode /clear 後の接続消失・アンダースコアパスでの --resume 不具合など、実運用に直結するバグが一挙修正。企業ユーザーの安定性が大幅向上。\n- **EMO — モジュラー MoE の実現**: 25% のエキスパートだけで精度低下 1% に抑えることに成功した新しい MoE 設計。エキスパートがセマンティックレベルで自然に専門化する現象を発見し、メモリ効率的な LLM 展開への道を開く。\n",
+  "fetched_at": "2026-05-09T22:10:07.422844+00:00",
+  "papers": [
+    {"title": "Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction", "upvotes": 66, "paper_id": "2605.05242", "abstract": "Modern retrieval systems expose a corpus through a fixed similarity interface. For agentic search, this becomes a bottleneck. DCI proposes direct corpus interaction via terminal tools."},
+    {"title": "RaguTeam at SemEval-2026 Task 8", "upvotes": 37, "paper_id": "2605.04523", "abstract": "Winning system for SemEval-2026 Task 8 MTRAGEval. Heterogeneous ensemble of 7 LLMs ranked 1st out of 26 teams with score 0.7827."},
+    {"title": "When to Trust Imagination: Adaptive Action Execution for World Action Models", "upvotes": 36, "paper_id": "2605.06222", "abstract": "FFDC verifier for adaptive WAM execution. Reduces forward passes by 69% while improving success rate."},
+    {"title": "Audio-Visual Intelligence in Large Foundation Models", "upvotes": 25, "paper_id": "2605.04045", "abstract": "First comprehensive survey of AVI through the lens of large foundation models."},
+    {"title": "StraTA: Incentivizing Agentic Reinforcement Learning with Strategic Trajectory Abstraction", "upvotes": 16, "paper_id": "2605.06642", "abstract": "Strategic Trajectory Abstraction for agentic RL. ALFWorld 93.1%, WebShop 84.2%."},
+    {"title": "RemoteZero: Geospatial Reasoning with Zero Human Annotations", "upvotes": 6, "paper_id": "2605.04451", "abstract": "Box-supervision-free framework for geospatial reasoning using semantic verification."},
+    {"title": "EMO: Pretraining Mixture of Experts for Emergent Modularity", "upvotes": 5, "paper_id": "2605.06663", "abstract": "MoE designed for modularity. 25% experts retain 99% performance vs standard MoE collapse."},
+    {"title": "PianoCoRe: Combined and Refined Piano MIDI Dataset", "upvotes": 4, "paper_id": "2605.06627", "abstract": "250,046 performances of 5,625 pieces by 483 composers, 21,763 hours total."},
+    {"title": "KernelBench-X: A Comprehensive Benchmark for Evaluating LLM-Generated GPU Kernels", "upvotes": 4, "paper_id": "2605.04956", "abstract": "176 tasks across 15 categories for LLM Triton kernel generation evaluation."},
+    {"title": "Prescriptive Scaling Laws for Data Constrained Training", "upvotes": 4, "paper_id": "2605.01640", "abstract": "Additive overfitting penalty model for data-constrained training regimes."}
+  ],
+  "cc_updates": [
+    {"tag_name": "v2.1.138", "published_at": "2025-05-09", "body": "Internal fixes"},
+    {"tag_name": "v2.1.137", "published_at": "2025-05-09", "body": "[VSCode] Fixed extension failing to activate on Windows"},
+    {"tag_name": "v2.1.136", "published_at": "2025-05-08", "body": "Added settings.autoMode.hard_deny, fixed MCP OAuth refresh token loss, fixed /clear MCP server disappearance, fixed --resume with underscores in path, WSL2 clipboard image paste fix"}
+  ]
+}
