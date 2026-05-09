@@ -1,19 +1,15 @@
-## 1. はじめに (Introduction)
+## 1. Introduction (はじめに)
 
-本論文は、SemEval-2026 Task 8 のタスク B「参照文献を用いた生成」における優勝システムを提示しています。このタスクは、参照資料に基づいて忠実で正確な複数ターン対話応答を生成することに焦点を当てています。RaguTeam が開発したシステムは、複数の大規模言語モデル (LLM) を組み合わせるアンサンブルアプローチを採用し、評価指標で 0.7827 という高い成績を達成しました。
+本論文は SemEval-2026 Task 8 の Task B（参照文書付き生成）における優勝システムを報告しています。マルチターン RAG（Multi-turn Retrieval-Augmented Generation）における忠実な応答生成において、7つの異なる LLM を組み合わせた異質なアンサンブル（Heterogeneous Ensemble）アプローチを採用。GPT-4o-mini を判定者（Judge）として各インスタンスで最良の候補を選定し、26チーム中第1位を獲得しました。
 
-## 2. 関連研究 (Related Work)
+## 2. Method (手法) — Judge-Orchestrated Ensemble
 
-本論文が扱う領域は計算言語学 (Computation and Language)、人工知能 (Artificial Intelligence)、機械学習 (Machine Learning) の交差点に位置しており、LLM アンサンブル技術や対話システムの評価手法が関連しています。単一モデルの限界を超えるアンサンブル戦略の先行研究が参照されています。
+提案システムはヘテロジニアスな LLM アンサンブル構成で、7つの異なる LLM モデルと2つのプロンプト変種（Prompting Variants）を組み合わせています。GPT-4o-mini が各インスタンスについて最良の候補を選定するジャッジ・オーケストレーション（Judge Orchestration）により、単一モデルを上回る性能を実現。新たに導入した Meno-Lite-0.1 は 7B パラメータのドメイン適応モデル（Domain-Adapted Model）です。
 
-## 3. 手法 (Method/Approach)
+## 3. Results & Analysis (結果・分析)
 
-本システムは「異種混合アンサンブル (Heterogeneous Ensemble)」設計を採用しており、7 つの異なる LLM と 2 つのプロンプティング変種を組み合わせています。判定役として GPT-4o-mini モデルが各インスタンスに対して最良の候補応答を選択する Judge-Orchestrated 設計を採用。さらに 7B パラメータの領域適応モデル「Meno-Lite-0.1」を開発し、優れたコスト効率を実現しています。
+条件付き調和平均（Conditioned Harmonic Mean）スコア 0.7827 を達成し、最強ベースライン（gpt-oss-120b: 0.6390）を大きく上回りました。アブレーション研究（Ablation Study）では、モデルファミリー・スケール・プロンプト戦略の多様性がアンサンブルの成功に不可欠であることが実証されました。
 
-## 4. 実験・結果 (Experiments & Results)
+## 4. Conclusion (結論)
 
-システムは 26 チーム中 1 位を獲得し、条件付き調和平均 (Conditioned Harmonic Mean) 0.7827 を達成。最も強力なベースラインである gpt-oss-120b (スコア 0.6390) を大幅に上回りました。アブレーション研究により各構成要素の貢献度が詳細に分析され、アンサンブルアプローチが単一モデルを一貫して超えることが実証されました。
-
-## 5. 結論 (Conclusion)
-
-複数の LLM を統合する戦略的なアンサンブル構成が、忠実な複数ターン応答生成において有効であることを実証しました。Meno-Lite-0.1 モデルと実装方法は公開されており、コミュニティへの貢献となっています。モデルの多様性とプロンプトエンジニアリング (Prompt Engineering) の組み合わせが、LLM パフォーマンス向上における鍵要素であることが確認されました。
+MTRAGEval ベンチマークの注釈上の限界と改善の方向性についても分析し、評価フレームワーク自体への貢献も提供しています。コードは公開されています（GitHub: RaguTeam/ragu_mtrag_semeval）。

@@ -1,19 +1,15 @@
-## 1. はじめに (Introduction)
+## 1. Introduction (はじめに)
 
-従来の検索システム（語彙的検索・意味的検索）は、コーパスへのアクセスを「固定的な類似度インターフェース」に圧縮し、単一の Top-k 検索ステップを経て推論に進みます。しかしエージェント型検索（Agentic Search）では、正確な語彙制約・疎な手掛かり結合・局所的文脈確認・多段階の仮説改善が必要となり、従来型リトリーバーでは対応困難です。本論文は、このボトルネック解決のため「直接コーパス相互作用（Direct Corpus Interaction, DCI）」を提唱しています。
+現在の検索システム（字句的または意味的）は、固定された類似度インターフェースを通じて「単一の上位k検索ステップ」で結果を提供します。これは効率的ですが、エージェント型検索（Agentic Search）では瓶首（Bottleneck）となります。正確な字句制約（Exact Lexical Constraints）、疎な手がかりの組み合わせ（Sparse Clue Conjunctions）、局所文脈確認（Local Context Checks）、多段階の仮説改善（Multi-step Hypothesis Refinement）は従来型検索APIでは困難です。
 
-## 2. 関連研究 (Related Work)
+## 2. Method (手法) — Direct Corpus Interaction (DCI)
 
-本論文は情報検索（Information Retrieval, IR）とエージェント型 AI 研究の交差点に位置しています。従来の密なベクトル索引（Dense Retrieval）、疎な語彙マッチング（Sparse Retrieval）、再ランキング（Reranking）アプローチの限界を指摘し、言語エージェント（Language Agents）の発展に伴い、検索インターフェース自体の再設計の必要性を主張しています。
+提案手法は直接コーパス相互作用（Direct Corpus Interaction, DCI）です。エージェントが埋め込みモデル（Embedding Model）、ベクトルインデックス（Vector Index）、検索API（Retrieval API）なしに、grep、ファイル読み込み、シェルコマンド、軽量スクリプトといった汎用ターミナルツールでコーパスを直接検索します。
 
-## 3. 手法 (Method/Approach)
+## 3. Experiments & Results (実験・結果)
 
-DCI アプローチでは、エージェントが埋め込みモデル・ベクトル索引・検索 API に依存せず、grep・ファイル読み込み・シェルコマンド・軽量スクリプトなどの汎用ターミナルツールを用いてコーパスを直接検索します。オフライン索引構築が不要で、進化する局所コーパスに自然に適応可能です。この単純な設定により、従来型リトリーバーが事前フィルタリングで除外した証拠も後続の推論で回復できます。
+BRIGHT、BEIR、BrowseComp-Plus、多段階質問応答（Multi-hop QA）ベンチマークで評価しました。DCI手法は疎（Sparse）、密（Dense）、再ランキング（Reranking）ベースラインを大幅に上回る性能を示しました。
 
-## 4. 実験・結果 (Experiments & Results)
+## 4. Conclusion (結論)
 
-BRIGHT および BEIR データセット上の IR ベンチマーク、BrowseComp-Plus、多段階質問応答タスクで評価を実施。DCI は強力な疎・密リトリーバーおよび再ランキングベースラインを上回る性能を達成し、従来型意味的リトリーバーに依存しない堅牢なアプローチを実証しました。
-
-## 5. 結論 (Conclusion)
-
-言語エージェント技術の成熟に伴い、検索品質は推論能力だけでなく、コーパス相互作用のインターフェース解像度に依存することが明らかになりました。DCI はエージェント型検索のためのインターフェース設計空間を拡張し、単純ながら有効な代替パラダイムを提供します。
+言語エージェント（Language Agent）の能力向上に伴い、検索品質は推論能力だけでなく「コーパス相互作用インターフェースの解像度（Resolution of the Interface）」に依存することが示唆されます。

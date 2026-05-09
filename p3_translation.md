@@ -1,19 +1,15 @@
-## 1. はじめに (Introduction)
+## 1. Introduction (はじめに)
 
-World Action Models（WAM：世界行動モデル）はロボット操作において、将来の視覚観測と行動を同時に予測する有望なパラダイムです。しかし現在の WAM は、モデル推論後に固定数の行動を実行するため、「予測された未来が実際の物理的ロールアウトと一致しているか」をロボットが判断できません。本研究はこの課題を「未来と現実の一貫性検証問題」として定式化し、予測が信頼できる場合は長く実行し、現実が想像と乖離した場合は早期に再計画する適応的な WAM 実行を提案します。
+ロボット操作において、World Action Models (WAMs) は視覚的観測（Visual Observations）と行動（Actions）を同時に予測する有望なパラダイムとして注目されています。しかし従来の WAMs は固定数の予測行動を実行するため、「予測された未来（Imagined Future）が実際の物理的展開と一致しているかどうか」をロボットが認識できないという課題があります。本研究では、適応的実行（Adaptive Execution）を「未来-現実検証問題（Future-Reality Verification Problem）」として定式化します。
 
-## 2. 関連研究 (Related Work)
+## 2. Method (手法) — FFDC + Mixture-of-Horizon Training
 
-ロボット操作における計画と実行の統合、予測モデルの信頼性評価、視覚ベースのフィードバック制御に関する既存研究が背景にあります。従来のアプローチでは固定的な実行戦略が採用されてきましたが、接触や困難な場面での動的な対応が不足していました。本研究はこれらの課題に対し、予測と観測の整合性から自動的に適応的な行動チャンク（実行単位）を生成する新しい視点を提供します。
+提案手法の核は **Future Forward Dynamics Causal Attention (FFDC)** と呼ばれる軽量検証器（Lightweight Verifier）です。FFDC は予測された未来行動（Predicted Future Actions）、予測視覚ダイナミクス（Predicted Visual Dynamics）、実際の観測（Real Observations）、言語指示（Language Instructions）を統合的に因果注意（Causal Attention）で推論します。さらに **Mixture-of-Horizon Training** を導入し、長期軌跡カバレッジを改善しています。
 
-## 3. 手法 (Method/Approach)
+## 3. Experiments & Results (実験・結果)
 
-提案手法の中核は「Future Forward Dynamics Causal Attention（FFDC）」という軽量な検証器です。FFDC は予測された将来の行動・視覚的ダイナミクス・実観測・言語指示を統合的に処理し、「残りの行動ロールアウトがまだ信頼できるか」を推定します。さらに「Mixture-of-Horizon Training」により長期軌跡カバレッジを改善し、適応的実行に対応します。
+RoboTwin ベンチマークの実験では、提案手法は WAM 前方パス（Forward Pass）を 69.10% 削減、実行時間を 34.02% 削減しながら、短チャンクベースライン比で成功率を 2.54% 向上させました。実世界実験では成功率が 35% 改善されました。
 
-## 4. 実験・結果 (Experiments & Results)
+## 4. Conclusion (結論)
 
-RoboTwin ベンチマークでの評価では、短チャンク基準線との比較で WAM 前向きパスを 69.10% 削減、実行時間を 34.02% 短縮しながら成功率を 2.54% 向上させました。実世界実験では成功率が 35% 改善されるなど、ロバスト性と効率のトレードオフで強い性能を実現しました。
-
-## 5. 結論 (Conclusion)
-
-本研究は「予測-観測の一貫性」に基づき、ロボットが「いつ想像を信頼すべきか」を動的に判断する新しいアプローチを提示しました。FFDC と Mixture-of-Horizon Training により、長期実行の効率と短期対応性を両立させ、実ロボット操作での実用性を示しています。
+FFDC による適応的実行は長期実行の効率性と接触豊富な局面での応答性を両立させます。予測-観測一貫性を動的チャンクサイズとして自然に導出する設計は直感的かつ効果的です。

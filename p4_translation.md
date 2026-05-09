@@ -1,19 +1,15 @@
-## 1. はじめに (Introduction)
+## 1. Introduction (はじめに)
 
-本論文は、音声と視覚モダリティを融合させる Audio-Visual Intelligence (AVI) の包括的サーベイです。大規模基盤モデル時代において Meta MovieGen や Google Veo-3 といった先進事例が「統合型音声-視覚アーキテクチャ (Unified Audio-Vision Architecture)」の重要性を示しており、マルチモーダル知覚・生成・推論が急速に進展しています。既存研究は断片的な状況にあり、タスク定義・評価方法が不統一のため、本調査で統一的フレームワークを確立します。
+オーディオ・ビジュアル・インテリジェンス（Audio-Visual Intelligence, AVI）は大規模基盤モデルの時代において中心的な研究領域として急速に発展しています。Meta MovieGen や Google Veo-3 といった産業界の取り組みが、音声と映像の統合的なアーキテクチャ（Unified Audio-Vision Architecture）の重要性を示しています。しかし現在の研究は断片化（Fragmented）されており、体系的な比較と知識統合（Knowledge Integration）が困難でした。
 
-## 2. 調査範囲 (Scope / Taxonomy)
+## 2. Taxonomy (分類体系)
 
-本論文が扱う AVI の領域は 3 大カテゴリに分類されます。第一に「理解 (Understanding)」（音声認識・音源位置特定等）、第二に「生成 (Generation)」（映像駆動音声合成・動画から音声生成等）、第三に「インタラクション (Interaction)」（対話・具現化エージェント・マルチモーダルインターフェース等）。24 表 16 図により異なるタスクファミリー間の構造的比較を可能にしています。
+本調査は AVI タスクを三つの主要カテゴリに分類します。**理解（Understanding）**: 音声認識（Speech Recognition）、音源定位（Sound Localization）などの知覚的タスク。**生成（Generation）**: 音声駆動ビデオ合成（Audio-Driven Video Synthesis）、ビデオからオーディオ生成（Video-to-Audio）など。**相互作用（Interaction）**: 対話（Dialogue）、具体化エージェント（Embodied Agents）を含みます。
 
-## 3. 主要技術 (Key Methods)
+## 3. Methodological Foundations (方法論的基礎)
 
-中核となる技術方法論は複数層から構成されます。「モダリティトークン化 (Modality Tokenization)」によるモダリティ統一、「クロスモーダル融合 (Cross-Modal Fusion)」による相互理解、自己回帰型および拡散ベース (Diffusion-Based) 生成アーキテクチャ、大規模事前学習・Instruction Alignment・選好最適化 (Preference Optimization) です。
+モダリティトークン化（Modality Tokenization）、クロスモーダル融合（Cross-Modal Fusion）、自己回帰（Autoregressive）および拡散ベース（Diffusion-Based）生成、大規模事前学習（Large-Scale Pretraining）、指示アライメント（Instruction Alignment）、選好最適化（Preference Optimization）といった基礎的手法を体系的に整理。
 
-## 4. 主要知見 (Key Findings)
+## 4. Datasets, Benchmarks & Open Challenges (データセット・ベンチマーク・未解決課題)
 
-調査から浮上する主要課題は「同期性 (Synchronization)」「空間推論 (Spatial Reasoning)」「制御可能性 (Controllability)」「安全性 (Safety)」の 4 点です。代表的データセットとベンチマークの整理および評価メトリクスの統一提案も行われています。AVI が AI 研究の中心的フロンティアとして位置づけられることが明確になりました。
-
-## 5. 今後の展望 (Future Directions)
-
-同期精度向上・空間的推論能力の拡張・細粒度制御機能の実装・倫理的安全性強化が急務とされています。GitHub リポジトリを公開することで継続的な知識統合と研究コミュニティ全体での方法論共通化が推進されることが期待されます。本論文は AVI 分野の基準文献として機能することを目指しています。
+代表的なデータセット・ベンチマーク・評価指標を精選し、タスクファミリー間での構造的比較を提供。同期（Synchronization）、空間推論（Spatial Reasoning）、制御可能性（Controllability）、安全性（Safety）といった未解決課題が特定されています。56ページ・16図・24表からなる包括的サーベイ。
