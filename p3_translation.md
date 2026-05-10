@@ -1,15 +1,15 @@
-## 1. Introduction (はじめに)
+## 1. はじめに (Introduction)
 
-ロボット操作において、World Action Models (WAMs) は視覚的観測（Visual Observations）と行動（Actions）を同時に予測する有望なパラダイムとして注目されています。しかし従来の WAMs は固定数の予測行動を実行するため、「予測された未来（Imagined Future）が実際の物理的展開と一致しているかどうか」をロボットが認識できないという課題があります。本研究では、適応的実行（Adaptive Execution）を「未来-現実検証問題（Future-Reality Verification Problem）」として定式化します。
+ロボット操作タスクにおいて、World Action Models（WAM/世界行動モデル）は視覚観測と行動を同時に予測する有望なパラダイムです。しかし既存のWAMは固定長の予測行動を実行するため、「想像した未来（imagined future）が実際の物理的展開と一致するか」という問題に対応できません。本研究では、予測未来が信頼できる場合は長く実行し、現実が想像と乖離した場合は早期に再計画（re-planning）するアプローチを提案します。
 
-## 2. Method (手法) — FFDC + Mixture-of-Horizon Training
+## 2. 手法 (Method)
 
-提案手法の核は **Future Forward Dynamics Causal Attention (FFDC)** と呼ばれる軽量検証器（Lightweight Verifier）です。FFDC は予測された未来行動（Predicted Future Actions）、予測視覚ダイナミクス（Predicted Visual Dynamics）、実際の観測（Real Observations）、言語指示（Language Instructions）を統合的に因果注意（Causal Attention）で推論します。さらに **Mixture-of-Horizon Training** を導入し、長期軌跡カバレッジを改善しています。
+Future Forward Dynamics Causal Attention（FFDC/未来順序動力学因果注意）という軽量な検証器（verifier）を開発しました。FFDCは予測された将来行動・視覚ダイナミクス（visual dynamics）・実際の観測・言語指示を統合し、「残りの行動実行がまだ信頼できるか」を推定します。さらに「Mixture-of-Horizon Training（多地平線混合訓練）」により適応的実行向けの長時間軌跡カバレッジを改善しています。
 
-## 3. Experiments & Results (実験・結果)
+## 3. 実験・結果 (Experiments/Results)
 
-RoboTwin ベンチマークの実験では、提案手法は WAM 前方パス（Forward Pass）を 69.10% 削減、実行時間を 34.02% 削減しながら、短チャンクベースライン比で成功率を 2.54% 向上させました。実世界実験では成功率が 35% 改善されました。
+RoboTwinベンチマークでは、WAMの前向きパス（forward pass）を69.10%削減し、実行時間を34.02%短縮しながら成功率を2.54%向上させました。実世界実験では成功率が35%改善され、強力な堅牢性-効率トレードオフ（robustness-efficiency trade-off）を実現しています。
 
-## 4. Conclusion (結論)
+## 4. 結論 (Conclusion)
 
-FFDC による適応的実行は長期実行の効率性と接触豊富な局面での応答性を両立させます。予測-観測一貫性を動的チャンクサイズとして自然に導出する設計は直感的かつ効果的です。
+提案手法は予測と観測の一貫性（prediction-observation consistency）から適応的行動チャンク長（adaptive action chunk length）を自動決定し、長時間実行の効率性と接触豊富な局面での応答性を両立させます。ロボット操作の実用化に向けた重要な進展を示しています。

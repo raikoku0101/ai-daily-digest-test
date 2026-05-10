@@ -1,15 +1,15 @@
-## 1. Introduction (はじめに)
+## 1. はじめに (Introduction)
 
-本論文は SemEval-2026 Task 8 の Task B（参照文書付き生成）における優勝システムを報告しています。マルチターン RAG（Multi-turn Retrieval-Augmented Generation）における忠実な応答生成において、7つの異なる LLM を組み合わせた異質なアンサンブル（Heterogeneous Ensemble）アプローチを採用。GPT-4o-mini を判定者（Judge）として各インスタンスで最良の候補を選定し、26チーム中第1位を獲得しました。
+本論文はSemEval-2026 Task 8「MTRAGEval」タスクBの優勝システムを報告します。タスクは参照文献を用いた忠実な多ターン応答生成（faithful multi-turn response generation）を目指しており、研究チームは異種LLMアンサンブル（heterogeneous ensemble）により単一モデルを大幅に上回る性能を目指しました。
 
-## 2. Method (手法) — Judge-Orchestrated Ensemble
+## 2. 手法 (Method)
 
-提案システムはヘテロジニアスな LLM アンサンブル構成で、7つの異なる LLM モデルと2つのプロンプト変種（Prompting Variants）を組み合わせています。GPT-4o-mini が各インスタンスについて最良の候補を選定するジャッジ・オーケストレーション（Judge Orchestration）により、単一モデルを上回る性能を実現。新たに導入した Meno-Lite-0.1 は 7B パラメータのドメイン適応モデル（Domain-Adapted Model）です。
+提案手法は「judge-orchestrated LLM ensemble（ジャッジ統合LLMアンサンブル）」と呼ばれます。7つの異なるLLMと2種のプロンプティング（prompt engineering）バリアントで構成され、GPT-4o-miniがジャッジとして各インスタンスの最適候補を選定します。さらに7B規模のドメイン適応モデル（domain-adapted model）「Meno-Lite-0.1」も開発し、コスト・パフォーマンスの優れたトレードオフを実現しています。
 
-## 3. Results & Analysis (結果・分析)
+## 3. 実験・結果 (Experiments/Results)
 
-条件付き調和平均（Conditioned Harmonic Mean）スコア 0.7827 を達成し、最強ベースライン（gpt-oss-120b: 0.6390）を大きく上回りました。アブレーション研究（Ablation Study）では、モデルファミリー・スケール・プロンプト戦略の多様性がアンサンブルの成功に不可欠であることが実証されました。
+26チーム中1位を達成し、条件付き調和平均（conditioned harmonic mean）0.7827を記録。最強ベースライン「gpt-oss-120b」（0.6390）を大きく上回りました。アブレーション研究により、モデルファミリーの多様性・スケールの異なるモデル・異なるプロンプト戦略の組み合わせが性能向上に本質的であることが実証されました。
 
-## 4. Conclusion (結論)
+## 4. 結論 (Conclusion)
 
-MTRAGEval ベンチマークの注釈上の限界と改善の方向性についても分析し、評価フレームワーク自体への貢献も提供しています。コードは公開されています（GitHub: RaguTeam/ragu_mtrag_semeval）。
+異種アンサンブル（heterogeneous ensemble）アプローチが単一モデルより一貫して優れた性能を発揮することを示しました。MTRAGEvalの注釈上の制限も分析し、将来の改善方向を提示。コードは公開されており、再現性と実用性を確保しています。
