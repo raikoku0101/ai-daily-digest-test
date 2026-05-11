@@ -1,6 +1,6 @@
-**4. Audio-Visual Intelligence in Large Foundation Models**
-**著者**: (2605.04045 著者ら) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.04045
+**4. MatryoshkaLoRA: Learning Accurate Hierarchical Low-Rank Representations for LLM Fine-Tuning**
+**著者**: Ionut-Vlad Modoranu, Mher Safaryan, Dan Alistarh (2026)
+**arXiv**: https://arxiv.org/abs/2605.07850
 
 **まとめ**:
-大規模基盤モデルによる音声・視覚インテリジェンス（AVI）の初の包括的サーベイ論文。理解（音声認識・音源定位）・生成（音声駆動映像合成）・相互作用（対話・身体化エージェント）の3カテゴリに統一分類体系を確立。Meta MovieGen・Google Veo-3など産業界最先端事例も整理し、急拡大するAVI分野の基礎的参照資料を提供する。
+従来 LoRA の「固定ランク設定」問題を解決するため、対角スケーリング行列 P を挿入することで全ランクレベルで勾配情報を均等に伝播させる MatryoshkaLoRA を提案。マトリョーシカ人形のように階層的にネストされた低ランク表現を一度の学習で習得し、推論時に動的ランク選択ができる。新評価指標 AURAC（ランク精度曲線下面積）で既存ランク適応手法を上回る精度を達成。
