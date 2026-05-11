@@ -1,15 +1,15 @@
-## 1. はじめに (Introduction)
+## 1. Introduction (はじめに)
 
-本論文は音声と映像を統合する「Audio-Visual Intelligence（AVI/音声視覚インテリジェンス）」の包括的レビューを提供します。大規模基礎モデル（Large Foundation Models）の時代において、音声と視覚の結合モデリングが理解だけでなく制御可能な生成（controllable generation）と時系列信号の推論においても重要になりました。Meta MovieGenやGoogle Veo-3などの産業界の先進事例が、統一マルチモーダルアーキテクチャへの関心の高まりを示しています。
+低ランク適応（LoRA; Low-Rank Adaptation）はLLMのパラメータ効率的微調整（PEFT; Parameter-Efficient Fine-Tuning）の標準手法となりました。しかし「静的ランク設定（Static Rank Setting）」が課題で、最適なランク値を見つけるために複数ランクでの学習・評価が必要です。既存の動的ランク適応手法（DyLoRA など）は不完全な勾配伝播により高ランクで精度が劣化する問題があります。本研究はこの根本的な問題を解決する新フレームワークを提案します。
 
-## 2. タクソノミーと手法 (Taxonomy/Method)
+## 2. Method (手法)
 
-AVIタスクを3カテゴリに分類する統一的分類体系（unified taxonomy）を構築しました。(1) 理解（understanding）: 音声認識・音響源定位（sound localization）、(2) 生成（generation）: 音声駆動映像合成・映像-音声変換、(3) 相互作用（interaction）: 対話・具現化エージェント（embodied agent）。モダリティ・トークン化（tokenization）、クロスモーダル融合（cross-modal fusion）、拡散モデル（diffusion-based generation）などの主要技術手法も整理しています。
+MatryoshkaLoRAはLoRAアダプタ間に「対角スケーリング行列P（Diagonal Scaling Matrix P）」を挿入するシンプルな設計です。この修正により、全サブランクが勾配情報を均等に埋め込むことができます。マトリョーシカ人形のように階層的にネストされた低ランク表現を単一学習で習得し、推論時には用途・リソース制約に応じて動的にランクを選択できます。既存のLoRA・DyLoRAをPの選択で実現可能な汎用フレームワークとして構築されています。
 
-## 3. 主要研究の分析 (Analysis)
+## 3. Experiments (実験)
 
-従来の文献は多様なタスクと不統一な評価実践に分散していました。本論文は代表的データセット・ベンチマーク・評価指標を整理し、タスクファミリー間の構造的比較を実現。特に同期化（synchronization）・空間推論（spatial reasoning）・制御性（controllability）・安全性における現在の研究上の課題を明確化しています。
+新評価指標「AURAC（ランク精度曲線下面積; Area Under the Rank-Accuracy Curve）」を導入し、複数のLLMファインチューニングデータセット上で検証しました。MatryoshkaLoRAは既存のランク適応手法を全ランク範囲で上回る精度を達成し、精度と計算効率のトレードオフで優れた性能を示しました。複数ランクの学習コストを一度の学習で代替できることも実証しています。
 
-## 4. 展望と結論 (Conclusion)
+## 4. Conclusion (結論)
 
-急速に拡大するAVI分野を統一的フレームワークに集約し、将来の大規模AVI研究の基礎的参照資料となることを目指しています。56ページ・16図表・24テーブルの詳細な構成で研究コミュニティの知識統合を促進する包括的リソースを提供しています。
+MatryoshkaLoRAは正確な階層的低ランク表現の学習を実現し、動的ランク選択で最小限の精度低下を保証します。LoRAのランク選択問題を根本的に解決することで、リソース制約が異なる多様なデプロイ環境に一つのモデルで対応できる実用的なフレームワークを提供しています。
