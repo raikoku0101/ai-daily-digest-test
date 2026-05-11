@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-12",
+  "content": "# AI Daily Digest — 2026-05-12\n\n## 今日のハイライト\n- **Claude Code v2.1.139 大型アップデート**: `/goal` コマンドとエージェントビューが追加\n- **DiT 1000 層スケーリング突破 (101 upvotes)**: Mean Mode Screaming 論文\n- **AI エージェントのセキュリティ評価基盤 (DTap)**: レッドチーミングプラットフォーム\n",
+  "fetched_at": "2026-05-11T22:07:23.661574+00:00",
+  "papers": [
+    {"title": "Mean Mode Screaming: Mean--Variance Split Residuals for 1000-Layer Diffusion Transformers", "upvotes": 101, "paper_id": "2605.06169"},
+    {"title": "MACE-Dance: Motion-Appearance Cascaded Experts for Music-Driven Dance Video Generation", "upvotes": 80, "paper_id": "2512.18181"},
+    {"title": "DecodingTrust-Agent Platform (DTap)", "upvotes": 17, "paper_id": "2605.04808"},
+    {"title": "MatryoshkaLoRA", "upvotes": 15, "paper_id": "2605.07850"},
+    {"title": "Q-RAG", "upvotes": 8, "paper_id": "2511.07328"},
+    {"title": "What if AI systems weren't chatbots?", "upvotes": 6, "paper_id": "2605.07896"},
+    {"title": "SkCC", "upvotes": 6, "paper_id": "2605.03353"},
+    {"title": "ModelLens", "upvotes": 5, "paper_id": "2605.07075"},
+    {"title": "Discovering Reinforcement Learning Interfaces with Large Language Models", "upvotes": 3, "paper_id": "2605.03408"},
+    {"title": "Rethinking RL for LLM Reasoning", "upvotes": 2, "paper_id": "2605.06241"}
+  ],
+  "cc_updates": [
+    {"tag_name": "v2.1.139", "published_at": "2025-05-11"},
+    {"tag_name": "v2.1.138", "published_at": "2025-05-09"},
+    {"tag_name": "v2.1.137", "published_at": "2025-05-09"}
+  ]
+}
