@@ -1,6 +1,6 @@
-**4. MatryoshkaLoRA: Learning Accurate Hierarchical Low-Rank Representations for LLM Fine-Tuning**
-**著者**: Ionut-Vlad Modoranu, Mher Safaryan, Dan Alistarh (2026)
-**arXiv**: https://arxiv.org/abs/2605.07850
+**4. Multi-Stream LLMs: Unblocking Language Models with Parallel Streams**
+**著者**: et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.12460
 
 **まとめ**:
-従来 LoRA の「固定ランク設定」問題を解決するため、対角スケーリング行列 P を挿入することで全ランクレベルで勾配情報を均等に伝播させる MatryoshkaLoRA を提案。マトリョーシカ人形のように階層的にネストされた低ランク表現を一度の学習で習得し、推論時に動的ランク選択ができる。新評価指標 AURAC（ランク精度曲線下面積）で既存ランク適応手法を上回る精度を達成。
+Multi-Stream LLMs は ChatGPT 以来変わっていなかった単一ストリームの逐次処理アーキテクチャを根本から刷新する提案。思考・入力・出力を独立した並列ストリームとして処理し、各フォワードパスで複数入力を同時に読み取り複数出力を並行生成する。エージェントが読みながら行動でき、書きながら反応できる構造を実現し、効率向上・セキュリティ強化・モニタビリティ改善という三つの利点をもたらす完全データドリブンな変更で既存アーキテクチャへの統合が容易。

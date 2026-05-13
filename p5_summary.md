@@ -1,6 +1,6 @@
-**5. Q-RAG: Long Context Multi-step Retrieval via Value-based Embedder Training**
-**著者**: Artyom Sorokin et al. (Cornell大学ほか, 2026)
-**arXiv**: https://arxiv.org/abs/2511.07328
+**5. Learning, Fast and Slow: Towards LLMs That Adapt Continually**
+**著者**: et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.12484
 
 **まとめ**:
-ICLR 2026採択論文。強化学習（RL）を用いて埋め込みモデル（Embedder）を価値関数ベースで最適化し、複雑な質問応答に必要なマルチステップ検索を実現するQ-RAGを提案。小規模LLMを微調整することなく埋め込みモデルのみを最適化することで計算効率を維持しながら、最大1000万トークンの長文脈ベンチマーク「BabiLong」「RULER」でSOTAを達成した。
+Fast-Slow Training（FST）はパラメータ更新の破滅的忘却とインコンテキスト学習の性能限界を同時に解決する fast-slow フレームワーク。モデルパラメータを「スロー重み」、最適化されたコンテキストを「ファスト重み」として機能させ、ファスト重みがテキストフィードバックからタスク固有情報を吸収する一方、スロー重みが汎用推論能力を保持。RL 単独比で最大 3 倍のサンプル効率を達成しモデルドリフトを 70% 削減。継続学習での優位性が際立つ。

@@ -1,6 +1,6 @@
-**3. DecodingTrust-Agent Platform (DTap): A Controllable and Interactive Red-Teaming Platform for AI Agents**
-**著者**: Zhaorun Chen, Xun Liu, Haibo Tong et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.04808
+**3. Your Language Model is Its Own Critic (POISE)**
+**著者**: et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.07579
 
 **まとめ**:
-AIエージェントのセキュリティ評価のための初のインタラクティブなレッドチーミングプラットフォーム DTap を提案。14の実世界ドメインと50以上のシミュレーション環境を備え、DTap-Red（攻撃エージェント）が多様な攻撃ベクトルを自律的に探索し既存AIエージェントの脆弱性パターンを体系的に発見する。DTap-Benchデータセットを通じてAIエージェント安全性評価の標準化に貢献する重要な研究インフラ。
+POISE（Policy Optimization with Internal State Value Estimation）は、PPO の巨大クリティックや GRPO の複数ロールアウトに代わる軽量ベースライン推定手法。ポリシーモデルの順伝播で既に計算済みの隠れ状態（hidden states）とトークンエントロピー統計から報酬を予測するプローブをオンラインで学習する。クロスロールアウト構成により勾配の不偏性を維持しつつ、単一ロールアウトで固定計算バジェット内のプロンプト多様性を向上させ、学習安定化を達成。
