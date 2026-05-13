@@ -1,0 +1,17 @@
+{
+  "date": "2026-05-14",
+  "content": "# AI Daily Digest — 2026-05-14\n\n## 今日のハイライト\n- **Token Superposition Training で LLM 事前学習が最大 2.5 倍高速化**: 既存の並列化・オプティマイザ・アーキテクチャを変更せずドロップインで適用可能な TST が、10B MoE モデルで同一ロス条件下の学習時間を大幅短縮。LLM 開発コスト削減に直結する実用的成果\n- **Claude Code v2.1.139 で `/goal` コマンドが登場**: 完了条件を自然言語で設定するだけで Claude が自律的に複数ターンにわたって作業を継続。エージェントビュー（Research Preview）とあわせ、長時間タスクの自動化が格段に容易に\n- **RL が「推論」だけでなく「知識の解放」にも有効**: POISE と「Beyond Reasoning」の2論文が独立して RL の新たな役割を示す。RL はモデルに新知識を与えるのでなく、既存潜在知識を引き出すメカニズムとして機能することが明らかに\n",
+  "fetched_at": "2026-05-13T22:15:30.380713+00:00",
+  "papers": [
+    {"title": "Efficient Pre-Training with Token Superposition", "upvotes": 26, "paper_id": "2605.06546"},
+    {"title": "Relit-LiVE: Relight Video by Jointly Learning Environment Video", "upvotes": 14, "paper_id": "2605.06658"},
+    {"title": "Your Language Model is Its Own Critic", "upvotes": 13, "paper_id": "2605.07579"},
+    {"title": "Multi-Stream LLMs", "upvotes": 13, "paper_id": "2605.12460"},
+    {"title": "Learning, Fast and Slow", "upvotes": 9, "paper_id": "2605.12484"}
+  ],
+  "cc_updates": [
+    {"tag_name": "v2.1.140", "published_at": "2025-05-12"},
+    {"tag_name": "v2.1.139", "published_at": "2025-05-11"},
+    {"tag_name": "v2.1.138", "published_at": "2025-05-09"}
+  ]
+}
