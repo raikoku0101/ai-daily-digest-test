@@ -1,0 +1,37 @@
+{
+  "week": "2026-w19",
+  "content": "# 📅 Claude Code 週刊アップデート — Week 19 · May 4–8, 2026\n\n> .zip アーカイブや URL からプラグインを読み込めるようになり、Ctrl+R でプロジェクトをまたいだコマンド履歴検索が可能に。ワークツリーのブランチ元をローカル HEAD かリモートのデフォルトブランチから選択でき、オートモードで特定操作を無条件ブロックするハードデナイルールも追加されました。\n\n## 🚀 主要機能 (2 件)\n\n### Plugins from .zip archives and URLs `v2.1.128+`\n`--plugin-dir` が通常のディレクトリに加えて `.zip` プラグインアーカイブを受け付けるようになりました。また新しい `--plugin-url` フラグを使うと、現在のセッション向けに URL からプラグインアーカイブを取得できます。マーケットプレイスに公開する前にプラグインを試したいときや、アーティファクトストアから社内プラグインを配布したいときに便利です。\n🔗 https://code.claude.com/en/plugins\n\n### History search across all your projects `v2.1.129`\n`Ctrl+R` の逆方向検索がデフォルトで全プロジェクト横断の履歴を対象とするようになりました（v2.1.124 以前の動作に戻ります）。検索中に `Ctrl+S` を押すと、現在のプロジェクトまたはセッションに絞り込めます。先週別のリポジトリで実行したコマンドを覚えているとき、わざわざ掘り起こさずに済みます。\n🔗 https://code.claude.com/en/interactive-mode#command-history\n\n## ✨ その他のアップデート\n\n- 新しい `worktree.baseRef` 設定（`fresh` | `head`）により、`--worktree`・`EnterWorktree` ツール・エージェント分離ワークツリーのブランチ元をリモートのデフォルトブランチかローカルの `HEAD` から選択できるようになりました。デフォルトの `fresh` は未プッシュのコミットを新しいワークツリーに含めない安全な設定です。\n- 新しい `settings.autoMode.hard_deny` ルールにより、オートモードでは allow の例外設定に関わらず対象アクションを無条件にブロックできます。広範な allow ルールが適用されていても、自動実行させたくない操作を確実に防ぎたい場合に使えます。\n- フックが `effort.level` JSON 入力フィールドと `$CLAUDE_EFFORT` 環境変数を通じて現在のエフォートレベルを受け取れるようになりました。Bash ツールのコマンドからも `$CLAUDE_EFFORT` を参照できます。\n- `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` を設定するとフルスクリーンの代替スクリーンレンダラーを無効化し、会話をターミナル本来のスクロールバックに留めておけます。\n- `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` を使うと、Homebrew または WinGet によるインストール環境でバックグラウンドアップグレードを実行し、再起動を促すプロンプトを表示できます。\n- `CLAUDE_CODE_SESSION_ID` が Bash ツールのサブプロセス環境に追加され、フックに渡される `session_id` と一致するようになりました。\n- `/mcp` コマンドが接続済みサーバーのツール数を表示するようになり、ツール数 0 で接続されたサーバーにフラグが立つようになりました。\n- `--channels` がコンソール（API キー）認証でも動作するようになりました。\n- Bash・フック・MCP・LSP などのサブプロセスが `OTEL_*` 環境変数を引き継がなくなりました。これにより Bash ツール経由で実行した OTEL 計装アプリが CLI 自身の OTLP エンドポイントを拾わなくなります。\n- サブエージェントの進捗サマリーがプロンプトキャッシュに乗るようになり、`cache_creation` トークンコストが約 3 分の 1 に削減されます。\n- OAuth と認証情報の信頼性に関する複数の修正: リフレッシュトークンの競合で並列セッションが 401 に陥る問題、複数サーバーが同時にリフレッシュする際に MCP OAuth リフレッシュトークンが失われる問題、認証情報の同時書き込みによる稀なログインループが修正されました。\n- 新しい `parentSettingsBehavior` 管理者キーにより、管理者が SDK の `managedSettings` をポリシーマージに組み込めるようになりました。\n\n📄 原文: https://code.claude.com/docs/en/whats-new/2026-w19\n",
+  "fetched_at": "2026-05-14T23:04:38.469713+00:00",
+  "raw": {
+    "title": "Week 19 · May 4–8, 2026",
+    "subtitle": "Load plugins from .zip archives and URLs, search command history across every project with Ctrl+R, branch new worktrees from local HEAD or the remote default, and block actions unconditionally with auto mode hard deny rules.",
+    "features": [
+      {
+        "title": "Plugins from .zip archives and URLs",
+        "pill": "v2.1.128+",
+        "lede": "`--plugin-dir` now accepts a `.zip` plugin archive in addition to a directory, and the new `--plugin-url` flag fetches a plugin archive from a URL for the current session. Useful for trying a plugin before adding it to a marketplace, or for shipping internal plugins from an artifact store.",
+        "link": "/en/plugins"
+      },
+      {
+        "title": "History search across all your projects",
+        "pill": "v2.1.129",
+        "lede": "`Ctrl+R` reverse-search now defaults to all prompts across every project, restoring the behavior from before v2.1.124. Press `Ctrl+S` while searching to narrow back to the current project or session. Handy when you remember a command you ran in another repo last week and don't want to go digging for it.",
+        "link": "/en/interactive-mode#command-history"
+      }
+    ],
+    "other_wins": [
+      "New `worktree.baseRef` setting (`fresh` | `head`) controls whether `--worktree`, the `EnterWorktree` tool, and agent-isolation worktrees branch from the remote default branch or local `HEAD`; the default `fresh` keeps unpushed commits out of new worktrees",
+      "New `settings.autoMode.hard_deny` rules block matching actions unconditionally in auto mode, regardless of allow exceptions, for actions that should never run automatically even when broader allow rules apply",
+      "Hooks now receive the active effort level via the `effort.level` JSON input field and the `$CLAUDE_EFFORT` environment variable, and Bash tool commands can read `$CLAUDE_EFFORT`",
+      "`CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` opts out of the fullscreen alternate-screen renderer and keeps the conversation in the terminal's native scrollback",
+      "`CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` lets Homebrew or WinGet installations run the upgrade in the background and prompt to restart",
+      "`CLAUDE_CODE_SESSION_ID` is now in the Bash tool subprocess environment, matching the `session_id` passed to hooks",
+      "`/mcp` now shows the tool count for connected servers and flags servers that connected with 0 tools",
+      "`--channels` now works with console (API key) authentication",
+      "Subprocesses such as Bash, hooks, MCP, and LSP no longer inherit `OTEL_*` environment variables, so OTEL-instrumented apps run via the Bash tool no longer pick up the CLI's own OTLP endpoint",
+      "Sub-agent progress summaries now hit the prompt cache, cutting `cache_creation` token cost by roughly 3x",
+      "Several OAuth and credential reliability fixes: parallel sessions no longer dead-end at 401 after a refresh-token race, MCP OAuth refresh tokens are no longer lost when multiple servers refresh concurrently, and a rare login loop from a concurrent credential write is fixed",
+      "New `parentSettingsBehavior` admin key lets admins opt SDK `managedSettings` into the policy merge"
+    ]
+  }
+}
