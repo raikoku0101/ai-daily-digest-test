@@ -1,6 +1,6 @@
-**4. Multi-Stream LLMs: Unblocking Language Models with Parallel Streams**
-**著者**: et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.12460
+**4. RealICU: Do LLM Agents Understand Long-Context ICU Data? A Benchmark Beyond Behavior Imitation**
+**著者**: RealICU Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.13542
 
 **まとめ**:
-Multi-Stream LLMs は ChatGPT 以来変わっていなかった単一ストリームの逐次処理アーキテクチャを根本から刷新する提案。思考・入力・出力を独立した並列ストリームとして処理し、各フォワードパスで複数入力を同時に読み取り複数出力を並行生成する。エージェントが読みながら行動でき、書きながら反応できる構造を実現し、効率向上・セキュリティ強化・モニタビリティ改善という三つの利点をもたらす完全データドリブンな変更で既存アーキテクチャへの統合が容易。
+ICUの臨床意思決定支援AI評価の根本的問題（過去の臨床医行動を正解とする行動模倣バイアス）を解決するため、シニア医師による後知恵アノテーションベンチマークRealICUを構築。現在の最先端LLMは患者ステータス精度0.459にとどまり、オラクルとの大きなギャップ（F1: 0.987 vs 0.365）を確認。提案する構造化メモリエージェントICU-Evoが改善をもたらすも「recall-safety tradeoff」等の根本課題が残存。

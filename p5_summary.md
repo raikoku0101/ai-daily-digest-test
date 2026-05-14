@@ -1,6 +1,6 @@
-**5. Learning, Fast and Slow: Towards LLMs That Adapt Continually**
-**著者**: et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.12484
+**5. BEACON: A Multimodal Dataset for Learning Behavioral Fingerprints from Gameplay Data**
+**著者**: BEACON Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.10867
 
 **まとめ**:
-Fast-Slow Training（FST）はパラメータ更新の破滅的忘却とインコンテキスト学習の性能限界を同時に解決する fast-slow フレームワーク。モデルパラメータを「スロー重み」、最適化されたコンテキストを「ファスト重み」として機能させ、ファスト重みがテキストフィードバックからタスク固有情報を吸収する一方、スロー重みが汎用推論能力を保持。RL 単独比で最大 3 倍のサンプル効率を達成しモデルドリフトを 70% 削減。継続学習での優位性が際立つ。
+競技FPSゲームValorantを用いた大規模マルチモーダル継続認証データセット。28名・79セッション・約430GBの高周波マウス動作・キーストローク・ネットワークパケット・スクリーン録画を同期収集。マウスのみで63.16%、早期融合で70.82%の28クラス識別精度を達成し、マウス由来の運動シグネチャが最も識別力の高いモダリティであることを実証。

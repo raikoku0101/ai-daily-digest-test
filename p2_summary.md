@@ -1,6 +1,6 @@
-**2. Relit-LiVE: Relight Video by Jointly Learning Environment Video**
-**著者**: (SIGGRAPH 2026 採択) et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.06658
+**2. LEAD: Length-Efficient Adaptive and Dynamic Reasoning for Large Language Models**
+**著者**: LEAD Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.09806
 
 **まとめ**:
-Relit-LiVE は動画リライティングにおける固有成分分解（intrinsic decomposition）依存の根本問題を回避する新フレームワーク。生の参照画像をレンダリングプロセスへ直接導入し、単一拡散プロセスでリライト動画とフレームごとの環境マップを同時生成する「環境動画予測」定式化を採用。カメラポーズ情報不要で物理的一貫性・時間的安定性を両立し、SIGGRAPH 2026 に採択された実用価値の高い成果。
+推論モデル（o1、DeepSeek-R1等）の「冗長な思考連鎖（CoT）問題」を解決する強化学習手法。動的報酬重み付け（PSI指標）と問題ごとの目標長オンライン校正の2メカニズムで、手動チューニングなしに正確性と効率性を同時最適化。1.5Bモデルで精度53.36%・AES 0.68を達成し、静的手法を上回るトレードオフを実現。
