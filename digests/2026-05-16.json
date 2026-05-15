@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-16",
+  "content": "# AI Daily Digest — 2026-05-16\n\n## 今日のハイライト\n- **Realiz3D がフォトリアリスティック 3D 生成を刷新 (⬆️18)**: ドメイン認識学習で合成-実写ギャップを克服。ゲーム・映像・ロボティクス向けコンテンツ生成の実用化ハードルが大幅に下がる。\n- **Claude Code v2.1.142: Fast モードが Opus 4.7 に更新**: バックグラウンドエージェントの設定フラグも大幅拡充。エージェント運用の精密制御が可能になり、CI/CD への組み込みが容易に。\n- **Lighthouse Attention で長文事前学習コストが劇的削減 (⬆️15)**: 二乗コストの SDPA 問題を学習フェーズのみで解決する新手法。中小規模での長文 LLM 開発の可能性を開く。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.142 (2025-05-14)\n**主要機能**:\n- `claude agents` に新フラグ群 (`--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, `--dangerously-skip-permissions`) を追加。バックグラウンドセッションの細粒度設定が可能に。\n- **Fast モード**: デフォルトが Opus 4.6 → **Opus 4.7** へ更新。旧動作に戻す場合は `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1` を設定。\n- `SKILL.md` をルートに置くだけでプラグインがスキルとして認識されるよう簡略化。\n- `/plugin` 詳細ペインと `claude plugin details` で LSP サーバー情報を表示。\n- `/web-setup` が既存 GitHub App 接続の上書き前に警告を表示。\n\n**ユーザーへの影響**: Fast モード利用者は Opus 4.7 の恩恵を自動的に受けられる。エージェント運用の柔軟性が大幅向上。\n\n---\n\n### v2.1.141 (2025-05-13)\n**主要機能**:\n- フック JSON 出力に `terminalSequence` フィールドを追加。制御端末なしでデスクトップ通知・ウィンドウタイトル・ベルを発行可能に。\n- `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` 環境変数で GitHub プラグインを SSH ではなく HTTPS でクローン可能に。\n- `ANTHROPIC_WORKSPACE_ID` でワークロード アイデンティティ連携時のトークンスコープをワークスペースに限定。\n- `claude agents --cwd <path>` でセッション一覧をディレクトリ単位にフィルタリング。\n- `/feedback` に直近 24 時間・7 日のセッションを含められるよう拡張。\n\n**ユーザーへの影響**: CI/CD 環境でのフック活用やマルチワークスペース運用が容易になる。\n\n---\n\n### v2.1.140 (2025-05-12)\n**主要機能**:\n- Agent ツールの `subagent_type` マッチングが大文字・区切り文字を無視するよう改善（例: `\"Code Reviewer\"` → `code-reviewer`）。\n- エージェントカラーパレットを更新。\n\n**バグ修正**:\n- `disableAllHooks` / `allowManagedHooksOnly` 設定時に `/goal` がハングする問題を修正。\n- シンボリックリンク設定ファイルでのホットリロード誤検知バグを修正。\n- `claude --bg` が「connection dropped mid-request」で失敗する回帰を修正。\n\n**ユーザーへの影響**: エージェント名の大文字小文字を気にせず使えるようになり、バックグラウンドモードの安定性が向上。\n\n## 注目論文 TOP 10\n\n**1. Realiz3D: 3D Generation Made Photorealistic via Domain-Aware Learning** | ⬆️ 18 | https://arxiv.org/abs/2605.13852\n🎯 **背景**: フォトリアリスティックかつ 3D 一貫性のある画像生成は、合成 3D アセットのレンダリングで事前学習モデルをファインチューニングする手法が主流だが、合成-実写のドメインギャップが品質低下を招いてきた。\n🔧 **手法**: ドメイン認識学習（Domain-Aware Learning）により、合成データと実データの分布差を明示的に補正。幾何・マテリアル・視点制御を保ちながら実画像的リアリティを実現するパイプラインを構築。\n📊 **結果**: 既存手法と比較してフォトリアリズム指標で顕著な改善を達成。幾何整合性を保ったまま実写クオリティの 3D 一貫画像を生成。\n💡 **意義**: ゲーム・映像・ロボットシミュレーション向けのコンテンツ生成パイプラインを実用レベルに引き上げる可能性がある重要な進展。\n⚠️ **限界**: 合成データの品質とドメイン補正の汎化性に依存するため、未知ドメインでの性能は未検証。\n\n---\n\n**2. Learning to Communicate Locally for Large-Scale Multi-Agent Pathfinding** | ⬆️ 16 | https://arxiv.org/abs/2605.07637\n🎯 **背景**: 多数エージェントが共有環境を同時移動する MAPF（Multi-Agent Pathfinding）は NP 困難。スケーラブルなソルバーが実ロボット群制御に不可欠だが、大規模化でのコミュニケーションボトルネックが課題。\n🔧 **手法**: 局所通信学習により各エージェントが近傍エージェントとのみ通信。グローバル通信の計算コストを排除しつつ、分散協調を実現する強化学習フレームワークを採用。\n📊 **結果**: 大規模シナリオにおける解決率・計算効率で既存の集中型・分散型手法を上回るスケーラビリティを実証。\n💡 **意義**: 倉庫物流・自動運転車群・ドローン群など実世界の大規模マルチロボット展開に直接適用可能な基盤技術。\n⚠️ **限界**: 局所通信のみではグローバル最適解が保証されず、エージェント密度が極端に高い場合の性能は要検証。\n\n---\n\n**3. Long Context Pre-Training with Lighthouse Attention** | ⬆️ 15 | https://arxiv.org/abs/2605.06554\n🎯 **背景**: 因果トランスフォーマーの超長文列学習は SDPA（Scaled Dot-Product Attention）の二乗計算・メモリコストがボトルネック。実用的な長文コンテキスト事前学習は困難だった。\n🔧 **手法**: Lighthouse Attention を提案。学習フェーズのみに適用する対称的な選択ベース階層的アテンション。通常の SDPA をラップする形で実装し、推論時はオーバーヘッドなし。\n📊 **結果**: 極端な配列長での事前学習が計算・メモリ効率の両面で大幅に改善。長文理解ベンチマークで競争力ある性能を達成。\n💡 **意義**: 長文 LLM の事前学習コストを劇的に削減できる可能性があり、研究機関・中小企業への長文モデル開発の門戸を開く。\n⚠️ **限界**: 学習専用アルゴリズムのため推論時の恩恵は間接的。選択機構の精度がモデル性能の上限を決める。\n\n---\n\n**4. FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale** | ⬆️ 15 | https://arxiv.org/abs/2605.14445\n🎯 **背景**: LLM のコーディング評価は実装・バグ修正・競技プログラミングなど既知の最適解がある閉じた問題に偏り、オープンエンドな現実的課題は盲点だった。\n🔧 **手法**: FrontierSmith はオープンエンドなコーディング問題を大規模合成するフレームワーク。既存問題から問題空間を探索・変換し、多様で難易度の高い新問題を自動生成。\n📊 **結果**: 合成問題で訓練したモデルが既存ベンチマーク上での汎化性能向上を達成。オープンエンドタスクでの LLM 改善を実証。\n💡 **意義**: LLM の「未解決問題への対応力」という実用上最重要な能力を評価・強化する枠組みとして、AI 研究の方向性を示す。\n⚠️ **限界**: 合成問題の品質保証と人間の評価との整合性の検証が今後の課題。\n\n---\n\n**5. ViMU: Benchmarking Video Metaphorical Understanding** | ⬆️ 10 | https://arxiv.org/abs/2605.14607\n🎯 **背景**: 映像メディアは明示的コンテンツと暗黙的サブテキスト（比喩・含意）の二層構造を持つが、マルチモーダル LLM の比喩理解能力は体系的に評価されてこなかった。\n🔧 **手法**: ViMU ベンチマークを構築。多様な動画ジャンルから比喩表現を含む映像を収集し、内容理解と比喩解釈の両面を評価するタスク設計を実施。\n📊 **結果**: 現行の最先端マルチモーダルモデルが映像比喩理解で人間に大きく劣ることを定量的に示した。\n💡 **意義**: 映像 AI の「深い意味理解」への到達度を測る重要な評価基盤。広告・映像制作・メディアリテラシー教育の自動化に直結。\n⚠️ **限界**: 比喩の解釈は文化・言語依存度が高く、ベンチマークの文化的多様性が限定的な可能性あり。\n\n---\n\n**6. PanoWorld: Towards Spatial Supersensing in 360° Panorama World** | ⬆️ 6 | https://arxiv.org/abs/2605.13169\n🎯 **背景**: MLLM の空間理解は透視画像パラダイムに依存し、狭い視野角が限界。ナビゲーション・ロボット探索・3D シーン理解では全方位センシングが不可欠。\n🔧 **手法**: 360 度パノラマ画像をネイティブ入力として扱う PanoWorld を提案。全方位視野を活かした空間超感知（Spatial Supersensing）能力を MLLM に付与。\n📊 **結果**: パノラマベースの空間推論タスクで従来の透視画像ベース手法を上回る性能を達成。\n💡 **意義**: 自律ロボット・VR/AR・建築設計など全方位理解が求められる応用分野への MLLM 展開を加速。\n⚠️ **限界**: パノラマ学習データの取得コストが高く、既存大規模データセットとの互換性に課題。\n\n---\n\n**7. WildTableBench: Benchmarking Multimodal Foundation Models on Table Understanding In the Wild** | ⬆️ 4 | https://arxiv.org/abs/2605.01018\n🎯 **背景**: テーブル画像解析は企業・消費者向け高価値タスクだが、既存評価は構造化テキストやきれいな画像のみで、現実の「野性的」な視覚的複雑性が未評価。\n🔧 **手法**: 実世界の多様なテーブル画像（手書き・撮影・スキャン等）を収集した WildTableBench を構築。マルチモーダルモデルの頑健性を体系的に評価。\n📊 **結果**: 最先端モデルが野性的テーブルで性能が著しく低下することを実証。クリーンデータとの大きなギャップを定量化。\n💡 **意義**: 実務での文書 AI 展開における信頼性評価の重要性を示し、頑健なモデル開発の方向性を示唆。\n⚠️ **限界**: 収集データの地域・言語バイアスや、アノテーション品質の一貫性確保が課題。\n\n---\n\n**8. Adaptive Teacher Exposure for Self-Distillation in LLM Reasoning** | ⬆️ 4 | https://arxiv.org/abs/2605.11458\n🎯 **背景**: オンポリシー自己蒸留は LLM 推論の有力手法だが、教師が常に参照解を参照するという設計の暗黙的前提が性能の上限を作っている可能性がある。\n🔧 **手法**: Adaptive Teacher Exposure により、学習段階や難易度に応じて教師の参照解への露出度を動的調整。固定露出の制約を取り除く。\n📊 **結果**: 適応的露出制御により自己蒸留の推論性能が向上。難易度適応型の教師戦略の有効性を実証。\n💡 **意義**: LLM 推論の自己改善ループをより効率的に設計するための新知見を提供。学習コスト削減にも貢献。\n⚠️ **限界**: 露出スケジュールのハイパーパラメータ感度と、他のタスクドメインへの汎化性が未検証。\n\n---\n\n**9. Aligning Latent Geometry for Spherical Flow Matching in Image Generation** | ⬆️ 3 | https://arxiv.org/abs/2605.15193\n🎯 **背景**: 潜在フローマッチングは通常ガウスノイズを VAE 潜在空間へ線形パスで輸送するが、両端点が薄い球殻に集中しており、ユークリッド弦が球殻を外れる幾何問題がある。\n🔧 **手法**: 球面フローマッチング（Spherical Flow Matching）を提案。潜在空間の幾何を球面として整列させ、球面上の最適輸送パスを活用して生成品質を改善。\n📊 **結果**: 標準的な線形フローと比較して生成品質指標（FID 等）で改善。幾何整合性の高い潜在空間輸送を実現。\n💡 **意義**: 画像生成モデルの潜在空間設計に幾何学的視点を持ち込む理論的貢献として、今後の拡散モデル研究に影響を与え得る。\n⚠️ **限界**: 球面仮定がすべての VAE 潜在空間に適合するとは限らず、適用範囲の検証が必要。\n\n---\n\n**10. Sat3DGen: Comprehensive Street-Level 3D Scene Generation from Single Satellite Image** | ⬆️ 2 | https://arxiv.org/abs/2605.14984\n🎯 **背景**: 単一衛星画像から街路レベル 3D シーンを生成することは重要だが困難。幾何忠実性と意味的多様性のトレードオフが未解決。\n🔧 **手法**: Sat3DGen は衛星画像から包括的な街路 3D シーンを生成する統合パイプライン。幾何・テクスチャ・セマンティクスを統合的に扱い、多様な都市シーンを合成。\n📊 **結果**: 幾何忠実性と意味的多様性の両立を既存手法より高いレベルで達成。単一衛星入力からの包括的 3D 生成を実証。\n💡 **意義**: 都市計画・自動運転地図生成・災害対応シミュレーションなど衛星データ活用の大幅な拡張に繋がる実用的貢献。\n⚠️ **限界**: 衛星画像の解像度・撮影条件への依存性が高く、密集市街地や植生の多い地域での性能が課題。\n\n",
+  "fetched_at": "2026-05-15T22:10:13.956959+00:00",
+  "papers": [
+    {
+      "title": "Realiz3D: 3D Generation Made Photorealistic via Domain-Aware Learning",
+      "upvotes": 18,
+      "paper_id": "2605.13852",
+      "abstract": "We often aim to generate images that are both photorealistic and 3D-consistent, adhering to precise geometry, material, and viewpoint controls. Typically, this is achieved by fine-tuning an image generator, pre-trained on billions of real images, using renders of synthetic 3D assets, where anno"
+    },
+    {
+      "title": "Learning to Communicate Locally for Large-Scale Multi-Agent Pathfinding",
+      "upvotes": 16,
+      "paper_id": "2605.07637",
+      "abstract": "Multi-agent pathfinding (MAPF) is a widely used abstraction for multi-robot trajectory planning problems, where multiple homogeneous agents move simultaneously within a shared environment. Although solving MAPF optimally is NP-hard, scalable and efficient solvers are critical for real-"
+    },
+    {
+      "title": "Long Context Pre-Training with Lighthouse Attention",
+      "upvotes": 15,
+      "paper_id": "2605.06554",
+      "abstract": "Training causal transformers at extreme sequence lengths is bottlenecked by the quadratic time and memory of scaled dot-product attention (SDPA). In this work, we propose Lighthouse Attention, a training-only symmetrical selection-based hierarchical attention algorithm that wraps around ordina"
+    },
+    {
+      "title": "FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale",
+      "upvotes": 15,
+      "paper_id": "2605.14445",
+      "abstract": "Many real-world coding challenges are open-ended and admit no known optimal solution. Yet, recent progress in LLM coding has focused on well-defined tasks such as feature implementation, bug fixing, and competitive programming. Open-ended coding remains a weak spot for LLMs, largely because ope"
+    },
+    {
+      "title": "ViMU: Benchmarking Video Metaphorical Understanding",
+      "upvotes": 10,
+      "paper_id": "2605.14607",
+      "abstract": "Any new medium, once it emerges, is used for more than the transmission of overt content alone. The information it carries typically operates on two levels: one is the content directly presented, while the other is the subtext beneath it-the implicit ideas and intentions the creator seeks to"
+    },
+    {
+      "title": "PanoWorld: Towards Spatial Supersensing in 360° Panorama World",
+      "upvotes": 6,
+      "paper_id": "2605.13169",
+      "abstract": "Multimodal large laboratory models (MLLMs) still struggle with spatial understanding under the dominant perspective-image paradigm, which inherits the narrow field of view of human-like perception. For navigation, robotic search, and 3D scene understanding, 360-degree panoramic sensing offers"
+    },
+    {
+      "title": "WildTableBench: Benchmarking Multimodal Foundation Models on Table Understanding In the Wild",
+      "upvotes": 4,
+      "paper_id": "2605.01018",
+      "abstract": "Using multimodal foundation models to analyze table images is a high-value yet challenging application in consumer and enterprise scenarios. Despite its importance, current evaluations rely largely on structured-text tables or clean rendered images, leaving the visual complexity of in-the-wild"
+    },
+    {
+      "title": "Adaptive Teacher Exposure for Self-Distillation in LLM Reasoning",
+      "upvotes": 4,
+      "paper_id": "2605.11458",
+      "abstract": "On-policy self-distillation has become a strong recipe for LLM reasoning, where a privileged teacher supervises the student's own rollouts while conditioning on the reference solution. A design choice shared by nearly all such methods, however, has gone unquestioned: the teacher always sees"
+    },
+    {
+      "title": "Aligning Latent Geometry for Spherical Flow Matching in Image Generation",
+      "upvotes": 3,
+      "paper_id": "2605.15193",
+      "abstract": "Latent flow matching for image generation usually transports Gaussian noise to variational autoencoder latents along linear paths. Both endpoints, however, concentrate in thin spherical shells, and a Euclidean chord leaves those shells even when preprocessing aligns their radii. By decomposing"
+    },
+    {
+      "title": "Sat3DGen: Comprehensive Street-Level 3D Scene Generation from Single Satellite Image",
+      "upvotes": 2,
+      "paper_id": "2605.14984",
+      "abstract": "Generating a street-level 3D scene from a single satellite image is a crucial yet challenging task. Current methods present a stark trade-off: geometry-colorization models achieve high geometric fidelity but are typically building-focused and lack semantic diversity. In contrast, proxy-based m"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.142",
+      "published_at": "2025-05-14",
+      "body": "Added new `claude agents` flags: `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, and `--dangerously-skip-permissions` to configure dispatched background sessions. Fast mode now uses Opus 4.7 by default (previously Opus 4.6). Set `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1` to pin fast mode to Opus 4.6. Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfaced as a skill. The `/plugin` details pane and `claude plugin details` now show LSP servers a plugin provides. `/web-setup` warns before replacing an existing GitHub App connection."
+    },
+    {
+      "tag_name": "v2.1.141",
+      "published_at": "2025-05-13",
+      "body": "Added `terminalSequence` field to hook JSON output so hooks can emit desktop notifications, window titles, and bells without a controlling terminal. Added `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` to clone GitHub plugin sources over HTTPS instead of SSH, for environments without a GitHub SSH key. Added `ANTHROPIC_WORKSPACE_ID` environment variable for workload identity federation — scopes the minted token to a specific workspace when the federation rule covers more than one. Added `claude agents --cwd <path>` to scope the session list to a directory. `/feedback` can now include recent sessions (last 24 hours or 7 days) for issues spanning more than the current session."
+    },
+    {
+      "tag_name": "v2.1.140",
+      "published_at": "2025-05-12",
+      "body": "Improved Agent tool `subagent_type` matching to accept case- and separator-insensitive values (e.g. `\"Code Reviewer\"` resolves to `code-reviewer`). Updated agent color palette. Fixed `/goal` silently hanging when `disableAllHooks` or `allowManagedHooksOnly` is set — now shows a clear message instead of an indicator that never resolves. Fixed a regression in settings hot-reload where symlinked settings files caused misattributed change events and spurious `ConfigChange` hooks. Fixed `claude --bg` failing with \"connection dropped mid-request\" when the background service was about to idle-exit."
+    }
+  ]
+}
