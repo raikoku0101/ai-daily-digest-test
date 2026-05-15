@@ -1,6 +1,6 @@
-**4. RealICU: Do LLM Agents Understand Long-Context ICU Data? A Benchmark Beyond Behavior Imitation**
-**著者**: RealICU Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.13542
+**4. FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale**
+**著者**: FrontierSmith Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.14445
 
 **まとめ**:
-ICUの臨床意思決定支援AI評価の根本的問題（過去の臨床医行動を正解とする行動模倣バイアス）を解決するため、シニア医師による後知恵アノテーションベンチマークRealICUを構築。現在の最先端LLMは患者ステータス精度0.459にとどまり、オラクルとの大きなギャップ（F1: 0.987 vs 0.365）を確認。提案する構造化メモリエージェントICU-Evoが改善をもたらすも「recall-safety tradeoff」等の根本課題が残存。
+LLMが苦手とするオープンエンドなコーディング問題（複数解が存在し連続スコアで評価）を閉じた問題から自動合成するFrontierSmithを提案。問題定式化の変異・思想多様性フィルタ・自動検証インフラの三要素で高品質な問題を大規模生成し、合成問題200個でのRL訓練でQwen3.5-9BがALE-bench+306点の改善を達成。人間キュレーション問題に匹敵するスケーラブルな訓練データ源を実現。

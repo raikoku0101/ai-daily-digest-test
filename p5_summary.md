@@ -1,6 +1,6 @@
-**5. BEACON: A Multimodal Dataset for Learning Behavioral Fingerprints from Gameplay Data**
-**著者**: BEACON Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.10867
+**5. ViMU: Benchmarking Video Metaphorical Understanding**
+**著者**: ViMU Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.14607
 
 **まとめ**:
-競技FPSゲームValorantを用いた大規模マルチモーダル継続認証データセット。28名・79セッション・約430GBの高周波マウス動作・キーストローク・ネットワークパケット・スクリーン録画を同期収集。マウスのみで63.16%、早期融合で70.82%の28クラス識別精度を達成し、マウス由来の運動シグネチャが最も識別力の高いモダリティであることを実証。
+動画に埋め込まれた比喩的・社会的サブテキスト（風刺、皮肉、暗黙的メッセージ等）の理解能力を体系的に評価する初のベンチマークViMUを提案。588本の動画から2,352問を構築し、解釈レベル・セマンティック構造・証拠基盤の3層構造で評価。16のMLLMを評価した結果、ほぼ全モデルが50%未満の正答率にとどまり、現行モデルの限界を明確化。
