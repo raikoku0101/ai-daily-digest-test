@@ -1,6 +1,6 @@
-**5. ViMU: Benchmarking Video Metaphorical Understanding**
-**著者**: ViMU Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.14607
+**5. PanoWorld: Towards Spatial Supersensing in 360° Panorama World**
+**著者**: PanoWorld Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.13169
 
 **まとめ**:
-動画に埋め込まれた比喩的・社会的サブテキスト（風刺、皮肉、暗黙的メッセージ等）の理解能力を体系的に評価する初のベンチマークViMUを提案。588本の動画から2,352問を構築し、解釈レベル・セマンティック構造・証拠基盤の3層構造で評価。16のMLLMを評価した結果、ほぼ全モデルが50%未満の正答率にとどまり、現行モデルの限界を明確化。
+狭視野の透視投影に縛られたMLLMの空間認識限界を超えるため、ERP（等距円筒図法）360°パノラマをネイティブに理解するPanoWorldを提案。570K ERPパノラマから幾何認識・言語グラウンデッド・深度認識メタデータを大規模構築し、Spherical Spatial Cross-Attention（SSCA）で球面幾何をバックボーンに注入。PanoSpace-Benchで56.5%（ベースライン30.8%）、H*Benchで70.0%、R2R-CE Val-Unseenで54.3% Success Rateを達成し、既存の商用・オープンソースモデルを大幅に上回った。
