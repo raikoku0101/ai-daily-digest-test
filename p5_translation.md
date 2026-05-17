@@ -1,29 +1,11 @@
 ## 1. Introduction (はじめに)
-
-従来のMLLM（Multimodal Large Language Model）は人間の視野に限定された透視投影（Perspective Projection）パラダイムに基づき、空間理解に課題を抱えている。本研究は「360°パノラマセンシングがスーパーセンシング（Spatial Supersensing）の形態を提供する」という仮説を立て、ERP（等距円筒図法, Equirectangular Projection）パノラマを「パノラマネイティブ」に理解するフレームワークPanoWorldを提案する。既存手法がERPを複数の透視図に分解するのに対し、ERPを連続的・観察者中心の空間として直接推論することを目指す。
+既存の MLLM（Multimodal Large Language Model）は狭い視野角の透視図法（Perspective）画像に限定されている。360°パノラマセンシングは周囲環境全体を一度に捉えることでナビゲーション・ロボット探索・3D シーン理解に新たな可能性を提供する。ERP（正距円筒図法: Equirectangular Projection）パノラマを連続した観察者中心空間として推論する「pano-native 理解」を提案。既存手法がパノラマを複数の透視図に分解する問題に対して、直接的で効率的なパノラマ表現からの推論を実現する統一的フレームワーク PanoWorld を構築。
 
 ## 2. Method (手法)
+pano-native 理解を 4 つの能力ファミリーに分解：①意味的アンカリング（何が存在するか）、②球面定位（Spherical Localization：観察者中心座標系での位置）、③参照フレーム変換（Referential Frame Transformation：回転・再配向での関係変化）、④深度対応 3D 空間推論（Depth-Aware 3D Spatial Reasoning）。570K の ERP パノラマから幾何認識型・言語接地型・深度対応のメタデータを構築する大規模パイプラインを開発。モデルアーキテクチャでは球面空間クロスアテンション（SSCA: Spherical Spatial Cross-Attention）を導入し、視覚トークンが球面方向情報から幾何情報を取得できる仕組みを実装。
 
-**能力分類体系**: 4つの能力ファミリーを定義:
-- **意味的アンカリング（Semantic Anchoring）**: 言語を視覚エンティティに基礎付ける
-- **球面グラウンディング（Spherical Grounding）**: ヤー角λ・ピッチ角φで方向を局在化
-- **参照フレーム変換（Reference Frame Transformation）**: 観察者回転下での関係推論
-- **深度認識3D空間推論（Depth-aware 3D Reasoning）**: 球面観測を3D構造に結合
-
-**大規模メタデータ構築パイプライン**: 570K個のERPパノラマから幾何認識検出メタデータ・言語基礎セマンティクス・深度認識空間メタデータを構造化グラフとして構築。
-
-**Spherical Spatial Cross-Attention（SSCA）**: パッチ埋め込み後に視覚トークンが球面方向トークンをクエリし、球面幾何信号を抽出。ゲート付き残差更新（Gated Residual Update）で融合し、事前学習バックボーンを保持したまま球面幾何を注入。
-
-## 3. Experiments & Results (実験と結果)
-
-Qwen3.5-VLをベースモデルにパノラマネイティブ命令コーパスで微調整。3ベンチマークで評価:
-
-**PanoSpace-Bench（独自ベンチマーク）**: 全体56.5%（ベースラインQwen3.5の30.8%から大幅向上）。絶対方向93.7%、BFOVミーンIoU 73.3%で顕著な改善。
-
-**H*Bench**: ゼロショット転移で56.1%、微調整後70.0%。透視図ベースライン最強手法（38.4%）を大幅に上回る。
-
-**R2R-CE Val-Unseen（視覚ナビゲーション）**: 54.3% Success Rate、52.1% SPL。GridMM（49.0% SR）を5.3ポイント上回りRGB専用手法を超越。
+## 3. Experiments (実験)
+提案の PanoSpace-Bench での評価：PanoWorld が基盤モデルから精度 30.8 → 56.5 へ大幅向上、絶対方向定位で 93.7・BFOV mIoU で 73.3 を達成。H*Bench（人間中心視覚探索）への転移では従来の透視図法手法より優位性を示す。VLN（Vision-Language Navigation）ベンチマーク R2R-CE でも最先端性能（SPL 52.1）を実現。アブレーション研究で能力別訓練データ・検証モジュール・アーキテクチャ各要素の必要性を確認。
 
 ## 4. Conclusion (結論)
-
-パノラマネイティブ空間学習フレームワークPanoWorldを提案。4つの能力ファミリーの定義・570K ERPパノラマの大規模メタデータパイプライン・Spherical Spatial Cross-Attentionにより、複数ベンチマークで有意な改善を実証。360°推論には専用の幾何適応が不可欠であることを確立。今後はパノラマ固有アーキテクチャの標準透視画像タスクへの転用が課題。
+ERP パノラマを連続的な観察者中心空間として推論する能力構造化フレームワークを確立。大規模検証済みメタデータ・能力整合型指示チューニングデータ（Capability-Aligned Instruction Tuning）・球面幾何認識モデルアダプテーションを組み合わせることで既存手法を大幅に上回るパノラマ理解を実現。完全視野角環境における空間推論の新たな研究方向を示唆する。ロボット自律走行・VR/AR・屋内ナビゲーションへの応用が期待される。
