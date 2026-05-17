@@ -2,80 +2,80 @@
   "papers": [
     {
       "title": "Realiz3D: 3D Generation Made Photorealistic via Domain-Aware Learning",
-      "upvotes": 20,
+      "upvotes": 22,
       "paper_id": "2605.13852",
       "abstract": "We often aim to generate images that are both photorealistic and 3D-consistent, adhering to precise geometry, material, and viewpoint controls. Typically, this is achieved by fine-tuning an image generator, pre-trained on billions of real images, using renders of synthetic 3D assets."
     },
     {
       "title": "Long Context Pre-Training with Lighthouse Attention",
-      "upvotes": 19,
+      "upvotes": 21,
       "paper_id": "2605.06554",
-      "abstract": "Training causal transformers at extreme sequence lengths is bottlenecked by the quadratic time and memory of scaled dot-product attention (SDPA). In this work, we propose Lighthouse Attention, a training-only symmetrical selection-based hierarchical attention algorithm."
+      "abstract": "Training causal transformers at extreme sequence lengths is bottlenecked by the quadratic time and memory of scaled dot-product attention (SDPA). We propose Lighthouse Attention, a training-only symmetrical selection-based hierarchical attention algorithm that wraps around ordinary SDPA."
     },
     {
       "title": "FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale",
       "upvotes": 17,
       "paper_id": "2605.14445",
-      "abstract": "Many real-world coding challenges are open-ended and admit no known optimal solution. Yet, recent progress in LLM coding has focused on well-defined tasks such as feature implementation, bug fixing, and competitive programming."
+      "abstract": "Many real-world coding challenges are open-ended and admit no known optimal solution. Recent progress in LLM coding has focused on well-defined tasks. Open-ended coding remains a weak spot for LLMs, largely because open-ended training problems are scarce and expensive to construct."
     },
     {
       "title": "Learning to Communicate Locally for Large-Scale Multi-Agent Pathfinding",
-      "upvotes": 16,
+      "upvotes": 17,
       "paper_id": "2605.07637",
-      "abstract": "Multi-agent pathfinding (MAPF) is a widely used abstraction for multi-robot trajectory planning problems, where multiple homogeneous agents move simultaneously within a shared environment."
+      "abstract": "Multi-agent pathfinding (MAPF) is a widely used abstraction for multi-robot trajectory planning problems, where multiple homogeneous agents move simultaneously within a shared environment. Although solving MAPF optimally is NP-hard, scalable and efficient solvers are critical."
     },
     {
-      "title": "PanoWorld: Towards Spatial Supersensing in 360 Panorama World",
+      "title": "PanoWorld: Towards Spatial Supersensing in 360° Panorama World",
       "upvotes": 13,
       "paper_id": "2605.13169",
-      "abstract": "Multimodal large laboratory models (MLLMs) still struggle with spatial understanding under the dominant perspective-image paradigm, which inherits the narrow field of view of human-like perception."
+      "abstract": "Multimodal large language models still struggle with spatial understanding under the dominant perspective-image paradigm. 360-degree panoramic sensing offers supersensing by capturing the entire surrounding environment at once, beneficial for navigation and 3D scene understanding."
     },
     {
       "title": "ViMU: Benchmarking Video Metaphorical Understanding",
       "upvotes": 11,
       "paper_id": "2605.14607",
-      "abstract": "Any new medium, once it emerges, is used for more than the transmission of overt content alone. The information it carries typically operates on two levels."
+      "abstract": "Any new medium is used for more than transmission of overt content alone. The information it carries operates on two levels: one is the content directly presented, the other is the subtext beneath it—implicit ideas and intentions the creator seeks to convey through the medium."
     },
     {
       "title": "WildTableBench: Benchmarking Multimodal Foundation Models on Table Understanding In the Wild",
       "upvotes": 6,
       "paper_id": "2605.01018",
-      "abstract": "Using multimodal foundation models to analyze table images is a high-value yet challenging application in consumer and enterprise scenarios."
+      "abstract": "Using multimodal foundation models to analyze table images is a high-value yet challenging application. Current evaluations rely largely on structured-text tables or clean rendered images, leaving the visual complexity of in-the-wild table images underexplored."
     },
     {
       "title": "CurveBench: A Benchmark for Exact Topological Reasoning over Nested Jordan Curves",
       "upvotes": 6,
       "paper_id": "2605.14068",
-      "abstract": "We introduce CurveBench, a benchmark for hierarchical topological reasoning from visual input. CurveBench consists of 756 images of pairwise non-intersecting Jordan curves."
+      "abstract": "We introduce CurveBench, a benchmark for hierarchical topological reasoning from visual input. It consists of 756 images of pairwise non-intersecting Jordan curves across easy, polygonal, topographic-inspired, maze-like, and dense counting configurations."
     },
     {
       "title": "Sat3DGen: Comprehensive Street-Level 3D Scene Generation from Single Satellite Image",
       "upvotes": 4,
       "paper_id": "2605.14984",
-      "abstract": "Generating a street-level 3D scene from a single satellite image is a crucial yet challenging task. Current methods present a stark trade-off between geometric fidelity and semantic diversity."
+      "abstract": "Generating a street-level 3D scene from a single satellite image is crucial yet challenging. Current methods present a trade-off: geometry-colorization models achieve high geometric fidelity but lack semantic diversity, while proxy-based models yield rich content but coarse and unstable geometry."
     },
     {
       "title": "Adaptive Teacher Exposure for Self-Distillation in LLM Reasoning",
       "upvotes": 4,
       "paper_id": "2605.11458",
-      "abstract": "On-policy self-distillation has become a strong recipe for LLM reasoning, where a privileged teacher supervises the student's own rollouts while conditioning on the reference solution."
+      "abstract": "On-policy self-distillation has become a strong recipe for LLM reasoning, where a privileged teacher supervises the student's own rollouts while conditioning on the reference solution. A shared design choice has gone unquestioned: the teacher always sees the full reference reasoning."
     }
   ],
   "cc_updates": [
     {
       "tag_name": "v2.1.143",
       "published_at": "2025-05-15",
-      "body": "Added plugin dependency enforcement: claude plugin disable now refuses when another enabled plugin depends on the target (with a copy-pasteable disable-chain hint), and claude plugin enable force-enables transitive dependencies. Added projected context cost (per-turn and per-invocation token estimates) to the /plugin marketplace browse pane. Added worktree.bgIsolation: none setting to let background sessions edit the working copy directly without EnterWorktree. PowerShell tool now passes -ExecutionPolicy Bypass. Background sessions now preserve the model and effort level you set after waking from idle."
+      "body": "Added plugin dependency enforcement: `claude plugin disable` now refuses when another enabled plugin depends on the target (with a copy-pasteable disable-chain hint), and `claude plugin enable` force-enables transitive dependencies. Added projected context cost (per-turn and per-invocation token estimates) to the `/plugin` marketplace browse pane. Added `worktree.bgIsolation: \"none\"` setting to let background sessions edit the working copy directly without `EnterWorktree`. PowerShell tool now passes `-ExecutionPolicy Bypass`. Background sessions now preserve the model and effort level you set after waking from idle. Fixed a corrupt `.credentials.json` hanging the CLI on startup."
     },
     {
       "tag_name": "v2.1.142",
       "published_at": "2025-05-14",
-      "body": "Added new claude agents flags: --add-dir, --settings, --mcp-config, --plugin-dir, --permission-mode, --model, --effort, and --dangerously-skip-permissions to configure dispatched background sessions. Fast mode now uses Opus 4.7 by default (previously Opus 4.6). Plugins with a root-level SKILL.md and no skills/ subdirectory are now surfaced as a skill. /web-setup warns before replacing an existing GitHub App connection."
+      "body": "Added new `claude agents` flags: `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, and `--dangerously-skip-permissions` to configure dispatched background sessions. Fast mode now uses Opus 4.7 by default (previously Opus 4.6). Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfaced as a skill. Fixed `MCP_TOOL_TIMEOUT` not raising the per-request fetch timeout for remote HTTP and SSE MCP servers."
     },
     {
       "tag_name": "v2.1.141",
       "published_at": "2025-05-13",
-      "body": "Added terminalSequence field to hook JSON output so hooks can emit desktop notifications, window titles, and bells without a controlling terminal. Added CLAUDE_CODE_PLUGIN_PREFER_HTTPS to clone GitHub plugin sources over HTTPS instead of SSH. Added ANTHROPIC_WORKSPACE_ID environment variable for workload identity federation. Added claude agents --cwd <path> to scope the session list to a directory."
+      "body": "Added `terminalSequence` field to hook JSON output so hooks can emit desktop notifications, window titles, and bells without a controlling terminal. Added `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` to clone GitHub plugin sources over HTTPS instead of SSH. Added `ANTHROPIC_WORKSPACE_ID` environment variable for workload identity federation. Added `claude agents --cwd <path>` to scope the session list to a directory. Rewind menu: added \"Summarize up to here\" to compress earlier context while keeping recent turns intact."
     }
   ]
 }
