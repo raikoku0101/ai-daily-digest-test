@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "Realiz3D: 3D Generation Made Photorealistic via Domain-Aware Learning",
-      "upvotes": 22,
-      "paper_id": "2605.13852",
-      "abstract": "We often aim to generate images that are both photorealistic and 3D-consistent, adhering to precise geometry, material, and viewpoint controls. Typically, this is achieved by fine-tuning an image generator, pre-trained on billions of real images, using renders of synthetic 3D assets."
-    },
-    {
-      "title": "Long Context Pre-Training with Lighthouse Attention",
-      "upvotes": 21,
-      "paper_id": "2605.06554",
-      "abstract": "Training causal transformers at extreme sequence lengths is bottlenecked by the quadratic time and memory of scaled dot-product attention (SDPA). We propose Lighthouse Attention, a training-only symmetrical selection-based hierarchical attention algorithm that wraps around ordinary SDPA."
-    },
-    {
-      "title": "FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale",
-      "upvotes": 17,
-      "paper_id": "2605.14445",
-      "abstract": "Many real-world coding challenges are open-ended and admit no known optimal solution. Recent progress in LLM coding has focused on well-defined tasks. Open-ended coding remains a weak spot for LLMs, largely because open-ended training problems are scarce and expensive to construct."
-    },
-    {
-      "title": "Learning to Communicate Locally for Large-Scale Multi-Agent Pathfinding",
-      "upvotes": 17,
-      "paper_id": "2605.07637",
-      "abstract": "Multi-agent pathfinding (MAPF) is a widely used abstraction for multi-robot trajectory planning problems, where multiple homogeneous agents move simultaneously within a shared environment. Although solving MAPF optimally is NP-hard, scalable and efficient solvers are critical."
-    },
-    {
-      "title": "PanoWorld: Towards Spatial Supersensing in 360° Panorama World",
-      "upvotes": 13,
-      "paper_id": "2605.13169",
-      "abstract": "Multimodal large language models still struggle with spatial understanding under the dominant perspective-image paradigm. 360-degree panoramic sensing offers supersensing by capturing the entire surrounding environment at once, beneficial for navigation and 3D scene understanding."
-    },
-    {
-      "title": "ViMU: Benchmarking Video Metaphorical Understanding",
-      "upvotes": 11,
-      "paper_id": "2605.14607",
-      "abstract": "Any new medium is used for more than transmission of overt content alone. The information it carries operates on two levels: one is the content directly presented, the other is the subtext beneath it—implicit ideas and intentions the creator seeks to convey through the medium."
-    },
-    {
-      "title": "WildTableBench: Benchmarking Multimodal Foundation Models on Table Understanding In the Wild",
-      "upvotes": 6,
-      "paper_id": "2605.01018",
-      "abstract": "Using multimodal foundation models to analyze table images is a high-value yet challenging application. Current evaluations rely largely on structured-text tables or clean rendered images, leaving the visual complexity of in-the-wild table images underexplored."
-    },
-    {
-      "title": "CurveBench: A Benchmark for Exact Topological Reasoning over Nested Jordan Curves",
-      "upvotes": 6,
-      "paper_id": "2605.14068",
-      "abstract": "We introduce CurveBench, a benchmark for hierarchical topological reasoning from visual input. It consists of 756 images of pairwise non-intersecting Jordan curves across easy, polygonal, topographic-inspired, maze-like, and dense counting configurations."
-    },
-    {
-      "title": "Sat3DGen: Comprehensive Street-Level 3D Scene Generation from Single Satellite Image",
-      "upvotes": 4,
-      "paper_id": "2605.14984",
-      "abstract": "Generating a street-level 3D scene from a single satellite image is crucial yet challenging. Current methods present a trade-off: geometry-colorization models achieve high geometric fidelity but lack semantic diversity, while proxy-based models yield rich content but coarse and unstable geometry."
-    },
-    {
-      "title": "Adaptive Teacher Exposure for Self-Distillation in LLM Reasoning",
-      "upvotes": 4,
-      "paper_id": "2605.11458",
-      "abstract": "On-policy self-distillation has become a strong recipe for LLM reasoning, where a privileged teacher supervises the student's own rollouts while conditioning on the reference solution. A shared design choice has gone unquestioned: the teacher always sees the full reference reasoning."
-    }
+    {"title": "Hölder Policy Optimisation", "upvotes": 16, "id": "2605.12058", "abstract": "Group Relative Policy Optimisation (GRPO) enhances large language models by estimating advantages across a group of sampled trajectories. However, mapping these trajectory-level advantages to policy updates requires aggreg"},
+    {"title": "CM-EVS: Sparse Panoramic RGB-D-Pose Data for Complete Scene Coverage", "upvotes": 8, "id": "2605.15597", "abstract": "Modern 3D visual learning relies on observations sampled from metric 3D assets, yet existing scans, meshes, point clouds, simulations, and reconstructions do not directly provide a sparse, comparable, and geometry-cons"},
+    {"title": "Steered LLM Activations are Non-Surjective", "upvotes": 7, "id": "2604.09839", "abstract": "Activation steering is a popular white-box control technique that modifies model activations to elicit an abstract change in its behavior. It has also become a standard tool in interpretability (e.g., probing truthfuln"},
+    {"title": "MetaAgent-X: Breaking the Ceiling of Automatic Multi-Agent Systems via End-to-End Reinforcement Learning", "upvotes": 5, "id": "2605.14212", "abstract": "Automatic multi-agent systems aim to instantiate agent workflows without relying on manually designed or fixed orchestration. However, existing automatic MAS approaches remain only partially adaptive."},
+    {"title": "Efficient Image Synthesis with Sphere Latent Encoder", "upvotes": 5, "id": "2605.15592", "abstract": "Few-step image generation has seen rapid progress, with consistency and meanflow-based methods significantly reducing the number of sampling steps. Despite their low inference cost, these approaches often suffer from tra"},
+    {"title": "Sparse Autoencoders enable Robust and Interpretable Fine-tuning of CLIP models", "upvotes": 5, "id": "2605.15961", "abstract": "Large-scale pre-trained vision-language models like CLIP demonstrate remarkable zero-shot performance across diverse tasks. However, fine-tuning these models to improve downstream performance often degrades robustness ag"},
+    {"title": "MobileEgo Anywhere: Open Infrastructure for long horizon egocentric data on commodity hardware", "upvotes": 5, "id": "2605.05945", "abstract": "The recent advancement of Vision Language Action (VLA) models has driven a critical demand for large scale egocentric datasets. However, existing datasets are often limited by short episode durations."},
+    {"title": "Learning POMDP World Models from Observations with Language-Model Priors", "upvotes": 3, "id": "2605.13740", "abstract": "Whether navigating a building, operating a robot, or playing a game, an agent that acts effectively in an environment must first learn an internal model of how that environment works."},
+    {"title": "ChangeFlow -- Latent Rectified Flow for Change Detection in Remote Sensing", "upvotes": 2, "id": "2605.15375", "abstract": "Remote sensing change detection (RSCD) aims to localise changes between two images of the same geographic region. In practice, change masks often follow region-level annotation conventions."},
+    {"title": "Raster2Seq: Polygon Sequence Generation for Floorplan Reconstruction", "upvotes": 1, "id": "2602.09016", "abstract": "Reconstructing a structured vector-graphics representation from a rasterized floorplan image is typically an important prerequisite for computational tasks involving floorplans such as automated understanding."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.143",
-      "published_at": "2025-05-15",
-      "body": "Added plugin dependency enforcement: `claude plugin disable` now refuses when another enabled plugin depends on the target (with a copy-pasteable disable-chain hint), and `claude plugin enable` force-enables transitive dependencies. Added projected context cost (per-turn and per-invocation token estimates) to the `/plugin` marketplace browse pane. Added `worktree.bgIsolation: \"none\"` setting to let background sessions edit the working copy directly without `EnterWorktree`. PowerShell tool now passes `-ExecutionPolicy Bypass`. Background sessions now preserve the model and effort level you set after waking from idle. Fixed a corrupt `.credentials.json` hanging the CLI on startup."
-    },
-    {
-      "tag_name": "v2.1.142",
-      "published_at": "2025-05-14",
-      "body": "Added new `claude agents` flags: `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, and `--dangerously-skip-permissions` to configure dispatched background sessions. Fast mode now uses Opus 4.7 by default (previously Opus 4.6). Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfaced as a skill. Fixed `MCP_TOOL_TIMEOUT` not raising the per-request fetch timeout for remote HTTP and SSE MCP servers."
-    },
-    {
-      "tag_name": "v2.1.141",
-      "published_at": "2025-05-13",
-      "body": "Added `terminalSequence` field to hook JSON output so hooks can emit desktop notifications, window titles, and bells without a controlling terminal. Added `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` to clone GitHub plugin sources over HTTPS instead of SSH. Added `ANTHROPIC_WORKSPACE_ID` environment variable for workload identity federation. Added `claude agents --cwd <path>` to scope the session list to a directory. Rewind menu: added \"Summarize up to here\" to compress earlier context while keeping recent turns intact."
-    }
+    {"tag_name": "v2.1.143", "published_at": "2025-05-15", "body": "Added plugin dependency enforcement: `claude plugin disable` now refuses when another enabled plugin depends on the target (with a copy-pasteable disable-chain hint), and `claude plugin enable` force-enables transitive dependencies. Added projected context cost (per-turn and per-invocation token estimates) to the `/plugin` marketplace browse pane. Added `worktree.bgIsolation: \"none\"` setting to let background sessions edit the working copy directly without `EnterWorktree`, for repos where worktrees are impractical. PowerShell tool now passes `-ExecutionPolicy Bypass`. Background sessions now preserve the model and effort level you set after waking from idle."},
+    {"tag_name": "v2.1.142", "published_at": "2025-05-14", "body": "Added new `claude agents` flags: `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, and `--dangerously-skip-permissions` to configure dispatched background sessions. Fast mode now uses Opus 4.7 by default (previously Opus 4.6). Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfaced as a skill. The `/plugin` details pane and `claude plugin details` now show LSP servers a plugin provides."},
+    {"tag_name": "v2.1.141", "published_at": "2025-05-13", "body": "Added `terminalSequence` field to hook JSON output so hooks can emit desktop notifications, window titles, and bells without a controlling terminal. Added `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` to clone GitHub plugin sources over HTTPS instead of SSH. Added `ANTHROPIC_WORKSPACE_ID` environment variable for workload identity federation. Added `claude agents --cwd <path>` to scope the session list to a directory."}
   ]
 }
