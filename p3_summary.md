@@ -1,6 +1,6 @@
-**3. FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale**
-**著者**: FrontierSmith Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.14445
+**3. Steered LLM Activations are Non-Surjective（誘導LLM活性化の非全射性）**
+**著者**: (Non-Surjectivity Team) et al. (2025)
+**arXiv**: https://arxiv.org/abs/2604.09839
 
 **まとめ**:
-LLM のオープンエンド型コーディング能力向上に向け、既存の競技プログラミング問題から「最適解なし」系タスクを自動合成するフレームワーク FrontierSmith を提案。問題変異・アイデア発散度フィルタ・テストケース自動生成の3段階パイプラインで高品質な訓練データを大規模生成。Qwen3.5 モデルで FrontierCS +8.82・ALE-bench +306 Elo を達成し、人間が厳選したデータとほぼ同等の性能を実現した。
+Activation Steering（活性化誘導）によって生成される内部状態は、いかなるテキストプロンプトでも再現不可能であることを数学的に証明した。Transformer が実解析的関数であることを利用し、ステアリング活性化がプロンプト実現可能集合から外れることをほぼ確実に示す。「白箱ステアリングが安全機構を突破しても、黒箱プロンプトの脆弱性を意味しない」という AI 安全評価の根本的な含意を持ち、白箱・黒箱リスクの混同を正す重要な理論的貢献。

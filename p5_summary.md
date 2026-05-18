@@ -1,6 +1,6 @@
-**5. PanoWorld: Towards Spatial Supersensing in 360° Panorama World**
-**著者**: PanoWorld Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.13169
+**5. Efficient Image Synthesis with Sphere Latent Encoder（球面潜在エンコーダによる効率的画像生成）**
+**著者**: Sphere Latent Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.15592
 
 **まとめ**:
-360度パノラマ（ERP形式）をネイティブに理解できる MLLM フレームワーク PanoWorld を提案。意味的アンカリング・球面定位・参照フレーム変換・深度対応3D推論の4能力を定義し、570K パノラマから幾何認識型メタデータを構築。球面空間クロスアテンション（SSCA）を導入し、PanoSpace-Bench で精度を 30.8→56.5 に向上、VLN ベンチマーク R2R-CE で SPL 52.1 の最先端性能を達成した。
+従来の Sphere Encoder が推論時にピクセル空間と潜在空間を繰り返し往来する問題を解決し、生成全体を球面潜在空間で完結させる新フレームワークを提案。再構成損失と一貫性損失を潜在空間に移行し、Logit 正規分布ノイズスケジュールを採用することで、計算コストを約 85%（FLOP 6.5 倍削減）削減。ImageNet-1K で 4 ステップ生成 FID 2.25 を達成し、多段階拡散モデルと競合する品質を実現した。
