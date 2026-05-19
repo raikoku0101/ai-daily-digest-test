@@ -1,6 +1,6 @@
-**3. Steered LLM Activations are Non-Surjective（誘導LLM活性化の非全射性）**
-**著者**: (Non-Surjectivity Team) et al. (2025)
-**arXiv**: https://arxiv.org/abs/2604.09839
+**3. WavFlow: Audio Generation in Waveform Space**
+**著者**: WavFlow Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.18749
 
 **まとめ**:
-Activation Steering（活性化誘導）によって生成される内部状態は、いかなるテキストプロンプトでも再現不可能であることを数学的に証明した。Transformer が実解析的関数であることを利用し、ステアリング活性化がプロンプト実現可能集合から外れることをほぼ確実に示す。「白箱ステアリングが安全機構を突破しても、黒箱プロンプトの脆弱性を意味しない」という AI 安全評価の根本的な含意を持ち、白箱・黒箱リスクの混同を正す重要な理論的貢献。
+潜在空間圧縮に依存せず、生波形空間 (raw waveform space) で直接高忠実度音声を生成するフレームワーク WavFlow を提案。波形パッチ化で 2D トークングリッドに変形し振幅リフティングで信号スケールを調整、フローマッチングの直接 x 予測 (x-prediction) で安定最適化を実現。500 万件の動画-テキスト-音声トリプレットで学習し、VGGSound・AudioCaps の両ベンチマークで潜在型手法と同等以上の性能を達成した。

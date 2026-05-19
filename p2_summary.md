@@ -1,6 +1,6 @@
-**2. CM-EVS: Sparse Panoramic RGB-D-Pose Data for Complete Scene Coverage**
-**著者**: CM-EVS Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.15597
+**2. AstraFlow: Dataflow-Oriented Reinforcement Learning for Agentic LLMs**
+**著者**: AstraFlow Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.15565
 
 **まとめ**:
-3D 視覚学習向けに、固定予算 K 下でのシーン被覆最大化問題を競合認識ワーピングオラクルで解く COVER アルゴリズムを提案。訓練不要・再現可能なキュレーションにより、中央値 ~25 フレーム/シーンという低冗長性でパノラマ RGB-D-Pose データを生成。36,373 屋内フレームと屋外拡張を含む CM-EVS データセットを公開し、NeRF・深度推定・ロボット知覚などへの汎用的な観測インターフェースを提供する。
+トレーナー中心制御からデータフロー指向へと設計を転換したエージェント LLM 向け RL フレームワーク AstraFlow を提案。ロールアウトサービス (RaaS)・データフロー管理・学習を自律コンポーネントとして分離し、システム変更なしにマルチポリシー協調学習・弾性スケーリング・異種クロスリージョン実行を実現。多ポリシー協調訓練で既存システムと同等精度を維持しながら訓練時間を 2.7 倍高速化した。
