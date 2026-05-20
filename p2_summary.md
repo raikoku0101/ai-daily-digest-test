@@ -1,6 +1,6 @@
-**2. AstraFlow: Dataflow-Oriented Reinforcement Learning for Agentic LLMs**
-**著者**: AstraFlow Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.15565
+**2. Harnessing LLM Agents with Skill Programs**
+**著者**: HASP Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.17734
 
 **まとめ**:
-トレーナー中心制御からデータフロー指向へと設計を転換したエージェント LLM 向け RL フレームワーク AstraFlow を提案。ロールアウトサービス (RaaS)・データフロー管理・学習を自律コンポーネントとして分離し、システム変更なしにマルチポリシー協調学習・弾性スケーリング・異種クロスリージョン実行を実現。多ポリシー協調訓練で既存システムと同等精度を維持しながら訓練時間を 2.7 倍高速化した。
+LLM エージェントの経験から学習したスキルを「実行可能プログラム関数（Program Functions, PFs）」として表現する HASP フレームワークを提案。テキストガイダンスの「助言的スキル」から「状態-行動介入関数」として介入タイミングと方法を明示的に制御できるスキルへ進化させる。ウェブ検索・数学・コーディング 3 領域で検証し、ポストトレーニング + 閉ループ進化で従来比大幅な精度向上を実現。エージェント AI の信頼性向上に向けた重要なアーキテクチャ提案。

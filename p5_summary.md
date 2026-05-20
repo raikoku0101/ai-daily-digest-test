@@ -1,6 +1,6 @@
-**5. MementoGUI: Learning Agentic Multimodal Memory Control for Long-Horizon GUI Agents**
-**著者**: MementoGUI Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.18652
+**5. TideGS: Scalable Training of Over One Billion 3D Gaussian Splatting Primitives via Out-of-Core Optimization**
+**著者**: Anonymous et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.20150
 
 **まとめ**:
-長期 GUI 操作を「主動的記憶制御問題」として再定義し、凍結した GUI バックボーンにプラグイン型メモリコントローラ MementoCore を統合するフレームワーク MementoGUI を提案。ワーキングメモリと挿話メモリ (episodic memory) の二層構造で、学習型のステップ処理・圧縮・取得を実現。GUI-Odyssey でアクション一致スコア 54.58→68.32 と大幅向上し、履歴リプレイ・テキスト専用メモリを上回った。
+3DGS（3D Gaussian Splatting）のスケーリング問題を解決するアウトオブコア最適化システム。SSD-CPU-GPU の階層構造でパラメータ表を仮想化し、可視性スパース性と軌跡連続性を活用した差分ストリーミング（Tide）で I/O 転送を 4 倍削減。単一 24GB GPU で 11 億個以上の Gaussian プリミティブのトレーニングを世界初実現。都市規模シーン（MatrixCity）で PSNR 26.1dB を達成し、従来手法の 100 倍以上のスケールを実現。

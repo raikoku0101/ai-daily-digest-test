@@ -1,6 +1,6 @@
-**1. CHI-Bench: Can AI Agents Automate End-to-End, Long-Horizon, Policy-Rich Healthcare Workflows?**
-**著者**: CHI-Bench Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.16679
+**1. Active Learners as Efficient PRP Rerankers**
+**著者**: Mohajer et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.14236
 
 **まとめ**:
-医療事前承認・保険利用管理・ケアマネジメントの3ドメインにわたる長期ワークフローベンチマーク χ-Bench を構築。87個の MCP ツールと1,290+文書のハンドブックを用いたシミュレーターで30のエージェント設定を評価したところ、最優秀の Claude Code + Opus 4.6 でもタスク解決率は28.0%に留まり、単一セッション実行では3.8%に急落。政策密度・多役割・多者間対話が必要な現実的医療ワークフローの自動化が未達であることを定量的に示した。
+LLM によるペアワイズランキング（PRP）を「ノイズを含む比較からの能動学習」として再定式化し、予算制約下で上位K件を効率的に特定する手法を提案。ランダム化方向オラクルで位置バイアスを零平均ノイズに変換し、Mohajer 法との組み合わせで呼び出し回数を最大 44% 削減しながら同等品質を実現。TREC DL2019/2020 で従来比 9.7 ポイント向上を達成し、RAG・検索パイプラインのコスト削減に直結する実用的成果。

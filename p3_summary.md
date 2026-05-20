@@ -1,6 +1,6 @@
-**3. WavFlow: Audio Generation in Waveform Space**
-**著者**: WavFlow Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.18749
+**3. Fast 4D Mesh Generation by Spatio-Temporal Attention Chains**
+**著者**: Anonymous et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.19786
 
 **まとめ**:
-潜在空間圧縮に依存せず、生波形空間 (raw waveform space) で直接高忠実度音声を生成するフレームワーク WavFlow を提案。波形パッチ化で 2D トークングリッドに変形し振幅リフティングで信号スケールを調整、フローマッチングの直接 x 予測 (x-prediction) で安定最適化を実現。500 万件の動画-テキスト-音声トリプレットで学習し、VGGSound・AudioCaps の両ベンチマークで潜在型手法と同等以上の性能を達成した。
+動画から時間的に一貫した3Dメッシュシーケンスを高速生成する訓練不要アプローチ。「4Dバックボーン内の時間対応は視覚的品質が完成する前から形成される」という発見に基づき、注意行列チェーン（Spatio-Temporal Attention Chain）で対応を直接抽出。推論時間を 120 秒→9 秒（約 13 倍高速化）に短縮しながら ActionBench で最高精度（CD-3D: 0.048）を達成。2D点追跡・カメラ姿勢推定への応用も示す。
