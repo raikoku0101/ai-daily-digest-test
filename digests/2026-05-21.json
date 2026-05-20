@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-21",
+  "content": "# AI Daily Digest — 2026-05-21\n\n## 今日のハイライト\n- **LLM ランキングの効率化 (Active Learners PRP)**: 65 upvotes で本日最注目。能動学習でペアワイズ比較コストを削減しながら高精度ランキングを実現。RAG・検索パイプラインのコスト削減に直結する実用研究。\n- **Claude Code v2.1.145 リリース**: `claude agents --json` でセッション管理のスクリプト化が可能に。プラグインのインストール前内容確認機能も追加。セキュリティ修正（パーミッションバイパス）も含む重要アップデート。\n- **10億規模 3DGS の実現 (TideGS)**: アウトオブコア最適化で単一 GPU 上での10億プリミティブトレーニングを初めて実現。都市規模3D再構成など産業応用への道が開ける。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.145 (2025-05-19)\n**主要機能**\n- `claude agents --json`: 実行中の Claude セッションを JSON 形式で一覧表示。tmux-resurrect、ステータスバー、セッションピッカーなどのスクリプト連携が可能に\n- OTEL スパンに `agent_id` / `parent_agent_id` 属性を追加。分散トレーシングでエージェント階層を可視化できる\n- ステータスライン JSON 入力に GitHub リポジトリ・PR 情報を追加\n- `/plugin` の Discover/Browse 画面でインストール前にコマンド・エージェント・スキル・フック・MCP/LSP サーバーを確認可能\n- スラッシュコマンド・@メンションの候補リストでマウスホバー・クリック対応（フルスクリーンモード）\n\n**バグ修正**: パーミッションプロンプトバイパス・MCP プロンプトスラッシュコマンド・スピナーフリーズ・Windows でのクロスプロジェクト再開・音声プッシュトゥトーク・タスクリストレンダリング等を修正\n\n**ユーザーへの影響**: スクリプトからのセッション管理が大幅に強化。プラグイン導入前の内容確認でトラブル回避が容易に。\n\n---\n\n### v2.1.144 (2025-05-19)\n**主要機能**\n- `claude --bg` やエージェントビューで開始したバックグラウンドセッションに `/resume` 対応\n- バックグラウンドサブエージェント完了通知に経過時間を追加\n- `/model` がカレントセッションのみ変更（`d` キーでデフォルト設定）\n- 「extra usage」を「usage credits」に改称\n- `api.anthropic.com` 未到達時の起動ハング修正（15秒タイムアウト）\n\n**バグ修正**: 文字化けターミナル出力・VS Code レンダリング不具合・macOS Full Disk Access 保護フォルダでのクラッシュ・画像拡張子ミスマッチ等を修正\n\n**ユーザーへの影響**: バックグラウンドセッションの使い勝手が向上。ネットワーク障害時の起動失敗が解消。\n\n---\n\n### v2.1.143 (2025-05-15)\n**主要機能**\n- プラグイン依存関係の強制チェック: 依存関係がある場合 `claude plugin disable` を拒否\n- `/plugin` マーケットプレイスの閲覧ペインに予測コンテキストコストを表示\n- `worktree.bgIsolation: \"none\"` 設定でバックグラウンドセッションの動作をカスタマイズ可能\n- PowerShell ツールで `-ExecutionPolicy Bypass` を使用\n- バックグラウンドセッションが起動後もモデルと effort レベルを維持\n\n**バグ修正**: `.credentials.json` 破損による起動ハング・`/loop` キャンセル・`NO_COLOR` によるUI色消去等を修正\n\n**ユーザーへの影響**: プラグイン管理がより安全に。コスト予測機能でトークン消費を事前に把握可能。\n\n## 注目論文 TOP 10\n\n**1. Active Learners as Efficient PRP Rerankers** | 65 upvotes | https://arxiv.org/abs/2605.14236\n🎯**背景**: LLM によるペアワイズランキングプロンプティング（PRP）はノイズが多く、順序依存性や推移律違反が問題となり、従来のソートアルゴリズムの前提が成立しない\n🔧**手法**: 能動学習（Active Learning）を活用してペアワイズ比較の選択を効率化し、ノイズに頑健なリランキングを実現\n📊**結果**: 比較回数を大幅に削減しながら既存 PRP ベースライン同等以上のランキング精度を達成\n💡**意義**: LLM を審判として使う情報検索・RAG パイプラインのコスト削減に直結する実用的な改善\n⚠️**限界**: 特定ドメインへの汎化性や超大規模コーパスでの検証が今後の課題\n\n---\n\n**2. Harnessing LLM Agents with Skill Programs** | 21 upvotes | https://arxiv.org/abs/2605.17734\n🎯**背景**: LLM エージェントへのスキル付与はテキストガイダンスが主流だが、介入タイミングや方法が曖昧で実行制御が難しい\n🔧**手法**: 過去の経験から「スキルプログラム」として実行可能なコードを生成し、エージェントループに明示的に介入する仕組みを構築\n📊**結果**: 複雑・長期タスクベンチマークで従来のテキストベーススキル手法を大幅に上回る成功率を記録\n💡**意義**: エージェントの再利用可能なスキルを「実行可能コード」として形式化することで、信頼性と再現性が飛躍的に向上\n⚠️**限界**: プログラム生成の品質が基盤 LLM に依存し、コード実行環境のセキュリティ設計が必要\n\n---\n\n**3. Fast 4D Mesh Generation by Spatio-Temporal Attention Chains** | 7 upvotes | https://arxiv.org/abs/2605.19786\n🎯**背景**: 動画から動的3D構造を復元する4Dメッシュ生成は計算コストが高く、長いシーケンスへのスケールが困難\n🔧**手法**: 空間・時間方向の注意機構をチェーン状に組み合わせた学習不要アプローチで4Dメッシュ生成を高速化\n📊**結果**: 既存手法に比べて生成速度を大幅に向上させながら、時間対応品質も改善\n💡**意義**: リアルタイムまたは準リアルタイムでの動的シーン再構成への道を開く実用的なブレークスルー\n⚠️**限界**: 学習不要のため特定シーンタイプへの適応に制限あり、極端な動きへの対応は未検証\n\n---\n\n**4. Overcoming Catastrophic Forgetting in Visual Continual Learning with Reinforcement Fine-Tuning** | 5 upvotes | https://arxiv.org/abs/2605.09640\n🎯**背景**: 継続学習における破滅的忘却は深刻な問題だが、RFT（強化ファインチューニング）が視覚的継続学習での有効性は未検証だった\n🔧**手法**: GRPO などの強化ファインチューニングをクラス増分学習（CIL）・ドメイン増分学習（DIL）に適用し、SFT との比較実験を実施\n📊**結果**: RFT が SFT よりも破滅的忘却に対して本質的に強靭であることを視覚的タスクで実証\n💡**意義**: マルチモーダル・視覚 AI の実世界展開において、RFT が継続学習の有力な選択肢となることを示す\n⚠️**限界**: 計算コストが SFT より高く、報酬設計の難しさが実用展開の障壁\n\n---\n\n**5. TideGS: Scalable Training of Over One Billion 3D Gaussian Splatting Primitives via Out-of-Core Optimization** | 3 upvotes | https://arxiv.org/abs/2605.20150\n🎯**背景**: 3D Gaussian Splatting（3DGS）は10億プリミティブ規模になるとGPUメモリを超過し、単一GPU環境では数千万が上限だった\n🔧**手法**: アウトオブコア最適化でGPUメモリに収まらないGaussianをCPU/ストレージに退避させながらトレーニングを継続\n📊**結果**: 商用単一GPU上で10億以上のGaussianプリミティブのトレーニングを世界で初めて実現\n💡**意義**: 都市規模の3Dシーン再構成や超高精度デジタルツインに向けた根本的なスケーラビリティ問題を解決\n⚠️**限界**: アウトオブコア転送によりトレーニング速度が低下し、大規模SSDストレージが必要\n\n**6. Mid-Training with Self-Generated Data Improves Reinforcement Learning in Language Models** | 2 upvotes | https://arxiv.org/abs/2605.08472\n🎯**背景**: LLM の RL 効果はデータの多様性に依存するが、限られた推論アプローチしか含まないデータだと RL の効果が限定的になる問題があった\n🔧**手法**: RL 前の中間トレーニング段階でモデル自身が生成したデータを使い、推論パスの多様性を拡張してから RL を実施\n📊**結果**: 数学・論理推論ベンチマークで自己生成データを用いた中間トレーニングにより RL の最終性能が向上\n💡**意義**: 高品質な外部データが不要で、モデル自身のデータ生成能力を活かして RL を強化できる自己改善サイクルを提案\n⚠️**限界**: 自己生成データの品質制御が必要で、誤った推論パターンが強化されるリスクがある\n\n---\n\n**7. Stage-adaptive Token Selection for Efficient Omni-modal LLMs** | 2 upvotes | https://arxiv.org/abs/2605.20035\n🎯**背景**: オムニモーダル LLM は動画・音声トークンをウィンドウレベルで交互に配置するが、全レイヤーで処理するとメモリ・計算コストが膨大\n🔧**手法**: LLM の層（ステージ）ごとに重要トークンを動的に選択・削減するステージ適応型トークン選択機構を導入\n📊**結果**: 計算コストを大幅に削減しながら、視聴覚理解タスクで既存手法と同等以上の性能を維持\n💡**意義**: リアルタイム動画・音声処理を必要とするアプリケーションへのオムニモーダル LLM 展開を現実的にする効率化手法\n⚠️**限界**: 選択閾値の調整が必要で、重要なトークンが誤って削減される可能性がある\n\n---\n\n**8. Bug or Feature²: Weight Drift, Activation Sparsity, and Spikes** | 1 upvote | https://arxiv.org/abs/2605.17659\n🎯**背景**: 現代のニューラルアーキテクチャの設計は経験的選択の積み重ねであり、トレーニングダイナミクスのメカニズムは部分的にしか理解されていない\n🔧**手法**: 標準的な損失関数と正バイアス活性化関数の相互作用による「負の重みドリフト」を特定・分析\n📊**結果**: 重みドリフトが活性化スパーシティとスパイクを引き起こすメカニズムを理論的・実験的に解明\n💡**意義**: ニューラルネットワークの隠れた訓練ダイナミクスを明らかにし、将来のアーキテクチャ設計の指針を提供\n⚠️**限界**: 特定の損失関数・活性化関数の組み合わせに限定されており、より広範な検証が必要\n\n---\n\n**9. RT-Splatting: Joint Reflection-Transmission Modeling with Gaussian Splatting** | 1 upvote | https://arxiv.org/abs/2605.18263\n🎯**背景**: 3DGS は半透明な鏡面（窓ガラスなど）の反射と透過を同時に扱えず、ぼやけた反射や過度に不透明な透過表現が問題\n🔧**手法**: 反射（Reflection）と透過（Transmission）を統合的にモデリングする RT-Splatting フレームワークを提案\n📊**結果**: 半透明鏡面シーンで既存 3DGS 手法より明らかに高品質なレンダリングを実現\n💡**意義**: AR/VR や建築可視化など実世界のガラス面を含むシーンの高品質3D再構成に向けた重要な前進\n⚠️**限界**: 計算コストが増加し、反射・透過の分離が曖昧なシーンでの精度低下が懸念される\n\n---\n\n**10. Matérn Noise for Triangulation-Agnostic Flow Matching on Meshes** | 1 upvote | https://arxiv.org/abs/2605.19305\n🎯**背景**: メッシュ上の信号生成モデルは三角形分割に依存するため、異なるメッシュへの汎化が困難という根本的問題がある\n🔧**手法**: Matérn ノイズを活用したフローマッチング（Flow Matching）パラダイムをメッシュベース・三角形分割非依存設定に適応\n📊**結果**: 異なる三角形分割のメッシュに対しても効果的に汎化する信号生成モデルを実現\n💡**意義**: 3Dアセット生成・メッシュ変形・形状補完などの下流タスクで三角形分割の制約を超えた柔軟なモデル適用を可能にする\n⚠️**限界**: Matérn ノイズのハイパーパラメータ選択が難しく、非常に不規則なメッシュへの適用は未検証\n\n",
+  "fetched_at": "2026-05-20T22:13:23.039140+00:00",
+  "papers": [
+    {
+      "title": "Active Learners as Efficient PRP Rerankers",
+      "upvotes": 65,
+      "paper_id": "2605.14236",
+      "abstract": "Pairwise Ranking Prompting (PRP) elicits pairwise preference judgments from an LLM, which are then aggregated into a ranking, usually via classical sorting algorithms. However, judgments are noisy, order-sensitive, and sometimes intransitive, so sorting assumptions do not match the setting."
+    },
+    {
+      "title": "Harnessing LLM Agents with Skill Programs",
+      "upvotes": 21,
+      "paper_id": "2605.17734",
+      "abstract": "Equipping LLM agents with reusable skills derived from past experience has become a popular and successful approach for tackling complex and long-horizon tasks. However, such lessons are often encoded as textual guidance that remains largely advisory, lacking explicit mechanisms for when and how to intervene in the agent loop."
+    },
+    {
+      "title": "Fast 4D Mesh Generation by Spatio-Temporal Attention Chains",
+      "upvotes": 7,
+      "paper_id": "2605.19786",
+      "abstract": "4D mesh generation has recently emerged as a powerful paradigm for recovering dynamic 3D structure from videos, but existing methods remain slow, computationally expensive, and difficult to scale to longer sequences. We introduce a training-free approach that accelerates 4D mesh generation while improving temporal correspondence quality."
+    },
+    {
+      "title": "Overcoming Catastrophic Forgetting in Visual Continual Learning with Reinforcement Fine-Tuning",
+      "upvotes": 5,
+      "paper_id": "2605.09640",
+      "abstract": "Recent studies suggest that Reinforcement Fine-Tuning (RFT) is inherently more resilient to catastrophic forgetting than Supervised Fine-Tuning (SFT). However, whether RFT (e.g., GRPO) can effectively overcome forgetting in challenging visual continual learning settings, such as class-incremental learning (CIL) and domain-incremental learning (DIL), remains an open problem."
+    },
+    {
+      "title": "TideGS: Scalable Training of Over One Billion 3D Gaussian Splatting Primitives via Out-of-Core Optimization",
+      "upvotes": 3,
+      "paper_id": "2605.20150",
+      "abstract": "Training 3D Gaussian Splatting (3DGS) at billion-primitive scale is fundamentally memory-bound: each Gaussian primitive carries a large attribute vector, and the aggregate parameter table quickly exceeds GPU capacity, limiting prior systems to tens of millions of Gaussians on commodity single-GPU hardware."
+    },
+    {
+      "title": "Mid-Training with Self-Generated Data Improves Reinforcement Learning in Language Models",
+      "upvotes": 2,
+      "paper_id": "2605.08472",
+      "abstract": "The effectiveness of Reinforcement Learning (RL) in Large Language Models (LLMs) depends on the nature and diversity of the data used before and during RL. In particular, reasoning problems can often be approached in multiple ways that rely on different forms of reasoning, and exposure to only a limited range of such approaches in the training data may limit the effectiveness of RL."
+    },
+    {
+      "title": "Stage-adaptive Token Selection for Efficient Omni-modal LLMs",
+      "upvotes": 2,
+      "paper_id": "2605.20035",
+      "abstract": "Omni-modal large language models (om-LLMs) achieve unified audio-visual understanding by encoding video and audio into temporally aligned token sequences interleaved at the window level. However, processing these dense non-textual tokens throughout the LLM incurs substantial computational overhead."
+    },
+    {
+      "title": "Bug or Feature^2: Weight Drift, Activation Sparsity, and Spikes",
+      "upvotes": 1,
+      "paper_id": "2605.17659",
+      "abstract": "The design of modern neural architectures has converged through incremental empirical choices, yet the mechanisms governing their training dynamics remain only partially understood. We identify and analyze a negative weight drift induced by the interaction between standard losses and positively biased activation functions."
+    },
+    {
+      "title": "RT-Splatting: Joint Reflection-Transmission Modeling with Gaussian Splatting",
+      "upvotes": 1,
+      "paper_id": "2605.18263",
+      "abstract": "3D Gaussian Splatting (3DGS) enables real-time novel view synthesis with high visual quality. However, existing methods struggle with semi-transparent specular surfaces that exhibit both complex reflections and clear transmission, often producing blurry reflections or overly occluded transmission."
+    },
+    {
+      "title": "Matérn Noise for Triangulation-Agnostic Flow Matching on Meshes",
+      "upvotes": 1,
+      "paper_id": "2605.19305",
+      "abstract": "This paper tackles the task of learning to generate signals over triangle meshes in a triangulation-agnostic manner, meaning the trained model can be applied to different meshes and triangulations effectively."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.145",
+      "published_at": "2025-05-19",
+      "body": "Added `claude agents --json` to list live Claude sessions as JSON for scripting (tmux-resurrect, status bars, session pickers). Added `agent_id` and `parent_agent_id` attributes to `claude_code.tool` OTEL spans. Status line JSON input now includes GitHub repo and PR information. `/plugin` Discover and Browse screens now show plugin's commands, agents, skills, hooks, and MCP/LSP servers before installation. `claude agents` terminal tab title shows awaiting-input count. Fixed permission-prompt bypass, MCP prompt slash commands, spinner freezing, cross-project resume on Windows, voice push-to-talk, task list rendering, stale marketplace banner, PR badge updates, Agent Teams encoding, `/review` deprecated query, plugin validation, skill infinite loop, and Read tool truncation."
+    },
+    {
+      "tag_name": "v2.1.144",
+      "published_at": "2025-05-19",
+      "body": "Added `/resume` support for background sessions started via `claude --bg` or agent view. Added elapsed duration to background subagent completion notifications. `/plugin` browse and discover panes show plugin last update time. `/model` now changes model for current session only; press `d` to set default. Renamed 'extra usage' to 'usage credits'. Fixed startup hanging when api.anthropic.com unreachable (now 15s timeout). Fixed garbled terminal output, progressive corruption, and VS Code rendering glitches. Fixed macOS background sessions crashing under Full Disk Access-protected folders."
+    },
+    {
+      "tag_name": "v2.1.143",
+      "published_at": "2025-05-15",
+      "body": "Added plugin dependency enforcement: `claude plugin disable` refuses when another plugin depends on target. Added projected context cost to `/plugin` marketplace browse pane. Added `worktree.bgIsolation: none` setting for background sessions. PowerShell tool now uses `-ExecutionPolicy Bypass`. Background sessions preserve model and effort level after wake. Fixed corrupt `.credentials.json` hanging startup, right-click paste in `claude agents` on Windows, stop hooks blocking infinitely, `/loop` cancellation, goal evaluator with background shells."
+    }
+  ]
+}
