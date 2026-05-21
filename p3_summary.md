@@ -1,6 +1,6 @@
-**3. Fast 4D Mesh Generation by Spatio-Temporal Attention Chains**
-**著者**: Anonymous et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.19786
+**3. Enhancing Train-Free Infinite-Frame Generation for Consistent Long Videos (MIGA)**
+**著者**: MIGA Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.18233
 
 **まとめ**:
-動画から時間的に一貫した3Dメッシュシーケンスを高速生成する訓練不要アプローチ。「4Dバックボーン内の時間対応は視覚的品質が完成する前から形成される」という発見に基づき、注意行列チェーン（Spatio-Temporal Attention Chain）で対応を直接抽出。推論時間を 120 秒→9 秒（約 13 倍高速化）に短縮しながら ActionBench で最高精度（CD-3D: 0.048）を達成。2D点追跡・カメラ姿勢推定への応用も示す。
+追加学習なしで一貫性のある無限長動画を生成するMIGAフレームワークを提案。学習・推論ギャップを縮小する二段階アライメント機構（TTA）と、高ノイズフレームの自己反省補正＋低ノイズフレームの広範囲ガイダンスによる双対一貫性強化（DCE）を組み合わせ、VBenchでFIFO-Diffusion比で主体一貫性 +4.7%・背景一貫性 +2.0% を達成した。

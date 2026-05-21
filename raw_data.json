@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "Active Learners as Efficient PRP Rerankers", "upvotes": 65, "paper_id": "2605.14236", "abstract": "Pairwise Ranking Prompting (PRP) elicits pairwise preference judgments from an LLM, which are then aggregated into a ranking, usually via classical sorting algorithms. However, judgments are noisy, order-sensitive, and sometimes intransitive, so sorting assumptions do not match the setting."},
-    {"title": "Harnessing LLM Agents with Skill Programs", "upvotes": 21, "paper_id": "2605.17734", "abstract": "Equipping LLM agents with reusable skills derived from past experience has become a popular and successful approach for tackling complex and long-horizon tasks. However, such lessons are often encoded as textual guidance that remains largely advisory, lacking explicit mechanisms for when and how to intervene in the agent loop."},
-    {"title": "Fast 4D Mesh Generation by Spatio-Temporal Attention Chains", "upvotes": 7, "paper_id": "2605.19786", "abstract": "4D mesh generation has recently emerged as a powerful paradigm for recovering dynamic 3D structure from videos, but existing methods remain slow, computationally expensive, and difficult to scale to longer sequences. We introduce a training-free approach that accelerates 4D mesh generation while improving temporal correspondence quality."},
-    {"title": "Overcoming Catastrophic Forgetting in Visual Continual Learning with Reinforcement Fine-Tuning", "upvotes": 5, "paper_id": "2605.09640", "abstract": "Recent studies suggest that Reinforcement Fine-Tuning (RFT) is inherently more resilient to catastrophic forgetting than Supervised Fine-Tuning (SFT). However, whether RFT (e.g., GRPO) can effectively overcome forgetting in challenging visual continual learning settings, such as class-incremental learning (CIL) and domain-incremental learning (DIL), remains an open problem."},
-    {"title": "TideGS: Scalable Training of Over One Billion 3D Gaussian Splatting Primitives via Out-of-Core Optimization", "upvotes": 3, "paper_id": "2605.20150", "abstract": "Training 3D Gaussian Splatting (3DGS) at billion-primitive scale is fundamentally memory-bound: each Gaussian primitive carries a large attribute vector, and the aggregate parameter table quickly exceeds GPU capacity, limiting prior systems to tens of millions of Gaussians on commodity single-GPU hardware."},
-    {"title": "Mid-Training with Self-Generated Data Improves Reinforcement Learning in Language Models", "upvotes": 2, "paper_id": "2605.08472", "abstract": "The effectiveness of Reinforcement Learning (RL) in Large Language Models (LLMs) depends on the nature and diversity of the data used before and during RL. In particular, reasoning problems can often be approached in multiple ways that rely on different forms of reasoning, and exposure to only a limited range of such approaches in the training data may limit the effectiveness of RL."},
-    {"title": "Stage-adaptive Token Selection for Efficient Omni-modal LLMs", "upvotes": 2, "paper_id": "2605.20035", "abstract": "Omni-modal large language models (om-LLMs) achieve unified audio-visual understanding by encoding video and audio into temporally aligned token sequences interleaved at the window level. However, processing these dense non-textual tokens throughout the LLM incurs substantial computational overhead."},
-    {"title": "Bug or Feature^2: Weight Drift, Activation Sparsity, and Spikes", "upvotes": 1, "paper_id": "2605.17659", "abstract": "The design of modern neural architectures has converged through incremental empirical choices, yet the mechanisms governing their training dynamics remain only partially understood. We identify and analyze a negative weight drift induced by the interaction between standard losses and positively biased activation functions."},
-    {"title": "RT-Splatting: Joint Reflection-Transmission Modeling with Gaussian Splatting", "upvotes": 1, "paper_id": "2605.18263", "abstract": "3D Gaussian Splatting (3DGS) enables real-time novel view synthesis with high visual quality. However, existing methods struggle with semi-transparent specular surfaces that exhibit both complex reflections and clear transmission, often producing blurry reflections or overly occluded transmission."},
-    {"title": "Matérn Noise for Triangulation-Agnostic Flow Matching on Meshes", "upvotes": 1, "paper_id": "2605.19305", "abstract": "This paper tackles the task of learning to generate signals over triangle meshes in a triangulation-agnostic manner, meaning the trained model can be applied to different meshes and triangulations effectively."}
+    {
+      "title": "Mega-ASR: Towards In-the-wild^2 Speech Recognition via Scaling up Real-world Acoustic Simulation",
+      "upvotes": 109,
+      "paper_id": "2605.19833",
+      "abstract": "Despite rapid advances in automatic speech recognition (ASR) and large audio-language models, robust recognition in real-world environments remains limited by an \"acoustic robustness bottleneck\": models often lose acoustic grounding and produce omissions or hallucinations under severe, compositional distortions. We propose Mega-ASR, a unified ASR-in-the-wild framework."
+    },
+    {
+      "title": "Video2GUI: Synthesizing Large-Scale Interaction Trajectories for Generalized GUI Agent Pretraining",
+      "upvotes": 86,
+      "paper_id": "2605.14747",
+      "abstract": "Recent advances in multimodal large language models have driven growing interest in GUI agents. We propose Video2GUI, a fully automated framework that extracts grounded GUI interaction trajectories directly from unlabeled Internet videos, constructing WildGUI with 12 million interaction trajectories."
+    },
+    {
+      "title": "Enhancing Train-Free Infinite-Frame Generation for Consistent Long Videos",
+      "upvotes": 80,
+      "paper_id": "2605.18233",
+      "abstract": "We propose MIGA, a novel infinite-frame long video generation method with a two-stage alignment mechanism and dual consistency enhancement mechanism for train-free consistent long video generation."
+    },
+    {
+      "title": "You Only Need Minimal RLVR Training: Extrapolating LLMs via Rank-1 Trajectories",
+      "upvotes": 40,
+      "paper_id": "2605.21468",
+      "abstract": "We demonstrate that RLVR weight trajectories are extremely low-rank and highly predictable. We propose RELEX (REinforcement Learning EXtrapolation), requiring as few as 15% steps of full RLVR training while matching or exceeding performance."
+    },
+    {
+      "title": "A Survey of Large Audio Language Models: Generalization, Trustworthiness, and Outlook",
+      "upvotes": 27,
+      "paper_id": "2605.20266",
+      "abstract": "This survey provides a comprehensive investigation into LALMs, detailing architectural innovations and alignment algorithms, while establishing a taxonomy of trustworthiness covering hallucination, robustness, safety, privacy, fairness, and authentication."
+    },
+    {
+      "title": "Toto 2.0: Time Series Forecasting Enters the Scaling Era",
+      "upvotes": 25,
+      "paper_id": "2605.20119",
+      "abstract": "We show that time series foundation models scale: a single training recipe produces reliable forecast-quality improvements from 4M to 2.5B parameters. Toto 2.0 sets a new state of the art on three forecasting benchmarks."
+    },
+    {
+      "title": "Mix-Quant: Quantized Prefilling, Precise Decoding for Agentic LLMs",
+      "upvotes": 22,
+      "paper_id": "2605.20315",
+      "abstract": "We propose Mix-Quant, a phase-aware quantization framework applying NVFP4 to prefilling while preserving BF16 for decoding, achieving up to 3x speedup during prefilling while largely preserving task performance."
+    },
+    {
+      "title": "CutVerse: A Compositional GUI Agents Benchmark for Media Post-Production Editing",
+      "upvotes": 19,
+      "paper_id": "2605.19484",
+      "abstract": "We introduce CutVerse, a benchmark evaluating GUI agents in media post-production, covering 186 complex tasks across 7 professional applications. Current agents achieve only 36.0% task success rate."
+    },
+    {
+      "title": "LLMEval-Logic: A Solver-Verified Chinese Benchmark for Logical Reasoning of LLMs with Adversarial Hardening",
+      "upvotes": 16,
+      "paper_id": "2605.19597",
+      "abstract": "We present LLMEval-Logic, a Chinese logical reasoning benchmark with Z3-verified answers. The best frontier LLM reaches only 37.5% Hard Item Accuracy, revealing substantial gaps in current models."
+    },
+    {
+      "title": "SaaSBench: Exploring the Boundaries of Coding Agents in Long-Horizon Enterprise SaaS Engineering",
+      "upvotes": 3,
+      "paper_id": "2605.17526",
+      "abstract": "SaaSBench is the first benchmark for AI agents in enterprise SaaS engineering, spanning 30 tasks across 6 domains. Over 95% of task failures occur before agents reach deep business logic."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.145", "published_at": "2025-05-19", "body": "Added `claude agents --json` to list live Claude sessions as JSON for scripting (tmux-resurrect, status bars, session pickers). Added `agent_id` and `parent_agent_id` attributes to `claude_code.tool` OTEL spans. Status line JSON input now includes GitHub repo and PR information. `/plugin` Discover and Browse screens now show plugin's commands, agents, skills, hooks, and MCP/LSP servers before installation. `claude agents` terminal tab title shows awaiting-input count. Fixed permission-prompt bypass, MCP prompt slash commands, spinner freezing, cross-project resume on Windows, voice push-to-talk, task list rendering, stale marketplace banner, PR badge updates, Agent Teams encoding, `/review` deprecated query, plugin validation, skill infinite loop, and Read tool truncation."},
-    {"tag_name": "v2.1.144", "published_at": "2025-05-19", "body": "Added `/resume` support for background sessions started via `claude --bg` or agent view. Added elapsed duration to background subagent completion notifications. `/plugin` browse and discover panes show plugin last update time. `/model` now changes model for current session only; press `d` to set default. Renamed 'extra usage' to 'usage credits'. Fixed startup hanging when api.anthropic.com unreachable (now 15s timeout). Fixed garbled terminal output, progressive corruption, and VS Code rendering glitches. Fixed macOS background sessions crashing under Full Disk Access-protected folders."},
-    {"tag_name": "v2.1.143", "published_at": "2025-05-15", "body": "Added plugin dependency enforcement: `claude plugin disable` refuses when another plugin depends on target. Added projected context cost to `/plugin` marketplace browse pane. Added `worktree.bgIsolation: none` setting for background sessions. PowerShell tool now uses `-ExecutionPolicy Bypass`. Background sessions preserve model and effort level after wake. Fixed corrupt `.credentials.json` hanging startup, right-click paste in `claude agents` on Windows, stop hooks blocking infinitely, `/loop` cancellation, goal evaluator with background shells."}
+    {
+      "tag_name": "v2.1.147",
+      "published_at": "2025-05-21",
+      "body": "Added the `Workflow` tool for deterministic multi-agent orchestration (CLAUDE_CODE_WORKFLOWS=1). Pinned background sessions stay alive when idle. Renamed `/simplify` to `/code-review` with effort levels. Hardened REPL and Workflow tool sandboxes against prototype-pollution. Improved auto-updater with retry logic. Improved diff rendering performance for large file edits."
+    },
+    {
+      "tag_name": "v2.1.146",
+      "published_at": "2025-05-21",
+      "body": "Renamed `/simplify` to `/code-review` with optional effort level. Auto mode no longer suppresses AskUserQuestion. Fixed Windows PowerShell tool failure. Fixed MCP paginating servers dropping items. Fixed full-screen strobing on Windows Terminal. Fixed auto-updater status line version display."
+    },
+    {
+      "tag_name": "v2.1.145",
+      "published_at": "2025-05-19",
+      "body": "Added `claude agents --json` for scripting. Added agent_id/parent_agent_id to OTEL spans. Status line JSON now includes GitHub repo/PR info. /plugin screens show plugin details before installation. claude agents tab title shows awaiting-input count. Fixed permission-prompt bypass for bare variable assignments."
+    }
   ]
 }

@@ -1,6 +1,6 @@
-**4. Overcoming Catastrophic Forgetting in Visual Continual Learning with Reinforcement Fine-Tuning**
-**著者**: Anonymous et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.09640
+**4. You Only Need Minimal RLVR Training: Extrapolating LLMs via Rank-1 Trajectories (RELEX)**
+**著者**: RELEX Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.21468
 
 **まとめ**:
-RFT（強化ファインチューニング）が視覚的継続学習における破滅的忘却（Catastrophic Forgetting）を軽減できるか初の体系的検証。「軌跡レベルのドリフト無視性（Trajectory-level Drift Blindness）」という新現象を発見し、保持報酬（Retention Reward）とタスク間利得正規化（CTAN）を組み合わせた RaPO を提案。ImageNet-R で GRPO 比精度 +11.25%・忘却 -15.33% を達成。クラス増分・ドメイン増分の 5 設定で一貫した有効性を確認。
+RLVR（検証可能報酬付き強化学習）のパラメータ更新軌跡が極めて低ランク（rank-1 近似で主要性能を説明）かつ線形予測可能であることを発見。わずか15〜20%の学習ステップから線形外挿で将来チェックポイントを予測する RELEX を提案し、80% の計算コスト削減でフル RLVR と同等以上の性能を達成。SVD 射影が確率的最適化ノイズを除去する「スペクトルデノイザー」として機能することも示した。

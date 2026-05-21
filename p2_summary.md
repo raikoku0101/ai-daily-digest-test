@@ -1,6 +1,6 @@
-**2. Harnessing LLM Agents with Skill Programs**
-**著者**: HASP Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.17734
+**2. Video2GUI: Synthesizing Large-Scale Interaction Trajectories for Generalized GUI Agent Pretraining**
+**著者**: Video2GUI Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.14747
 
 **まとめ**:
-LLM エージェントの経験から学習したスキルを「実行可能プログラム関数（Program Functions, PFs）」として表現する HASP フレームワークを提案。テキストガイダンスの「助言的スキル」から「状態-行動介入関数」として介入タイミングと方法を明示的に制御できるスキルへ進化させる。ウェブ検索・数学・コーディング 3 領域で検証し、ポストトレーニング + 閉ループ進化で従来比大幅な精度向上を実現。エージェント AI の信頼性向上に向けた重要なアーキテクチャ提案。
+GUI エージェントの汎化を制約していた大規模・多様なトレーニングデータ不足を解消するため、ラベルなしインターネット動画から GUI インタラクション軌跡を自動抽出する Video2GUI フレームワークを提案。5億件のビデオメタデータに適用し、1500以上のアプリ・サイトをカバーする1200万軌跡の WildGUI データセットを構築。Qwen2.5-VL と Mimo-VL の事前学習に活用することで複数ベンチマークで5〜20%の一貫した改善を達成した。

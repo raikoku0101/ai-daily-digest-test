@@ -1,6 +1,6 @@
-**1. Active Learners as Efficient PRP Rerankers**
-**著者**: Mohajer et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.14236
+**1. Mega-ASR: Towards In-the-wild² Speech Recognition via Scaling up Real-world Acoustic Simulation**
+**著者**: Mega-ASR Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.19833
 
 **まとめ**:
-LLM によるペアワイズランキング（PRP）を「ノイズを含む比較からの能動学習」として再定式化し、予算制約下で上位K件を効率的に特定する手法を提案。ランダム化方向オラクルで位置バイアスを零平均ノイズに変換し、Mohajer 法との組み合わせで呼び出し回数を最大 44% 削減しながら同等品質を実現。TREC DL2019/2020 で従来比 9.7 ポイント向上を達成し、RAG・検索パイプラインのコスト削減に直結する実用的成果。
+実世界の複合的音響条件（雑音・残響・遮蔽などの組み合わせ）でASRモデルが幻覚・省略を起こす「音響ロバスト性ボトルネック」を解決するため、Mega-ASRフレームワークを提案。7種の音響現象×54複合シナリオのデータセット（Voices-in-the-Wild-2M）と、音響→意味的段階的最適化（A2S-SFT + DG-WGPO）の組み合わせにより、強力なベースライン比で30%超の相対WER削減を達成した。
