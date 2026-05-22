@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-19",
+  "content": "# AI Daily Digest — 2026-05-19\n\n## 今日のハイライト\n- **HölderPO が GRPO の訓練崩壊問題を解決**: Hölder 平均でトークン集約を統一し、LLM 強化学習の安定性と性能を両立。RLHF/RLAIF の実用化を加速する重要な基盤研究。\n- **Claude Code v2.1.143: プラグイン依存管理とコスト予測が強化**: プラグインの安全な有効化・無効化と、事前のトークンコスト見積もり表示により運用品質が向上。v2.1.142 で Fast モードも Opus 4.7 へアップグレード。\n- **MetaAgent-X が端末間 RL でマルチエージェント設計の天井を突破**: 設計エージェントと実行エージェントを同時最適化する初のフレームワーク。自律的 AI システムのスケーリングに向けた新しい研究方向を示す。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.143 (2025-05-15)\n**主要機能**\n- **プラグイン依存関係の強制管理**: `claude plugin disable` が依存プラグインの存在時に拒否するようになり、無効化チェーンのヒントを表示。`claude plugin enable` は推移的依存を自動で有効化。\n- **コンテキストコスト予測表示**: `/plugin` マーケットプレイスのブラウズペインに、ターン毎・呼び出し毎のトークン推定コストを追加。\n- **`worktree.bgIsolation: \"none\"` 設定**: ワークツリーが実用的でないリポジトリで、バックグラウンドセッションが `EnterWorktree` なしに作業コピーを直接編集できる設定を追加。\n\n**バグ修正・改善**\n- PowerShell ツールが `-ExecutionPolicy Bypass` を渡すよう変更（`CLAUDE_CODE_POWERSHELL_RESPECT_EXECUTION_POLICY=1` でオプトアウト可能）。\n- バックグラウンドセッションがアイドルから復帰後もモデルと effort レベルを保持するよう修正。\n- Shift+Tab でアタッチドエージェントセッションのオートモードをサイクルに含めるよう追加。\n\n**ユーザーへの影響**: プラグイン管理がより安全・確実になり、誤った無効化によるシステム破損を防止。コスト見積もりが事前に確認できるため、予算管理が改善。\n\n---\n\n### v2.1.142 (2025-05-14)\n**主要機能**\n- **`claude agents` フラグ拡張**: `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, `--dangerously-skip-permissions` が追加され、バックグラウンドセッションの詳細設定が可能に。\n- **Fast モードが Opus 4.7 をデフォルト使用**: 以前の Opus 4.6 から Opus 4.7 へ更新（`CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1` でピン留め可能）。\n- **ルートレベル `SKILL.md` のサポート**: `skills/` サブディレクトリなしでもプラグインをスキルとして認識。\n\n**ユーザーへの影響**: バックグラウンドエージェントの柔軟な設定が可能になり、CI/CD パイプラインやチームワークフローへの組み込みが容易に。Fast モードのパフォーマンスが向上。\n\n---\n\n### v2.1.141 (2025-05-13)\n**主要機能**\n- **`terminalSequence` フィールド追加**: フック JSON 出力でデスクトップ通知・ウィンドウタイトル・ベルを制御端末なしで発行可能に。\n- **`CLAUDE_CODE_PLUGIN_PREFER_HTTPS`**: GitHub SSH キーのない環境向けに、プラグインソースを HTTPS でクローンするオプションを追加。\n- **`ANTHROPIC_WORKSPACE_ID` 環境変数**: ワークロードアイデンティティフェデレーション向けに、特定ワークスペースへのトークンスコープを設定可能に。\n- **`claude agents --cwd <path>`**: ディレクトリを絞ってセッションリストを表示する機能を追加。\n\n**ユーザーへの影響**: SSH 環境なしでのプラグイン導入が簡単に。エンタープライズ環境でのセキュリティ管理が強化。\n\n## 注目論文 TOP 10\n\n**1. Hölder Policy Optimisation** | 👍 16 | https://arxiv.org/abs/2605.12058\n🎯**背景**: LLM の強化学習で広く使われる GRPO はトークンレベルの確率集約に固定メカニズムを使うが、集約方法によって訓練崩壊と性能不足のトレードオフが生じる問題がある。\n🔧**手法**: Hölder 平均を用いてトークンレベル確率の集約を統一する HölderPO フレームワークを提案。算術平均・幾何平均・調和平均を一般化したパラメータ p で集約戦略を柔軟に制御する。\n📊**結果**: 様々な集約戦略の統一評価において、訓練崩壊を防ぎつつ既存 GRPO 変種より安定した性能向上を達成。\n💡**意義**: LLM の強化学習における集約問題を理論的に整理し、実用的な解決策を提供。RLHF や RLAIF の安定性改善に広く応用可能。\n⚠️**限界**: Hölder パラメータ p の最適値はタスク依存であり、事前調整が必要。大規模モデルでの計算コスト評価が不十分。\n\n---\n\n**2. CM-EVS: Sparse Panoramic RGB-D-Pose Data for Complete Scene Coverage** | 👍 8 | https://arxiv.org/abs/2605.15597\n🎯**背景**: 3D 視覚学習では訓練データとしてメトリック 3D アセットからのサンプルが必要だが、既存の手法は近接ビューの重複・注釈の不均質性・深度不整合などの問題を抱える。\n🔧**手法**: 3D アセットをスパースな全周パノラマ RGB-D-Pose データに変換するパイプラインを提案。低冗長性と完全なシーンカバレッジを両立しながら、監査可能な来歴を保持する。\n📊**結果**: 既存の密なトラジェクトリ手法と比較して重複率を大幅削減しつつ、シーンカバレッジを維持することを定量的に示す。\n💡**意義**: 3D 視覚学習のデータ効率を改善し、NeRF・3D Gaussian Splatting・ロボット知覚など幅広い応用に活用可能な汎用インターフェースを提供。\n⚠️**限界**: パノラマ形式に適さない非常に細長い空間や高度な動的シーンへの適用は課題。アセットの品質依存性が高い。\n\n---\n\n**3. Steered LLM Activations are Non-Surjective** | 👍 7 | https://arxiv.org/abs/2604.09839\n🎯**背景**: Activation Steering はモデル内部の活性化を直接操作して振る舞いを誘導する手法だが、誘導後の活性化が通常のテキストプロンプトで再現可能かどうかは未検証だった。\n🔧**手法**: Activation Steering の全射性問題（steered activation が自然な forward pass の像に含まれるか）として定式化し、数学的・実験的分析を実施。特定の誘導ベクトルに対して前像が存在しない領域を同定する。\n📊**結果**: 誘導された活性化の多くが、テキストプロンプトによる自然な活性化空間の外に存在することを示す。これは解釈可能性・安全性研究の基盤的仮定に疑問を呈する。\n💡**意義**: Activation Steering が生成する振る舞いがプロンプトで再現不可能であることを明らかにし、解釈可能性ツールや安全性テスト（脱獄評価など）の方法論的見直しを促す。\n⚠️**限界**: 非全射性の程度がモデルアーキテクチャや誘導ベクトルに強く依存。実用的影響の定量化には追加研究が必要。\n\n---\n\n**4. MetaAgent-X: Breaking the Ceiling of Automatic Multi-Agent Systems via End-to-End Reinforcement Learning** | 👍 5 | https://arxiv.org/abs/2605.14212\n🎯**背景**: 自動マルチエージェントシステム（MAS）の既存手法は、設計者のみを訓練しアクターを固定する「frozen-executor ceiling」問題により、真の端末間最適化が達成できていなかった。\n🔧**手法**: MetaAgent-X は設計エージェント（ワークフロー構築）と実行エージェント（タスク遂行）を同時に強化学習で最適化する端末間フレームワーク。設計と実行の共同訓練により創発的な協調を促す。\n📊**結果**: 複数のマルチエージェントベンチマークで既存の自動 MAS 手法を上回る性能。特に複雑なマルチステップタスクでの大幅な改善を示す。\n💡**意義**: エージェントが自らシステムを設計・実行する完全自律型 AI の実現に向けた重要な一歩。AIエージェントのスケーリング則に新しい視点を提供。\n⚠️**限界**: 訓練の安定性確保が困難でハイパーパラメータ感度が高い。実世界の開放環境への汎化性能は未検証。\n\n---\n\n**5. Efficient Image Synthesis with Sphere Latent Encoder** | 👍 5 | https://arxiv.org/abs/2605.15592\n🎯**背景**: Sphere Encoder は少ステップで高品質画像を生成できるが、推論中のピクセル空間と潜在空間の繰り返し遷移、再構成と生成の目的関数競合が計算効率の低下と最適化困難を招いていた。\n🔧**手法**: 潜在空間のみで完結する Sphere Latent Encoder を設計し、再構成と生成の分離最適化を実現。球面幾何構造の活用で潜在空間の均一性を保ちながら意味的整合性を向上させる。\n📊**結果**: 従来の Sphere Encoder と比較して同等以上の画像品質を維持しつつ、推論速度を大幅に向上。FID スコアでも競合手法と比較した優位性を示す。\n💡**意義**: 高品質・高速な画像生成の両立により、リアルタイム画像編集や動画生成への応用が現実的に。効率的な潜在拡散モデルの新しい設計指針を提示。\n⚠️**限界**: 球面潜在空間の表現力が特定のドメイン（医療画像など）で制限される可能性。テキスト条件付き生成での詳細な評価が不足。\n\n---\n\n**6. Sparse Autoencoders enable Robust and Interpretable Fine-tuning of CLIP models** | 👍 5 | https://arxiv.org/abs/2605.15961\n🎯**背景**: CLIP などの大規模視覚言語モデルのファインチューニングは下流タスクの性能を上げる一方、分布シフトへの頑健性を損なうトレードオフが存在する。\n🔧**手法**: SAE-FT は Sparse Autoencoder（SAE）を用いて、事前訓練モデルの視覚表現内の意味的特徴を同定し、ファインチューニング中の特徴の追加・削除を正則化することで頑健性を維持する。\n📊**結果**: ImageNet 精度を保ちながら OOD（分布外）データセットへの頑健性を大幅に改善。既存の頑健なファインチューニング手法より高いテキスト誘導なしの効率性を達成。\n💡**意義**: テキストガイダンスなしの視覚のみの手法で CLIP ファインチューニングの頑健性問題を解決。SAE の解釈可能性を実用的なモデル改善に活用した先駆的アプローチ。\n⚠️**限界**: SAE の訓練コスト自体が非線形にスケール。大規模モデルや多様なアーキテクチャへの汎化は今後の課題。\n\n---\n\n**7. MobileEgo Anywhere: Open Infrastructure for long horizon egocentric data on commodity hardware** | 👍 5 | https://arxiv.org/abs/2605.05945\n🎯**背景**: VLA（Vision Language Action）モデルの発展に伴い大規模自己中心的データセットの需要が高まるが、既存データセットは数分程度の短いエピソードが多く、長期時間依存のロボットタスクに不十分。\n🔧**手法**: 市販のモバイルハードウェアを用いて1時間以上の自己中心的軌跡を収集できるオープンインフラフレームワーク MobileEgo Anywhere を提案。汎用収集パイプラインでデータ品質と多様性を確保。\n📊**結果**: 複数の日常生活シナリオで時間以上の連続軌跡データを収集し、既存 VLA モデルの長期タスク性能を改善することを実証。\n💡**意義**: 低コストのモバイル機器で大規模長時間データが収集可能になり、ロボット学習の民主化に貢献。オープンインフラとして研究コミュニティへの波及効果が大きい。\n⚠️**限界**: 市販ハードウェアの精度限界によりセンサーノイズが混入しやすい。室内環境に特化しており、屋外・工業環境での検証は今後の課題。\n\n---\n\n**8. Learning POMDP World Models from Observations with Language-Model Priors** | 👍 3 | https://arxiv.org/abs/2605.13740\n🎯**背景**: POMDP（部分観測マルコフ決定過程）による世界モデル学習は観測・行動軌跡のみから困難であり、通常多大な環境インタラクションを必要とする。\n🔧**手法**: Pinductor（POMDP-inductor）を提案。LLM が少数の観測・行動軌跡から候補 POMDP モデルを生成し、信念ベースの尤度スコアで反復的に改良。LLM の事前知識で環境探索コストを削減。\n📊**結果**: ゲーム・ナビゲーション・ロボット操作タスクで、LLM 事前知識なしの手法より少ないインタラクションで高品質な世界モデルを学習。\n💡**意義**: LLM の知識を構造化された POMDP 推論に活用する新しいパラダイムを示す。サンプル効率の向上はデータ収集コストの高いロボット学習や医療応用で特に価値がある。\n⚠️**限界**: LLM の誤った事前知識が推定を歪めるリスク。LLM が知識を持たない新規環境での汎化性能は不明。\n\n---\n\n**9. ChangeFlow -- Latent Rectified Flow for Change Detection in Remote Sensing** | 👍 2 | https://arxiv.org/abs/2605.15375\n🎯**背景**: リモートセンシングの変化検出は同一地域の2時点画像間の変化を特定するタスクだが、既存の識別分類手法は一点予測のみで変化領域の曖昧性や文脈依存性を表現できない。\n🔧**手法**: ChangeFlow は潜在整流フロー（Latent Rectified Flow）を用いた生成的変化検出フレームワーク。変化マスクの分布をモデル化することで複数の尤もらしいマスクをサンプリングし、グローバルな一貫性を確保。\n📊**結果**: LEVIR-CD、S2Looking などの標準ベンチマークで既存の識別的手法と同等以上の F1 スコアを達成。特にノイズの多いラベルや曖昧な変化領域で優位性を示す。\n💡**意義**: 生成的アプローチにより変化検出の不確実性を定量化できるようになり、災害監視・都市計画・農業管理での意思決定支援に活用可能。\n⚠️**限界**: 生成モデルの推論速度は識別モデルより遅い。大規模衛星データへのスケーラビリティは検討課題。\n\n---\n\n**10. Raster2Seq: Polygon Sequence Generation for Floorplan Reconstruction** | 👍 1 | https://arxiv.org/abs/2602.09016\n🎯**背景**: ラスター形式の間取り図画像からベクターグラフィクス表現を再構成するタスクは CAD ワークフロー・自動理解に重要だが、多くの部屋と角を持つ複雑な間取りの構造・意味を忠実に再現することが困難。\n🔧**手法**: Raster2Seq は間取り再構成をシーケンス to シーケンスタスクとして定式化。部屋・窓・ドアなどの間取り要素をラベル付きポリゴンシーケンスとして表現し、幾何と意味を同時に符号化。\n📊**結果**: 既存の間取り再構成ベンチマークで、多部屋・複雑形状の建物においても高精度なポリゴン再構成を達成。シーケンス形式により可変数の角点を自然に扱える。\n💡**意義**: 建築 CAD の自動化・デジタル化に直結する実用的技術。不動産・建設・スマートホーム領域での大規模間取りデータ処理を加速。\n⚠️**限界**: シーケンス生成の誤差が蓄積しやすく、非常に複雑な構造では精度が低下。リアルタイム処理には推論速度の改善が必要。\n\n",
+  "fetched_at": "2026-05-18T22:07:18.163588+00:00",
+  "papers": [
+    {
+      "title": "Hölder Policy Optimisation",
+      "upvotes": 16,
+      "id": "2605.12058",
+      "abstract": "Group Relative Policy Optimisation (GRPO) enhances large language models by estimating advantages across a group of sampled trajectories. However, mapping these trajectory-level advantages to policy updates requires aggreg"
+    },
+    {
+      "title": "CM-EVS: Sparse Panoramic RGB-D-Pose Data for Complete Scene Coverage",
+      "upvotes": 8,
+      "id": "2605.15597",
+      "abstract": "Modern 3D visual learning relies on observations sampled from metric 3D assets, yet existing scans, meshes, point clouds, simulations, and reconstructions do not directly provide a sparse, comparable, and geometry-cons"
+    },
+    {
+      "title": "Steered LLM Activations are Non-Surjective",
+      "upvotes": 7,
+      "id": "2604.09839",
+      "abstract": "Activation steering is a popular white-box control technique that modifies model activations to elicit an abstract change in its behavior. It has also become a standard tool in interpretability (e.g., probing truthfuln"
+    },
+    {
+      "title": "MetaAgent-X: Breaking the Ceiling of Automatic Multi-Agent Systems via End-to-End Reinforcement Learning",
+      "upvotes": 5,
+      "id": "2605.14212",
+      "abstract": "Automatic multi-agent systems aim to instantiate agent workflows without relying on manually designed or fixed orchestration. However, existing automatic MAS approaches remain only partially adaptive."
+    },
+    {
+      "title": "Efficient Image Synthesis with Sphere Latent Encoder",
+      "upvotes": 5,
+      "id": "2605.15592",
+      "abstract": "Few-step image generation has seen rapid progress, with consistency and meanflow-based methods significantly reducing the number of sampling steps. Despite their low inference cost, these approaches often suffer from tra"
+    },
+    {
+      "title": "Sparse Autoencoders enable Robust and Interpretable Fine-tuning of CLIP models",
+      "upvotes": 5,
+      "id": "2605.15961",
+      "abstract": "Large-scale pre-trained vision-language models like CLIP demonstrate remarkable zero-shot performance across diverse tasks. However, fine-tuning these models to improve downstream performance often degrades robustness ag"
+    },
+    {
+      "title": "MobileEgo Anywhere: Open Infrastructure for long horizon egocentric data on commodity hardware",
+      "upvotes": 5,
+      "id": "2605.05945",
+      "abstract": "The recent advancement of Vision Language Action (VLA) models has driven a critical demand for large scale egocentric datasets. However, existing datasets are often limited by short episode durations."
+    },
+    {
+      "title": "Learning POMDP World Models from Observations with Language-Model Priors",
+      "upvotes": 3,
+      "id": "2605.13740",
+      "abstract": "Whether navigating a building, operating a robot, or playing a game, an agent that acts effectively in an environment must first learn an internal model of how that environment works."
+    },
+    {
+      "title": "ChangeFlow -- Latent Rectified Flow for Change Detection in Remote Sensing",
+      "upvotes": 2,
+      "id": "2605.15375",
+      "abstract": "Remote sensing change detection (RSCD) aims to localise changes between two images of the same geographic region. In practice, change masks often follow region-level annotation conventions."
+    },
+    {
+      "title": "Raster2Seq: Polygon Sequence Generation for Floorplan Reconstruction",
+      "upvotes": 1,
+      "id": "2602.09016",
+      "abstract": "Reconstructing a structured vector-graphics representation from a rasterized floorplan image is typically an important prerequisite for computational tasks involving floorplans such as automated understanding."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.143",
+      "published_at": "2025-05-15",
+      "body": "Added plugin dependency enforcement: `claude plugin disable` now refuses when another enabled plugin depends on the target (with a copy-pasteable disable-chain hint), and `claude plugin enable` force-enables transitive dependencies. Added projected context cost (per-turn and per-invocation token estimates) to the `/plugin` marketplace browse pane. Added `worktree.bgIsolation: \"none\"` setting to let background sessions edit the working copy directly without `EnterWorktree`, for repos where worktrees are impractical. PowerShell tool now passes `-ExecutionPolicy Bypass`. Background sessions now preserve the model and effort level you set after waking from idle."
+    },
+    {
+      "tag_name": "v2.1.142",
+      "published_at": "2025-05-14",
+      "body": "Added new `claude agents` flags: `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, and `--dangerously-skip-permissions` to configure dispatched background sessions. Fast mode now uses Opus 4.7 by default (previously Opus 4.6). Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfaced as a skill. The `/plugin` details pane and `claude plugin details` now show LSP servers a plugin provides."
+    },
+    {
+      "tag_name": "v2.1.141",
+      "published_at": "2025-05-13",
+      "body": "Added `terminalSequence` field to hook JSON output so hooks can emit desktop notifications, window titles, and bells without a controlling terminal. Added `CLAUDE_CODE_PLUGIN_PREFER_HTTPS` to clone GitHub plugin sources over HTTPS instead of SSH. Added `ANTHROPIC_WORKSPACE_ID` environment variable for workload identity federation. Added `claude agents --cwd <path>` to scope the session list to a directory."
+    }
+  ]
+}

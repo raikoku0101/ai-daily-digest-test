@@ -1,0 +1,42 @@
+{
+  "week": "2026-w21",
+  "content": "# 📅 Claude Code 週刊アップデート — Week 20 · May 11–15, 2026\n\n> エージェントビューで全ての Claude Code セッションを一画面で管理し、条件が満たされるまでゴールに向けて Claude を動かし続け、Opus 4.7 でのファストモードをデフォルトで実行します。\n\n## 🚀 主要機能 (3 件)\n\n### Agent view `research preview`\n`claude agents` で全ての Claude Code セッションを一画面で確認できます：実行中のもの、入力待ちのもの、完了したもの。バグ修正、プルリクエストのレビュー、フレーキーテストの調査を 3 行として派遣し、別ウィンドウで作業を続け、行が必要なときだけ介入できます。任意の行にアタッチして会話全体に入り、`←` を押してリストに戻れます。バックグラウンドセッションはターミナルがアタッチされていなくても動き続けます。\n🔗 https://code.claude.com/en/agent-view\n\n### /goal `v2.1.139`\n完了条件を設定すると、Claude は各ステップをプロンプトなしに複数ターンにわたって目標に向けて動き続けます。各ターン後、高速モデルが条件を満たしているかチェックし、満たされていなければコントロールを返さずに次のターンを開始します。全コールサイトがコンパイルされてテストがパスするまでモジュールを移行するなど、検証可能な終了状態を持つ大規模な作業に便利です。条件が満たされるとゴールはクリアされ、インタラクティブ、`-p`、リモートコントロールで動作します。\n🔗 https://code.claude.com/en/goal\n\n### Fast mode on Opus 4.7 `research preview`\n`/fast` がデフォルトで Opus 4.6 の代わりに Opus 4.7 で実行されるようになりました。ファストモードは高速 Opus 設定で、同じモデル品質でトークンあたりコストが高くなる代わりに約 2.5 倍の速度で動作し、高速イテレーションとライブデバッグに便利です。価格は Opus 4.6 ファストモードと同じく MTok あたり $30/$150 のまま変更ありません。ファストモードを Opus 4.6 に固定するには `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1` を設定してください。\n🔗 https://code.claude.com/en/fast-mode#use-fast-mode-on-opus-4-7\n\n## ✨ その他のアップデート\n\n- `claude agents` がバックグラウンドセッションを設定するディスパッチフラグ（`--add-dir`、`--settings`、`--mcp-config`、`--plugin-dir`、`--permission-mode`、`--model`、`--effort`、`--dangerously-skip-permissions`）を取得し、`claude agents --cwd <path>` でセッションリストをディレクトリにスコープできるようになりました\n- 新しいフック `args: string[]` exec フォームがシェルを使わずにコマンドを直接実行するため、パスのプレースホルダーにクォートが不要になりました\n- `PostToolUse` フックの新しい `continueOnBlock` 設定オプションにより、フックの拒否理由を Claude に返してターンを終了せずに継続します\n- フック JSON 出力の新しい `terminalSequence` フィールドにより、フックが制御端末なしでデスクトップ通知、ウィンドウタイトル、ベルを送信できるようになりました\n- リワインドメニューに「ここまでを要約」が追加され、直近のターンを保持しながら以前のコンテキストを圧縮できるようになりました\n- `ANTHROPIC_API_KEY`、`apiKeyHelper`、または `ANTHROPIC_AUTH_TOKEN` が設定されている場合、Claude.ai ログインと併用していても、リモートコントロール、`/schedule`、Claude.ai MCP コネクター、通知設定が無効になりました。これらの機能を使用するには API キーを削除してください\n- MCP stdio サーバーが環境変数 `CLAUDE_PROJECT_DIR` をフックと同様に受け取るようになり、プラグイン設定のコマンドで `${CLAUDE_PROJECT_DIR}` を参照できるようになりました\n- `claude plugin details <name>` でプラグインのコンポーネントインベントリとセッションあたりの予想トークンコストが表示され、`/plugin` 詳細ペインにプラグインが提供する LSP サーバーも表示されるようになりました\n- ルートレベルの `SKILL.md` があり `skills/` サブディレクトリがないプラグインがスキルとして表示されるようになりました\n- `/feedback` に過去 24 時間または 7 日間の最近のセッションを含められるようになり、現在のセッションをまたぐ問題に対応できるようになりました\n- Agent ツールの `subagent_type` が大文字小文字・区切り文字を無視してマッチするようになり、`\"Code Reviewer\"` が `code-reviewer` に解決されるようになりました\n\n📄 原文: https://code.claude.com/docs/en/whats-new/2026-w20\n",
+  "fetched_at": "2026-05-21T23:34:02.700562+00:00",
+  "raw": {
+    "title": "Week 20 · May 11–15, 2026",
+    "subtitle": "Manage every Claude Code session from one screen with agent view, keep Claude working toward a goal until a condition holds, and run fast mode on Opus 4.7 by default.",
+    "features": [
+      {
+        "title": "Agent view",
+        "pill": "research preview",
+        "lede": "claude agents opens one screen for every Claude Code session: what's running, what's blocked on your input, and what's done. Dispatch a bug fix, a pull request review, and a flaky-test investigation as three rows, keep working in another window, and step in only when a row needs you. Attach to any row to drop into its full conversation, then press ← to return to the list. Each background session keeps running without a terminal attached.",
+        "link": "/en/agent-view"
+      },
+      {
+        "title": "/goal",
+        "pill": "v2.1.139",
+        "lede": "Set a completion condition and Claude keeps working toward it across turns without you prompting each step. After every turn, a fast model checks whether the condition holds; if not, Claude starts another turn instead of handing control back. Useful for substantial work with a verifiable end state, like migrating a module until every call site compiles and tests pass. The goal clears once the condition is met, and works in interactive, -p, and Remote Control.",
+        "link": "/en/goal"
+      },
+      {
+        "title": "Fast mode on Opus 4.7",
+        "pill": "research preview",
+        "lede": "/fast now runs on Opus 4.7 by default instead of Opus 4.6. Fast mode is a high-speed Opus configuration: the same model quality at about 2.5x the speed for a higher per-token cost, useful for rapid iteration and live debugging. Pricing is unchanged at $30/$150 per MTok, the same as Opus 4.6 fast mode. To pin fast mode to Opus 4.6, set CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1.",
+        "link": "/en/fast-mode#use-fast-mode-on-opus-4-7"
+      }
+    ],
+    "other_wins": [
+      "claude agents gained dispatch flags (--add-dir, --settings, --mcp-config, --plugin-dir, --permission-mode, --model, --effort, --dangerously-skip-permissions) to configure background sessions, and claude agents --cwd <path> scopes the session list to a directory",
+      "New hook args: string[] exec form spawns the command directly without a shell, so path placeholders never need quoting",
+      "New continueOnBlock config option for PostToolUse hooks feeds the hook's rejection reason back to Claude and continues the turn instead of ending it",
+      "New terminalSequence field in hook JSON output lets hooks emit desktop notifications, window titles, and bells without a controlling terminal",
+      "The Rewind menu added \"Summarize up to here\" to compress earlier context while keeping recent turns intact",
+      "Remote Control, /schedule, Claude.ai MCP connectors, and notification preferences are now disabled when ANTHROPIC_API_KEY, apiKeyHelper, or ANTHROPIC_AUTH_TOKEN is set, even alongside a Claude.ai login; unset the API key to use these features",
+      "MCP stdio servers now receive CLAUDE_PROJECT_DIR in their environment, matching hooks, and plugin configs can reference ${CLAUDE_PROJECT_DIR} in commands",
+      "claude plugin details <name> shows a plugin's component inventory and projected per-session token cost, and the /plugin details pane now also lists the LSP servers a plugin provides",
+      "Plugins with a root-level SKILL.md and no skills/ subdirectory are now surfaced as a skill",
+      "/feedback can now include recent sessions from the last 24 hours or 7 days for issues spanning more than the current session",
+      "Agent tool subagent_type now matches case- and separator-insensitively, so \"Code Reviewer\" resolves to code-reviewer"
+    ]
+  }
+}

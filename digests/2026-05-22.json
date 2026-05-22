@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-22",
+  "content": "# AI Daily Digest — 2026-05-22\n\n## 今日のハイライト\n- **Mega-ASR が実世界 ASR を刷新**: 複合音響条件で WER を 30%以上削減。実環境での音声認識の実用化に向けた重要なブレークスルー。\n- **Claude Code v2.1.147 で Workflow ツール登場**: 決定論的マルチエージェントオーケストレーションが可能になり、複雑な自動化タスクの信頼性が大幅に向上。\n- **RELEX が LLM 学習効率を革新**: RLVR トレーニングの 15% のステップ数でフル学習と同等性能。パラメータ軌跡の rank-1 構造という根本的洞察から生まれた計算コスト削減法。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.147 (2025-05-21) — Workflow ツール & コードレビュー強化\n\n**主要機能**:\n- **`Workflow` ツール追加**: 決定論的マルチエージェントオーケストレーションが可能に。`CLAUDE_CODE_WORKFLOWS=1` で有効化。複数エージェントの実行順序や条件分岐を確実に制御できる。\n- **`/code-review` コマンド**: 旧 `/simplify` を置き換え。`/code-review high` のように努力レベルを指定可能。`--comment` オプションで GitHub PR へインラインコメントとして投稿できる。\n- **ピン留め背景セッション強化**: `Ctrl+T` でピン留めしたセッションがアイドル時も維持され、アップデート適用時に自動再起動。メモリ不足時はピン留めなしセッションが先に解放される。\n\n**バグ修正・改善**:\n- REPL と Workflow ツールのサンドボックスをプロトタイプ汚染・thenable ベースのエスケープから強化\n- 自動アップデーターがネットワーク失敗を再試行し、詳細なエラーカテゴリを報告\n- 大ファイル編集時の diff レンダリングパフォーマンス向上\n- プロンプト履歴での連続重複エントリを排除\n\n**ユーザーへの影響**: `/simplify` を使っていたユーザーは `/code-review` へ移行が必要。マルチエージェントワークフローの決定論的制御が求められる用途に新ツールが有効。\n\n---\n\n### v2.1.146 (2025-05-21) — バグ修正リリース\n\n**主要修正**:\n- Windows PowerShell ツールが winget / Microsoft Store 経由の `pwsh` で「コマンドラインが無効」エラーを起こす問題を修正\n- MCP ページネーションサーバーで2ページ目以降のアイテムが欠落する問題を修正\n- Windows Terminal でのフルスクリーン点滅 (strobing) を修正\n- `/theme` カラーエディタが Esc に反応しない問題を修正\n\n**ユーザーへの影響**: Windows ユーザーおよび MCP サーバー利用者は早期アップデートを推奨。\n\n---\n\n### v2.1.145 (2025-05-19) — エージェント管理 & 可観測性向上\n\n**主要機能**:\n- **`claude agents --json`**: 実行中セッションを JSON で一覧取得。tmux-resurrect やステータスバーとの統合が容易に。\n- **OTEL スパン強化**: `agent_id` / `parent_agent_id` 属性を追加。背景サブエージェントのスパンが親 Agent ツールスパン配下に正しくネストされる。\n- **`/plugin` 画面強化**: インストール前にプラグインのコマンド、エージェント、スキル、フック、MCP/LSP サーバーを確認可能。\n- **権限プロンプトバイパス修正**: 許可リスト外の環境変数への単純な代入が自動承認されていた脆弱性を修正。\n\n**ユーザーへの影響**: エージェント監視・スクリプト連携が強化。セキュリティ修正を含むため速やかな更新を推奨。\n\n## 注目論文 TOP 10\n\n**1. Mega-ASR: Towards In-the-wild² Speech Recognition via Scaling up Real-world Acoustic Simulation** | 👍 109 | https://arxiv.org/abs/2605.19833\n🎯**背景**: 実世界の音響環境（雑音・残響・重複発話の複合）でASRモデルが幻覚や省略を起こす「音響ロバスト性ボトルネック」が未解決のまま残っていた。\n🔧**手法**: Voices-in-the-Wild-2M（7種音響現象×54複合シナリオ）データセットを構築し、Acoustic-to-Semantic Progressive SFT と Dual-Granularity WER-Gated Policy Optimization で段階的最適化。\n📊**結果**: VOiCES R4-B-F で WER 45.69%（比較: 54.01%）、NOIZEUS Sta-0 で 21.49%（比較: 29.34%）。複合音響シナリオで強力なベースライン比 30%超の相対 WER 削減。\n💡**意義**: 実世界の複雑な音響条件に対応するスケーラブルな ASR パラダイムを確立。医療・コールセンター・車載など雑音環境での実用化を大幅に前進させる。\n⚠️**限界**: 英語中心の評価が多く、低リソース言語や非標準方言での性能は未検証。データ構築コストも依然として高い。\n\n---\n\n**2. Video2GUI: Synthesizing Large-Scale Interaction Trajectories for Generalized GUI Agent Pretraining** | 👍 86 | https://arxiv.org/abs/2605.14747\n🎯**背景**: GUI エージェントの汎化能力は大規模かつ多様なトレーニングデータの不足に制約されており、既存データセットは手動アノテーションに依存し特定ドメインに限定されていた。\n🔧**手法**: 5億件のビデオメタデータに対し粗→細フィルタリング戦略を適用して高品質 GUI チュートリアルビデオを識別し、構造化されたエージェント軌跡に変換。WildGUI（1500以上のアプリ・サイト、1200万軌跡）を構築。\n📊**結果**: Qwen2.5-VL と Mimo-VL を WildGUI で事前学習すると、複数の GUI グラウンディング・アクションベンチマークで 5-20% の一貫した改善を達成、最先端性能に並ぶ・上回る結果。\n💡**意義**: ラベルなし動画からの自動データ収集パイプラインにより、GUI エージェントのデータ問題を実用的に解決。RPA・業務自動化への応用が加速する。\n⚠️**限界**: 動画品質フィルタリングの精度に依存するため、低品質チュートリアルが混入するリスク。プロプライエタリソフトウェアの動作は学習困難な場合がある。\n\n---\n\n**3. Enhancing Train-Free Infinite-Frame Generation for Consistent Long Videos (MIGA)** | 👍 80 | https://arxiv.org/abs/2605.18233\n🎯**背景**: 学習なしの長尺動画生成では、学習・推論ギャップと長期一貫性の維持が課題。FIFO-diffusion 等の既存手法は基盤モデルの有効活用が限られていた。\n🔧**手法**: ①過剰ノイズスパンを削減して学習・推論ギャップを縮小する2段階アライメント機構、②高ノイズフレームを補正する Self-Reflection と低ノイズフレームの広範囲カバレッジを活用する Long-Range Frame Guidance の双対一貫性強化機構。\n📊**結果**: VBench と NarrLV ベンチマークで最先端のパフォーマンスを達成。\n💡**意義**: 追加学習なしで任意長の一貫した動画を生成できるため、映像制作・教育コンテンツ・ゲーム等への即時応用が可能。メモリ消費を定数に保つ設計が実用性を高める。\n⚠️**限界**: フレーム間の意味的一貫性（物体の同一性維持）は完全に解決されていない。超長時間（数分以上）での品質劣化は検証不十分。\n\n---\n\n**4. You Only Need Minimal RLVR Training: Extrapolating LLMs via Rank-1 Trajectories (RELEX)** | 👍 40 | https://arxiv.org/abs/2605.21468\n🎯**背景**: RLVR（検証可能報酬付き強化学習）がLLMの推論向上に広く使われているが、学習中のパラメータ軌跡の幾何学的性質は未解明だった。\n🔧**手法**: RLVR のパラメータ差分が極めて低ランク（rank-1 近似で主要性能を捕捉）かつ線形予測可能であることを発見。短い観測ウィンドウから rank-1 部分空間を推定し、線形回帰で将来チェックポイントを外挿する RELEX を提案。\n📊**結果**: Qwen2.5-Math-1.5B・Qwen3-4B-Base・Qwen3-8B-Base で、RLVR の 15% のステップ数でフル学習と同等・超えるパフォーマンス。50ステップ観測から1000ステップへの外挿に成功。\n💡**意義**: 計算コストを大幅削減しながら RLVR の恩恵を得られる。LLM 学習の効率化において実用的なブレークスルー。\n⚠️**限界**: 現時点では数学的推論タスク中心の評価。他のタスクドメインへの汎化は未検証。外挿の限界距離も明確でない。\n\n---\n\n**5. A Survey of Large Audio Language Models: Generalization, Trustworthiness, and Outlook** | 👍 27 | https://arxiv.org/abs/2605.20266\n🎯**背景**: LALM（大規模音声言語モデル）の能力向上がシステム的な信頼性フレームワークの整備を大幅に上回っており、包括的な調査が必要とされていた。\n🔧**手法**: アーキテクチャ革新とアライメントアルゴリズムを分析し、クロスモーダルジェイルブレイク・潜在音響バックドア・生体認証プライバシー漏洩を分類。ハルシネーション・ロバスト性・安全性・プライバシー・公平性・認証の6軸で最先端研究をレビュー。\n📊**結果**: 攻撃手法は成熟している一方、防御手法は大幅に未発達であることを定量的に示す包括的なタクソノミーを確立。\n💡**意義**: LALM の信頼性に関する研究ロードマップを提示。「多層防御」アーキテクチャと因果的音響世界モデリングへの戦略的方向性を示す。\n⚠️**限界**: サーベイ論文のため独自の実験的検証なし。分野の急速な発展により一部内容が即座に陳腐化する可能性。\n\n**6. Toto 2.0: Time Series Forecasting Enters the Scaling Era** | 👍 25 | https://arxiv.org/abs/2605.20119\n🎯**背景**: 時系列予測の基盤モデルがスケールするかどうか、つまりパラメータ数増加に伴って予測品質が系統的に向上するかは未解明だった。\n🔧**手法**: 4M〜2.5Bパラメータの5つのモデルに対し単一学習レシピを適用。u-muP ハイパーパラメータ転移パイプラインによりスケール間の一貫した学習設定を実現。Apache 2.0 でオープンウェイト公開。\n📊**結果**: BOOM（可観測性）、GIFT-Eval（汎用）、TIME（汚染耐性）の3つのベンチマークで最先端性能を達成。\n💡**意義**: LLM で実証されたスケーリング則が時系列予測にも成立することを示す先駆的研究。インフラ監視・金融予測・需要予測への大きなインパクト。\n⚠️**限界**: 評価ベンチマークが研究コミュニティのデータに偏っており、特定産業の時系列（医療・製造等）での性能は未評価。\n\n---\n\n**7. Mix-Quant: Quantized Prefilling, Precise Decoding for Agentic LLMs** | 👍 22 | https://arxiv.org/abs/2605.20315\n🎯**背景**: LLM エージェントのワークフローでは長文脈・マルチターン推論による大規模な入力処理（プリフィル）がボトルネックになっているが、量子化による精度低下が問題だった。\n🔧**手法**: プリフィル段階にのみ高スループット NVFP4 量子化を適用し、デコード段階では BF16 精度を維持するフェーズ認識量子化フレームワーク。プリフィルの量子化冗長性が高いという洞察に基づく。\n📊**結果**: 長文脈・エージェントベンチマークにわたってタスク性能をほぼ維持しながら、プリフィル時に最大3倍の高速化を達成。\n💡**意義**: 追加学習なしでエージェント型 LLM の推論コストを大幅削減。実デプロイメント環境でのコスト最適化に即活用可能。\n⚠️**限界**: NVFP4 対応ハードウェア（NVIDIA 最新 GPU）への依存。アーキテクチャが異なるモデルへの汎化は確認が必要。\n\n---\n\n**8. CutVerse: A Compositional GUI Agents Benchmark for Media Post-Production Editing** | 👍 19 | https://arxiv.org/abs/2605.19484\n🎯**背景**: GUI エージェントは Web ナビゲーションや基本 OS タスクでは進歩しているが、Premiere Pro・Photoshop などプロフェッショナルクリエイティブアプリでの評価が欠けていた。\n🔧**手法**: 7つのプロ向けアプリで専門家デモンストレーションを収集し、186の複雑・長期タスクをキュレーション。生スクリーン録画と低レベルインタラクションログから構造化された GUI アクション軌跡を抽出する軽量パーサーを開発。\n📊**結果**: 既存のエージェントはタスク成功率 36.0% にとどまり、長期的信頼性と専門領域計画における大きな課題を示した。\n💡**意義**: クリエイティブ業務自動化の現状を客観的に評価。映像・グラフィック制作の自動化研究を加速する実用的ベンチマーク。\n⚠️**限界**: プロプライエタリソフトウェアへの依存により評価環境の再現が困難。動的なソフトウェア UI 変更への追従コストが高い。\n\n---\n\n**9. LLMEval-Logic: A Solver-Verified Chinese Benchmark for Logical Reasoning of LLMs with Adversarial Hardening** | 👍 16 | https://arxiv.org/abs/2605.19597\n🎯**背景**: 既存の論理推論ベンチマークはテンプレート生成に依存し形式アノテーションが粗く、最先端モデルに急速に飽和されていた。中国語の現実的シナリオに基づくベンチマークも不足していた。\n🔧**手法**: 現実的な状況シナリオから自然言語問題を専門家が作成・審査し、Z3 ソルバーで回答を検証。246件の Base サブセット（1400ルーブリック）と190件の Hard サブセット（938サブ質問）で構成。\n📊**結果**: 最良モデルの Hard Item Accuracy は 37.5%、参照シンボル込みでも Z3+Rubric スコア最高 60.16%。14つの最先端 LLM に大きな性能ギャップを確認。\n💡**意義**: 形式検証ツールと LLM 評価の統合による高品質ベンチマーク構築手法を示す。論理推論能力の客観的測定に貢献。\n⚠️**限界**: 中国語に特化しており、クロスリンガルな論理推論能力の評価には追加作業が必要。\n\n---\n\n**10. SaaSBench: Exploring the Boundaries of Coding Agents in Long-Horizon Enterprise SaaS Engineering** | 👍 3 | https://arxiv.org/abs/2605.17526\n🎯**背景**: コーディングエージェントが単純な単一スタックアプリから複雑なエンタープライズ SaaS システムへ移行する際の評価フレームワークが存在しなかった。\n🔧**手法**: 6つの SaaS ドメインにわたる30の複雑タスク（5370の検証ノード）を設計。8言語・6データベース・13フレームワークを組み込んだ依存関係認識型ハイブリッド評価パラダイムを採用。\n📊**結果**: タスク失敗の 95% 以上がディープなビジネスロジックに到達する前の基盤システム設定段階で発生。モデルは過信して早期停止したり非効率なデバッグループに陥ることが多い。\n💡**意義**: エンタープライズ SaaS 自動化の主要なボトルネックを特定。コーディングエージェント研究の実用的な次の課題を示す。\n⚠️**限界**: 30タスクと比較的小規模。特定の SaaS スタックへの依存があり、新興フレームワークのカバレッジは限定的。\n\n",
+  "fetched_at": "2026-05-21T22:13:56.899984+00:00",
+  "papers": [
+    {
+      "title": "Mega-ASR: Towards In-the-wild^2 Speech Recognition via Scaling up Real-world Acoustic Simulation",
+      "upvotes": 109,
+      "paper_id": "2605.19833",
+      "abstract": "Despite rapid advances in automatic speech recognition (ASR) and large audio-language models, robust recognition in real-world environments remains limited by an \"acoustic robustness bottleneck\": models often lose acoustic grounding and produce omissions or hallucinations under severe, compositional distortions. We propose Mega-ASR, a unified ASR-in-the-wild framework."
+    },
+    {
+      "title": "Video2GUI: Synthesizing Large-Scale Interaction Trajectories for Generalized GUI Agent Pretraining",
+      "upvotes": 86,
+      "paper_id": "2605.14747",
+      "abstract": "Recent advances in multimodal large language models have driven growing interest in GUI agents. We propose Video2GUI, a fully automated framework that extracts grounded GUI interaction trajectories directly from unlabeled Internet videos, constructing WildGUI with 12 million interaction trajectories."
+    },
+    {
+      "title": "Enhancing Train-Free Infinite-Frame Generation for Consistent Long Videos",
+      "upvotes": 80,
+      "paper_id": "2605.18233",
+      "abstract": "We propose MIGA, a novel infinite-frame long video generation method with a two-stage alignment mechanism and dual consistency enhancement mechanism for train-free consistent long video generation."
+    },
+    {
+      "title": "You Only Need Minimal RLVR Training: Extrapolating LLMs via Rank-1 Trajectories",
+      "upvotes": 40,
+      "paper_id": "2605.21468",
+      "abstract": "We demonstrate that RLVR weight trajectories are extremely low-rank and highly predictable. We propose RELEX (REinforcement Learning EXtrapolation), requiring as few as 15% steps of full RLVR training while matching or exceeding performance."
+    },
+    {
+      "title": "A Survey of Large Audio Language Models: Generalization, Trustworthiness, and Outlook",
+      "upvotes": 27,
+      "paper_id": "2605.20266",
+      "abstract": "This survey provides a comprehensive investigation into LALMs, detailing architectural innovations and alignment algorithms, while establishing a taxonomy of trustworthiness covering hallucination, robustness, safety, privacy, fairness, and authentication."
+    },
+    {
+      "title": "Toto 2.0: Time Series Forecasting Enters the Scaling Era",
+      "upvotes": 25,
+      "paper_id": "2605.20119",
+      "abstract": "We show that time series foundation models scale: a single training recipe produces reliable forecast-quality improvements from 4M to 2.5B parameters. Toto 2.0 sets a new state of the art on three forecasting benchmarks."
+    },
+    {
+      "title": "Mix-Quant: Quantized Prefilling, Precise Decoding for Agentic LLMs",
+      "upvotes": 22,
+      "paper_id": "2605.20315",
+      "abstract": "We propose Mix-Quant, a phase-aware quantization framework applying NVFP4 to prefilling while preserving BF16 for decoding, achieving up to 3x speedup during prefilling while largely preserving task performance."
+    },
+    {
+      "title": "CutVerse: A Compositional GUI Agents Benchmark for Media Post-Production Editing",
+      "upvotes": 19,
+      "paper_id": "2605.19484",
+      "abstract": "We introduce CutVerse, a benchmark evaluating GUI agents in media post-production, covering 186 complex tasks across 7 professional applications. Current agents achieve only 36.0% task success rate."
+    },
+    {
+      "title": "LLMEval-Logic: A Solver-Verified Chinese Benchmark for Logical Reasoning of LLMs with Adversarial Hardening",
+      "upvotes": 16,
+      "paper_id": "2605.19597",
+      "abstract": "We present LLMEval-Logic, a Chinese logical reasoning benchmark with Z3-verified answers. The best frontier LLM reaches only 37.5% Hard Item Accuracy, revealing substantial gaps in current models."
+    },
+    {
+      "title": "SaaSBench: Exploring the Boundaries of Coding Agents in Long-Horizon Enterprise SaaS Engineering",
+      "upvotes": 3,
+      "paper_id": "2605.17526",
+      "abstract": "SaaSBench is the first benchmark for AI agents in enterprise SaaS engineering, spanning 30 tasks across 6 domains. Over 95% of task failures occur before agents reach deep business logic."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.147",
+      "published_at": "2025-05-21",
+      "body": "Added the `Workflow` tool for deterministic multi-agent orchestration (CLAUDE_CODE_WORKFLOWS=1). Pinned background sessions stay alive when idle. Renamed `/simplify` to `/code-review` with effort levels. Hardened REPL and Workflow tool sandboxes against prototype-pollution. Improved auto-updater with retry logic. Improved diff rendering performance for large file edits."
+    },
+    {
+      "tag_name": "v2.1.146",
+      "published_at": "2025-05-21",
+      "body": "Renamed `/simplify` to `/code-review` with optional effort level. Auto mode no longer suppresses AskUserQuestion. Fixed Windows PowerShell tool failure. Fixed MCP paginating servers dropping items. Fixed full-screen strobing on Windows Terminal. Fixed auto-updater status line version display."
+    },
+    {
+      "tag_name": "v2.1.145",
+      "published_at": "2025-05-19",
+      "body": "Added `claude agents --json` for scripting. Added agent_id/parent_agent_id to OTEL spans. Status line JSON now includes GitHub repo/PR info. /plugin screens show plugin details before installation. claude agents tab title shows awaiting-input count. Fixed permission-prompt bypass for bare variable assignments."
+    }
+  ]
+}
