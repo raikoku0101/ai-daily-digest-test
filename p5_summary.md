@@ -1,6 +1,6 @@
-**5. PanoWorld: Towards Spatial Supersensing in 360° Panorama World**
-**著者**: PanoWorld Team et al. (2025)
+**5. PanoWorld: Towards Spatial Supersensing in 360 Panorama World**
+**著者**: Anonymous et al. (2026)
 **arXiv**: https://arxiv.org/abs/2605.13169
 
 **まとめ**:
-狭視野の透視投影に縛られたMLLMの空間認識限界を超えるため、ERP（等距円筒図法）360°パノラマをネイティブに理解するPanoWorldを提案。570K ERPパノラマから幾何認識・言語グラウンデッド・深度認識メタデータを大規模構築し、Spherical Spatial Cross-Attention（SSCA）で球面幾何をバックボーンに注入。PanoSpace-Benchで56.5%（ベースライン30.8%）、H*Benchで70.0%、R2R-CE Val-Unseenで54.3% Success Rateを達成し、既存の商用・オープンソースモデルを大幅に上回った。
+透視画像に縛られたMLLMの空間理解を360°パノラマに拡張するフレームワーク PanoWorld を提案。球面空間クロスアテンション（SSCA）と検証可能なメタデータ構築パイプラインにより、観察者中心の幾何的空間認識を実現。PanoSpace-Benchで56.5%（基準30.8%）、H*Bench ゼロショットで56.1%（従来最良38.4%）を達成し、V&LナビゲーションへもSR+5.3の転移を示した。
