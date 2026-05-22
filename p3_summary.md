@@ -1,6 +1,6 @@
 **3. FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale**
-**著者**: FrontierSmith Team et al. (2025)
+**著者**: Anonymous et al. (2026)
 **arXiv**: https://arxiv.org/abs/2605.14445
 
 **まとめ**:
-LLMが苦手とするオープンエンドなコーディング問題（最適解不明な問題）の訓練データを自動合成するFrontierSmithを提案。競技プログラミング問題を「目標変更・出力制約・入力一般化」の3種変異で変形し、「アイデア発散度（Idea Divergence）」指標で品質フィルタリング。Qwen3.5-9B/27BのFrontierCS/ALE-benchスコアをそれぞれ大幅向上させ、人間作成データに匹敵する合成データ生成を実証した。
+最適解が存在しないオープンエンド型コーディング問題のトレーニングデータ不足を解決するため、既存の閉形式問題を自動的にオープンエンド化する合成パイプライン FrontierSmith を提案。変異生成・アイデア発散度フィルタ・検証基盤構築の4段階で高品質な問題を大規模合成し、合成データでのトレーニングが人間作成データと競争力ある性能を達成した。
