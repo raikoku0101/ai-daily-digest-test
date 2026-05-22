@@ -1,6 +1,6 @@
 **2. Long Context Pre-Training with Lighthouse Attention**
-**著者**: Lighthouse Attention Team et al. (2025)
+**著者**: Anonymous et al. (2026)
 **arXiv**: https://arxiv.org/abs/2605.06554
 
 **まとめ**:
-128K〜1Mトークン超の長文脈学習における二次的なアテンション計算コスト問題を解決するため、Lighthouse Attentionを提案。対称なQ/K/Vピラミッド池化・パラメータ不要のℓ2ノルムスコアリング・FlashAttention再利用という3つの設計原則により、学習専用の線形計算量アテンションを実現。学習後半で通常のSDPAに復帰する2段階訓練で、512Kコンテキストで17〜21倍の高速化と1.4〜1.7倍の総学習時間短縮を達成。
+超長文脈（128K〜1M+トークン）学習の二乗計算コストをボトルネックとする問題に対し、学習専用の階層的選択型注意「Lighthouse Attention」を提案。対称Q/K/Vプーリングとカーネル外部でのtop-k選択により、530Mモデル・98Kトークン長で標準SDPAより1.4〜1.7倍高速化し、同等品質を達成。推論時はそのまま標準SDPAに戻せる。
