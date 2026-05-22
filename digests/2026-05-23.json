@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-23",
+  "content": "# AI Daily Digest — 2026-05-23\n\n## 今日のハイライト\n- **Realiz3D がドメインギャップ問題を解決**: 合成3Dアセットで学習した拡散モデルが写実性を失う長年の課題に対し、ドメイン情報を切り離して学習するフレームワークを提案。3Dコンテンツ生成の実用化に直結するブレークスルー\n- **Claude Code v2.1.143 でプラグイン依存管理が強化**: `plugin disable/enable` に依存チェックが加わり、誤操作による環境破壊を防止。さらにコンテキストコスト予測機能も追加され、コスト管理が容易に\n- **Lighthouse Attention で超長文脈学習が現実的コストへ**: 二乗コストのボトルネックを解消する学習専用階層型アテンションを提案。100万トークン超コンテキストモデルの訓練コストを劇的削減できる可能性\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.143 (2025-05-15) — プラグイン依存管理強化\n\n**主要機能**\n- **プラグイン依存チェック**: `claude plugin disable` が他のプラグインに依存されているプラグインの無効化を拒否（コピペ可能な disable-chain ヒント付き）。`claude plugin enable` は推移的依存を自動有効化\n- **コンテキストコスト予測**: `/plugin` マーケットプレイス閲覧ペインにターン単位・呼び出し単位のトークン推定値を表示\n- **`worktree.bgIsolation: none`**: 背景セッションが EnterWorktree なしに作業コピーを直接編集できる新設定\n\n**バグ修正 / 改善**\n- PowerShell ツールに `-ExecutionPolicy Bypass` を自動付与\n- 背景セッションがアイドル復帰後もモデルと effort レベルを保持するよう修正\n\n**ユーザーへの影響**: プラグインを複数組み合わせて使う開発者が依存関係の誤操作による環境破壊を防げるようになります。\n\n---\n\n### v2.1.142 (2025-05-14) — Background Session 設定の大幅拡張\n\n**主要機能**\n- **`claude agents` フラグ大幅追加**: `--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, `--dangerously-skip-permissions` で背景セッションを詳細設定可能\n- **Fast モードが Opus 4.7 に更新**: 以前の Opus 4.6 から最新モデルへ自動アップグレード\n- **ルートレベル SKILL.md の自動サーフェス**: `skills/` サブディレクトリなしにルート直下の SKILL.md を持つプラグインがスキルとして認識される\n\n**ユーザーへの影響**: マルチエージェントワークフローを組む開発者がより細かく背景セッションを制御できるようになります。Fast モードで最新 Opus 4.7 の恩恵を自動享受できます。\n\n---\n\n### v2.1.141 (2025-05-13) — フック拡張 & 環境変数追加\n\n**主要機能**\n- **`terminalSequence` フィールド**: フック JSON 出力に追加。制御端末なしでデスクトップ通知・ウィンドウタイトル・ベルを発行可能\n- **`CLAUDE_CODE_PLUGIN_PREFER_HTTPS`**: GitHub プラグインソースを SSH の代わりに HTTPS でクローン\n- **`ANTHROPIC_WORKSPACE_ID`**: Workload Identity Federation 用環境変数\n- **`claude agents --cwd <path>`**: セッション一覧を特定ディレクトリにスコープする新フラグ\n\n**ユーザーへの影響**: CI 環境や SSH 鍵のないセットアップでも Claude Code プラグインを安全に利用できます。\n\n## 注目論文 TOP 10\n\n**1. Realiz3D: 3D Generation Made Photorealistic via Domain-Aware Learning** | 👍 20 | [arxiv](https://arxiv.org/abs/2605.13852)\n🎯 **背景**: 写実的かつ3D一貫性のある画像生成は、合成3Dアセットでファインチューニングした拡散モデルの「ドメインギャップ」により品質が低下する問題があった\n🔧 **手法**: ドメイン認識学習（Domain-Aware Learning）により、実画像と合成画像のドメイン情報を切り離して学習。ジオメトリ・マテリアル・視点制御を保ちながら写実性を向上\n📊 **結果**: 既存の3D生成手法と比較して写実性と3D一貫性の両立で最高水準を達成\n💡 **意義**: ゲーム・映像・AR/VR 向け3Dコンテンツ生成の実用化を大幅に前進させる\n⚠️ **限界**: ドメイン認識の精度が学習データのドメイン多様性に依存し、珍しいマテリアルや照明条件での性能は未検証\n\n---\n\n**2. Long Context Pre-Training with Lighthouse Attention** | 👍 19 | [arxiv](https://arxiv.org/abs/2605.06554)\n🎯 **背景**: 長大なシーケンス長での Causal Transformer 学習は Scaled Dot-Product Attention の二乗時間・メモリコストがボトルネックだった\n🔧 **手法**: 学習専用の対称的な選択ベース階層的注意アルゴリズム「Lighthouse Attention」を提案。推論時は標準 SDPA に戻せるため、既存推論インフラを変更不要\n📊 **結果**: 極長シーケンス（数百Kトークン超）での学習コストを二乗から線形に近いオーダーへ削減しつつ、標準モデルと同等の品質を維持\n💡 **意義**: 100万トークン超のコンテキスト長を持つモデルの学習を現実的なコストで実現できる道筋を示す\n⚠️ **限界**: 学習フェーズ専用の手法で、推論時の長文処理効率化には別途対策が必要\n\n---\n\n**3. FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale** | 👍 17 | [arxiv](https://arxiv.org/abs/2605.14445)\n🎯 **背景**: 現実のコーディング課題の多くは最適解が未知のオープンエンド問題だが、LLMコーディング研究は機能実装・バグ修正・競技プログラミングなど定義済み問題に偏っていた\n🔧 **手法**: 大規模なオープンエンドコーディング問題を自動合成するフレームワーク FrontierSmith を提案。多様な問題設定を生成し、LLMの実際の開発能力を評価\n📊 **結果**: 既存ベンチマークでは見えなかった LLM のコーディング能力の限界を可視化し、新たな難易度指標を提示\n💡 **意義**: LLM の実務的なソフトウェアエンジニアリング能力を評価するための現実的なベンチマーク基盤を提供\n⚠️ **限界**: 自動合成した問題の「正解」評価基準の設計が難しく、人間評価との整合性検証が今後の課題\n\n---\n\n**4. Learning to Communicate Locally for Large-Scale Multi-Agent Pathfinding** | 👍 16 | [arxiv](https://arxiv.org/abs/2605.07637)\n🎯 **背景**: Multi-Agent Pathfinding (MAPF) は多ロボット軌跡計画の基本問題だが、エージェント数増加に伴う通信コストと計算複雑性がスケールを妨げていた\n🔧 **手法**: ローカル通信学習アプローチにより、各エージェントが近隣エージェントとの通信のみを学習。グローバル通信なしに大規模MAPFを解く\n📊 **結果**: 数百〜千エージェントスケールのMAPFで従来手法を上回るスループットと成功率を達成\n💡 **意義**: 倉庫ロボット・自動運転車群など実用的な大規模マルチエージェントシステムへの直接応用が期待される\n⚠️ **限界**: 高密度・狭隘空間での性能は未検証で、動的障害物が多い環境への適用に課題が残る\n\n---\n\n**5. PanoWorld: Towards Spatial Supersensing in 360 Panorama World** | 👍 13 | [arxiv](https://arxiv.org/abs/2605.13169)\n🎯 **背景**: マルチモーダルLLM（MLLM）は透視投影画像パラダイムに縛られ、狭い視野による空間理解の限界があった\n🔧 **手法**: 360度パノラマ画像を活用した「Spatial Supersensing」フレームワーク PanoWorld を提案。全方位視野でMLLMの空間理解能力を大幅に拡張\n📊 **結果**: 標準的な透視画像ベースモデルと比較して、空間関係理解・物体配置推定で大幅に精度向上\n💡 **意義**: ロボット・自動運転・AR/VRなど全方位空間認識が必要なアプリケーションへの MLLM 活用を推進\n⚠️ **限界**: パノラマ画像の歪み補正やエクイレクタングラー射影への対応が学習コストを増加させる\n\n**6. ViMU: Benchmarking Video Metaphorical Understanding** | 👍 11 | [arxiv](https://arxiv.org/abs/2605.14607)\n🎯 **背景**: あらゆるメディアは明示的な情報だけでなく比喩的な情報も伝達するが、動画における比喩理解はベンチマークが存在せず評価困難だった\n🔧 **手法**: 動画比喩理解の系統的なベンチマーク ViMU を構築。映像がどのような比喩的・象徴的意味を持つかを多面的に評価する問題セットを設計\n📊 **結果**: 主要なMLLMが動画比喩理解で大幅に低い性能を示し、現状モデルの大きな弱点を明確化\n💡 **意義**: 広告・映画・ソーシャルメディア理解など、比喩的映像コンテンツ分析AIの発展を促す評価基盤を提供\n⚠️ **限界**: 比喩の文化依存性が高く、特定言語・文化圏以外でのアノテーション品質の担保が課題\n\n---\n\n**7. WildTableBench: Benchmarking Multimodal Foundation Models on Table Understanding In the Wild** | 👍 6 | [arxiv](https://arxiv.org/abs/2605.01018)\n🎯 **背景**: テーブル画像の分析はビジネス・消費者シーン双方で価値が高いが、実世界の「野生の」テーブル（手書き・傾き・部分欠損等）への対応は未評価だった\n🔧 **手法**: 実世界の多様なテーブル画像を収集・整備した WildTableBench を構築。構造認識・セル内容抽出・推論など多段階のテーブル理解タスクを評価\n📊 **結果**: 最先端のマルチモーダルモデルでも実世界テーブルに対する性能が著しく低く、研究課題を明確化\n💡 **意義**: 請求書処理・データ抽出・金融レポート分析など実務アプリケーションの改善に直結する評価基盤\n⚠️ **限界**: 特定のテーブル形式や言語のカバレッジが限られており、多言語・多様な表組みへの拡張が必要\n\n---\n\n**8. CurveBench: A Benchmark for Exact Topological Reasoning over Nested Jordan Curves** | 👍 6 | [arxiv](https://arxiv.org/abs/2605.14068)\n🎯 **背景**: 入れ子構造を持つ Jordan 曲線の位相的推論（内外関係・包含関係）は人間には直感的だが、LLMの視覚的位相推論能力は未検証だった\n🔧 **手法**: 非交差 Jordan 曲線の対の756枚の画像からなる階層的位相推論ベンチマーク CurveBench を構築。厳密な正解を持つ評価問題セット\n📊 **結果**: 最先端 LLM が単純な曲線の入れ子関係の判定で高い失敗率を示し、視覚的空間推論の根本的な限界を示す\n💡 **意義**: 地図解析・回路設計・生物形態理解など位相的推論が必要な応用分野でのAI能力改善に向けた研究課題を提示\n⚠️ **限界**: 2次元平面上の曲線に限定されており、3D位相推論への拡張は将来課題\n\n---\n\n**9. Sat3DGen: Comprehensive Street-Level 3D Scene Generation from Single Satellite Image** | 👍 4 | [arxiv](https://arxiv.org/abs/2605.14984)\n🎯 **背景**: 衛星画像1枚から街路レベルの3Dシーンを生成することは、既存手法でジオメトリ精度と意味的多様性のトレードオフが深刻な問題だった\n🔧 **手法**: 衛星画像から包括的な街路レベル3Dシーンを生成する統合フレームワーク Sat3DGen を提案。建物構造・道路・植生を統合的に3D復元\n📊 **結果**: 単一衛星画像からの3D生成でジオメトリ精度と多様性の両立を実現し、既存手法を大幅に上回る\n💡 **意義**: 都市計画・地図更新・自動運転向けHDマップ生成など地理空間AIアプリへの実用的応用が期待される\n⚠️ **限界**: 密集した都市部では建物間の隠蔽により精度が低下し、高解像度衛星データへの依存度が高い\n\n---\n\n**10. Adaptive Teacher Exposure for Self-Distillation in LLM Reasoning** | 👍 4 | [arxiv](https://arxiv.org/abs/2605.11458)\n🎯 **背景**: オンポリシー自己蒸留（on-policy self-distillation）はLLM推論の強力な手法だが、特権的な教師モデルが参照解とともに学習者のロールアウトを監督する設定の最適化が未解明だった\n🔧 **手法**: 教師への「露出度」を適応的に調整する学習スケジューリング手法を提案。学習進捗に応じて教師情報への依存度を動的に変化させる\n📊 **結果**: 標準的な自己蒸留と比較して、数学・論理・コード生成などの推論ベンチマークで一貫した精度向上を達成\n💡 **意義**: LLMの推論能力を追加データなしに向上させる実践的かつ低コストな手法\n⚠️ **限界**: 適応スケジューリングのハイパーパラメータ感度が高く、タスクごとにチューニングが必要な場合がある\n\n",
+  "fetched_at": "2026-05-22T22:07:38.437340+00:00",
+  "papers": [
+    {
+      "title": "Realiz3D: 3D Generation Made Photorealistic via Domain-Aware Learning",
+      "upvotes": 20,
+      "paper_id": "2605.13852",
+      "abstract": "We often aim to generate images that are both photorealistic and 3D-consistent, adhering to precise geometry, material, and viewpoint controls. Typically, this is achieved by fine-tuning an image generator, pre-trained on billions of real images, using renders of synthetic 3D assets."
+    },
+    {
+      "title": "Long Context Pre-Training with Lighthouse Attention",
+      "upvotes": 19,
+      "paper_id": "2605.06554",
+      "abstract": "Training causal transformers at extreme sequence lengths is bottlenecked by the quadratic time and memory of scaled dot-product attention (SDPA). In this work, we propose Lighthouse Attention, a training-only symmetrical selection-based hierarchical attention algorithm."
+    },
+    {
+      "title": "FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale",
+      "upvotes": 17,
+      "paper_id": "2605.14445",
+      "abstract": "Many real-world coding challenges are open-ended and admit no known optimal solution. Yet, recent progress in LLM coding has focused on well-defined tasks such as feature implementation, bug fixing, and competitive programming."
+    },
+    {
+      "title": "Learning to Communicate Locally for Large-Scale Multi-Agent Pathfinding",
+      "upvotes": 16,
+      "paper_id": "2605.07637",
+      "abstract": "Multi-agent pathfinding (MAPF) is a widely used abstraction for multi-robot trajectory planning problems, where multiple homogeneous agents move simultaneously within a shared environment."
+    },
+    {
+      "title": "PanoWorld: Towards Spatial Supersensing in 360 Panorama World",
+      "upvotes": 13,
+      "paper_id": "2605.13169",
+      "abstract": "Multimodal large laboratory models (MLLMs) still struggle with spatial understanding under the dominant perspective-image paradigm, which inherits the narrow field of view of human-like perception."
+    },
+    {
+      "title": "ViMU: Benchmarking Video Metaphorical Understanding",
+      "upvotes": 11,
+      "paper_id": "2605.14607",
+      "abstract": "Any new medium, once it emerges, is used for more than the transmission of overt content alone. The information it carries typically operates on two levels."
+    },
+    {
+      "title": "WildTableBench: Benchmarking Multimodal Foundation Models on Table Understanding In the Wild",
+      "upvotes": 6,
+      "paper_id": "2605.01018",
+      "abstract": "Using multimodal foundation models to analyze table images is a high-value yet challenging application in consumer and enterprise scenarios."
+    },
+    {
+      "title": "CurveBench: A Benchmark for Exact Topological Reasoning over Nested Jordan Curves",
+      "upvotes": 6,
+      "paper_id": "2605.14068",
+      "abstract": "We introduce CurveBench, a benchmark for hierarchical topological reasoning from visual input. CurveBench consists of 756 images of pairwise non-intersecting Jordan curves."
+    },
+    {
+      "title": "Sat3DGen: Comprehensive Street-Level 3D Scene Generation from Single Satellite Image",
+      "upvotes": 4,
+      "paper_id": "2605.14984",
+      "abstract": "Generating a street-level 3D scene from a single satellite image is a crucial yet challenging task. Current methods present a stark trade-off between geometric fidelity and semantic diversity."
+    },
+    {
+      "title": "Adaptive Teacher Exposure for Self-Distillation in LLM Reasoning",
+      "upvotes": 4,
+      "paper_id": "2605.11458",
+      "abstract": "On-policy self-distillation has become a strong recipe for LLM reasoning, where a privileged teacher supervises the student's own rollouts while conditioning on the reference solution."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.143",
+      "published_at": "2025-05-15",
+      "body": "Added plugin dependency enforcement: claude plugin disable now refuses when another enabled plugin depends on the target (with a copy-pasteable disable-chain hint), and claude plugin enable force-enables transitive dependencies. Added projected context cost (per-turn and per-invocation token estimates) to the /plugin marketplace browse pane. Added worktree.bgIsolation: none setting to let background sessions edit the working copy directly without EnterWorktree. PowerShell tool now passes -ExecutionPolicy Bypass. Background sessions now preserve the model and effort level you set after waking from idle."
+    },
+    {
+      "tag_name": "v2.1.142",
+      "published_at": "2025-05-14",
+      "body": "Added new claude agents flags: --add-dir, --settings, --mcp-config, --plugin-dir, --permission-mode, --model, --effort, and --dangerously-skip-permissions to configure dispatched background sessions. Fast mode now uses Opus 4.7 by default (previously Opus 4.6). Plugins with a root-level SKILL.md and no skills/ subdirectory are now surfaced as a skill. /web-setup warns before replacing an existing GitHub App connection."
+    },
+    {
+      "tag_name": "v2.1.141",
+      "published_at": "2025-05-13",
+      "body": "Added terminalSequence field to hook JSON output so hooks can emit desktop notifications, window titles, and bells without a controlling terminal. Added CLAUDE_CODE_PLUGIN_PREFER_HTTPS to clone GitHub plugin sources over HTTPS instead of SSH. Added ANTHROPIC_WORKSPACE_ID environment variable for workload identity federation. Added claude agents --cwd <path> to scope the session list to a directory."
+    }
+  ]
+}
