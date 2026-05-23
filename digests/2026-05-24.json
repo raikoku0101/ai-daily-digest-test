@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-24",
+  "content": "# AI Daily Digest — 2026-05-24\n\n## 今日のハイライト\n- **AIによる科学予測の限界が明らかに**: HuggingFace上で最も注目された論文(👍34)。現行AIは科学的進歩の予測において領域をまたいだ一貫性を欠き、過信傾向があることが定量的に示された。AI科学顧問の活用方針に重要な示唆を与える。\n- **Claude Code v2.1.149 が多数の安定性修正を含む大型アップデート**: `/usage`のカテゴリ別表示・キーボードスクロール対応など新機能に加え、PowerShellバイパス・Bashツール障害・MCPページネーションなど多岐にわたるバグを修正。エンタープライズ向け新設定も追加。\n- **教師なしプロセス報酬モデル(PRM)が人間アノテーション不要を実現**: 次トークン確率を活用して誤推論ステップを検出するUnsupervised PRMが登場。スケーラブルなRLHFパイプライン構築の障壁を大幅に下げる可能性がある。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.150 (2025-05-23)\n**主要機能**: 内部インフラ改善（ユーザー向け変更なし）\n**バグ修正**: なし\n**ユーザーへの影響**: 今回のリリースはユーザー体験に直接影響しない内部変更です。\n\n---\n\n### v2.1.149 (2025-05-22)\n**主要機能詳細**:\n- `/usage` コマンドがカテゴリ別の制限使用状況内訳を表示するように改善\n- `/diff` 詳細ビューがキーボードスクロールに対応\n- MarkdownがGFMタスクリストチェックボックスをレンダリング対応\n- Enterprise向け: `allowAllClaudeAiMcps` マネージド設定を追加\n\n**バグ修正**:\n- PowerShellのパーミッションバイパス問題を修正\n- gitワークツリー書き込みアローリストの問題を修正\n- MCPサーバーのページネーションを修正\n- Bashの`find`コマンドファイルテーブル枯渇問題を修正\n- マネージド設定承認ダイアログのフリーズを修正\n- `/ultraplan`のgit変更キャプチャを修正\n- 各種UIおよびターミナル問題を修正\n\n**ユーザーへの影響**: 使用量の可視性が向上し、エンタープライズ管理者はMCP設定がより柔軟に。複数の安定性問題が解消されました。\n\n---\n\n### v2.1.148 (2025-05-22)\n**主要機能**: バグ修正リリース\n**バグ修正**: v2.1.147のリグレッションにより、一部ユーザーでBashツールが全コマンドでexit code 127を返す問題を修正\n**ユーザーへの影響**: Bashコマンド実行が正常に機能しない問題が解決。影響を受けていたユーザーは即時アップデートを推奨。\n\n## 注目論文 TOP 10\n\n**1. Forecasting Scientific Progress with Artificial Intelligence** | 👍 34 | https://arxiv.org/abs/2605.22681\n🎯 **背景**: AIによる科学的進歩の予測能力に関する体系的な評価研究。現行AIの科学予測における限界と過信傾向を調査。\n🔧 **手法**: 複数ドメインにわたる科学的進歩の予測タスクを設計し、最新LLMの予測精度・信頼度を定量評価。\n📊 **結果**: 現行AIは領域をまたいだ予測で一貫性を欠き、予測に対して過信(overconfidence)を示すことが明らかになった。\n💡 **意義**: AI科学顧問の可能性と限界を定量化し、AIと科学者の適切な協業のあり方を示す。\n⚠️ **限界**: 予測タスクの選定が評価結果に影響する可能性があり、全科学分野を網羅していない。\n\n---\n\n**2. SEGA: Spectral-Energy Guided Attention for Resolution Extrapolation in Diffusion Transformers** | 👍 31 | https://arxiv.org/abs/2605.22668\n🎯 **背景**: 拡散モデルにおける超高解像度画像生成の品質向上。RoPE(回転位置エンコーディング)成分に基づくAttentionスケーリングの問題。\n🔧 **手法**: デノイジングステップ中に空間周波数構造に基づいてRoPE成分ごとにAttentionを適応的にスケーリングするSEGAを提案。\n📊 **結果**: 高解像度テキスト→画像生成において既存手法を上回るクオリティを実現。特に細部のテクスチャ再現性が向上。\n💡 **意義**: 訓練なしで既存Diffusion Transformerに適用可能で、超解像・高解像出力の実用化を加速。\n⚠️ **限界**: 特定の解像度レンジや特殊なアスペクト比では効果が異なる場合がある。\n\n---\n\n**3. Unsupervised Process Reward Models** | 👍 23 | https://arxiv.org/abs/2605.10158\n🎯 **背景**: 推論プロセスへの報酬モデル(PRM)は高品質な人間アノテーションを必要とし、スケールが困難だった。\n🔧 **手法**: 言語モデルの次トークン予測確率を利用して、教師なしで誤った推論ステップを特定する報酬モデルを開発。\n📊 **結果**: 人間アノテーションなしで競合PRMと同等以上の性能を達成し、ポリシー最適化も改善。\n💡 **意義**: 人間ラベルが不要になることで、あらゆるドメインにスケーラブルなPRMの構築が可能に。\n⚠️ **限界**: 次トークン確率に依存するため、確率分布が不安定なモデルでは精度が低下する可能性。\n\n---\n\n**4. AutoRubric-T2I: Robust Rule-Based Reward Model for Text-to-Image Alignment** | 👍 11 | https://arxiv.org/abs/2605.17602\n🎯 **背景**: テキスト→画像生成の評価において、VLMジャッジの基準が曖昧で一貫性を欠くことが課題。\n🔧 **手法**: 明示的なルーブリック(採点基準)を自動生成・選択し、VLMジャッジをガイドすることでアライメント評価を改善。\n📊 **結果**: 最小限のアノテーションで高品質な報酬シグナルを実現し、既存ベースラインを超える一貫性を達成。\n💡 **意義**: ルールベースの透明な評価基準により、T2Iモデルの自動評価・改善ループが信頼性高く構築可能。\n⚠️ **限界**: ルーブリック生成の質がVLMの能力に依存するため、モデルのバイアスが伝播するリスクあり。\n\n---\n\n**5. Forecasting Downstream Performance of LLMs With Proxy Metrics** | 👍 10 | https://arxiv.org/abs/2605.18607\n🎯 **背景**: LLMの訓練中の性能を予測する信頼性の高い指標が不足しており、効率的な訓練管理が困難。\n🔧 **手法**: 専門家が書いたソリューションのトークンレベル統計に基づくProxy Metricsを提案し、開発各段階での性能予測を検証。\n📊 **結果**: 従来の損失ベース手法と比較して、より信頼性の高い下流タスク性能予測を実現。\n💡 **意義**: 訓練途中での性能予測精度が上がることで、計算資源の無駄を削減し、開発サイクルが短縮。\n⚠️ **限界**: 専門家ソリューションの入手が難しいドメインでは、Proxy Metricsの構築自体が困難になる。\n\n---\n\n**6. LoREnc: Low-Rank Encryption for Securing Foundation Models and LoRA Adapters** | 👍 6 | https://arxiv.org/abs/2605.13163\n🎯 **背景**: 公開・共有される基盤モデルとLoRAアダプターの不正利用・無断復元からの保護が急務。\n🔧 **手法**: スペクトル切り捨て(spectral truncation)と補正技術を用いたLoREncを提案し、モデルの正規性能を維持しつつ暗号化。\n📊 **結果**: 無断でのモデル復元を防ぎながら、認証ユーザーにはほぼ劣化なしの性能を提供。\n💡 **意義**: LoRAエコシステムにおけるIP保護を現実的なコストで実現し、モデルの商用展開を安全に。\n⚠️ **限界**: 暗号化プロセスの計算オーバーヘッドや、鍵管理インフラの整備が必要。\n\n---\n\n**7. Efficient Agentic Reasoning Through Self-Regulated Simulative Planning** | 👍 4 | https://arxiv.org/abs/2605.22138\n🎯 **背景**: LLMエージェントの複雑なタスク処理は大量のトークンを消費し、非効率な意思決定が課題。\n🔧 **手法**: 意思決定を「シミュレーション的推論」「自己調整」「反応的実行」の3システムに分解し、制御された計画を実現。\n📊 **結果**: トークン使用量を削減しながら、複雑なタスクにおける意思決定の精度と効率を改善。\n💡 **意義**: エージェントの推論コストを下げ、実用的な長期タスク処理エージェントの展開を可能にする。\n⚠️ **限界**: 3システムの切り替え制御が複雑であり、実装と調整に専門知識が必要。\n\n---\n\n**8. Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis** | 👍 4 | https://arxiv.org/abs/2605.15669\n🎯 **背景**: 半導体設計ルールチェック(DRC)スクリプトの自動合成は専門性が高く、LLMの評価基準が不足。\n🔧 **手法**: 1,000のルール→スクリプトタスクと13,921の評価レイアウトを含む大規模ベンチマークを構築。SplitTesterでプログラム選択を支援。\n📊 **結果**: 主要LLMエージェントのDRCスクリプト合成能力を定量的に比較し、現行モデルの限界を明確化。\n💡 **意義**: EDA(電子設計自動化)へのAI適用を加速する標準ベンチマークとして、研究・開発の基盤を提供。\n⚠️ **限界**: 特定のEDAツールやルールフォーマットに特化しており、他ツールへの汎化性が課題。\n\n---\n\n**9. \"I didn't Make the Micro Decisions\": Goal-Level AI Contributions in Collaboration** | 👍 3 | https://arxiv.org/abs/2605.21363\n🎯 **背景**: 人間とAIの協働において、AIのゴールレベルでの貢献度が定量的に把握されていなかった。\n🔧 **手法**: CoTraceフレームワークを用いてゴール形成における人間とAIの寄与を測定・誘発・可視化。\n📊 **結果**: モデルがゴール形成の11〜26%を占める一方、具体的な要件設定には大きな影響を持つことが判明。\n💡 **意義**: AI協働の透明性・説明責任を高めるためのフレームワークを提供し、適切な人間監督を促進。\n⚠️ **限界**: CoTraceの測定精度はタスクの種類や協働セッションの設計に大きく依存する。\n\n---\n\n**10. Platonic Representations in the Human Brain: Unsupervised Recovery of Universal Geometry** | 👍 2 | https://arxiv.org/abs/2605.20496\n🎯 **背景**: AIと人間の脳がどの程度「共通の表現」を持つかは未解明であり、神経科学とAI研究の橋渡しが課題。\n🔧 **手法**: ペアデータなしでの幾何変換により、脳データの自己教師あり符号化から個人を超えた共有ニューラル幾何を復元。\n📊 **結果**: 複数個人の脳データにわたって共通の幾何学的表現が存在することを実証し、普遍表現仮説を支持。\n💡 **意義**: AIと人間の認知の共通基盤を示す実証的証拠を提供し、脳とAIのアライメント研究を大きく前進。\n⚠️ **限界**: サンプル数が限られており、文化・年齢・神経多様性の影響が十分に検討されていない。\n\n",
+  "fetched_at": "2026-05-23T22:10:00.652364+00:00",
+  "papers": [
+    {
+      "title": "Forecasting Scientific Progress with Artificial Intelligence",
+      "upvotes": 34,
+      "paper_id": "2605.22681",
+      "abstract": "Current AI systems demonstrate limited capability in predicting scientific progress, showing inconsistent performance across domains and systematic overconfidence in forecasts."
+    },
+    {
+      "title": "SEGA: Spectral-Energy Guided Attention for Resolution Extrapolation in Diffusion Transformers",
+      "upvotes": 31,
+      "paper_id": "2605.22668",
+      "abstract": "SEGA improves high-resolution text-to-image generation by adaptively scaling attention across RoPE components based on spatial-frequency structure during denoising steps."
+    },
+    {
+      "title": "Unsupervised Process Reward Models",
+      "upvotes": 23,
+      "paper_id": "2605.10158",
+      "abstract": "Unsupervised reward models eliminate the need for human annotations by leveraging language model next-token probabilities to identify erroneous reasoning steps and improve policy optimization."
+    },
+    {
+      "title": "AutoRubric-T2I: Robust Rule-Based Reward Model for Text-to-Image Alignment",
+      "upvotes": 11,
+      "paper_id": "2605.17602",
+      "abstract": "AutoRubric-T2I automatically generates and selects explicit rubrics to guide Vision-Language Model judges for text-to-image generation, achieving high-quality reward signals with minimal annotation."
+    },
+    {
+      "title": "Forecasting Downstream Performance of LLMs With Proxy Metrics",
+      "upvotes": 10,
+      "paper_id": "2605.18607",
+      "abstract": "Proxy metrics based on token-level statistics from expert-written solutions provide more reliable model performance forecasting than traditional loss-based methods across development stages."
+    },
+    {
+      "title": "LoREnc: Low-Rank Encryption for Securing Foundation Models and LoRA Adapters",
+      "upvotes": 6,
+      "paper_id": "2605.13163",
+      "abstract": "LoREnc secures foundation models and low-rank adapters through spectral truncation and compensation techniques that prevent unauthorized model recovery while maintaining performance."
+    },
+    {
+      "title": "Efficient Agentic Reasoning Through Self-Regulated Simulative Planning",
+      "upvotes": 4,
+      "paper_id": "2605.22138",
+      "abstract": "Efficient agentic reasoning requires decomposing decision-making into three systems—simulative reasoning, self-regulation, and reactive execution—enabling controlled planning that reduces token usage."
+    },
+    {
+      "title": "Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis with Execution-Guided Test Generation",
+      "upvotes": 4,
+      "paper_id": "2605.15669",
+      "abstract": "Rule2DRC introduces a large-scale benchmark for DRC script synthesis with 1,000 rule-to-script tasks and 13,921 evaluation layouts, along with SplitTester for program selection."
+    },
+    {
+      "title": "\"I didn't Make the Micro Decisions\": Measuring, Inducing, and Exposing Goal-Level AI Contributions in Collaboration",
+      "upvotes": 3,
+      "paper_id": "2605.21363",
+      "abstract": "CoTrace framework analyzes goal-level contributions in human-AI collaboration, revealing that while models account for 11-26% of goal-shaping, they significantly influence concrete requirements."
+    },
+    {
+      "title": "Platonic Representations in the Human Brain: Unsupervised Recovery of Universal Geometry",
+      "upvotes": 2,
+      "paper_id": "2605.20496",
+      "abstract": "Self-supervised encoding of brain data reveals shared neural geometry across individuals through geometric transformations without paired data, supporting universal representation hypothesis."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.150",
+      "published_at": "2025-05-23",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    },
+    {
+      "tag_name": "v2.1.149",
+      "published_at": "2025-05-22",
+      "body": "/usage now shows per-category breakdown of limits usage. /diff detail view supports keyboard scrolling. Markdown renders GFM task list checkboxes. Enterprise: added allowAllClaudeAiMcps managed setting. Fixed PowerShell permission bypass, git worktree write allowlist, MCP server pagination, Bash find file table exhaustion, managed-settings approval dialog freeze, /ultraplan git changes capture, various UI and terminal issues."
+    },
+    {
+      "tag_name": "v2.1.148",
+      "published_at": "2025-05-22",
+      "body": "Fixed Bash tool returning exit code 127 on every command for some users (regression in v2.1.147)"
+    }
+  ]
+}
