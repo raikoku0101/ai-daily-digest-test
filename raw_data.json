@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "Realiz3D: 3D Generation Made Photorealistic via Domain-Aware Learning",
-      "upvotes": 20,
-      "paper_id": "2605.13852",
-      "abstract": "We often aim to generate images that are both photorealistic and 3D-consistent, adhering to precise geometry, material, and viewpoint controls. Typically, this is achieved by fine-tuning an image generator, pre-trained on billions of real images, using renders of synthetic 3D assets."
-    },
-    {
-      "title": "Long Context Pre-Training with Lighthouse Attention",
-      "upvotes": 19,
-      "paper_id": "2605.06554",
-      "abstract": "Training causal transformers at extreme sequence lengths is bottlenecked by the quadratic time and memory of scaled dot-product attention (SDPA). In this work, we propose Lighthouse Attention, a training-only symmetrical selection-based hierarchical attention algorithm."
-    },
-    {
-      "title": "FrontierSmith: Synthesizing Open-Ended Coding Problems at Scale",
-      "upvotes": 17,
-      "paper_id": "2605.14445",
-      "abstract": "Many real-world coding challenges are open-ended and admit no known optimal solution. Yet, recent progress in LLM coding has focused on well-defined tasks such as feature implementation, bug fixing, and competitive programming."
-    },
-    {
-      "title": "Learning to Communicate Locally for Large-Scale Multi-Agent Pathfinding",
-      "upvotes": 16,
-      "paper_id": "2605.07637",
-      "abstract": "Multi-agent pathfinding (MAPF) is a widely used abstraction for multi-robot trajectory planning problems, where multiple homogeneous agents move simultaneously within a shared environment."
-    },
-    {
-      "title": "PanoWorld: Towards Spatial Supersensing in 360 Panorama World",
-      "upvotes": 13,
-      "paper_id": "2605.13169",
-      "abstract": "Multimodal large laboratory models (MLLMs) still struggle with spatial understanding under the dominant perspective-image paradigm, which inherits the narrow field of view of human-like perception."
-    },
-    {
-      "title": "ViMU: Benchmarking Video Metaphorical Understanding",
-      "upvotes": 11,
-      "paper_id": "2605.14607",
-      "abstract": "Any new medium, once it emerges, is used for more than the transmission of overt content alone. The information it carries typically operates on two levels."
-    },
-    {
-      "title": "WildTableBench: Benchmarking Multimodal Foundation Models on Table Understanding In the Wild",
-      "upvotes": 6,
-      "paper_id": "2605.01018",
-      "abstract": "Using multimodal foundation models to analyze table images is a high-value yet challenging application in consumer and enterprise scenarios."
-    },
-    {
-      "title": "CurveBench: A Benchmark for Exact Topological Reasoning over Nested Jordan Curves",
-      "upvotes": 6,
-      "paper_id": "2605.14068",
-      "abstract": "We introduce CurveBench, a benchmark for hierarchical topological reasoning from visual input. CurveBench consists of 756 images of pairwise non-intersecting Jordan curves."
-    },
-    {
-      "title": "Sat3DGen: Comprehensive Street-Level 3D Scene Generation from Single Satellite Image",
-      "upvotes": 4,
-      "paper_id": "2605.14984",
-      "abstract": "Generating a street-level 3D scene from a single satellite image is a crucial yet challenging task. Current methods present a stark trade-off between geometric fidelity and semantic diversity."
-    },
-    {
-      "title": "Adaptive Teacher Exposure for Self-Distillation in LLM Reasoning",
-      "upvotes": 4,
-      "paper_id": "2605.11458",
-      "abstract": "On-policy self-distillation has become a strong recipe for LLM reasoning, where a privileged teacher supervises the student's own rollouts while conditioning on the reference solution."
-    }
+    {"title": "Forecasting Scientific Progress with Artificial Intelligence", "upvotes": 34, "paper_id": "2605.22681", "abstract": "Current AI systems demonstrate limited capability in predicting scientific progress, showing inconsistent performance across domains and systematic overconfidence in forecasts."},
+    {"title": "SEGA: Spectral-Energy Guided Attention for Resolution Extrapolation in Diffusion Transformers", "upvotes": 31, "paper_id": "2605.22668", "abstract": "SEGA improves high-resolution text-to-image generation by adaptively scaling attention across RoPE components based on spatial-frequency structure during denoising steps."},
+    {"title": "Unsupervised Process Reward Models", "upvotes": 23, "paper_id": "2605.10158", "abstract": "Unsupervised reward models eliminate the need for human annotations by leveraging language model next-token probabilities to identify erroneous reasoning steps and improve policy optimization."},
+    {"title": "AutoRubric-T2I: Robust Rule-Based Reward Model for Text-to-Image Alignment", "upvotes": 11, "paper_id": "2605.17602", "abstract": "AutoRubric-T2I automatically generates and selects explicit rubrics to guide Vision-Language Model judges for text-to-image generation, achieving high-quality reward signals with minimal annotation."},
+    {"title": "Forecasting Downstream Performance of LLMs With Proxy Metrics", "upvotes": 10, "paper_id": "2605.18607", "abstract": "Proxy metrics based on token-level statistics from expert-written solutions provide more reliable model performance forecasting than traditional loss-based methods across development stages."},
+    {"title": "LoREnc: Low-Rank Encryption for Securing Foundation Models and LoRA Adapters", "upvotes": 6, "paper_id": "2605.13163", "abstract": "LoREnc secures foundation models and low-rank adapters through spectral truncation and compensation techniques that prevent unauthorized model recovery while maintaining performance."},
+    {"title": "Efficient Agentic Reasoning Through Self-Regulated Simulative Planning", "upvotes": 4, "paper_id": "2605.22138", "abstract": "Efficient agentic reasoning requires decomposing decision-making into three systems—simulative reasoning, self-regulation, and reactive execution—enabling controlled planning that reduces token usage."},
+    {"title": "Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis with Execution-Guided Test Generation", "upvotes": 4, "paper_id": "2605.15669", "abstract": "Rule2DRC introduces a large-scale benchmark for DRC script synthesis with 1,000 rule-to-script tasks and 13,921 evaluation layouts, along with SplitTester for program selection."},
+    {"title": "\"I didn't Make the Micro Decisions\": Measuring, Inducing, and Exposing Goal-Level AI Contributions in Collaboration", "upvotes": 3, "paper_id": "2605.21363", "abstract": "CoTrace framework analyzes goal-level contributions in human-AI collaboration, revealing that while models account for 11-26% of goal-shaping, they significantly influence concrete requirements."},
+    {"title": "Platonic Representations in the Human Brain: Unsupervised Recovery of Universal Geometry", "upvotes": 2, "paper_id": "2605.20496", "abstract": "Self-supervised encoding of brain data reveals shared neural geometry across individuals through geometric transformations without paired data, supporting universal representation hypothesis."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.143",
-      "published_at": "2025-05-15",
-      "body": "Added plugin dependency enforcement: claude plugin disable now refuses when another enabled plugin depends on the target (with a copy-pasteable disable-chain hint), and claude plugin enable force-enables transitive dependencies. Added projected context cost (per-turn and per-invocation token estimates) to the /plugin marketplace browse pane. Added worktree.bgIsolation: none setting to let background sessions edit the working copy directly without EnterWorktree. PowerShell tool now passes -ExecutionPolicy Bypass. Background sessions now preserve the model and effort level you set after waking from idle."
-    },
-    {
-      "tag_name": "v2.1.142",
-      "published_at": "2025-05-14",
-      "body": "Added new claude agents flags: --add-dir, --settings, --mcp-config, --plugin-dir, --permission-mode, --model, --effort, and --dangerously-skip-permissions to configure dispatched background sessions. Fast mode now uses Opus 4.7 by default (previously Opus 4.6). Plugins with a root-level SKILL.md and no skills/ subdirectory are now surfaced as a skill. /web-setup warns before replacing an existing GitHub App connection."
-    },
-    {
-      "tag_name": "v2.1.141",
-      "published_at": "2025-05-13",
-      "body": "Added terminalSequence field to hook JSON output so hooks can emit desktop notifications, window titles, and bells without a controlling terminal. Added CLAUDE_CODE_PLUGIN_PREFER_HTTPS to clone GitHub plugin sources over HTTPS instead of SSH. Added ANTHROPIC_WORKSPACE_ID environment variable for workload identity federation. Added claude agents --cwd <path> to scope the session list to a directory."
-    }
+    {"tag_name": "v2.1.150", "published_at": "2025-05-23", "body": "Internal infrastructure improvements (no user-facing changes)"},
+    {"tag_name": "v2.1.149", "published_at": "2025-05-22", "body": "/usage now shows per-category breakdown of limits usage. /diff detail view supports keyboard scrolling. Markdown renders GFM task list checkboxes. Enterprise: added allowAllClaudeAiMcps managed setting. Fixed PowerShell permission bypass, git worktree write allowlist, MCP server pagination, Bash find file table exhaustion, managed-settings approval dialog freeze, /ultraplan git changes capture, various UI and terminal issues."},
+    {"tag_name": "v2.1.148", "published_at": "2025-05-22", "body": "Fixed Bash tool returning exit code 127 on every command for some users (regression in v2.1.147)"}
   ]
 }
