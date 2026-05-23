@@ -1,6 +1,6 @@
-**5. PanoWorld: Towards Spatial Supersensing in 360 Panorama World**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.13169
+**5. Forecasting Downstream Performance of LLMs With Proxy Metrics (プロキシメトリクスによるLLM下流性能予測)**
+**著者**: (著者名未収集) et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.18607
 
 **まとめ**:
-透視画像に縛られたMLLMの空間理解を360°パノラマに拡張するフレームワーク PanoWorld を提案。球面空間クロスアテンション（SSCA）と検証可能なメタデータ構築パイプラインにより、観察者中心の幾何的空間認識を実現。PanoSpace-Benchで56.5%（基準30.8%）、H*Bench ゼロショットで56.1%（従来最良38.4%）を達成し、V&LナビゲーションへもSR+5.3の転移を示した。
+LLM開発における下流タスク性能を、大規模な直接評価なしに予測するプロキシメトリクスを提案。専門家ソリューションのトークン統計(エントロピー・上位k精度・専門家トークンランク)を信号源として活用し、異種モデル選択でSpearman相関0.81(交差エントロピー比較値0.36)を達成。プリトレーニングデータ選択で直接評価比約10,000倍の計算効率を実現。損失ベース・計算ベースの従来手法を一貫して上回る。

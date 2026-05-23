@@ -1,6 +1,6 @@
-**2. Long Context Pre-Training with Lighthouse Attention**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.06554
+**2. SEGA: Spectral-Energy Guided Attention for Resolution Extrapolation in Diffusion Transformers**
+**著者**: (著者名未収集) et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.22668
 
 **まとめ**:
-超長文脈（128K〜1M+トークン）学習の二乗計算コストをボトルネックとする問題に対し、学習専用の階層的選択型注意「Lighthouse Attention」を提案。対称Q/K/Vプーリングとカーネル外部でのtop-k選択により、530Mモデル・98Kトークン長で標準SDPAより1.4〜1.7倍高速化し、同等品質を達成。推論時はそのまま標準SDPAに戻せる。
+拡散トランスフォーマー(DiT)の学習解像度を超えた高解像度生成の品質を向上させる、訓練不要な手法SEGAを提案。RoPE(回転位置エンコーディング)の各成分に対して空間周波数エネルギーに基づく動的なAttentionスケーリングを適用することで、グローバル構造と細部忠実度の両立を実現。既存の訓練不要ベースラインを複数解像度にわたって上回る性能を示した。

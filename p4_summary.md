@@ -1,6 +1,6 @@
-**4. Learning to Communicate Locally for Large-Scale Multi-Agent Pathfinding**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.07637
+**4. AutoRubric-T2I: Robust Rule-Based Reward Model for Text-to-Image Alignment**
+**著者**: (著者名未収集) et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.17602
 
 **まとめ**:
-大規模マルチエージェント経路探索（MAPF）の分散型ソルバーで、単一ラウンド通信の制限を克服するため、複数ラウンド（4ラウンド）の局所通信を学習する LC-MAPF を提案。300万パラメータの小型Transformerが85M MAPF-GPTを上回り、5,000エージェントスケールでも線形スケーラビリティを維持。実ロボット実験でも有効性を確認した。
+テキスト→画像生成(T2I)の評価・改善における人間嗜好との整合問題に取り組む論文。VLM判定器を用いてルーブリック(採点基準)を自動合成・選別するAutoRubric-T2Iを提案。嗜好アノテーションデータの0.01%未満で大規模報酬モデルを上回る性能を実現し、Flow-GRPOパイプラインでの拡散モデル改善も実証。解釈可能な透明な評価基準による次世代T2I最適化の方向性を示した。
