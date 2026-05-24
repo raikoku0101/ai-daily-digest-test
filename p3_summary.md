@@ -1,6 +1,6 @@
-**3. Unsupervised Process Reward Models (教師なしプロセス報酬モデル)**
-**著者**: (著者名未収集) et al. (2025)
+**3. Unsupervised Process Reward Models**
+**著者**: (Anonymous et al.) (2025)
 **arXiv**: https://arxiv.org/abs/2605.10158
 
 **まとめ**:
-LLMの推論を段階評価するプロセス報酬モデル(PRM)において、人間アノテーションを一切不要とする教師なし手法(uPRM)を提案。LLMのトークン確率から推論軌跡中の最初のエラー発生ステップを特定するスコアリング関数を開発。ProcessBenchでLLM-as-a-Judgeを15%上回り、テスト時スケーリングでも教師ありPRMと同等、RLの報酬信号として教師ありPRMより堅牢な方針最適化を実現した。
+ステップレベルのアノテーションも最終答の検証ラベルも不要な完全教師なし Process Reward Model (uPRM) の訓練手法を提案。LLM のトークン確率から導出したスコアリング関数で複数推論トレジェクトリを共同評価することで PRM を学習。ProcessBench で LLM-as-a-Judge より最大 15% 絶対精度改善、テスト時スケーリングでは教師あり PRM と同等性能を達成し、RL 訓練では報酬ハッキングへの耐性も向上。高コストなアノテーションを不要にしスケーラブルな推論改善への道を開く。

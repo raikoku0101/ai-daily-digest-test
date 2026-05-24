@@ -1,6 +1,6 @@
-**2. SEGA: Spectral-Energy Guided Attention for Resolution Extrapolation in Diffusion Transformers**
-**著者**: (著者名未収集) et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.22668
+**2. Forecasting Scientific Progress with Artificial Intelligence**
+**著者**: (Anonymous et al.) (2025)
+**arXiv**: https://arxiv.org/abs/2605.22681
 
 **まとめ**:
-拡散トランスフォーマー(DiT)の学習解像度を超えた高解像度生成の品質を向上させる、訓練不要な手法SEGAを提案。RoPE(回転位置エンコーディング)の各成分に対して空間周波数エネルギーに基づく動的なAttentionスケーリングを適用することで、グローバル構造と細部忠実度の両立を実現。既存の訓練不要ベースラインを複数解像度にわたって上回る性能を示した。
+AI が科学的進歩を事前に予測できるかを体系的に検証した研究。CUSP ベンチマーク（4,760 件の科学的イベント）を構築し、最先端モデルの予測能力を多角的に評価。現在の AI は有望な研究方向の識別は得意だが、科学進歩の実現可否や時期の予測は系統的に誤り、領域依存性も顕著（AI 進歩 > 生物・化学・物理）。知識アクセスの増加より事後情報の方が性能改善に貢献するという根本的限界を初めて定量化した。
