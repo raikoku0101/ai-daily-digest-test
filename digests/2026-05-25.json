@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-25",
+  "content": "# AI Daily Digest — 2026-05-25\n\n## 今日のハイライト\n- **解像度制限を打破する DiT 技術**: SEGA が Diffusion Transformer の学習解像度外での画像生成問題を訓練不要で解決。商用 T2I サービスの高解像度対応コストを大幅削減できる可能性があり、生成 AI 製品開発者にとって即座に活用可能な成果。\n- **教師なし報酬モデルで LLM 推論が低コストに**: uPRM が専門家アノテーション不要で教師あり PRM と同等の性能を達成。LLM の推論品質改善における最大の障壁（高コストラベリング）を取り除き、スケーラブルな RLHF 普及への道を開く。\n- **Claude Code v2.1.149 で使用量可視化とセキュリティ強化**: `/usage` のカテゴリ別内訳表示で API コスト管理が改善し、PowerShell 権限バイパスの重大セキュリティ修正が含まれる。Enterprise ユーザーは MCP 管理が柔軟化し、実務利用環境が大きく改善。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.150 (2025-05-23)\n**主要機能**: インフラ内部改善（ユーザー向け変更なし）\n**バグ修正**: なし\n**ユーザーへの影響**: 透過的なバックエンド最適化のみ\n\n---\n\n### v2.1.149 (2025-05-22)\n**主要機能詳細**:\n- `/usage` コマンドがカテゴリ別（skills・subagents・plugins・MCP サーバーごと）のリミット使用量内訳を表示\n- `/diff` 詳細ビューでキーボードスクロール対応（矢印キー、j/k、PgUp/PgDn、Space、Home/End）\n- Markdown 出力で GFM タスクリストチェックボックス（`- [ ] todo` / `- [x] done`）をレンダリング\n- Enterprise 向け: `allowAllClaudeAiMcps` マネージド設定を追加 — `managed-mcp.json` と並行して claude.ai クラウド MCP コネクタを読み込み可能\n\n**バグ修正**:\n- PowerShell の権限バイパス修正: 組み込み cd 系関数（`cd..`、`cd\\`、`cd~`、`X:`）がワークスペース外のディレクトリ変更を未検出で実行できていた問題を解消\n- git ワークツリーでのサンドボックス書き込み許可リストが、共有 `.git` ディレクトリのみではなくメインリポジトリルート全体を対象にしていたバグを修正\n- PowerShell のプレフィックス/ワイルドカード許可ルール（例: `PowerShell(dotnet.exe build *)`）がネイティブ実行ファイルとスクリプトを事前承認しない問題を修正\n\n**ユーザーへの影響**: コスト管理が大幅に改善。セキュリティ修正により安全性向上。Enterprise ユーザーは MCP 管理が柔軟に。\n\n---\n\n### v2.1.148 (2025-05-22)\n**バグ修正**: v2.1.147 で導入されたリグレッション — 一部ユーザーで Bash ツールが全コマンドに終了コード 127 を返す問題を修正\n**ユーザーへの影響**: Bash ツールが正常に動作しなかったユーザーは本バージョンへの更新で解消\n\n## 注目論文 TOP 10\n\n**1. SEGA: Spectral-Energy Guided Attention for Resolution Extrapolation in Diffusion Transformers** | 👍 34 | https://arxiv.org/abs/2605.22668\n🎯**背景**: Diffusion Transformer (DiT) は学習解像度を超えると画質が大幅劣化。既存の訓練不要手法は RoPE 外挿と注意スケーリングで対処するが、周波数特性の異なるコンポーネントに一律スケーリングを適用し、大局構造と細部のトレードオフが生じていた。\n🔧**手法**: SEGA は各デノイジングステップで潜在表現の空間周波数構造を解析し、RoPE コンポーネントごとに動的に注意スケーリングを調整する訓練不要手法。\n📊**結果**: 複数の高解像度ターゲットで最先端の訓練不要ベースラインを一貫して上回る高解像度合成品質を達成。\n💡**意義**: 訓練コストなしで任意解像度生成が可能になり、既存 DiT モデルの実用範囲が大幅拡大。\n⚠️**限界**: 評価は特定の DiT アーキテクチャに限定。他の生成モデルへの汎化性は未検証。\n\n---\n\n**2. Forecasting Scientific Progress with Artificial Intelligence** | 👍 34 | https://arxiv.org/abs/2605.22681\n🎯**背景**: AI は科学的発見に深く関与しているが、科学進歩を事前に予測できるかどうかは不明確。予測能力の体系的評価フレームワークが存在しなかった。\n🔧**手法**: CUSP (Cutoff-conditioned Unseen Scientific Progress) ベンチマークを構築。4,760 件の科学的イベントに対し、実現可能性評価・メカニズム推論・ソリューション設計・時期予測の4タスクで評価。\n📊**結果**: 現在のモデルは有望な研究方向の識別は可能だが、進歩の実現時期の予測は系統的に誤推定。AI 進歩は生物・化学・物理より予測しやすい傾向。\n💡**意義**: AI の科学的予測能力の限界を定量化する初の大規模ベンチマーク。研究計画立案への AI 活用評価に不可欠。\n⚠️**限界**: 訓練データの知識露出と予測失敗の分離が困難。ドメイン間で性能の不均質性が高い。\n\n---\n\n**3. Unsupervised Process Reward Models** | 👍 23 | https://arxiv.org/abs/2605.10158\n🎯**背景**: Process Reward Model (PRM) は LLM 推論のステップレベル監督に有効だが、専門家によるステップごとのアノテーションが必要で高コスト。\n🔧**手法**: LLM の次トークン確率から導出したスコアリング関数で、複数推論トレジェクトリにわたって最初の誤りステップの候補位置を共同評価。人間監督不要の uPRM を提案。\n📊**結果**: ProcessBench で LLM-as-a-Judge より最大 15% 絶対精度向上。テスト時スケーリングでは教師あり PRM と同等、多数決ベースラインを最大 6.9% 上回る。RL 報酬として使用すると訓練全体で安定した方策最適化。\n💡**意義**: 高コストなアノテーションなしで強力な報酬モデルが実現。スケーラブルな推論改善への道を開く。\n⚠️**限界**: 最終回答の正解ラベルも不要とする完全教師なし設定の限界評価が今後の課題。\n\n---\n\n**4. AutoRubric-T2I: Robust Rule-Based Reward Model for Text-to-Image Alignment** | 👍 16 | https://arxiv.org/abs/2605.17602\n🎯**背景**: T2I モデルの人間選好アラインメントには大規模アノテーションが必要な Bradley-Terry 報酬モデルが主流。VLM ジャッジはより細粒度だが、手動設計のルーブリックでは人間選好を正確に反映できない。\n🔧**手法**: AutoRubric-T2I は選好ペアから推論トレースを合成してルーブリック候補を生成し、ℓ₁正則化ロジスティック回帰で最も識別力の高い Top-N ルーブリックを選択する自動ルーブリック学習フレームワーク。\n📊**結果**: アノテーション済み選好データの 0.01% 未満で高品質な解釈可能報酬シグナルを生成。MMRB2 で強力な報酬モデルベースラインを上回る。\n💡**意義**: 高解釈性の報酬モデルが低コストで実現。T2I アラインメントの民主化に貢献。\n⚠️**限界**: ルーブリック自動生成の品質は初期選好ペアの質に依存。ドメイン外への汎化未検証。\n\n---\n\n**5. Forecasting Downstream Performance of LLMs With Proxy Metrics** | 👍 10 | https://arxiv.org/abs/2605.18607\n🎯**背景**: LLM 開発の比較判断（アーキテクチャ・事前学習データ・訓練レシピ）に信頼できる性能予測が必要。交差エントロピー損失はダウンストリーム性能と乖離し、直接評価は高コスト。\n🔧**手法**: 専門家記述ソリューションに対する候補モデルの次トークン分布からエントロピー・top-k 精度・expert token rank 等のトークンレベル統計を集約したプロキシメトリクスを構築。\n📊**結果**: 異種推論モデルのランキングで平均 Spearman ρ=0.81（交差エントロピー損失の ρ=0.36 に対して大幅改善）。事前学習データ選択では約 1万倍少ない計算量で 25 候補コーパスを信頼性高くランキング。\n💡**意義**: モデル開発ライフサイクル全体で信頼できる性能予測が可能に。コスト削減と意思決定品質の両立。\n⚠️**限界**: 専門家記述ソリューションの取得コストと品質依存性。特定タスク分布への特化の可能性。\n\n---\n\n**6. Efficient Agentic Reasoning Through Self-Regulated Simulative Planning** | 👍 7 | https://arxiv.org/abs/2605.22138\n🎯**背景**: チェーンオブソートによる計画はトークン使用量が爆発的に増加するにもかかわらず精度向上が限定的。エージェントの「いつ・どこまで計画するか」を制御するメカニズムが欠如。\n🔧**手法**: SR²AM は意思決定を3システムに分解：シミュレーティブ推論（世界モデルによる未来状態予測）・自己調節（計画の発動タイミングと深度を制御）・リアクティブ実行（細粒度アクション処理）。\n📊**結果**: v1.0-30B が 120-355B および 685B-1T パラメータシステムに匹敵する Pass@1 を達成。比較可能なエージェント LLM より推論トークンを 25.8-95.3% 削減。RL 訓練で計画頻度 2.0% 増に対し計画深度 22.8% 増加。\n💡**意義**: 大規模モデルに依存せず効率的な推論が可能。トークン節約とパフォーマンスの両立でコスト効率が革新的に改善。\n⚠️**限界**: 評価タスクが数学・科学・表形式分析・ウェブ検索に限定。汎用エージェントへの拡張性は未検証。\n\n---\n\n**7. LoREnc: Low-Rank Encryption for Securing Foundation Models and LoRA Adapters** | 👍 6 | https://arxiv.org/abs/2605.13163\n🎯**背景**: エッジデバイスでの基盤モデル・LoRA アダプタ展開は知的財産漏洩とモデル復元攻撃のリスクがある。再訓練や元データセット不要な現実的防御手法が求められていた。\n🔧**手法**: LoREnc はスペクトル切り詰めと補償による訓練不要フレームワーク。FM の支配的低ランクコンポーネントを抑制し、認可アダプタで欠損情報を補償。直交再パラメータ化で構造的フィンガープリントを難読化。\n📊**結果**: 未認証ユーザーは構造崩壊した出力のみ取得。認証ユーザーは完全な性能を回復。計算オーバーヘッド 1% 未満でモデル復元への強固な保護を実証。\n💡**意義**: 商用 AI モデルの IP 保護に実用的なソリューション。デプロイ済みモデルへの適用が容易。\n⚠️**限界**: 多様な攻撃シナリオへの評価が限定的。アダプタの多様性への対応未検証。\n\n---\n\n**8. Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis with Execution-Guided Test Generation** | 👍 5 | https://arxiv.org/abs/2605.15669\n🎯**背景**: 自然言語のチップ設計ルールを DRC スクリプトに変換する作業は専門知識が必要で労働集約的。既存ベンチマークは評価セットが小さく、コード類似度で評価するため実行正確性を反映しない。\n🔧**手法**: Rule2DRC は 1,000 件のルール→スクリプトタスクと 13,921 枚の評価チップレイアウトで構成する大規模ベンチマーク。SplitTester は実行フィードバックで識別的テストケースを生成し候補スクリプトを区別するテスターエージェント。\n📊**結果**: SplitTester により Best-of-N 選択性能が大幅改善。実行ベースのスコアリングで機能的正確性を直接測定。\n💡**意義**: EDA 自動化の実用的評価インフラを提供。LLM の半導体設計支援への適用可能性を具体化。\n⚠️**限界**: 特定の DRC フォーマット/ツールに特化。他の EDA ツールへの汎化には追加評価が必要。\n\n---\n\n**9. OmniPro: A Comprehensive Benchmark for Omni-Proactive Streaming Video Understanding** | 👍 3 | https://arxiv.org/abs/2605.18577\n🎯**背景**: ストリーミング映像からいつ・何を話すかを自律判断するオムニプロアクティブ理解は新興能力。既存ベンチマークは視覚信号中心で、ポーリング/固定タイムスタンプ評価を使用し、タスク範囲も限定的。\n🔧**手法**: OmniPro は 9 サブタスク・3 認知レベル・2,700 人手検証サンプルで構成。84% のサンプルに音声信号が必要。Probe モード（コンテンツ理解評価）と Online モード（真のプロアクティブ能力評価）の二重評価プロトコルを採用。\n📊**結果**: 11 モデル評価で3つの発見：音声は一貫した改善をもたらすが活用度はモデル間で大きく異なる、時間経過で性能が著しく低下、非音声音知覚が最も弱い次元。\n💡**意義**: 音声・映像を統合したマルチモーダル LLM のリアルタイム能力を初めて包括的に評価。\n⚠️**限界**: 評価コストが高く、非音声音カテゴリのカバレッジに改善余地あり。\n\n---\n\n**10. \"I didn't Make the Micro Decisions\": Measuring, Inducing, and Exposing Goal-Level AI Contributions in Collaboration** | 👍 3 | https://arxiv.org/abs/2605.21363\n🎯**背景**: LLM がユーザーの目標形成に与える影響が増大するにつれ、人間-AI 協働での貢献帰属が重要に。既存手法は最終成果物に焦点を当て、目標が共同形成されるプロセスを見落とす。\n🔧**手法**: CoTrace は明示的目標を検証可能な要件に分解し、対話ターン全体で直接的貢献と間接的影響を追跡するゴールレベル帰属フレームワーク。638 件の実際の協働ログに適用。\n📊**結果**: モデルはゴール形成貢献の 11-26% を担うが、下位レベルの具体的要件の導入では不釣り合いに大きな貢献。ユーザーへのゴールレベル分析提示により5点尺度で約2点の認識変化。\n💡**意義**: AI との協働における人間の自律性認識の体系的再評価を促す。AI アシスタント設計の透明性向上に直結。\n⚠️**限界**: 実世界ログへの依存でコントロール条件の設定が困難。ゴール帰属の主観性排除は未解決。\n\n",
+  "fetched_at": "2026-05-24T22:08:57.315389+00:00",
+  "papers": [
+    {
+      "title": "SEGA: Spectral-Energy Guided Attention for Resolution Extrapolation in Diffusion Transformers",
+      "upvotes": 34,
+      "id": "2605.22668",
+      "abstract": "Diffusion transformers (DiTs) have emerged as a dominant architecture for text-to-image generation, yet their performance drops when generating at resolutions beyond their training range."
+    },
+    {
+      "title": "Forecasting Scientific Progress with Artificial Intelligence",
+      "upvotes": 34,
+      "id": "2605.22681",
+      "abstract": "Artificial intelligence (AI) is increasingly embedded in scientific discovery, yet whether it can anticipate scientific progress remains unclear. We introduce CUSP benchmark."
+    },
+    {
+      "title": "Unsupervised Process Reward Models",
+      "upvotes": 23,
+      "id": "2605.10158",
+      "abstract": "Process Reward Models (PRMs) are a powerful mechanism for steering large language model reasoning by providing fine-grained, step-level supervision without human annotations."
+    },
+    {
+      "title": "AutoRubric-T2I: Robust Rule-Based Reward Model for Text-to-Image Alignment",
+      "upvotes": 16,
+      "id": "2605.17602",
+      "abstract": "Aligning Text-to-Image (T2I) generation models with human preferences using automatically synthesized rubrics for VLM judges."
+    },
+    {
+      "title": "Forecasting Downstream Performance of LLMs With Proxy Metrics",
+      "upvotes": 10,
+      "id": "2605.18607",
+      "abstract": "Progress in language model development is driven by comparative decisions. We propose proxy metrics by aggregating token-level statistics for reliable performance forecasts."
+    },
+    {
+      "title": "Efficient Agentic Reasoning Through Self-Regulated Simulative Planning",
+      "upvotes": 7,
+      "id": "2605.22138",
+      "abstract": "How should an agent decide when and how to plan? We propose SR2AM decomposing decision-making into simulative reasoning, self-regulation, and reactive execution."
+    },
+    {
+      "title": "LoREnc: Low-Rank Encryption for Securing Foundation Models and LoRA Adapters",
+      "upvotes": 6,
+      "id": "2605.13163",
+      "abstract": "Foundation models and low-rank adapters enable efficient on-device generative AI but raise risks. LoREnc is a training-free framework securing FMs via spectral truncation."
+    },
+    {
+      "title": "Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis with Execution-Guided Test Generation",
+      "upvotes": 5,
+      "id": "2605.15669",
+      "abstract": "Translating natural language design rules into correct DRC scripts is labor-intensive. Rule2DRC is a large-scale benchmark with 1,000 rule-to-script tasks."
+    },
+    {
+      "title": "OmniPro: A Comprehensive Benchmark for Omni-Proactive Streaming Video Understanding",
+      "upvotes": 3,
+      "id": "2605.18577",
+      "abstract": "Omni-proactive streaming video understanding is an emerging capability. OmniPro is the first benchmark to jointly evaluate omni-modal perception and proactive responding."
+    },
+    {
+      "title": "\"I didn't Make the Micro Decisions\": Measuring, Inducing, and Exposing Goal-Level AI Contributions in Collaboration",
+      "upvotes": 3,
+      "id": "2605.21363",
+      "abstract": "As LLMs increasingly shape how users form goals, attributing contributions in human-AI collaboration becomes critical. CoTrace decomposes explicit goals into verifiable requirements."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.150",
+      "published_at": "2025-05-23",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    },
+    {
+      "tag_name": "v2.1.149",
+      "published_at": "2025-05-22",
+      "body": "/usage now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost. /diff detail view can now be scrolled with the keyboard. Markdown output now renders GFM task list checkboxes. Enterprise: added the allowAllClaudeAiMcps managed setting. Fixed a PowerShell permission bypass. Fixed the sandbox write allowlist in git worktrees. Fixed PowerShell prefix/wildcard allow rules."
+    },
+    {
+      "tag_name": "v2.1.148",
+      "published_at": "2025-05-22",
+      "body": "Fixed the Bash tool returning exit code 127 on every command for some users (a regression introduced in 2.1.147)"
+    }
+  ]
+}
