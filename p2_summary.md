@@ -1,6 +1,6 @@
-**2. Forecasting Scientific Progress with Artificial Intelligence**
-**著者**: (Anonymous et al.) (2025)
-**arXiv**: https://arxiv.org/abs/2605.22681
+**2. SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research**
+**著者**: Anonymous et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.22878
 
 **まとめ**:
-AI が科学的進歩を事前に予測できるかを体系的に検証した研究。CUSP ベンチマーク（4,760 件の科学的イベント）を構築し、最先端モデルの予測能力を多角的に評価。現在の AI は有望な研究方向の識別は得意だが、科学進歩の実現可否や時期の予測は系統的に誤り、領域依存性も顕著（AI 進歩 > 生物・化学・物理）。知識アクセスの増加より事後情報の方が性能改善に貢献するという根本的限界を初めて定量化した。
+26分野・4300万論文・1570億エンティティ・30億トリプレットを統合した大規模異種学術知識グラフSciAtlasを構築。表面的なキーワード検索を超えた位相推論（Topological Reasoning）を可能にし、AIエージェントの自動科学研究を支援する「認知マップ」を実現。三経路協調リコール＋グラフ再ランキングのニューロシンボリック検索で全プロセス2分以内に完了。文献レビュー・トレンド予測・アイデア生成など多様な下流タスクへの応用を実証。
