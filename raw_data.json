@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "SEGA: Spectral-Energy Guided Attention for Resolution Extrapolation in Diffusion Transformers", "upvotes": 34, "id": "2605.22668", "abstract": "Diffusion transformers (DiTs) have emerged as a dominant architecture for text-to-image generation, yet their performance drops when generating at resolutions beyond their training range."},
-    {"title": "Forecasting Scientific Progress with Artificial Intelligence", "upvotes": 34, "id": "2605.22681", "abstract": "Artificial intelligence (AI) is increasingly embedded in scientific discovery, yet whether it can anticipate scientific progress remains unclear. We introduce CUSP benchmark."},
-    {"title": "Unsupervised Process Reward Models", "upvotes": 23, "id": "2605.10158", "abstract": "Process Reward Models (PRMs) are a powerful mechanism for steering large language model reasoning by providing fine-grained, step-level supervision without human annotations."},
-    {"title": "AutoRubric-T2I: Robust Rule-Based Reward Model for Text-to-Image Alignment", "upvotes": 16, "id": "2605.17602", "abstract": "Aligning Text-to-Image (T2I) generation models with human preferences using automatically synthesized rubrics for VLM judges."},
-    {"title": "Forecasting Downstream Performance of LLMs With Proxy Metrics", "upvotes": 10, "id": "2605.18607", "abstract": "Progress in language model development is driven by comparative decisions. We propose proxy metrics by aggregating token-level statistics for reliable performance forecasts."},
-    {"title": "Efficient Agentic Reasoning Through Self-Regulated Simulative Planning", "upvotes": 7, "id": "2605.22138", "abstract": "How should an agent decide when and how to plan? We propose SR2AM decomposing decision-making into simulative reasoning, self-regulation, and reactive execution."},
-    {"title": "LoREnc: Low-Rank Encryption for Securing Foundation Models and LoRA Adapters", "upvotes": 6, "id": "2605.13163", "abstract": "Foundation models and low-rank adapters enable efficient on-device generative AI but raise risks. LoREnc is a training-free framework securing FMs via spectral truncation."},
-    {"title": "Rule2DRC: Benchmarking LLM Agents for DRC Script Synthesis with Execution-Guided Test Generation", "upvotes": 5, "id": "2605.15669", "abstract": "Translating natural language design rules into correct DRC scripts is labor-intensive. Rule2DRC is a large-scale benchmark with 1,000 rule-to-script tasks."},
-    {"title": "OmniPro: A Comprehensive Benchmark for Omni-Proactive Streaming Video Understanding", "upvotes": 3, "id": "2605.18577", "abstract": "Omni-proactive streaming video understanding is an emerging capability. OmniPro is the first benchmark to jointly evaluate omni-modal perception and proactive responding."},
-    {"title": "\"I didn't Make the Micro Decisions\": Measuring, Inducing, and Exposing Goal-Level AI Contributions in Collaboration", "upvotes": 3, "id": "2605.21363", "abstract": "As LLMs increasingly shape how users form goals, attributing contributions in human-AI collaboration becomes critical. CoTrace decomposes explicit goals into verifiable requirements."}
+    {
+      "title": "Rethinking Cross-Layer Information Routing in Diffusion Transformers",
+      "upvotes": 90,
+      "paper_id": "2605.20708",
+      "abstract": "Diffusion Transformers (DiTs) have become a de facto backbone of modern visual generation. The residual stream that governs how information accumulates across layers has been directly inherited from the original Transformer. We present a systematic empirical analysis of cross-layer information flow in DiTs and propose Diffusion-Adaptive Routing (DAR)."
+    },
+    {
+      "title": "SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research",
+      "upvotes": 45,
+      "paper_id": "2605.22878",
+      "abstract": "We introduce SciAtlas, a large-scale, multi-disciplinary, heterogeneous academic resource knowledge graph designed as a panoramic scientific evolution network. By integrating over 43M papers from 26 disciplines, and a total of 157M entities and 3B triplets, SciAtlas provides a structured topological cognitive substrate."
+    },
+    {
+      "title": "StepAudio 2.5 Technical Report",
+      "upvotes": 36,
+      "paper_id": "2605.23463",
+      "abstract": "StepAudio 2.5 is a unified audio-language foundation model that matches or exceeds specialized systems across ASR, TTS, and realtime spoken interaction. We advance the post-training paradigm from standard supervised learning to task-tailored Reinforcement Learning from Human Feedback (RLHF)."
+    },
+    {
+      "title": "See What I Mean: Aligning Vision and Language Representations for Video Fine-grained Object Understanding",
+      "upvotes": 28,
+      "paper_id": "2605.18018",
+      "abstract": "We present SWIM (See What I Mean), a novel training strategy that aligns vision and language representations to enable fine-grained object understanding solely from textual prompts. Unlike existing approaches that require explicit visual prompts, SWIM leverages mask supervision only during training."
+    },
+    {
+      "title": "PhotoFlow: Agentic 3D Virtual Photography Missions",
+      "upvotes": 20,
+      "paper_id": "2605.23771",
+      "abstract": "Virtual photography asks an agent to enter a prepared 3D scene, infer a suitable shot from scene information and a language intent, choose executable camera parameters, and render the final photograph. We introduce PhotoFlow, a Director-Reviewer-Reflector agent for closed-loop camera search."
+    },
+    {
+      "title": "VGenST-Bench: A Benchmark for Spatio-Temporal Reasoning via Active Video Synthesis",
+      "upvotes": 20,
+      "paper_id": "2605.22570",
+      "abstract": "We introduce VGenST-Bench, a video benchmark that employs generative models to actively synthesize highly controlled and diverse evaluation scenarios. We propose a multi-agent pipeline incorporating a human quality control stage, ensuring the quality of all generated videos and QA pairs."
+    },
+    {
+      "title": "RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution",
+      "upvotes": 14,
+      "paper_id": "2605.21195",
+      "abstract": "We propose RankE, the first end-to-end post-training framework for discrete T2I generation. Rather than optimizing the policy against a fixed decoder, RankE co-evolves both components through alternating optimization: each module maximizes a ranking-based alignment objective."
+    },
+    {
+      "title": "SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models",
+      "upvotes": 8,
+      "paper_id": "2605.23345",
+      "abstract": "We propose SCOPE, which inserts a conditioning module into each transformer block of a pretrained video diffusion model for FPS games. It reshapes features into per-pixel temporal sequences so that each position computes its action response from local visual content."
+    },
+    {
+      "title": "Geo-Align: Video Generation Alignment via Metric Geometry Reward",
+      "upvotes": 5,
+      "paper_id": "2605.23903",
+      "abstract": "We propose Geo-Align, the first Reinforcement Learning framework specifically designed for camera-controlled video re-rendering. We optimize the model through a scale-aware perceptual reward mechanism using a metric 3D estimator to extract precise camera trajectories."
+    },
+    {
+      "title": "LatentUMM: Dual Latent Alignment for Unified Multimodal Models",
+      "upvotes": 4,
+      "paper_id": "2605.17766",
+      "abstract": "We propose LatentUMM, a framework that constructs an enhanced shared latent space to explicitly align transformations and improve cross-modal consistency. LatentUMM consists of dual latent alignment and latent dynamics stabilization stages."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.150", "published_at": "2025-05-23", "body": "Internal infrastructure improvements (no user-facing changes)"},
-    {"tag_name": "v2.1.149", "published_at": "2025-05-22", "body": "/usage now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost. /diff detail view can now be scrolled with the keyboard. Markdown output now renders GFM task list checkboxes. Enterprise: added the allowAllClaudeAiMcps managed setting. Fixed a PowerShell permission bypass. Fixed the sandbox write allowlist in git worktrees. Fixed PowerShell prefix/wildcard allow rules."},
-    {"tag_name": "v2.1.148", "published_at": "2025-05-22", "body": "Fixed the Bash tool returning exit code 127 on every command for some users (a regression introduced in 2.1.147)"}
+    {
+      "tag_name": "v2.1.150",
+      "published_at": "2025-05-23",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    },
+    {
+      "tag_name": "v2.1.149",
+      "published_at": "2025-05-22",
+      "body": "`/usage` now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost. `/diff` detail view can now be scrolled with the keyboard (arrows, `j`/`k`, `PgUp`/`PgDn`, `Space`, `Home`/`End`). Markdown output now renders GFM task list checkboxes (`- [ ] todo` / `- [x] done`) instead of plain bullets. Enterprise: added the `allowAllClaudeAiMcps` managed setting to load claude.ai cloud MCP connectors alongside `managed-mcp.json`. Fixed a PowerShell permission bypass: built-in `cd` functions changed the working directory undetected, letting a later command read outside the workspace."
+    },
+    {
+      "tag_name": "v2.1.148",
+      "published_at": "2025-05-22",
+      "body": "Fixed the Bash tool returning exit code 127 on every command for some users (a regression introduced in 2.1.147)"
+    }
   ]
 }
