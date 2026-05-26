@@ -1,64 +1,64 @@
 {
   "papers": [
     {
-      "title": "Rethinking Cross-Layer Information Routing in Diffusion Transformers",
-      "upvotes": 90,
-      "paper_id": "2605.20708",
-      "abstract": "Diffusion Transformers (DiTs) have become a de facto backbone of modern visual generation. The residual stream that governs how information accumulates across layers has been directly inherited from the original Transformer. We present a systematic empirical analysis of cross-layer information flow in DiTs and propose Diffusion-Adaptive Routing (DAR)."
-    },
-    {
-      "title": "SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research",
-      "upvotes": 45,
-      "paper_id": "2605.22878",
-      "abstract": "We introduce SciAtlas, a large-scale, multi-disciplinary, heterogeneous academic resource knowledge graph designed as a panoramic scientific evolution network. By integrating over 43M papers from 26 disciplines, and a total of 157M entities and 3B triplets, SciAtlas provides a structured topological cognitive substrate."
-    },
-    {
-      "title": "StepAudio 2.5 Technical Report",
-      "upvotes": 36,
-      "paper_id": "2605.23463",
-      "abstract": "StepAudio 2.5 is a unified audio-language foundation model that matches or exceeds specialized systems across ASR, TTS, and realtime spoken interaction. We advance the post-training paradigm from standard supervised learning to task-tailored Reinforcement Learning from Human Feedback (RLHF)."
-    },
-    {
-      "title": "See What I Mean: Aligning Vision and Language Representations for Video Fine-grained Object Understanding",
+      "title": "ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention",
       "upvotes": 28,
-      "paper_id": "2605.18018",
-      "abstract": "We present SWIM (See What I Mean), a novel training strategy that aligns vision and language representations to enable fine-grained object understanding solely from textual prompts. Unlike existing approaches that require explicit visual prompts, SWIM leverages mask supervision only during training."
+      "paper_id": "2605.23081",
+      "abstract": "Efficient attention algorithms are critical to mitigate the quadratic cost of attention in long-context workloads. Prior work utilises block-scaled quantisation techniques on Blackwell GPUs to move attention computation to 4-bit precision to accelerate inference."
     },
     {
-      "title": "PhotoFlow: Agentic 3D Virtual Photography Missions",
-      "upvotes": 20,
-      "paper_id": "2605.23771",
-      "abstract": "Virtual photography asks an agent to enter a prepared 3D scene, infer a suitable shot from scene information and a language intent, choose executable camera parameters, and render the final photograph. We introduce PhotoFlow, a Director-Reviewer-Reflector agent for closed-loop camera search."
+      "title": "CUA-Gym: Scaling Verifiable Training Environments and Tasks for Computer-Use Agents",
+      "upvotes": 15,
+      "paper_id": "2605.25624",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has driven breakthroughs in domains such as math, tool-use, and software engineering, yet its extension to computer-use agents (CUAs) has been bottlenecked by the scarcity of scalable training data with verifiable rewards."
     },
     {
-      "title": "VGenST-Bench: A Benchmark for Spatio-Temporal Reasoning via Active Video Synthesis",
-      "upvotes": 20,
-      "paper_id": "2605.22570",
-      "abstract": "We introduce VGenST-Bench, a video benchmark that employs generative models to actively synthesize highly controlled and diverse evaluation scenarios. We propose a multi-agent pipeline incorporating a human quality control stage, ensuring the quality of all generated videos and QA pairs."
+      "title": "Anticipate and Learn: Unleashing Idle-Time Compute in Proactive Agents",
+      "upvotes": 12,
+      "paper_id": "2605.25971",
+      "abstract": "While AI agents demonstrate remarkable capabilities in reasoning and tool use, they remain fundamentally reactive. This paradigm ignores a critical opportunity: the idle time between interactions is largely wasted, leaving an opportunity to precompute useful information."
     },
     {
-      "title": "RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution",
-      "upvotes": 14,
-      "paper_id": "2605.21195",
-      "abstract": "We propose RankE, the first end-to-end post-training framework for discrete T2I generation. Rather than optimizing the policy against a fixed decoder, RankE co-evolves both components through alternating optimization: each module maximizes a ranking-based alignment objective."
+      "title": "Language Models Need Sleep",
+      "upvotes": 6,
+      "paper_id": "2605.26099",
+      "abstract": "Transformer-based large language models are increasingly used for long-horizon tasks; however, their attention mechanism scales poorly with context length. We study a sleep-like consolidation mechanism in which a model periodically converts recent context into persistent memory."
     },
     {
-      "title": "SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models",
-      "upvotes": 8,
-      "paper_id": "2605.23345",
-      "abstract": "We propose SCOPE, which inserts a conditioning module into each transformer block of a pretrained video diffusion model for FPS games. It reshapes features into per-pixel temporal sequences so that each position computes its action response from local visual content."
-    },
-    {
-      "title": "Geo-Align: Video Generation Alignment via Metric Geometry Reward",
+      "title": "CRONOS: Benchmarking Counterfactual Physical Consistency in Video Models",
       "upvotes": 5,
-      "paper_id": "2605.23903",
-      "abstract": "We propose Geo-Align, the first Reinforcement Learning framework specifically designed for camera-controlled video re-rendering. We optimize the model through a scale-aware perceptual reward mechanism using a metric 3D estimator to extract precise camera trajectories."
+      "paper_id": "2605.23699",
+      "abstract": "Video prediction is increasingly viewed as a path toward generalizable world models, yet it remains unclear whether these systems learn underlying causal structure or merely exploit superficial visual correlations for future prediction."
     },
     {
-      "title": "LatentUMM: Dual Latent Alignment for Unified Multimodal Models",
-      "upvotes": 4,
-      "paper_id": "2605.17766",
-      "abstract": "We propose LatentUMM, a framework that constructs an enhanced shared latent space to explicitly align transformations and improve cross-modal consistency. LatentUMM consists of dual latent alignment and latent dynamics stabilization stages."
+      "title": "Injecting Image Guidance into Text-Conditioned Diffusion Models at Inference",
+      "upvotes": 3,
+      "paper_id": "2605.25191",
+      "abstract": "Text-to-image diffusion models like Stable Diffusion generate high-quality images from text, but lack a way to inject visual guidance at inference without retraining. Existing methods either require computationally expensive fine-tuning or rely on style transfer techniques."
+    },
+    {
+      "title": "Towards Evaluation Engineering: An Empirical Study of ML Evaluation Harnesses in the Wild",
+      "upvotes": 1,
+      "paper_id": "2605.24213",
+      "abstract": "Evaluation harnesses are software systems that orchestrate model evaluation by managing model invocation, data loading, metric computation, and result reporting. Despite their critical role in ML infrastructure, their operational challenges have received little attention."
+    },
+    {
+      "title": "How Far Will They Go? Red-Teaming Online Influence with Large Language Models",
+      "upvotes": 1,
+      "paper_id": "2605.22880",
+      "abstract": "As large language model (LLM)-based agents increasingly participate in online discourse, red-teaming their capacity to support political influence campaigns is critical for information integrity."
+    },
+    {
+      "title": "ECHO: Terminal Agents Learn World Models for Free",
+      "upvotes": 1,
+      "paper_id": "2605.24517",
+      "abstract": "CLI agents are the closest thing language models have to an embodied setting: the model emits commands, the terminal executes them, and the returned stream records the consequences. We argue that this stream is a supervision signal for world model learning."
+    },
+    {
+      "title": "Directional Alignment Mitigates Reward Hacking in Reinforcement Learning for Language Models",
+      "upvotes": 1,
+      "paper_id": "2605.25189",
+      "abstract": "Reward hacking arises when a model improves a proxy reward by exploiting shortcuts rather than solving the intended task. We study this failure mode through the geometry of reinforcement learning updates in language models."
     }
   ],
   "cc_updates": [
@@ -70,7 +70,7 @@
     {
       "tag_name": "v2.1.149",
       "published_at": "2025-05-22",
-      "body": "`/usage` now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost. `/diff` detail view can now be scrolled with the keyboard (arrows, `j`/`k`, `PgUp`/`PgDn`, `Space`, `Home`/`End`). Markdown output now renders GFM task list checkboxes (`- [ ] todo` / `- [x] done`) instead of plain bullets. Enterprise: added the `allowAllClaudeAiMcps` managed setting to load claude.ai cloud MCP connectors alongside `managed-mcp.json`. Fixed a PowerShell permission bypass: built-in `cd` functions changed the working directory undetected, letting a later command read outside the workspace."
+      "body": "/usage now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost\n/diff detail view can now be scrolled with the keyboard (arrows, j/k, PgUp/PgDn, Space, Home/End)\nMarkdown output now renders GFM task list checkboxes\nEnterprise: added allowAllClaudeAiMcps managed setting\nFixed a PowerShell permission bypass\nFixed the sandbox write allowlist in git worktrees"
     },
     {
       "tag_name": "v2.1.148",
