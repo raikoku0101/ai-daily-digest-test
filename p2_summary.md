@@ -1,6 +1,7 @@
-**2. SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research**
-**著者**: Anonymous et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.22878
+**2. CUA-Gym: Scaling Verifiable Training Environments and Tasks for Computer-Use Agents**
+**著者**: CUA-Gym Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.25624
+**upvotes**: 15
 
 **まとめ**:
-26分野・4300万論文・1570億エンティティ・30億トリプレットを統合した大規模異種学術知識グラフSciAtlasを構築。表面的なキーワード検索を超えた位相推論（Topological Reasoning）を可能にし、AIエージェントの自動科学研究を支援する「認知マップ」を実現。三経路協調リコール＋グラフ再ランキングのニューロシンボリック検索で全プロセス2分以内に完了。文献レビュー・トレンド予測・アイデア生成など多様な下流タスクへの応用を実証。
+コンピュータ操作エージェント（CUA）の RLVR 学習を阻んでいた「検証可能な報酬付き訓練データの不足」を解決するパイプラインを提案。110 環境で 32,112 個の検証済み RLVR 訓練タプルを自動生成し、OSWorld-Verified で 72.6% の性能を達成。CUA 研究の民主化に向けたオープンなトレーニング基盤として公開予定。
