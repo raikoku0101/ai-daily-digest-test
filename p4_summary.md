@@ -1,6 +1,7 @@
-**4. See What I Mean (SWIM): Aligning Vision and Language Representations for Video Fine-grained Object Understanding**
-**著者**: Anonymous et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.18018
+**4. Language Models Need Sleep**
+**著者**: LLM Sleep Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.26099
+**upvotes**: 6
 
 **まとめ**:
-マルチモーダルLLM（MLLM）の物体名詞に対する視覚的注意が拡散・散漫になる問題を解明し、訓練時のみマスク監督を使用して物体名詞と視覚領域の対応を強化するSWIMを提案。NL-Refer（125K動画）データセットを構築し、推論時は視覚プロンプト不要でテキストだけで細粒度オブジェクト理解を実現。VideoRefer-Qで78.3%精度を達成し、視覚プロンプト依存の最強ベースラインを上回った。
+生物の睡眠による記憶固定からヒントを得た新しいアーキテクチャを提案。LLM が定期的に最近のコンテキストを「高速重み（fast weights）」へと変換（睡眠フェーズ）し、その後 KV キャッシュをクリアすることで、線形コストで長文脈推論を実現。セルオートマタ・グラフ検索・数学推論タスクで、睡眠ループ増加が深い推論タスクの性能を向上させることを実証した。
