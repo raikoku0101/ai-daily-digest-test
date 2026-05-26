@@ -1,6 +1,7 @@
-**1. Rethinking Cross-Layer Information Routing in Diffusion Transformers**
-**著者**: Anonymous et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.20708
+**1. ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention**
+**著者**: ThriftAttention Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.23081
+**upvotes**: 28
 
 **まとめ**:
-Diffusion Transformer（DiT）の残差接続が引き起こす「前向きマグニチュード膨張」「後向き勾配減衰」「ブロック間冗長性」の3問題を体系的に分析。学習可能・タイムステップ適応型の非逐次集約を行うDiffusion-Adaptive Routing（DAR）を提案し、ImageNet 256×256でFIDを9.67→7.56に改善、学習収束を8.75倍高速化。REPAと組み合わせると初期段階で2倍の学習加速を実現し、既存手法と直交するアーキテクチャ改善軸を提示。
+Blackwell GPU の FP4（4ビット）テンソルコアを活用しながら、重要な Attention ブロックのみを選択的に FP16 で処理する「混合精度 Attention」手法を提案。FP4 ブロックの僅か 5% を FP16 で処理するだけで、FP4→FP16 の性能差の 89.1% を回復し、エンドツーエンドで最大 2 倍の推論高速化を達成。長文コンテキスト LLM 推論の実用的な高速化手法として即座に応用可能。
