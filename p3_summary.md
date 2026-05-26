@@ -1,6 +1,7 @@
-**3. StepAudio 2.5 Technical Report**
-**著者**: StepFun et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.23463
+**3. Anticipate and Learn: Unleashing Idle-Time Compute in Proactive Agents**
+**著者**: ProAct Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.25971
+**upvotes**: 12
 
 **まとめ**:
-音声認識（ASR）・音声合成（TTS）・リアルタイム音声対話の3能力を単一バックボーンで統合したStepAudio 2.5を発表。テキストと音声の共有表現空間を確立し、タスク特化をデータ構築・最適化目標・デコード制約の問題と再定義。ASRではLibriSpeech clean 1.38% WER、TTSでは競合システムに対して67.6%の勝率、リアルタイム対話では次善システムに+10ポイント差を達成。RLHFを中心アライメント機構として活用した新パラダイムを提示。
+AI エージェントをリアクティブ（反応型）からプロアクティブ（先読み型）へと転換する「ProAct」フレームワークを提案。対話の合間のアイドル時間を活用してユーザーの次の質問を予測・事前準備することで、タスク完了ターン数 14.8% 削減・ユーザー労力 11.7% 低下・幻覚率 28.1% 削減を達成。インタラクティブ AI 体験を根本から変える可能性がある。
