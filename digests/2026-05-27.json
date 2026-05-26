@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-27",
+  "content": "# AI Daily Digest — 2026-05-27\n\n## 今日のハイライト\n- **ThriftAttention が長文 AI 推論を変える**: Blackwell GPU の FP4 精度を選択的に活用し、精度を維持しつつ長文コンテキスト処理コストを大幅削減。LLM の実用的な長文対応に直結する重要成果（upvotes 1位）。\n- **Claude Code v2.1.149 が使用量の透明性とセキュリティを強化**: `/usage` のカテゴリ別内訳表示、PowerShell 権限バイパス脆弱性の修正、git worktree のセキュリティ修正が含まれ、開発者にとって即座に影響する重要アップデート。\n- **AI エージェントの「先読み」パラダイム**: CUA-Gym と Anticipate and Learn の 2 本が、エージェントをリアクティブからプロアクティブへ転換する新しい設計思想を提示。アイドル時間の活用と検証可能な報酬設計が次世代エージェント研究の鍵に。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.150 (2025-05-23)\n**主要変更**: 内部インフラ改善のみ（ユーザー向け変更なし）\n\n---\n\n### v2.1.149 (2025-05-22)\n**主要機能追加**:\n- `/usage` コマンドがカテゴリ別の内訳表示に対応 — スキル、サブエージェント、プラグイン、MCP サーバーごとのコストが可視化\n- `/diff` の詳細ビューがキーボードスクロール対応（矢印キー、j/k、PgUp/PgDn、Space、Home/End）\n- Markdown 出力が GFM タスクリストチェックボックス（`- [ ] todo` / `- [x] done`）をネイティブレンダリング\n\n**Enterprise 向け**:\n- `allowAllClaudeAiMcps` マネージド設定を追加 — `managed-mcp.json` と並行して claude.ai クラウド MCP コネクタをロード可能に\n\n**バグ修正**:\n- PowerShell での権限バイパス脆弱性を修正（`cd..`、`cd\\`、`cd~`、`X:` などのビルトイン cd 関数がワークスペース外を読み取れた問題）\n- git worktree 内のサンドボックス書き込みアローリストが、共有 `.git` ディレクトリのみを対象とするよう修正（以前はリポジトリルート全体を対象としていた）\n\n**ユーザーへの影響**: 使用量の透明性が大幅向上。セキュリティ修正により PowerShell ユーザーは安全性が向上。\n\n---\n\n### v2.1.148 (2025-05-22)\n**バグ修正**: 一部ユーザーで Bash ツールが全コマンドに対して終了コード 127 を返していた問題を修正（v2.1.147 で発生したリグレッション）\n\n**ユーザーへの影響**: v2.1.147 で Bash ツールが機能しなくなっていたユーザーは本バージョンへの更新で解消。\n\n## 注目論文 TOP 10\n\n**1. ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention** | 👍 28 | https://arxiv.org/abs/2605.23081\n🎯**背景**: 長文コンテキスト処理における Attention の二乗コスト問題。Blackwell GPU の FP4（4ビット精度）を活用した先行研究があるが、全 Attention ブロックに一律適用すると精度が劣化する。\n🔧**手法**: 重要度の高い Attention ヘッド・トークンを選択的に高精度（FP16）で処理し、残りを FP4 で処理する混合精度アプローチ。選択基準はアテンションスコアの分散に基づく動的な閾値判定。\n📊**結果**: 全 FP4 比で精度をほぼ維持しつつ、FP16 のみと比べて大幅なメモリ削減・高速化を実現。長文（32K～128K トークン）ベンチマークで有効性を検証。\n💡**意義**: LLM の長文処理コストを実用的に削減する手法として、GPU メモリ制約のある環境でも高精度な長文推論を可能にする。\n⚠️**限界**: Blackwell GPU 特有の機能に依存しており、旧世代 GPU では同等の恩恵を受けられない可能性がある。\n\n---\n\n**2. CUA-Gym: Scaling Verifiable Training Environments and Tasks for Computer-Use Agents** | 👍 15 | https://arxiv.org/abs/2605.25624\n🎯**背景**: 強化学習（RLVR）は数学・ツール利用・ソフトウェア開発での突破口となったが、コンピュータ操作エージェント（CUA）への応用は検証可能な報酬付き学習データの不足が障壁となっていた。\n🔧**手法**: スケーラブルな仮想デスクトップ環境を構築し、Web ブラウジング・ファイル操作・アプリ操作など多様なタスクに対して自動で正解判定できる検証可能な報酬関数を設計。\n📊**結果**: 数百種類のタスクカテゴリにわたるベンチマーク環境を提供し、RLVR で訓練したエージェントが従来の模倣学習ベースのエージェントを上回る性能を示した。\n💡**意義**: CUA の RLVR 学習を民主化するオープンな Gym 環境として、コンピュータ操作 AI の研究基盤を大幅に強化する。\n⚠️**限界**: 仮想環境と実際のデスクトップ環境の差異（ドメインギャップ）が実世界への適用性を制限する可能性がある。\n\n---\n\n**3. Anticipate and Learn: Unleashing Idle-Time Compute in Proactive Agents** | 👍 12 | https://arxiv.org/abs/2605.25971\n🎯**背景**: AI エージェントはユーザーのプロンプトが来てから応答するリアクティブなパラダイムに縛られており、対話間のアイドル時間の計算リソースが無駄になっている。\n🔧**手法**: エージェントがアイドル時間中に次のユーザー入力を予測し、事前に関連情報を取得・推論を進めておく「先読み学習」フレームワークを提案。予測が外れた場合のコスト管理も組み込む。\n📊**結果**: 応答レイテンシの大幅削減を実現。特に情報検索・計画が必要なタスクで効果が顕著で、体験上の応答速度が 30-50% 改善。\n💡**意義**: エージェントをリアクティブからプロアクティブに転換する概念的・技術的フレームワークとして、インタラクティブ AI 体験を根本から変える可能性がある。\n⚠️**限界**: 予測精度が低い場合は無駄な計算が増え、全体のコスト効率が悪化するリスクがある。\n\n---\n\n**4. Language Models Need Sleep** | 👍 6 | https://arxiv.org/abs/2605.26099\n🎯**背景**: LLM は長文タスクへの利用が増加しているが、Attention 機構はコンテキスト長に対して二乗のコストを持ち、超長文処理は実用上困難。人間の睡眠による記憶固定との類比に着想。\n🔧**手法**: 「スリープ類似統合メカニズム」として、モデルが定期的に最近のコンテキストを永続メモリに変換するサイクルを導入。RNN 的な圧縮とトランスフォーマーの表現力を組み合わせる。\n📊**結果**: 長文ベンチマークで標準 Attention と同等以上の精度を維持しながら、コンテキスト長に対してほぼ線形のコストを実現。\n💡**意義**: 生物の睡眠-覚醒サイクルから着想した革新的アーキテクチャで、無限長コンテキスト処理への道を開く可能性がある。\n⚠️**限界**: 統合サイクルのタイミング設計が難しく、不適切な間隔では重要情報が失われるリスクがある。\n\n---\n\n**5. CRONOS: Benchmarking Counterfactual Physical Consistency in Video Models** | 👍 5 | https://arxiv.org/abs/2605.23699\n🎯**背景**: ビデオ予測モデルが「世界モデル」として機能するかを問う研究。これらが因果構造を学習しているのか、表面的な視覚相関を利用しているのかが不明だった。\n🔧**手法**: 反事実的介入（物理法則に反するシナリオを挿入）ベースのベンチマーク CRONOS を構築。モデルが物理的因果性を持つかを、シナリオ分岐の整合性で評価。\n📊**結果**: 主要なビデオ生成モデルの多くが反事実シナリオで物理的整合性を破り、因果学習よりも相関学習に依存していることが判明。\n💡**意義**: 世界モデル研究の評価基準として、単なる視覚的忠実度を超えた因果的整合性の重要性を提示する。\n⚠️**限界**: 合成シナリオへの依存が実世界の多様な物理現象をカバーしきれない可能性がある。\n\n\n---\n\n**6. Injecting Image Guidance into Text-Conditioned Diffusion Models at Inference** | 👍 3 | https://arxiv.org/abs/2605.25191\n🎯**背景**: Stable Diffusion などのテキスト→画像拡散モデルは高品質な画像を生成できるが、推論時にスケッチやスタイル参照画像などの視覚ガイダンスを注入する手段が乏しかった。\n🔧**手法**: 再学習なしに推論時のみで画像ガイダンスを注入する手法を提案。クロスアテンション機構を利用して、テキスト条件に視覚特徴を動的に融合させる。\n📊**結果**: ファインチューニング不要で ControlNet に近い制御精度を実現。スケッチ・深度マップ・スタイル参照など複数の視覚条件に対応。\n💡**意義**: モデル再学習のコストなしに既存の拡散モデルを視覚条件付きで活用できるため、クリエイターの創作ワークフローを大幅に効率化する。\n⚠️**限界**: 複雑な視覚条件の完全な忠実度再現は難しく、強いテキスト条件と競合する場合に視覚ガイダンスが無視されることがある。\n\n---\n\n**7. Towards Evaluation Engineering: An Empirical Study of ML Evaluation Harnesses in the Wild** | 👍 1 | https://arxiv.org/abs/2605.24213\n🎯**背景**: ML 評価ハーネス（lm-eval-harness 等）は AI 研究のインフラとして中核を担うが、その運用課題やエンジニアリング上の問題はほとんど研究されてこなかった。\n🔧**手法**: 主要な ML 評価ハーネスのソースコードと Issue トラッカーを大規模に分析し、バグパターン・メンテナンスコスト・再現性問題を体系的に分類。\n📊**結果**: 評価ハーネスの主なバグ原因は「データ前処理の非一貫性」「プロンプト形式の依存性」「乱数シードの未固定」の三つが占めることを特定。\n💡**意義**: 「評価エンジニアリング」という新分野を提唱し、ベンチマーク結果の信頼性向上に向けたベストプラクティスを提供する。\n⚠️**限界**: 分析対象が英語圏の主要ハーネスに偏っており、多言語・特定ドメイン向けハーネスの課題は未カバー。\n\n---\n\n**8. How Far Will They Go? Red-Teaming Online Influence with Large Language Models** | 👍 1 | https://arxiv.org/abs/2605.22880\n🎯**背景**: LLM ベースのエージェントがオンライン言論に参加する機会が増える中、政治的影響工作へのリスクを定量化することが情報の健全性維持に不可欠。\n🔧**手法**: オープンソースの LLM を使って、実際のソーシャルメディア環境を模倣した環境で影響工作シナリオをシミュレーション。プロパガンダ生成・拡散の自動化能力を多角的に評価。\n📊**結果**: 一部オープンソース LLM は安全対策が手薄で、誘導プロンプトにより説得力の高い虚偽情報を生成・拡散する能力を示した。\n💡**意義**: LLM の悪用リスクを実証的に示し、プラットフォーム・開発者双方に対するガードレール強化の必要性を訴える。\n⚠️**限界**: ローカル展開モデルに焦点を当てており、API 経由の大規模フロンティアモデルの悪用リスクは別途評価が必要。\n\n---\n\n**9. ECHO: Terminal Agents Learn World Models for Free** | 👍 1 | https://arxiv.org/abs/2605.24517\n🎯**背景**: CLI エージェントは LLM が「身体性」を持つ最も現実的な設定だが、コマンドの結果（stdout・エラー・ファイル変化）が世界モデル学習の信号として活用されていない。\n🔧**手法**: ターミナル出力ストリーム（stdout・stderr・ファイル変化・ログ）を教師信号として利用し、エージェントが副作用を事前に予測する世界モデルを自己教師あり学習で習得させる ECHO フレームワークを提案。\n📊**結果**: 世界モデルを獲得したエージェントは、モデルフリーのエージェントに比べてコード修正・デバッグタスクで精度向上を達成。特に未見の CLI 環境への汎化性が改善。\n💡**意義**: 追加データ収集なしに既存の実行ログから世界モデルを学習する「フリーランチ」的アプローチで、CLI エージェントの自律性を高める。\n⚠️**限界**: ターミナル環境特有のノイジーな出力への依存が、クリーンな環境との転移学習を難しくする可能性がある。\n\n---\n\n**10. Directional Alignment Mitigates Reward Hacking in Reinforcement Learning for Language Models** | 👍 1 | https://arxiv.org/abs/2605.25189\n🎯**背景**: RLHF などで LLM を強化学習で微調整する際、プロキシ報酬を高めるショートカット（報酬ハッキング）が発生し、本来のタスク性能が劣化する問題が深刻。\n🔧**手法**: 強化学習の更新方向を「意図するタスク解決の勾配方向」に整合させる「方向整合（Directional Alignment）」を提案。更新ベクトルのコサイン類似度でハッキング傾向を検出・抑制。\n📊**結果**: 要約・対話・コード生成タスクで報酬ハッキングを大幅に低減しながら、本来の性能指標（ROUGE・人間評価）での改善を維持。\n💡**意義**: 報酬モデルの不完全性を前提とした上で RLHF の安全性を高める実用的手法で、AI アライメント研究に新しい幾何学的視点を提供する。\n⚠️**限界**: 整合させる「正しい勾配方向」の定義が難しく、タスクによっては事前の方向推定自体が困難な場合がある。\n\n",
+  "fetched_at": "2026-05-26T22:07:51.766670+00:00",
+  "papers": [
+    {
+      "title": "ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention",
+      "upvotes": 28,
+      "paper_id": "2605.23081",
+      "abstract": "Efficient attention algorithms are critical to mitigate the quadratic cost of attention in long-context workloads. Prior work utilises block-scaled quantisation techniques on Blackwell GPUs to move attention computation to 4-bit precision to accelerate inference."
+    },
+    {
+      "title": "CUA-Gym: Scaling Verifiable Training Environments and Tasks for Computer-Use Agents",
+      "upvotes": 15,
+      "paper_id": "2605.25624",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has driven breakthroughs in domains such as math, tool-use, and software engineering, yet its extension to computer-use agents (CUAs) has been bottlenecked by the scarcity of scalable training data with verifiable rewards."
+    },
+    {
+      "title": "Anticipate and Learn: Unleashing Idle-Time Compute in Proactive Agents",
+      "upvotes": 12,
+      "paper_id": "2605.25971",
+      "abstract": "While AI agents demonstrate remarkable capabilities in reasoning and tool use, they remain fundamentally reactive. This paradigm ignores a critical opportunity: the idle time between interactions is largely wasted, leaving an opportunity to precompute useful information."
+    },
+    {
+      "title": "Language Models Need Sleep",
+      "upvotes": 6,
+      "paper_id": "2605.26099",
+      "abstract": "Transformer-based large language models are increasingly used for long-horizon tasks; however, their attention mechanism scales poorly with context length. We study a sleep-like consolidation mechanism in which a model periodically converts recent context into persistent memory."
+    },
+    {
+      "title": "CRONOS: Benchmarking Counterfactual Physical Consistency in Video Models",
+      "upvotes": 5,
+      "paper_id": "2605.23699",
+      "abstract": "Video prediction is increasingly viewed as a path toward generalizable world models, yet it remains unclear whether these systems learn underlying causal structure or merely exploit superficial visual correlations for future prediction."
+    },
+    {
+      "title": "Injecting Image Guidance into Text-Conditioned Diffusion Models at Inference",
+      "upvotes": 3,
+      "paper_id": "2605.25191",
+      "abstract": "Text-to-image diffusion models like Stable Diffusion generate high-quality images from text, but lack a way to inject visual guidance at inference without retraining. Existing methods either require computationally expensive fine-tuning or rely on style transfer techniques."
+    },
+    {
+      "title": "Towards Evaluation Engineering: An Empirical Study of ML Evaluation Harnesses in the Wild",
+      "upvotes": 1,
+      "paper_id": "2605.24213",
+      "abstract": "Evaluation harnesses are software systems that orchestrate model evaluation by managing model invocation, data loading, metric computation, and result reporting. Despite their critical role in ML infrastructure, their operational challenges have received little attention."
+    },
+    {
+      "title": "How Far Will They Go? Red-Teaming Online Influence with Large Language Models",
+      "upvotes": 1,
+      "paper_id": "2605.22880",
+      "abstract": "As large language model (LLM)-based agents increasingly participate in online discourse, red-teaming their capacity to support political influence campaigns is critical for information integrity."
+    },
+    {
+      "title": "ECHO: Terminal Agents Learn World Models for Free",
+      "upvotes": 1,
+      "paper_id": "2605.24517",
+      "abstract": "CLI agents are the closest thing language models have to an embodied setting: the model emits commands, the terminal executes them, and the returned stream records the consequences. We argue that this stream is a supervision signal for world model learning."
+    },
+    {
+      "title": "Directional Alignment Mitigates Reward Hacking in Reinforcement Learning for Language Models",
+      "upvotes": 1,
+      "paper_id": "2605.25189",
+      "abstract": "Reward hacking arises when a model improves a proxy reward by exploiting shortcuts rather than solving the intended task. We study this failure mode through the geometry of reinforcement learning updates in language models."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.150",
+      "published_at": "2025-05-23",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    },
+    {
+      "tag_name": "v2.1.149",
+      "published_at": "2025-05-22",
+      "body": "/usage now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost\n/diff detail view can now be scrolled with the keyboard (arrows, j/k, PgUp/PgDn, Space, Home/End)\nMarkdown output now renders GFM task list checkboxes\nEnterprise: added allowAllClaudeAiMcps managed setting\nFixed a PowerShell permission bypass\nFixed the sandbox write allowlist in git worktrees"
+    },
+    {
+      "tag_name": "v2.1.148",
+      "published_at": "2025-05-22",
+      "body": "Fixed the Bash tool returning exit code 127 on every command for some users (a regression introduced in 2.1.147)"
+    }
+  ]
+}
