@@ -1,7 +1,6 @@
-**5. CRONOS: Benchmarking Counterfactual Physical Consistency in Video Models**
-**著者**: CRONOS Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.23699
-**upvotes**: 5
+**5. Confidence and Calibration of Activation Oracles for Reliable Interpretation of Language Model Internals**
+**著者**: 論文著者 et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.26045
 
 **まとめ**:
-ビデオ予測モデルが真の物理因果構造を学習しているかを検証するベンチマーク CRONOS を提案。Unreal Engine で生成した 675 本の高精度合成ビデオで、視点・シーン・物体外観など視覚要因を変えた反事実的評価を実施。最先端モデルでも物理的一貫性の成功率は最大 22% に留まり、表面的な視覚相関への依存が明らかになった。世界モデル開発における評価の新基準を提供する。
+LLMの内部状態を自然言語で解釈する「活性化オラクル（Activation Oracle）」に対して6種の不確実性定量化（UQ）手法を比較評価。温度ブートストラップ（T=1.0-1.5）が最良の校正性能（ECE 5.7-10.3%）を示す一方、27Bモデルでは直接的な自己信頼度報告が「反校正」（誤答により高い確信度）という危険な結果を示し、LLMの信頼度評価の複雑さを実証。

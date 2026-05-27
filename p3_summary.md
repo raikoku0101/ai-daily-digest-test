@@ -1,7 +1,6 @@
-**3. Anticipate and Learn: Unleashing Idle-Time Compute in Proactive Agents**
-**著者**: ProAct Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.25971
-**upvotes**: 12
+**3. QUACK: Questioning, Understanding, and Auditing Communicated Knowledge in Multimodal Social Deduction Agents**
+**著者**: 論文著者 et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.27068
 
 **まとめ**:
-AI エージェントをリアクティブ（反応型）からプロアクティブ（先読み型）へと転換する「ProAct」フレームワークを提案。対話の合間のアイドル時間を活用してユーザーの次の質問を予測・事前準備することで、タスク完了ターン数 14.8% 削減・ユーザー労力 11.7% 低下・幻覚率 28.1% 削減を達成。インタラクティブ AI 体験を根本から変える可能性がある。
+マルチモーダルLLMエージェントの「言語接地性（grounding）」を社会的推論ゲーム環境で定量評価するQUACKフレームワークを提案。GPT-4.5、Gemini、Claude等の最先端モデルでも空間的主張の15.1%が幻覚で告発の53.5%が根拠なしという衝撃的な結果を示し、ゲーム勝率では見えない推論失敗を可視化。従来の評価指標の限界を突く重要な知見。

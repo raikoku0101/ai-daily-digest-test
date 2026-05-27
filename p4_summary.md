@@ -1,7 +1,6 @@
-**4. Language Models Need Sleep**
-**著者**: LLM Sleep Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.26099
-**upvotes**: 6
+**4. VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions**
+**著者**: 論文著者 et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.27141
 
 **まとめ**:
-生物の睡眠による記憶固定からヒントを得た新しいアーキテクチャを提案。LLM が定期的に最近のコンテキストを「高速重み（fast weights）」へと変換（睡眠フェーズ）し、その後 KV キャッシュをクリアすることで、線形コストで長文脈推論を実現。セルオートマタ・グラフ検索・数学推論タスクで、睡眠ループ増加が深い推論タスクの性能を向上させることを実証した。
+長期ユーザーインタラクションにおける個人化・先回り行動を評価するベンチマークVitaBench 2.0を提案。23個の最先端LLMを評価した結果、フルコンテキスト設定でもAvg@4スコアが約0.5にとどまることが判明。「好みを推論する」より「好みを応用する」段階がボトルネックであるという重要な知見を提供し、現実的なAIアシスタント開発への課題を明示。
