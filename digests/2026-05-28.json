@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-28",
+  "content": "# AI Daily Digest — 2026-05-28\n\n## 今日のハイライト\n- **D²-Monitor (👍31)**: 拡散型LLM向け初の安全性動的監視フレームワーク登場。AR-LLMとは異なるデノイジング生成プロセスに対応した「躊躇パターン検出」という革新的アプローチで、D-LLM実用化の最大障壁を突破する可能性\n- **Claude Code v2.1.152リリース**: `/code-review --fix` と `/simplify` の自動修正機能、`SessionStart` フックのスキル動的ロード対応など、開発ワークフロー自動化が大幅に強化。本日（2025-05-27）リリース\n- **Gemini Embedding 2**: Google が動画・音声・画像・テキストを統一空間に埋め込むネイティブマルチモーダル埋め込みモデルを発表。マルチモーダルRAGや検索の実用性が一段と向上する注目技術\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.152 (2025-05-27) — 最新リリース\n\n**主要機能**:\n- `/code-review --fix` が追加され、レビュー後に指摘箇所を自動修正（再利用性・簡潔化・効率化の提案を適用）\n- `/simplify` コマンドは `/code-review --fix` の別名として動作\n- スキル・スラッシュコマンドのフロントマターで `disallowed-tools` を設定可能に（スキル実行中にモデルから特定ツールを除外）\n- `/reload-skills` コマンド追加: セッション再起動なしにスキルディレクトリを再スキャン\n- `SessionStart` フック: `reloadSkills: true` を返すことでフックがインストールしたスキルを同一セッション内で即時利用可能に\n- `SessionStart` フック: 起動・再開時に `hookSpecificOutput.sessionTitle` でセッションタイトルを動的設定可能に\n\n**ユーザーへの影響**: コードレビュー→修正のワークフローが大幅に自動化。フック経由でのスキル管理が柔軟に。\n\n---\n\n### v2.1.150 (2025-05-23)\n\n**内容**: 内部インフラ改善のみ（ユーザー向け変更なし）\n\n---\n\n### v2.1.149 (2025-05-22)\n\n**主要機能**:\n- `/usage` コマンドでスキル・サブエージェント・プラグイン・MCPサーバーごとの使用量内訳を表示\n- `/diff` 詳細ビューでキーボードスクロール対応（矢印・`j`/`k`・`PgUp`/`PgDn`・`Space`・`Home`/`End`）\n- Markdownレンダリングで GFM タスクリストチェックボックス（`- [ ]`/`- [x]`）に対応\n- Enterprise: `allowAllClaudeAiMcps` 設定で claude.ai クラウド MCP コネクタを `managed-mcp.json` と併用可能\n\n**バグ修正**: PowerShell の権限バイパス脆弱性を修正（`cd..` 等の組み込み `cd` 関数がワークスペース外ディレクトリへのアクセスを許可してしまっていた問題）\n\n**ユーザーへの影響**: Enterprise ユーザーの MCP 管理が強化。PowerShell ユーザーはセキュリティ上の理由からアップデートを推奨。\n\n## 注目論文 TOP 10\n\n**1. D²-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing** | 👍 31 | https://arxiv.org/abs/2605.25893\n🎯**背景**: 拡散型大規模言語モデル（D-LLM）はAR-LLMの代替として注目されるが、マルチステップデノイジング生成特有の安全性監視は未開拓だった\n🔧**手法**: 生成中の\"躊躇（hesitation）\"パターンを検出するHesitation-Aware Routingにより、有害コンテンツ生成の予兆を動的に捕捉・ルーティングする監視フレームワークを構築\n📊**結果**: AR-LLM向け安全フィルタをD-LLMに適用した場合と比較して、検出精度・応答速度ともに優位性を示した\n💡**意義**: D-LLM固有の生成プロセスに対応した最初期の安全性フレームワークとして、拡散型LLMの実用化に向けた重要な基盤技術\n⚠️**限界**: 特定のD-LLMアーキテクチャに限定されており、汎化性能の検証が課題\n\n---\n\n**2. JLT: Clean-Latent Prediction in Latent Diffusion Transformers** | 👍 11 | https://arxiv.org/abs/2605.27102\n🎯**背景**: フローマッチングにおけるclean-data予測がノイズ予測より低次元構造を有効活用できることが示されていたが、学習済み潜在空間での有効性は未検証\n🔧**手法**: 画像を潜在空間にマッピング後、その圧縮済み潜在表現に対してクリーン潜在予測（clean-latent prediction）を適用するLatent Diffusion Transformer手法（JLT）を提案\n📊**結果**: 潜在空間における予測精度とサンプル品質で従来のノイズ予測ベースラインを上回る性能を達成\n💡**意義**: 画像生成モデルの品質向上に直結する潜在空間設計の新知見であり、実用的な生成AIへの応用価値が高い\n⚠️**限界**: 潜在空間の圧縮率・構造に依存するため、異なるVAEアーキテクチャでの普遍性は要検証\n\n---\n\n**3. QUACK: Questioning, Understanding, and Auditing Communicated Knowledge in Multimodal Social Deduction Agents** | 👍 10 | https://arxiv.org/abs/2605.27068\n🎯**背景**: LLMエージェントのテストベッドとして人気の社会的推論ゲームだが、勝率等のゲーム結果のみで評価され、テキスト外のマルチモーダル相互作用の分析が欠けていた\n🔧**手法**: マルチモーダル社会的推論エージェントの知識伝達・欺瞞・協調を定量評価するQUACKフレームワークを構築し、質問・理解・監査の3段階で知識コミュニケーションを分析\n📊**結果**: ゲーム勝率では捉えられなかったエージェント間の知識伝達パターンの差異を可視化し、マルチモーダル入力の効果を定量的に示した\n💡**意義**: LLMエージェントの評価をゲーム結果からプロセス品質へシフトする先駆的アプローチ\n⚠️**限界**: 特定の社会的推論ゲーム形式に特化しており、他のマルチエージェントタスクへの汎化は限定的\n\n---\n\n**4. VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions** | 👍 9 | https://arxiv.org/abs/2605.27141\n🎯**背景**: LLMエージェントは長期的なユーザーとの協働において個人化・先回り対応が重要だが、断片的な日常インタラクションから意図を推定する能力の評価基準が存在しなかった\n🔧**手法**: 長期ユーザーインタラクションにおける個人化（personalization）と先回り行動（proactive behavior）を評価するVitaBench 2.0ベンチマークを構築\n📊**結果**: 主要LLMエージェントが長期記憶と文脈推定において顕著な弱点を持つことを実証\n💡**意義**: 実世界のAIアシスタント評価に不可欠な長期インタラクション評価軸を整備した貢献は大きい\n⚠️**限界**: 評価シナリオが特定のユーザー行動パターンに偏っており、多様な文化・利用状況への対応が課題\n\n---\n\n**5. Confidence and Calibration of Activation Oracles for Reliable Interpretation of Language Model Internals** | 👍 9 | https://arxiv.org/abs/2605.26045\n🎯**背景**: 活性化オラクル（activation oracle）はLLMの内部表現を人間に読めるよう変換する手法として有望だが、その自然言語出力の不確実性定量化（UQ）は未研究\n🔧**手法**: 活性化オラクルの信頼度と較正（calibration）を評価するフレームワークを提案し、予測の信頼性を定量化する手法を開発\n📊**結果**: 活性化オラクルが示す信頼度スコアが実際の精度と乖離している場合が多く、較正改善により解釈信頼性が向上することを示した\n💡**意義**: LLMの解釈可能性ツールへの信頼性評価という新軸を提供し、実用的な説明可能AI研究の基盤を強化\n⚠️**限界**: 評価対象モデルと活性化オラクルの組み合わせが限定的であり、大規模検証が必要\n\n**6. Rethinking VLM Representation for VLA Initialization** | 👍 9 | https://arxiv.org/abs/2605.25802\n🎯**背景**: VLA（Vision-Language-Action）モデルは事前学習VLMをバックボーンとして広く採用しているが、VLA初期化に有効なVLM表現の性質は未解明\n🔧**手法**: VLA初期化を制御された表現設計問題として定式化し、VLMの表現設計パラメータ（モデルサイズ・学習データ・ファインチューニング手法）を系統的に変化させてVLAへの転移性を分析\n📊**結果**: VLMの言語性能と行動制御への転移性能は必ずしも相関せず、特定の表現構造がVLA初期化に有効であることを示した\n💡**意義**: ロボット制御等のVLA応用において、より効率的な基盤モデル選択・設計指針を提供\n⚠️**限界**: 特定のシミュレーション環境での評価に限定されており、実世界ロボットへの適用性検証が必要\n\n---\n\n**7. Gemini Embedding 2: A Native Multimodal Embedding Model from Gemini** | 👍 6 | https://arxiv.org/abs/2605.27295\n🎯**背景**: テキスト・画像・音声・動画を統一表現空間に埋め込む真のマルチモーダル埋め込みモデルは既存手法では実現困難\n🔧**手法**: Geminiのマルチモーダル能力を活用し、複数モダリティのインターリーブ入力を任意の組み合わせで受け付け、統一埋め込み空間に射影するネイティブマルチモーダルモデルGemini Embedding 2を構築\n📊**結果**: テキスト単体・クロスモーダル検索・ビデオ理解等の複数ベンチマークで既存埋め込みモデルを上回る性能を達成\n💡**意義**: 実用的なマルチモーダル検索・RAG・クロスモーダルアプリケーション構築の可能性を大幅に拡張\n⚠️**限界**: Googleエコシステムへの依存度が高く、オープンソース代替の観点からアクセシビリティに課題\n\n---\n\n**8. Learning to Act under Noise: Enhancing Agent Robustness via Noisy Environments** | 👍 4 | https://arxiv.org/abs/2605.27209\n🎯**背景**: LLMエージェントは既存ベンチマークで高性能を示す一方、実世界のノイズある環境では顕著に性能が劣化するという課題が存在\n🔧**手法**: エージェントの学習環境に体系的なノイズを導入するNoisyEnvironment訓練フレームワークを提案し、ノイズへの耐性を強化した行動ポリシーを学習\n📊**結果**: ノイズ環境で訓練されたエージェントはクリーン環境訓練モデルと比較してロバスト性が有意に向上\n💡**意義**: ベンチマーク性能と実世界性能のギャップを埋める訓練手法として、LLMエージェントの実用化に直接貢献\n⚠️**限界**: 人工的なノイズが実世界の多様な干渉を完全に再現できるかは不明であり、転移性の検証が必要\n\n---\n\n**9. FastKernels: Benchmarking GPU Kernel Generation in Production** | 👍 4 | https://arxiv.org/abs/2605.23215\n🎯**背景**: LLMベースのGPUカーネル自動生成は急速に進歩しているが、既存ベンチマークは本番推論フレームワークと乖離しており、単一GPU・合成入力での評価にとどまっていた\n🔧**手法**: 本番推論環境を想定した現実的なGPUカーネル生成ベンチマークFastKernelsを構築し、複数GPU構成・実データ分布・フレームワーク統合を評価基準に組み込む\n📊**結果**: 既存手法が本番環境で大幅に性能低下することを実証し、より現実的な評価指標の必要性を示した\n💡**意義**: GPU計算最適化AIツールの実用評価標準を確立し、LLM推論効率化研究の方向性を再定義\n⚠️**限界**: 特定の推論フレームワーク・ハードウェアに依存した評価であり、汎用性に限界がある\n\n---\n\n**10. ZeroUnlearn: Few-Shot Knowledge Unlearning in Large Language Models** | 👍 3 | https://arxiv.org/abs/2605.18879\n🎯**背景**: LLMは大規模Webコーパス学習により有害生成を誘発しうる機密情報を保持しており、プライバシー・安全性上の問題となっている。既存の機械的忘却手法は再学習や積極的なファインチューニングが必要で非効率\n🔧**手法**: 少数サンプル（few-shot）のみで特定知識を選択的に消去するZeroUnlearnを提案。再学習不要でプロンプトレベルの知識誘導を活用した効率的な忘却を実現\n📊**結果**: 標準的な忘却ベンチマークで再学習ベースラインと同等以上の消去性能を、大幅に少ない計算コストで達成\n💡**意義**: プライバシー規制（GDPR等）対応やモデル安全性向上において、実用的かつコスト効率の高い知識消去手法を提供\n⚠️**限界**: 消去対象知識の定義と評価が困難であり、不完全な消去や過剰な消去による性能劣化リスクが残存\n\n",
+  "fetched_at": "2026-05-27T22:05:41.856575+00:00",
+  "papers": [
+    {
+      "title": "D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing",
+      "upvotes": 31,
+      "paper_id": "2605.25893",
+      "abstract": "Despite the emergence of diffusion large language models (D-LLMs) as an alternative to autoregressive large language models (AR-LLMs), safety monitoring for D-LLMs remains largely unexplored. Unlike AR-LLMs, D-LLMs generate text through a multi-step denoising process, exposing intermediate hidden"
+    },
+    {
+      "title": "JLT: Clean-Latent Prediction in Latent Diffusion Transformers",
+      "upvotes": 11,
+      "paper_id": "2605.27102",
+      "abstract": "Flow matching with clean-data prediction has shown that regressing the clean point can exploit low-dimensional structure more effectively than predicting an ambient noised quantity. We ask whether this principle remains useful after images are mapped into a learned latent space, where compression has"
+    },
+    {
+      "title": "QUACK: Questioning, Understanding, and Auditing Communicated Knowledge in Multimodal Social Deduction Agents",
+      "upvotes": 10,
+      "paper_id": "2605.27068",
+      "abstract": "Social deduction games have become a popular testbed for probing reasoning, deception, coordination, and belief modeling in Large Language Model (LLM) agents. However, most environments are scored only by game outcomes such as win rates and largely remain to text-only interaction, making it difficult"
+    },
+    {
+      "title": "VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions",
+      "upvotes": 9,
+      "paper_id": "2605.27141",
+      "abstract": "Large language models (LLMs) have evolved into interactive agents that collaborate with users in real-world tasks. Effective collaboration in such settings increasingly depends on understanding the user beyond what is explicitly stated, as user intent is often reflected in fragmented daily interactions"
+    },
+    {
+      "title": "Confidence and Calibration of Activation Oracles for Reliable Interpretation of Language Model Internals",
+      "upvotes": 9,
+      "paper_id": "2605.26045",
+      "abstract": "Activation oracles aim to make the activations of other models legible to humans and yield promising results compared to white-box interpretability techniques. However, uncertainty quantification (UQ) for the natural-language outputs of such activation oracles is so far understudied. Here, we investi"
+    },
+    {
+      "title": "Rethinking VLM Representation for VLA Initialization",
+      "upvotes": 9,
+      "paper_id": "2605.25802",
+      "abstract": "Vision-Language-Action (VLA) models widely adopt pretrained Vision-Language Models (VLMs) as policy backbones, yet it remains unclear what kind of pretrained VLM representation is useful as a VLA initialization. In this paper, we study VLA initialization as a controlled representation-design"
+    },
+    {
+      "title": "Gemini Embedding 2: A Native Multimodal Embedding Model from Gemini",
+      "upvotes": 6,
+      "paper_id": "2605.27295",
+      "abstract": "We introduce Gemini Embedding 2, a native multimodal embedding model that allows embedding video, audio, image, and text modalities in a unified representation space. We leverage the multimodal capabilities of Gemini to produce embeddings for arbitrary combinations of interleaved inputs across all"
+    },
+    {
+      "title": "Learning to Act under Noise: Enhancing Agent Robustness via Noisy Environments",
+      "upvotes": 4,
+      "paper_id": "2605.27209",
+      "abstract": "Recent advances in large language models (LLMs) have facilitated the widespread deployment of LLMs as interactive agents capable of reasoning, planning, and tool use. Despite strong performance on existing benchmarks, such agents often exhibit notable degradation when deployed in real-world settings"
+    },
+    {
+      "title": "FastKernels: Benchmarking GPU Kernel Generation in Production",
+      "upvotes": 4,
+      "paper_id": "2605.23215",
+      "abstract": "LLM-based agents for GPU kernel generation are advancing rapidly, yet their progress is fundamentally constrained by the benchmarks they optimize against. Existing benchmarks are poorly aligned with production inference frameworks: they evaluate kernels on a single GPU with synthetic inputs, ignor"
+    },
+    {
+      "title": "ZeroUnlearn: Few-Shot Knowledge Unlearning in Large Language Models",
+      "upvotes": 3,
+      "paper_id": "2605.18879",
+      "abstract": "Large language models inevitably retain sensitive information, defined as inputs that may induce harmful generations, due to training on massive web corpora, raising concerns for privacy and safety. Existing machine unlearning methods primarily rely on retraining or aggressive fine-tuning, which ar"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.152",
+      "published_at": "2025-05-27",
+      "body": "/code-review --fix now applies review findings to your working tree after the review, surfacing reuse, simplification, and efficiency suggestions; /simplify now invokes /code-review --fix. Skills and slash commands can now set `disallowed-tools` in frontmatter to remove tools from the model while the skill is active. Added /reload-skills command to re-scan skill directories without restarting the session. `SessionStart` hooks can now return `reloadSkills: true` to re-scan skill directories, making skills installed by the hook available in the same session. `SessionStart` hooks can now set the session title via `hookSpecificOutput.sessionTitle` on startup and resume."
+    },
+    {
+      "tag_name": "v2.1.150",
+      "published_at": "2025-05-23",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    },
+    {
+      "tag_name": "v2.1.149",
+      "published_at": "2025-05-22",
+      "body": "/usage now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost. /diff detail view can now be scrolled with the keyboard (arrows, `j`/`k`, `PgUp`/`PgDn`, `Space`, `Home`/`End`). Markdown output now renders GFM task list checkboxes (`- [ ] todo` / `- [x] done`) instead of plain bullets. Enterprise: added the `allowAllClaudeAiMcps` managed setting to load claude.ai cloud MCP connectors alongside `managed-mcp.json`. Fixed a PowerShell permission bypass: built-in `cd` functions (`cd..`, `cd\\`, `cd~`, `X:`) changed the working directory undetected, letting a later command read outside the workspace."
+    }
+  ]
+}
