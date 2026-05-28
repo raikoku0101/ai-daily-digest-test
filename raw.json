@@ -1,32 +1,37 @@
 {
-  "title": "Week 19 · May 4–8, 2026",
-  "subtitle": "Load plugins from .zip archives and URLs, search command history across every project with Ctrl+R, branch new worktrees from local HEAD or the remote default, and block actions unconditionally with auto mode hard deny rules.",
+  "title": "Week 20 · May 11–15, 2026",
+  "subtitle": "Manage every Claude Code session from one screen with agent view, keep Claude working toward a goal until a condition holds, and run fast mode on Opus 4.7 by default.",
   "features": [
     {
-      "title": "Plugins from .zip archives and URLs",
-      "pill": "v2.1.128+",
-      "lede": "`--plugin-dir` now accepts a `.zip` plugin archive in addition to a directory, and the new `--plugin-url` flag fetches a plugin archive from a URL for the current session. Useful for trying a plugin before adding it to a marketplace, or for shipping internal plugins from an artifact store.",
-      "link": "/en/plugins"
+      "title": "Agent view",
+      "pill": "research preview",
+      "lede": "`claude agents` opens one screen for every Claude Code session: what's running, what's blocked on your input, and what's done. Dispatch a bug fix, a pull request review, and a flaky-test investigation as three rows, keep working in another window, and step in only when a row needs you. Attach to any row to drop into its full conversation, then press `←` to return to the list. Each background session keeps running without a terminal attached.",
+      "link": "/en/agent-view"
     },
     {
-      "title": "History search across all your projects",
-      "pill": "v2.1.129",
-      "lede": "`Ctrl+R` reverse-search now defaults to all prompts across every project, restoring the behavior from before v2.1.124. Press `Ctrl+S` while searching to narrow back to the current project or session. Handy when you remember a command you ran in another repo last week and don't want to go digging for it.",
-      "link": "/en/interactive-mode#command-history"
+      "title": "/goal",
+      "pill": "v2.1.139",
+      "lede": "Set a completion condition and Claude keeps working toward it across turns without you prompting each step. After every turn, a fast model checks whether the condition holds; if not, Claude starts another turn instead of handing control back. Useful for substantial work with a verifiable end state, like migrating a module until every call site compiles and tests pass. The goal clears once the condition is met, and works in interactive, `-p`, and Remote Control.",
+      "link": "/en/goal"
+    },
+    {
+      "title": "Fast mode on Opus 4.7",
+      "pill": "research preview",
+      "lede": "`/fast` now runs on Opus 4.7 by default instead of Opus 4.6. Fast mode is a high-speed Opus configuration: the same model quality at about 2.5x the speed for a higher per-token cost, useful for rapid iteration and live debugging. Pricing is unchanged at $30/$150 per MTok, the same as Opus 4.6 fast mode. To pin fast mode to Opus 4.6, set `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1`.",
+      "link": "/en/fast-mode#use-fast-mode-on-opus-4-7"
     }
   ],
   "other_wins": [
-    "New `worktree.baseRef` setting (`fresh` | `head`) controls whether `--worktree`, the `EnterWorktree` tool, and agent-isolation worktrees branch from the remote default branch or local `HEAD`; the default `fresh` keeps unpushed commits out of new worktrees",
-    "New `settings.autoMode.hard_deny` rules block matching actions unconditionally in auto mode, regardless of allow exceptions, for actions that should never run automatically even when broader allow rules apply",
-    "Hooks now receive the active effort level via the `effort.level` JSON input field and the `$CLAUDE_EFFORT` environment variable, and Bash tool commands can read `$CLAUDE_EFFORT`",
-    "`CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` opts out of the fullscreen alternate-screen renderer and keeps the conversation in the terminal's native scrollback",
-    "`CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` lets Homebrew or WinGet installations run the upgrade in the background and prompt to restart",
-    "`CLAUDE_CODE_SESSION_ID` is now in the Bash tool subprocess environment, matching the `session_id` passed to hooks",
-    "`/mcp` now shows the tool count for connected servers and flags servers that connected with 0 tools",
-    "`--channels` now works with console (API key) authentication",
-    "Subprocesses such as Bash, hooks, MCP, and LSP no longer inherit `OTEL_*` environment variables, so OTEL-instrumented apps run via the Bash tool no longer pick up the CLI's own OTLP endpoint",
-    "Sub-agent progress summaries now hit the prompt cache, cutting `cache_creation` token cost by roughly 3x",
-    "Several OAuth and credential reliability fixes: parallel sessions no longer dead-end at 401 after a refresh-token race, MCP OAuth refresh tokens are no longer lost when multiple servers refresh concurrently, and a rare login loop from a concurrent credential write is fixed",
-    "New `parentSettingsBehavior` admin key lets admins opt SDK `managedSettings` into the policy merge"
+    "`claude agents` gained dispatch flags (`--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, `--dangerously-skip-permissions`) to configure background sessions, and `claude agents --cwd <path>` scopes the session list to a directory",
+    "New hook `args: string[]` exec form spawns the command directly without a shell, so path placeholders never need quoting",
+    "New `continueOnBlock` config option for `PostToolUse` hooks feeds the hook's rejection reason back to Claude and continues the turn instead of ending it",
+    "New `terminalSequence` field in hook JSON output lets hooks emit desktop notifications, window titles, and bells without a controlling terminal",
+    "The Rewind menu added \"Summarize up to here\" to compress earlier context while keeping recent turns intact",
+    "Remote Control, `/schedule`, Claude.ai MCP connectors, and notification preferences are now disabled when `ANTHROPIC_API_KEY`, `apiKeyHelper`, or `ANTHROPIC_AUTH_TOKEN` is set, even alongside a Claude.ai login; unset the API key to use these features",
+    "MCP stdio servers now receive `CLAUDE_PROJECT_DIR` in their environment, matching hooks, and plugin configs can reference `${CLAUDE_PROJECT_DIR}` in commands",
+    "`claude plugin details <name>` shows a plugin's component inventory and projected per-session token cost, and the `/plugin` details pane now also lists the LSP servers a plugin provides",
+    "Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfaced as a skill",
+    "`/feedback` can now include recent sessions from the last 24 hours or 7 days for issues spanning more than the current session",
+    "Agent tool `subagent_type` now matches case- and separator-insensitively, so `\"Code Reviewer\"` resolves to `code-reviewer`"
   ]
 }
