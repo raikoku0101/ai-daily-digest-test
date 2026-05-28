@@ -1,6 +1,6 @@
-**3. QUACK: Questioning, Understanding, and Auditing Communicated Knowledge in Multimodal Social Deduction Agents**
-**著者**: 論文著者 et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.27068
+**3. Rethinking How to Remember: Beyond Atomic Facts in Lifelong LLM Agent Memory**
+**著者**: TriMem チーム et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.19952
 
 **まとめ**:
-マルチモーダルLLMエージェントの「言語接地性（grounding）」を社会的推論ゲーム環境で定量評価するQUACKフレームワークを提案。GPT-4.5、Gemini、Claude等の最先端モデルでも空間的主張の15.1%が幻覚で告発の53.5%が根拠なしという衝撃的な結果を示し、ゲーム勝率では見えない推論失敗を可視化。従来の評価指標の限界を突く重要な知見。
+LLMエージェントの長期メモリシステムの課題（細粒度情報の喪失・散在事実の推論困難）に対し、3粒度の表現（生対話セグメント・アトミック事実・合成プロファイル）を共存させるTriMemを提案。TextGradベースのプロンプト最適化で「パラメータ更新なしの生涯進化」を実現し、LoCoMo・PerLTQAベンチマークで既存手法を一貫して上回った。単一粒度への依存から脱却した新しいメモリパラダイムを確立した。

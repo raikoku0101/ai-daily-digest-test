@@ -1,6 +1,6 @@
-**2. JLT: Clean-Latent Prediction in Latent Diffusion Transformers**
-**著者**: 論文著者 et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.27102
+**2. Your Agents Are Aging Too: Agent Lifespan Engineering for Deployed Systems**
+**著者**: AgingBench チーム et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.26302
 
 **まとめ**:
-潜在拡散Transformerにおける予測対象の選択問題を深掘りし、「清潔潜在予測（clean-latent prediction）」が従来の「速度予測（v-prediction）」を大幅に上回ることを実証。ImageNet 256×256でFID-50Kが6.56→2.56に改善。数学的解析により、速度予測が低分散方向を増幅するのに対し、清潔予測は減衰させる幾何学的効果がギャップを生む仕組みを明らかにした。
+モデル重みが固定されていても、メモリ圧縮・履歴蓄積・メンテナンス操作によってデプロイ済みエージェントは静かに性能劣化（エージェント老化）することを実証。4種類の劣化メカニズム（圧縮・干渉・改訂・保守）を分類するAgingBenchフレームワークを提案し、成分別故障診断で「何が壊れ、どこを修復すべきか」を特定可能にした。エージェントの信頼性はベースモデルのスナップショットではなく、ハーネス全体のライフスパン特性として評価すべきという新パラダイムを確立。
