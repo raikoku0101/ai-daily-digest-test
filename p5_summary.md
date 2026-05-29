@@ -1,6 +1,6 @@
-**5. Everything at Every Scale: Scale-Invariant Diffusion with Continuous Super-Resolution**
-**著者**: SKILD チーム et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.26032
+**5. PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers**
+**著者**: PRISM Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.26730
 
 **まとめ**:
-自然画像と臨界物理系に共通するスケール不変性（k⁻²累乗則）を活用し、画像生成と超解像を単一の無条件フレームワークで統一するSKILD（Scale-invariant K-Space Image Learning Diffusion）を提案。高周波から低周波へ段階的に劣化させる周波数空間拡散プロセスにより、開始タイムステップ調整だけで1.5×〜8×の連続超解像に対応。臨界Ising模型での4点相関関数評価という厳密な物理的ベンチマークで既存手法を上回り、知覚品質指標でも条件付きベースラインを超えた。
+急増する ML 学会投稿への対応として普及する LLM 自動査読システムを多次元評価する PRISM ベンチマークを構築。深さ分析・新規性評価・欠陥特定・構成性の 4 パイプラインで ICLR/ICML/NeurIPS の 1,000 論文を評価した結果、「単一 LLM で人間を完全に代替できない」と結論。各システムが得意次元を持つため、複数 LLM を人間補助パイプラインで組み合わせる運用を推奨した。
