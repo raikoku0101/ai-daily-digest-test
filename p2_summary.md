@@ -1,6 +1,6 @@
-**2. Your Agents Are Aging Too: Agent Lifespan Engineering for Deployed Systems**
-**著者**: AgingBench チーム et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.26302
+**2. Xetrieval: Mechanistically Explaining Dense Retrieval**
+**著者**: Xetrieval Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.29507
 
 **まとめ**:
-モデル重みが固定されていても、メモリ圧縮・履歴蓄積・メンテナンス操作によってデプロイ済みエージェントは静かに性能劣化（エージェント老化）することを実証。4種類の劣化メカニズム（圧縮・干渉・改訂・保守）を分類するAgingBenchフレームワークを提案し、成分別故障診断で「何が壊れ、どこを修復すべきか」を特定可能にした。エージェントの信頼性はベースモデルのスナップショットではなく、ハーネス全体のライフスパン特性として評価すべきという新パラダイムを確立。
+密検索 (Dense Retrieval) の意思決定プロセスを解明するため、「推論内部化器」と「スパース自己符号化器 (SAE)」を組み合わせた Xetrieval フレームワークを提案。クエリ・文書ペアの関連性を人間が解釈可能な疎特徴に分解し、7 つのベンチマークで NDCG@10 を 2〜5% 向上させながら、CoT 推論器より数桁高速な説明生成を実現した。
