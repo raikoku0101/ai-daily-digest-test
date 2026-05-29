@@ -1,17 +1,19 @@
-## 1. Introduction (はじめに)
-MLLMベースのGUIエージェントは急速に進化しているが、実世界タスク完了の根本ボトルネックは「GUI操作に関する世界知識の不足」である。既存の解決法は高コストな多エージェント体制か、SFT/RLなどの事後学習に依存しており、知識は暗黙的にしか吸収されず、軌跡の記憶に留まりがちだった。本論文はGUI-CIDERという中間学習（mid-training）手法を提案し、GUI操作の世界知識を明示的に内部化する。
+## 1. はじめに (Introduction)
 
-## 2. Related Work (関連研究)
-GUIエージェント研究は要素グラウンディング（element grounding）やタスク完了向上を追求してきたが、「知識ギャップの明示的解決」への対応は限定的だった。中間学習（mid-training）はプリトレーニングとポストトレーニングの橋渡しとして数学・コーディング領域での知識獲得に活用されてきたが、GUIエージェント向けの体系的研究は未成熟だった。
+ビデオ大規模言語モデル (Video-LLM) は優れた性能を示していますが、膨大な視覚トークン処理による推論効率の低下が実装上の課題です。既存の圧縮手法は主にビジョンエンコーダ後の後期段階でのみ圧縮を実行しており、エンコーダ自体の効率化には未対応の状態が続いていました。本研究は、時間最初トークン (TTFT: Time to First Token) の詳細分析を通じて、ビジョン符号化が全体レイテンシの 36〜68% を占めることを明らかにしました。
 
-## 3. Method (手法)
-GUI-CIDERは3段階で構成される。**データ合成（data synthesis）**: GUIトラジェクトリから静的計画知識（階層的タスク分解）と動的因果知識（状態遷移・意思決定ロジック）を抽出し、エキスパートモデルで知識豊富なサンプルを生成。**事例再選択（exemplar reselection）**: 因果的サリエンシ関数（causal saliency function）と相対密度推定（density estimation）でコーパスをフィルタリング。保有確率関数 g(x) は因果論理トークン数を報酬し意味的冗長性を罰する設計。**中間学習（mid-training）**: 洗練されたコーパスで次トークン予測を実行し、UIの世界知識をモデルパラメータに直接組み込む。
+## 2. 関連研究 (Related Work)
 
-## 4. Experiment (実験)
-5つのベンチマーク（AITZ、AndroidControl、GUI-Odyssey、MMBench-GUI L1、GUI Knowledge Bench）で評価。Qwen3-VL-4B/8B をベースモデルとして使用。GUI-CIDER はタスク成功率で平均9.70%の相対改善を達成。
+トークン圧縮手法は大きく 3 つのカテゴリに分類されます。エンコーダ内圧縮 (ToMe、LLaVAPruMerge など)、プリ LLM 段階での圧縮 (VisionZip、HoliTom)、および LLM 内圧縮 (FastV、PyramidDrop) です。既存アプローチの多くはビジョンエンコーダの最適化を見落としており、エンドツーエンドの効率向上に限界があります。
 
-## 5. Results (結果)
-中間学習後のポストトレーニング（post-training）でも効果が持続。4Bモデルが中間学習+ポストトレーニング後に8Bモデルを上回る性能を発揮。GUI-CIDER-8Bは全プラットフォーム（Windows/macOS/Linux/iOS/Android/Web）で大規模モデルを上回るスコアを獲得。GUI Knowledge Bench では8Bエージェントがclaude-sonnet-4.5に近い性能（66.51 vs 66.53）に到達。
+## 3. 手法 (Method)
 
-## 6. Conclusion (結論)
-GUI-CIDERは因果的内部化（causal internalization）と密度認識事例再選択（density-aware exemplar reselection）によってGUIエージェントに明示的なワールドナレッジを組み込む効果的フレームワーク。約100Mトークンの合成データセットを提供し、「知識スケーリング（knowledge scaling）」がより有能なGUIエージェント開発への有望な道筋であることを実証した。
+EarlyTom は 2 つの主要コンポーネントで構成されます。**第 1 段階**は、ビジョンエンコーダ内での適応的フレームマージング機構です。ストリーミング方式でフレーム類似度に基づいて動画をセグメント化し、局所最適基準により冗長フレームを重み付き融合で統合します。**第 2 段階**は、分離的空間トークン選択 (Disentangled Spatial Token Selection) 戦略です。フレームを動的部分と静的部分に分け、動的フレームには全体 Top-K 選択を、静的フレームには局所窓内 Top-K 選択を適用することで、注意シンク (Attention Sink) 現象による偏りを軽減します。
+
+## 4. 実験と結果 (Experiments & Results)
+
+MVBench、EgoSchema、LongVideoBench、VideoMME の 4 つのベンチマークで評価を実施。LLaVA-OneVision-7B 上で 10% トークン保持時、EarlyTom は従来手法比で最大 2.65 倍の TTFT 削減と 61% の FLOPs 削減を実現しながら、ベースラインと同等の精度 (96% 以上) を維持。異なるモデルスケール (0.5B/7B) およびアーキテクチャ (LLaVA-Video、Qwen2.5-VL) での汎化性能も実証されました。
+
+## 5. 結論 (Conclusion)
+
+早期段階でのトークン圧縮という根本的なアプローチにより、EarlyTom は計算効率と精度のバランスを実現。ビデオ LLM の実運用デプロイメントに向けた実用的な基盤を提供します。
