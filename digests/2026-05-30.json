@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-30",
+  "content": "# AI Daily Digest — 2026-05-30\n\n## 今日のハイライト\n- **Claude Code v2.1.154: Opus 4.8 + Dynamic Workflows 登場**: 数十〜数百のエージェントを並列オーケストレーションする「ダイナミックワークフロー」が実装。Fast モードのコストも大幅削減され、大規模自動化タスクが現実的なコストで利用可能になった\n- **EarlyTom がビデオ LLM の推論速度問題を解決 (👍23)**: 早期レイヤーでのトークン圧縮によりリアルタイム映像処理の実用化に大きく前進。Video-LLM の産業応用を加速させる注目研究\n- **Xetrieval が密検索の「ブラックボックス」を解明 (👍15)**: dense retriever の内部回路を可視化するメカニスティック解釈可能性研究。RAG システムのデバッグ・改善に直結する実用的成果\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.157 (2025-05-29)\n**主要機能**\n- **プラグイン自動ロード**: `.claude/skills` ディレクトリのプラグインがマーケットプレイス不要で自動読み込み可能に。`claude plugin init <name>` でスキャフォールドも可能\n- **エージェント設定の尊重**: `settings.json` の `agent` フィールドがディスパッチセッションで有効化。`--agent <name>` でオーバーライド可\n- **ワークツリー改善**: `EnterWorktree` がセッション中に Claude 管理ワークツリー間を切り替え可能に。終了後はアンロックされ `git worktree remove`/`prune` でクリーンアップ可能\n\n**バグ修正**\n- ゼロバイト・破損画像をペーストや MCP で添付した際にリクエストがクラッシュする問題を修正（テキストプレースホルダーに変換）\n- デスクトップアプリ・IDE 拡張・SDK の auto/bypass-permissions モードで sandbox ネットワーク権限プロンプトが表示される問題を修正\n\n**ユーザーへの影響**: プラグイン開発が大幅に簡略化。画像添付の安定性向上でワークフローが止まらなくなる\n\n---\n\n### v2.1.156 (2025-05-29)\n**バグ修正**\n- Opus 4.8 使用時に thinking ブロックが改変され API エラーが発生する問題を修正\n\n**ユーザーへの影響**: Opus 4.8 の Extended Thinking 利用者は即アップデート推奨\n\n---\n\n### v2.1.154 (2025-05-28)\n**主要機能**\n- **Opus 4.8 リリース**: デフォルトで高効率モード（`/effort xhigh` で最高難易度タスクに対応）\n- **ダイナミックワークフロー**: Claude がワークフローを作成し、数十〜数百のエージェントをバックグラウンドで並列オーケストレーション。`/workflows` で実行状況確認\n- **Fast モードのコスト削減**: Opus 4.8 の Fast モードが標準レートの 2 倍（2.5 倍速）に大幅値下げ\n- **リーンシステムプロンプト**: Haiku・Sonnet・Opus 4.7 以前を除く全モデルでデフォルト化\n- **`/simplify` 改善**: フルレビューではなくクリーンアップ専用レビュー（再利用・簡略化・効率化）を適用\n\n**ユーザーへの影響**: Opus 4.8 + Fast モードの組み合わせでコストを抑えながら高性能推論が可能に。大規模タスクの自動化が現実的に\n\n---\n\n## 注目論文 TOP 10\n\n**1. EarlyTom: Early Token Compression Completes Fast Video Understanding** | 👍 23 | https://arxiv.org/abs/2605.30010\n🎯**背景**: Video-LLM は映像理解に優れるが、大量のビジュアルトークン処理により推論が遅く実用展開の障壁となっていた\n🔧**手法**: 早期レイヤーでトークン圧縮を行う EarlyTom を提案。重要でないトークンをモデルの浅い段階で除去し計算コストを削減\n📊**結果**: 標準的な Video-LLM と比較して大幅な推論速度向上を達成しながら精度低下を最小限に抑制\n💡**意義**: リアルタイム映像処理や長時間動画の効率的理解に向けた実用的なソリューションを提供\n⚠️**限界**: 圧縮による情報損失がある特定のシーン（高密度動作・細部依存タスク）で精度低下の可能性\n\n---\n\n**2. Xetrieval: Mechanistically Explaining Dense Retrieval** | 👍 15 | https://arxiv.org/abs/2605.29507\n🎯**背景**: 密検索 (Dense Retrieval) は高次元埋め込みによって関連性スコアを算出するが、その意思決定プロセスは不透明で解釈が困難だった\n🔧**手法**: メカニスティック解釈可能性の手法を dense retrieval に適用。内部表現の役割を分析し、表面的な語彙マッチを超えた検索メカニズムを解明\n📊**結果**: dense retriever が学習する内部回路や特徴量を特定し、検索スコアの根拠を可視化することに成功\n💡**意義**: 検索システムの信頼性・デバッグ・改善のための基礎を提供。RAG パイプラインの品質向上に直結\n⚠️**限界**: 解析対象モデルのサイズや種類が限定的で、大規模モデルへのスケーラビリティは未検証\n\n---\n\n**3. When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems** | 👍 7 | https://arxiv.org/abs/2605.30102\n🎯**背景**: クラウド上の大規模 LLM（高性能・高コスト）とデバイス上の小規模モデル（低コスト・低遅延）という二極構造が agentic AI に存在する\n🔧**手法**: クラウドエージェントとデバイスエージェントを組み合わせたハイブリッドマルチエージェントシステムを設計・評価。タスク分割・通信・協調戦略を体系化\n📊**結果**: ハイブリッド構成がコスト・速度・精度のバランスで純クラウドや純デバイス構成を上回ることを実証\n💡**意義**: 実用的な AI エージェントの展開戦略に直接役立つ。エッジ AI とクラウド AI の協調設計指針を提供\n⚠️**限界**: ネットワーク遅延・プライバシー・モデル互換性などの実環境課題は限定的にしか評価されていない\n\n---\n\n**4. PhyGenHOI: Physically-Aware 4D Generation of Dynamic Human-Object Interactions** | 👍 6 | https://arxiv.org/abs/2605.30268\n🎯**背景**: 現実的な人間と物体のインタラクション (HOI) の 4D 生成は AR/VR・ゲーム・デジタルヒューマン向けに重要だが、物理的整合性の維持が困難だった\n🔧**手法**: 3D Gaussian Splats (3DGS) で表現された静的な人間・物体を入力に、物理シミュレーションを組み込んだ 4D HOI 生成パイプラインを提案\n📊**結果**: 視覚的忠実性と物理的正確性を両立した動的シーン生成を実現。接触・衝突・重力などの物理制約を満足\n💡**意義**: 合成データ生成によるロボット学習・ゲームコンテンツ制作・VR 体験の品質向上に貢献\n⚠️**限界**: 計算コストが高く、複雑な多体インタラクション（複数人・多数物体）への拡張は限定的\n\n---\n\n**5. PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers** | 👍 6 | https://arxiv.org/abs/2605.26730\n🎯**背景**: ML 学会への投稿急増で査読システムが逼迫し、LLM 自動査読への関心が高まる一方、LLM 査読品質の多次元的評価基準が欠如していた\n🔧**手法**: 複数の評価次元（論文の長所・短所の特定、技術的正確性、建設性など）を網羅した PRISM ベンチマークを構築。人間査読者との比較評価を実施\n📊**結果**: 最新 LLM の査読品質を多次元で定量化。人間査読者との差異・優位点・欠点を体系的に分析\n💡**意義**: LLM 査読システムの開発・評価の標準基準を提供。研究コミュニティの査読プロセス改善に貢献\n⚠️**限界**: ベンチマーク自体が特定分野・論文タイプに偏っている可能性。査読の主観性を完全には捉えられない\n\n---\n\n**6. Thinking Before Constraining: A Unified Decoding Framework for Large Language Models** | 👍 3 | https://arxiv.org/abs/2601.07525\n🎯**背景**: 自由形式生成は推論が豊かだが検証困難。制約付きデコーディングは構造化出力を保証するが、制約が推論を妨げるトレードオフが存在した\n🔧**手法**: まず制約なしで自由推論を行い、その後制約付きデコーディングを適用する統合フレームワークを提案。思考プロセスと出力形式を分離\n📊**結果**: 構造化出力の品質を維持しながら自由推論の恩恵を受け、両アプローチの限界を克服\n💡**意義**: LLM の reasoning と structured output 生成を統合する実用的手法。JSON 出力・コード生成・フォーム入力などへの応用が広い\n⚠️**限界**: 二段階処理により推論レイテンシが増加。制約の種類によっては統合が困難な場合がある\n\n---\n\n**7. REPOT: Recoverable Program-of-Thought via Checkpoint Repair** | 👍 3 | https://arxiv.org/abs/2605.30052\n🎯**背景**: Program-of-Thought (PoT) は Python プログラムで行動計画を出力するが、単一の無効アクションがトラジェクトリ全体を無効化するという脆弱性があった\n🔧**手法**: チェックポイントベースの確定的検証リプレイを導入した RePoT を提案。計画を逐次検証し、エラー発生点から修復・再実行が可能\n📊**結果**: 従来の PoT より高いタスク成功率を達成。エラー回復メカニズムにより頑健性が大幅向上\n💡**意義**: LLM エージェントの信頼性向上に直結。自動化タスクでの単一障害点問題を解決する実用的アプローチ\n⚠️**限界**: チェックポイント設計とエラー分類の精度に依存。非常に複雑な依存関係を持つ計画では回復が困難な場合がある\n\n---\n\n**8. DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation** | 👍 2 | https://arxiv.org/abs/2605.30350\n🎯**背景**: ロボット操作は行動関連の知覚に依存するが、既存エンコーダは静的認識や視覚-言語アライメントで事前学習されており動き理解が弱かった\n🔧**手法**: 視覚・言語・動力学の三様式 (Tri-Modal) を統合した動的表現学習フレームワーク DynaFLIP を提案。物体の動特性を明示的に表現\n📊**結果**: ロボット操作タスクの成功率が向上。特に動的環境・複雑な物体操作での知覚精度改善を実証\n💡**意義**: ロボット基盤モデルの次世代設計指針を提示。実世界ロボティクスへの大規模モデル応用を促進\n⚠️**限界**: 三様式の統合学習に大量のアノテーションと計算リソースが必要。実環境への転移学習性能は未評価\n\n---\n\n**9. Geometry Matters: 3D Foundation Priors for Learning Semantic Correspondence** | 👍 2 | https://arxiv.org/abs/2605.30093\n🎯**背景**: 自己教師あり視覚モデルや拡散モデルの特徴量はセマンティック対応推定に有効だが、2D 画像目標で学習されており明示的な 3D 認識を欠いていた\n🔧**手法**: 3D 基盤事前知識 (Foundation Priors) をセマンティック対応学習に組み込む手法を提案。3D 幾何情報を 2D 対応推定に活用\n📊**結果**: 既存の 2D ベース手法を上回るセマンティック対応精度を達成。特にビュー変化が大きいシナリオで顕著な改善\n💡**意義**: 視覚基盤モデルの 3D 認識能力向上への道を開く。3D 再構築・姿勢推定・画像マッチングへの応用が期待\n⚠️**限界**: 3D 事前知識の取得コストが高い。単眼入力のみの設定では 3D 情報取得に制約がある\n\n---\n\n**10. Multi-view Consistent 3D Gaussian Head Avatars 'without' Multi-view Generation** | 👍 1 | https://arxiv.org/abs/2605.25220\n🎯**背景**: 高品質な 3D Gaussian ヘッドアバター生成は AR/VR やデジタルヒューマンに重要だが、従来手法はマルチビューデータや 3D キャプチャを必要としていた\n🔧**手法**: マルチビューデータセットや中間的な 2D ビュー合成なしに、条件付き生成と一貫性制約のみで 3D Gaussian ヘッドアバターを学習\n📊**結果**: シングルビュー入力から多視点一貫性のある高品質 3D アバターを生成。既存の合成ベース手法と競合する品質を達成\n💡**意義**: データ収集コストを大幅削減。一般ユーザーからのアバター生成を民主化する可能性\n⚠️**限界**: 極端なポーズや表情、部分的に隠れた顔などエッジケースでの品質低下。アイデンティティ保持の精度に限界\n\n---\n\n",
+  "fetched_at": "2026-05-29T22:06:33.427217+00:00",
+  "papers": [
+    {
+      "title": "EarlyTom: Early Token Compression Completes Fast Video Understanding",
+      "upvotes": 23,
+      "paper_id": "2605.30010",
+      "abstract": "Video large language models (Video-LLMs) have demonstrated strong capabilities in video understanding tasks. However, their practical deployment is still hindered by the inefficiency introduced by processing massive amounts of visual tokens..."
+    },
+    {
+      "title": "Xetrieval: Mechanistically Explaining Dense Retrieval",
+      "upvotes": 15,
+      "paper_id": "2605.29507",
+      "abstract": "Explaining why dense retrievers assign high relevance scores remains challenging because retrieval decisions are made through opaque high-dimensional embeddings. Existing explanations often focus on surface signals, such as lexical matches, token..."
+    },
+    {
+      "title": "When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems",
+      "upvotes": 7,
+      "paper_id": "2605.30102",
+      "abstract": "The design space of agentic AI inference spans two extremes: frontier large language models (LLMs), typically hosted in the cloud and offering strong performance across a wide range of tasks at substantially high cost, and more cost-efficient small language..."
+    },
+    {
+      "title": "PhyGenHOI: Physically-Aware 4D Generation of Dynamic Human-Object Interactions",
+      "upvotes": 6,
+      "paper_id": "2605.30268",
+      "abstract": "We address the task of generating physically accurate and visually faithful 4D Human-Object Interaction (HOI). Given a static 3D human and target object represented as 3D Gaussian Splats (3DGS), our goal is to synthesize dynamic scenes where the human..."
+    },
+    {
+      "title": "PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers",
+      "upvotes": 6,
+      "paper_id": "2605.26730",
+      "abstract": "The rapid growth in submissions to machine learning venues has strained the scientific peer-review system and intensified interest in LLM-based automated peer reviewers. However, how good these systems are actually, especially compared to human reviewers..."
+    },
+    {
+      "title": "Thinking Before Constraining: A Unified Decoding Framework for Large Language Models",
+      "upvotes": 3,
+      "paper_id": "2601.07525",
+      "abstract": "Natural generation allows Large Language Models (LLMs) to produce free-form responses with rich reasoning, yet the lack of structure makes outputs difficult to verify. Conversely, constrained decoding ensures standardized formats but can inadvertently..."
+    },
+    {
+      "title": "REPOT: Recoverable Program-of-Thought via Checkpoint Repair",
+      "upvotes": 3,
+      "paper_id": "2605.30052",
+      "abstract": "One-shot Program-of-Thought (PoT) emits a Python program that prints a primitive-action plan; a single invalid action silently invalidates the trajectory. We introduce RePoT (Recoverable PoT): a deterministic verified replay that walks the plan through..."
+    },
+    {
+      "title": "DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation",
+      "upvotes": 2,
+      "paper_id": "2605.30350",
+      "abstract": "Robot manipulation critically depends on perception that preserves the action-relevant aspects of a scene. Yet most robot learning pipelines are built upon visual encoders pre-trained for static recognition or vision-language alignment, leaving motion understanding..."
+    },
+    {
+      "title": "Geometry Matters: 3D Foundation Priors for Learning Semantic Correspondence",
+      "upvotes": 2,
+      "paper_id": "2605.30093",
+      "abstract": "Foundation features from self-supervised vision models and text-to-image diffusion models have proven effective for semantic correspondence estimation. However, because these features are learned primarily from 2D image objectives, they lack explicit 3D awareness..."
+    },
+    {
+      "title": "Multi-view Consistent 3D Gaussian Head Avatars 'without' Multi-view Generation",
+      "upvotes": 1,
+      "paper_id": "2605.25220",
+      "abstract": "High-fidelity 3D Gaussian head avatar generation is critical for applications such as AR/VR, telepresence, and digital humans. Existing methods depend on multi-view datasets, 3D captures, or intermediate 2D view synthesis. In contrast, we learn both conditional..."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.157",
+      "published_at": "2025-05-29",
+      "body": "Plugins in `.claude/skills` directories are now automatically loaded, no marketplace required. Added `claude plugin init <name>` to scaffold a new plugin in `.claude/skills`. Added autocomplete for `/plugin` arguments: subcommands, installed plugin names, and plugins from known marketplaces. `claude agents`: the `agent` field in `settings.json` is now honored for dispatched sessions, with `--agent <name>` to override it. `EnterWorktree` can now switch between Claude-managed worktrees mid-session. `tool_decision` telemetry events now include `tool_parameters` when `OTEL_LOG_TOOL_DETAILS=1`. Fixed unprocessable images crashing the request. Fixed sandbox network permission prompts appearing in auto and bypass-permissions mode."
+    },
+    {
+      "tag_name": "v2.1.156",
+      "published_at": "2025-05-29",
+      "body": "Fixed an issue when using Opus 4.8 where thinking blocks were modified, leading to API errors."
+    },
+    {
+      "tag_name": "v2.1.154",
+      "published_at": "2025-05-28",
+      "body": "Opus 4.8 is here! Now defaults to high effort. Introducing dynamic workflows: ask Claude to create a workflow and it orchestrates work across tens to hundreds of agents in the background. Fast mode on Opus 4.8 is now available at a fraction of its previous cost: 2x the standard rate for 2.5x the speed. The lean system prompt is now the default for all models except Haiku, Sonnet, and Opus 4.7 and earlier. /simplify now runs a cleanup-only review and applies the fixes."
+    }
+  ]
+}
