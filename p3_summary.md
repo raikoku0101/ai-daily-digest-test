@@ -1,6 +1,6 @@
-**3. Rethinking How to Remember: Beyond Atomic Facts in Lifelong LLM Agent Memory**
-**著者**: TriMem チーム et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.19952
+**3. When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems**
+**著者**: Corrado Rainone, Davide Belli, Bence Major, Arash Behboodi (2025)
+**arXiv**: https://arxiv.org/abs/2605.30102
 
 **まとめ**:
-LLMエージェントの長期メモリシステムの課題（細粒度情報の喪失・散在事実の推論困難）に対し、3粒度の表現（生対話セグメント・アトミック事実・合成プロファイル）を共存させるTriMemを提案。TextGradベースのプロンプト最適化で「パラメータ更新なしの生涯進化」を実現し、LoCoMo・PerLTQAベンチマークで既存手法を一貫して上回った。単一粒度への依存から脱却した新しいメモリパラダイムを確立した。
+クラウド LLM（高性能・高コスト）とオンデバイス SLM（低コスト・低遅延）を組み合わせたハイブリッドマルチエージェントシステムの設計空間を体系的に評価。「SLM は LLM の支援から効果的に利益を得られるが最適アーキテクチャはタスク依存」「計算資源増加が必ずしも性能向上に繋がらない」という重要知見を提示し、タスク精度・コスト・エネルギー消費のパレート最適設計指針を提供した。
