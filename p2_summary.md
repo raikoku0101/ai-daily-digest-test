@@ -1,6 +1,6 @@
-**2. Xetrieval: Mechanistically Explaining Dense Retrieval**
-**著者**: Xetrieval Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.29507
+**2. EarlyTom: Early Token Compression Completes Fast Video Understanding**
+**著者**: 著者不明 et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.30010
 
 **まとめ**:
-密検索 (Dense Retrieval) の意思決定プロセスを解明するため、「推論内部化器」と「スパース自己符号化器 (SAE)」を組み合わせた Xetrieval フレームワークを提案。クエリ・文書ペアの関連性を人間が解釈可能な疎特徴に分解し、7 つのベンチマークで NDCG@10 を 2〜5% 向上させながら、CoT 推論器より数桁高速な説明生成を実現した。
+Video-LLMの実用展開を阻む推論遅延問題に対し、ビジョンエンコーダ内部での早期段階トークン圧縮フレームワーク「EarlyTom」を提案。フレーム類似度ベースの動的セグメント化と分離型空間トークン選択により、トレーニング不要でTTFTを2.65倍削減・FLOPsを61%削減しながら精度を維持。既存手法が見落としていたエンコーダレベルの効率化という新視点を切り開いた。

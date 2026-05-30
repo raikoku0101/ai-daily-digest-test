@@ -1,6 +1,6 @@
-**4. PhyGenHOI: Physically-Aware 4D Generation of Dynamic Human-Object Interactions**
-**著者**: PhyGenHOI Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.30268
+**4. PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers**
+**著者**: 著者不明 et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.26730
 
 **まとめ**:
-テキスト記述から物理的に正確な 4D 人物-物体インタラクション (HOI) を生成する PhyGenHOI を提案。SMPL 拘束付き 3D Gaussian Splats で人物を、MPM (Material Point Method) シミュレーションで物体を表現し、Windowed Attraction Loss による接触検出と Contact Re-simulation により「ゴーストアーティファクト」を排除。VQA Physics スコアでベースライン比大幅向上 (0.25 vs 0.19) を達成した。
+ML 学会への投稿急増で逼迫する査読システム問題に対し、LLM 自動査読の真の品質を 4 次元（分析深度・新規性評価・欠陥特定・建設性）で評価するフレームワーク PRISM を提案。1000 件の論文で 5 つの自動システムと人間査読者を比較した結果、LLM は個別次元では人間と同等以上だが全次元での均衡した優位性を示すシステムは存在せず、「特定領域の補助ツール」としての位置付けが最適と結論。

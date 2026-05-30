@@ -1,6 +1,6 @@
-**3. When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems**
-**著者**: Corrado Rainone, Davide Belli, Bence Major, Arash Behboodi (2025)
-**arXiv**: https://arxiv.org/abs/2605.30102
+**3. Xetrieval: Mechanistically Explaining Dense Retrieval**
+**著者**: 著者不明 et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.29507
 
 **まとめ**:
-クラウド LLM（高性能・高コスト）とオンデバイス SLM（低コスト・低遅延）を組み合わせたハイブリッドマルチエージェントシステムの設計空間を体系的に評価。「SLM は LLM の支援から効果的に利益を得られるが最適アーキテクチャはタスク依存」「計算資源増加が必ずしも性能向上に繋がらない」という重要知見を提示し、タスク精度・コスト・エネルギー消費のパレート最適設計指針を提供した。
+高次元埋め込みによるブラックボックス判断だった密検索（Dense Retrieval）の内部動作を初めて特徴レベルで解明するフレームワーク Xetrieval を提案。Chain-of-Thought 推論を埋め込み空間に直接近似する軽量 Reasoning Internalizer と、Sparse Autoencoder による人間解釈可能な特徴分解を組み合わせ、検索判断を潜在的クエリ文書因子まで追跡可能にした。RAG システムのデバッグと信頼性向上に直結する実用的貢献。

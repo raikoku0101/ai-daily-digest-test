@@ -1,6 +1,6 @@
-**5. PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers**
-**著者**: PRISM Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.26730
+**5. When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems**
+**著者**: Corrado Rainone, Davide Belli, Bence Major, Arash Behboodi (2025)
+**arXiv**: https://arxiv.org/abs/2605.30102
 
 **まとめ**:
-急増する ML 学会投稿への対応として普及する LLM 自動査読システムを多次元評価する PRISM ベンチマークを構築。深さ分析・新規性評価・欠陥特定・構成性の 4 パイプラインで ICLR/ICML/NeurIPS の 1,000 論文を評価した結果、「単一 LLM で人間を完全に代替できない」と結論。各システムが得意次元を持つため、複数 LLM を人間補助パイプラインで組み合わせる運用を推奨した。
+クラウド LLM（高性能・高コスト）とオンデバイス SLM（低コスト・省電力）を組み合わせるハイブリッド MAS の設計空間を体系的に調査。2 つの代表的 MAS アーキテクチャを適応し、タスク精度・コスト・エッジエネルギー消費のパレートフロンティアに沿った設計選択の影響を定量化。SLM は LLM 支援から効果的に恩恵を受けるが最適設計はタスク依存であり、計算量増加が常に性能向上につながるわけではないという重要な知見を提供。
