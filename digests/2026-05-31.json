@@ -1,0 +1,84 @@
+{
+  "date": "2026-05-31",
+  "content": "# AI Daily Digest — 2026-05-31\n\n## 今日のハイライト\n- **VLMの空間推論は「幻」だった**: 上位論文が視覚言語モデルの空間認識バイアスを暴露。モデルは垂直位置と奥行きを混同しており、ベンチマーク高精度が真の3D理解を意味しないことが判明。空間認識AI全般の信頼性評価に影響大\n- **Claude Code v2.1.157でプラグイン革命**: `.claude/skills` の自動ロードと `claude plugin init` コマンドの追加により、Claude Code のカスタマイズ・拡張フローが劇的に改善。エンタープライズ利用でのチームワークフロー統一が容易に\n- **ビデオAI高速化の突破口 (EarlyTom)**: ビジョンエンコーダ内部での早期トークン圧縮により、Video-LLMの応答開始時間を2.65倍高速化・演算量61%削減。トレーニング不要で既存モデルに即適用可能という実用性が業界展開を後押し\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.158 (2025-05-30)\n**主要機能**:\n- **Auto モード Bedrock/Vertex/Foundry 対応**: Opus 4.7 および Opus 4.8 において、Bedrock・Vertex・Foundry でも Auto モードが利用可能になりました。環境変数 `CLAUDE_CODE_ENABLE_AUTO_MODE=1` を設定することでオプトイン可能です。\n\n**ユーザーへの影響**: クラウドプロバイダー経由で Claude Code を使用するエンタープライズユーザーが、モデル選択の自動最適化の恩恵を受けられるようになります。\n\n---\n\n### v2.1.157 (2025-05-29)\n**主要機能**:\n- **プラグイン自動ロード**: `.claude/skills` ディレクトリ内のプラグインが自動的に読み込まれるようになりました\n- **新コマンド `claude plugin init <name>`**: 新しいプラグインの雛形を生成するコマンドが追加されました\n- **`claude agents` の `agent` フィールド対応**: `settings.json` の `agent` フィールドが尊重されるようになりました\n- **`EnterWorktree` のセッション中切り替え**: Claude 管理の worktree 間をセッション途中で切り替え可能になりました\n\n**バグ修正**:\n- バックグラウンドセッション、サンドボックス権限、ターミナルレンダリングに関する複数の問題を修正\n\n**ユーザーへの影響**: プラグイン開発ワークフローが大幅に改善。worktree 運用の柔軟性が向上し、大規模プロジェクトでの並列作業が容易になります。\n\n---\n\n### v2.1.156 (2025-05-29)\n**バグ修正**:\n- Opus 4.8 使用時に thinking ブロックが変更されて API エラーが発生する問題を修正\n\n**ユーザーへの影響**: Opus 4.8 + Extended Thinking を使用しているユーザーの安定性が向上します。\n\n## 注目論文 TOP 10\n\n**1. Why Far Looks Up: Probing Spatial Representation in Vision-Language Models** | 👍 33 | https://arxiv.org/abs/2605.30161\n🎯 **背景**: VLM（視覚言語モデル）は空間推論ベンチマークで高い性能を示すが、それが真の3D理解なのか統計的ショートカットへの依存なのか不明確だった\n🔧 **手法**: 最小対比ペアを構築し、VLM埋め込み内で空間軸がどのように組織化・分離されているかを測定する表現レベル分析フレームワークを導入\n📊 **結果**: 複数モデルファミリーで「垂直-距離の絡み合い」を発見。モデルが垂直画像位置と距離を混同し、自然写真の透視歪みを模倣することが判明。データスケーリングでもバイアスが強まることを確認\n💡 **意義**: 空間推論の「見かけ上の高精度」の正体を暴露。空間軸が適切に分離されたモデルほど多様なベンチマークで頑健性が高いという新知見を提供\n⚠️ **限界**: 合成ベンチマーク SpatialTunnel での評価に留まり、実世界ロボティクス等への汎化は未検証\n\n---\n\n**2. EarlyTom: Early Token Compression Completes Fast Video Understanding** | 👍 24 | https://arxiv.org/abs/2605.30010\n🎯 **背景**: Video-LLM は大量の視覚トークン処理による非効率性が実用展開の障壁。既存手法はプリフィリング後期のみ圧縮し、ビジョンエンコーダの効率化が未着手\n🔧 **手法**: ビジョンエンコーダ内部での早期段階トークン圧縮を行うトレーニング不要フレームワーク「EarlyTom」を提案。デカップルされた空間トークン選択戦略も導入\n📊 **結果**: LLaVA-OneVision-7B モデルで TTFT を最大 2.65 倍削減、FLOPs を最大 61% 削減しながら、フルトークンベースラインと同等の精度を維持\n💡 **意義**: エンコーダレベルでの圧縮という新視点を提示。トレーニング不要で既存モデルへの即時適用が可能であり、実用的な Video-LLM 展開コストを大幅削減\n⚠️ **限界**: 単一 GPU (A100) での評価に限定。マルチ GPU 分散環境での効果は未検証\n\n---\n\n**3. Xetrieval: Mechanistically Explaining Dense Retrieval** | 👍 15 | https://arxiv.org/abs/2605.29507\n🎯 **背景**: 高次元埋め込みで行われる密検索の判断理由を説明することは困難で、既存の説明手法は表面的なレキシカルマッチに留まっていた\n🔧 **手法**: 埋め込みレベルのメカニスティックフレームワーク Xetrieval を提案。Chain-of-Thought 推論を埋め込み空間内で近似する軽量 reasoning internalizer と、スパースな人間解釈可能な特徴への分解を組み合わせる\n📊 **結果**: 多様なリトリーバーとベンチマークで、一貫した解釈可能な特徴を発見。ペアレベルの介入効果が強く、タスクレベルの特徴ステアリングも可能\n💡 **意義**: ブラックボックスだった密検索の内部動作を初めて特徴レベルで説明可能にした。RAGシステムのデバッグや信頼性向上に直結する実用的貢献\n⚠️ **限界**: reasoning internalizer の近似品質がモデル規模に依存する可能性があり、小規模モデルでの性能は未評価\n\n---\n\n**4. PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers** | 👍 8 | https://arxiv.org/abs/2605.26730\n🎯 **背景**: ML 学会への投稿急増で査読システムが逼迫。LLM 自動査読への関心が高まるが、実際の品質（特に科学的欠陥の発見能力）は不明確\n🔧 **手法**: PRISM（4次元評価フレームワーク）を提案：分析深度・新規性評価・欠陥識別・多面的建設性を、argument mining・RAG 検証・コンセンサススコアリングで評価\n📊 **結果**: LLM は個別次元では人間と同等以上（特に新規性検証と批評優先度付け）だが、全次元で一貫して均衡した性能を示すシステムは存在しない。各システムに固有の盲点がある\n💡 **意義**: 「LLM 査読者は特定次元の補助ツールとして有効だが、単独代替は不可」という明確な結論を実証的に提示。学術コミュニティへの重要な政策的示唆\n⚠️ **限界**: ICLR・ICML・NeurIPS のみの評価。自然科学・医学など他分野査読への汎化は未検証\n\n---\n\n**5. When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems** | 👍 8 | https://arxiv.org/abs/2605.30102\n🎯 **背景**: クラウド LLM（高性能・高コスト）とオンデバイス SLM（低コスト・低性能）のハイブリッド MAS は有望だが、設計空間が複雑で体系的研究が不足\n🔧 **手法**: 2つの代表的 MAS アーキテクチャをハイブリッド推論向けに適応し、タスク精度・コスト・エッジエネルギー消費のパレートフロンティアに沿った設計選択の影響を分析\n📊 **結果**: SLM はLLM支援から効果的に恩恵を受けられるが、最適アーキテクチャはタスク依存性が高く、フロンティアモデルの計算量増加が常に性能向上につながるわけではない\n💡 **意義**: ハイブリッド AI の設計原則を体系化。コスト・性能・省電力のトレードオフを定量化し、実用的な AI エージェントシステム構築の指針を提供\n⚠️ **限界**: 2アーキテクチャのみの評価。タスク依存性の高さから、汎用的な設計指針の導出には追加検証が必要\n\n---\n\n**6. DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation** | 👍 5 | https://arxiv.org/abs/2605.30350\n🎯 **背景**: ロボット操作の視覚エンコーダは静的認識や視覚言語アライメント用に事前学習されており、動き理解がダウンストリームポリシーに委ねられていた\n🔧 **手法**: 人間・ロボット動画から画像-言語-3Dフロートリプレットを構築し、シンプレックス体積最小化＋コサイン正規化＋コントラスト目標で三様式を共有超球面空間に整列させる DynaFLIP を提案\n📊 **結果**: 分布外シナリオで+22.5%の精度向上。VLA を含む多様なダウンストリームポリシーで一貫してベースラインを上回る汎用視覚バックボーンを実証\n💡 **意義**: 「何が存在するか」だけでなく「アクション下で世界がどう変化するか」をエンコードした視覚表現がロボット汎化に不可欠であることを実証\n⚠️ **限界**: 特定の操作タスクでの検証に限定。移動ロボティクスや人間-ロボットインタラクションへの汎化は未検証\n\n---\n\n**7. REPOT: Recoverable Program-of-Thought via Checkpoint Repair** | 👍 4 | https://arxiv.org/abs/2605.30052\n🎯 **背景**: One-shot Program-of-Thought (PoT) は単一の無効アクションで計画全体が無効化される脆弱性があり、リトライ戦略はコスト効率が悪い\n🔧 **手法**: RePoT は最初の無効遷移まで決定論的検証リプレイを実行し、検証済みプレフィックスから再開する LLM 呼び出し1回のリカバリを実現。失敗する約14%の問題にのみ追加コストが発生\n📊 **結果**: PuzzleZoo-775 で4つのモデル構成にわたり PoT を+3〜+11pp 上回り、gpt-5.4-mini-medium で96.9% vs 86.3%。PlanBench Blocksworld でも+1.1〜+11.4pp 改善\n💡 **意義**: チェックポイント情報がエラーフィードバックのみより圧倒的に優れた回復シグナルであることを実証（Gemini で>=70% vs <=3.1%）\n⚠️ **限界**: GPT-mini ではマッチドバジェットの PoT リトライに負けており、能力スケーリングパターンへの対処は予備的段階\n\n---\n\n**8. Multi-view Consistent 3D Gaussian Head Avatars 'without' Multi-view Generation** | 👍 3 | https://arxiv.org/abs/2605.25220\n🎯 **背景**: 高忠実度 3D ガウシアン頭部アバター生成は AR/VR・テレプレゼンス・デジタルヒューマンに重要だが、既存手法はマルチビューデータや3D監督を必要とする\n🔧 **手法**: ランダムサンプリングされた2D画像のみから学習する MVCHead を提案。粗から細への段階的精緻化 HiSS ブロックと、多視点不整合が最も強い軸に沿った HiBiSS スキャン、SE(3) Multi-view Critic を組み合わせる\n📊 **結果**: テクスチャと幾何一貫性で先行手法を上回る SOTA 知覚品質を達成。FaceGS-10K（初の大規模 3D ガウシアン頭部データセット）もリリース\n💡 **意義**: マルチビューデータなしに 3D アバター生成を実現する新パラダイム。大規模3Dデータ収集コストを排除し、研究加速に貢献するデータセット公開も価値ある貢献\n⚠️ **限界**: 頭部アバターのみに限定。全身アバターや任意オブジェクトへの拡張は未検証\n\n---\n\n**9. Geometry Matters: 3D Foundation Priors for Learning Semantic Correspondence** | 👍 2 | https://arxiv.org/abs/2605.30093\n🎯 **背景**: 自己教師あり視覚モデルと拡散モデルの特徴は意味対応推定に有効だが、2D目標から学習するため3D認識が欠如し、対称部位や繰り返し構造を混同する\n🔧 **手法**: SAM3D でオブジェクト形状・姿勢を推定し、render-and-compare 最適化で精緻化後、PartField ディスクリプタを画像平面に投影。DINO・Stable Diffusion 特徴を幾何認識で補完し、測地距離で対応候補をフィルタリング\n📊 **結果**: ポーズアノテーションと粗球面幾何学に依存する先行手法を上回る意味対応精度。手動幾何監督を削減しながら改善を達成\n💡 **意義**: 2D基盤モデルの弱点（3D認識欠如）を3D基盤モデルで補う組み合わせアプローチの有効性を実証。既存モデルへの軽量アダプタとして適用可能\n⚠️ **限界**: SAM3D の形状推定精度に依存するため、テクスチャレス物体や非剛体変形への対応が課題\n\n---\n\n**10. Towards Consistent Video Geometry Estimation** | 👍 0 | https://arxiv.org/abs/2605.30060\n🎯 **背景**: ビデオシーケンスから空間密度が高く時間的に一貫した幾何を推定することは、3D再構成・自律走行・AR/VR に不可欠だが、既存手法は一貫性と精度のトレードオフに悩む\n🔧 **手法**: タスク固有アーキテクチャ変更なしのプレーントランスフォーマーベース ViGeo を提案。動的チャンキングアテンションで双方向・因果的時間コンテキストを統合。ビデオ深度補完教師による完成ベースデータ精緻化フレームワークを導入\n📊 **結果**: オンライン・オフライン・長尺ビデオ深度推定、表面法線推定、ビデオポイントマップ推定すべてで SOTA を達成。公開データセットのみで学習\n💡 **意義**: ストリーミング・フルシーケンス・長尺推論を統一モデルで扱える汎用性が特長。テスト時の注意パターン適応により、単一モデルで多様なユースケースに対応\n⚠️ **限界**: 公開データセットのみでの学習により、医療画像やインダストリアルシーンなど特殊ドメインでの性能は未保証\n\n",
+  "fetched_at": "2026-05-30T22:07:07.620874+00:00",
+  "papers": [
+    {
+      "title": "Why Far Looks Up: Probing Spatial Representation in Vision-Language Models",
+      "upvotes": 33,
+      "paper_id": "2605.30161",
+      "abstract": "Vision-language models (VLMs) achieve strong performance on spatial reasoning benchmarks, yet it remains unclear whether this reflects structured 3D understanding or reliance on statistical shortcuts. We introduce a representation-level analysis framework that constructs minimal contrastive pairs to measure how spatial axes are organized within VLM embeddings."
+    },
+    {
+      "title": "EarlyTom: Early Token Compression Completes Fast Video Understanding",
+      "upvotes": 24,
+      "paper_id": "2605.30010",
+      "abstract": "Video large language models (Video-LLMs) have demonstrated strong capabilities in video understanding tasks. We propose EarlyTom, a training-free token compression framework that performs early-stage visual token compression inside the vision encoder, enabling 2.65x TTFT reduction and 61% FLOPs reduction."
+    },
+    {
+      "title": "Xetrieval: Mechanistically Explaining Dense Retrieval",
+      "upvotes": 15,
+      "paper_id": "2605.29507",
+      "abstract": "Explaining why dense retrievers assign high relevance scores remains challenging. We propose Xetrieval, an embedding-level mechanistic framework that decomposes reasoning-enhanced embeddings into sparse, human-interpretable features each associated with a coherent natural language description."
+    },
+    {
+      "title": "PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers",
+      "upvotes": 8,
+      "paper_id": "2605.26730",
+      "abstract": "We introduce PRISM (Peer Review Intelligence via Structured Multi-dimensional assessment), a benchmarking framework evaluating review quality across Depth of Analysis, Novelty Assessment, Flaw Identification, and Multi-dimensional Constructiveness dimensions."
+    },
+    {
+      "title": "When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems",
+      "upvotes": 8,
+      "paper_id": "2605.30102",
+      "abstract": "We examine hybrid multi-agent systems combining on-device SLMs and cloud LLMs more systematically, studying how individual design choices shift the operating point along the Pareto frontier of power, cost, and performance."
+    },
+    {
+      "title": "DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation",
+      "upvotes": 5,
+      "paper_id": "2605.30350",
+      "abstract": "We introduce DynaFLIP, a dynamics-aware multimodal pre-training framework using image-language-3D flow triplets from heterogeneous human and robot videos, achieving +22.5% gains under out-of-distribution scenarios."
+    },
+    {
+      "title": "REPOT: Recoverable Program-of-Thought via Checkpoint Repair",
+      "upvotes": 4,
+      "paper_id": "2605.30052",
+      "abstract": "We introduce RePoT (Recoverable PoT): a deterministic verified replay that walks the plan to its first invalid transition, then one LLM call resumes from the verified prefix. RePoT beats PoT by +3 to +11pp across four closed-model configurations."
+    },
+    {
+      "title": "Multi-view Consistent 3D Gaussian Head Avatars 'without' Multi-view Generation",
+      "upvotes": 3,
+      "paper_id": "2605.25220",
+      "abstract": "We introduce MVCHead, a single-shot state space model enforcing multi-view consistency directly in 3D Gaussian representation without multi-view data or 3D supervision, achieving state-of-the-art perceptual quality."
+    },
+    {
+      "title": "Geometry Matters: 3D Foundation Priors for Learning Semantic Correspondence",
+      "upvotes": 2,
+      "paper_id": "2605.30093",
+      "abstract": "We introduce a 3D-aware post-training framework incorporating priors from 3D foundation models for semantic correspondence. Our method uses SAM3D for geometry/pose estimation with render-and-compare optimization to complement DINO and Stable Diffusion features."
+    },
+    {
+      "title": "Towards Consistent Video Geometry Estimation",
+      "upvotes": 0,
+      "paper_id": "2605.30060",
+      "abstract": "We present ViGeo, a feed-forward foundation model for spatially dense and temporally consistent geometry from video. Built on plain transformer with dynamic chunking attention, achieving state-of-the-art across online, offline, and long-video depth estimation."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.158",
+      "published_at": "2025-05-30",
+      "body": "Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`"
+    },
+    {
+      "tag_name": "v2.1.157",
+      "published_at": "2025-05-29",
+      "body": "Plugins in `.claude/skills` directories are now automatically loaded. Added `claude plugin init <name>` to scaffold new plugins. `claude agents` now honors the `agent` field in `settings.json`. `EnterWorktree` can switch between Claude-managed worktrees mid-session. Fixed multiple issues with background sessions, sandbox permissions, and terminal rendering."
+    },
+    {
+      "tag_name": "v2.1.156",
+      "published_at": "2025-05-29",
+      "body": "Fixed an issue when using Opus 4.8 where thinking blocks were modified, leading to API errors."
+    }
+  ]
+}
