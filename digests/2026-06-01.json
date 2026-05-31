@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-01",
+  "content": "# AI Daily Digest — 2026-06-01\n\n## 今日のハイライト\n- **VLM の空間認識の真実**: Why Far Looks Up (38 upvotes) が、VLM の空間推論ベンチマーク高スコアはデータ統計ショートカットに依存している可能性を実証。ロボティクス・自動運転への VLM 適用に警鐘を鳴らす重要な知見。\n- **Claude Code v2.1.157 の大型アップデート**: プラグインの自動ロード・worktree 切り替え・複数バグ修正を含む重要リリース。`claude plugin init` でプラグイン開発がさらに手軽に。\n- **ビデオ LLM の高速化**: EarlyTom (27 upvotes) が早期トークン圧縮によるリアルタイムビデオ理解を実現。エッジデバイスへの展開可能性を大きく前進させる。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.159 (2025-05-31)\n**主要機能**: 内部インフラ改善のみ（ユーザー向け変更なし）\n**バグ修正**: なし\n**ユーザーへの影響**: 変更なし\n\n---\n\n### v2.1.158 (2025-05-30)\n**主要機能**: Auto モードが Bedrock・Vertex・Foundry の Opus 4.7 / Opus 4.8 で利用可能に\n- 環境変数 `CLAUDE_CODE_ENABLE_AUTO_MODE=1` でオプトイン\n\n**ユーザーへの影響**: クラウドプロバイダー経由で Claude Code を利用するユーザーが、自動的にモデルを選択するオートモードを試せるようになりました。\n\n---\n\n### v2.1.157 (2025-05-29)\n**主要機能**:\n- `.claude/skills` ディレクトリのプラグインが自動ロード（マーケットプレイス不要）\n- `claude plugin init <name>` で新規プラグインの雛形作成\n- `/plugin` 引数のオートコンプリート対応\n- `claude agents`: `settings.json` の `agent` フィールドがディスパッチセッションで有効化\n- `EnterWorktree` でセッション中に Claude 管理 worktree 間の切り替えが可能に\n\n**バグ修正**:\n- ペースト経由で添付した処理不能な画像がリクエストをクラッシュさせる問題を修正\n- オートモードでのサンドボックスネットワーク権限プロンプトを修正\n- バックグラウンドエージェント worktree が保持スイープ後に孤立する問題を修正\n- スリープ/ウェイク後にバックグラウンドセッションが正しい日付を報告しない問題を修正\n- tmux でのコピーオンセレクトがシステムクリップボードに届かない問題を修正\n- `--resume` がバックグラウンドサブエージェントを報告しない問題を修正\n- `--worktree` がリポジトリルートに戻る問題を修正\n- `/model` ピッカーが不正なヒントを表示する問題を修正\n- 管理設定ダイアログ後に端末がフリーズする問題を修正\n- 長い会話のパフォーマンスを改善\n\n**ユーザーへの影響**: プラグインエコシステムが大幅に強化され、マーケットプレイスを経由せず直接スキルを管理できるようになりました。多数のバグ修正により安定性が向上しています。\n\n## 注目論文 TOP 10\n\n**1. Why Far Looks Up: Probing Spatial Representation in Vision-Language Models** | 38 upvotes | https://arxiv.org/abs/2605.30161\n🎯**背景**: VLM は空間推論ベンチマークで高性能を示すが、構造化された 3D 理解によるものかデータ統計ショートカットによるものかが不明。\n🔧**手法**: 「遠くのものは上に見える」という視覚バイアスに着目し、VLM の空間表現をプロービングする実験設計。実画像・合成画像双方で評価。\n📊**結果**: 多くの VLM が距離ベースの真の 3D 空間推論ではなく、画像統計に依存していることを示す証拠を発見。\n💡**意義**: VLM の空間理解の限界を明示し、ロボティクス・自動運転への応用に向けた課題を整理。\n⚠️**限界**: 分析が特定の空間バイアス（遠近＝上下）に限定されており、汎用的な 3D 推論能力の全体像を捉えきれていない可能性がある。\n\n**2. EarlyTom: Early Token Compression Completes Fast Video Understanding** | 27 upvotes | https://arxiv.org/abs/2605.30010\n🎯**背景**: Video-LLM は強力だが、大量のビデオトークン処理による推論コストが実用上のボトルネックになっている。\n🔧**手法**: 早期レイヤーでトークン圧縮を行う「EarlyTom」を提案。重要度の低いトークンを早い段階で除去することで、後段の計算量を大幅削減。\n📊**結果**: 既存手法と比較して推論速度を大幅改善しながら、精度の低下を最小限に抑えることに成功。\n💡**意義**: リアルタイムビデオ理解・エッジデバイスへの Video-LLM 展開を現実的にする可能性がある。\n⚠️**限界**: 重要なアクションが短時間に集中するシーンでは、早期削除による情報損失が問題になりうる。\n\n**3. Xetrieval: Mechanistically Explaining Dense Retrieval** | 17 upvotes | https://arxiv.org/abs/2605.29507\n🎯**背景**: 高次元埋め込みを通じた Dense Retrieval の意思決定は不透明であり、なぜ高い関連スコアが割り当てられるかの説明が困難だった。\n🔧**手法**: メカニスティック解釈可能性の手法を Dense Retrieval に適用。内部表現を解析して関連性判断の根拠となる特徴量を特定。\n📊**結果**: 検索モデルが表面的な語彙的シグナルではなく意味的な概念構造を利用していることを実証的に示した。\n💡**意義**: 検索システムのブラックボックス性を解消し、エラー分析・モデル改善・ユーザーへの説明可能性向上に貢献。\n⚠️**限界**: 解釈手法の計算コストが高く、リアルタイム説明生成には課題がある。\n\n**4. When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems** | 11 upvotes | https://arxiv.org/abs/2605.30102\n🎯**背景**: クラウド LLM（高性能・高コスト）とデバイス上小型モデル（低コスト・低性能）という二極のトレードオフを埋めるハイブリッド設計への関心が高まっている。\n🔧**手法**: クラウドエージェントとデバイスエージェントを組み合わせたハイブリッドマルチエージェントシステムを実装・評価し、設計上の教訓を抽出。\n📊**結果**: タスク分類・通信コスト・レイテンシのバランスを適切に設計することで、純粋クラウド構成に近い性能をはるかに低コストで実現可能と示した。\n💡**意義**: モバイル・IoT 環境における実用的なエージェント AI 展開のための具体的なガイドラインを提供。\n⚠️**限界**: ネットワーク帯域や接続信頼性に依存するシナリオでの性能評価が限定的。\n\n**5. PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers** | 10 upvotes | https://arxiv.org/abs/2605.26730\n🎯**背景**: ML 分野への投稿急増により人手レビューが限界に達し、LLM 自動査読への関心が高まる一方、その品質評価基準が未整備。\n🔧**手法**: 多次元評価ベンチマーク PRISM を構築。専門性・一貫性・偏りなど複数の軸で LLM レビュワーを体系的に評価。\n📊**結果**: 現行 LLM はスタイルのなめらかさでは高評価だが、専門的な技術的誤りの検出・マイノリティ視点への偏りなどに課題があることが判明。\n💡**意義**: 「どの LLM 査読モデルが信頼できるか」という実務的問いに答える評価フレームワークを提供。\n⚠️**限界**: ベンチマーク自体が特定分野（ML）に特化しており、他学術領域への汎用性は未検証。\n\n**6. DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation** | 7 upvotes | https://arxiv.org/abs/2605.30350\n🎯**背景**: ロボット操作は行動関連の知覚が不可欠だが、既存の視覚エンコーダは静的な認識や VL タスク向けに学習されており、動的シーン理解に不向き。\n🔧**手法**: 視覚・言語・触覚の三モーダルと物体のダイナミクス情報を統合した表現学習フレームワーク DynaFLIP を提案。\n📊**結果**: 複数のロボット操作ベンチマークで従来の視覚エンコーダを上回る性能を達成。特に動的物体を扱うタスクで優位性を確認。\n💡**意義**: ロボット学習に特化した知覚表現の重要性を示し、汎用 VL モデルの直接転用の限界を明確化。\n⚠️**限界**: 三モーダルデータ収集のコストが高く、実ロボット環境でのデータ整備が課題。\n\n**7. REPOT: Recoverable Program-of-Thought via Checkpoint Repair** | 6 upvotes | https://arxiv.org/abs/2605.30052\n🎯**背景**: Program-of-Thought（PoT）はワンショットでプログラムを生成するが、一つの無効アクションがトラジェクトリ全体を無効化してしまう脆弱性がある。\n🔧**手法**: RePoT（Recoverable PoT）を提案。チェックポイント付きの確定的検証リプレイにより、失敗したステップから回復可能なプログラム実行を実現。\n📊**結果**: ワンショット PoT と比較してタスク完了率が向上し、部分的な失敗からの回復が可能になった。\n💡**意義**: エージェント型 AI のロバスト性向上に寄与。長時間タスクでの回復可能性という重要な研究方向を示す。\n⚠️**限界**: チェックポイント設計が手動または半自動であり、完全自動化には課題が残る。\n\n**8. Geometry Matters: 3D Foundation Priors for Learning Semantic Correspondence** | 5 upvotes | https://arxiv.org/abs/2605.30093\n🎯**背景**: 自己教師あり視覚モデルや拡散モデルの特徴量は意味的対応推定に有効だが、主に 2D 画像から学習されており 3D 情報を活用していない。\n🔧**手法**: 3D 基盤モデルの事前知識（深度・法線・幾何学構造）を意味的対応学習に組み込む手法を提案。\n📊**結果**: 3D 事前知識の導入により、既存の 2D ベースライン手法を複数ベンチマークで上回る対応精度を達成。\n💡**意義**: 2D 表現に 3D 幾何情報を融合するアプローチが意味的対応タスクに有効であることを実証。\n⚠️**限界**: 3D 事前知識の品質が深度推定精度に依存しており、単眼深度推定の誤差が影響する。\n\n**9. PANDO: Efficient Multimodal AI Agents via Online Skill Distillation** | 5 upvotes | https://arxiv.org/abs/2605.24785\n🎯**背景**: 高性能マルチモーダルウェブエージェントは推論時の大量計算（ロールアウト探索・検証パス・専門モデルスタック等）に依存しており、実用コストが課題。\n🔧**手法**: オンラインスキル蒸留を通じて、推論時計算量を増やさずにエージェント性能を向上させる PANDO フレームワークを提案。\n📊**結果**: 従来のコスト増大手法に匹敵する性能を、大幅に低いレイテンシ・コストで実現。\n💡**意義**: 実運用可能なマルチモーダルエージェントの構築に向けた効率的な学習パラダイムを提供。\n⚠️**限界**: オンライン蒸留の安定性が環境・タスクの多様性に敏感であり、広汎な適用には調整が必要。\n\n**10. CONF-KV: Confidence-Aware KV Cache Eviction with Mixed-Precision Storage for Long-Horizon LLM** | 4 upvotes | https://arxiv.org/abs/2605.24786\n🎯**背景**: 長時間推論で KV キャッシュが GPU メモリを圧迫し、トークンあたりの Attention 計算コストが増大するという実用上の重大問題。\n🔧**手法**: トークンの信頼度（Confidence）に基づく KV キャッシュ削除ポリシーと混合精度ストレージを組み合わせた CONF-KV を提案。\n📊**結果**: 静的ウィンドウや履歴 Attention ベースの従来手法と比較して、メモリ効率・精度トレードオフが改善。\n💡**意義**: LLM の長文脈推論をより実用的にするための、メモリ管理の新しい方向性を示す。\n⚠️**限界**: 信頼度スコアの計算コストが追加されるため、短い入力では逆効果になる可能性がある。\n\n",
+  "fetched_at": "2026-05-31T22:08:19.995934+00:00",
+  "papers": [
+    {
+      "title": "Why Far Looks Up: Probing Spatial Representation in Vision-Language Models",
+      "upvotes": 38,
+      "paper_id": "2605.30161",
+      "abstract": "Vision-language models (VLMs) achieve strong performance on spatial reasoning benchmarks, yet it remains unclear whether this reflects structured 3D understanding or reliance on statistical shortcuts in natural images..."
+    },
+    {
+      "title": "EarlyTom: Early Token Compression Completes Fast Video Understanding",
+      "upvotes": 27,
+      "paper_id": "2605.30010",
+      "abstract": "Video large language models (Video-LLMs) have demonstrated strong capabilities in video understanding tasks. However, their practical deployment is still hindered by the inefficiency introduced by processing massive amounts of..."
+    },
+    {
+      "title": "Xetrieval: Mechanistically Explaining Dense Retrieval",
+      "upvotes": 17,
+      "paper_id": "2605.29507",
+      "abstract": "Explaining why dense retrievers assign high relevance scores remains challenging because retrieval decisions are made through opaque high-dimensional embeddings. Existing explanations often focus on surface signals, such as..."
+    },
+    {
+      "title": "When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems",
+      "upvotes": 11,
+      "paper_id": "2605.30102",
+      "abstract": "The design space of agentic AI inference spans two extremes: frontier large language models (LLMs), typically hosted in the cloud and offering strong performance across a wide range of tasks at substantially high cost, and..."
+    },
+    {
+      "title": "PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers",
+      "upvotes": 10,
+      "paper_id": "2605.26730",
+      "abstract": "The rapid growth in submissions to machine learning venues has strained the scientific peer-review system and intensified interest in LLM-based automated peer reviewers. However, how good these systems are actually, especia..."
+    },
+    {
+      "title": "DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation",
+      "upvotes": 7,
+      "paper_id": "2605.30350",
+      "abstract": "Robot manipulation critically depends on perception that preserves the action-relevant aspects of a scene. Yet most robot learning pipelines are built upon visual encoders pre-trained for static recognition or vision-language..."
+    },
+    {
+      "title": "REPOT: Recoverable Program-of-Thought via Checkpoint Repair",
+      "upvotes": 6,
+      "paper_id": "2605.30052",
+      "abstract": "One-shot Program-of-Thought (PoT) emits a Python program that prints a primitive-action plan; a single invalid action silently invalidates the trajectory. We introduce RePoT (Recoverable PoT): a deterministic verified replay..."
+    },
+    {
+      "title": "Geometry Matters: 3D Foundation Priors for Learning Semantic Correspondence",
+      "upvotes": 5,
+      "paper_id": "2605.30093",
+      "abstract": "Foundation features from self-supervised vision models and text-to-image diffusion models have proven effective for semantic correspondence estimation. However, because these features are learned primarily from 2D image obj..."
+    },
+    {
+      "title": "PANDO: Efficient Multimodal AI Agents via Online Skill Distillation",
+      "upvotes": 5,
+      "paper_id": "2605.24785",
+      "abstract": "Recent advances in multimodal web agents often rely on increased inference-time computation, including rollout search, verifier passes, offline skill discovery, and specialist model stacks. This raises a central question: can..."
+    },
+    {
+      "title": "CONF-KV: Confidence-Aware KV Cache Eviction with Mixed-Precision Storage for Long-Horizon LLM",
+      "upvotes": 4,
+      "paper_id": "2605.24786",
+      "abstract": "Long-horizon LLM inference turns the key--value (KV) cache into the dominant GPU memory consumer and makes per-token attention increasingly expensive. Many common eviction policies use static recency windows or historical at..."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.159",
+      "published_at": "2025-05-31",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    },
+    {
+      "tag_name": "v2.1.158",
+      "published_at": "2025-05-30",
+      "body": "Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`"
+    },
+    {
+      "tag_name": "v2.1.157",
+      "published_at": "2025-05-29",
+      "body": "Plugins in `.claude/skills` directories are now automatically loaded, no marketplace required. Added `claude plugin init <name>` to scaffold a new plugin. Added autocomplete for `/plugin` arguments. `claude agents`: the `agent` field in `settings.json` is now honored for dispatched sessions. EnterWorktree can now switch between Claude-managed worktrees mid-session. Fixed unprocessable images attached via paste crashing requests. Fixed sandbox network permission prompts in auto mode. Fixed background agent worktrees being orphaned after retention sweep. Fixed background sessions not telling the model correct date after sleep/wake. Fixed copy-on-select in `claude agents` not reaching system clipboard in tmux. Fixed `--resume` not reporting background subagents. Fixed `--worktree` returning to canonical repo root. Fixed `/model` picker showing incorrect hints. Fixed terminal freezing after managed-settings dialog. Improved long conversation performance."
+    }
+  ]
+}
