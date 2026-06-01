@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-02",
+  "content": "# AI Daily Digest — 2026-06-02\n\n## 今日のハイライト\n- **GrepSeek が大差トップ (81 upvotes)**: LLMエージェントがコーパスに直接シェルコマンドを発行して検索する新パラダイム。事前インデックス不要で任意コーパスに即適用できる汎用性が注目を集めた\n- **Claude Code v2.1.158: Auto モードがクラウドプロバイダーに拡大**: AWS Bedrock・GCP Vertex AI・Azure Foundry で Opus 4.7/4.8 の Auto モードが利用可能に。企業ユーザーのコスト最適化に直結する重要アップデート\n- **Mellum2 (34 upvotes) — オープンウェイトのSWE特化MoEモデル登場**: 12Bパラメータ・MoEアーキテクチャでコーディング全般をカバー。ローカル実行可能な高性能コーディングアシスタントとして有力な選択肢が増えた\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.159 (2025-05-31)\n**主要機能**: 内部インフラ改善のみ（ユーザー向け変更なし）\n**バグ修正**: なし\n**ユーザーへの影響**: 特になし。安定性・パフォーマンス向上が期待される。\n\n---\n\n### v2.1.158 (2025-05-30)\n**主要機能**: **Auto モード** が Bedrock、Vertex、Foundry でも利用可能に。Opus 4.7 および Opus 4.8 に対応。\n- 有効化: `CLAUDE_CODE_ENABLE_AUTO_MODE=1` 環境変数を設定することでオプトイン\n**バグ修正**: なし\n**ユーザーへの影響**: クラウドプロバイダー（AWS Bedrock/GCP Vertex AI/Azure Foundry）経由でClaude Codeを利用しているユーザーがAuto モードを試せるようになった。コスト最適化と品質のバランスを自動調整する機能が拡充。\n\n---\n\n### v2.1.157 (2025-05-29)\n**主要機能**:\n- **プラグイン自動読み込み**: `.claude/skills` ディレクトリ内のプラグインがマーケットプレイス不要で自動ロードされるようになった\n- **プラグイン初期化コマンド**: `claude plugin init <name>` で `.claude/skills` に新規プラグインをスキャフォールドできる\n- **`/plugin` オートコンプリート**: サブコマンド、インストール済みプラグイン名、既知マーケットプレイスのプラグインが補完対象に\n- **エージェント設定**: `settings.json` の `agent` フィールドがディスパッチセッションでも尊重され、`--agent <name>` でオーバーライド可能\n- **EnterWorktree 強化**: セッション途中でClaude管理のワークツリー間を切り替えられるように\n\n**バグ修正**: なし（記載なし）\n**ユーザーへの影響**: プラグインエコシステムの利便性が大幅向上。ローカルカスタムスキルが即座に使えるようになり、マーケットプレイス依存から脱却できる。エージェント管理もより細かく制御可能に。\n\n\n## 注目論文 TOP 10\n\n**1. GrepSeek: Training Search Agents for Direct Corpus Interaction** | ⬆️ 81 upvotes | https://arxiv.org/abs/2605.29307\n🎯 **背景**: LLMエージェントによる知識集約タスクの検索手法として、従来のインデックスベース検索とは異なるアプローチを探求\n🔧 **手法**: コーパスをシェルコマンドで直接検索する環境として扱い、エージェントが実行可能なgrep/findコマンドを発行して証拠を収集\n📊 **結果**: 標準的なRAGシステムと比較して、複雑な多段階検索タスクで優れた性能を発揮\n💡 **意義**: 事前インデックス構築が不要で、任意のコーパスに対してゼロショットで適用できる汎用性の高い検索フレームワーク\n⚠️ **限界**: シェルコマンド実行環境が必要なため、クラウドAPIのみの環境では適用が困難。大規模コーパスではコマンド実行コストが増大する可能性\n\n---\n\n**2. Mellum2 Technical Report** | ⬆️ 34 upvotes | https://arxiv.org/abs/2605.31268\n🎯 **背景**: ソフトウェアエンジニアリング特化型LLMの需要増大に応え、前世代の補完特化4Bモデルの後継として開発\n🔧 **手法**: 12Bパラメータ、MoE（Mixture-of-Experts）アーキテクチャ、2.5Bアクティブパラメータ/トークン。コード生成・デバッグ・ツール使用・エージェントコーディング全般を網羅\n📊 **結果**: コード生成・編集・マルチステップ推論・関数呼び出しで競合オープンウェイトモデルに対して競争力ある性能を達成\n💡 **意義**: オープンウェイトかつソフトウェアエンジニアリング全般に特化したMoEモデルとして、ローカル実行可能な高性能コーディングアシスタントの選択肢を提供\n⚠️ **限界**: ソフトウェアエンジニアリング特化のため汎用タスクでの性能は未検証。MoEゆえの推論インフラ要件が通常より複雑\n\n---\n\n**3. DEMON: Diffusion Engine for Musical Orchestrated Noise** | ⬆️ 4 upvotes | https://arxiv.org/abs/2605.28657\n🎯 **背景**: 音楽生成AIの多くはオフライン処理を前提としており、ライブパフォーマンスでのリアルタイム制御が難しかった\n🔧 **手法**: ACE-Step 1.5 + StreamDiffusionのリングバッファアーキテクチャ + TensorRT高速化を組み合わせ、拡散プロセスをフレームごとにリアルタイム制御可能な楽器として設計\n📊 **結果**: RTX 5090単体で60秒音楽を最大12.3デコーダー完了/秒を達成。プロダクションリングデプス4で11.3生成/秒\n💡 **意義**: AI音楽生成を演奏可能な楽器に昇華させた初の実用的フレームワーク。ライブコンサートやインタラクティブメディアへの応用が開く\n⚠️ **限界**: RTX 5090等の高性能コンシューマーGPUが前提。汎用ハードウェアでの再現性や音質保証は未検討\n\n---\n\n**4. How can embedding models bind concepts?** | ⬆️ 4 upvotes | https://arxiv.org/abs/2605.31503\n🎯 **背景**: CLIPなどのVision-Language埋め込みモデルは概念は認識できるが、「どの色がどの形か」を結びつける概念バインディングが苦手という課題\n🔧 **手法**: 多オブジェクトシーンでの概念バインディング能力を体系的に分析。画像・テキスト埋め込みを個別に解析し、情報の分離可能性を検証\n📊 **結果**: CLIPはクロスモーダル検索においてbag-of-conceptsとして振る舞うが、画像・テキスト埋め込みを個別に見るとオブジェクト情報は回復可能であることを発見\n💡 **意義**: VLMのバインディング失敗の原因を内部表現レベルで解明し、より良い空間推論能力を持つモデル設計への指針を提供\n⚠️ **限界**: CLIPベースモデルに焦点を当てており、最新の大規模VLMへの一般化可否は未検証\n\n---\n\n**5. RayDer: Scalable Self-Supervised Novel View Synthesis from Real-World Video** | ⬆️ 3 upvotes | https://arxiv.org/abs/2605.31535\n🎯 **背景**: 動画データは豊富に存在するが、自己教師あり新視点合成（NVS）のスケールアップは現実動画での訓練の脆弱性と複数ネットワーク設計のスケーリング予測困難性が障壁\n🔧 **手法**: カメラ推定・シーン再構成・レンダリングを単一バックボーンに統合したfeed-forwardトランスフォーマー「RayDer」。自己教師ありNVSを単一モデルのスケーリング問題に変換\n📊 **結果**: 複数の実世界動画ベンチマークで既存手法を上回るスケーラビリティと新視点合成品質を達成\n💡 **意義**: 大量の未ラベル動画データから3Dシーン理解を自動学習できる統一フレームワークで、自動運転・AR/VR・ロボティクスへの応用が期待\n⚠️ **限界**: 完全自己教師あり学習のため、教師あり手法と比較した上限品質の検証が必要。複雑な動的シーンへの対応は未評価\n\n\n---\n\n**6. Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents** | ⬆️ 3 upvotes | https://arxiv.org/abs/2605.30621\n🎯 **背景**: LLMエージェントのハーネス（プロンプト・スキル・メモリ・ツール）を実行エビデンスから自動更新する「自己進化」の仕組みが注目されるが、更新能力と恩恵能力の関係が不明\n🔧 **手法**: ハーネス更新を「更新生成能力」と「更新から恩恵を受ける能力」に分離し、異なるモデルで体系的に評価する実験フレームワークを構築\n📊 **結果**: ハーネスを上手く更新できるモデルが、必ずしもその更新から恩恵を受けるわけではないことを実証。両能力は独立して評価すべき\n💡 **意義**: 自己進化型エージェントの設計指針を刷新。更新生成と恩恵受容を分担させるアーキテクチャの有効性を示す\n⚠️ **限界**: 実験対象モデルの範囲が限定的。より多様なエージェントタスクへの一般化検証が必要\n\n---\n\n**7. HL-OutPaint: Coarse-to-Fine Video Outpainting for High-Resolution Long-Range Videos** | ⬆️ 2 upvotes | https://arxiv.org/abs/2605.17543\n🎯 **背景**: 動画アウトペインティング（映像の空間的外側を生成）は多様なディスプレイフォーマットへの適応に必須だが、高解像度・長尺動画への対応が課題\n🔧 **手法**: 粗から細へ（Coarse-to-Fine）のアプローチで、まず低解像度の全体構造を生成し、次に高解像度の詳細を補完。時空間的整合性を明示的に保証するメカニズムを導入\n📊 **結果**: 既存手法が大きな空間外挿または長シーケンスのどちらか一方しか対応できない中、両方を同時に達成\n💡 **意義**: 縦型/横型動画変換、映画の画角拡張など実用的なコンテンツ制作ワークフローへの直接応用が可能\n⚠️ **限界**: 高解像度長尺処理は計算コストが高く、リアルタイム処理には対応していない\n\n---\n\n**8. VisualThink-VLA: Visual Intermediate Reasoning for Effective and Low-Latency Vision-Language-Action Policies** | ⬆️ 2 upvotes | https://arxiv.org/abs/2605.30011\n🎯 **背景**: VLAポリシーにchain-of-thoughtを導入する研究が増えているが、テキストCoTは具体化制御には不適合で、自己回帰デコーディングのレイテンシが実時間制御のボトルネックに\n🔧 **手法**: テキストではなく視覚的中間推論（Visual Intermediate Reasoning）を使用するVLA框架「VISUALTHINK-VLA」を提案。視覚特徴を推論の中間表現として活用し低レイテンシを実現\n📊 **結果**: テキストCoTベースのVLAと比較して精度向上かつレイテンシ大幅削減を達成。実時間クローズドループ実行が可能\n💡 **意義**: ロボット操作タスクでの実用的なAI推論フレームワークとして、テキスト依存のCoTから視覚的推論への転換点となる研究\n⚠️ **限界**: 視覚的中間表現の解釈可能性がテキストCoTより低く、デバッグが困難。多様なロボットプラットフォームへの汎化性能は未評価\n\n---\n\n**9. SurGe: Improved Surface Geometry in Point Maps** | ⬆️ 1 upvote | https://arxiv.org/abs/2605.31577\n🎯 **背景**: フィードフォワード3D再構成手法はポイントマップ予測で優れた性能を示すが、局所サーフェス幾何学の不正確さが定性的に目立つ一方、既存メトリクスでは弱くしか反映されない\n🔧 **手法**: 隣接3D予測から誘導される局所サーフェス方向を評価する「ポイントマップ法線メトリクス」を新たに導入し、より明示的にサーフェス品質を測定\n📊 **結果**: 新メトリクスにより既存手法のサーフェス幾何学の問題点が定量的に明確化。改善された手法で法線精度が向上\n💡 **意義**: 3D再構成品質評価の盲点を補う評価軸を提供。より正確なサーフェス幾何学が必要なCAD、医療画像、ロボット把持などの応用に重要\n⚠️ **限界**: 新メトリクスの標準化と広範な採用には時間が必要。既存ベンチマークとの互換性も検証が要る\n\n---\n\n**10. One-Forcing: Towards Stable One-Step Autoregressive Video Generation** | ⬆️ 1 upvote | https://arxiv.org/abs/2605.23458\n🎯 **背景**: リアルタイムインタラクティブ動画生成の進展は目覚ましいが、多くのfew-step自己回帰手法は4ステップ設定が前提で、1ステップ化では品質が著しく劣化する\n🔧 **手法**: 「One-Forcing」と名付けられた安定化手法で、多段ステップ教師モデルからの蒸留時に1ステップ設定での品質劣化を防ぐトレーニング戦略を導入\n📊 **結果**: 既存の1ステップ手法と比較して品質劣化を大幅に抑制。4ステップ教師に近い品質を1ステップで達成\n💡 **意義**: 動画生成のレイテンシを4倍以上削減しながら品質を維持。リアルタイムゲームエンジン、インタラクティブAR、ライブストリーミングへの実用化が加速\n⚠️ **限界**: 4ステップ以下への削減に特化しており、超長尺・超高解像度動画への適用可否は未検証\n\n",
+  "fetched_at": "2026-06-01T22:07:42.358665+00:00",
+  "papers": [
+    {
+      "title": "GrepSeek: Training Search Agents for Direct Corpus Interaction",
+      "upvotes": 81,
+      "paper_id": "2605.29307",
+      "abstract": "Large Language Model (LLM) search agents have shown strong promise for knowledge-intensive language tasks through multiple rounds of reasoning and information retrieval. Most existing systems access information using a retriever that takes a keyword or natural language query and returns a ranked list of documents using an index of pre-computed document representations. In this work, we explore a complementary perspective in which the search agent treats the corpus itself as the search environment and finds evidence by issuing executable shell commands."
+    },
+    {
+      "title": "Mellum2 Technical Report",
+      "upvotes": 34,
+      "paper_id": "2605.31268",
+      "abstract": "We present Mellum 2, an open-weight 12B-parameter Mixture-of-Experts (MoE) language model with 2.5B active parameters per token. Mellum 2 is a general-purpose language model specialized in software engineering, spanning code generation and editing, debugging, multi-step reasoning, tool use and function calling, agentic coding, and conversational programming assistance, and it is the successor to the completion-focused 4B dense Mellum model."
+    },
+    {
+      "title": "DEMON: Diffusion Engine for Musical Orchestrated Noise",
+      "upvotes": 4,
+      "paper_id": "2605.28657",
+      "abstract": "We present DEMON, a real-time diffusion engine that makes the denoising process playable as a live musical instrument: a control surface both broad (many parameters shaped per-frame across the output) and responsive (each control taking effect as fast as its place in the denoising loop allows). Built on ACE-Step 1.5 and StreamDiffusion's ring-buffer architecture with TensorRT acceleration, it sustains up to 12.3 decoder completions per second for 60-second music on a single consumer GPU (RTX 5090)."
+    },
+    {
+      "title": "How can embedding models bind concepts?",
+      "upvotes": 4,
+      "paper_id": "2605.31503",
+      "abstract": "Humans easily determine which color belongs to which shape in multi-object scenes, an ability known as concept binding. Vision-language embedding models such as CLIP struggle with binding: they recognize individual concepts but fail to represent which concepts form which objects. Although CLIP behaves like a bag-of-concepts model in cross-modal retrieval, object information is recoverable from its image and text embeddings separately."
+    },
+    {
+      "title": "RayDer: Scalable Self-Supervised Novel View Synthesis from Real-World Video",
+      "upvotes": 3,
+      "paper_id": "2605.31535",
+      "abstract": "Self-supervised novel view synthesis (NVS) remains challenging to scale, despite the abundance of video data, largely due to the brittleness of training on realistic videos and the hard-to-predict scaling behavior of multi-network system designs. We introduce RayDer, a unified, feed-forward transformer that consolidates camera estimation, scene reconstruction, and rendering into a single backbone, turning self-supervised NVS into a well-posed single-model scaling problem."
+    },
+    {
+      "title": "Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents",
+      "upvotes": 3,
+      "paper_id": "2605.30621",
+      "abstract": "LLM agents are increasingly deployed as systems built around editable external harnesses, including prompts, skills, memories and tools, that shape task execution without changing model parameters. Harness self-evolution adapts such agents by updating these harnesses from execution evidence. Yet it remains unclear whether a model's base capability in task-solving predicts its capabilities in harness self-evolution."
+    },
+    {
+      "title": "HL-OutPaint: Coarse-to-Fine Video Outpainting for High-Resolution Long-Range Videos",
+      "upvotes": 2,
+      "paper_id": "2605.17543",
+      "abstract": "Video outpainting generates plausible visual content beyond the original spatial extent of a video, playing a key role in adapting videos to diverse display formats. To support such use cases, it must enable large spatial extrapolation over long sequences. However, most existing methods address only one of these challenges or lack explicit mechanisms for ensuring global spatio-temporal consistency."
+    },
+    {
+      "title": "VisualThink-VLA: Visual Intermediate Reasoning for Effective and Low-Latency Vision-Language-Action Policies",
+      "upvotes": 2,
+      "paper_id": "2605.30011",
+      "abstract": "Recent work has begun to equip vision-language-action (VLA) policies with explicit intermediate reasoning. In embodied control, however, textual chain-of-thought is a poor fit: irrelevant or weakly textual information can interfere with action prediction, while autoregressive text decoding adds too much latency for real-time closed-loop execution. We present VISUALTHINK-VLA, a visual intermediate-reasoning framework for accurate, low-latency VLA policies."
+    },
+    {
+      "title": "SurGe: Improved Surface Geometry in Point Maps",
+      "upvotes": 1,
+      "paper_id": "2605.31577",
+      "abstract": "Recent feedforward 3D reconstruction methods predict point maps and estimate global 3D geometry remarkably well. However, their predictions still exhibit inaccurate local surface geometry, which is clearly visible qualitatively but only weakly reflected in common metrics. To make these errors more explicit in evaluation, we introduce a point map normal metric."
+    },
+    {
+      "title": "One-Forcing: Towards Stable One-Step Autoregressive Video Generation",
+      "upvotes": 1,
+      "paper_id": "2605.23458",
+      "abstract": "Recent advances have substantially improved real-time interactive video generation in the autoregressive regime. However, most existing few-step autoregressive video generation methods, often distilled from a corresponding many-step teacher, default to a 4-step sampling configuration, which still incurs considerable latency during deployment and suffers from severe quality degradation when the number of sampling steps is further reduced."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.159",
+      "published_at": "2025-05-31",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    },
+    {
+      "tag_name": "v2.1.158",
+      "published_at": "2025-05-30",
+      "body": "Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`"
+    },
+    {
+      "tag_name": "v2.1.157",
+      "published_at": "2025-05-29",
+      "body": "Plugins in `.claude/skills` directories are now automatically loaded, no marketplace required\n* Added `claude plugin init <name>` to scaffold a new plugin in `.claude/skills`\n* Added autocomplete for `/plugin` arguments: subcommands, installed plugin names, and plugins from known marketplaces\n* `claude agents`: the `agent` field in `settings.json` is now honored for dispatched sessions, with `--agent <name>` to override it\n* `EnterWorktree` can now switch between Claude-managed worktrees mid-session"
+    }
+  ]
+}
