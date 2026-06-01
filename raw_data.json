@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "Why Far Looks Up: Probing Spatial Representation in Vision-Language Models", "upvotes": 38, "paper_id": "2605.30161", "abstract": "Vision-language models (VLMs) achieve strong performance on spatial reasoning benchmarks, yet it remains unclear whether this reflects structured 3D understanding or reliance on statistical shortcuts in natural images..."},
-    {"title": "EarlyTom: Early Token Compression Completes Fast Video Understanding", "upvotes": 27, "paper_id": "2605.30010", "abstract": "Video large language models (Video-LLMs) have demonstrated strong capabilities in video understanding tasks. However, their practical deployment is still hindered by the inefficiency introduced by processing massive amounts of..."},
-    {"title": "Xetrieval: Mechanistically Explaining Dense Retrieval", "upvotes": 17, "paper_id": "2605.29507", "abstract": "Explaining why dense retrievers assign high relevance scores remains challenging because retrieval decisions are made through opaque high-dimensional embeddings. Existing explanations often focus on surface signals, such as..."},
-    {"title": "When Cloud Agents Meet Device Agents: Lessons from Hybrid Multi-Agent Systems", "upvotes": 11, "paper_id": "2605.30102", "abstract": "The design space of agentic AI inference spans two extremes: frontier large language models (LLMs), typically hosted in the cloud and offering strong performance across a wide range of tasks at substantially high cost, and..."},
-    {"title": "PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers", "upvotes": 10, "paper_id": "2605.26730", "abstract": "The rapid growth in submissions to machine learning venues has strained the scientific peer-review system and intensified interest in LLM-based automated peer reviewers. However, how good these systems are actually, especia..."},
-    {"title": "DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation", "upvotes": 7, "paper_id": "2605.30350", "abstract": "Robot manipulation critically depends on perception that preserves the action-relevant aspects of a scene. Yet most robot learning pipelines are built upon visual encoders pre-trained for static recognition or vision-language..."},
-    {"title": "REPOT: Recoverable Program-of-Thought via Checkpoint Repair", "upvotes": 6, "paper_id": "2605.30052", "abstract": "One-shot Program-of-Thought (PoT) emits a Python program that prints a primitive-action plan; a single invalid action silently invalidates the trajectory. We introduce RePoT (Recoverable PoT): a deterministic verified replay..."},
-    {"title": "Geometry Matters: 3D Foundation Priors for Learning Semantic Correspondence", "upvotes": 5, "paper_id": "2605.30093", "abstract": "Foundation features from self-supervised vision models and text-to-image diffusion models have proven effective for semantic correspondence estimation. However, because these features are learned primarily from 2D image obj..."},
-    {"title": "PANDO: Efficient Multimodal AI Agents via Online Skill Distillation", "upvotes": 5, "paper_id": "2605.24785", "abstract": "Recent advances in multimodal web agents often rely on increased inference-time computation, including rollout search, verifier passes, offline skill discovery, and specialist model stacks. This raises a central question: can..."},
-    {"title": "CONF-KV: Confidence-Aware KV Cache Eviction with Mixed-Precision Storage for Long-Horizon LLM", "upvotes": 4, "paper_id": "2605.24786", "abstract": "Long-horizon LLM inference turns the key--value (KV) cache into the dominant GPU memory consumer and makes per-token attention increasingly expensive. Many common eviction policies use static recency windows or historical at..."}
+    {
+      "title": "GrepSeek: Training Search Agents for Direct Corpus Interaction",
+      "upvotes": 81,
+      "paper_id": "2605.29307",
+      "abstract": "Large Language Model (LLM) search agents have shown strong promise for knowledge-intensive language tasks through multiple rounds of reasoning and information retrieval. Most existing systems access information using a retriever that takes a keyword or natural language query and returns a ranked list of documents using an index of pre-computed document representations. In this work, we explore a complementary perspective in which the search agent treats the corpus itself as the search environment and finds evidence by issuing executable shell commands."
+    },
+    {
+      "title": "Mellum2 Technical Report",
+      "upvotes": 34,
+      "paper_id": "2605.31268",
+      "abstract": "We present Mellum 2, an open-weight 12B-parameter Mixture-of-Experts (MoE) language model with 2.5B active parameters per token. Mellum 2 is a general-purpose language model specialized in software engineering, spanning code generation and editing, debugging, multi-step reasoning, tool use and function calling, agentic coding, and conversational programming assistance, and it is the successor to the completion-focused 4B dense Mellum model."
+    },
+    {
+      "title": "DEMON: Diffusion Engine for Musical Orchestrated Noise",
+      "upvotes": 4,
+      "paper_id": "2605.28657",
+      "abstract": "We present DEMON, a real-time diffusion engine that makes the denoising process playable as a live musical instrument: a control surface both broad (many parameters shaped per-frame across the output) and responsive (each control taking effect as fast as its place in the denoising loop allows). Built on ACE-Step 1.5 and StreamDiffusion's ring-buffer architecture with TensorRT acceleration, it sustains up to 12.3 decoder completions per second for 60-second music on a single consumer GPU (RTX 5090)."
+    },
+    {
+      "title": "How can embedding models bind concepts?",
+      "upvotes": 4,
+      "paper_id": "2605.31503",
+      "abstract": "Humans easily determine which color belongs to which shape in multi-object scenes, an ability known as concept binding. Vision-language embedding models such as CLIP struggle with binding: they recognize individual concepts but fail to represent which concepts form which objects. Although CLIP behaves like a bag-of-concepts model in cross-modal retrieval, object information is recoverable from its image and text embeddings separately."
+    },
+    {
+      "title": "RayDer: Scalable Self-Supervised Novel View Synthesis from Real-World Video",
+      "upvotes": 3,
+      "paper_id": "2605.31535",
+      "abstract": "Self-supervised novel view synthesis (NVS) remains challenging to scale, despite the abundance of video data, largely due to the brittleness of training on realistic videos and the hard-to-predict scaling behavior of multi-network system designs. We introduce RayDer, a unified, feed-forward transformer that consolidates camera estimation, scene reconstruction, and rendering into a single backbone, turning self-supervised NVS into a well-posed single-model scaling problem."
+    },
+    {
+      "title": "Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents",
+      "upvotes": 3,
+      "paper_id": "2605.30621",
+      "abstract": "LLM agents are increasingly deployed as systems built around editable external harnesses, including prompts, skills, memories and tools, that shape task execution without changing model parameters. Harness self-evolution adapts such agents by updating these harnesses from execution evidence. Yet it remains unclear whether a model's base capability in task-solving predicts its capabilities in harness self-evolution."
+    },
+    {
+      "title": "HL-OutPaint: Coarse-to-Fine Video Outpainting for High-Resolution Long-Range Videos",
+      "upvotes": 2,
+      "paper_id": "2605.17543",
+      "abstract": "Video outpainting generates plausible visual content beyond the original spatial extent of a video, playing a key role in adapting videos to diverse display formats. To support such use cases, it must enable large spatial extrapolation over long sequences. However, most existing methods address only one of these challenges or lack explicit mechanisms for ensuring global spatio-temporal consistency."
+    },
+    {
+      "title": "VisualThink-VLA: Visual Intermediate Reasoning for Effective and Low-Latency Vision-Language-Action Policies",
+      "upvotes": 2,
+      "paper_id": "2605.30011",
+      "abstract": "Recent work has begun to equip vision-language-action (VLA) policies with explicit intermediate reasoning. In embodied control, however, textual chain-of-thought is a poor fit: irrelevant or weakly textual information can interfere with action prediction, while autoregressive text decoding adds too much latency for real-time closed-loop execution. We present VISUALTHINK-VLA, a visual intermediate-reasoning framework for accurate, low-latency VLA policies."
+    },
+    {
+      "title": "SurGe: Improved Surface Geometry in Point Maps",
+      "upvotes": 1,
+      "paper_id": "2605.31577",
+      "abstract": "Recent feedforward 3D reconstruction methods predict point maps and estimate global 3D geometry remarkably well. However, their predictions still exhibit inaccurate local surface geometry, which is clearly visible qualitatively but only weakly reflected in common metrics. To make these errors more explicit in evaluation, we introduce a point map normal metric."
+    },
+    {
+      "title": "One-Forcing: Towards Stable One-Step Autoregressive Video Generation",
+      "upvotes": 1,
+      "paper_id": "2605.23458",
+      "abstract": "Recent advances have substantially improved real-time interactive video generation in the autoregressive regime. However, most existing few-step autoregressive video generation methods, often distilled from a corresponding many-step teacher, default to a 4-step sampling configuration, which still incurs considerable latency during deployment and suffers from severe quality degradation when the number of sampling steps is further reduced."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.159", "published_at": "2025-05-31", "body": "Internal infrastructure improvements (no user-facing changes)"},
-    {"tag_name": "v2.1.158", "published_at": "2025-05-30", "body": "Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`"},
-    {"tag_name": "v2.1.157", "published_at": "2025-05-29", "body": "Plugins in `.claude/skills` directories are now automatically loaded, no marketplace required. Added `claude plugin init <name>` to scaffold a new plugin. Added autocomplete for `/plugin` arguments. `claude agents`: the `agent` field in `settings.json` is now honored for dispatched sessions. EnterWorktree can now switch between Claude-managed worktrees mid-session. Fixed unprocessable images attached via paste crashing requests. Fixed sandbox network permission prompts in auto mode. Fixed background agent worktrees being orphaned after retention sweep. Fixed background sessions not telling the model correct date after sleep/wake. Fixed copy-on-select in `claude agents` not reaching system clipboard in tmux. Fixed `--resume` not reporting background subagents. Fixed `--worktree` returning to canonical repo root. Fixed `/model` picker showing incorrect hints. Fixed terminal freezing after managed-settings dialog. Improved long conversation performance."}
+    {
+      "tag_name": "v2.1.159",
+      "published_at": "2025-05-31",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    },
+    {
+      "tag_name": "v2.1.158",
+      "published_at": "2025-05-30",
+      "body": "Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`"
+    },
+    {
+      "tag_name": "v2.1.157",
+      "published_at": "2025-05-29",
+      "body": "Plugins in `.claude/skills` directories are now automatically loaded, no marketplace required\n* Added `claude plugin init <name>` to scaffold a new plugin in `.claude/skills`\n* Added autocomplete for `/plugin` arguments: subcommands, installed plugin names, and plugins from known marketplaces\n* `claude agents`: the `agent` field in `settings.json` is now honored for dispatched sessions, with `--agent <name>` to override it\n* `EnterWorktree` can now switch between Claude-managed worktrees mid-session"
+    }
   ]
 }
