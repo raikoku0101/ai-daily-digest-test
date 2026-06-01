@@ -1,6 +1,6 @@
-**1. Why Far Looks Up: Probing Spatial Representation in Vision-Language Models**
-**著者**: (著者情報) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.30161
+**1. GrepSeek: Training Search Agents for Direct Corpus Interaction**
+**著者**: GrepSeek Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.29307
 
 **まとめ**:
-VLM（Vision-Language Model）が空間推論ベンチマークで高スコアを記録する理由が「本物の3D理解」なのか「自然画像の統計バイアス」なのかを検証。「遠いものは上に見える」という遠近法バイアスが VLM の内部表現に刷り込まれており、この絡み合い（エンタングルメント）の度合いが空間推論の汎化性能を予測する重要指標であることが判明した。
+LLMエージェントがコーパスを直接検索環境として扱い、実行可能なシェルコマンド（grep/find等）を発行して証拠を収集するDCI（Direct Corpus Interaction）パラダイムを提案。事前インデックス構築なしで任意コーパスに即適用でき、インデックス構築コストを大幅削減（E5の3.2時間に対して約1分）。多段階推論タスクで特に優れた性能を示し、4つのベンチマークで最高F1スコアを達成した。
