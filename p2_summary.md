@@ -1,6 +1,6 @@
-**2. EarlyTom: Early Token Compression Completes Fast Video Understanding**
-**著者**: et al. (2026) — CVPR 2026 採択
-**arXiv**: https://arxiv.org/abs/2605.30010
+**2. Mellum2 Technical Report**
+**著者**: JetBrains Research et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.31268
 
 **まとめ**:
-Video-LLM の実用展開を妨げていた「膨大な視覚トークン処理コスト」に対し、ビジョンエンコーダ内部での早期トークン圧縮（early token compression）で根本解決。LLaVA-OneVision-7B での評価で TTFT（最初トークン生成時間）を最大 2.65 倍削減、FLOPS を 61% 削減しながら精度を維持することに成功した。
+JetBrainsが開発したソフトウェアエンジニアリング特化型のオープンウェイト12B MoEモデル（2.5Bアクティブパラメータ）。コード生成・編集・デバッグ・ツール使用・エージェントコーディングを網羅し、前世代の補完特化4B密集モデル「Mellum」の後継。約10.6兆トークンで3段階学習し、128Kコンテキストに拡張。EvalPlus 78.4%・GSM-Plus 80.5%を達成しながら、単一H100でQwen2.5-7Bと同等速度（192 tokens/s）を実現した。
