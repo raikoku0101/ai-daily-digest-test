@@ -1,6 +1,6 @@
-**5. PRISM: A Multi-Dimensional Benchmark for Evaluating LLM Peer Reviewers**
-**著者**: et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.26730
+**5. RayDer: Scalable Self-Supervised Novel View Synthesis from Real-World Video**
+**著者**: RayDer Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.31535
 
 **まとめ**:
-LLM による自動査読システムを多次元評価するベンチマーク PRISM（Peer Review Intelligence via Structured Multi-dimensional assessment）を提案。分析深度・新規性評価・欠陥特定・建設性の 4 軸で 5 つの主要システムを比較した結果、全次元で人間基準に一貫して対抗できるシステムは存在せず、集約メトリクスでは見えない固有の弱点があることが判明した。
+カメラ推定・シーン再構成・レンダリングを単一transformerバックボーンに統合した自己教師あり新視点合成（NVS）モデル。2.7M動画から自己教師あり学習のみで、大規模video diffusion前学習を用いたSEVA（1.3B）と競合する性能を達成（RE10K PSNR 30.23）。クリーンな冪乗則スケーリング（R²=0.997）を示し、NVSを「うまく振る舞うスケーリング問題」に変換。動的コンテンツをnuisance factorとして扱うことで一般動画からの学習を実現した。
