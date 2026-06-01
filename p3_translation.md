@@ -1,11 +1,14 @@
 ## 1. Introduction (はじめに)
-密ベクトル検索（Dense Retrieval）モデルは高い性能を誇りますが、なぜ特定のドキュメントに高い関連スコアを付けるかは高次元埋め込み空間の不透明さゆえに説明困難でした。従来の説明手法は語彙的一致やトークン配列などの表面的信号に着目しており、意味的理解の根拠を捉えられていませんでした。
+既存の自己回帰型リアルタイム音楽生成システム（例: Lyria RealTime）はチャンク境界でのみ制御更新が可能だが、拡散モデルベースのアプローチにより「フレーム単位での制御と応答性の両立」を目指したのがDEMON（Diffusion Engine for Musical Orchestrated Noise）である。RTX 5090上で60秒の楽曲を毎秒12.3回生成でき、ノイズ除去強度パラメータ（denoising parameter）がリアルタイム演奏コントローラとして機能する。
 
-## 2. Method (手法)
-提案手法は二段階構成です。第一段階では軽量な「推論内部化器（reasoning internalizer）」を導入し、連鎖的思考推論（Chain-of-Thought reasoning）を埋め込み空間で近似します。自己回帰生成の計算コストを回避しながら推論指向の情報で文埋め込みを拡張します。第二段階では、推論強化埋め込みを疎かつ人間が解釈可能な特徴（sparse interpretable features）に分解し、各特徴に自然言語記述を関連付けます。
+## 2. Architecture (システムアーキテクチャ)
+DEMONは5段階パイプラインで構成される。StreamDiffusionのリングバッファに改良を加え、各スロットが独立したタイムステップスケジュール（Per-slot heterogeneous denoise scheduling）を保持することで、連続的なパラメータ変更時のキュー消失を回避する。「Shared mutable per-step state（共有可変ステップ状態）」により、SDE（確率微分方程式）ソース混合曲線などのパラメータが毎ステップ読み込まれ、次の81msティックで即座に効果が反映される。Windowed VAE decodeにより全潜在表現ではなく再生ウィンドウのみをデコードし8倍高速化。TensorRT mixed-precision（fp16+fp32）で加速。
 
-## 3. Experiments & Results (実験と結果)
-複数の検索器とベンチマークで評価した結果、Xetrieval は首尾一貫した解釈可能な特徴を発見し、ペアレベルの介入効果を強化し、タスクレベルの特徴操舵（feature steering）をサポートすることが確認されました。埋め込みレベルの検索メカニズムに対する有意義な洞察が得られます。
+## 3. Performance Results (性能評価)
+デコーダTensorRT forward passは60秒生成でB=1時13.3ms・B=8時80.6ms。Windowed VAE decodeは56msから7msへ削減（8倍高速化）。RTX 5090/4090/3090で同一の伝播パターンを±0.02RMS以内で再現。Windowed VAE出力は16-bit PCM renditionでフルデコードとbit-identical（SNR=∞）を確認。
 
-## 4. Conclusion (結論)
-Dense Retrieval の透明性を向上させ、検索意思決定の根拠を埋め込み空間で解釈可能な形式で提示する革新的アプローチです。検索システムの信頼性向上・エラー分析・ユーザーへの説明可能性に貢献します。
+## 4. Control Parameters (制御パラメータ設計)
+ODE/SDEソルバー統合で6種の「フレーム毎ノイズ除去ダイナミクス曲線（Per-frame denoising-dynamics curves）」を制御軸として公開する。「SDE source blending（SDE再ノイズステップにおけるソースブレンディング）」により、各フレーム独立にモデル予測とソース潜在へのアンカリング強度を操作できる。x0-target morphにより独立した事前計算ターゲット潜在への段階的ブレンドも可能。
+
+## 5. Conclusion (結論)
+StreamDiffusion型リングバッファを長形式音声領域に適用し、Per-slot scheduling・Shared mutable state・SDE source blending・Windowed VAEの4機構を組み合わせることで、消費者向けGPU上のリアルタイム音楽制御楽器を実現。提案する伝播クラス分類は画像拡散を含む一般的リングバッファ系に応用可能であり、「広範・応答性を両立した演奏可能な生成インターフェース」という新しい設計空間を開拓した。
