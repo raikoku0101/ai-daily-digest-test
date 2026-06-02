@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-03",
+  "content": "# AI Daily Digest — 2026-06-03\n\n## 今日のハイライト\n- **LLM透かしの根本的脆弱性が証明**: 複数モデルの線形アンサンブルだけで電子透かしが無効化できることが実証（論文3位）。AI生成コンテンツの規制・帰属技術の再設計が急務。\n- **Claude Code v2.1.161/160 が同日2連続リリース**: セキュリティ強化（シェル設定ファイル書き込み前確認）と並列ツール呼び出しの堅牢化が同時に提供。エンタープライズ・Linux ユーザーへの影響が大きい。\n- **検索エージェントに「外部状態ハーネス」という新パラダイム**: ポリシーから状態管理を切り出すHarness-1が最多upvotes。エージェント設計の常識を覆す可能性がある（論文1位、30 upvotes）。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.161 (2025-06-02)\n\n**主要新機能:**\n- **OTELメトリクス拡張**: `OTEL_RESOURCE_ATTRIBUTES` の値がメトリクスデータポイントのラベルとして付与されるようになり、チームやリポジトリなどカスタム次元で使用状況を分析可能に。\n- **エージェント進捗表示改善**: `claude agents` の行に「完了/合計」が表示され、並列タスクの進捗が一目で把握できるように。\n- **MCPコネクター整理**: 未サインインの `claude.ai` コネクターが「未使用コネクターを表示」に折りたたまれ、UIがすっきり。\n- **並列ツール呼び出しの堅牢化**: Bashコマンド失敗時に同バッチの他ツール呼び出しがキャンセルされなくなった。各ツールが独立してresultを返す。\n- **Linux クリップボード対応**: フルスクリーンモードで `wl-copy`/`xclip`/`xsel` を優先利用し、クリップボードと PRIMARY selection の両方にコピー（ミドルクリックペースト対応）。\n\n**バグ修正:**\n- `/effort` ダイアログ・アニメーション・プロンプトシマーが「モーション軽減」設定を無視していた問題を修正。\n- managed-settings の `forceLoginOrgUUID`/`forceLoginMethod` がサードパーティプロバイダセッションをブロックしていた問題を修正。\n- バックグラウンドサブエージェントの出力が `claude -p` stdout を汚染していた問題を修正。\n- `/autofix-pr` が git worktree 内で「default branch では実行不可」と誤報する問題を修正。\n\n**ユーザーへの影響:** 並列エージェント利用者・Linux ユーザー・エンタープライズ管理者にとって特に恩恵が大きいリリース。\n\n---\n\n### v2.1.160 (2025-06-02)\n\n**セキュリティ強化:**\n- シェル起動ファイル (`.zshenv`, `.zlogin`, `.bash_login`) や `~/.config/git/` への書き込み前に確認プロンプトを追加。意図しないコマンド実行を防止。\n- `acceptEdits` モードでコード実行権限を付与するビルドツール設定ファイル (`.npmrc`, `.yarnrc*`, `bunfig.toml`, `.bazelrc`, `.pre-commit-config.yaml`, `.devcontainer/` 等) の書き込み前にも確認プロンプトを追加。\n\n**利便性向上:**\n- `grep` でファイルを参照した後、別途 Read なしで Edit が可能に。単一ファイルへの grep/egrep/fgrep が read-before-edit チェックを満たすようになった。\n\n**バグ修正:**\n- WSL 環境でコピー時にWindowsクリップボードに書き込まれなかった問題を修正（PowerShell経由に変更）。\n- `claude agents` からセッションを復元した際にチャット履歴が消えて元のプロンプトが再実行される問題を修正。\n\n**ユーザーへの影響:** セキュリティ意識の高い開発者・WSL ユーザーへの重要な修正。Edit ワークフローが1ステップ短縮。\n\n---\n\n### v2.1.159 (2025-05-31)\n\n- 内部インフラ改善のみ（ユーザー向け変更なし）\n\n## 注目論文 TOP 10\n\n**1. Harness-1: Reinforcement Learning for Search Agents with State-Externalizing Harnesses** | 👍 30 | [arxiv:2606.02373](https://arxiv.org/abs/2606.02373)\n🎯**背景**: 検索エージェントは成長し続けるトランスクリプト上のポリシーとして訓練されるが、状態管理をモデル自身に負わせる設計が検索品質を低下させていた。\n🔧**手法**: 「ハーネス」と呼ぶ外部状態管理システムでメモリ・証拠追跡・制約管理をモデル外に切り出し、RLでハーネス付きエージェントを訓練する。\n📊**結果**: 複数の検索ベンチマークでSOTA水準の精度を達成しつつ、コンテキスト長・計算コストを大幅削減。\n💡**意義**: 「考える」部分と「覚える」部分を分離することでエージェントの拡張性と信頼性が飛躍的に向上する設計思想を提示。\n⚠️**限界**: 実世界の非構造化検索シナリオへの一般化・ハーネス設計のドメイン依存性が課題。\n\n---\n\n**2. Domino: Decoupling Causal Modeling from Autoregressive Drafting in Speculative Decoding** | 👍 26 | [arxiv:2605.29707](https://arxiv.org/abs/2605.29707)\n🎯**背景**: 投機的デコーディングはLLM推論を高速化するが、ドラフト品質とコストのトレードオフが実用上の速度向上を制限していた。\n🔧**手法**: 因果モデリング（トークン依存性の捉え方）とオートリグレッシブなドラフト生成を切り離す「Domino」アーキテクチャを提案。並列ドラフターを採用しつつ高品質な因果推論を維持。\n📊**結果**: 既存手法と比べてスループットを大幅改善し、ドラフト品質も維持・向上。\n💡**意義**: 投機的デコーディングの基本的トレードオフを再定式化し、LLM推論コストの実用的削減に直結。\n⚠️**限界**: 特定のアーキテクチャ・モデルサイズへの依存性、実デプロイ環境でのオーバーヘッド評価が不十分。\n\n---\n\n**3. Linear Ensembles Wash Away Watermarks: On the Fragility of Distributional Perturbations in LLMs** | 👍 24 | [arxiv:2605.30501](https://arxiv.org/abs/2605.30501)\n🎯**背景**: LLM生成テキストへの電子透かしはAI帰属・検出の有力手法だが、複数モデルが競合する現実環境での脆弱性は未検証だった。\n🔧**手法**: 複数モデルの出力分布の線形アンサンブル（混合サンプリング）によって透かし信号が統計的に洗浄される現象を理論・実験両面から分析。\n📊**結果**: ほぼすべての主要透かし方式がアンサンブルにより検出率を大幅に低下させることを実証。\n💡**意義**: AI生成テキストの帰属・規制の技術的基盤に根本的な問いを投げかける。政策立案者・研究者に重要な警鐘。\n⚠️**限界**: アンサンブルへのアクセス・モデル知識が必要。より堅牢な透かし方式の設計は未解決。\n\n---\n\n**4. Policy and World Modeling Co-Training for Language Agents** | 👍 7 | [arxiv:2606.02388](https://arxiv.org/abs/2606.02388)\n🎯**背景**: RLでLLMエージェントを訓練する際、「どの行動が高報酬か」は学習できても「行動が環境にどう影響するか」の監督信号が不足していた。\n🔧**手法**: オンポリシーRLのロールアウトデータを再利用し、ポリシー訓練と世界モデル（環境ダイナミクス予測）訓練を同時進行で共同学習。追加シミュレーターや訓練段階は不要。\n📊**結果**: 複数エージェントタスクでポリシーのみの学習を上回るパフォーマンスを達成。世界モデルの精度も向上。\n💡**意義**: 既存のRL訓練パイプラインを大きく変えずに世界モデルの恩恵を得られる実用的アプローチ。\n⚠️**限界**: 世界モデルの精度がポリシー改善に直結するかはタスク依存。長期依存性のモデリングに課題。\n\n---\n\n**5. AFUN: Towards an Affordance Foundation Model for Functionality Understanding** | 👍 6 | [arxiv:2606.02551](https://arxiv.org/abs/2606.02551)\n🎯**背景**: ロボット操作における「アフォーダンス理解」（物体をどこでどう操作できるか）は視覚と行動を橋渡しする重要課題だが、多様な環境・物体・タスクへの汎化が難しかった。\n🔧**手法**: 大規模マルチモーダルデータで事前訓練したアフォーダンス基盤モデルAFUNを提案。機能的な相互作用領域と操作方法を統合的に推論するアーキテクチャ。\n📊**結果**: 多様な物体・環境でのゼロショット・少数ショットアフォーダンス予測で既存手法を上回る。\n💡**意義**: 汎用ロボット操作に向けた基盤モデルアプローチの実現可能性を示す重要な一歩。\n⚠️**限界**: 実ロボットへのデプロイ評価が限定的。動的・複雑な環境での信頼性に課題。\n\n---\n\n**6. Agent Skills Should Go Beyond Text: The Case for Visual Skills** | 👍 6 | [arxiv:2606.01414](https://arxiv.org/abs/2606.01414)\n🎯**背景**: エージェントのスキル再利用の仕組みはほぼテキストベースで設計されており、視覚中心タスクでの経験蓄積に根本的なボトルネックがあった。\n🔧**手法**: テキストのみのスキル表現を拡張し、視覚的スキル（画像・動画・空間情報を含む再利用可能な経験）を蓄積・活用するフレームワークを提案。\n📊**結果**: ビジュアルタスクでテキストのみのスキル蓄積より大幅に高い成功率を達成。\n💡**意義**: マルチモーダルエージェントの長期的能力蓄積に向けた重要な方向性を提示。\n⚠️**限界**: 視覚スキルの索引・検索効率、スキルの陳腐化への対処が今後の課題。\n\n---\n\n**7. SVI-Bench: A Dynamic Microworld for Strategic Video Intelligence** | 👍 3 | [arxiv:2605.31529](https://arxiv.org/abs/2605.31529)\n🎯**背景**: 動画理解研究は「何が見えるか」の認識に偏りがちで、因果推論・反事実思考・戦略的計画を統合評価するベンチマークが存在しなかった。\n🔧**手法**: 知覚→因果推論→シミュレーション→戦略計画の4段階能力を段階的に評価するダイナミックマイクロワールド環境「SVI-Bench」を構築。\n📊**結果**: 現行最先端モデルが上位段階（因果推論・戦略計画）で著しく性能低下することを実証。\n💡**意義**: 動画AIの真の知能水準を測る新たな評価軸を提供。今後のモデル開発の指針となる。\n⚠️**限界**: マイクロワールドの限定的な複雑さが実世界シナリオを十分に模擬できない可能性。\n\n---\n\n**8. TVIR: Building Deep Research Agents Towards Text-Visual Interleaved Report Generation** | 👍 2 | [arxiv:2606.02320](https://arxiv.org/abs/2606.02320)\n🎯**背景**: Deep Research Agentは多段階情報収集と長文生成で高い能力を示すが、既存システムはテキスト中心で視覚情報の事実整合性評価が欠落していた。\n🔧**手法**: 100件の専門家監修マルチモーダル深層調査タスクからなる「TVIR-Bench」を構築。テキストと視覚を交互に統合したレポート生成能力を評価する。\n📊**結果**: 現行モデルの視覚統合レポートにおける事実整合性・視覚的根拠付けの弱点を定量化。\n💡**意義**: 次世代リサーチエージェントのマルチモーダル評価標準を確立する基盤研究。\n⚠️**限界**: 100件のタスクセットのスケール限界、専門家評価のバイアス、言語・ドメインの偏り。\n\n---\n\n**9. Unified Neural Scaling Laws** | 👍 2 | [arxiv:2605.26248](https://arxiv.org/abs/2605.26248)\n🎯**背景**: ニューラルネットのスケーリング則は従来、パラメータ数や学習データ量など単一次元での研究が多く、多次元同時変化の統一的記述がなかった。\n🔧**手法**: パラメータ数・データ量・訓練ステップ数・推論ステップ数・計算量・ハイパーパラメータを同時に変化させたときの性能を統一的に記述する汎関数形式（UNSL）を提案。\n📊**結果**: 多様な設定での性能を高精度で予測・外挿できることを広範な実験で検証。\n💡**意義**: LLM開発のコスト最適化・性能予測に直結する実用的スケーリング理論の確立。\n⚠️**限界**: 超大規模モデルへの外挿精度の保証、アーキテクチャ依存性の排除が課題。\n\n---\n\n**10. FreeForm: Reduced-Order Deformable Simulation from Particle-Based Skinning Eigenmodes** | 👍 1 | [arxiv:2605.29318](https://arxiv.org/abs/2605.29318)\n🎯**背景**: 変形可能な弾性体の縮次元シミュレーションはCG・ロボティクスで重要だが、メッシュ生成の困難さとニューラル場の最適化コストが実用上の障壁だった。\n🔧**手法**: 再生核粒子法（RKPM）表現と固有モード分解を組み合わせたメッシュフリーな縮次元弾性シミュレーション手法「FreeForm」を提案。\n📊**結果**: 複雑形状の弾性体に対してリアルタイム近傍の速度でリアルな変形シミュレーションを実現。\n💡**意義**: 3DCG・ロボットシミュレーション・医療応用での変形体シミュレーションのパイプライン簡素化に貢献。\n⚠️**限界**: 非常に大きな変形や破断・接触などの現象への対応が限定的。\n\n",
+  "fetched_at": "2026-06-02T22:06:24.852878+00:00",
+  "papers": [
+    {
+      "title": "Harness-1: Reinforcement Learning for Search Agents with State-Externalizing Harnesses",
+      "upvotes": 30,
+      "paper_id": "2606.02373",
+      "abstract": "Search agents are often trained as policies over growing transcripts: the model must decide how to search while also remembering what it has seen, which evidence is useful, which constraints remain open, and which claims have actually been checked. We argue that this formulation puts too much routine state management inside the policy..."
+    },
+    {
+      "title": "Domino: Decoupling Causal Modeling from Autoregressive Drafting in Speculative Decoding",
+      "upvotes": 26,
+      "paper_id": "2605.29707",
+      "abstract": "Speculative decoding accelerates LLM inference by drafting multiple tokens and verifying them in parallel with the target model. However, its practical speedup is constrained by the trade-off between draft quality and drafting cost: autoregressive drafters model causal dependencies among draft tokens but incur sequential overhead, while parallel drafters reduce drafting cost but weaken intra-block dependency modeling..."
+    },
+    {
+      "title": "Linear Ensembles Wash Away Watermarks: On the Fragility of Distributional Perturbations in LLMs",
+      "upvotes": 24,
+      "paper_id": "2605.30501",
+      "abstract": "Watermarking embeds statistical signatures in AI-generated text for detection and attribution. We reveal a fundamental vulnerability: when users access multiple models (today's reality), watermarks trivially fail. Watermarks perturb output distributions away from the original, and in competitive markets, these perturbations are typically independent across providers..."
+    },
+    {
+      "title": "Policy and World Modeling Co-Training for Language Agents",
+      "upvotes": 7,
+      "paper_id": "2606.02388",
+      "abstract": "Reinforcement learning (RL) improves large language model (LLM) agents by teaching them which actions lead to high rewards, but provides little supervision on what those actions do to the environment. World modeling (WM) can fill this gap, yet existing approaches often require separate simulators, extra training stages, or additional inference-time computation. We observe that on-policy RL rollouts already contain the needed signal..."
+    },
+    {
+      "title": "AFUN: Towards an Affordance Foundation Model for Functionality Understanding",
+      "upvotes": 6,
+      "paper_id": "2606.02551",
+      "abstract": "Affordance understanding bridges visual perception and physical action, serving as an explainable interface for robot manipulation in open and unstructured real-world environments. Yet, building an affordance foundation model that not only understands where and how the interaction should happen, but also generalizes across diverse environments, objects, and tasks, remains a long-standing research challenge..."
+    },
+    {
+      "title": "Agent Skills Should Go Beyond Text: The Case for Visual Skills",
+      "upvotes": 6,
+      "paper_id": "2606.01414",
+      "abstract": "Reusable skills are a key mechanism for extending agent capabilities, allowing agents to accumulate experience and solve increasingly complex tasks. Yet most existing skill-learning methods store reusable experience as text-only assets, such as instructions, reasoning traces, or summarized trajectories. We argue that this text-only paradigm creates a fundamental bottleneck for visual-centric tasks..."
+    },
+    {
+      "title": "SVI-Bench: A Dynamic Microworld for Strategic Video Intelligence",
+      "upvotes": 3,
+      "paper_id": "2605.31529",
+      "abstract": "True video intelligence demands more than recognizing what is visible: it requires reasoning about why events unfold, predicting what would change under different conditions, and deciding what to do next. We refer to this progression, from perception through causal reasoning and simulation to strategic planning, as Strategic Video Intelligence (SVI). No existing benchmark evaluates this capability stack..."
+    },
+    {
+      "title": "TVIR: Building Deep Research Agents Towards Text-Visual Interleaved Report Generation",
+      "upvotes": 2,
+      "paper_id": "2606.02320",
+      "abstract": "Deep Research Agents have shown strong capability in multi-step information retrieval, reasoning, and long-form report generation, but existing benchmarks and systems remain predominantly text-centric, with limited evaluation of whether visual elements are factually reliable and well aligned with the surrounding analysis..."
+    },
+    {
+      "title": "Unified Neural Scaling Laws",
+      "upvotes": 2,
+      "paper_id": "2605.26248",
+      "abstract": "We present a functional form (that we refer to as a Unified Neural Scaling Law (UNSL)) that accurately models and extrapolates the scaling behaviors of deep neural networks as multiple dimensions all vary simultaneously (i.e. how the evaluation metric of interest varies as one simultaneously varies the number of model parameters, training dataset size, number of training steps, number of inference steps, amount of compute, and various hyperparameters)..."
+    },
+    {
+      "title": "FreeForm: Reduced-Order Deformable Simulation from Particle-Based Skinning Eigenmodes",
+      "upvotes": 1,
+      "paper_id": "2605.29318",
+      "abstract": "We present a novel formulation for mesh-free, reduced-order simulation of deformable hyperelastic objects. Existing work in reduced-order elastodynamic simulation represents the input geometry by either meshes, which can be difficult to obtain due to challenges in scanning and triangulating complex shapes, or by neural fields that require per-shape optimization..."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.161",
+      "published_at": "2025-06-02",
+      "body": "OTEL_RESOURCE_ATTRIBUTES values are now included as labels on metric datapoints, so you can slice usage metrics by custom dimensions like team or repo. claude agents rows now show done/total before the detail when work is fanned out; peek shows the longest-running item. /mcp now collapses claude.ai connectors you've never signed in to behind a \"Show unused connectors\" row. Parallel tool calls: a failed Bash command no longer cancels other calls in the same batch — each tool returns its own result independently. Fullscreen mode: clipboard now uses wl-copy/xclip/xsel on Linux when available, copies to both the clipboard and PRIMARY selection for middle-click paste. Fixed /effort dialog, workflow animations, and prompt keyword shimmer not honoring the Reduce motion setting. Fixed forceLoginOrgUUID/forceLoginMethod managed-settings policies blocking third-party provider sessions alongside the org pin. Fixed background subagent output corrupting claude -p stdout. Fixed /usage-credits starting a re-login for Team and Enterprise admins. Fixed /autofix-pr reporting cannot run on the default branch when the session is inside a git worktree."
+    },
+    {
+      "tag_name": "v2.1.160",
+      "published_at": "2025-06-02",
+      "body": "Added a prompt before writing to shell startup files (.zshenv, .zlogin, .bash_login) and ~/.config/git/, which could otherwise lead to unintended command execution. acceptEdits mode now prompts before writing build-tool config files that grant code execution (.npmrc, .yarnrc*, bunfig.toml, .bazelrc, .pre-commit-config.yaml, .devcontainer/, etc.). Edit no longer requires a separate Read after viewing a file with grep: single-file grep/egrep/fgrep commands now satisfy the read-before-edit check. Fixed copy-on-select not writing to the Windows clipboard on WSL. Fixed restoring a completed session from claude agents dropping chat history and re-running the original prompt. Fixed background sessions re-attached after overnight retire losing their conversation. Fixed claude --bg occasionally failing with socket missing."
+    },
+    {
+      "tag_name": "v2.1.159",
+      "published_at": "2025-05-31",
+      "body": "Internal infrastructure improvements (no user-facing changes)"
+    }
+  ]
+}

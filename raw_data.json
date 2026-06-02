@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "GrepSeek: Training Search Agents for Direct Corpus Interaction",
-      "upvotes": 81,
-      "paper_id": "2605.29307",
-      "abstract": "Large Language Model (LLM) search agents have shown strong promise for knowledge-intensive language tasks through multiple rounds of reasoning and information retrieval. Most existing systems access information using a retriever that takes a keyword or natural language query and returns a ranked list of documents using an index of pre-computed document representations. In this work, we explore a complementary perspective in which the search agent treats the corpus itself as the search environment and finds evidence by issuing executable shell commands."
-    },
-    {
-      "title": "Mellum2 Technical Report",
-      "upvotes": 34,
-      "paper_id": "2605.31268",
-      "abstract": "We present Mellum 2, an open-weight 12B-parameter Mixture-of-Experts (MoE) language model with 2.5B active parameters per token. Mellum 2 is a general-purpose language model specialized in software engineering, spanning code generation and editing, debugging, multi-step reasoning, tool use and function calling, agentic coding, and conversational programming assistance, and it is the successor to the completion-focused 4B dense Mellum model."
-    },
-    {
-      "title": "DEMON: Diffusion Engine for Musical Orchestrated Noise",
-      "upvotes": 4,
-      "paper_id": "2605.28657",
-      "abstract": "We present DEMON, a real-time diffusion engine that makes the denoising process playable as a live musical instrument: a control surface both broad (many parameters shaped per-frame across the output) and responsive (each control taking effect as fast as its place in the denoising loop allows). Built on ACE-Step 1.5 and StreamDiffusion's ring-buffer architecture with TensorRT acceleration, it sustains up to 12.3 decoder completions per second for 60-second music on a single consumer GPU (RTX 5090)."
-    },
-    {
-      "title": "How can embedding models bind concepts?",
-      "upvotes": 4,
-      "paper_id": "2605.31503",
-      "abstract": "Humans easily determine which color belongs to which shape in multi-object scenes, an ability known as concept binding. Vision-language embedding models such as CLIP struggle with binding: they recognize individual concepts but fail to represent which concepts form which objects. Although CLIP behaves like a bag-of-concepts model in cross-modal retrieval, object information is recoverable from its image and text embeddings separately."
-    },
-    {
-      "title": "RayDer: Scalable Self-Supervised Novel View Synthesis from Real-World Video",
-      "upvotes": 3,
-      "paper_id": "2605.31535",
-      "abstract": "Self-supervised novel view synthesis (NVS) remains challenging to scale, despite the abundance of video data, largely due to the brittleness of training on realistic videos and the hard-to-predict scaling behavior of multi-network system designs. We introduce RayDer, a unified, feed-forward transformer that consolidates camera estimation, scene reconstruction, and rendering into a single backbone, turning self-supervised NVS into a well-posed single-model scaling problem."
-    },
-    {
-      "title": "Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents",
-      "upvotes": 3,
-      "paper_id": "2605.30621",
-      "abstract": "LLM agents are increasingly deployed as systems built around editable external harnesses, including prompts, skills, memories and tools, that shape task execution without changing model parameters. Harness self-evolution adapts such agents by updating these harnesses from execution evidence. Yet it remains unclear whether a model's base capability in task-solving predicts its capabilities in harness self-evolution."
-    },
-    {
-      "title": "HL-OutPaint: Coarse-to-Fine Video Outpainting for High-Resolution Long-Range Videos",
-      "upvotes": 2,
-      "paper_id": "2605.17543",
-      "abstract": "Video outpainting generates plausible visual content beyond the original spatial extent of a video, playing a key role in adapting videos to diverse display formats. To support such use cases, it must enable large spatial extrapolation over long sequences. However, most existing methods address only one of these challenges or lack explicit mechanisms for ensuring global spatio-temporal consistency."
-    },
-    {
-      "title": "VisualThink-VLA: Visual Intermediate Reasoning for Effective and Low-Latency Vision-Language-Action Policies",
-      "upvotes": 2,
-      "paper_id": "2605.30011",
-      "abstract": "Recent work has begun to equip vision-language-action (VLA) policies with explicit intermediate reasoning. In embodied control, however, textual chain-of-thought is a poor fit: irrelevant or weakly textual information can interfere with action prediction, while autoregressive text decoding adds too much latency for real-time closed-loop execution. We present VISUALTHINK-VLA, a visual intermediate-reasoning framework for accurate, low-latency VLA policies."
-    },
-    {
-      "title": "SurGe: Improved Surface Geometry in Point Maps",
-      "upvotes": 1,
-      "paper_id": "2605.31577",
-      "abstract": "Recent feedforward 3D reconstruction methods predict point maps and estimate global 3D geometry remarkably well. However, their predictions still exhibit inaccurate local surface geometry, which is clearly visible qualitatively but only weakly reflected in common metrics. To make these errors more explicit in evaluation, we introduce a point map normal metric."
-    },
-    {
-      "title": "One-Forcing: Towards Stable One-Step Autoregressive Video Generation",
-      "upvotes": 1,
-      "paper_id": "2605.23458",
-      "abstract": "Recent advances have substantially improved real-time interactive video generation in the autoregressive regime. However, most existing few-step autoregressive video generation methods, often distilled from a corresponding many-step teacher, default to a 4-step sampling configuration, which still incurs considerable latency during deployment and suffers from severe quality degradation when the number of sampling steps is further reduced."
-    }
+    {"title": "Harness-1: Reinforcement Learning for Search Agents with State-Externalizing Harnesses", "upvotes": 30, "paper_id": "2606.02373", "abstract": "Search agents are often trained as policies over growing transcripts: the model must decide how to search while also remembering what it has seen, which evidence is useful, which constraints remain open, and which claims have actually been checked. We argue that this formulation puts too much routine state management inside the policy..."},
+    {"title": "Domino: Decoupling Causal Modeling from Autoregressive Drafting in Speculative Decoding", "upvotes": 26, "paper_id": "2605.29707", "abstract": "Speculative decoding accelerates LLM inference by drafting multiple tokens and verifying them in parallel with the target model. However, its practical speedup is constrained by the trade-off between draft quality and drafting cost: autoregressive drafters model causal dependencies among draft tokens but incur sequential overhead, while parallel drafters reduce drafting cost but weaken intra-block dependency modeling..."},
+    {"title": "Linear Ensembles Wash Away Watermarks: On the Fragility of Distributional Perturbations in LLMs", "upvotes": 24, "paper_id": "2605.30501", "abstract": "Watermarking embeds statistical signatures in AI-generated text for detection and attribution. We reveal a fundamental vulnerability: when users access multiple models (today's reality), watermarks trivially fail. Watermarks perturb output distributions away from the original, and in competitive markets, these perturbations are typically independent across providers..."},
+    {"title": "Policy and World Modeling Co-Training for Language Agents", "upvotes": 7, "paper_id": "2606.02388", "abstract": "Reinforcement learning (RL) improves large language model (LLM) agents by teaching them which actions lead to high rewards, but provides little supervision on what those actions do to the environment. World modeling (WM) can fill this gap, yet existing approaches often require separate simulators, extra training stages, or additional inference-time computation. We observe that on-policy RL rollouts already contain the needed signal..."},
+    {"title": "AFUN: Towards an Affordance Foundation Model for Functionality Understanding", "upvotes": 6, "paper_id": "2606.02551", "abstract": "Affordance understanding bridges visual perception and physical action, serving as an explainable interface for robot manipulation in open and unstructured real-world environments. Yet, building an affordance foundation model that not only understands where and how the interaction should happen, but also generalizes across diverse environments, objects, and tasks, remains a long-standing research challenge..."},
+    {"title": "Agent Skills Should Go Beyond Text: The Case for Visual Skills", "upvotes": 6, "paper_id": "2606.01414", "abstract": "Reusable skills are a key mechanism for extending agent capabilities, allowing agents to accumulate experience and solve increasingly complex tasks. Yet most existing skill-learning methods store reusable experience as text-only assets, such as instructions, reasoning traces, or summarized trajectories. We argue that this text-only paradigm creates a fundamental bottleneck for visual-centric tasks..."},
+    {"title": "SVI-Bench: A Dynamic Microworld for Strategic Video Intelligence", "upvotes": 3, "paper_id": "2605.31529", "abstract": "True video intelligence demands more than recognizing what is visible: it requires reasoning about why events unfold, predicting what would change under different conditions, and deciding what to do next. We refer to this progression, from perception through causal reasoning and simulation to strategic planning, as Strategic Video Intelligence (SVI). No existing benchmark evaluates this capability stack..."},
+    {"title": "TVIR: Building Deep Research Agents Towards Text-Visual Interleaved Report Generation", "upvotes": 2, "paper_id": "2606.02320", "abstract": "Deep Research Agents have shown strong capability in multi-step information retrieval, reasoning, and long-form report generation, but existing benchmarks and systems remain predominantly text-centric, with limited evaluation of whether visual elements are factually reliable and well aligned with the surrounding analysis..."},
+    {"title": "Unified Neural Scaling Laws", "upvotes": 2, "paper_id": "2605.26248", "abstract": "We present a functional form (that we refer to as a Unified Neural Scaling Law (UNSL)) that accurately models and extrapolates the scaling behaviors of deep neural networks as multiple dimensions all vary simultaneously (i.e. how the evaluation metric of interest varies as one simultaneously varies the number of model parameters, training dataset size, number of training steps, number of inference steps, amount of compute, and various hyperparameters)..."},
+    {"title": "FreeForm: Reduced-Order Deformable Simulation from Particle-Based Skinning Eigenmodes", "upvotes": 1, "paper_id": "2605.29318", "abstract": "We present a novel formulation for mesh-free, reduced-order simulation of deformable hyperelastic objects. Existing work in reduced-order elastodynamic simulation represents the input geometry by either meshes, which can be difficult to obtain due to challenges in scanning and triangulating complex shapes, or by neural fields that require per-shape optimization..."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.159",
-      "published_at": "2025-05-31",
-      "body": "Internal infrastructure improvements (no user-facing changes)"
-    },
-    {
-      "tag_name": "v2.1.158",
-      "published_at": "2025-05-30",
-      "body": "Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`"
-    },
-    {
-      "tag_name": "v2.1.157",
-      "published_at": "2025-05-29",
-      "body": "Plugins in `.claude/skills` directories are now automatically loaded, no marketplace required\n* Added `claude plugin init <name>` to scaffold a new plugin in `.claude/skills`\n* Added autocomplete for `/plugin` arguments: subcommands, installed plugin names, and plugins from known marketplaces\n* `claude agents`: the `agent` field in `settings.json` is now honored for dispatched sessions, with `--agent <name>` to override it\n* `EnterWorktree` can now switch between Claude-managed worktrees mid-session"
-    }
+    {"tag_name": "v2.1.161", "published_at": "2025-06-02", "body": "OTEL_RESOURCE_ATTRIBUTES values are now included as labels on metric datapoints, so you can slice usage metrics by custom dimensions like team or repo. claude agents rows now show done/total before the detail when work is fanned out; peek shows the longest-running item. /mcp now collapses claude.ai connectors you've never signed in to behind a \"Show unused connectors\" row. Parallel tool calls: a failed Bash command no longer cancels other calls in the same batch — each tool returns its own result independently. Fullscreen mode: clipboard now uses wl-copy/xclip/xsel on Linux when available, copies to both the clipboard and PRIMARY selection for middle-click paste. Fixed /effort dialog, workflow animations, and prompt keyword shimmer not honoring the Reduce motion setting. Fixed forceLoginOrgUUID/forceLoginMethod managed-settings policies blocking third-party provider sessions alongside the org pin. Fixed background subagent output corrupting claude -p stdout. Fixed /usage-credits starting a re-login for Team and Enterprise admins. Fixed /autofix-pr reporting cannot run on the default branch when the session is inside a git worktree."},
+    {"tag_name": "v2.1.160", "published_at": "2025-06-02", "body": "Added a prompt before writing to shell startup files (.zshenv, .zlogin, .bash_login) and ~/.config/git/, which could otherwise lead to unintended command execution. acceptEdits mode now prompts before writing build-tool config files that grant code execution (.npmrc, .yarnrc*, bunfig.toml, .bazelrc, .pre-commit-config.yaml, .devcontainer/, etc.). Edit no longer requires a separate Read after viewing a file with grep: single-file grep/egrep/fgrep commands now satisfy the read-before-edit check. Fixed copy-on-select not writing to the Windows clipboard on WSL. Fixed restoring a completed session from claude agents dropping chat history and re-running the original prompt. Fixed background sessions re-attached after overnight retire losing their conversation. Fixed claude --bg occasionally failing with socket missing."},
+    {"tag_name": "v2.1.159", "published_at": "2025-05-31", "body": "Internal infrastructure improvements (no user-facing changes)"}
   ]
 }
