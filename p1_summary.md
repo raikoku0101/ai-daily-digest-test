@@ -1,6 +1,6 @@
-**1. GrepSeek: Training Search Agents for Direct Corpus Interaction**
-**著者**: GrepSeek Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.29307
+**1. Harness-1: Reinforcement Learning for Search Agents with State-Externalizing Harnesses**
+**著者**: Pengcheng Jiang et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.02373
 
 **まとめ**:
-LLMエージェントがコーパスを直接検索環境として扱い、実行可能なシェルコマンド（grep/find等）を発行して証拠を収集するDCI（Direct Corpus Interaction）パラダイムを提案。事前インデックス構築なしで任意コーパスに即適用でき、インデックス構築コストを大幅削減（E5の3.2時間に対して約1分）。多段階推論タスクで特に優れた性能を示し、4つのベンチマークで最高F1スコアを達成した。
+検索エージェントの訓練において、ポリシー内部に溜まりがちな「状態管理」（証拠追跡・制約管理・重複排除など）を外部ハーネスに切り出すことで、モデルは意味的決定のみに集中できる。20BパラメータのHarness-1は8つの検索ベンチマークで次点オープンソースモデルを+11.4ポイント上回り、大規模フロンティアモデルと同等以上の性能を達成。エージェント設計に「外部状態」という新パラダイムを提示した。

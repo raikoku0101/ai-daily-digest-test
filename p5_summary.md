@@ -1,6 +1,6 @@
-**5. RayDer: Scalable Self-Supervised Novel View Synthesis from Real-World Video**
-**著者**: RayDer Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.31535
+**5. AFUN: Towards an Affordance Foundation Model for Functionality Understanding**
+**著者**: Zhaoning Wang et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.02551
 
 **まとめ**:
-カメラ推定・シーン再構成・レンダリングを単一transformerバックボーンに統合した自己教師あり新視点合成（NVS）モデル。2.7M動画から自己教師あり学習のみで、大規模video diffusion前学習を用いたSEVA（1.3B）と競合する性能を達成（RE10K PSNR 30.23）。クリーンな冪乗則スケーリング（R²=0.997）を示し、NVSを「うまく振る舞うスケーリング問題」に変換。動的コンテンツをnuisance factorとして扱うことで一般動画からの学習を実現した。
+ロボット操作における「アフォーダンス理解」（どこで・どう操作するか）を汎化する基盤モデルAFUNを提案。RGB-D観察と言語タスク記述から、機能マスク（interaction location）と3D接触後動作曲線（post-contact motion curve）を予測。大規模標準化データパイプラインにより多様な環境・物体・タスクへ対応し、アフォーダンスセグメンテーションで+23.9/+26.3 gIoU/cIoU改善、接触点予測で最大61.3%ヒット率向上を達成。

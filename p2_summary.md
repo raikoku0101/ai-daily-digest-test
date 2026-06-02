@@ -1,6 +1,6 @@
-**2. Mellum2 Technical Report**
-**著者**: JetBrains Research et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.31268
+**2. Domino: Decoupling Causal Modeling from Autoregressive Drafting in Speculative Decoding**
+**著者**: Jianuo Huang et al. (2026)
+**arXiv**: https://arxiv.org/abs/2605.29707
 
 **まとめ**:
-JetBrainsが開発したソフトウェアエンジニアリング特化型のオープンウェイト12B MoEモデル（2.5Bアクティブパラメータ）。コード生成・編集・デバッグ・ツール使用・エージェントコーディングを網羅し、前世代の補完特化4B密集モデル「Mellum」の後継。約10.6兆トークンで3段階学習し、128Kコンテキストに拡張。EvalPlus 78.4%・GSM-Plus 80.5%を達成しながら、単一H100でQwen2.5-7Bと同等速度（192 tokens/s）を実現した。
+投機的デコーディング（Speculative Decoding）の自己回帰ドラフターが持つ「品質は高いが遅い」問題を解決するため、因果モデリングとドラフト生成を分離するDominoフレームワークを提案。並列ドラフトバックボーンで予備分布を生成し、軽量Domino headで因果精緻化を行うことで、Qwen3モデルにてTransformersで最大5.49倍、SGLangで最大5.8倍のスループット改善を達成した。

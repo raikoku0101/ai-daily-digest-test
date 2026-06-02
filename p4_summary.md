@@ -1,6 +1,6 @@
-**4. How can embedding models bind concepts?**
-**著者**: Research Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.31503
+**4. Policy and World Modeling Co-Training for Language Agents**
+**著者**: Ning Lu et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.02388
 
 **まとめ**:
-CLIPなどのVision-Language埋め込みモデルが「概念バインディング（赤い四角と青い四角を区別する能力）」に失敗する原因を内部表現レベルで解明した研究。CLIP埋め込みは階層的加法構造（R²=0.90）を示し単一モダリティ内では物体情報を復元できるが、バインディング関数が高複雑度のためクロスモーダル対応が失敗することを実証。汎化に成功するモデルは低複雑度で乗法的相互作用（multiplicative structure）を持つバインディング関数を学習しており、これが設計指針として重要な知見となる。
+RLでLLMエージェントを訓練する際、ポリシー学習だけでは「行動が環境にどう影響するか」の知識が不足する。提案手法PaWは既存のRLロールアウトを再利用して補助的な世界モデリング（World Modeling）監督信号を生成し、ポリシーと世界モデルを同時訓練。追加シミュレーターや訓練段階を一切必要とせず、3つのエージェントタスクで複数の強力なRLベースラインを一貫して上回る改善を達成。
