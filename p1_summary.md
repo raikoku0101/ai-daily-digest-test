@@ -1,6 +1,6 @@
-**1. Harness-1: Reinforcement Learning for Search Agents with State-Externalizing Harnesses**
-**著者**: Pengcheng Jiang et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.02373
+**1. OCC-RAG: Optimal Cognitive Core for Faithful Question Answering**
+**著者**: Maksim Savkin et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.00683
 
 **まとめ**:
-検索エージェントの訓練において、ポリシー内部に溜まりがちな「状態管理」（証拠追跡・制約管理・重複排除など）を外部ハーネスに切り出すことで、モデルは意味的決定のみに集中できる。20BパラメータのHarness-1は8つの検索ベンチマークで次点オープンソースモデルを+11.4ポイント上回り、大規模フロンティアモデルと同等以上の性能を達成。エージェント設計に「外部状態」という新パラダイムを提示した。
+RAGパイプラインに特化した小規模言語モデル(SLM)ファミリー「OCC-RAG」を提案。0.6B・1.7Bパラメータながら2〜6倍大きい汎用モデルを多段推論・忠実性で超越。構造化ミッドトレーニングと証拠アンカー推論トレースにより、コスト効率と高精度RAGを同時実現した先駆的研究。
