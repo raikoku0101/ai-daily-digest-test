@@ -1,6 +1,6 @@
-**4. Policy and World Modeling Co-Training for Language Agents**
-**著者**: Ning Lu et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.02388
+**4. Bootstrap Your Generator: Unpaired Visual Editing with Flow Matching**
+**著者**: Bootstrap Your Generator著者ら (2026)
+**arXiv**: https://arxiv.org/abs/2606.03911
 
 **まとめ**:
-RLでLLMエージェントを訓練する際、ポリシー学習だけでは「行動が環境にどう影響するか」の知識が不足する。提案手法PaWは既存のRLロールアウトを再利用して補助的な世界モデリング（World Modeling）監督信号を生成し、ポリシーと世界モデルを同時訓練。追加シミュレーターや訓練段階を一切必要とせず、3つのエージェントタスクで複数の強力なRLベースラインを一貫して上回る改善を達成。
+ペアデータなしで画像・動画編集モデルを訓練するフレームワーク「Bootstrap Your Generator (ByG)」を提案。事前学習済みT2Iモデルの知識と勾配ルーティング（gradient routing）によるサイクル一貫性を組み合わせ、動画編集でユーザー研究75.3%の選好率を達成。数百万ペアデータで訓練した教師あり手法を凌駕する汎化性を示す。
