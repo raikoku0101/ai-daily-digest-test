@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-04",
+  "content": "# AI Daily Digest — 2026-06-04\n\n## 今日のハイライト\n- **OCC-RAG が RAG の常識を覆す (73 upvotes)**: 小型タスク特化モデルが大規模汎用モデルを多段推論・忠実性で超越。コスト効率と高精度を同時実現し、企業RAG展開のコスト構造を変える可能性。\n- **Claude Code v2.1.162 でエージェント監視が大幅強化**: `waitingFor` フィールド追加でブロック要因の可視化が実現。並列エージェント運用の安定性が向上し、大規模自動化ワークフローの本格運用に一歩近づく。\n- **KVキャッシュ量子化の新手法 KVarN**: キャリブレーション不要でHadamard回転+分散正規化により誤差蓄積を抑制。長文推論LLMのメモリ効率化という実用的課題に正面から取り組む。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.162 (2026-06-03) — 最新\n\n**主要機能**\n- `claude agents --json` に `waitingFor` フィールドが追加され、待機中セッションのブロック要因が可視化\n- `--tools` で `Grep`/`Glob` を明示指定すると専用検索ツールが提供されるように\n- `/effort` コマンドが選択レベルをデフォルトとして永続化することを確認表示\n- オートコンプリートのスラッシュコマンドが即時実行ではなくプロンプトへ入力されるように変更\n- Remote Control が常時表示のフッターピルとして表示\n- Windsurf が Devin Desktop にリネーム\n\n**バグ修正**\n- 読み取り専用設定ディレクトリでのサイレントスタートアップハング修正\n- WebFetch・Windows のパーミッションルール修正（バックスラッシュ対応含む）\n- ターン開始時の割り込みドロップ・絵文字による API 400 エラーを修正\n- MCP タイムアウト設定・LSP workspaceSymbol の問題を修正\n- `claude agents` の表示切り捨て問題を複数修正\n\n**ユーザーへの影響**: エージェント監視と検索ツール操作の UX が大幅改善。Windows・MCP ユーザーは安定性向上を実感できる。\n\n---\n\n### v2.1.161 (2026-06-02)\n\n**主要機能**\n- `OTEL_RESOURCE_ATTRIBUTES` の値がメトリクスラベルとして含まれるように\n- `claude agents` がファンアウト作業の `done/total` を表示\n- `/mcp` が未使用の claude.ai コネクタを折りたたむように\n- 並列ツール呼び出しで Bash 失敗が他ツールをキャンセルしなくなった\n- Linux フルスクリーンクリップボードが `wl-copy`/`xclip`/`xsel` を使用\n\n**バグ修正**\n- `/effort` ダイアログのモーション設定・`forceLoginOrgUUID` でのサードパーティセッションブロックを修正\n- バックグラウンドサブエージェント出力による stdout 破損を修正\n- Windows フック失敗・OpenTelemetry イベントドロップ・MCP シークレット漏洩を修正\n- ワークツリー内ワークフローエージェント・バックグラウンドセッションの古いモデル問題を修正\n\n**ユーザーへの影響**: 可観測性と並列エージェント操作が改善。プライバシー（MCP シークレット）の修正は重要。\n\n---\n\n### v2.1.160 (2026-06-02)\n\n**主要機能**\n- シェル起動ファイル・ビルドツール設定ファイルへの書き込み前に確認プロンプトを追加（セキュリティ強化）\n- シングルファイル grep 後の Edit が別途 Read を不要に（効率化）\n\n**バグ修正**\n- WSL での Windows クリップボードへのコピーオンセレクト修正\n- 完了セッション復元時のチャット履歴ドロップ・終夜リタイア後の会話損失を修正\n- `claude --bg` のソケット欠落・Windows でのディレクトリ削除問題を修正\n- `claude agents` のフリーズ・Windows 高負荷時の操作不能を修正\n\n**ユーザーへの影響**: セキュリティ強化と長時間稼働セッションの安定性が改善。WSL ユーザーも恩恵を受ける。\n\n## 注目論文 TOP 10\n\n**1. OCC-RAG: Optimal Cognitive Core for Faithful Question Answering** | 73 upvotes | https://arxiv.org/abs/2606.00683\n🎯 **背景**: 大規模汎用モデルは多段推論・忠実性で課題を抱えており、特にRAGシステムでの幻覚が問題。\n🔧 **手法**: タスク特化の小型言語モデルを新規トレーニングパイプラインで学習。構造化推論トレースを活用し「認知コア」を最適化。\n📊 **結果**: 汎用大規模モデルを上回る多段推論精度と忠実性を達成。\n💡 **意義**: モデルサイズを抑えつつ高性能RAGを実現する方向性を示し、コスト効率の高いAI展開に貢献。\n⚠️ **限界**: 特定タスクへの特化により汎用性が犠牲になる可能性。ドメイン外への転用は未検証。\n\n**2. KVarN: Variance-Normalized KV-Cache Quantization Mitigates Error Accumulation in Reasoning Tasks** | 26 upvotes | https://arxiv.org/abs/2606.03458\n🎯 **背景**: LLMの長文推論時にKVキャッシュの量子化誤差が自己回帰デコーディングで蓄積し、精度劣化を引き起こす問題。\n🔧 **手法**: Hadamard回転とデュアルスケーリング分散正規化を組み合わせたキャリブレーション不要のKVキャッシュ量子化器を提案。\n📊 **結果**: 量子化による誤差蓄積を大幅に抑制し、推論タスクで従来手法を上回る精度を達成。\n💡 **意義**: キャリブレーション不要で実用的。長文推論LLMのメモリ効率化に直結する重要技術。\n⚠️ **限界**: Hadamard変換のオーバーヘッドが一部アーキテクチャで推論速度に影響する可能性。\n\n**3. MIRA: Mid-training Rubric Anchoring for Source-Aware Data Selection** | 19 upvotes | https://arxiv.org/abs/2605.30288\n🎯 **背景**: LLM中間学習でのデータ選択は、多様なソースの品質評価が困難で、スケーラビリティとセマンティック精度のトレードオフが存在。\n🔧 **手法**: 自己アンカー型ルーブリック発見を用いたソース認識フィルタリングフレームワーク。異種データソース横断でスケーラブルなデータ選択を実現。\n📊 **結果**: 大規模異種データセットでスケーラビリティとセマンティック精度のバランスを達成。\n💡 **意義**: 実務的なLLM開発でのデータキュレーション工数を削減。多様なデータソースを扱う産業界に直接応用可能。\n⚠️ **限界**: ルーブリック発見の品質がデータソースの多様性に依存。極端に異質なデータでは性能が不安定になりうる。\n\n**4. Bootstrap Your Generator: Unpaired Visual Editing with Flow Matching** | 12 upvotes | https://arxiv.org/abs/2606.03911\n🎯 **背景**: フローマッチングによる画像編集モデルのペアデータ不足問題。データ収集コストが高く、データスカース環境での汎化が課題。\n🔧 **手法**: ベースモデルの知識とグラジエントルーティングを活用し、ペアなし訓練を可能にする「Bootstrap Your Generator」フレームワーク。\n📊 **結果**: データスカース環境での汎化性能が向上し、ペアデータなしでの高品質な画像編集を実現。\n💡 **意義**: ペアデータ収集コストを排除し、フローマッチング編集モデルの実用的な展開を可能にする。\n⚠️ **限界**: ベースモデルの知識品質に依存。ベースモデルが学習していない編集タイプへの対応は限定的。\n\n**5. Adaptive Auto-Harness: Sustained Self-Improvement for Agentic System Deployment on Open-Ended Task Streams** | 10 upvotes | https://arxiv.org/abs/2606.01770\n🎯 **背景**: エージェントシステムが動的タスクストリームに対応しながら継続的に自己改善することは従来困難だった。\n🔧 **手法**: パフォーマンスギャップを進化損失と適応損失に分解。ステートフルマルチエージェントエボルバーとソルブタイムルーティング付きハーネスツリーを活用。\n📊 **結果**: オープンエンドなタスクストリームでの継続的な自己改善と安定したデプロイメントを実現。\n💡 **意義**: 実世界の動的環境に対応できるエージェントシステムの自律改善アーキテクチャとして先駆的。\n⚠️ **限界**: マルチエージェント構成の複雑さが実装・デバッグを困難にする。計算コストも高い。\n\n\n**6. OmniOPD: Logit-Free On-Policy Distillation via Speculative Verification** | 7 upvotes | https://arxiv.org/abs/2606.01476\n🎯 **背景**: 標準的なOn-Policy Distillation (OPD) はトークンレベルlogitを必要とし、ブラックボックス教師モデルでは利用不可能。\n🔧 **手法**: トークンレベルlogitの代わりにチャンクレベルのセマンティック類似度を使用する投機的検証ベースのOPD手法。\n📊 **結果**: ブラックボックス教師でも学習信頼性と性能が向上。従来OPDの制約を克服。\n💡 **意義**: 専有モデル（GPT-4等）をブラックボックス教師として活用した知識蒸留が実用化可能になる。\n⚠️ **限界**: セマンティック類似度の計算コストが追加される。チャンク分割の粒度が性能に影響する。\n\n**7. Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models** | 3 upvotes | https://arxiv.org/abs/2606.03748\n🎯 **背景**: リアルタイム物体検出・セグメンテーション・姿勢推定を統一的に扱うエンドツーエンドモデルの需要増大。\n🔧 **手法**: NMSフリー推論、改善された学習戦略、検出・セグメンテーション・姿勢推定をカバーするマルチタスク統一モデルファミリー。\n📊 **結果**: 複数のビジョンタスクでリアルタイム性能と精度を両立。NMS排除によるレイテンシ削減。\n💡 **意義**: YOLOシリーズの最新進化として産業界での即時応用が期待できる。統一APIでマルチタスク展開が容易。\n⚠️ **限界**: マルチタスク統一によるタスク間の性能トレードオフが存在する可能性。特定タスク専用モデルに劣る場合も。\n\n**8. Stateful Visual Encoders for Vision-Language Models** | 2 upvotes | https://arxiv.org/abs/2606.04433\n🎯 **背景**: 視覚言語モデル(VLM)の視覚エンコーダは各フレームを独立処理し、視覚的比較タスク（変化検出等）に不向き。\n🔧 **手法**: 過去フレームの特徴を条件として視覚表現を生成するステートフル視覚エンコーダを提案。\n📊 **結果**: 制御環境と実世界アプリケーション双方で視覚的比較タスクの精度が向上。\n💡 **意義**: 監視カメラ分析や医療画像比較など、時系列視覚比較が必要なアプリケーションへの展開が期待される。\n⚠️ **限界**: ステート管理のオーバーヘッドが増加。長期依存のステート設計が複雑化する。\n\n**9. Prior Availability in Industrial Visual Sim-to-Real: A Review of CAD-Guided and CAD-Unavailable Regimes** | 2 upvotes | https://arxiv.org/abs/2605.30581\n🎯 **背景**: 産業用ロボティクスでのSim-to-Real転移において、CADモデルの利用可否によって最適手法が大きく異なる問題。\n🔧 **手法**: Sim-to-Realをドメインギャップ問題として再定式化。CAD利用可能・CAD利用不可・境界先行設定の3カテゴリで分類するレビュー。\n📊 **結果**: 各設定でのSOTA手法と課題を体系的に整理。産業展開に向けた実践的ガイドラインを提供。\n💡 **意義**: 産業現場でのロボット視覚システム導入を加速するためのナレッジベースとして機能。\n⚠️ **限界**: レビュー論文のため新手法を提案しない。急速に進化する分野で既存手法の陳腐化が早い。\n\n**10. AURA: Action-Gated Memory for Robot Policies at Constant VRAM** | 2 upvotes | https://arxiv.org/abs/2606.02775\n🎯 **背景**: 体化AIでのKVキャッシュはVRAMを際限なく消費し、ロボット展開の実用化を阻害。\n🔧 **手法**: 観測が行動に影響する場合のみメモリに書き込むアクションゲーテッドメモリシステム(AURA-Mem)。従来KVキャッシュに比べメモリ書き込みを大幅削減。\n📊 **結果**: 一定VRAMでのロボットポリシー実行を実現。メモリ書き込み回数が従来比で大幅に削減。\n💡 **意義**: エッジデバイスでの体化AIデプロイを現実的にする。実ロボットへの搭載可能性が高まる。\n⚠️ **限界**: アクションゲーティングのしきい値設定が性能に依存。タスクによってはゲーティングが過剰または不足する可能性。\n\n",
+  "fetched_at": "2026-06-04T01:17:22.035913+00:00",
+  "papers": [
+    {
+      "title": "OCC-RAG: Optimal Cognitive Core for Faithful Question Answering",
+      "upvotes": 73,
+      "paper_id": "2606.00683",
+      "abstract": "Compact task-specialized language models demonstrate superior performance in multi-hop reasoning and faithfulness compared to larger general-purpose models through a novel training pipeline and structured reasoning traces."
+    },
+    {
+      "title": "KVarN: Variance-Normalized KV-Cache Quantization Mitigates Error Accumulation in Reasoning Tasks",
+      "upvotes": 26,
+      "paper_id": "2606.03458",
+      "abstract": "KVarN is a calibration-free KV-cache quantizer that uses Hadamard rotation and dual-scaling variance normalization to reduce error accumulation during autoregressive decoding in large language models."
+    },
+    {
+      "title": "MIRA: Mid-training Rubric Anchoring for Source-Aware Data Selection",
+      "upvotes": 19,
+      "paper_id": "2605.30288",
+      "abstract": "MIRA is a source-aware filtering framework for mid-training data selection in LLM development that uses self-anchored rubric discovery to balance scalability and semantic accuracy across heterogeneous data sources."
+    },
+    {
+      "title": "Bootstrap Your Generator: Unpaired Visual Editing with Flow Matching",
+      "upvotes": 12,
+      "paper_id": "2606.03911",
+      "abstract": "Bootstrap Your Generator framework enables unpaired training of flow matching editing models by leveraging base model knowledge and gradient routing for improved generalization in data-scarce scenarios."
+    },
+    {
+      "title": "Adaptive Auto-Harness: Sustained Self-Improvement for Agentic System Deployment on Open-Ended Task Streams",
+      "upvotes": 10,
+      "paper_id": "2606.01770",
+      "abstract": "Adaptive Auto-Harness framework addresses dynamic task streams by decomposing performance gaps into evolution and adaptation losses, utilizing a stateful multi-agent evolver and harness tree with solve-time routing."
+    },
+    {
+      "title": "OmniOPD: Logit-Free On-Policy Distillation via Speculative Verification",
+      "upvotes": 7,
+      "paper_id": "2606.01476",
+      "abstract": "OmniOPD addresses limitations of standard On-Policy Distillation by using chunk-level semantic similarity instead of token-level logits, improving learning reliability and performance with black-box teachers."
+    },
+    {
+      "title": "Ultralytics YOLO26: Unified Real-Time End-to-End Vision Models",
+      "upvotes": 3,
+      "paper_id": "2606.03748",
+      "abstract": "YOLO26 addresses real-time vision challenges through a unified model family with NMS-free inference, improved training strategies, and multi-task capabilities spanning detection, segmentation, and pose estimation."
+    },
+    {
+      "title": "Stateful Visual Encoders for Vision-Language Models",
+      "upvotes": 2,
+      "paper_id": "2606.04433",
+      "abstract": "Stateful visual encoders condition visual representations on prior features, improving visual comparison tasks in vision-language models across controlled and real-world applications."
+    },
+    {
+      "title": "Prior Availability in Industrial Visual Sim-to-Real: A Review of CAD-Guided and CAD-Unavailable Regimes",
+      "upvotes": 2,
+      "paper_id": "2605.30581",
+      "abstract": "Industrial visual sim-to-real is reframed as a domain-gap problem categorized by prior availability, distinguishing CAD-available, CAD-unavailable, and boundary-prior settings for robust deployment."
+    },
+    {
+      "title": "AURA: Action-Gated Memory for Robot Policies at Constant VRAM",
+      "upvotes": 2,
+      "paper_id": "2606.02775",
+      "abstract": "AURA-Mem is a recurrent memory system that adapts to embodied AI constraints by writing only when observations affect actions, significantly reducing memory writes compared to traditional KV-cache approaches."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.162",
+      "published_at": "2026-06-03",
+      "body": "`claude agents --json` now includes `waitingFor` showing what a waiting session is blocked on. `--tools`: explicitly listing Grep/Glob now provides dedicated search tools. `/effort` confirms when chosen level persists as default. Slash commands in autocomplete now fill into prompt instead of running immediately. Remote Control shows as persistent footer pill. Windsurf renamed to Devin Desktop. Fixed silent startup hang with read-only config directory, WebFetch permission rules, Windows permission rules with backslashes, interrupt at turn start being dropped, API 400 errors with emoji, MCP timeout config issues, LSP workspaceSymbol, and various `claude agents` display truncation issues."
+    },
+    {
+      "tag_name": "v2.1.161",
+      "published_at": "2026-06-02",
+      "body": "`OTEL_RESOURCE_ATTRIBUTES` values now included as labels on metrics. `claude agents` shows `done/total` for fanned-out work. `/mcp` collapses unused claude.ai connectors. Parallel tool calls: failed Bash no longer cancels others. Fullscreen clipboard uses `wl-copy`/`xclip`/`xsel` on Linux. Fixed `/effort` dialog not honoring Reduce motion, `forceLoginOrgUUID` blocking third-party sessions, background subagent output corrupting stdout, `/usage-credits` re-login, `/autofix-pr` on non-git-worktree directories, Windows hooks failing, OpenTelemetry events dropped, MCP secrets being printed, Workflow agents in worktrees blocked, stale model in background sessions, and terminal rendering performance."
+    },
+    {
+      "tag_name": "v2.1.160",
+      "published_at": "2026-06-02",
+      "body": "Added prompt before writing to shell startup files and build-tool config files granting code execution. Edit no longer requires separate Read after single-file grep. Fixed copy-on-select not writing to Windows clipboard on WSL. Fixed restoring completed sessions dropping chat history. Fixed background sessions re-attached after overnight retire losing conversation. Fixed `claude --bg` occasional socket missing failures. Fixed Windows directory deletion after `claude rm`. Fixed completed agents in Completed list instead of Completed. Fixed `claude agents` freezing on return to list. Fixed Esc/arrows/typing unresponsive on Windows under load. Fixed background agents emitting unsupported sync markers."
+    }
+  ]
+}
