@@ -1,6 +1,6 @@
-**3. Linear Ensembles Wash Away Watermarks: On the Fragility of Distributional Perturbations in LLMs**
-**著者**: Zhihao Wu et al. (2026)
-**arXiv**: https://arxiv.org/abs/2605.30501
+**3. MIRA: Mid-training Rubric Anchoring for Source-Aware Data Selection**
+**著者**: MIRA著者ら (2026)
+**arXiv**: https://arxiv.org/abs/2605.30288
 
 **まとめ**:
-LLM生成テキストへの電子透かし（watermark）が、複数モデルの出力確率分布の線形アンサンブル（平均化）によって理論的に消去できることを証明。WASH（Watermark Attenuation via Statistical Hybridisation）という実装手法で3〜5モデルの平均化を行うと、6種類の透かしスキームで検出z値を5〜300から2以下に抑制し検出率50%未満に。AI生成テキストの規制・帰属技術の根本的見直しを迫る研究。
+LLM中間学習（mid-training）におけるソース認識型データ選択フレームワークMIRAを提案。ルーブリック発見をスケーラブルなスコアリングから分離し、ソース群ごとに適応的な品質基準を自動構築。25Bトークン（全コーパスの半分）で完全コーパス実行にほぼ匹敵する性能を達成し、データキュレーションの効率を劇的に改善。
