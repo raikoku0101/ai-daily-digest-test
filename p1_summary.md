@@ -1,6 +1,6 @@
-**1. OCC-RAG: Optimal Cognitive Core for Faithful Question Answering**
-**著者**: Maksim Savkin et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.00683
+**1. ZipSplat: Fewer Gaussians, Better Splats**
+**著者**: ZipSplat Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.05102
 
 **まとめ**:
-RAGパイプラインに特化した小規模言語モデル(SLM)ファミリー「OCC-RAG」を提案。0.6B・1.7Bパラメータながら2〜6倍大きい汎用モデルを多段推論・忠実性で超越。構造化ミッドトレーニングと証拠アンカー推論トレースにより、コスト効率と高精度RAGを同時実現した先駆的研究。
+フィードフォワード3D Gaussian Splattingにおける「1ピクセル=1ガウシアン」の制約を打破し、シーン複雑度に適応したk-meansクラスタリングベースのトークン圧縮で自由配置ガウシアンを予測。6倍少ないガウシアン数で既存手法を上回るPSNRを達成し、単一モデルで推論時に品質-効率トレードオフを連続制御可能にした。3D NVS（Novel View Synthesis）のモバイル・エッジ展開に向けた重要な一歩。

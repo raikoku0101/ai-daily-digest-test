@@ -1,6 +1,6 @@
-**4. Bootstrap Your Generator: Unpaired Visual Editing with Flow Matching**
-**著者**: Bootstrap Your Generator著者ら (2026)
-**arXiv**: https://arxiv.org/abs/2606.03911
+**4. DAR: Deontic Reasoning with Agentic Harnesses**
+**著者**: Guangyao Dou, William Jurayj, Nils Holzenberger, Benjamin Van Durme (2025)
+**arXiv**: https://arxiv.org/abs/2606.05009
 
 **まとめ**:
-ペアデータなしで画像・動画編集モデルを訓練するフレームワーク「Bootstrap Your Generator (ByG)」を提案。事前学習済みT2Iモデルの知識と勾配ルーティング（gradient routing）によるサイクル一貫性を組み合わせ、動画編集でユーザー研究75.3%の選好率を達成。数百万ペアデータで訓練した教師あり手法を凌駕する汎化性を示す。
+法令をシェルコマンド（grep/sed/cat）でアクセスできるハーネス環境に配置し、LLMが必要な条項を対話的に検索・適用する「DAR」フレームワークを提案。DeonticBenchの困難サブセット評価でフロンティアモデル（GPT-5.2等）は顕著な精度向上を示すが、オープンソースモデルはトークン消費4倍増でむしろ精度低下するという非対称な結果が判明。ツールアクセスが必ずしも性能向上をもたらさないという重要な知見を提供した。

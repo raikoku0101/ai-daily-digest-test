@@ -1,6 +1,6 @@
-**3. MIRA: Mid-training Rubric Anchoring for Source-Aware Data Selection**
-**著者**: MIRA著者ら (2026)
-**arXiv**: https://arxiv.org/abs/2605.30288
+**3. Neural Networks Provably Learn Spectral Representations for Group Composition**
+**著者**: Jianliang He, Leda Wang, Fengzhuo Zhang, Siyu Chen, Zhuoran Yang (2025)
+**arXiv**: https://arxiv.org/abs/2606.02993
 
 **まとめ**:
-LLM中間学習（mid-training）におけるソース認識型データ選択フレームワークMIRAを提案。ルーブリック発見をスケーラブルなスコアリングから分離し、ソース群ごとに適応的な品質基準を自動構築。25Bトークン（全コーパスの半分）で完全コーパス実行にほぼ匹敵する性能を達成し、データキュレーションの効率を劇的に改善。
+2層ニューラルネットワークが群合成タスク（g₁ ★ g₂ の予測）を学習する際に、内部でスペクトル表現（spectral representations）が自然発生することをフーリエ領域でのリーマン勾配上昇として理論的に証明。各ニューロンが単一の既約表現（irreducible representations）に収束し、指数的収束率でフェーズアラインメントと表現競争が生じることを示した。ニューラルネットワークの内部構造理論の重要な基盤となる成果。
