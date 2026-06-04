@@ -1,6 +1,6 @@
-**5. AFUN: Towards an Affordance Foundation Model for Functionality Understanding**
-**著者**: Zhaoning Wang et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.02551
+**5. Adaptive Auto-Harness: Sustained Self-Improvement for Agentic System Deployment on Open-Ended Task Streams**
+**著者**: Adaptive Auto-Harness著者ら (2026)
+**arXiv**: https://arxiv.org/abs/2606.01770
 
 **まとめ**:
-ロボット操作における「アフォーダンス理解」（どこで・どう操作するか）を汎化する基盤モデルAFUNを提案。RGB-D観察と言語タスク記述から、機能マスク（interaction location）と3D接触後動作曲線（post-contact motion curve）を予測。大規模標準化データパイプラインにより多様な環境・物体・タスクへ対応し、アフォーダンスセグメンテーションで+23.9/+26.3 gIoU/cIoU改善、接触点予測で最大61.3%ヒット率向上を達成。
+LLMエージェントがオープンエンドなタスクストリームに継続的に対応するフレームワーク「Adaptive Auto-Harness」を提案。パフォーマンスギャップを進化損失（evolution loss）と適応損失（adaptation loss）に分解し、ハーネスツリー構造とマルチエージェントエボルバーで解決。予測市場PolyBenchで既存手法A-Evolve（45.2%）を大幅上回る297.1%カバレッジを達成。
