@@ -1,37 +1,44 @@
 {
-  "title": "Week 20 · May 11–15, 2026",
-  "subtitle": "Manage every Claude Code session from one screen with agent view, keep Claude working toward a goal until a condition holds, and run fast mode on Opus 4.7 by default.",
+  "title": "Week 22 · May 25–29, 2026",
+  "subtitle": "Run Claude Code on Claude Opus 4.8, orchestrate large tasks with dynamic workflows, catch security issues with the security-guidance plugin, and use fast mode on Opus 4.8 at a lower price.",
   "features": [
     {
-      "title": "Agent view",
-      "pill": "research preview",
-      "lede": "`claude agents` opens one screen for every Claude Code session: what's running, what's blocked on your input, and what's done. Dispatch a bug fix, a pull request review, and a flaky-test investigation as three rows, keep working in another window, and step in only when a row needs you. Attach to any row to drop into its full conversation, then press `←` to return to the list. Each background session keeps running without a terminal attached.",
-      "link": "/en/agent-view"
+      "title": "Claude Opus 4.8",
+      "pill": "new model",
+      "lede": "Opus 4.8 is now the default on Max, Team Premium, Enterprise pay-as-you-go, and the Anthropic API. It defaults to high effort; use /effort xhigh for harder tasks. Requires v2.1.154 or later.",
+      "link": "/docs/en/model-config#available-models"
     },
     {
-      "title": "/goal",
-      "pill": "v2.1.139",
-      "lede": "Set a completion condition and Claude keeps working toward it across turns without you prompting each step. After every turn, a fast model checks whether the condition holds; if not, Claude starts another turn instead of handing control back. Useful for substantial work with a verifiable end state, like migrating a module until every call site compiles and tests pass. The goal clears once the condition is met, and works in interactive, `-p`, and Remote Control.",
-      "link": "/en/goal"
+      "title": "Dynamic workflows",
+      "pill": "research preview",
+      "lede": "A workflow is an orchestration script Claude writes for your task and runs across many subagents in the background. Use one when a task is too large for one conversation to coordinate: a codebase-wide audit, a large migration, a research question that needs cross-checking. Manage runs with /workflows.",
+      "link": "/docs/en/workflows"
     },
     {
-      "title": "Fast mode on Opus 4.7",
+      "title": "Security guidance plugin",
+      "pill": "plugin",
+      "lede": "The security-guidance plugin reviews Claude's code changes for vulnerabilities and fixes them in the same session. It runs a fast pattern check on each edit, a model review at the end of each turn, and a deeper agentic review on commit or push. Add project rules in .claude/claude-security-guidance.md.",
+      "link": "/docs/en/security-guidance"
+    },
+    {
+      "title": "Fast mode on Opus 4.8",
       "pill": "research preview",
-      "lede": "`/fast` now runs on Opus 4.7 by default instead of Opus 4.6. Fast mode is a high-speed Opus configuration: the same model quality at about 2.5x the speed for a higher per-token cost, useful for rapid iteration and live debugging. Pricing is unchanged at $30/$150 per MTok, the same as Opus 4.6 fast mode. To pin fast mode to Opus 4.6, set `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE=1`.",
-      "link": "/en/fast-mode#use-fast-mode-on-opus-4-7"
+      "lede": "Fast mode now defaults to Opus 4.8 at $10/$50 per MTok: 2x the standard rate for about 2.5x the speed. Opus 4.7 and 4.6 stay at $30/$150. Opus 4.6 fast mode is deprecated.",
+      "link": "/docs/en/fast-mode#understand-the-cost-tradeoff"
     }
   ],
   "other_wins": [
-    "`claude agents` gained dispatch flags (`--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir`, `--permission-mode`, `--model`, `--effort`, `--dangerously-skip-permissions`) to configure background sessions, and `claude agents --cwd <path>` scopes the session list to a directory",
-    "New hook `args: string[]` exec form spawns the command directly without a shell, so path placeholders never need quoting",
-    "New `continueOnBlock` config option for `PostToolUse` hooks feeds the hook's rejection reason back to Claude and continues the turn instead of ending it",
-    "New `terminalSequence` field in hook JSON output lets hooks emit desktop notifications, window titles, and bells without a controlling terminal",
-    "The Rewind menu added \"Summarize up to here\" to compress earlier context while keeping recent turns intact",
-    "Remote Control, `/schedule`, Claude.ai MCP connectors, and notification preferences are now disabled when `ANTHROPIC_API_KEY`, `apiKeyHelper`, or `ANTHROPIC_AUTH_TOKEN` is set, even alongside a Claude.ai login; unset the API key to use these features",
-    "MCP stdio servers now receive `CLAUDE_PROJECT_DIR` in their environment, matching hooks, and plugin configs can reference `${CLAUDE_PROJECT_DIR}` in commands",
-    "`claude plugin details <name>` shows a plugin's component inventory and projected per-session token cost, and the `/plugin` details pane now also lists the LSP servers a plugin provides",
-    "Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfaced as a skill",
-    "`/feedback` can now include recent sessions from the last 24 hours or 7 days for issues spanning more than the current session",
-    "Agent tool `subagent_type` now matches case- and separator-insensitively, so `\"Code Reviewer\"` resolves to `code-reviewer`"
+    "claude agents で、シェルコマンドの先頭に ! を付けるとバックグラウンドジョブとして実行でき、アタッチ・デタッチが可能。claude --bg --exec 'pytest -x' でも利用可能",
+    ".claude/skills ディレクトリ内のプラグインが自動的に読み込まれるようになり、マーケットプレイスが不要に。claude plugin init <name> で新規プラグインのスキャフォールドも可能",
+    "新コマンド /reload-skills でスキルディレクトリを再スキャン (再起動不要)。SessionStart フック が reloadSkills: true を返すと、インストールしたスキルを同セッション内で即利用可能",
+    "スキルとコマンドのフロントマターで disallowed-tools を設定し、スキルがアクティブな間は特定ツールをモデルから除外可能",
+    "新 MessageDisplay フックイベントにより、アシスタントのメッセージテキストを表示時に変換・非表示にできる",
+    "プライマリモデルが見つからない場合、セッション全体でエラーになる代わりに設定済みの --fallback-model に自動切り替えするよう改善",
+    "プラグインが plugin.json またはマーケットプレイスエントリで defaultEnabled: false を宣言すると、有効化するまでインストールされても起動しない",
+    "Vim モード: NORMAL モードで / を押すと逆順ヒストリ検索が開き、Bash・Zsh の vi-mode と同様の操作が可能",
+    "テレメトリ無効時および Bedrock・Vertex・Foundry 環境でも、ストリーミングツール実行が常時有効化",
+    "エージェントビューを開く ←← ショートカットが、Bedrock・Vertex・Foundry およびテレメトリ無効時でも動作するように",
+    "Claude in Chrome: /chrome → 「ブラウザを選択…」または複数ブラウザ接続時のチャット内操作で、使用するブラウザを選択可能",
+    "claude mcp list と claude mcp get が、出力パイプ時に .mcp.json サーバーを自動承認・接続するのではなく「承認待ち」として表示するよう変更"
   ]
 }
