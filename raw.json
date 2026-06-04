@@ -28,17 +28,17 @@
     }
   ],
   "other_wins": [
-    "claude agents で、シェルコマンドの先頭に ! を付けるとバックグラウンドジョブとして実行でき、アタッチ・デタッチが可能。claude --bg --exec 'pytest -x' でも利用可能",
-    ".claude/skills ディレクトリ内のプラグインが自動的に読み込まれるようになり、マーケットプレイスが不要に。claude plugin init <name> で新規プラグインのスキャフォールドも可能",
-    "新コマンド /reload-skills でスキルディレクトリを再スキャン (再起動不要)。SessionStart フック が reloadSkills: true を返すと、インストールしたスキルを同セッション内で即利用可能",
-    "スキルとコマンドのフロントマターで disallowed-tools を設定し、スキルがアクティブな間は特定ツールをモデルから除外可能",
-    "新 MessageDisplay フックイベントにより、アシスタントのメッセージテキストを表示時に変換・非表示にできる",
-    "プライマリモデルが見つからない場合、セッション全体でエラーになる代わりに設定済みの --fallback-model に自動切り替えするよう改善",
-    "プラグインが plugin.json またはマーケットプレイスエントリで defaultEnabled: false を宣言すると、有効化するまでインストールされても起動しない",
-    "Vim モード: NORMAL モードで / を押すと逆順ヒストリ検索が開き、Bash・Zsh の vi-mode と同様の操作が可能",
-    "テレメトリ無効時および Bedrock・Vertex・Foundry 環境でも、ストリーミングツール実行が常時有効化",
-    "エージェントビューを開く ←← ショートカットが、Bedrock・Vertex・Foundry およびテレメトリ無効時でも動作するように",
-    "Claude in Chrome: /chrome → 「ブラウザを選択…」または複数ブラウザ接続時のチャット内操作で、使用するブラウザを選択可能",
-    "claude mcp list と claude mcp get が、出力パイプ時に .mcp.json サーバーを自動承認・接続するのではなく「承認待ち」として表示するよう変更"
+    "claude agents で、シェルコマンドの先頭に ! を付けるとバックグラウンドジョブとして実行でき、アタッチ・デタッチが可能。claude --bg --exec 'pytest -x' としても利用できる",
+    ".claude/skills ディレクトリ内のプラグインが自動的に読み込まれるようになり、マーケットプレイス不要。claude plugin init <name> で新しいプラグインのひな形を作成できる",
+    "新しい /reload-skills コマンドで再起動なしにスキルディレクトリを再スキャン可能。SessionStart フックが reloadSkills: true を返すことで、同一セッション内でインストールしたスキルをすぐ利用できる",
+    "スキルとコマンドのフロントマターに disallowed-tools を設定することで、スキル有効中は特定ツールをモデルから除外できる",
+    "新しい MessageDisplay フックイベントにより、フックがアシスタントのメッセージテキストを表示時に変換または非表示にできる",
+    "プライマリモデルが見つからない場合、Claude Code は設定済みの --fallback-model に自動切り替えして残りのセッションを継続するようになった（従来は毎リクエスト失敗）",
+    "プラグインが plugin.json やマーケットプレイスエントリで defaultEnabled: false を宣言できるようになり、インストール時は無効状態で配置される",
+    "Vim モード: NORMAL モードで / を押すと逆履歴検索が開くようになり、Bash・Zsh の vi-mode と同様の操作が可能",
+    "ストリーミングツール実行が常に有効になった（テレメトリ無効時や Bedrock・Vertex・Foundry でも）",
+    "←← でエージェントビューを開く操作が Bedrock・Vertex・Foundry およびテレメトリ無効環境でも動作するようになった",
+    "Claude in Chrome: /chrome → 「Select browser...」から接続中のブラウザを選択可能。複数ブラウザが接続されている場合はチャット内でも選択できる",
+    "claude mcp list と claude mcp get が、未承認の .mcp.json サーバーを自動承認・接続せず、出力がパイプ経由の場合は承認待ちとして表示するようになった"
   ]
 }
