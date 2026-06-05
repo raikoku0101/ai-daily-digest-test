@@ -1,6 +1,6 @@
-**2. KletterMix: Climbing Toward High-Quality German Pretraining Data**
-**著者**: KletterMix Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.03773
+**2. Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.04811
 
 **まとめ**:
-英語の高品質事前学習コーパスをQwen3.5-397B-A17B-FP8で機械翻訳し、ドキュメント境界・メタデータ・ソース構造を保持したドイツ語コーパス「KletterMix」を構築。COMETKiwiによる参照なし品質推定でフィルタリングし、Qwen3-0.6B を用いた訓練実験でFineWeb2-DEやGermanWebを検証損失と下流タスクで上回ることを実証した。英語以外の言語での高品質LLM開発に再現可能な方法論を提供する。
+動画生成モデルが「物理法則を真に学習しているか」を検証する新ベンチマーク Dream.exe を提案。8モデル×101ロボット操作タスクで動画を生成→軌跡抽出→MuJoCo実行という4段階パイプラインで評価した結果、視覚品質と実行成功率の相関がほぼゼロ（-0.03）であることを発見。汎用モデルも非自明な成功を示す一方、複数段階タスクは全モデルで困難を露呈し、現世代動画生成モデルの物理理解の限界を明確化した。

@@ -1,6 +1,6 @@
-**4. DAR: Deontic Reasoning with Agentic Harnesses**
-**著者**: Guangyao Dou, William Jurayj, Nils Holzenberger, Benjamin Van Durme (2025)
-**arXiv**: https://arxiv.org/abs/2606.05009
+**4. MAOAM: Unified Object and Material Selection with Vision-Language Models**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.04880
 
 **まとめ**:
-法令をシェルコマンド（grep/sed/cat）でアクセスできるハーネス環境に配置し、LLMが必要な条項を対話的に検索・適用する「DAR」フレームワークを提案。DeonticBenchの困難サブセット評価でフロンティアモデル（GPT-5.2等）は顕著な精度向上を示すが、オープンソースモデルはトークン消費4倍増でむしろ精度低下するという非対称な結果が判明。ツールアクセスが必ずしも性能向上をもたらさないという重要な知見を提供した。
+テキスト・クリックの両モダリティでオブジェクトと素材を統一的に選択できる VLM ベースのフレームワーク MAOAM を提案。実世界 8,000 枚＋合成 5,500 枚の計約 104,000 素材マスクデータセットを新規構築し、CLIP エンコーダ＋LLM の [SEG] トークン＋SAM デコーダの3段構成で実現。素材選択で平均 67.5% mIoU の改善を達成し、テキストとクリックの組み合わせで創発的な選択品質向上も観察された。

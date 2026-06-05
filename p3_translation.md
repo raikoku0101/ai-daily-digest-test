@@ -1,23 +1,17 @@
 ## 1. Introduction (はじめに)
+KITTI・nuScenes・Waymo など既存データセットは進展を可能にしたが、センサー性能・地図完全性・地理的多様性で限界がある。本論文は高分解能カメラ・400m超 LiDAR・4D Imaging Radar・完全 HD マップを統合した欧州データセットを開発し、4 つのベンチマークで現 SoTA 手法の空間学習の系統的ギャップを露出させることを目指す。
 
-ニューラルネットワークの訓練中に構造化された内部表現がどのように出現するかを理解することは、深層学習理論の中核的問題です。本研究では群合成タスク（有限群の要素 g₁ ★ g₂ の予測）を通じて、2層ネットワークの表現形成メカニズムを分析します。特に「なぜネットワークが離散的な数学的構造を自然に学習するのか」という根本的な問いに理論的な答えを提供します。
+## 2. Dataset Construction (データセット構築)
+センサー構成：72.5Mpx 同期カメラ群（6 周囲＋1 長焦点＋ステレオ対）、7 台 LiDAR（平均 900k 点/フレーム・有効距離 400m 超）、3 台 Continental ARS548 4D Imaging Radar、RTK 精度 0.6cm の GNSS/INS。全センサーはハードウェア同期、サブピクセル内部・1cm/0.1° 外部較正を達成。HD マップは Lanelet2 形式で 62km²、29 道路特徴クラス・120 交通標識クラス・3D 信号を含む。
 
-## 2. Theoretical Framework (理論的枠組み)
+## 3. Benchmarks (ベンチマーク)
+**(1) Online HD Map Construction**: MapTRv2・SDTagNet ともに従来ベンチマーク比で性能低下を示し、単純幾何要素のみ評価では隠れていたギャップを露出。
+**(2) Long-range Monocular Depth Estimation**: 75m 超で全手法が性能低下、200m 超では著しく信頼性欠如。総合スコア最上位の MapAnything が長距離では最低に逆転するという驚くべき発見。
+**(3) Novel View Synthesis**: 駆動軌跡上でも 27.8% 低下、横方向 ±3m シフトで 80% 超の低下。photometric 指標では検出されない幾何不整合を顕在化。
+**(4) End-to-End Driving**: nuPlan 訓練の Epona で最小ドメインギャップだが依然顕著。
 
-訓練ダイナミクスをフーリエ領域（Fourier domain）に持ち上げることで、「リーマン勾配上昇（Riemannian gradient ascent）が表現論的エネルギー汎関数（representation-theoretic energy functional）上で機能する」ことを示します。これにより、ニューラルネットワークの重み更新が既約表現（irreducible representations）を自動的に選択するプロセスとして数学的に定式化されます。
+## 4. Related Work (関連研究)
+KITScenes は既存比で最も完全な HD マップ・最高点群密度（3 倍）・最長有効 LiDAR 距離を実現。Lanelet2 による規制構造の完全性は nuScenes・Argoverse 2 が提供できていない機能。
 
-## 3. Key Results (主要結果)
-
-**ニューロン収束**: 各ニューロンが訓練を通じて単一の既約表現に収束することを証明。層間フーリエ係数（cross-layer Fourier coefficients）が回転ランク1整列（rotational rank-one alignment）を達成します。
-
-**アーベル群での挙動**: ランダム初期化がアーベル群（Abelian groups）において「非自明な表現への一様多様化（uniform diversification）」を促進し、Haar一様位相（Haar-uniform phases）が多数決投票による指示関数近似を実現します。
-
-**指数的収束**: フェーズアラインメント（phase alignment）と表現競争（representation competition）の両方が指数的収束率（exponential convergence rates）で生じることを理論的に証明。
-
-## 4. Experiments (実験検証)
-
-理論的予測と実験結果の一致を確認。訓練済みネットワークの内部表現を可視化すると、フーリエ係数のランク1構造が理論予測通りに出現することを観察。群の代数的構造とネットワーク内部表現の対応関係が定量的に検証されます。
-
-## 5. Conclusion (結論)
-
-本研究はニューラルネットワークがグロッキング（grokking）や表現学習を通じてスペクトル構造を学習するメカニズムを初めて厳密に証明しました。離散的な数学的構造がニューラルネットワーク内で自然発生する普遍的なメカニズムの解明に向けた重要な理論基盤を提供します。将来の研究では深いネットワークや他の代数的構造への拡張が期待されます。
+## 5. Limitations & Conclusion (制限と結論)
+動的オブジェクトの 3D アノテーション未実装、データ量は nuPlan の約 1/20。しかし高忠実度センサー・完全 HD マップ・4 ベンチマークの組み合わせにより、Level 4 自動運転に向けた空間推論能力のギャップを初めて系統的に露出させることに成功した。

@@ -1,6 +1,6 @@
-**1. ZipSplat: Fewer Gaussians, Better Splats**
-**著者**: ZipSplat Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.05102
+**1. Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.06492
 
 **まとめ**:
-フィードフォワード3D Gaussian Splattingにおける「1ピクセル=1ガウシアン」の制約を打破し、シーン複雑度に適応したk-meansクラスタリングベースのトークン圧縮で自由配置ガウシアンを予測。6倍少ないガウシアン数で既存手法を上回るPSNRを達成し、単一モデルで推論時に品質-効率トレードオフを連続制御可能にした。3D NVS（Novel View Synthesis）のモバイル・エッジ展開に向けた重要な一歩。
+リポジトリ固有のLoRAアダプタをハイパーネットワークで動的生成することで、再学習不要かつ推論時オーバーヘッドゼロでコードLMにリポジトリ知識を注入する Code2LoRA を提案。静的スナップショット版と GRU によるコミット差分追跡の進化版を備え、Cross-Repo EM 63.8% でRAGや FFT を大幅に上回る。新ベンチマーク RepoPeftBench (604 リポジトリ) も公開し、ソフトウェア進化への適応という新軸で LM 評価を前進させた。

@@ -1,6 +1,6 @@
-**3. Neural Networks Provably Learn Spectral Representations for Group Composition**
-**著者**: Jianliang He, Leda Wang, Fengzhuo Zhang, Siyu Chen, Zhuoran Yang (2025)
-**arXiv**: https://arxiv.org/abs/2606.02993
+**3. The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset**
+**著者**: First Author et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.02956
 
 **まとめ**:
-2層ニューラルネットワークが群合成タスク（g₁ ★ g₂ の予測）を学習する際に、内部でスペクトル表現（spectral representations）が自然発生することをフーリエ領域でのリーマン勾配上昇として理論的に証明。各ニューロンが単一の既約表現（irreducible representations）に収束し、指数的収束率でフェーズアラインメントと表現競争が生じることを示した。ニューラルネットワークの内部構造理論の重要な基盤となる成果。
+既存自動運転データセットのセンサ精度・地図完全性・地理的多様性の限界を克服するため、欧州初の高忠実度マルチモーダルデータセット KITScenes Multimodal を構築。72.5Mpx カメラ・400m超 LiDAR・4D radar・62km² HD マップを統合し、HD マップ構築・単眼深度推定・新規視点合成・E2E 走行の4ベンチマークを整備。評価の結果、現 SoTA 手法が長距離（75m超）や幾何整合性で系統的なギャップを持つことを初めて明確化した。
