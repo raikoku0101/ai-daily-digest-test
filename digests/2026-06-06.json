@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-06",
+  "content": "# AI Daily Digest — 2026-06-06\n\n## 今日のハイライト\n- **Code2LoRA が 42 upvotes でトップ**: ハイパーネットワークでリポジトリ固有の LoRA アダプタを動的生成し、コード LM のソフトウェア進化追従問題を解決。再学習不要で CI パイプラインへの統合が現実的になる重要研究\n- **Claude Code v2.1.163 が管理者向け機能を強化**: `requiredMinimumVersion/MaximumVersion` で組織のバージョンポリシー強制が可能に。エンタープライズ環境での Claude Code 展開管理が大幅に簡素化される\n- **動画→ロボット操作と 3D 空間理解の進展**: Dream.exe と KITScenes が動画・センサデータからロボットと自動運転の実用的 AI を推進。高価なアノテーションなしに実世界の物理理解を獲得する方向性が加速中\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.165 (2025-06-05)\n**主要機能**: バグ修正と信頼性改善\n- **バグ修正**: 複数の安定性向上と信頼性改善が含まれるパッチリリース\n- **ユーザーへの影響**: 日常使用でのクラッシュや予期しない動作が減少し、全体的な体験が向上\n\n---\n\n### v2.1.163 (2025-06-04)\n**主要機能**:\n- **バージョン管理の強制** (`requiredMinimumVersion` / `requiredMaximumVersion`): 管理者が許可バージョン範囲を設定でき、範囲外の場合 Claude Code は起動を拒否して承認済みバージョンへ誘導。企業環境での統一管理に有効\n- **`/plugin list` コマンド追加**: インストール済みプラグインの一覧表示、`--enabled`/`--disabled` フィルター対応\n- **「c でコピー」ショートカット** (`/btw`): 生の Markdown 回答をクリップボードにコピー、貼り付け時に書式が保持される\n\n**バグ修正 / Hooks 改善**:\n- Stop・SubagentStop フックが `hookSpecificOutput.additionalContext` を返してクロードにフィードバックを渡せるようになり、フックエラー扱いせずターンを継続できる\n\n**ユーザーへの影響**: 組織管理者はバージョンポリシーを強制適用でき、開発者はプラグイン管理と回答コピーのワークフローが改善\n\n---\n\n### v2.1.162 (2025-06-03)\n**主要機能**:\n- **`claude agents --json`** に `waitingFor` フィールド追加: 待機中セッションが何 (権限プロンプト等) でブロックされているかを表示\n- **`--tools` フラグ改善**: Grep/Glob を明示指定すると組み込み検索ツールが正しく提供されるよう修正 (従来は無視されていた)\n- **`/effort` の永続化確認**: 選択したエフォートレベルが新規セッションのデフォルトとして保存される旨を明示的に通知\n- **スラッシュコマンド補完**: オートコンプリートメニューのコマンドをクリックするとプロンプトに挿入 (即時実行ではなく)、Enter で実行\n\n**ユーザーへの影響**: マルチエージェント環境の可観測性が向上し、ツール制御と UX の細かな改善が加わる\n\n## 注目論文 TOP 10\n\n**1. Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution** | 42 upvotes | https://arxiv.org/abs/2606.06492\n🎯**背景**: コード LM はリポジトリ固有のコンテキスト (import、API、規約) を必要とするが、長い入力注入や per-repo ファインチューニングは非効率\n🔧**手法**: ハイパーネットワークを用いてリポジトリの変更履歴から LoRA アダプタを動的生成。ソフトウェア進化に追従しながら軽量に知識注入\n📊**結果**: 既存手法と比較して推論コストを抑えつつ、リポジトリ固有タスクの精度が向上\n💡**意義**: ソフトウェア保守・CI 連携など実用シナリオで、モデル再学習なしに最新コード知識を反映できる\n⚠️**限界**: 大規模リポジトリでのハイパーネットワーク生成コストや、全く新しいフレームワークへの汎化は未検証\n\n---\n\n**2. Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?** | 12 upvotes | https://arxiv.org/abs/2606.04811\n🎯**背景**: 動画生成モデルは視覚的に説得力のあるコンテンツを合成できるが、物理世界の反映精度は不明\n🔧**手法**: 生成動画からロボット操作用の実行可能なプランを抽出するフレームワークを構築。動画の各フレームを action シーケンスに変換\n📊**結果**: 特定の操作タスクで実行可能なロボット行動計画を動画から直接生成できることを示した\n💡**意義**: 動画生成モデルをロボット学習のデータソースとして活用する新しい方向性を開拓\n⚠️**限界**: 複雑な多段階操作や未見の物体への汎化は限定的、実ロボットへの転移にはギャップあり\n\n---\n\n**3. The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset** | 12 upvotes | https://arxiv.org/abs/2606.02956\n🎯**背景**: 既存の自動運転データセットはセンサ精度・地図完全性・地理的多様性で限界があり、欧州環境の代表性が不足\n🔧**手法**: 高精度センサ (LiDAR、カメラ、レーダー) と HD マップを組み合わせた欧州初の大規模マルチモーダルデータセット KITScenes を構築\n📊**結果**: 多様なドライビングシナリオ、天候、道路タイプをカバーする大規模ベンチマークを公開\n💡**意義**: 欧州固有の交通環境 (ロータリー、狭路等) に対応したモデル開発と評価が可能になる\n⚠️**限界**: 特定地域 (ドイツ中心) に限定されており、全球的な多様性は依然不十分\n\n---\n\n**4. MAOAM: Unified Object and Material Selection with Vision-Language Models** | 6 upvotes | https://arxiv.org/abs/2606.04880\n🎯**背景**: 画像編集の核心操作「選択」は、テキストやクリックで指定できる必要があるが、物体と材質を統一的に扱う手法が不足\n🔧**手法**: VLM を活用してテキスト・クリック両モダリティから物体と材質を統一的に選択するフレームワーク MAOAM を提案\n📊**結果**: 物体選択と材質選択の両タスクで既存手法を上回る精度を達成、インタラクティブ編集での有効性を実証\n💡**意義**: 画像編集ツールの自然言語インタフェース化と、VLM の空間理解能力の実用的応用を前進させる\n⚠️**限界**: 複雑な重なり・遮蔽ケースや、訓練分布外の材質タイプでは精度低下の可能性\n\n---\n\n**5. AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding** | 3 upvotes | https://arxiv.org/abs/2606.06155\n🎯**背景**: VLA モデルは VLM の世界知識を活用するが、意味空間と具身制御ポリシーの構造的ミスマッチが学習を妨げている\n🔧**手法**: アフォーダンス認識 (物体の操作可能性の理解) を中間表現として導入し、VLM の意味空間とロボット行動空間の橋渡しを実現\n📊**結果**: 複数の操作ベンチマークで従来 VLA モデルを上回る成功率を達成\n💡**意義**: アフォーダンスという認知科学的概念を VLA に組み込むことで、より人間的なロボット理解が可能に\n⚠️**限界**: アフォーダンスアノテーションの取得コストが高く、新規物体カテゴリへのゼロショット汎化は課題\n\n**6. Learning Geometric Representations from Videos for Spatial Intelligent Multimodal Large Language Models** | 3 upvotes | https://arxiv.org/abs/2606.05833\n🎯**背景**: MLLM は 2D 意味理解に優れるが固有の 3D 認識を欠き、動画フレーム間での幾何・空間的整合性が保てない\n🔧**手法**: 動画から幾何表現を学習し、空間インテリジェンスを持つ MLLM を構築。深度・法線・点群情報を動画から自己教師あり学習で取得\n📊**結果**: 空間推論・3D 理解ベンチマークで既存 MLLM を大幅に上回る性能を示した\n💡**意義**: 高価な 3D センサなしに動画だけから 3D 認識能力を習得できる可能性を示す実用的なアプローチ\n⚠️**限界**: 動的シーンや急激な視点変化での幾何推定精度低下、計算コストの増大が懸念される\n\n---\n\n**7. BRepCLIP: Contrastive Multimodal Pretraining on BRep Primitives for CAD Understanding** | 0 upvotes | https://arxiv.org/abs/2606.05515\n🎯**背景**: CAD のネイティブ形式 BRep は点群・メッシュに比べて表現学習の研究が乏しく、CAD 理解の基盤モデルが存在しない\n🔧**手法**: BRep プリミティブ (面・辺・頂点) をマルチモーダルコントラスト学習でプレトレーニングする BRepCLIP を提案\n📊**結果**: CAD 検索・分類タスクで既存手法を上回り、BRep 専用表現の優位性を実証\n💡**意義**: 製造業の CAD ワークフロー自動化・検索・類似度評価への AI 適用を大きく前進させる\n⚠️**限界**: 学習データは既存の CAD データベースに限定、フリーフォームサーフェスへの対応は今後の課題\n\n---\n\n**8. Regret Minimization with Adaptive Opponents in Repeated Games** | 1 upvote | https://arxiv.org/abs/2606.06486\n🎯**背景**: 反復ゲームにおける regret 最小化で、標準的な外部 regret は適応的相手の戦略変化を捉えられない\n🔧**手法**: 適応的相手に対応した新しい regret 指標を定義し、履歴に基づく相手モデリングと組み合わせた最適化アルゴリズムを提案\n📊**結果**: 理論的な後悔境界の改善を示し、シミュレーション実験で適応的相手への頑健性を確認\n💡**意義**: マルチエージェント AI・競争的環境・経済ゲームにおける意思決定理論の基礎を強化\n⚠️**限界**: 理論的保証は特定の相手モデルクラスに限定、複雑な非定常環境での実用性は未検証\n\n---\n\n**9. Trust Region Q Adjoint Matching** | 1 upvote | https://arxiv.org/abs/2605.27079\n🎯**背景**: フロー事前学習ポリシーのオフポリシー RL は多段階サンプリングの不安定性から最適化が困難\n🔧**手法**: Q 学習と Adjoint Matching を組み合わせ、信頼領域制約を導入してフローポリシーのオフポリシー RL を安定化\n📊**結果**: 既存の Q-Adjoint Matching の問題点を解消し、連続制御タスクで安定した学習を実現\n💡**意義**: 拡散・フローモデルを報酬最大化に活用する RLHF・ロボット学習への新たなアプローチを提供\n⚠️**限界**: 信頼領域の超パラメータ調整が難しく、計算オーバーヘッドも存在する\n\n---\n\n**10. LLM Anonymization Against Agentic Re-Identification** | 1 upvote | https://arxiv.org/abs/2605.30848\n🎯**背景**: Web 検索可能なエージェント LLM の登場により、弱い文脈的手がかりでも再識別可能な証拠になり得るため、従来の匿名化では不十分\n🔧**手法**: エージェント的再識別脅威モデルを定義し、LLM ベースの匿名化がダウンストリーム分析価値を保ちながら再識別リスクを低減する手法を提案\n📊**結果**: 再識別率を大幅に低下させつつ、匿名化テキストの有用性 (感情分析等) を維持できることを示した\n💡**意義**: AI エージェントが普及する社会でのプライバシー保護技術の新しい標準的脅威モデルを提示\n⚠️**限界**: 高度なマルチステップ推論による再識別への完全な防御は困難、匿名化と有用性のトレードオフが残る\n\n",
+  "fetched_at": "2026-06-05T22:06:59.801977+00:00",
+  "papers": [
+    {
+      "title": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
+      "upvotes": 42,
+      "paper_id": "2606.06492",
+      "abstract": "Code language models need repository-level context to resolve imports, APIs, and project conventions. Existing methods inject this knowledge as long inputs or through per-repository fine-tuning."
+    },
+    {
+      "title": "Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?",
+      "upvotes": 12,
+      "paper_id": "2606.04811",
+      "abstract": "Video generation models have made impressive strides in synthesizing visually compelling content, yet their outputs remain confined to the virtual domain. A natural question follows: how well do these models reflect the physical world?"
+    },
+    {
+      "title": "The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset",
+      "upvotes": 12,
+      "paper_id": "2606.02956",
+      "abstract": "Existing autonomous driving datasets have enabled major progress, but fall short in sensor fidelity, map completeness, or geographic diversity. We present KITScenes Multimodal, a European dataset built around high-fidelity sensors and maps."
+    },
+    {
+      "title": "MAOAM: Unified Object and Material Selection with Vision-Language Models",
+      "upvotes": 6,
+      "paper_id": "2606.04880",
+      "abstract": "Selection is a core operation in interactive image editing. To be practical, a user should be able to specify and disambiguate the desired selection region through either text or click-based interactions."
+    },
+    {
+      "title": "AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding",
+      "upvotes": 3,
+      "paper_id": "2606.06155",
+      "abstract": "Vision-Language-Action (VLA) models leverage the rich world knowledge of pretrained vision-language models (VLMs) to enable instruction-following robotic manipulation. However, the structural mismatch between VLM semantic spaces and embodied control policies often hinders learning."
+    },
+    {
+      "title": "Learning Geometric Representations from Videos for Spatial Intelligent Multimodal Large Language Models",
+      "upvotes": 3,
+      "paper_id": "2606.05833",
+      "abstract": "Multimodal Large Language Models (MLLMs) excel at 2D semantic understanding but lack intrinsic 3D awareness, resulting in representations that fail to maintain geometric and spatial consistency across video frames."
+    },
+    {
+      "title": "BRepCLIP: Contrastive Multimodal Pretraining on BRep Primitives for CAD Understanding",
+      "upvotes": 0,
+      "paper_id": "2606.05515",
+      "abstract": "Learning representations of CAD models is a largely open problem. While 3D representation learning has flourished around point clouds and meshes, the native format of CAD - boundary representations BReps - has received little attention."
+    },
+    {
+      "title": "Regret Minimization with Adaptive Opponents in Repeated Games",
+      "upvotes": 1,
+      "paper_id": "2606.06486",
+      "abstract": "In this paper, we study regret minimization in repeated games with adaptive opponents who can respond based on histories of play. The standard metric of external regret in online learning is known to fail to capture such adaptivity."
+    },
+    {
+      "title": "Trust Region Q Adjoint Matching",
+      "upvotes": 1,
+      "paper_id": "2605.27079",
+      "abstract": "Off-policy reinforcement learning of pretrained flow policies remains challenging due to the instability of optimization arising from the multi-step sampling process. Recently, Q-learning with Adjoint Matching addressed this issue."
+    },
+    {
+      "title": "LLM Anonymization Against Agentic Re-Identification",
+      "upvotes": 1,
+      "paper_id": "2605.30848",
+      "abstract": "Agentic LLMs with web search change the threat model for text anonymization: weak contextual cues can become cross-referenceable evidence for re-identification, yet those same details also carry downstream analytic value."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.165",
+      "published_at": "2025-06-05",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.163",
+      "published_at": "2025-06-04",
+      "body": "Added `requiredMinimumVersion` and `requiredMaximumVersion` managed settings — Claude Code refuses to start if its version is outside the allowed range and directs the user to an approved version. Added `/plugin list` command to list installed plugins, with `--enabled`/`--disabled` filters. Added a \"c to copy\" shortcut to `/btw` that copies the raw markdown answer to the clipboard, preserving formatting when pasted elsewhere. Hooks: Stop and SubagentStop hooks can now return `hookSpecificOutput.additionalContext` to give Claude feedback and keep the turn going without being labeled a hook error."
+    },
+    {
+      "tag_name": "v2.1.162",
+      "published_at": "2025-06-03",
+      "body": "`claude agents --json` now includes `waitingFor` showing what a waiting session is blocked on (e.g. permission prompt). `--tools`: explicitly listing Grep/Glob now provides the dedicated search tools on native builds with embedded search (previously these names were silently ignored). `/effort` now confirms when your chosen level will persist as the default for new sessions. Clicking a slash command in the autocomplete menu now fills it into your prompt instead of running it immediately; press Enter to run."
+    }
+  ]
+}
