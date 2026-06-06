@@ -1,6 +1,6 @@
 **3. The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset**
-**著者**: First Author et al. (2026)
+**著者**: KITScenes Authors et al. (2026)
 **arXiv**: https://arxiv.org/abs/2606.02956
 
 **まとめ**:
-既存自動運転データセットのセンサ精度・地図完全性・地理的多様性の限界を克服するため、欧州初の高忠実度マルチモーダルデータセット KITScenes Multimodal を構築。72.5Mpx カメラ・400m超 LiDAR・4D radar・62km² HD マップを統合し、HD マップ構築・単眼深度推定・新規視点合成・E2E 走行の4ベンチマークを整備。評価の結果、現 SoTA 手法が長距離（75m超）や幾何整合性で系統的なギャップを持つことを初めて明確化した。
+72.5 Mpx グローバルシャッターカメラ・400m 超 LiDAR・4D イメージングレーダーを搭載し、62 km² の最も完全な公開 HD マップ（Lanelet2 形式）を含む欧州発マルチモーダル自動運転データセット。4 つのベンチマークで既存最先端手法の系統的課題を明らかにし、レベル4自動運転に向けた空間推論能力評価の新標準を確立した。

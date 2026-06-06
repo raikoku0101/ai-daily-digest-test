@@ -1,14 +1,30 @@
 ## 1. Introduction (はじめに)
-VLA (Vision-Language-Action) モデルは VLM の豊富な知識を活用するが、VLM のセマンティック空間と具現化制御ポリシーの構造的不一致が正確な知覚-行動マッピングを阻害している。本研究はタスク指向の中間表現として「アフォーダンス (affordance)」を導入し、知覚と行動をより正確に橋渡けする枠組みを提案する。
+VLA（Vision-Language-Action）モデルにおける「知覚と行動の構造的ミスマッチ」という根本的課題に取り組む。VLM は言語と視覚を意味空間で整列させるが、ロボット操作は 3 次元物理空間に存在するためエンドツーエンドのマッピングは困難。AffordanceVLA はアフォーダンス（Affordance）という構造化された中間表現を導入し、何を操作するか・どこで操作するか・どのように操作するかを段階的に予測することでこの乖離を解決する。
 
-## 2. Method (手法)
-AffordanceVLA は Mixture-of-Transformer (MoT) アーキテクチャで3専門家モジュールを構成：(1) Understanding Expert: 視覚+言語のセマンティック表現を抽出、(2) Affordance Generation Expert: Which2Act（何をするか）・Where2Act（どこで）・How2Act（どのように）の3要素を予測、(3) Action Expert: 中間表現から実制御行動を生成。UAA (Understanding-Affordance-Action) プログレッシブアテンション機構でアクション情報がアフォーダンス予測段階に漏洩することを防止。
+## 2. Related Work (関連研究)
+既存 VLA 研究は2つの系統に分かれる。第一は動画予測やビジュアルフォーサイト（Visual Foresight）を中間表現とする方法で、冗長性が高く計算コストが大きい。第二は構造化された低次元表現（テキスト推論、キーポーズなど）を用いるアプローチ。本研究はアフォーダンスを「空間的に接地され、意味的に条件付けられ、行動に結合した」中間表現として位置づけ、VLM 内部に内在化される点が特徴。
 
-## 3. Training Strategy (訓練戦略)
-3段階プログレッシブ訓練：Stage I は VQA データセット (AGD20K・RefSpatial・PRISM) でアフォーダンス基盤構築、Stage II は大規模合成ロボットデータ (InternData-A1) で共訓練（自動パイプラインで約 100,000 アフォーダンスラベル生成）、Stage III は目標タスク (LIBERO・CALVIN・実世界) への適応微調整。注釈パイプラインは Claude Opus 4.5 で長時間指示を分解し Qwen3-VL で視覚-言語アフォーダンス注釈を生成。
+## 3. Method (手法)
+AffordanceVLA は Mixture-of-Transformer（MoT）アーキテクチャ上に3つの専門化エキスパートを配置：
+- Understanding Expert: 視覚と言語の融合による命令認識表現を生成
+- Affordance Generation Expert: Which2Act（対象物体の視覚潜在表現）・Where2Act（2 次元相互作用位置特定）・How2Act（3 次元幾何推論）を並列予測
+- Action Expert: 接地されたアフォーダンス表現に基づき制御行動を生成
+UAA（Understanding–Affordance–Action）進行的注意機構により各エキスパート間の情報流を制御。
 
-## 4. Experiments (実験)
-シミュレーション：LIBERO ベンチマーク平均 95.8%、CALVIN ABC→D 平均チェーン長 4.33。実世界：基本タスク 88.3% 成功率、複雑タスク (引き出し・トースター操作) で Pi0 比約 2 倍の成功率。アブレーションで MoT アーキテクチャ・3アフォーダンス要素・UAA 機構それぞれの有効性を確認。
+## 4. Training Strategy (訓練戦略)
+三段階の進行的課程（Progressive Curriculum）：
+Stage I: VQA データセット（AGD20K、RefSpatial、PRISM）上で汎用アフォーダンス基盤を習得
+Stage II: 大規模合成ロボット操作データ（InternData-A1）との共訓練。LLM による指示分解 + VLM によるキーフレーム注釈で 100,000 以上の高品質ラベルを自動生成
+Stage III: 下流タスク（LIBERO、CALVIN、実世界）への適応的微調整
 
-## 5. Key Findings & Conclusion (主要知見と結論)
-アフォーダンス中間表現による監督で VLM のセマンティック理解を保ちながら物理的実行能力を強化できることが明らかに。データ量よりも表現品質が性能天井を決定することも示唆。構造化アフォーダンス予測は直接 E2E マッピングや映像予測より優れた知覚-行動マッピングを実現し、シミュレーション・実世界両領域で堅牢な性能と高い汎化性を達成した。
+## 5. Experiment (実験)
+シミュレーション評価：
+- LIBERO: 95.8% の平均成功率を達成
+- CALVIN ABC→D: 5 連続タスク完了率 75.9%（平均鎖長 4.33）
+実世界実験：基本タスク 88.3% 平均成功率。複雑タスク（引き出し、トースター）では Pi0（44.8%）に対し 82.9% を達成。
+
+## 6. Key Findings (主要知見)
+データスケーリング単独では空間的ギャップを埋められず、構造化された中間表現が本質的。全データの 40% で提案法が Pi0 のフルデータ性能を超過。三専門家の分離と段階的注意機構により「表現崩壊（Representation Collapse）」を防止。Stage II の大規模共訓練が OOD 一般化を大幅改善（CALVIN: 3.81→4.33）。
+
+## 7. Conclusion (結論)
+AffordanceVLA はアフォーダンスを内在化された中間表現として活用することで、VLM の意味空間と 3 次元物理制御の構造的ミスマッチを解決する。複雑な実世界タスク（特に長期視野型実行と命令感度）における堅牢性向上が実証された。
