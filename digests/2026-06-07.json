@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-07",
+  "content": "# AI Daily Digest — 2026-06-07\n\n## 今日のハイライト\n- **Code2LoRA が 63 upvotes で圧倒的 1 位**: Hypernetwork でコード LM に動的 LoRA アダプターを生成する手法。ソフトウェアの継続的な変化に追従できる AI コーディングアシスタントの実現に向けた重要な突破口であり、実用的な CI/CD 統合への道を開く。\n- **Claude Code v2.1.166: セキュリティと柔軟性の大幅強化**: フォールバックモデル設定、クロスセッション権限昇格防止、グロブパターン deny ルールが追加。本番環境での信頼性と安全性が一段と向上した。\n- **ロボット × 動画生成 × 自動運転の三本柱**: Dream.exe（ロボット操作）、AffordanceVLA（アフォーダンス認識）、KITScenes（自動運転データセット）と、物理世界への AI 展開を加速する研究が複数登場。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.167 (2026-06-06)\n**主要機能**: バグ修正と安定性の向上。\n\n---\n\n### v2.1.166 (2026-06-06)\n\n**主要機能詳細**:\n- **フォールバックモデル設定** (`fallbackModel`): プライマリモデルが過負荷・利用不可の際に試みる最大3つのフォールバックモデルを設定可能に。`--fallback-model` オプションがインタラクティブセッションにも適用されるようになった。\n- **グロブパターンによる deny ルール**: ツール名位置に `\"*\"` を指定すると全ツールを拒否できる。allow ルールは MCP 以外のグロブを拒否し、不明なツール名は起動時に警告を表示。\n- **クロスセッションメッセージングの堅牢化**: `SendMessage` 経由で中継されたメッセージはユーザー権限を持たなくなり、受信側は権限要求を拒否し、auto モードでもブロックされる。\n\n**バグ修正**:\n- `MAX_THINKING_TOKENS=0`、`--thinking disabled`、モデルごとの thinking トグルが、デフォルトで thinking を行うモデルでも正しく無効化されるようになった。\n- API が予期しない非リトライエラーを返した際、フォールバックモデルで1回リトライするよう変更（認証・レート制限・リクエストサイズ・転送エラーは即座に表示）。\n- 処理不能な画像が送信された際の「image could not be processed」エラーと余分なトークン消費を修正。\n- ワーカー登録時のバックエンド障害でリモートセッションが永久にスタックする問題を修正。\n\n**ユーザーへの影響**:\nフォールバックモデル設定により過負荷時の継続性が向上。セキュリティ面では、他セッションからの権限昇格が不可能になり、信頼モデルが明確化された。`claude update` が更新前にバージョンを表示するようになり、意図しないバージョン変更が防止できる。\n\n---\n\n### v2.1.165 (2026-06-05)\n**主要機能**: バグ修正と安定性の向上。\n\n---\n\n## 注目論文 TOP 10\n\n**1. Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution** | 👍 63 | [arxiv.org/abs/2606.06492](https://arxiv.org/abs/2606.06492)\n🎯**背景**: コード言語モデルはリポジトリレベルのコンテキスト（import、API、プロジェクト規約）の解決に課題を抱える。既存手法は長い入力注入やリポジトリごとのファインチューニングに頼るため、ソフトウェアの継続的な変化に対応しにくい。\n🔧**手法**: Hypernetwork を用いて、リポジトリの変化に応じた LoRA アダプターを動的生成する。ベースモデルを固定したまま、コードの変化を LoRA 重みに変換する軽量な適応機構を採用。\n📊**結果**: ベースラインと比較してリポジトリレベルのコード補完精度が大幅に向上。ファインチューニングのコストを削減しながら最新の変更を即座に反映。\n💡**意義**: ソフトウェア進化に追従できる AI コーディングアシスタントの実現への重要な一歩。CI/CD パイプラインとの統合で常に最新のコードコンテキストを提供できる可能性。\n⚠️**限界**: 大規模モノレポや非常に高頻度の変更への対応コストは未検証。Hypernetwork の汎化性能がリポジトリの種類に依存する可能性。\n\n---\n\n**2. Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?** | 👍 15 | [arxiv.org/abs/2606.04811](https://arxiv.org/abs/2606.04811)\n🎯**背景**: 動画生成モデルは視覚的に説得力のあるコンテンツ生成で著しい進歩を遂げているが、出力は仮想空間に留まっている。「生成した動画を実ロボットの操作指示として直接使えるか」という問いに着目。\n🔧**手法**: 動画生成モデルの出力を実行可能なロボット操作シーケンスに変換するパイプラインを構築。生成された動画フレームからアクション列を抽出し、物理シミュレーターおよび実ロボットで実行を試みる。\n📊**結果**: 単純な把持・移動タスクで動画生成モデルが実行可能な操作計画を生成できることを実証。ただし複雑な動作では成功率が低下。\n💡**意義**: 膨大な動画データで事前学習されたモデルを、ロボット操作のための世界モデルとして活用する新たな方向性を示す。追加ロボットデータなしに汎用操作プランナーが実現できる可能性。\n⚠️**限界**: 物理的整合性の保証が困難で、現状では精密操作には不向き。実環境での信頼性確保にはさらなる研究が必要。\n\n---\n\n**3. The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset** | 👍 14 | [arxiv.org/abs/2606.02956](https://arxiv.org/abs/2606.02956)\n🎯**背景**: 既存の自動運転データセットはセンサー忠実度、地図完全性、地理的多様性に課題がある。新たなベンチマークの必要性が高まっている。\n🔧**手法**: KITScenes は LiDAR、カメラ、レーダー、高精度 GPS などを組み合わせたマルチモーダルデータセット。多様な天候・地域・交通状況下で収集。HD マップと詳細なアノテーションを含む。\n📊**結果**: 既存データセットを上回るセンサー解像度と地理的カバレッジを達成。複数の最新モデルのベンチマーク評価を実施。\n💡**意義**: 自動運転 AI の評価基準を引き上げ、センサーフュージョン研究を加速させる基盤となりうる。実世界への展開に向けた堅牢性評価が可能になる。\n⚠️**限界**: 特定地域に収集が偏る可能性。アノテーションコストが高く、データ規模の拡大が課題。\n\n---\n\n**4. MAOAM: Unified Object and Material Selection with Vision-Language Models** | 👍 8 | [arxiv.org/abs/2606.04880](https://arxiv.org/abs/2606.04880)\n🎯**背景**: インタラクティブ画像編集においてオブジェクト選択は基本操作。テキストやクリックによる指定・曖昧さ解消が実用上重要だが、既存手法はオブジェクトと素材の統一的な選択に対応できていない。\n🔧**手法**: VLM（Vision-Language Model）を活用し、オブジェクトと素材の両方を統一フレームワークで選択可能にする MAOAM を提案。テキストプロンプトとクリック入力を組み合わせた多様な指定インターフェースを実装。\n📊**結果**: 従来の分離したオブジェクト・素材選択手法を上回る精度と柔軟性を実現。ユーザー調査でも操作性の向上を確認。\n💡**意義**: AI 画像編集ツールの実用性を大幅に向上。デザイナーや映像クリエイターが直感的に素材・オブジェクトを指定できるワークフローを実現できる。\n⚠️**限界**: 高度に重複したシーンや類似素材が混在する画像での正確な選択は困難。リアルタイム処理への対応はまだ課題。\n\n---\n\n**5. AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding** | 👍 6 | [arxiv.org/abs/2606.06155](https://arxiv.org/abs/2606.06155)\n🎯**背景**: VLA（Vision-Language-Action）モデルは事前学習済み VLM の豊富な世界知識を活用してロボット操作を実現するが、アフォーダンス（物体が持つ「使える可能性」）を明示的に考慮した動作生成が課題。\n🔧**手法**: アフォーダンス認識を中核に据えた VLA フレームワーク。視覚的なアフォーダンス推定モジュールと言語指示を統合し、物体の操作可能な領域を理解した上で行動を生成。\n📊**結果**: 標準的な VLA ベースラインと比較して操作成功率が向上。特に新規物体や曖昧な指示に対する汎化性能が改善。\n💡**意義**: アフォーダンス認識により、ロボットが人間と同様に物体の「使い方」を理解して行動できるようになる。汎用ロボット操作の実現に向けた重要なステップ。\n⚠️**限界**: アフォーダンスアノテーションの取得コストが高い。複雑な多段階タスクへの対応は今後の課題。\n\n---\n\n**6. Learning Geometric Representations from Videos for Spatial Intelligent Multimodal Large Language Models** | 👍 3 | [arxiv.org/abs/2606.05833](https://arxiv.org/abs/2606.05833)\n🎯**背景**: MLLM は 2D 意味理解は得意だが、3D 空間認識を欠いており、幾何学的整合性のある表現を維持できない。動画という豊富なデータから 3D 表現を学習する可能性を探る。\n🔧**手法**: 動画から幾何学的表現（深度・法線・3D 構造）を自己教師あり学習で獲得し、MLLM に統合。時系列の視点変化から 3D 構造を暗黙的に学習するアプローチを採用。\n📊**結果**: 空間推論ベンチマークで既存 MLLM を上回る性能。3D 理解を必要とする視覚的 QA タスクで精度が向上。\n💡**意義**: 追加の 3D センサーなしに動画データだけで空間インテリジェンスを獲得できる可能性を示す。ロボット・AR/VR 応用への波及が期待される。\n⚠️**限界**: 動的シーンや視点変化の少ない動画では学習効果が限定的。計算コストが増大する可能性。\n\n---\n\n**7. The Shape of Addition: Geometric Structures of Arithmetic in Large Language Models** | 👍 3 | [arxiv.org/abs/2606.03645](https://arxiv.org/abs/2606.03645)\n🎯**背景**: LLM は基礎的な算術で逆説的な脆弱性を示し、内部計算と離散出力の乖離が示唆されている。LLM が算術をどのように内部表現しているかを幾何学的視点から分析。\n🔧**手法**: 加算タスクにおける LLM の内部表現を可視化・分析。活性化空間の幾何学的構造を探索し、算術処理に対応する低次元多様体や線形構造を特定。\n📊**結果**: LLM の内部では加算が規則的な幾何学的パターンとして符号化されていることを発見。桁ごとの表現構造や繰り上がり処理の痕跡を可視化。\n💡**意義**: LLM の算術能力の解釈可能性研究に新たな視点を提供。LLM の数値推論の限界と可能性の理解が深まり、改善手法の設計に役立つ。\n⚠️**限界**: 加算に焦点を絞っており、他の算術演算への一般化は未検証。モデルアーキテクチャへの依存性が未明。\n\n---\n\n**8. Trust Region Q Adjoint Matching** | 👍 3 | [arxiv.org/abs/2605.27079](https://arxiv.org/abs/2605.27079)\n🎯**背景**: 事前学習済みフローポリシーのオフポリシー強化学習は、マルチステップサンプリングから生じる最適化の不安定性により困難。既存手法では安定した学習が難しい。\n🔧**手法**: 信頼領域制約と Q 関数の随伴マッチング（Adjoint Matching）を組み合わせた新アルゴリズムを提案。フローマッチングポリシーの構造を保ちながら安定したオフポリシー最適化を実現。\n📊**結果**: 連続制御タスクのベンチマークで既存のオフポリシー RL 手法と比較して安定性と性能が向上。事前学習モデルの微調整において収束が改善。\n💡**意義**: 大規模に事前学習されたフローベースポリシーを、少量のオンライン経験で効率的に微調整できる可能性を示す。ロボット学習や科学的シミュレーションへの応用が期待。\n⚠️**限界**: 信頼領域の超パラメータ設定が性能に大きく影響する可能性。高次元アクション空間でのスケーラビリティは未検証。\n\n---\n\n**9. Regret Minimization with Adaptive Opponents in Repeated Games** | 👍 1 | [arxiv.org/abs/2606.06486](https://arxiv.org/abs/2606.06486)\n🎯**背景**: 繰り返しゲームにおける後悔最小化で、適応的な（過去の履歴に基づいて行動を変える）相手がいる状況の研究。通常の外部後悔指標は適応的相手に対して不十分。\n🔧**手法**: 適応的相手を持つ繰り返しゲームに適した新たな後悔指標と最小化アルゴリズムを提案。相手の適応行動を明示的にモデル化し、より強力な保証を提供する学習戦略を構築。\n📊**結果**: 提案アルゴリズムが適応的相手に対して低後悔を達成することを理論的に証明。いくつかのゲーム設定でシミュレーション実験により検証。\n💡**意義**: オークション、交渉、マルチエージェント AI など、相手が戦略的に適応する現実の意思決定問題への応用が期待される。ゲーム理論と機械学習の接点を深化させる。\n⚠️**限界**: 相手の適応モデルに対する仮定が限定的。実際の複雑なゲームへの適用では仮定が成立しない場合がある。\n\n---\n\n**10. BRepCLIP: Contrastive Multimodal Pretraining on BRep Primitives for CAD Understanding** | 👍 0 | [arxiv.org/abs/2606.05515](https://arxiv.org/abs/2606.05515)\n🎯**背景**: CAD モデルの表現学習は未解決問題。3D 表現学習はポイントクラウドやメッシュで発展しているが、CAD のネイティブフォーマットである境界表現（BRep）向けのマルチモーダル事前学習は未開拓。\n🔧**手法**: BRep プリミティブ（頂点・辺・面）に対して対照学習を適用する CLIP スタイルの事前学習フレームワーク BRepCLIP を提案。幾何学的プリミティブとテキスト・画像を対応付ける。\n📊**結果**: CAD 検索、分類、部品認識のベンチマークで従来手法を上回る性能を達成。BRep ネイティブな表現が下流タスクに有効であることを実証。\n💡**意義**: CAD データの AI 活用を加速させる基盤技術。設計自動化、形状検索、製造プロセス最適化への応用が広がる。\n⚠️**限界**: BRep データの収集・前処理コストが高い。複雑な組み立て品への対応や大規模スケールでの評価は今後の課題。\n\n",
+  "fetched_at": "2026-06-06T22:06:15.808176+00:00",
+  "papers": [
+    {
+      "title": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
+      "upvotes": 63,
+      "paper_id": "2606.06492",
+      "abstract": "Code language models need repository-level context to resolve imports, APIs, and project conventions. Existing methods inject this knowledge as long inputs or through per-repository fine-tuning..."
+    },
+    {
+      "title": "Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?",
+      "upvotes": 15,
+      "paper_id": "2606.04811",
+      "abstract": "Video generation models have made impressive strides in synthesizing visually compelling content, yet their outputs remain confined to the virtual domain. A natural question follows..."
+    },
+    {
+      "title": "The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset",
+      "upvotes": 14,
+      "paper_id": "2606.02956",
+      "abstract": "Existing autonomous driving datasets have enabled major progress, but fall short in sensor fidelity, map completeness, or geographic diversity. We present KITScenes Multimodal..."
+    },
+    {
+      "title": "MAOAM: Unified Object and Material Selection with Vision-Language Models",
+      "upvotes": 8,
+      "paper_id": "2606.04880",
+      "abstract": "Selection is a core operation in interactive image editing. To be practical, a user should be able to specify and disambiguate the desired selection region through either text or click..."
+    },
+    {
+      "title": "AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding",
+      "upvotes": 6,
+      "paper_id": "2606.06155",
+      "abstract": "Vision-Language-Action (VLA) models leverage the rich world knowledge of pretrained vision-language models (VLMs) to enable instruction-following robotic manipulation..."
+    },
+    {
+      "title": "Learning Geometric Representations from Videos for Spatial Intelligent Multimodal Large Language Models",
+      "upvotes": 3,
+      "paper_id": "2606.05833",
+      "abstract": "Multimodal Large Language Models (MLLMs) excel at 2D semantic understanding but lack intrinsic 3D awareness, resulting in representations that fail to maintain geometric consistency..."
+    },
+    {
+      "title": "The Shape of Addition: Geometric Structures of Arithmetic in Large Language Models",
+      "upvotes": 3,
+      "paper_id": "2606.03645",
+      "abstract": "Large Language Models exhibit paradoxical fragility in fundamental arithmetic, implying a disconnect between internal computation and discrete output..."
+    },
+    {
+      "title": "Trust Region Q Adjoint Matching",
+      "upvotes": 3,
+      "paper_id": "2605.27079",
+      "abstract": "Off-policy reinforcement learning of pretrained flow policies remains challenging due to the instability of optimization arising from the multi-step sampling process..."
+    },
+    {
+      "title": "Regret Minimization with Adaptive Opponents in Repeated Games",
+      "upvotes": 1,
+      "paper_id": "2606.06486",
+      "abstract": "In this paper, we study regret minimization in repeated games with adaptive opponents who can respond based on histories of play. The standard metric of external regret in online learning..."
+    },
+    {
+      "title": "BRepCLIP: Contrastive Multimodal Pretraining on BRep Primitives for CAD Understanding",
+      "upvotes": 0,
+      "paper_id": "2606.05515",
+      "abstract": "Learning representations of CAD models is a largely open problem. While 3D representation learning has flourished around point clouds and meshes, the native format of CAD - boundary..."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.167",
+      "published_at": "2026-06-06",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.166",
+      "published_at": "2026-06-06",
+      "body": "Added `fallbackModel` setting to configure up to three fallback models tried in order when the primary model is overloaded or unavailable; `--fallback-model` now also applies to interactive sessions. Added glob pattern support in deny rule tool-name position (`\"*\"` denies all tools); allow rules reject non-MCP globs, and unknown tool names in deny rules warn at startup. Hardened cross-session messaging: messages relayed via `SendMessage` from other Claude sessions no longer carry user authority — receivers refuse relayed permission requests, and auto mode blocks them. `MAX_THINKING_TOKENS=0`, `--thinking disabled`, and the per-model thinking toggle now disable thinking on models that think by default. Claude Code now retries a turn once on the fallback model when the API rejects an unexpected non-retryable error. `claude update` now announces the target version before downloading. Fixed a recurring image processing error and extra token usage."
+    },
+    {
+      "tag_name": "v2.1.165",
+      "published_at": "2026-06-05",
+      "body": "Bug fixes and reliability improvements"
+    }
+  ]
+}
