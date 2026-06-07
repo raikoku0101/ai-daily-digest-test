@@ -1,6 +1,6 @@
-**4. MAOAM: Unified Object and Material Selection with Vision-Language Models**
-**著者**: MAOAM Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.04880
+**4. AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding**
+**著者**: AffordanceVLA Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.06155
 
 **まとめ**:
-テキストとクリック両方のインタラクションモダリティで、オブジェクトと素材（マテリアル）を統一的に選択できる初の VLM ベースフレームワーク。テキストベースのマテリアル選択で既存手法比 67.5% の mIoU 改善を達成。テキスト＋クリックの組み合わせでは訓練していないにもかかわらず選択品質が自発的に向上する創発的な振る舞いも観察された。
+ロボット操作における VLA（Vision-Language-Action）モデルの知覚-行動ギャップを、アフォーダンス予測（Which2Act/Where2Act/How2Act）を中間表現として導入することで解決。Mixture-of-Transformer（MoT）アーキテクチャで理解・アフォーダンス生成・行動の 3 エキスパートを統合し、LIBERO ベンチマークで 95.8% の成功率、実機実験で 88.3% を達成。言語指示への感度でも Pi0（44.8%）を大幅に上回る 82.9% を記録し、構造化アフォーダンスがサンプル効率と汎化性能の双方を向上させることを実証した。

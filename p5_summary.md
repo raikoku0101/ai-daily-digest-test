@@ -1,6 +1,6 @@
-**5. AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding**
-**著者**: AffordanceVLA Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.06155
+**5. MAOAM: Unified Object and Material Selection with Vision-Language Models**
+**著者**: MAOAM Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.04880
 
 **まとめ**:
-VLM の意味空間と 3D 物理制御の構造的ミスマッチを、アフォーダンス（Which2Act・Where2Act・How2Act）を内在化された中間表現として導入することで解決する VLA フレームワーク。LIBERO で 95.8%、実世界の複雑タスクで 82.9% の成功率を達成し、データの 40% のみで既存手法のフルデータ性能を超過した。
+テキストとクリック双方のインタラクションでオブジェクトと素材（マテリアル）を統一的に選択する初のフレームワーク MAOAM（Mask Any Object And Material）を提案。CLIP 視覚エンコーダ＋LLM が「セグメント」トークンを生成し SAM のマスクデコーダで高解像度マスクを出力。テキストベースマテリアル選択で平均 IoU 74.0%（Sa2VA 比 +67.5%）、クリックベースで Materialistic 比 +35.5% を達成。さらにテキスト・クリックを推論時に組み合わせると自発的に性能が向上する「創発的相乗効果」を発見。
