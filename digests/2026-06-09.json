@@ -1,0 +1,22 @@
+{
+  "date": "2026-06-09",
+  "content": "# AI Daily Digest — 2026-06-09\n\n## 今日のハイライト\n- **ゲノムAIの評価基準問題が露呈**: GENEB(42upvotes)が40モデル・100タスクで統一評価し、単一ランキングの誤解を実証。ゲノム基盤モデル研究のパラダイムシフトとなる可能性が高い\n- **Claude Code v2.1.169リリース**: `--safe-mode`フラグと`/cd`コマンドが追加。エンタープライズMCPポリシーの重大バグも修正され、本番環境での安定性が向上\n- **LLMの「分布サンプリング」に大きな欠陥**: UnpredictaBench(12upvotes)が448問題のKS@N評価で、主要LLMが真のランダム分布に従えないことを定量的に初めて実証\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.169 (2024-06-08)\n\n**主要機能**\n- `--safe-mode` フラグ追加\n- `/cd` コマンド追加\n- `disableBundledSkills` 設定追加\n\n**バグ修正**\n- 上下矢印履歴ジャンプ問題を修正\n- エンタープライズMCPポリシー未適用問題を修正\n",
+  "fetched_at": "2026-06-08T22:07:03.782192+00:00",
+  "papers": [
+    {"title": "GENEB: Why Genomic Models Are Hard to Compare", "upvotes": 42, "paper_id": "2606.04525", "abstract": "Large-scale diagnostic benchmark evaluating frozen representations from 40 genomic foundation models across 100 tasks under unified probing protocol."},
+    {"title": "Robots Need More than VLA and World Models", "upvotes": 20, "paper_id": "2606.06556", "abstract": "Position paper identifying four missing components for robot intelligence."},
+    {"title": "UnpredictaBench: A Benchmark for Evaluating Distributional Randomness in LLMs", "upvotes": 12, "paper_id": "2606.06622", "abstract": "Evaluation testing LLMs ability to capture true underlying distributions through 448 problems and KS@N metric."},
+    {"title": "SPACENUM: Revisiting Spatial Numerical Understanding in VLMs", "upvotes": 5, "paper_id": "2605.23898", "abstract": "Framework evaluating how vision-language models map spatial structure to numerical representations."},
+    {"title": "Almieyar-Oryx-BloomBench", "upvotes": 4, "paper_id": "2606.05531", "abstract": "Bilingual English-Arabic benchmark grounded in Bloom's Taxonomy evaluating six cognitive levels."},
+    {"title": "Reinforcement Learning from Rich Feedback with Distributional DAgger", "upvotes": 3, "paper_id": "2606.05152", "abstract": "Forward cross-entropy objective enabling monotonic policy improvement in reasoning tasks."},
+    {"title": "LayerRoute: Input-Conditioned Adaptive Layer Skipping via LoRA Fine-Tuning", "upvotes": 2, "paper_id": "2606.01838", "abstract": "Lightweight adapter that selectively skips transformer blocks based on input type."},
+    {"title": "A Cookbook of 3D Vision", "upvotes": 2, "paper_id": "2606.04291", "abstract": "Data-centric taxonomy connecting geometric representations, datasets, learning frameworks."},
+    {"title": "Data-Efficient Autoregressive-to-Diffusion Language Models via On-Policy Distillation", "upvotes": 1, "paper_id": "2606.06712", "abstract": "On-policy distillation method transforming autoregressive models into diffusion language models."},
+    {"title": "Imaginative Perception Tokens Enhance Spatial Reasoning in Multimodal Language Models", "upvotes": 1, "paper_id": "2606.03988", "abstract": "Intermediate perceptual representations that externalize model perceptions under alternative spatial configurations."}
+  ],
+  "cc_updates": [
+    {"tag_name": "v2.1.169", "published_at": "2024-06-08", "body": "Added --safe-mode flag, /cd command, disableBundledSkills setting. Fixed arrow key history and MCP policy enforcement."},
+    {"tag_name": "v2.1.168", "published_at": "2024-06-06", "body": "Bug fixes and reliability improvements"},
+    {"tag_name": "v2.1.167", "published_at": "2024-06-06", "body": "Bug fixes and reliability improvements"}
+  ]
+}
