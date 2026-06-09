@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
-      "upvotes": 70,
-      "paper_id": "2606.06492",
-      "abstract": "Code language models need repository-level context to resolve imports, APIs, and project conventions. A hypernetwork framework generates repository-specific LoRA adapters, effectively injecting repository knowledge with zero inference-time token overhead."
-    },
-    {
-      "title": "Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?",
-      "upvotes": 15,
-      "paper_id": "2606.04811",
-      "abstract": "Video generation models are evaluated through robotic manipulation tasks to assess their ability to reflect physical reality. An evaluation framework converts generated videos into robot trajectories and executes them in a physics simulator."
-    },
-    {
-      "title": "The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset",
-      "upvotes": 15,
-      "paper_id": "2606.02956",
-      "abstract": "A European dataset with high-fidelity sensors and comprehensive 3D HD maps, featuring synchronized global-shutter cameras, long-range lidar beyond 400m, 4D imaging radar, and redundant GNSS/INS localization for autonomous driving research."
-    },
-    {
-      "title": "AffordanceVLA: A Vision-Language-Action Model Empowering Action Generation through Affordance-Aware Understanding",
-      "upvotes": 10,
-      "paper_id": "2606.06155",
-      "abstract": "A unified framework introduces structured affordance forecasting as an intermediate representation to improve perception-action mapping in robotic manipulation by leveraging pretrained vision-language models."
-    },
-    {
-      "title": "MAOAM: Unified Object and Material Selection with Vision-Language Models",
-      "upvotes": 9,
-      "paper_id": "2606.04880",
-      "abstract": "A unified vision-language model framework enables precise object and material selection through text or click interactions, supporting diverse image editing workflows with improved robustness."
-    },
-    {
-      "title": "Absorbing Complexity: An Interaction-Native Knowledge Harness for Financial LLM Agents",
-      "upvotes": 2,
-      "paper_id": "2606.01886",
-      "abstract": "An architecture for financial LLM agents that absorbs complexity into the system through structured knowledge management, temporal graph memory, and governance mechanisms for safer decisions."
-    },
-    {
-      "title": "BRepCLIP: Contrastive Multimodal Pretraining on BRep Primitives for CAD Understanding",
-      "upvotes": 1,
-      "paper_id": "2606.05515",
-      "abstract": "The first framework to align boundary representation geometry with language and image embeddings through contrastive pretraining, improving retrieval and classification performance over point-based methods."
-    },
-    {
-      "title": "Regret Minimization with Adaptive Opponents in Repeated Games",
-      "upvotes": 1,
-      "paper_id": "2606.06486",
-      "abstract": "Introduces Repeated Policy Regret as a game-theoretic metric for analyzing adaptive opponents in repeated games, offering stronger equilibrium guarantees through novel non-convex optimization algorithms."
-    },
-    {
-      "title": "LLM Anonymization Against Agentic Re-Identification",
-      "upvotes": 1,
-      "paper_id": "2605.30848",
-      "abstract": "An LLM-powered anonymization framework balances privacy protection against agentic web-search re-identification while preserving contextual utility through adaptive privacy scopes."
-    },
-    {
-      "title": "AURA: Intent-Directed Probing for Implicit-Need Surfacing in Situated LLM Agents",
-      "upvotes": 1,
-      "paper_id": "2606.05557",
-      "abstract": "Enhances query answering by incorporating an intent inference step that estimates implicit needs and optimizes tool usage through gap scoring, improving implicit-need coverage."
-    }
+    {"title": "Agents' Last Exam", "upvotes": 44, "paper_id": "2606.05405", "abstract": "Benchmark evaluating AI agents on long-horizon, economically valuable real-world tasks across 13 industry clusters with 1K+ tasks, revealing significant gaps between benchmark performance and practical deployment."},
+    {"title": "DEI: Diversity in Evolutionary Inference for Quality-Diversity Search", "upvotes": 9, "paper_id": "2605.27130", "abstract": "Distributed Quality-Diversity search framework using heterogeneous large language models as mutation operators, demonstrating that model diversity improves performance over homogeneous parallel approaches."},
+    {"title": "Liberating LLM Capabilities in Full-Duplex Speech Models", "upvotes": 8, "paper_id": "2606.07547", "abstract": "Text-first tri-channel speech interface enabling real-time interaction with visible text output alongside spoken responses, demonstrating superior performance in full-duplex conversational tasks."},
+    {"title": "Light-WAM: Efficient World Action Models with State-Fusion Action Decoding", "upvotes": 7, "paper_id": "2606.08242", "abstract": "Lightweight world action model for robot manipulation using compact video backbone and downsampled latent space for efficient future-video supervision, combined with direct action prediction."},
+    {"title": "SDR: Set-Distance Rewards for Radiology Report Generation", "upvotes": 3, "paper_id": "2606.00440", "abstract": "Set-based rewards using embedding distances improve chest X-ray report generation by enabling effective post-training and test-time selection without requiring causal reasoning structures."},
+    {"title": "Robotic Policy Adaptation via Weight-Space Meta-Learning", "upvotes": 3, "paper_id": "2606.07217", "abstract": "Weight-space meta-learning framework generating task-specific LoRA parameters for frozen VLA policies using language instructions and demonstration videos, enabling efficient task adaptation."},
+    {"title": "AsyncWebRL: Efficient Multi-Step RL for Visual Web Agents", "upvotes": 2, "paper_id": "2606.05597", "abstract": "Asynchronous reinforcement learning improves vision-language web agent training through system-level and algorithmic optimizations, achieving faster throughput and better performance on challenging tasks."},
+    {"title": "Phase Marginalization for Patch-Grid Instability in Vision Transformers", "upvotes": 2, "paper_id": "2606.08132", "abstract": "Post-hoc method addressing phase-dependent instability in Vision Transformers by evaluating structured patch-grid phases and aggregating outputs in the original image coordinate system."},
+    {"title": "SigmaScale: LLM Compression with SVD-based Low-Rank Decomposition and Learned Scaling Matrices", "upvotes": 1, "paper_id": "2606.07098", "abstract": "Learns auxiliary scaling matrices to improve truncated SVD-based LLM compression by adapting to individual weight structures through activation-aware transformations for efficient inference."},
+    {"title": "Send a SCOUT First: Pre-hoc Reasoning for Adaptive Detector Allocation in Prompt-Injection Defense", "upvotes": 1, "paper_id": "2605.30837", "abstract": "SCOUT framework dynamically allocates prompt-injection detection by predicting detector reliability and latency, improving safety and efficiency over fixed single-detector approaches."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.168",
-      "published_at": "2025-06-06",
-      "body": "Bug fixes and reliability improvements"
-    },
-    {
-      "tag_name": "v2.1.167",
-      "published_at": "2025-06-06",
-      "body": "Bug fixes and reliability improvements"
-    },
-    {
-      "tag_name": "v2.1.166",
-      "published_at": "2025-06-06",
-      "body": "Added fallbackModel setting to configure up to three fallback models tried in order when the primary model is overloaded or unavailable; --fallback-model now also applies to interactive sessions. Added glob pattern support in deny rule tool-name position; allow rules reject non-MCP globs. Hardened cross-session messaging: messages relayed via SendMessage from other Claude sessions no longer carry user authority. MAX_THINKING_TOKENS=0, --thinking disabled, and the per-model thinking toggle now disable thinking on models that think by default via the Claude API. Claude Code now retries a turn once on the fallback model when the API rejects an unexpected non-retryable error. claude update now announces the target version before downloading. Fixed a recurring image could not be processed error and extra token usage when an unprocessable image was sent in a session."
-    }
+    {"tag_name": "v2.1.170", "published_at": "2025-06-09", "body": "Introducing Claude Fable 5: a Mythos-class model that we've made safe for general use. Fable's capabilities exceed those of any model we've ever made generally available. Update to version 2.1.170 for access.\n\nFixed sessions not saving transcripts (and not appearing in --resume) when launched from the VS Code integrated terminal or any shell that inherited Claude Code environment variables."},
+    {"tag_name": "v2.1.169", "published_at": "2025-06-08", "body": "Added `--safe-mode` flag and `CLAUDE_CODE_SAFE_MODE` to disable customizations for troubleshooting. Added `/cd` command to move sessions to new directories. Added `disableBundledSkills` setting. Fixed arrow key navigation in input history, MCP policy enforcement, UI stalls on macOS, slow `claude -p` on Windows, Remote Control reconnection issues, Git credential popups, footer hints, permission prompts, and numerous agent view fixes. Improved TaskCreate reliability and error messages. Reduced CPU usage during streaming."},
+    {"tag_name": "v2.1.168", "published_at": "2025-06-06", "body": "Bug fixes and reliability improvements"}
   ]
 }
