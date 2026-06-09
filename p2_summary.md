@@ -1,6 +1,6 @@
-**2. Dream.exe: Can Video Generation Models Dream Executable Robot Manipulation?**
-**著者**: Dream.exe Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.04811
+**2. DEI: Diversity in Evolutionary Inference for Quality-Diversity Search**
+**著者**: DEI Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.27130
 
 **まとめ**:
-動画生成モデルが物理的に実行可能なロボット操作動画を生成できるかを初めて定量評価するベンチマーク Dream.exe を提案。101 の操作タスクを 3 難易度に分類し、生成動画からロボット軌跡を抽出して物理シミュレータで実行・成功率を測定。最重要な発見として「視覚品質スコアと実行成功率の相関はほぼゼロ（r=-0.03）」が判明し、見た目の良さと物理的実行可能性が独立していることを実証。ロボット AI 研究における動画生成の活用限界と改善方向を明確化した。
+異種 LLM (GPT, Claude, Gemini 等) を突然変異演算子として並列分散させる Quality-Diversity 探索フレームワーク。均質アンサンブル比でQD-Score 124%向上・被覆率 28%向上を達成し、「モデルの種類の違い」が解の多様性向上に直結することを実証した。

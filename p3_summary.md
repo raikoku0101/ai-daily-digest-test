@@ -1,6 +1,6 @@
-**3. The Road Ahead in Autonomous Driving: The KITScenes Multimodal Dataset**
-**著者**: KITScenes Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.02956
+**3. Liberating LLM Capabilities in Full-Duplex Speech Models (Listen-Write-Speak)**
+**著者**: LWS Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.07547
 
 **まとめ**:
-欧州都市環境に特化した自動運転向けマルチモーダルデータセット KITScenes を提案。72.5 メガピクセルのグローバルシャッタカメラ・400m 超 LiDAR・4D イメージングレーダー・冗長 GNSS/INS を統合し、Lanelet2 フォーマットの 62km² HD マップを同梱。既存手法（MapTRv2、Depth Anything 3、ReconDrive 等）を 4 つのベンチマークで評価し、長距離深度推定と新規視点合成でいずれも重大な能力ギャップを発見。北米・アジア偏重だったデータセット多様性問題に対し欧州ベンチマーク基盤として貢献する。
+音声 LLM の「テキスト能力が音声出力に制約される」問題を解消する Listen-Write-Speak (LWS) パラダイムを提案。単一の自己回帰 Transformer が聴取・テキスト生成・音声発話を並行実行し、フルデュプレックス対話中でも可視テキスト出力と高品質な音声応答を同時に実現する。
