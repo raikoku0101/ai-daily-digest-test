@@ -1,6 +1,6 @@
-**5. SDR: Set-Distance Rewards for Radiology Report Generation**
-**著者**: SDR Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.00440
+**5. Interpreting and Steering a Text-to-Speech Language Model with Sparse Autoencoders**
+**著者**: TTS-SAE Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.10029
 
 **まとめ**:
-胸部 X 線レポート自動生成に向け、放射線所見が「順序に依存しない集合」という医学的特性を活かした集合距離報酬（Chamfer 距離・Hausdorff 距離）を提案。訓練時の RL 微調整と推論時の候補選択の両面で有効であり、BERTScore/RadGraph F1/CheXbert F1 で最大 7.8% の相対改善を達成した。
+音声合成 LM (CosyVoice3) に Sparse Autoencoder (SAE) を適用し、潜在空間の解釈可能な特徴を抽出。モダリティ対応の自動解釈パイプラインで音素・笑い・話者性別・話速などの制御方向を発見。SAE 介入により笑い確率を 0.02→0.79 に操作、話者性別の反転、話速制御を実証。解釈可能性と制御可能性を同時に実現し、感情調整 TTS の実用化に向けた重要な手法を提供。

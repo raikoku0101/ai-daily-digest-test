@@ -1,6 +1,6 @@
-**4. Light-WAM: Efficient World Action Models with State-Fusion Action Decoding**
-**著者**: Light-WAM Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.08242
+**4. SkillHarm: Lifecycle-Aware Skill-Based Attacks via Automated Construction**
+**著者**: SkillHarm Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.02540
 
 **まとめ**:
-ロボット操作向けの World Action Model (WAM) を大幅に軽量化した Light-WAM を提案。Wan2.1-T2V-1.3B を凍結しダウンサンプル潜在空間での将来フレーム予測と直接行動予測を組み合わせ、LIBERO ベンチマークで 97.2% の成功率を達成しつつ訓練パラメータを 13.7 倍削減、推論遅延を 72ms に抑制した。
+AI エージェントのスキル使用ライフサイクル全体にわたる攻撃を体系的に分析したベンチマーク。固定ペイロード毒性化 (FPP) と自己変異毒性化 (SMP) の 2 攻撃シナリオを定義し、AutoSkillHarm で 879 サンプルを自動生成。FPP 最大 86.3%・SMP 最大 69.3% の攻撃成功率を確認。既存の防御機構がスキルベース攻撃を十分に緩和できていないことを実証し、ライフサイクル全体での防御戦略の必要性を訴える。

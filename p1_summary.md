@@ -1,6 +1,6 @@
-**1. Agents' Last Exam (エージェントの最終試験)**
-**著者**: ALE Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.05405
+**1. Kwai Keye-VL-2.0 Technical Report**
+**著者**: Kwai Keye Team (2025)
+**arXiv**: https://arxiv.org/abs/2606.10651
 
 **まとめ**:
-AI エージェントがベンチマークで高得点を取りながら実業務に展開できないギャップを定量化する初の大規模評価基盤。医療・法律・金融等 13 産業・55 専門分野・1,490 タスクを 250 人超の業界専門家と構築し、最難関層「Last-Exam」では最先端エージェントの合格率わずか 2.6% を実証した。
+Kwai が開発した 30B パラメータ MoE マルチモーダル基盤モデル。DeepSeek Sparse Attention により 256K トークンの長文脈処理を実現し、長時間動画理解とエージェント知能を統合。Cross-Modal Multi-Teacher On-Policy Distillation (MOPD) で 13 の専門教師モデルから知識を統合し、LongVideoBench 74.1%・ツール使用 82.6% を達成。オープンソース公開により商用品質の長動画理解モデルが誰でも利用可能になった。
