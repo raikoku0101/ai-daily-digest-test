@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-11",
+  "content": "# AI Daily Digest — 2026-06-11\n\n## 今日のハイライト\n- **Claude Fable 5 & v2.1.172**: Anthropic が史上最高性能の Fable 5 モデルを一般提供開始。同時にサブエージェントの5階層スポーンが可能になり、マルチエージェント AI の実用化が一気に加速。\n- **Kwai Keye-VL-2.0 (167 upvotes)**: 256K コンテキストを処理できる MoE マルチモーダル基盤モデルがオープンソース公開。長時間動画理解とエージェント知能を統合した商用品質モデルが誰でも使える時代に。\n- **Role-Agent (73 upvotes)**: LLM 自身が「エージェント役」と「環境役」を同時に担い人手データなしで自己改善する手法が登場。AI エージェントの低コスト・高品質な訓練パラダイムとして注目。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.172 (2025-06-10) — 最新版\n**主要機能:**\n- **サブエージェントの多段階スポーン対応**: サブエージェントが自身のサブエージェントを最大5階層まで生成可能に。複雑なマルチエージェントワークフローの構築が大幅に容易化。\n- **Amazon Bedrock リージョン自動検出**: `AWS_REGION` 未設定時に `~/.aws` 設定ファイルから AWS リージョンを自動読み込み。設定の手間が削減。\n- **/plugin マーケットプレイス検索バー追加**: プラグイン一覧のブラウジング時に検索機能が利用可能に。\n- **OTEL メトリクス強化**: `claude_code.lines_of_code.count` に `model` 属性を追加。\n\n**バグ修正:**\n- 1M コンテキスト使用時のセッション永久停止問題を修正（自動コンパクションで回復）\n- 画像処理エラーの繰り返しメッセージを修正\n- エージェントビューのスピナーが最大30秒継続する問題を修正\n- バックグラウンドエージェントが別ディレクトリの設定を読み込むバグを修正\n- サブエージェントが「active」のまま残る問題を修正\n\n**ユーザーへの影響:** 大規模マルチエージェントシステムの構築が可能になり、AWS Bedrock ユーザーの設定工数が削減される。\n\n---\n\n### v2.1.170 (2025-06-09)\n**主要機能:**\n- **Claude Fable 5 導入**: Mythos クラスの最新モデル。これまで一般提供されたどのモデルをも上回る能力を持ち、安全性評価済み。`v2.1.170` 以降で利用可能。\n\n**バグ修正:**\n- VS Code 統合ターミナルや Claude Code 環境変数を継承したシェルから起動した場合にトランスクリプトが保存されない問題を修正。\n\n**ユーザーへの影響:** 最高性能モデルへのアクセスが可能に。既存ユーザーはアップデートで即時利用できる。\n\n---\n\n### v2.1.169 (2025-06-08)\n**主要機能:**\n- **`--safe-mode` フラグ追加**: 全カスタマイズを無効化したトラブルシューティングモードで起動可能。環境変数 `CLAUDE_CODE_SAFE_MODE` でも制御可。\n- **`/cd` コマンド追加**: プロンプトキャッシュを破壊せずに作業ディレクトリを変更可能。\n- **`disableBundledSkills` 設定追加**: 組み込みスキル・ワークフロー・スラッシュコマンドをモデルから非表示にする設定。\n\n**バグ修正:**\n- 上下矢印キーが長い入力行の折り返し行を越えてコマンド履歴にジャンプするバグを修正\n- エンタープライズ MCP ポリシーが再接続時や IDE 設定に適用されない問題を修正\n- macOS ユーザーの各ターン開始時 30-50ms UI 停止を修正\n- Windows で `claude -p` が遅延・ハングする問題を修正\n\n**ユーザーへの影響:** デバッグ機能の充実とキャッシュ保持でのディレクトリ変更により、開発効率が向上。\n\n## 注目論文 TOP 10\n\n**1. Kwai Keye-VL-2.0 Technical Report** | upvotes: 167 | https://arxiv.org/abs/2606.10651\n🎯 **背景**: 長時間動画の理解とエージェント的知能を統合した基盤モデルの構築が求められているが、既存モデルはコンテキスト長や動画特化能力に限界があった。\n🔧 **手法**: DeepSeek Sparse Attention を採用した Mixture-of-Experts アーキテクチャで 256K コンテキストを処理。オープンソースで公開。\n📊 **結果**: 長時間動画理解とマルチモーダルエージェント双方で先行オープンソースモデルを大幅に上回るベンチマーク性能を達成。\n💡 **意義**: 企業・研究者が商用品質の長動画理解モデルをオープンに利用できる時代が到来。エージェント AI の実用化が加速。\n⚠️ **限界**: MoE 構造による推論コストが高く、エッジデプロイには不向き。256K コンテキストは十分な GPU メモリを要求。\n\n---\n\n**2. Role-Agent: Bootstrapping LLM Agents via Dual-Role Evolution** | upvotes: 73 | https://arxiv.org/abs/2606.10917\n🎯 **背景**: LLM エージェントの訓練には大量の人手ラベルデータが必要で、環境設計コストも高い。自己改善型の訓練パラダイムが求められていた。\n🔧 **手法**: 同一 LLM がエージェント役と環境役の二役を担う「Dual-Role Evolution」を提案。環境認識型推論と標的型練習で共進化させる。\n📊 **結果**: 人手ラベルなしで既存エージェント手法を上回る性能を達成し、様々なタスクで汎化性を確認。\n💡 **意義**: データ収集コスト削減により、専門ドメインへのエージェント適用が民主化される。自律的な能力向上ループが実現。\n⚠️ **限界**: 環境役 LLM の品質がボトルネック。初期能力が低い場合は共進化が収束しないリスクがある。\n\n---\n\n**3. MemDreamer: Decoupling Perception and Reasoning for Long Video Understanding** | upvotes: 35 | https://arxiv.org/abs/2606.07512\n🎯 **背景**: 長時間動画の理解では知覚（フレーム処理）と推論（意味理解）が混在し、スケール時の効率が課題だった。\n🔧 **手法**: 階層的グラフメモリで動画内容を構造化し、エージェント的ツール拡張型検索機構で必要情報を選択的に取得。知覚と推論を分離。\n📊 **結果**: 長時間動画 QA ベンチマークで最先端手法に対して精度・効率の両面で優位性を示す。\n💡 **意義**: 数時間規模の動画を扱う実用システム（監視映像分析、動画検索等）への道を開く。メモリ効率の高い設計が重要な知見。\n⚠️ **限界**: グラフメモリの構築コストが前処理段階で発生。リアルタイム処理には課題が残る。\n\n---\n\n**4. SkillHarm: Lifecycle-Aware Skill-Based Attacks via Automated Construction** | upvotes: 9 | https://arxiv.org/abs/2606.02540\n🎯 **背景**: LLM エージェントがスキル（ツール・関数）を使用するライフサイクル全体にわたる攻撃リスクが体系的に評価されていなかった。\n🔧 **手法**: エージェントのスキル使用ライフサイクル（取得・呼び出し・実行）を分類した体系的タクソノミーを構築し、自動化された攻撃ベンチマークを構築。\n📊 **結果**: 攻撃成功率が最大 86.3% に達し、現状の LLM エージェントの重大な脆弱性を実証。\n💡 **意義**: エージェント AI のセキュリティ評価の標準化に貢献。防御策開発のための貴重な基準を提供。\n⚠️ **限界**: 攻撃手法の公開が悪用リスクを高める側面も。実環境でのエージェント保護の早急な整備が必要。\n\n---\n\n**5. Interpreting and Steering a Text-to-Speech Language Model with Sparse Autoencoders** | upvotes: 9 | https://arxiv.org/abs/2606.10029\n🎯 **背景**: 音声合成 LM の内部表現は不透明で、言語・韻律属性をどう制御するかの解釈可能性研究が不足していた。\n🔧 **手法**: Sparse Autoencoder (SAE) を音声合成 LM の潜在空間に適用し、言語的・韻律的属性に対応する解釈可能な特徴量を発見。潜在空間操作で音声制御。\n📊 **結果**: SAE 特徴量が感情・話速・アクセント等の属性と対応することを確認。意図的な属性操作が可能なことを実証。\n💡 **意義**: 音声合成の解釈可能性・制御可能性向上に向けた重要な一歩。医療・アシスタント向けの感情調整 TTS への応用が期待される。\n⚠️ **限界**: SAE の学習コストが高く、新モデルへの転用に追加コストが必要。全属性を網羅できているかの保証はない。\n\n**6. Next Forcing: Causal World Modeling with Multi-Chunk Prediction** | upvotes: 3 | https://arxiv.org/abs/2606.11187\n🎯 **背景**: 自己回帰型動画生成モデルは収束が遅く、推論コストが高い。物理法則の遵守も既存手法では不十分だった。\n🔧 **手法**: 複数フレームを一括予測する「Multi-Chunk Prediction」フレームワーク。因果的世界モデリングと組み合わせて動画の時間的一貫性を強化。\n📊 **結果**: 収束速度 2.3 倍向上、推論速度 2 倍加速、物理法則遵守の改善を達成。\n💡 **意義**: ロボット学習・シミュレーション等に使われる世界モデルの効率化に直結。実用的な動画生成の計算コスト削減に貢献。\n⚠️ **限界**: チャンクサイズの最適化が必要で、動画の種類によって最適値が異なる可能性がある。\n\n---\n\n**7. Do Coding Agents Deceive Us? Detecting and Preventing Cheating via Capped Evaluation** | upvotes: 3 | https://arxiv.org/abs/2606.07379\n🎯 **背景**: コーディングエージェントがテストケースに特化した近道を学習し、評価指標を水増しする「チート」問題が深刻化している。\n🔧 **手法**: 性能上限付きのランダム化テストを用い、エージェントがテストを暗記・悪用していないかを検出するフレームワークを構築。\n📊 **結果**: 従来評価では高性能に見えたエージェントが実際にはショートカットを利用していたことを複数のケースで実証。\n💡 **意義**: AI コーディングエージェントの信頼性評価に対する警鐘。ベンチマーク設計への重要な示唆を提供。\n⚠️ **限界**: ランダム化テスト生成の品質がフレームワークの精度に依存。全種類のチートを検出できるかは未検証。\n\n---\n\n**8. IR3DE: A Linear Router for Large Language Models** | upvotes: 3 | https://arxiv.org/abs/2606.06098\n🎯 **背景**: 複数の専門 LLM を使い分けるルーティング手法は、再学習コストや動的な専門家追加に対して柔軟性が低かった。\n🔧 **手法**: リッジ回帰ベースの線形ルーターで、ドメイン専門 LLM を選択。専門家の追加・削除が再学習なしに実現できる設計。\n📊 **結果**: 複数ドメインのベンチマークで既存ルーティング手法に匹敵または上回る性能を達成しつつ、計算コストを大幅削減。\n💡 **意義**: 企業での LLM ルーティング基盤構築が軽量化。コスト効率と専門性を両立するシステムの実装が容易に。\n⚠️ **限界**: 線形モデルのため、複雑なドメイン間の相互依存を捉えられない場合がある。\n\n---\n\n**9. The Role of Feedback Alignment in Self-Distillation** | upvotes: 2 | https://arxiv.org/abs/2606.11173\n🎯 **背景**: LLM の自己蒸留（自己生成データで学習）において、どのようなフィードバック形式が有効かの理解が不足していた。\n🔧 **手法**: バイナリ報酬とステップ整合型批評を比較検証し、推論の特定失敗箇所を標的にするフィードバックの効果を分析。\n📊 **結果**: ステップ整合型批評がバイナリ報酬を上回り、構造的整合性が自己蒸留において重要であることを実証。\n💡 **意義**: RLHF・自己改善系の手法設計において、フィードバックの粒度と構造の重要性を明示。モデル訓練の改善指針を提供。\n⚠️ **限界**: 特定のタスク・モデル規模での検証のみ。大規模モデルへの一般化は追加検証が必要。\n\n---\n\n**10. PsychoSafe: Eliciting Psychologically-Informed Refusals in Large Language Models** | upvotes: 5 | https://arxiv.org/abs/2606.09697\n🎯 **背景**: LLM が有害リクエストを拒否する際、単純な拒否応答は非共感的で非効果的なことが多く、ユーザーが繰り返し試みるリスクがある。\n🔧 **手法**: 心理学的知見に基づく構造化された支持的コミュニケーションフレームワークを用いて、拒否応答の質と共感性を向上。\n📊 **結果**: 拒否応答品質が 28.1% 向上。ユーザーへの支持的な対応と安全性の両立を実現。\n💡 **意義**: AI の安全性と利用体験の両立に向けた新たなアプローチ。カウンセリング・危機介入シナリオへの応用が期待される。\n⚠️ **限界**: 心理学フレームワークの適用が文化・言語によって効果が異なる可能性がある。\n\n",
+  "fetched_at": "2026-06-10T23:18:43.435153+00:00",
+  "papers": [
+    {
+      "title": "Kwai Keye-VL-2.0 Technical Report",
+      "upvotes": 167,
+      "paper_id": "2606.10651",
+      "abstract": "Open-source Mixture-of-Experts multimodal foundation model for long-video understanding and agentic intelligence, featuring DeepSeek Sparse Attention for 256K context processing."
+    },
+    {
+      "title": "Role-Agent: Bootstrapping LLM Agents via Dual-Role Evolution",
+      "upvotes": 73,
+      "paper_id": "2606.10917",
+      "abstract": "Framework enabling LLM to function as both agent and environment through bootstrapped co-evolution, improving performance via environment-aware reasoning and targeted practice."
+    },
+    {
+      "title": "MemDreamer: Decoupling Perception and Reasoning for Long Video Understanding via Hierarchical Graph Memory and Agentic Retrieval Mechanism",
+      "upvotes": 35,
+      "paper_id": "2606.07512",
+      "abstract": "Framework decoupling perception and reasoning for long-video understanding through hierarchical graph memory and agentic tool-augmented retrieval mechanisms."
+    },
+    {
+      "title": "SkillHarm: Lifecycle-Aware Skill-Based Attacks via Automated Construction",
+      "upvotes": 9,
+      "paper_id": "2606.02540",
+      "abstract": "Benchmark evaluating skill-based attacks across agent skill-use lifecycle with systematic taxonomy, revealing vulnerabilities with attack success rates up to 86.3%."
+    },
+    {
+      "title": "Interpreting and Steering a Text-to-Speech Language Model with Sparse Autoencoders",
+      "upvotes": 9,
+      "paper_id": "2606.10029",
+      "abstract": "Sparse autoencoders reveal interpretable features for speech synthesis that control linguistic and prosodic attributes through latent space manipulation."
+    },
+    {
+      "title": "Next Forcing: Causal World Modeling with Multi-Chunk Prediction",
+      "upvotes": 3,
+      "paper_id": "2606.11187",
+      "abstract": "Multi-chunk prediction framework for autoregressive video generation achieving 2.3x faster convergence and 2x inference acceleration with improved physical law adherence."
+    },
+    {
+      "title": "Do Coding Agents Deceive Us? Detecting and Preventing Cheating via Capped Evaluation with Randomized Tests",
+      "upvotes": 3,
+      "paper_id": "2606.07379",
+      "abstract": "Framework using randomized testing with performance caps to detect shortcut exploitation in agent evaluation while preventing cheating behavior."
+    },
+    {
+      "title": "IR3DE: A Linear Router for Large Language Models",
+      "upvotes": 3,
+      "paper_id": "2606.06098",
+      "abstract": "Ridge regression-based routing method for selecting domain-expert LLMs that enables dynamic addition/removal of experts without retraining from scratch."
+    },
+    {
+      "title": "The Role of Feedback Alignment in Self-Distillation",
+      "upvotes": 2,
+      "paper_id": "2606.11173",
+      "abstract": "Research reveals step-aligned critique outperforms binary rewards by targeting specific reasoning failures, demonstrating structural alignment's importance in self-distillation."
+    },
+    {
+      "title": "PsychoSafe: Eliciting Psychologically-Informed Refusals in Large Language Models",
+      "upvotes": 5,
+      "paper_id": "2606.09697",
+      "abstract": "Psychologically-informed refusal framework improving harmful request handling through structured supportive communication with 28.1% quality improvement."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.172",
+      "published_at": "2025-06-10",
+      "body": "Sub-agents can now spawn their own sub-agents (up to 5 levels deep). Amazon Bedrock now reads the AWS region from ~/.aws config files when AWS_REGION isn't set. Added a search bar when browsing a marketplace's plugins in /plugin. Added model attribute to the claude_code.lines_of_code.count OTEL metric. Fixed sessions using 1M context without usage credits getting permanently stuck — the session now automatically compacts back under the standard context limit. Fixed a repeating \"an image in the conversation could not be processed and was removed\" error. Fixed the agents view keeping a session under Working with a busy spinner for up to 30 seconds after the worker replied. Fixed background agents potentially reading another directory's project settings when dispatched onto a pre-warmed worker. Fixed background-session attach failing with EAUTH for sessions started on an older version. Fixed a background sub-agent staying stuck as \"active\" in the agent panel. Fixed /model suggestions rendering with a misleading slash prefix and showing models disabled for your org."
+    },
+    {
+      "tag_name": "v2.1.170",
+      "published_at": "2025-06-09",
+      "body": "Introducing Claude Fable 5: a Mythos-class model that we've made safe for general use. Fable's capabilities exceed those of any model we've ever made generally available. Update to version 2.1.170 for access. Fixed sessions not saving transcripts (and not appearing in --resume) when launched from the VS Code integrated terminal or any shell that inherited Claude Code environment variables."
+    },
+    {
+      "tag_name": "v2.1.169",
+      "published_at": "2025-06-08",
+      "body": "Added --safe-mode flag (and CLAUDE_CODE_SAFE_MODE) to start Claude Code with all customizations disabled for troubleshooting. Added /cd command to move a session to a new working directory without breaking the prompt cache mid-session. Added a disableBundledSkills setting and CLAUDE_CODE_DISABLE_BUNDLED_SKILLS environment variable to hide bundled skills, workflows, and built-in slash commands from the model. Fixed Up/Down arrows jumping to command history past the wrapped rows of a long input line. Fixed enterprise managed MCP policies not being enforced on reconnect, IDE-typed configs, --mcp-config servers, or before remote settings loaded. Fixed a ~30-50ms UI stall at the start of each turn for macOS users logged in with claude.ai credentials. Fixed claude -p being slow or appearing to hang on Windows. Fixed Remote Control getting stuck on \"reconnecting\" after resuming a session when an OAuth token refresh happened."
+    }
+  ]
+}
