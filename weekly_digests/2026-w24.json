@@ -1,0 +1,49 @@
+{
+  "week": "2026-w24",
+  "content": "# 📅 Claude Code 週刊アップデート — Week 22 · May 25–29, 2026\n\n> Claude Opus 4.8 で Claude Code を実行し、ダイナミックワークフローで大規模タスクを調整し、security-guidance プラグインでセキュリティ問題を検出し、Opus 4.8 のファストモードをより低価格でご利用ください。\n\n## 🚀 主要機能 (4 件)\n\n### Claude Opus 4.8 `new model`\nOpus 4.8 が Max・Team Premium・Enterprise 従量課金・Anthropic API のデフォルトモデルになりました。デフォルトで高エフォートで動作し、難しいタスクには `/effort xhigh` を使用してください。v2.1.154 以降が必要です。\n🔗 https://code.claude.com/en/model-config#available-models\n\n### Dynamic workflows `research preview`\nワークフローは、Claude がタスクのために作成し、バックグラウンドで多数のサブエージェントにまたがって実行するオーケストレーションスクリプトです。コードベース全体の監査、大規模なマイグレーション、相互確認が必要なリサーチクエスチョンなど、1 つの会話で調整しきれないタスクに活用してください。`/workflows` で実行を管理できます。\n🔗 https://code.claude.com/en/workflows\n\n### Security guidance plugin `plugin`\nsecurity-guidance プラグインは、Claude のコード変更を脆弱性についてレビューし、同一セッション内で修正します。各編集時に高速なパターンチェック、各ターン終了時にモデルレビュー、コミットまたはプッシュ時により深いエージェントレビューを実行します。プロジェクトルールは `.claude/claude-security-guidance.md` に追加できます。\n🔗 https://code.claude.com/en/security-guidance\n\n### Fast mode on Opus 4.8 `research preview`\nファストモードが Opus 4.8 をデフォルトとして $10/$50 per MTok で利用可能に。通常料金の 2 倍の価格で約 2.5 倍の速度を実現します。Opus 4.7 と 4.6 は $30/$150 のまま変わりません。Opus 4.6 のファストモードは廃止予定です。\n🔗 https://code.claude.com/en/fast-mode#understand-the-cost-tradeoff\n\n## ✨ その他のアップデート\n\n- `claude agents` で、シェルコマンドの先頭に `!` を付けると、アタッチ・デタッチ可能なバックグラウンドジョブとして実行できます。`claude --bg --exec 'pytest -x'` としても利用可能です\n- `.claude/skills` ディレクトリのプラグインが自動的に読み込まれるようになりました（マーケットプレイス不要）。`claude plugin init <名前>` で新しいプラグインの雛形を作成できます\n- 新しい `/reload-skills` コマンドで再起動不要でスキルディレクトリを再スキャンできます。また `SessionStart` フックが `reloadSkills: true` を返すことで、インストールしたスキルを同一セッション内で利用可能にできます\n- スキルとコマンドのフロントマターに `disallowed-tools` を設定することで、スキルが有効な間はそのツールをモデルから除外できます\n- 新しい `MessageDisplay` フックイベントにより、フックがアシスタントのメッセージテキストを表示時に変換・非表示にできます\n- プライマリモデルが見つからない場合、毎回エラーにする代わりに、設定された `--fallback-model` にセッション全体で切り替わるようになりました\n- プラグインが `plugin.json` またはマーケットプレイスエントリで `defaultEnabled: false` を宣言できるようになり、有効化するまでオフの状態でインストールされます\n- Vim モード：NORMAL モードで `/` を押すと逆方向ヒストリ検索が開き、Bash/Zsh の vi モードと同じ操作感になりました\n- テレメトリ無効時や Bedrock・Vertex・Foundry 環境でも、ストリーミングツール実行が常に有効になりました\n- `←←` でエージェントビューを開く操作が Bedrock・Vertex・Foundry およびテレメトリ無効時でも動作するようになりました\n- Claude in Chrome：`/chrome` → 「Select browser…」から接続中のブラウザを選択できます。複数接続時はブラウザアクション実行中にチャット内で選択することも可能です\n- `claude mcp list` と `claude mcp get` で、未承認の `.mcp.json` サーバーが自動承認・接続されるのではなく、承認待ちとして表示されるようになりました（出力がパイプされる場合）\n\n📄 原文: https://code.claude.com/docs/en/whats-new/2026-w22\n",
+  "fetched_at": "2026-06-11T23:09:29.148319+00:00",
+  "raw": {
+    "title": "Week 22 · May 25–29, 2026",
+    "subtitle": "Run Claude Code on Claude Opus 4.8, orchestrate large tasks with dynamic workflows, catch security issues with the security-guidance plugin, and use fast mode on Opus 4.8 at a lower price.",
+    "features": [
+      {
+        "title": "Claude Opus 4.8",
+        "pill": "new model",
+        "lede": "Opus 4.8 is now the default on Max, Team Premium, Enterprise pay-as-you-go, and the Anthropic API. It defaults to high effort; use /effort xhigh for harder tasks. Requires v2.1.154 or later.",
+        "link": "/en/model-config#available-models"
+      },
+      {
+        "title": "Dynamic workflows",
+        "pill": "research preview",
+        "lede": "A workflow is an orchestration script Claude writes for your task and runs across many subagents in the background. Use one when a task is too large for one conversation to coordinate: a codebase-wide audit, a large migration, a research question that needs cross-checking. Manage runs with /workflows.",
+        "link": "/en/workflows"
+      },
+      {
+        "title": "Security guidance plugin",
+        "pill": "plugin",
+        "lede": "The security-guidance plugin reviews Claude's code changes for vulnerabilities and fixes them in the same session. It runs a fast pattern check on each edit, a model review at the end of each turn, and a deeper agentic review on commit or push. Add project rules in .claude/claude-security-guidance.md.",
+        "link": "/en/security-guidance"
+      },
+      {
+        "title": "Fast mode on Opus 4.8",
+        "pill": "research preview",
+        "lede": "Fast mode now defaults to Opus 4.8 at $10/$50 per MTok: 2x the standard rate for about 2.5x the speed. Opus 4.7 and 4.6 stay at $30/$150. Opus 4.6 fast mode is deprecated.",
+        "link": "/en/fast-mode#understand-the-cost-tradeoff"
+      }
+    ],
+    "other_wins": [
+      "In claude agents, prefix a shell command with ! to run it as a background job you can attach to and detach from; also available as claude --bg --exec 'pytest -x'",
+      "Plugins in .claude/skills directories are now loaded automatically, no marketplace required, and claude plugin init <name> scaffolds a new plugin",
+      "New /reload-skills command re-scans skill directories without restarting, and SessionStart hooks can return reloadSkills: true to make skills they install available in the same session",
+      "Skills and commands can set disallowed-tools in frontmatter to remove tools from the model while the skill is active",
+      "New MessageDisplay hook event lets hooks transform or hide assistant message text as it is displayed",
+      "Claude Code now switches to your configured --fallback-model for the rest of the session when the primary model is not found, instead of failing every request",
+      "Plugins can declare defaultEnabled: false in plugin.json or a marketplace entry, so they install without turning on until you enable them",
+      "Vim mode: / in NORMAL mode opens reverse history search, matching Bash and Zsh vi-mode",
+      "Streaming tool execution is now always enabled, including with telemetry disabled and on Bedrock, Vertex, and Foundry",
+      "←← to open the agents view now works on Bedrock, Vertex, Foundry, and with telemetry disabled",
+      "Claude in Chrome: pick which connected browser to use via /chrome → \"Select browser…\", or in-chat when a browser action runs with multiple connected",
+      "claude mcp list and claude mcp get now show unapproved .mcp.json servers as pending approval instead of auto-approving and connecting when output is piped"
+    ]
+  }
+}
