@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-12",
+  "content": "# AI Daily Digest — 2026-06-12\n\n## 今日のハイライト\n- **Claude Fable 5 リリース (v2.1.170)**: Anthropic史上最強の汎用モデル「Fable 5」が一般提供開始。Mythos クラスの能力を持ちながら安全性を担保。Claude Code を v2.1.170 以降にアップデートすることでアクセス可能。\n- **サブエージェント再帰対応 (v2.1.172)**: エージェントが最大 5 階層のサブエージェントを生成できるように。複雑な自律タスクのオーケストレーションが大幅に強化され、本格的なマルチエージェントワークフローが実現。\n- **Grammar-Constrained Decoding によるジェイルブレーク攻撃**: コード生成の安全策として使われる文法制約デコーディングが逆に攻撃手段になりうることが判明（CodeSpear）。対策として CodeShield も同時提案。コーディング LLM を本番利用している開発者は要注目。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.173 (2025-06-11)\n**バグ修正**\n- Fable 5 モデル名に `[1m]` サフィックスが付いていた場合、自動的に正規化されるよう修正。Fable 5 はデフォルトで 1M コンテキストを含むため、このサフィックスは不要。\n- Windows で sandbox が有効な場合に起動時に表示されていた「sandbox dependencies missing」の誤警告を修正。\n\n**ユーザーへの影響**: Fable 5 利用者は `[1m]` を意識せずにモデルを呼び出せる。Windows ユーザーは不要な警告に悩まされなくなる。\n\n---\n\n### v2.1.172 (2025-06-10)\n**主要機能**\n- **サブエージェントの再帰呼び出し**: サブエージェントが自身のサブエージェントを最大 5 階層まで生成可能に。複雑なマルチエージェントワークフローが実現しやすくなった。\n- **Amazon Bedrock リージョン自動検出**: `AWS_REGION` が未設定の場合、`~/.aws` 設定ファイルから AWS SDK の優先順位に従ってリージョンを読み取るように改善。`/status` で取得元を確認可能。\n- **プラグイン検索バー**: `/plugin` でマーケットプレイスのプラグイン一覧を閲覧する際に検索バーが追加。\n\n**バグ修正**\n- 1M コンテキストを使用しているが usage credits がないセッションが永続的にスタックする問題を修正（自動的に標準コンテキスト上限以下にコンパクト化）。\n- 複数画像を含む会話での「an image could not be processed」エラーの繰り返し表示を修正。\n- エージェントビューがワーカー応答後 30 秒間スピナーを表示し続けるバグを修正。\n- バックグラウンドエージェントが別ディレクトリのプロジェクト設定を誤読するバグを修正。\n\n**ユーザーへの影響**: 大規模な自律エージェント構成が可能になり、Bedrock ユーザーの設定が簡略化。長時間セッションの安定性が向上。\n\n---\n\n### v2.1.170 (2025-06-09)\n**主要機能**\n- **Claude Fable 5 リリース**: Mythos クラスの新モデル。これまでに一般提供されたモデルを超える能力を持ちながら、安全に一般利用可能。v2.1.170 にアップデートすることでアクセス可能。\n\n**バグ修正**\n- VS Code 統合ターミナルや Claude Code の環境変数を継承したシェルから起動したセッションで、トランスクリプトが保存されず `--resume` にも表示されない問題を修正。\n\n**ユーザーへの影響**: Fable 5 が使えるようになった点が最大のインパクト。VS Code ユーザーはセッション再開が正常に機能するように。\n\n## 注目論文 TOP 10\n\n**1. On Subquadratic Architectures: From Applications to Principles** | 20 upvotes | https://arxiv.org/abs/2606.12364\n🎯 **背景**: Transformer の Attention は系列長に対して二乗のコストがかかり、長文・高速推論の妨げとなっている。xLSTM・Mamba-2・Gated DeltaNet といった線形/サブ二乗アーキテクチャが有力な代替候補として台頭。\n🔧 **手法**: コード生成モデルの事前学習、知識蒸留、時系列予測という 3 つの異なるタスクを横断比較。各モデルの状態追跡能力・メモリダイナミクスをゲーティング機構の観点で解析。\n📊 **結果**: xLSTM が全タスクで最も優れたパフォーマンスを達成。優れたゲーティングスキームによる状態追跡とメモリダイナミクスが性能を牽引。\n💡 **意義**: Transformer 以外のアーキテクチャが実用的なユースケースで Transformer を凌駕できることを示し、次世代モデル設計の指針を与える。\n⚠️ **限界**: 比較されたタスク種類がまだ限定的。大規模言語理解・マルチモーダルタスクへの拡張検証が必要。\n\n---\n\n**2. Grammar-Constrained Decoding Can Jailbreak LLMs into Generating Malicious Code** | 17 upvotes | https://arxiv.org/abs/2606.11817\n🎯 **背景**: 文法制約デコーディングは構文的に正しいコード生成を保証するが、この「無害に見える制約」が安全対策の抜け穴になりうる。LLM の安全性はトークン確率レベルで脆弱性が存在する。\n🔧 **手法**: **CodeSpear** — 良性の文法制約を巧みに利用して LLM にマルウェアコードを生成させる攻撃手法。**CodeShield** — ハニーポットコードを使ったコードモダリティでのモデルアライメント技術で防御を実現。\n📊 **結果**: CodeSpear は既存の安全対策を回避してマルウェア生成を可能にする。CodeShield はユーティリティを犠牲にすることなく安全性を回復。\n💡 **意義**: コーディング特化型 LLM の新たな攻撃面を特定。文法制約という一見無害な機能も悪用されうることを実証。\n⚠️ **限界**: 特定の文法形式に限定した攻撃。より広範な制約パターンへの適用可能性は未検証。\n\n---\n\n**3. TRACE: A Unified Rollout Budget Allocation Framework for Efficient Agentic Reinforcement Learning** | 15 upvotes | https://arxiv.org/abs/2606.11119\n🎯 **背景**: LLM エージェントの強化学習（RLVR）ではマルチターンロールアウト内で報酬コントラストが不十分になり、効果的な学習が阻害される問題がある。\n🔧 **手法**: 予算配分をプロンプトルートからターンレベルプレフィックスへと拡張。ツリー構造のロールアウトを形成することで、ポリシー更新シグナルを増幅する統一フレームワーク「TRACE」を提案。\n📊 **結果**: 複数のエージェントタスクでタスク性能が向上。ポリシー更新シグナルの質が大幅に改善されることを実証。\n💡 **意義**: マルチターン型エージェント RL における根本的な課題に取り組み、より効率的な自律エージェント学習を可能にする。\n⚠️ **限界**: ツリー構造ロールアウトはメモリ・計算コストが増大する可能性がある。\n\n---\n\n**4. Reroute, Don't Remove: Recoverable Visual Token Routing for Vision-Language Models** | 14 upvotes | https://arxiv.org/abs/2606.12412\n🎯 **背景**: VLM（視覚言語モデル）は画像を数百〜数千の視覚トークンに変換するため、デコーダ推論が非常に高コスト。既存の削除ベースの手法はデコーダ深部でのトークン重要度変化に対応できない。\n🔧 **手法**: トークンを削除する代わりに「再ルーティング」することで回復可能なルーティングを実現。遅延されたトークンが後の段階で処理フローに再合流できる仕組みを導入。\n📊 **結果**: 削除ベース手法と比較して精度を維持しながら推論コストを削減。再ルーティング機構がトークン重要度の動的変化に対応。\n💡 **意義**: 視覚トークン圧縮の新パラダイムを提示。不可逆的な削除から可逆的なルーティングへの転換は他のモダリティにも応用可能。\n⚠️ **限界**: ルーティングオーバーヘッドが追加されるため、超軽量環境での適用には検討が必要。\n\n---\n\n**5. Breaking the Bubble: Asynchronous Pipeline Parallel Training with Bounded Weight Inconsistency** | 6 upvotes | https://arxiv.org/abs/2606.07881\n🎯 **背景**: パイプライン並列学習ではパイプラインバブル（アイドル時間）・メモリ使用量・最適化の整合性の間にトレードオフが存在し、大規模モデル学習の効率化が難しい。\n🔧 **手法**: **PACI** — ローカル勾配累積によって forward/backward のバージョンドリフトを制限することで、バブルフリーの非同期学習を実現。重みの不整合を「有界」に保つことで安定性を担保。\n📊 **結果**: 学習の time-to-accuracy を 1.69 倍改善。安定性を犠牲にせずにバブルを排除。\n💡 **意義**: 大規模モデルの分散学習における実用的な高速化手法。既存インフラへの適用が容易な設計。\n⚠️ **限界**: 重みの不整合が学習収束に与える長期的影響の詳細な分析が必要。\n\n---\n\n**6. ReVision: Scaling Computer-Use Agents via Temporal Visual Redundancy Reduction** | 4 upvotes | https://arxiv.org/abs/2605.11212\n🎯 **背景**: コンピュータ操作エージェントはスクリーンショットを大量の視覚トークンに変換するため、固定バジェット下ではトラジェクトリ履歴が限られる。連続フレーム間の視覚的冗長性は活用されていなかった。\n🔧 **手法**: 連続フレーム間で冗長な視覚パッチを除去しつつ空間的構造を保持する手法「ReVision」を提案。時間的冗長性削減による長い履歴の保持を実現。\n📊 **結果**: トークン使用量を 46% 削減しながら成功率を向上。より長いコンテキスト履歴の保持が可能に。\n💡 **意義**: コンピュータ操作エージェントのスケーラビリティ問題を視覚冗長性の観点から解決。実用的な GUI 自動化の精度向上に直結。\n⚠️ **限界**: 動きが多い画面変化（アニメーション、動画）での性能低下の可能性がある。\n\n---\n\n**7. DRIFT: A Residual Flow Adapter for Decoding Continuous Outputs in Vision-Language Models** | 3 upvotes | https://arxiv.org/abs/2606.05758\n🎯 **背景**: VLM の離散トークン出力はテキストには適しているが、時間境界・ロボット制御などの連続値出力には不向き。離散化による精度損失が実用化の障壁となっている。\n🔧 **手法**: ベース予測器にフローマッチングによる精緻化を組み合わせた「DRIFT」アダプターを提案。予測をグローバル分布からローカル残差分布へと変換する。\n📊 **結果**: 時間境界検出・ロボット制御タスクで汎化性能を向上。離散トークンベースモデルへの軽量な後付けアダプターとして機能。\n💡 **意義**: 既存 VLM を再学習なしに連続値出力タスクへ適応できる柔軟な拡張手法を提示。\n⚠️ **限界**: 高次元の連続値空間（高自由度ロボット）への適用では精度が課題となる可能性。\n\n---\n\n**8. Fine-tuning Multi-modal LLMs with ART: Art-based Reinforcement Training** | 3 upvotes | https://arxiv.org/abs/2606.11854\n🎯 **背景**: LoRA やソフトプロンプティングは事前コンパイルされた LLM の計算グラフを変更する必要があり、配備済みモデルへの適用が困難。フリーズモデルへの情報注入手法が求められていた。\n🔧 **手法**: **ART** — 生の視覚入力を凍結モデル上で最適化することで情報を注入。モデルのパラメータを変更せず、あらゆるファインチューニング目的に対応可能。\n📊 **結果**: 数学・構造化ツール使用タスクで LoRA と競合する精度を達成。計算グラフの変更なしに実現。\n💡 **意義**: モデルパラメータを変更せずに挙動を調整できる新パラダイム。配備済み・コンパイル済みモデルのカスタマイズに革新をもたらす。\n⚠️ **限界**: 視覚入力の最適化プロセスが収束しにくいケースや、テキストのみの入力への適用可能性は不明。\n\n---\n\n**9. Adaptive Multi-Resolution Procedural Knowledge Compression for Large Language Models** | 2 upvotes | https://arxiv.org/abs/2606.12203\n🎯 **背景**: LLM アプリケーションに繰り返し注入される再利用可能なスキル（ツール説明・手順など）は、毎回のプリフィル時に大きな計算コストを発生させる。\n🔧 **手法**: **SKIM** — 明示的なアノテーションを必要とせず、ソフトトークンを通じてスキルを適応的に圧縮する手法。マルチ解像度での知識表現を活用。\n📊 **結果**: タスク性能を維持しながらトークン長を元の 30〜60% に削減。アノテーション不要で実用的な圧縮を実現。\n💡 **意義**: RAG・ツール利用 LLM のコスト削減に直接貢献。スキルライブラリを多用するシステムで特に効果的。\n⚠️ **限界**: ソフトトークンの解釈可能性が低く、圧縮内容の検証・デバッグが困難。\n\n---\n\n**10. τ-Rec: A Verifiable Benchmark for Agentic Recommender Systems** | 1 upvote | https://arxiv.org/abs/2606.10156\n🎯 **背景**: エージェント型推薦システムの評価は LLM-as-Judge などの主観的手法に頼っており、再現性・信頼性に欠ける。客観的な評価基盤の構築が急務。\n🔧 **手法**: 検証可能な報酬と制御された対話制約を用いた新ベンチマーク「τ-Rec」を提案。9 つのモデル構成でエージェント型推薦システムを評価。\n📊 **結果**: 最良モデルでも pass^1 で約 57% という低い達成率。エージェント推薦の信頼性に急な崖（reliability cliff）が存在することを発見。\n💡 **意義**: 主観性を排除した客観的評価基準の確立。エージェント型推薦システムの実用化に向けた課題の定量化。\n⚠️ **限界**: 特定の対話制約下での評価であり、実世界の多様なシナリオへの汎化性は要検証。\n\n",
+  "fetched_at": "2026-06-11T22:08:04.171294+00:00",
+  "papers": [
+    {
+      "title": "On Subquadratic Architectures: From Applications to Principles",
+      "upvotes": 20,
+      "paper_id": "2606.12364",
+      "abstract": "Transformers have quadratic attention costs. This work compares xLSTM, Mamba-2, and Gated DeltaNet on code-model pretraining, distillation, and time-series tasks. xLSTM delivers strongest performance through superior state tracking and memory dynamics via its gating scheme."
+    },
+    {
+      "title": "Grammar-Constrained Decoding Can Jailbreak LLMs into Generating Malicious Code",
+      "upvotes": 17,
+      "paper_id": "2606.11817",
+      "abstract": "Grammar-constrained decoding ensures syntactic validity but can be exploited as attack surface. CodeSpear jailbreaks LLMs through benign grammar constraints. CodeShield aligns models in code modality using honeypot code to restore safety without sacrificing utility."
+    },
+    {
+      "title": "TRACE: A Unified Rollout Budget Allocation Framework for Efficient Agentic Reinforcement Learning",
+      "upvotes": 15,
+      "paper_id": "2606.11119",
+      "abstract": "Reinforcement learning with verifiable rewards suffers from insufficient reward contrast in multi-turn rollouts. TRACE extends budget allocation from prompt roots to turn-level prefixes, forming tree-structured rollouts that amplify policy-update signals and improve task performance."
+    },
+    {
+      "title": "Reroute, Don't Remove: Recoverable Visual Token Routing for Vision-Language Models",
+      "upvotes": 14,
+      "paper_id": "2606.12412",
+      "abstract": "Vision-language models project images into hundreds to thousands of visual tokens, making decoder inference expensive. Existing methods follow rank-and-remove paradigms, but token importance changes across decoder depth. Reroute replaces removal with recoverable routing, allowing deferred tokens to re-enter at later stages."
+    },
+    {
+      "title": "Breaking the Bubble: Asynchronous Pipeline Parallel Training with Bounded Weight Inconsistency",
+      "upvotes": 6,
+      "paper_id": "2606.07881",
+      "abstract": "Pipeline parallelism trades throughput, memory, and optimization consistency. PACI enables bubble-free asynchronous training by bounding forward/backward version drift through local gradient accumulation, improving training time-to-accuracy by 1.69× without sacrificing stability."
+    },
+    {
+      "title": "ReVision: Scaling Computer-Use Agents via Temporal Visual Redundancy Reduction",
+      "upvotes": 4,
+      "paper_id": "2605.11212",
+      "abstract": "Computer-use agents encode screenshots into many visual tokens, limiting trajectory history under fixed budgets. ReVision removes redundant visual patches across consecutive frames while preserving spatial structure, reducing token usage by 46% and improving success rates."
+    },
+    {
+      "title": "DRIFT: A Residual Flow Adapter for Decoding Continuous Outputs in Vision-Language Models",
+      "upvotes": 3,
+      "paper_id": "2606.05758",
+      "abstract": "Vision-language models using discrete tokens suit text but not continuous outputs like temporal boundaries or robotic control. DRIFT combines base predictor with flow-matching refinement, transforming prediction from global to localized residual distributions for improved generalization."
+    },
+    {
+      "title": "Fine-tuning Multi-modal LLMs with ART: Art-based Reinforcement Training",
+      "upvotes": 3,
+      "paper_id": "2606.11854",
+      "abstract": "LoRA and soft prompting both require modifying computational graphs of precompiled LLMs. ART injects information by optimizing raw visual input on frozen models, supporting any fine-tuning objective while achieving LoRA-competitive accuracy on mathematics and structured-tool-use tasks."
+    },
+    {
+      "title": "Adaptive Multi-Resolution Procedural Knowledge Compression for Large Language Models",
+      "upvotes": 2,
+      "paper_id": "2606.12203",
+      "abstract": "Reusable skills injected into LLM applications incur significant prefill costs when repeated. SKIM compresses skills adaptively through soft tokens without requiring explicit human annotations, preserving task performance while reducing token length to 30-60% of original."
+    },
+    {
+      "title": "τ-Rec: A Verifiable Benchmark for Agentic Recommender Systems",
+      "upvotes": 1,
+      "paper_id": "2606.10156",
+      "abstract": "Agentic recommender systems lack evaluation beyond subjective LLM-as-judge methods. τ-Rec replaces subjectivity with verifiable rewards and controlled dialogue constraints. Testing nine model configurations reveals steep reliability cliffs with best models achieving only ~57% at pass^1."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.173",
+      "published_at": "2025-06-11",
+      "body": "Fixed Fable 5 model names with a `[1m]` suffix not being normalized — Fable 5 includes 1M context by default, so the suffix is now stripped automatically\nFixed a spurious \"sandbox dependencies missing\" startup warning on Windows when sandbox was enabled in settings"
+    },
+    {
+      "tag_name": "v2.1.172",
+      "published_at": "2025-06-10",
+      "body": "Sub-agents can now spawn their own sub-agents (up to 5 levels deep)\nAmazon Bedrock now reads the AWS region from `~/.aws` config files when `AWS_REGION` isn't set, matching AWS SDK precedence; `/status` shows where the region came from\nAdded a search bar when browsing a marketplace's plugins in `/plugin`\nAdded `model` attribute to the `claude_code.lines_of_code.count` OTEL metric\nFixed sessions using 1M context without usage credits getting permanently stuck — the session now automatically compacts back under the standard context limit\nFixed a repeating \"an image in the conversation could not be processed and was removed\" error\nFixed the agents view keeping a session under Working with a busy spinner for up to 30 seconds after the worker replied\nFixed background agents potentially reading another directory's project settings when dispatched onto a pre-warmed worker"
+    },
+    {
+      "tag_name": "v2.1.170",
+      "published_at": "2025-06-09",
+      "body": "Introducing Claude Fable 5: a Mythos-class model that we've made safe for general use. Fable's capabilities exceed those of any model we've ever made generally available. Update to version 2.1.170 for access.\nFixed sessions not saving transcripts (and not appearing in --resume) when launched from the VS Code integrated terminal or any shell that inherited Claude Code environment variables."
+    }
+  ]
+}
