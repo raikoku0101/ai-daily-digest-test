@@ -1,6 +1,6 @@
-**2. Role-Agent: Bootstrapping LLM Agents via Dual-Role Evolution**
-**著者**: Role-Agent Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.10917
+**2. Grammar-Constrained Decoding Can Jailbreak LLMs into Generating Malicious Code**
+**著者**: 著者らの研究グループ (2025)
+**arXiv**: https://arxiv.org/abs/2606.11817
 
 **まとめ**:
-単一 LLM がエージェント役と環境役を同時に担う「Dual-Role Evolution」フレームワーク。World-In-Agent (WIA) で将来状態を予測して報酬調整し、Agent-In-World (AIW) で失敗パターンから標的型の再訓練タスクを自動生成。人手ラベルなしで ALFWorld・WebShop 等の複数ベンチマークで GiGPO 比平均 4% 以上の性能向上を達成。追加計算量は約 5.2% に留まり実用的。
+コード生成の信頼性向上のために使われる文法制約付きデコーディング（GCD）が、実は安全対策の抜け穴になることを実証。新攻撃手法 CodeSpear はローカル LLM で平均 81.82%、API ベース LLM で 67.39% の攻撃成功率を達成。対策として DPO ベースのハニーポット学習手法 CodeShield を提案し、攻撃成功率を 5.57% まで低減しながらコード生成性能を維持することに成功した。

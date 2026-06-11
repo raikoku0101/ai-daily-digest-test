@@ -1,6 +1,6 @@
-**3. MemDreamer: Decoupling Perception and Reasoning for Long Video Understanding**
-**著者**: MemDreamer Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.07512
+**3. TRACE: A Unified Rollout Budget Allocation Framework for Efficient Agentic Reinforcement Learning**
+**著者**: 著者らの研究グループ (2025)
+**arXiv**: https://arxiv.org/abs/2606.11119
 
 **まとめ**:
-長時間動画理解の「トークン爆発」問題に対し、知覚と推論を分離する MemDreamer を提案。階層的グラフメモリ (Hierarchical Graph Memory) で時空間・因果関係を 3 層構造で表現し、エージェント型の「観察-推論-行動ループ」で動的に検索。推論コンテキストを全入力の 2% に制約しながら 4 ベンチマークで SOTA を達成し、人間専門家との差を 3.7 ポイントまで縮小。
+エージェント強化学習（RLVR）のマルチターン設定で報酬コントラストが不足する問題に対し、ターンレベルのプレフィックスをツリー構造のアンカーとして扱う統一フレームワーク「TRACE」を提案。数学推論・マルチホップ QA・関数呼び出しの 3 領域で GRPO 等の従来手法を上回り、混合報酬グループの割合を 20〜25 ポイント改善。効率的なエージェント学習を実現する実践的手法。

@@ -1,6 +1,6 @@
-**1. Kwai Keye-VL-2.0 Technical Report**
-**著者**: Kwai Keye Team (2025)
-**arXiv**: https://arxiv.org/abs/2606.10651
+**1. On Subquadratic Architectures: From Applications to Principles**
+**著者**: 著者らの研究グループ (2025)
+**arXiv**: https://arxiv.org/abs/2606.12364
 
 **まとめ**:
-Kwai が開発した 30B パラメータ MoE マルチモーダル基盤モデル。DeepSeek Sparse Attention により 256K トークンの長文脈処理を実現し、長時間動画理解とエージェント知能を統合。Cross-Modal Multi-Teacher On-Policy Distillation (MOPD) で 13 の専門教師モデルから知識を統合し、LongVideoBench 74.1%・ツール使用 82.6% を達成。オープンソース公開により商用品質の長動画理解モデルが誰でも利用可能になった。
+Transformer の二乗コストを避けるサブ二乗アーキテクチャ（xLSTM・Mamba-2・Gated DeltaNet）をコード生成と時系列タスクで初めて直接比較。xLSTM がほぼ全設定で最高性能を示し、その優位性は「累積メカニズム」と「状態追跡能力」の両立にあることを統一フレームワークで解明。次世代モデル設計の原則的な根拠を提示した重要論文。

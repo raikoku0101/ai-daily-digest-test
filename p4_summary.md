@@ -1,6 +1,6 @@
-**4. SkillHarm: Lifecycle-Aware Skill-Based Attacks via Automated Construction**
-**著者**: SkillHarm Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.02540
+**4. Reroute, Don't Remove: Recoverable Visual Token Routing for Vision-Language Models**
+**著者**: 著者らの研究グループ (2025)
+**arXiv**: https://arxiv.org/abs/2606.12412
 
 **まとめ**:
-AI エージェントのスキル使用ライフサイクル全体にわたる攻撃を体系的に分析したベンチマーク。固定ペイロード毒性化 (FPP) と自己変異毒性化 (SMP) の 2 攻撃シナリオを定義し、AutoSkillHarm で 879 サンプルを自動生成。FPP 最大 86.3%・SMP 最大 69.3% の攻撃成功率を確認。既存の防御機構がスキルベース攻撃を十分に緩和できていないことを実証し、ライフサイクル全体での防御戦略の必要性を訴える。
+VLM（視覚言語モデル）の視覚トークン削減において、従来の不可逆的「削除」パラダイムに代わり「再ルーティング」概念を提案。低重要度トークンを削除せず後段で再評価可能にする訓練不要手法 Reroute を開発。88.9% トークン削減下でも視覚グラウンディング IoU を 22.2% から 34.0% に改善し、一般 VQA 性能も維持。トークン重要度がデコーダ深度によって変化するという新知見を実証した。
