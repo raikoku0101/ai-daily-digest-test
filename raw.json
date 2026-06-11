@@ -6,39 +6,39 @@
       "title": "Claude Opus 4.8",
       "pill": "new model",
       "lede": "Opus 4.8 is now the default on Max, Team Premium, Enterprise pay-as-you-go, and the Anthropic API. It defaults to high effort; use /effort xhigh for harder tasks. Requires v2.1.154 or later.",
-      "link": "/docs/en/model-config#available-models"
+      "link": "/en/model-config#available-models"
     },
     {
       "title": "Dynamic workflows",
       "pill": "research preview",
       "lede": "A workflow is an orchestration script Claude writes for your task and runs across many subagents in the background. Use one when a task is too large for one conversation to coordinate: a codebase-wide audit, a large migration, a research question that needs cross-checking. Manage runs with /workflows.",
-      "link": "/docs/en/workflows"
+      "link": "/en/workflows"
     },
     {
       "title": "Security guidance plugin",
       "pill": "plugin",
       "lede": "The security-guidance plugin reviews Claude's code changes for vulnerabilities and fixes them in the same session. It runs a fast pattern check on each edit, a model review at the end of each turn, and a deeper agentic review on commit or push. Add project rules in .claude/claude-security-guidance.md.",
-      "link": "/docs/en/security-guidance"
+      "link": "/en/security-guidance"
     },
     {
       "title": "Fast mode on Opus 4.8",
       "pill": "research preview",
       "lede": "Fast mode now defaults to Opus 4.8 at $10/$50 per MTok: 2x the standard rate for about 2.5x the speed. Opus 4.7 and 4.6 stay at $30/$150. Opus 4.6 fast mode is deprecated.",
-      "link": "/docs/en/fast-mode#understand-the-cost-tradeoff"
+      "link": "/en/fast-mode#understand-the-cost-tradeoff"
     }
   ],
   "other_wins": [
-    "claude agents で、シェルコマンドの先頭に ! を付けるとバックグラウンドジョブとして実行でき、アタッチ・デタッチが可能。claude --bg --exec 'pytest -x' としても利用できる",
-    ".claude/skills ディレクトリ内のプラグインが自動的に読み込まれるようになり、マーケットプレイス不要。claude plugin init <name> で新しいプラグインのひな形を作成できる",
-    "新しい /reload-skills コマンドで再起動なしにスキルディレクトリを再スキャン可能。SessionStart フックが reloadSkills: true を返すことで、同一セッション内でインストールしたスキルをすぐ利用できる",
-    "スキルとコマンドのフロントマターに disallowed-tools を設定することで、スキル有効中は特定ツールをモデルから除外できる",
-    "新しい MessageDisplay フックイベントにより、フックがアシスタントのメッセージテキストを表示時に変換または非表示にできる",
-    "プライマリモデルが見つからない場合、Claude Code は設定済みの --fallback-model に自動切り替えして残りのセッションを継続するようになった（従来は毎リクエスト失敗）",
-    "プラグインが plugin.json やマーケットプレイスエントリで defaultEnabled: false を宣言できるようになり、インストール時は無効状態で配置される",
-    "Vim モード: NORMAL モードで / を押すと逆履歴検索が開くようになり、Bash・Zsh の vi-mode と同様の操作が可能",
-    "ストリーミングツール実行が常に有効になった（テレメトリ無効時や Bedrock・Vertex・Foundry でも）",
-    "←← でエージェントビューを開く操作が Bedrock・Vertex・Foundry およびテレメトリ無効環境でも動作するようになった",
-    "Claude in Chrome: /chrome → 「Select browser...」から接続中のブラウザを選択可能。複数ブラウザが接続されている場合はチャット内でも選択できる",
-    "claude mcp list と claude mcp get が、未承認の .mcp.json サーバーを自動承認・接続せず、出力がパイプ経由の場合は承認待ちとして表示するようになった"
+    "In claude agents, prefix a shell command with ! to run it as a background job you can attach to and detach from; also available as claude --bg --exec 'pytest -x'",
+    "Plugins in .claude/skills directories are now loaded automatically, no marketplace required, and claude plugin init <name> scaffolds a new plugin",
+    "New /reload-skills command re-scans skill directories without restarting, and SessionStart hooks can return reloadSkills: true to make skills they install available in the same session",
+    "Skills and commands can set disallowed-tools in frontmatter to remove tools from the model while the skill is active",
+    "New MessageDisplay hook event lets hooks transform or hide assistant message text as it is displayed",
+    "Claude Code now switches to your configured --fallback-model for the rest of the session when the primary model is not found, instead of failing every request",
+    "Plugins can declare defaultEnabled: false in plugin.json or a marketplace entry, so they install without turning on until you enable them",
+    "Vim mode: / in NORMAL mode opens reverse history search, matching Bash and Zsh vi-mode",
+    "Streaming tool execution is now always enabled, including with telemetry disabled and on Bedrock, Vertex, and Foundry",
+    "←← to open the agents view now works on Bedrock, Vertex, Foundry, and with telemetry disabled",
+    "Claude in Chrome: pick which connected browser to use via /chrome → \"Select browser…\", or in-chat when a browser action runs with multiple connected",
+    "claude mcp list and claude mcp get now show unapproved .mcp.json servers as pending approval instead of auto-approving and connecting when output is piped"
   ]
 }
