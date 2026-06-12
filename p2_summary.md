@@ -1,6 +1,6 @@
-**2. Grammar-Constrained Decoding Can Jailbreak LLMs into Generating Malicious Code**
-**著者**: 著者らの研究グループ (2025)
-**arXiv**: https://arxiv.org/abs/2606.11817
+**2. Where, What, Why, and Importance: Structured Defect Grounding for Text-to-Image Feedback**
+**著者**: SDG Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.06113
 
 **まとめ**:
-コード生成の信頼性向上のために使われる文法制約付きデコーディング（GCD）が、実は安全対策の抜け穴になることを実証。新攻撃手法 CodeSpear はローカル LLM で平均 81.82%、API ベース LLM で 67.39% の攻撃成功率を達成。対策として DPO ベースのハニーポット学習手法 CodeShield を提案し、攻撃成功率を 5.57% まで低減しながらコード生成性能を維持することに成功した。
+T2I (text-to-image) モデルが生成する画像の欠陥を「位置・種類・理由・重要度」の4要素タプルとして構造化検出する Structured Defect Grounding (SDG) を提案。30,096枚の画像に112名がアノテーションした SDG-30K データセットを構築し、Qwen3-VL ベースの検出器と拡散モデル報酬フレームワークを統合。GPT-5.4 や Gemini 3 Pro を上回り、人間水準に迫る欠陥検出精度を達成した。

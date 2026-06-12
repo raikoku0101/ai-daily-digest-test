@@ -1,6 +1,6 @@
-**3. TRACE: A Unified Rollout Budget Allocation Framework for Efficient Agentic Reinforcement Learning**
-**著者**: 著者らの研究グループ (2025)
-**arXiv**: https://arxiv.org/abs/2606.11119
+**3. Flash-GMM: A Memory-Efficient Kernel for Scalable Soft Clustering**
+**著者**: Flash-GMM Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.10896
 
 **まとめ**:
-エージェント強化学習（RLVR）のマルチターン設定で報酬コントラストが不足する問題に対し、ターンレベルのプレフィックスをツリー構造のアンカーとして扱う統一フレームワーク「TRACE」を提案。数学推論・マルチホップ QA・関数呼び出しの 3 領域で GRPO 等の従来手法を上回り、混合報酬グループの割合を 20〜25 ポイント改善。効率的なエージェント学習を実現する実践的手法。
+GPU上でガウス混合モデル (GMM) を大規模処理するための融合 Triton カーネル Flash-GMM を提案。N×K 次元の責任行列 (responsibility matrix) の GPU メモリ展開を不要にし、O(KD) メモリで動作することで既存実装比 20 倍高速化・100 倍大規模なデータセット処理を実現。ANN (近似最近傍探索) の IVF 索引に統合し、責任値ベースの多重割り当てにより同一計算予算で最大 1.7 倍の効率改善を達成した。
