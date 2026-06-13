@@ -1,6 +1,6 @@
-**2. Where, What, Why, and Importance: Structured Defect Grounding for Text-to-Image Feedback**
-**著者**: SDG Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.06113
+**2. VIA-SD: Verification via Intra-Model Routing for Speculative Decoding**
+**著者**: Yuchen Xian, Yang He, Yunqiu Xu, Yi Yang (ICML 2026)
+**arXiv**: https://arxiv.org/abs/2606.12243
 
 **まとめ**:
-T2I (text-to-image) モデルが生成する画像の欠陥を「位置・種類・理由・重要度」の4要素タプルとして構造化検出する Structured Defect Grounding (SDG) を提案。30,096枚の画像に112名がアノテーションした SDG-30K データセットを構築し、Qwen3-VL ベースの検出器と拡散モデル報酬フレームワークを統合。GPT-5.4 や Gemini 3 Pro を上回り、人間水準に迫る欠陥検出精度を達成した。
+LLM 推論の高速化技術「Speculative Decoding (推測復号)」を多層階層化した新フレームワーク。従来の「受理か全再計算」という二択に代わり、中程度信頼度トークンをスリムなサブモデルでルーティング検証することで拒否率を 0.10〜0.22 削減。追加学習なしで従来の推測復号比 10〜20% 高速化、非推測復号比 2.5〜3 倍の加速を実現。ICML 2026 採択。

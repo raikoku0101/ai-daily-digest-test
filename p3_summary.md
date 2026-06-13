@@ -1,6 +1,6 @@
-**3. Flash-GMM: A Memory-Efficient Kernel for Scalable Soft Clustering**
-**著者**: Flash-GMM Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.10896
+**3. Where, What, Why, and Importance: Structured Defect Grounding for Text-to-Image Feedback**
+**著者**: SDG Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.06113
 
 **まとめ**:
-GPU上でガウス混合モデル (GMM) を大規模処理するための融合 Triton カーネル Flash-GMM を提案。N×K 次元の責任行列 (responsibility matrix) の GPU メモリ展開を不要にし、O(KD) メモリで動作することで既存実装比 20 倍高速化・100 倍大規模なデータセット処理を実現。ANN (近似最近傍探索) の IVF 索引に統合し、責任値ベースの多重割り当てにより同一計算予算で最大 1.7 倍の効率改善を達成した。
+テキストから画像生成 (T2I) モデルの局所的欠陥を「位置・種類・理由・重要度」の4タプルとして構造化する Structured Defect Grounding (SDG) を提案。30K 画像の SDG-30K データセットと評価プロトコルを整備し、VLM ベース検出器と BoxFlow-GRPO による拡散モデルアライメント手法を開発。既存の商用 VLM を上回る検出性能を達成し、T2I アライメントの一貫した改善を実現した。

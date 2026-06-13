@@ -1,6 +1,6 @@
-**5. From 2D Grids to 1D Tokens: Reforming Shared Representations for Multimodal Image Fusion**
-**著者**: Image Fusion Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.12303
+**5. TreeSeeker: Tree-Structured Trial, Error, and Return in Deep Search**
+**著者**: TreeSeeker Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.11662
 
 **まとめ**:
-赤外線・可視光などの異種モダリティ画像融合において、従来の 2D 特徴グリッドが持つ「グローバル外観因子の制御困難」という根本的限界を指摘し、冷凍済み事前学習 1D トークナイザーを用いた軽量ハイブリッドフレームワークを提案。選択的トークン編集 (STE) でグローバル外観を制御し、2D 空間パスウェイでローカル詳細を復元することで、M³FD・RoadScene・TNO・Harvard の複数ベンチマークで最良または準最良性能を達成。物体検出・セマンティックセグメンテーションの下流タスクでも最高精度を記録した。
+複雑な質問に対するマルチステップ Web 検索（Deep Search）を木構造で組織化する推論時フレームワーク。テキストベースの UCB (Upper Confidence Bound) シグナルで「有望な分岐の活用・不確実な選択肢の探索・非生産的な継続の剪定」を動的に制御。TreeMem で証拠・不確実性・矛盾・進捗を管理し、XBench-DeepSearch・BrowseComp 等でオープンソースの強力なベースラインを一貫して上回った。
