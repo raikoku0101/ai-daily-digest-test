@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-14",
+  "content": "# AI Daily Digest — 2026-06-14\n\n## 今日のハイライト\n- **HYDRA-X が画像・動画統一トークン化を実現 (👍25)**: 単一 Vision Transformer で画像と動画を統合処理。マルチモーダル AI の効率化に向けた重要な一歩で、従来2つのモデルが必要だった作業を1つで代替可能に。\n- **Claude Code v2.1.176 でモデルガバナンスとクリップボード修正**: `availableModels` 強制適用の強化で企業環境でのモデル制御が改善。tmux over SSH でのクリップボード問題など実用的バグを多数修正。\n- **コーディングエージェント再学習不要の嗜好適応 (TRACE)**: ユーザー修正をランタイムルールとしてコンパイルし、嗜好違反を 100% → 2% に削減。エージェント開発の新しいパターンとして注目。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.177 (2025-06-13)\nメンテナンスリリース: CHANGELOG.md と feed.xml の更新のみ。\n\n---\n\n### v2.1.176 (2025-06-12) — 主要アップデート\n\n**主要機能**\n- **多言語セッションタイトル**: 会話の言語でセッションタイトルを自動生成。`language` 設定で固定も可能。\n- **`footerLinksRegexes` 設定**: フッター行のリンクバッジをユーザー/管理設定から正規表現でカスタマイズ可能。\n- **Bedrock 認証キャッシュ改善**: `awsCredentialExport` の認証情報を固定 1 時間ではなく `Expiration` まで有効にキャッシュ。\n\n**バグ修正**\n- `availableModels` 強制: `ANTHROPIC_DEFAULT_*_MODEL` 環境変数で許可外モデルへリダイレクトされる問題を修正。`/fast` も許可リスト外モデルへの切り替えを拒否。\n- Fable 5 利用時に Opus 4.8 が無効な組織で auto モードが失敗する問題を修正（利用可能な最良 Opus モデルへフォールバック）。\n- フックの `if` 条件（`Edit(src/**)`, `Read(~/.ssh/**)`, `Read(.env)` など）がパスと正しくマッチしない問題を修正。\n- `.claude/settings.json` が絶対パスのシンボリックリンクの場合に Linux サンドボックスが起動しない問題を修正。\n- tmux over SSH でシステムクリップボードにコピーできない問題、および tmux 3.2 未満でペーストバッファが読み込まれない問題を修正。\n- Remote Control が Web/モバイルから接続した際にセッションモデルが勝手に切り替わる問題を修正。\n- Remote Control 切断通知で数値コードのみ表示される問題と、接続失敗時に重複行が追加される問題を修正。\n\n**ユーザーへの影響**: モデル管理が強化され、特に企業環境で許可外モデルへの意図しないリダイレクトが防止される。tmux ユーザーはクリップボード関連の不具合が解消。\n\n---\n\n### v2.1.175 (2025-06-12)\n\n**主要機能**\n- **`enforceAvailableModels` 管理設定**: 有効にすると `availableModels` 許可リストがデフォルトモデルにも適用。許可外モデルに解決されるデフォルトは最初の許可モデルへフォールバック。ユーザー/プロジェクト設定で管理された許可リストを拡大できなくなる。\n\n**ユーザーへの影響**: エンタープライズ向けモデルガバナンスが強化。管理者が組織内で使用モデルを厳格に制御できる。\n\n## 注目論文 TOP 10\n\n**1. HYDRA-X: Native Unified Multimodal Models with Holistic Visual Tokenizers** | 👍 25 | https://arxiv.org/abs/2606.13289\n🎯 **背景**: 画像と動画を統一的に扱うマルチモーダルモデルは、空間的・時間的な再構成と意味的理解を両立することが課題だった。\n🔧 **手法**: 単一 Vision Transformer 内で画像・動画トークン化を統合。Causal Temporal Attention と階層的圧縮により時空間表現を実現。\n📊 **結果**: 画像・動画両タスクで SOTA レベルを達成。単一モデルで複数モダリティを統一的に処理可能に。\n💡 **意義**: 従来は別々のモデルが必要だった画像・動画処理を一つのネットワークで実現し、マルチモーダル AI の効率化に貢献。\n⚠️ **限界**: 計算コストの詳細や長時間動画への対応限界については論文での検証が必要。\n\n**2. VIA-SD: Verification via Intra-Model Routing for Speculative Decoding** | 👍 14 | https://arxiv.org/abs/2606.12243\n🎯 **背景**: Speculative Decoding は LLM 推論高速化の有力手法だが、ドラフトモデルの検証精度とオーバーヘッドのバランスが課題。\n🔧 **手法**: モデル内ルーティングを使ったマルチ階層フレームワーク。中程度の信頼度トークンに slim サブモデルを使い段階的に検証。\n📊 **結果**: 従来の Speculative Decoding より大幅な高速化を達成。追加の学習修正なしに実現。\n💡 **意義**: 既存モデルに追加学習なしで導入できる高速化手法として実用価値が高い。\n⚠️ **限界**: 中程度信頼度トークンの判定基準の設定が性能に影響。タスク依存性がある可能性。\n\n**3. Where, What, Why, and Importance: Structured Defect Grounding for Text-to-Image Feedback** | 👍 13 | https://arxiv.org/abs/2606.06113\n🎯 **背景**: テキストから画像生成モデルのエラー診断は「どこに何が問題か」を構造化する標準的手法がなかった。\n🔧 **手法**: 欠陥の位置・種類・原因・重要度を構造化集合予測として定式化。VLM で検出し、ボックス由来の空間的報酬を拡散モデルのアライメントに活用。\n📊 **結果**: 既存のフィードバック手法と比較して、より正確で構造化されたエラー診断を実現。\n💡 **意義**: 画像生成モデルのデバッグと品質改善プロセスを体系化。RLHF ループへの組み込みに期待。\n⚠️ **限界**: アノテーションコストが高く、特定ドメインへの汎化性能の検証が必要。\n\n**4. From 2D Grids to 1D Tokens: Reforming Shared Representations for Multimodal Image Fusion** | 👍 12 | https://arxiv.org/abs/2606.12303\n🎯 **背景**: 可視光・赤外線などマルチモーダル画像融合は、グローバルな外観整合性とローカルな詳細保持の両立が難しい。\n🔧 **手法**: 事前学習済み画像トークナイザーから得たコンパクトな 1D トークンインターフェースを使い、選択的トークン編集で融合を実現。\n📊 **結果**: グローバル外観整合性を保ちつつローカル詳細を維持。従来の 2D グリッドベース手法より効率的。\n💡 **意義**: LLM のトークン処理の知見を画像融合に応用する新パラダイムを提示。\n⚠️ **限界**: トークナイザーの質に依存。圧縮による細部情報の損失リスクがある。\n\n**5. TreeSeeker: Tree-Structured Trial, Error, and Return in Deep Search** | 👍 10 | https://arxiv.org/abs/2606.11662\n🎯 **背景**: 深い探索タスク（数学推論、コード生成など）での試行錯誤を効率化する推論時フレームワークが求められていた。\n🔧 **手法**: 木構造状態上での分岐・バックトラックを組み込んだフレームワーク。テキスト UCB シグナルで探索と活用のトレードオフを制御。\n📊 **結果**: 複雑な推論タスクでの性能向上を達成。従来の線形探索より効率的な解探索を実現。\n💡 **意義**: 推論時の計算を木構造探索として扱う枠組みは、MCTS などの強化学習技術と LLM の融合を促進。\n⚠️ **限界**: 木の深さ・幅の設定がタスク依存。UCB シグナルの品質が探索性能に大きく影響。\n\n**6. Risk Under Pressure: Compute-Aware Evaluation of Adversarial Robustness in Language Models** | 👍 8 | https://arxiv.org/abs/2606.11409\n🎯 **背景**: LLM の敵対的ロバスト性評価は計算コストを無視した比較が多く、実用的なリスク評価が困難だった。\n🔧 **手法**: FLOPs を軸としたリスク-計算曲線を用いた評価フレームワーク。アライメント学習の効果と各害カテゴリでの攻撃コストを系統的に分析。\n📊 **結果**: アライメント学習の効果が単調でなく、害のカテゴリによって攻撃コストが大きく異なることを発見。\n💡 **意義**: AI 安全性研究において、計算コストを考慮した現実的なリスク評価基準を提供。\n⚠️ **限界**: 特定のモデルファミリーへの依存性。実際の攻撃シナリオの多様性をカバーしきれない可能性。\n\n**7. Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior** | 👍 5 | https://arxiv.org/abs/2606.12730\n🎯 **背景**: LLM の心理測定評価（自己報告式）がモデルの実際の行動を予測できるかどうかが未検証だった。\n🔧 **手法**: 計画的行動理論（TPB）と広義パーソナリティ枠組みを比較。共有会話内のコヒーレンスと実際の展開行動を測定。\n📊 **結果**: TPB は共有会話内でヒトレベルのコヒーレンスを達成。一方、広義パーソナリティ枠組みは実際の展開行動テストに不十分。\n💡 **意義**: LLM 評価の設計指針を提供。自己報告式評価の適切な使用条件を明確化。\n⚠️ **限界**: 評価対象モデルの偏り。心理学理論の LLM への適用可能性に関する理論的議論が必要。\n\n**8. See What I See, Know What I Think: Dense Latent Communication Across Heterogeneous Agents** | 👍 3 | https://arxiv.org/abs/2606.13594\n🎯 **背景**: 異種 AI エージェント間の効率的な知識転送は、テキストベース通信のオーバーヘッドが課題だった。\n🔧 **手法**: KV キャッシュ通信とクロスモデル潜在アライメントを使い、異なるアーキテクチャのモデル間で密な潜在表現を共有。\n📊 **結果**: テキストベース手法と同等性能を 2-3 倍低い計算コストで達成。\n💡 **意義**: マルチエージェントシステムの効率化。異種モデル間の直接的な潜在空間通信の実現可能性を示す。\n⚠️ **限界**: アライメントの学習コスト。モデルアーキテクチャの変更に対する堅牢性の検証が必要。\n\n**9. Getting Better at Working With You: Compiling User Corrections into Runtime Enforcement for Coding Agents** | 👍 2 | https://arxiv.org/abs/2606.13174\n🎯 **背景**: コーディングエージェントはユーザーの修正フィードバックを学習せず、同じ嗜好違反を繰り返す問題があった。\n🔧 **手法**: TRACE パイプラインでユーザー修正からアトミックなルールを抽出し、エージェントの実行時チェックとしてコンパイル。再学習なし。\n📊 **結果**: 分布外タスクでの嗜好違反を 100% から 2% に削減。\n💡 **意義**: 再学習なしでエージェントをユーザー嗜好に適応させる軽量な手法。プロダクション環境への即時適用が可能。\n⚠️ **限界**: ルール抽出の品質がユーザー修正の明確さに依存。矛盾するルールの処理が課題。\n\n**10. WebChallenger: A Reliable and Efficient Generalist Web Agent** | 👍 2 | https://arxiv.org/abs/2606.10423\n🎯 **背景**: 汎用ウェブエージェントはブラウザ操作の複雑さ、長期記憶、手続き的流暢性において人間に大きく劣っていた。\n🔧 **手法**: PageMem 構造化表現を使い、選択的注意・永続記憶・手続き的流暢性における人間の認知的優位性を模倣。\n📊 **結果**: WebArena ベンチマークでオープンウェイトモデルによる 56.3% 達成。\n💡 **意義**: オープンソースモデルでも商用モデルに匹敵するウェブエージェント性能が実現可能なことを示す。\n⚠️ **限界**: WebArena への特化。実世界の多様なウェブサイトへの汎化性能の検証が必要。\n\n",
+  "fetched_at": "2026-06-13T22:06:48.778560+00:00",
+  "papers": [
+    {
+      "title": "HYDRA-X: Native Unified Multimodal Models with Holistic Visual Tokenizers",
+      "upvotes": 25,
+      "paper_id": "2606.13289",
+      "abstract": "Unified multimodal model integrating image and video tokenization within a single Vision Transformer, addressing spatiotemporal reconstruction and semantic awareness through causal temporal attention and hierarchical compression."
+    },
+    {
+      "title": "VIA-SD: Verification via Intra-Model Routing for Speculative Decoding",
+      "upvotes": 14,
+      "paper_id": "2606.12243",
+      "abstract": "Multi-tier speculative decoding framework using intra-model routing with slim submodels for medium-confidence token validation, achieving significant speedups over traditional approaches without training modifications."
+    },
+    {
+      "title": "Where, What, Why, and Importance: Structured Defect Grounding for Text-to-Image Feedback",
+      "upvotes": 13,
+      "paper_id": "2606.06113",
+      "abstract": "Proposes Structured Defect Grounding to diagnose text-to-image model failures as structured set prediction, using vision-language models for detection and box-derived spatial rewards for diffusion model alignment."
+    },
+    {
+      "title": "From 2D Grids to 1D Tokens: Reforming Shared Representations for Multimodal Image Fusion",
+      "upvotes": 12,
+      "paper_id": "2606.12303",
+      "abstract": "Multimodal image fusion using compact 1D token interface from pretrained image tokenizer to enhance global appearance coherence while preserving local details through selective token editing."
+    },
+    {
+      "title": "TreeSeeker: Tree-Structured Trial, Error, and Return in Deep Search",
+      "upvotes": 10,
+      "paper_id": "2606.11662",
+      "abstract": "Inference-time framework organizing search as branch-and-return over tree-structured states, using textual UCB signals to manage exploration-exploitation tradeoffs in deep search tasks."
+    },
+    {
+      "title": "Risk Under Pressure: Compute-Aware Evaluation of Adversarial Robustness in Language Models",
+      "upvotes": 8,
+      "paper_id": "2606.11409",
+      "abstract": "Compute-aware evaluation framework using FLOPs and risk-compute curves revealing non-monotonic effects of alignment training and varying attack costs across different harm categories in language models."
+    },
+    {
+      "title": "Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior",
+      "upvotes": 5,
+      "paper_id": "2606.12730",
+      "abstract": "Examines psychometric assessment of LLM behavior, showing Theory of Planned Behavior achieves human-level coherence within shared conversations while broad personality frameworks prove inadequate for deployment behavior testing."
+    },
+    {
+      "title": "See What I See, Know What I Think: Dense Latent Communication Across Heterogeneous Agents",
+      "upvotes": 3,
+      "paper_id": "2606.13594",
+      "abstract": "Heterogeneous multi-agent systems achieve effective knowledge transfer through aligned KV-cache communication with cross-model latent alignment, matching text-based methods at 2-3x lower computational cost."
+    },
+    {
+      "title": "Getting Better at Working With You: Compiling User Corrections into Runtime Enforcement for Coding Agents",
+      "upvotes": 2,
+      "paper_id": "2606.13174",
+      "abstract": "TRACE pipeline mines user corrections into atomic rules compiled as runtime checks, reducing preference violations from 100% to 2% on out-of-distribution tasks without retraining agents."
+    },
+    {
+      "title": "WebChallenger: A Reliable and Efficient Generalist Web Agent",
+      "upvotes": 2,
+      "paper_id": "2606.10423",
+      "abstract": "Web agent framework using PageMem structured representation to replicate human cognitive advantages in selective attention, persistent memory, and procedural fluency, achieving 56.3% on WebArena with open-weight models."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.177",
+      "published_at": "2025-06-13",
+      "body": "chore: Update CHANGELOG.md and feed.xml"
+    },
+    {
+      "tag_name": "v2.1.176",
+      "published_at": "2025-06-12",
+      "body": "Session titles are now generated in the language of your conversation (set the `language` setting to pin a specific language)\nAdded `footerLinksRegexes` setting for regex-matched link badges in the footer row, configurable via user or managed settings\nImproved Bedrock credential caching: credentials from `awsCredentialExport` are now cached until their `Expiration` instead of a fixed 1 hour\nFixed `availableModels` enforcement: alias model picks can no longer be redirected to a blocked model via `ANTHROPIC_DEFAULT_*_MODEL` environment variables, and `/fast` now refuses to toggle when it would switch to a model outside the allowlist\nFixed auto mode failing on Fable 5 for organizations without Opus 4.8 enabled — the classifier now falls back to the best available Opus model\nFixed hook `if` conditions for Read/Edit/Write tool paths: documented patterns like `Edit(src/**)`, `Read(~/.ssh/**)`, and `Read(.env)` now match correctly\nFixed Linux sandbox failing to start when `.claude/settings.json` is a symlink with an absolute target\nFixed `/copy` and mouse-selection copy not reaching the system clipboard inside tmux over SSH, and tmux paste buffer not loading on versions older than 3.2\nFixed Remote Control connecting from web/mobile silently switching the session model\nFixed Remote Control disconnect notifications showing a bare numeric code instead of a human-readable reason, and connection failures adding a duplicate line to the conversation transcript"
+    },
+    {
+      "tag_name": "v2.1.175",
+      "published_at": "2025-06-12",
+      "body": "Added `enforceAvailableModels` managed setting — when enabled, the `availableModels` allowlist also constrains the Default model (a Default that would resolve to a disallowed model now falls back to the first allowed model), and user or project settings can no longer widen a managed `availableModels` list"
+    }
+  ]
+}
