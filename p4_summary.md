@@ -1,6 +1,7 @@
-**4. From 2D Grids to 1D Tokens: Reforming Shared Representations for Multimodal Image Fusion**
-**著者**: 研究チーム et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.12303
+**4. GUI vs. CLI: Execution Bottlenecks in Screen-Only and Skill-Mediated Computer-Use Agents (GUIとCLIの対決: スクリーンのみとスキル介在型コンピュータ使用エージェントの実行ボトルネック)**
+**著者**: arXiv:2606.24551 著者ら (2026)
+**arXiv**: https://arxiv.org/abs/2606.24551
+**upvotes**: 25
 
 **まとめ**:
-マルチモーダル画像融合 (可視光・赤外線など) において、従来の 2D 特徴グリッドベース共有表現の代わりに、事前学習済みトークナイザーから得た 1D トークンを大域的外観制御のキャリアとして活用する新手法を提案。核心技術「選択的トークン編集 (STE: Selective Token Editing)」により重要トークンのみを疎に更新し、追加損失なしで大域一貫性を軽量に制御。4つのベンチマークで全体最高性能を達成した。
+コンピュータ使用エージェントのGUI（画面のみ）とCLI（スキル介在）の2つのアプローチを同一ベンチマークで体系的に比較した研究。GUIエージェントは長期的なグラウンデッドインタラクションに脆弱、CLIエージェントはスキルカバレッジ不足に悩む実態を明らかにし、実用的エージェント設計のための具体的な設計指針を提供する。

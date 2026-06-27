@@ -1,6 +1,7 @@
-**1. HYDRA-X: Native Unified Multimodal Models with Holistic Visual Tokenizers**
-**著者**: Hydra-X Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.13289
+**1. In-Context World Modeling for Robotic Control (インコンテキスト世界モデリングによるロボット制御)**
+**著者**: arXiv:2606.26025 著者ら (2026)
+**arXiv**: https://arxiv.org/abs/2606.26025
+**upvotes**: 42
 
 **まとめ**:
-単一 Vision Transformer (ViT) 内で画像・動画トークン化を統一した初のネイティブ統一マルチモーダルモデル (UMM)。フレームレベル因果的時間注意・階層的圧縮・デコンプレッサーという直感に反する3つの設計選択により、フル時空間注意や段階的 VAE を上回る性能を実現。画像/動画の理解・生成・編集の5タスクを1つのモデルで統合し、編集一貫性を PSNR で約 7dB 向上させた。
+Vision-Language-Action (VLA) モデルがカメラ視点やロボット形態の変化に適応できない問題を解決するフレームワーク。ロボット自身が生成したインタラクションからシステム変数をコンテキスト内で推論する「In-Context World Modeling (ICWM)」を提案。パラメータ更新不要でゼロショット汎化を実現し、実ロボット実験で有効性を実証した。

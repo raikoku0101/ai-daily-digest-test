@@ -1,6 +1,7 @@
-**3. Where, What, Why, and Importance: Structured Defect Grounding for Text-to-Image Feedback**
-**著者**: SDG Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.06113
+**3. JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting (JetSpec: 並列ツリードラフティングによる投機的デコーディングのスケーリング上限の突破)**
+**著者**: arXiv:2606.18394 著者ら (2026)
+**arXiv**: https://arxiv.org/abs/2606.18394
+**upvotes**: 29
 
 **まとめ**:
-テキストから画像生成 (T2I) モデルの局所的欠陥を「位置・種類・理由・重要度」の4タプルとして構造化する Structured Defect Grounding (SDG) を提案。30K 画像の SDG-30K データセットと評価プロトコルを整備し、VLM ベース検出器と BoxFlow-GRPO による拡散モデルアライメント手法を開発。既存の商用 VLM を上回る検出性能を達成し、T2I アライメントの一貫した改善を実現した。
+LLM推論の高速化手法である投機的デコーディング（Speculative Decoding）の新フレームワーク「JetSpec」を提案。効率的なフォワードドラフティングと因果条件付きを組み合わせたパラレルツリードラフティングにより、数学ベンチマークで最大9.64倍の推論速度向上を達成。既存手法のスケーリング上限を突破した実用的な高速化手法。

@@ -1,6 +1,7 @@
-**5. TreeSeeker: Tree-Structured Trial, Error, and Return in Deep Search**
-**著者**: TreeSeeker Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.11662
+**5. Running the Gauntlet: Re-evaluating the Capabilities of Agents Beyond Familiar Environments (試練を乗り越えろ: 慣れ親しんだ環境を超えたエージェント能力の再評価)**
+**著者**: arXiv:2606.14397 著者ら (2026)
+**arXiv**: https://arxiv.org/abs/2606.14397
+**upvotes**: 15
 
 **まとめ**:
-複雑な質問に対するマルチステップ Web 検索（Deep Search）を木構造で組織化する推論時フレームワーク。テキストベースの UCB (Upper Confidence Bound) シグナルで「有望な分岐の活用・不確実な選択肢の探索・非生産的な継続の剪定」を動的に制御。TreeMem で証拠・不確実性・矛盾・進捗を管理し、XBench-DeepSearch・BrowseComp 等でオープンソースの強力なベースラインを一貫して上回った。
+既存のAIエージェント評価が慣れ親しんだ環境に偏っているという問題を指摘し、時間知覚・3D推論を含む挑戦的シナリオのウェブベースベンチマークを構築。現在の最先端エージェントと人間のパフォーマンス間に大きなギャップを発見し、真の汎化能力の必要性をAI研究コミュニティへ訴えかける重要な警告論文。
