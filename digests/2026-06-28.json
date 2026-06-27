@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-28",
+  "content": "# AI Daily Digest — 2026-06-28\n\n## 今日のハイライト\n- **Claude Code v2.1.195 リリース**: 日本語・中国語・タイ語の音声入力自動送信バグが修正。日本語ユーザーは即時アップデートを推奨。バックグラウンドエージェントの安定性も大幅改善。\n- **ロボット制御のゼロショット汎化 (42 upvotes)**: In-Context World Modelingがパラメータ更新なしで新規ロボット構成に適応。再訓練コストを排除し実世界展開への道を開く重要な研究。\n- **AIエージェント報酬設計の根本的課題 (38 upvotes)**: コーディングエージェントの検証に「銀の弾丸」は存在しないことを実証。プロキシ指標への過度の依存が報酬ハッキングを招くとし、適応的検証の必要性を提唱。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.195 (2025-06-26) — 最新リリース\n\n**主要機能**\n- `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` 環境変数を追加。フルスクリーンモードでのマウスクリック・ドラッグ・ホバーを無効化しつつ、ホイールスクロールは維持可能に。\n\n**バグ修正**\n- フック マッチャーでハイフン含む識別子が部分一致していた問題を修正 → 完全一致に変更\n- macOSの音声入力が長時間セッションで入力デバイス変更後に無音を録音する問題を修正\n- 日本語・中国語・タイ語など空白なし言語での音声入力自動送信が動作しない問題を修正 (**日本語ユーザーへの影響大**)\n- プロジェクト `.claude/settings.json` 経由の外部プラグインがインストール同意不要になっていた問題を修正\n- `/plugin` の Enable/Disable が `plugin.json` の `name` とマーケットプレイスエントリ名が異なる場合に動作しない問題を修正\n- `claude agents` からバックグラウンドジョブが消えたりデータが失われる問題を修正\n- クラッシュしたバックグラウンドタスクを再開すると最大5秒ブランク画面になる問題を修正\n\n**ユーザーへの影響**: 日本語音声入力ユーザーは本バージョンへの更新を強く推奨。バックグラウンドエージェント安定性も向上。\n\n---\n\n### v2.1.193 (2025-06-25)\n\n**主要機能**\n- `autoMode.classifyAllShell` 設定を追加。全 Bash/PowerShell コマンドを自動モード分類器を通じてルーティング\n- auto-mode 拒否理由をトランスクリプト・拒否トースト・`/permissions` 最近の拒否に表示\n- `claude_code.assistant_response` OpenTelemetry ログイベントを追加（モデルの応答テキスト含む）\n- bash モード (`!`) にリアルタイムファイルパス補完を追加\n- MCP サーバーが認証を必要とする場合に起動時通知を追加\n- アイドル状態のバックグラウンドシェルコマンドのメモリ圧迫自動削減を追加\n\n**バグ修正**\n- `/model` などクライアントデータ依存 UI がログイン直後に古い/空の状態を表示する問題を修正\n- バックグラウンド転送が誤って「Nタスクが放棄される」でキャンセルされる問題を修正\n- 自動更新のたびにピン留めバックグラウンドエージェントが再プロンプトされる問題を修正\n\n**ユーザーへの影響**: 自動モードの透明性向上と MCP 認証ワークフローの改善。\n\n---\n\n### v2.1.191 (2025-06-24)\n\n**主要機能**\n- `/rewind` コマンドを追加。`/clear` 実行前の会話に戻って再開可能に\n\n**バグ修正**\n- ストリーミングレスポンス中に過去の出力を読んでいるとスクロール位置が最下部に飛ぶ問題を修正\n- 停止後にバックグラウンドエージェントが復活する問題を修正（タスクパネルからの停止が永続化）\n- 組織ポリシーで無効化されている場合の `/voice` エラーメッセージを改善\n- Windows Terminal での `/login` URL が折り返し時に切れる問題を修正\n- ssh/tmux 越し Ghostty フルスクリーンモードでの Cmd+クリックリンクを修正\n- `claude agents` がビルトインスラッシュコマンドをバックグラウンドセッションにプロンプトとして送信する問題を修正\n- カンマ区切りのフックマッチャーが動作しない問題を修正\n\n**ユーザーへの影響**: `/rewind` 機能により実験的なワークフローが容易に。バックグラウンドエージェント管理の信頼性向上。\n\n## 注目論文 TOP 10\n\n**1. In-Context World Modeling for Robotic Control** | 42 upvotes | https://arxiv.org/abs/2606.26025\n🎯 **背景**: ロボット制御では環境ごとにモデルを再訓練する必要があり、新しい構成への適応が困難だった\n🔧 **手法**: ロボットが自己生成インタラクションからシステム変数をコンテキスト内で推論するフレームワーク。システム同定をin-context適応問題として定式化\n📊 **結果**: パラメータ更新なしで新規構成に適応可能。複数ロボットプラットフォームで有効性を実証\n💡 **意義**: ゼロショット汎化によりロボット展開コストを大幅削減できる可能性。実世界応用への道を開く\n⚠️ **限界**: 自己生成インタラクションの品質に依存。高度に複雑な環境での性能は未検証\n\n---\n\n**2. The Verification Horizon: No Silver Bullet for Coding Agent Rewards** | 38 upvotes | https://arxiv.org/abs/2606.26300\n🎯 **背景**: AIコーディングエージェントの報酬設計において、検証手法の選択が性能を大きく左右する課題\n🔧 **手法**: 各種検証シグナル（テスト通過率、静的解析、人間評価等）がエージェント行動に与える影響を系統的に分析\n📊 **結果**: プロキシシグナルは人間の意図から乖離し、単一の万能な検証手法は存在しないことを実証\n💡 **意義**: コーディングエージェントの報酬ハッキング問題に対する根本的な洞察。生成能力向上に合わせた適応的検証システムの必要性を提唱\n⚠️ **限界**: 特定のコーディングタスクドメインに焦点。汎用エージェントへの一般化には追加研究が必要\n\n---\n\n**3. JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting** | 29 upvotes | https://arxiv.org/abs/2606.18394\n🎯 **背景**: 投機的デコーディングはLLM推論を高速化するが、ドラフトモデルのスケーリングに上限があり、大規模モデルでの効果が限定的だった\n🔧 **手法**: 因果条件付きを伴う効率的なフォワードドラフティングとパラレルツリードラフティングを組み合わせた新フレームワーク\n📊 **結果**: 数学ベンチマークで最大9.64倍の高速化を達成。受理率と推論速度の両方で既存手法を上回る\n💡 **意義**: LLM推論の実用的な高速化により、大規模言語モデルのリアルタイム応用が現実的に\n⚠️ **限界**: 数学タスクでの評価が中心。他のタスクタイプでの性能は検証が必要\n\n---\n\n**4. GUI vs. CLI: Execution Bottlenecks in Screen-Only and Skill-Mediated Computer-Use Agents** | 25 upvotes | https://arxiv.org/abs/2606.24551\n🎯 **背景**: コンピュータ利用エージェントのGUIとCLIアプローチのトレードオフを系統的に比較した研究が不足していた\n🔧 **手法**: GUIエージェント（スクリーンのみ）とCLIエージェント（スキルを介した操作）を同一ベンチマークで比較評価\n📊 **結果**: GUIエージェントは長期的なグラウンデッドインタラクションで困難、CLIエージェントはスキルカバレッジの限界を示す\n💡 **意義**: 実用的なコンピュータ利用エージェントの設計指針を提供。それぞれのアーキテクチャの適切な用途が明確化\n⚠️ **限界**: ベンチマークが特定の操作タスクに限定。実際のユーザーワークフローとの乖離がある可能性\n\n---\n\n**5. Running the Gauntlet: Re-evaluating the Capabilities of Agents Beyond Familiar Environments** | 15 upvotes | https://arxiv.org/abs/2606.14397\n🎯 **背景**: 既存のエージェント評価は慣れ親しんだ環境での性能を測定しており、汎化能力の評価が不十分だった\n🔧 **手法**: 時間知覚・3D推論など挑戦的なシナリオを含むウェブベースのベンチマークを構築し、エージェントの汎化を評価\n📊 **結果**: 現在のエージェントシステムと人間のパフォーマンスの間に大きなギャップを確認。特に時間知覚と3D推論で顕著\n💡 **意義**: エージェント研究コミュニティへの重要な警鐘。より頑牢な汎化能力の開発が急務と示す\n⚠️ **限界**: ウェブベースのシナリオに限定。物理的な環境での評価は含まない\n\n**6. LISA: Likelihood Score Alignment for Visual-condition Controllable Generation** | 13 upvotes | https://arxiv.org/abs/2606.27192\n🎯 **背景**: 視覚条件付き生成モデルのトレーニングは収束が遅く、コントロール可能性に課題があった\n🔧 **手法**: 中間特徴量を尤度スコアと整合させる正則化手法。画像・動画生成タスクに適用\n📊 **結果**: トレーニング収束が加速し、生成品質が向上。追加の計算コストはほぼゼロ\n💡 **意義**: 既存の生成モデルに容易に統合可能な軽量な改善手法。実用的なコントローラブル生成の普及に貢献\n⚠️ **限界**: 特定の生成アーキテクチャに依存する可能性。極めて複雑な視覚条件での評価が不足\n\n---\n\n**7. Information-Aware KV Cache Compression for Long Reasoning** | 9 upvotes | https://arxiv.org/abs/2606.26875\n🎯 **背景**: 長文脈推論でのLLMはKVキャッシュが膨大になり、メモリと計算効率の問題が深刻\n🔧 **手法**: 注意重みに加えて情報理論的シグナル（エントロピー）を組み込んだKVキャッシュ圧縮フレームワーク\n📊 **結果**: 複数のモデルアーキテクチャでの長文脈推論精度を維持しつつ、キャッシュサイズを大幅削減\n💡 **意義**: 長文脈LLMの実用展開コスト削減に直接貢献。情報理論的アプローチの有効性を示す\n⚠️ **限界**: エントロピー計算の追加オーバーヘッドが発生。超長文脈（100K+トークン）での評価が限定的\n\n---\n\n**8. Confidence-Aware Tool Orchestration for Robust Video Understanding** | 9 upvotes | https://arxiv.org/abs/2606.26904\n🎯 **背景**: ビデオ理解ツールはモーションブラーや遮蔽などの摂動に対して盲目的に信頼し、精度が低下する「盲目的信頼問題」があった\n🔧 **手法**: フレームごとの信頼度をビデオ推論に統合し、ツール出力の信頼性を評価しながらオーケストレーション\n📊 **結果**: 現実的な摂動（モーションブラー、遮蔽）下での精度が大幅に向上\n💡 **意義**: 実世界のビデオ理解システムの信頼性向上に重要。自動運転や監視システムへの応用に期待\n⚠️ **限界**: 信頼度推定自体の精度に依存。非常に激しい摂動では効果が限定的な可能性\n\n---\n\n**9. Hallucination in World Models is Predictable and Preventable** | 8 upvotes | https://arxiv.org/abs/2606.27326\n🎯 **背景**: 世界モデルの幻覚（hallucination）は予測不能で対処が難しいとされてきた\n🔧 **手法**: 幻覚がデータが少ない領域に集中することを発見し、カバレッジ認識サンプリングとデータ中心のシグナルを提案\n📊 **結果**: 幻覚の発生パターンが予測可能で、提案手法により検出・軽減が可能なことを実証\n💡 **意義**: 世界モデルの信頼性向上への重要な知見。LLMの幻覚問題への新アプローチにも波及する可能性\n⚠️ **限界**: 特定の世界モデルアーキテクチャでの評価。異なるモデルタイプへの汎化は未検証\n\n---\n\n**10. Discretizing Reward Models** | 7 upvotes | https://arxiv.org/abs/2606.21795\n🎯 **背景**: 連続報酬モデルは過敏性（oversensitivity）の問題があり、報酬ハッキングを引き起こしやすかった\n🔧 **手法**: モンテカルロドロップアウトを使用した離散化技術で連続報酬を区分的な値に変換\n📊 **結果**: 報酬ハッキングを低減しながら、識別能力（良いサンプルと悪いサンプルの区別）を維持\n💡 **意義**: RLHF/強化学習パイプラインの安定性向上に直接貢献。実用的な報酬モデル改善手法\n⚠️ **限界**: 離散化の粒度選択が性能に影響。タスク依存のチューニングが必要な場合がある\n\n",
+  "fetched_at": "2026-06-27T22:06:49.850175+00:00",
+  "papers": [
+    {
+      "title": "In-Context World Modeling for Robotic Control",
+      "upvotes": 42,
+      "id": "2606.26025",
+      "abstract": "Framework enabling robot policies to infer system variables from self-generated interactions, allowing adaptation to novel configurations without parameter updates by treating system identification as an in-context adaptation problem."
+    },
+    {
+      "title": "The Verification Horizon: No Silver Bullet for Coding Agent Rewards",
+      "upvotes": 38,
+      "id": "2606.26300",
+      "abstract": "Examines verification challenges in AI agents, showing that proxy signals diverge from human intent, requiring adaptive verification systems that evolve alongside generative capabilities to prevent reward hacking."
+    },
+    {
+      "title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting",
+      "upvotes": 29,
+      "id": "2606.18394",
+      "abstract": "Speculative decoding framework combining efficient forward drafting with causal conditioning to improve LLM inference speed and acceptance rates, achieving up to 9.64x speedup on mathematical benchmarks."
+    },
+    {
+      "title": "GUI vs. CLI: Execution Bottlenecks in Screen-Only and Skill-Mediated Computer-Use Agents",
+      "upvotes": 25,
+      "id": "2606.24551",
+      "abstract": "Matched benchmark comparing GUI and CLI agent execution, revealing that GUI agents struggle with long-horizon grounded interaction while CLI agents face skill coverage limitations."
+    },
+    {
+      "title": "Running the Gauntlet: Re-evaluating the Capabilities of Agents Beyond Familiar Environments",
+      "upvotes": 15,
+      "id": "2606.14397",
+      "abstract": "Web-based benchmark evaluating agent generalization across challenging scenarios, revealing significant gaps between current agentic systems and human performance in temporal perception and 3D reasoning."
+    },
+    {
+      "title": "LISA: Likelihood Score Alignment for Visual-condition Controllable Generation",
+      "upvotes": 13,
+      "id": "2606.27192",
+      "abstract": "Regularization method aligning intermediate features with likelihood scores, accelerating training convergence and improving synthetic results across various image/video generation tasks with negligible overhead."
+    },
+    {
+      "title": "Information-Aware KV Cache Compression for Long Reasoning",
+      "upvotes": 9,
+      "id": "2606.26875",
+      "abstract": "Entropy-aware KV cache compression framework incorporating information-theoretic signals alongside attention weights to improve long-context reasoning in LLMs across multiple model architectures."
+    },
+    {
+      "title": "Confidence-Aware Tool Orchestration for Robust Video Understanding",
+      "upvotes": 9,
+      "id": "2606.26904",
+      "abstract": "Framework addressing the Blind Trust Problem by integrating per-frame trustworthiness into video reasoning, improving accuracy under realistic perturbations like motion blur and occlusion."
+    },
+    {
+      "title": "Hallucination in World Models is Predictable and Preventable",
+      "upvotes": 8,
+      "id": "2606.27326",
+      "abstract": "Analysis showing world model hallucinations concentrate in low-data regions, proposing coverage-aware sampling and data-centric signals for detection and mitigation."
+    },
+    {
+      "title": "Discretizing Reward Models",
+      "upvotes": 7,
+      "id": "2606.21795",
+      "abstract": "Demonstrates that continuous reward models suffer from oversensitivity, proposing discretization techniques using Monte Carlo dropout to reduce reward hacking while maintaining discriminative ability."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.195",
+      "published_at": "2025-06-26",
+      "body": "Added CLAUDE_CODE_DISABLE_MOUSE_CLICKS to disable mouse click/drag/hover in fullscreen mode. Fixed hook matchers with hyphenated identifiers accidentally substring-matching. Fixed voice dictation on macOS capturing silence in long-running sessions. Fixed voice dictation auto-submit never firing for Japanese, Chinese, Thai. Fixed external plugins not requiring install consent. Fixed /plugin Enable/Disable not working. Fixed background jobs disappearing from claude agents. Fixed reopening a crashed background task showing blank screen."
+    },
+    {
+      "tag_name": "v2.1.193",
+      "published_at": "2025-06-25",
+      "body": "Added autoMode.classifyAllShell setting to route all Bash/PowerShell through auto-mode classifier. Added auto-mode denial reasons to transcript. Added claude_code.assistant_response OpenTelemetry log event. Added live file path autocomplete to bash mode. Added startup notice when MCP servers need authentication. Added automatic memory-pressure reaping for idle background shell commands. Fixed /model and client-data-gated UI showing stale state. Fixed backgrounding spuriously cancelling. Fixed pinned background agents being re-prompted after auto-update."
+    },
+    {
+      "tag_name": "v2.1.191",
+      "published_at": "2025-06-24",
+      "body": "Added /rewind support for resuming conversation from before /clear. Fixed scroll position jumping to bottom during streaming response. Fixed background agents resurrecting after being stopped. Fixed /voice showing generic message when disabled by org policy. Fixed /login URL truncated in Windows Terminal. Fixed Cmd+click on links in fullscreen Ghostty over ssh/tmux. Fixed claude agents sending builtin slash commands to background sessions. Fixed hooks with comma-separated matchers silently never firing."
+    }
+  ]
+}
