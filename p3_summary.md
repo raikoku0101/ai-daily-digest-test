@@ -1,7 +1,7 @@
-**3. JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting (JetSpec: 並列ツリードラフティングによる投機的デコーディングのスケーリング上限の突破)**
-**著者**: arXiv:2606.18394 著者ら (2026)
+**3. JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting (投機的デコードのスケーリング上限を突破する並列ツリードラフティング)**
+**著者**: JetSpec Authors et al. (2026)
 **arXiv**: https://arxiv.org/abs/2606.18394
-**upvotes**: 29
+**upvotes**: 31
 
 **まとめ**:
-LLM推論の高速化手法である投機的デコーディング（Speculative Decoding）の新フレームワーク「JetSpec」を提案。効率的なフォワードドラフティングと因果条件付きを組み合わせたパラレルツリードラフティングにより、数学ベンチマークで最大9.64倍の推論速度向上を達成。既存手法のスケーリング上限を突破した実用的な高速化手法。
+投機的デコード（Speculative Decoding）の高速化に新たな突破口を開いた研究。並列ツリードラフティング（Parallel Tree Drafting）と因果的コンディショニング（Causal Conditioning）を組み合わせることで、ドラフトモデルのスケールアップ時に発生する受理率の頭打ち問題を解決し、数学ベンチマークで最大9.64倍のスループット向上を達成した。

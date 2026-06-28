@@ -1,7 +1,7 @@
-**4. GUI vs. CLI: Execution Bottlenecks in Screen-Only and Skill-Mediated Computer-Use Agents (GUIとCLIの対決: スクリーンのみとスキル介在型コンピュータ使用エージェントの実行ボトルネック)**
-**著者**: arXiv:2606.24551 著者ら (2026)
+**4. GUI vs. CLI: Execution Bottlenecks in Screen-Only and Skill-Mediated Computer-Use Agents (GUIとCLI: スクリーンオンリーとスキルベース・コンピュータ使用エージェントの実行ボトルネック)**
+**著者**: GUI vs CLI Authors et al. (2026)
 **arXiv**: https://arxiv.org/abs/2606.24551
-**upvotes**: 25
+**upvotes**: 28
 
 **まとめ**:
-コンピュータ使用エージェントのGUI（画面のみ）とCLI（スキル介在）の2つのアプローチを同一ベンチマークで体系的に比較した研究。GUIエージェントは長期的なグラウンデッドインタラクションに脆弱、CLIエージェントはスキルカバレッジ不足に悩む実態を明らかにし、実用的エージェント設計のための具体的な設計指針を提供する。
+コンピュータ操作エージェントにおけるGUI（画面操作）とCLI（コマンドライン）アプローチの優劣を同一タスクで実証的に比較した研究。GUIエージェントは長期タスクの根拠付きインタラクションに苦戦し、CLIエージェントはスキルカバレッジの欠如が主ボトルネックであることを明らかにした。エージェント設計選択に実証的根拠を提供する重要な比較研究。
