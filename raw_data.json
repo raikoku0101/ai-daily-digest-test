@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "In-Context World Modeling for Robotic Control", "upvotes": 49, "paper_id": "2606.26025", "abstract": "Framework enabling robot policies to infer system variables from self-generated interactions, allowing adaptation to novel configurations without parameter updates by treating system identification as an in-context adaptation problem."},
-    {"title": "The Verification Horizon: No Silver Bullet for Coding Agent Rewards", "upvotes": 40, "paper_id": "2606.26300", "abstract": "Challenges in coding agent verification arise from difficulty aligning proxy signals with human intent, requiring adaptive verification systems that evolve alongside generative capabilities across different task types."},
-    {"title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting", "upvotes": 31, "paper_id": "2606.18394", "abstract": "Speculative decoding framework combining efficient forward drafting with causal conditioning to improve LLM inference speed and acceptance rates, achieving up to 9.64x speedup on mathematical benchmarks."},
-    {"title": "GUI vs. CLI: Execution Bottlenecks in Screen-Only and Skill-Mediated Computer-Use Agents", "upvotes": 28, "paper_id": "2606.24551", "abstract": "Matched benchmark comparing graphical and command-line agent interfaces reveals different execution bottlenecks: GUI agents struggle with long-horizon grounded interaction, CLI agents with skill coverage."},
-    {"title": "Why Multi-Step Tool-Use Reinforcement Learning Collapses and How Supervisory Signals Fix It", "upvotes": 15, "paper_id": "2606.26027", "abstract": "Investigates how supervisory signals and interleaved training strategies improve stability in tool-use tasks, addressing catastrophic collapse through diverse guidance mechanisms and format-aware learning."},
-    {"title": "LISA: Likelihood Score Alignment for Visual-condition Controllable Generation", "upvotes": 13, "paper_id": "2606.27192", "abstract": "Regularization method aligning intermediate features with likelihood scores accelerates training convergence and improves synthetic results in visual-condition controllable generation tasks."},
-    {"title": "Information-Aware KV Cache Compression for Long Reasoning", "upvotes": 9, "paper_id": "2606.26875", "abstract": "Entropy-aware KV cache compression framework enhancing long-context reasoning in LLMs by incorporating information-theoretic signals alongside attention weights."},
-    {"title": "Confidence-Aware Tool Orchestration for Robust Video Understanding", "upvotes": 9, "paper_id": "2606.26904", "abstract": "Framework integrating per-frame trustworthiness into video reasoning to address the Blind Trust Problem under realistic perturbations like motion blur and occlusion."},
-    {"title": "Hallucination in World Models is Predictable and Preventable", "upvotes": 8, "paper_id": "2606.27326", "abstract": "World models exhibit hallucinations in low-data regions, detectable through data-centric signals and mitigatable using coverage-aware sampling techniques for efficient fine-tuning."},
-    {"title": "CoffeeBench: Benchmarking Long-Horizon LLM Agents in Heterogeneous Multi-Agent Economies", "upvotes": 8, "paper_id": "2606.16613", "abstract": "Evaluates LLM agents in a multi-agent economic simulation where firms interact over 90 days, revealing performance differences and communication patterns among various models."}
+    {
+      "title": "MultiHashFormer: Hash-based Generative Language Models",
+      "upvotes": 16,
+      "paper_id": "2606.28057",
+      "abstract": "Language models (LMs) represent tokens using embedding matrices that scale linearly with the vocabulary size. To constrain the parameter footprint, prior work proposes hashing many tokens into a single vector within encoder-only models. While this offers parameter efficiency, many-to-one collisions prevent its use in causal LMs. In this paper, we propose MultiHashFormer, a new framework that allows hash-based autoregression."
+    },
+    {
+      "title": "The Tatoxa System for Text Detoxification in Low-Resource Languages: The Case of Tatar",
+      "upvotes": 9,
+      "paper_id": "2606.26015",
+      "abstract": "Text detoxification, the automated detection and mitigation of abusive and harmful content, is essential for ensuring the safety of online communities and protecting users. However, low resource languages such as Tatar have received little research attention. In this paper we present Tatoxa, a novel state-of-the-art system for text detoxification in the Tatar language."
+    },
+    {
+      "title": "GBC: Gradient-Based Connections for Optimizing Multi-Agent Systems",
+      "upvotes": 8,
+      "paper_id": "2606.28187",
+      "abstract": "Multi-agent systems (MAS) built on large language models (LLMs) provide a promising framework for solving complex tasks through role specialization and structured interaction. However, their performance is often limited by miscoordination and, more fundamentally, the lack of fine-grained credit assignment across agents."
+    },
+    {
+      "title": "Parallel Rollout Approximation for Pixel-Space Autoregressive Image Generation",
+      "upvotes": 4,
+      "paper_id": "2606.27978",
+      "abstract": "Pixel-space continuous-token autoregressive (AR) generation directly models images as sequences of raw pixel patches, avoiding discrete tokenization or a separately pretrained tokenizer. However, it faces coupled challenges: high-dimensional patch generation causes large single-step errors, and teacher-forced training creates a train-inference gap."
+    },
+    {
+      "title": "Thinking While Speaking: Inference-Time Knowledge Transfer for Responsive and Intelligent Conversational Voice Agents",
+      "upvotes": 4,
+      "paper_id": "2511.07397",
+      "abstract": "Voice agents face a fundamental tension: the reasoning, retrieval, and tool use that make foundation models capable are iterative and slow, while conversational interaction demands responses on a millisecond timescale. We introduce conversational infill, where a small talker model both immediately generates contextually grounded responses."
+    },
+    {
+      "title": "Learning to Fold: prizewinning solution at LeHome Challenge 2026 (1st place online, 2nd offline)",
+      "upvotes": 4,
+      "paper_id": "2606.27163",
+      "abstract": "I describe my solution to the LeHome Challenge 2026, an ICRA 2026 competition on bimanual garment folding. The system placed 1st of 62 teams in the online (simulation) round and 2nd in the real-world final. It improves a vision-language-action (VLA) policy with a reinforcement-learning loop."
+    },
+    {
+      "title": "Object-Centric Residual RL for Zero-Shot Sim-to-Real VLA Enhancement",
+      "upvotes": 3,
+      "paper_id": "2606.18953",
+      "abstract": "Vision-Language-Action (VLA) models can generalize across diverse manipulation tasks, but their imitation-learning-based policies remain brittle in precise physical interactions due to compounding execution errors. We propose an object-centric residual RL framework that refines VLA actions using object poses."
+    },
+    {
+      "title": "Cluster, Route, Escalate: Cascaded Framework for Cost-Aware LLM Serving",
+      "upvotes": 2,
+      "paper_id": "2606.27457",
+      "abstract": "Efficient deployment of large language models (LLMs) in production forces a trade-off between accuracy and cost. We propose a two-stage cascaded solution. Stage 1 clusters incoming queries and assigns each cluster to its most cost-effective model. Stage 2 adds a quality estimation cascade."
+    },
+    {
+      "title": "AgentOdyssey: Open-Ended Long-Horizon Text Game Generation for Test-Time Continual Learning Agents",
+      "upvotes": 2,
+      "paper_id": "2606.24893",
+      "abstract": "For agents to learn continuously from interaction with the world at test time, they must be able to explore effectively, acquire new world knowledge and skills, retain relevant episodic experiences, and plan over long horizons. We introduce AgentOdyssey, a novel evaluation framework that procedurally generates open-ended text games."
+    },
+    {
+      "title": "Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models",
+      "upvotes": 2,
+      "paper_id": "2606.17846",
+      "abstract": "Foundation models in language and multimodality achieve strong generalization by aligning heterogeneous data under a unified formulation and training at scale. We present Qwen-RobotManip, a generalizable Vision-Language-Action foundation model built on Qwen-VL."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.195", "published_at": "2026-06-26", "body": "Added CLAUDE_CODE_DISABLE_MOUSE_CLICKS to disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll. Fixed hook matchers with hyphenated identifiers accidentally substring-matching. Fixed voice dictation on macOS capturing silence in long-running sessions. Fixed voice dictation auto-submit never firing for languages written without spaces (Japanese, Chinese, Thai). Fixed external plugins not requiring explicit install consent on every loader path. Fixed /plugin Enable/Disable not working when a plugin's name differs from its marketplace entry name."},
-    {"tag_name": "v2.1.193", "published_at": "2026-06-25", "body": "Added autoMode.classifyAllShell setting to route all Bash/PowerShell commands through the auto-mode classifier. Added auto-mode denial reasons to the transcript and /permissions recent denials. Added claude_code.assistant_response OpenTelemetry log event. Added live file path autocomplete to bash mode. Added a startup notice when MCP servers need authentication. Added automatic memory-pressure reaping for idle background shell commands."},
-    {"tag_name": "v2.1.191", "published_at": "2026-06-24", "body": "Added /rewind support for resuming a conversation from before /clear was run. Fixed scroll position jumping to the bottom while reading earlier output during streaming. Fixed background agents resurrecting after being stopped. Fixed /voice showing a generic message when disabled by policy. Fixed /login URL opening truncated in Windows Terminal. Improved sandbox network permission dialog: hosts you allow with Yes are now remembered for the rest of the session."}
+    {
+      "tag_name": "v2.1.195",
+      "published_at": "2026-06-26",
+      "body": "Added `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` to disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll\nFixed hook matchers with hyphenated identifiers (e.g. `code-reviewer`, `mcp__brave-search`) accidentally substring-matching — they now exact-match. Use `mcp__brave-search__.*` to match all tools from a hyphenated MCP server.\nFixed voice dictation on macOS capturing silence in long-running sessions after the default input device changes\nFixed voice dictation auto-submit never firing for languages written without spaces (Japanese, Chinese, Thai)\nFixed external plugins enabled only by project `.claude/settings.json` not requiring explicit install consent on every loader path"
+    },
+    {
+      "tag_name": "v2.1.193",
+      "published_at": "2026-06-25",
+      "body": "Added `autoMode.classifyAllShell` setting to route all Bash/PowerShell commands through the auto-mode classifier\nAdded auto-mode denial reasons to the transcript, the denial toast, and `/permissions` recent denials\nAdded `claude_code.assistant_response` OpenTelemetry log event containing the model's response text\nAdded live file path autocomplete to bash mode (`!`)\nAdded a startup notice when MCP servers need authentication, pointing at `/mcp`"
+    },
+    {
+      "tag_name": "v2.1.191",
+      "published_at": "2026-06-24",
+      "body": "Added `/rewind` support for resuming a conversation from before `/clear` was run\nFixed scroll position jumping to the bottom while reading earlier output during a streaming response\nFixed background agents resurrecting after being stopped\nFixed `/voice` showing a generic \"not available\" message when disabled by an organization's policy\nFixed `/login` URL opening truncated in Windows Terminal when it wraps across lines"
+    }
   ]
 }
