@@ -1,7 +1,6 @@
-**3. JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting (投機的デコードのスケーリング上限を突破する並列ツリードラフティング)**
-**著者**: JetSpec Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.18394
-**upvotes**: 31
+**3. GBC: Gradient-Based Connections for Optimizing Multi-Agent Systems (勾配ベース接続によるマルチエージェント最適化)**
+**著者**: Xiaocheng Yang, Abdulrahman Alrabah, Dilek Hakkani-Tür, Gokhan Tur (2026)
+**arXiv**: https://arxiv.org/abs/2606.28187
 
 **まとめ**:
-投機的デコード（Speculative Decoding）の高速化に新たな突破口を開いた研究。並列ツリードラフティング（Parallel Tree Drafting）と因果的コンディショニング（Causal Conditioning）を組み合わせることで、ドラフトモデルのスケールアップ時に発生する受理率の頭打ち問題を解決し、数学ベンチマークで最大9.64倍のスループット向上を達成した。
+LLM ベースのマルチエージェントシステムの課題である粗粒度クレジット割り当て問題に対し、MAS を計算グラフとしてモデル化し勾配ベース接続重みでトークンレベルの影響を定量化する GBC フレームワークを提案。MultiWOZ・τ-bench で強力なベースラインを上回り、アトリビューション品質と最適化効果の相関を実証した。

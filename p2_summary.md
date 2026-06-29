@@ -1,7 +1,6 @@
-**2. The Verification Horizon: No Silver Bullet for Coding Agent Rewards (検証の地平線: コーディングエージェント報酬に銀の弾丸なし)**
-**著者**: Hritik Bansal et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.26300
-**upvotes**: 40
+**2. The Tatoxa System for Text Detoxification in Low-Resource Languages (低リソース言語テキスト解毒システム: タタール語)**
+**著者**: Ilseyar Alimova et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.26015
 
 **まとめ**:
-コーディングエージェントの強化学習において報酬シグナルの正確な設計が困難であることを体系的に分析した研究。プロキシ検証信号（ユニットテスト等）が人間の意図と乖離するケースを定量化し、単一の検証手法がすべてのタスクタイプで機能する「銀の弾丸」は存在しないことを実証した。タスク種別に応じた適応型検証システムの必要性を示す警告論文として重要。
+オンラインコミュニティの安全確保に必須なテキスト解毒において、研究が手薄だったタタール語向けシステム Tatoxa を提案。既存のオープンソース・商用 LLM を品質指標で上回る SOTA を達成しつつ、ロシア語等からの転移学習はネイティブデータ学習に大きく劣ることを実証。低リソース言語 NLP 安全研究の道を拓く重要な貢献。

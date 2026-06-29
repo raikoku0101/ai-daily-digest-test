@@ -1,7 +1,6 @@
-**5. Why Multi-Step Tool-Use Reinforcement Learning Collapses and How Supervisory Signals Fix It (多段階ツール使用強化学習が崩壊する理由と教師的信号による解決)**
-**著者**: Multi-Step RL Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.26027
-**upvotes**: 15
+**5. Thinking While Speaking: Inference-Time Knowledge Transfer for Responsive and Intelligent Conversational Voice Agents (応答しながら考える: 会話型音声エージェントの推論時知識転送)**
+**著者**: (2511.07397 authors) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2511.07397
 
 **まとめ**:
-ツール使用タスクの多段階強化学習において発生する壊滅的崩壊（Catastrophic Collapse）の原因を解明し、教師的信号とインターリーブ学習戦略による解決策を提案した研究。適切な教師的信号の導入と多様なガイダンスメカニズムの組み合わせにより、安定した学習を実現することを実証。実用的なエージェント開発の処方箋として価値が高い。
+音声エージェントの「速度 vs 能力」トレードオフを破る Conversational Infill を提案。小型 talker モデルが外部 reasoner の応答待ち中に即時応答を生成しつつ推論結果をストリームで統合し、ミリ秒応答を維持しながら frontier モデルとの精度差を 6.3% 以内に抑制。ユーザー調査で検索タスクで最先端モデルより選好された。
