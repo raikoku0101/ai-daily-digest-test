@@ -1,0 +1,84 @@
+{
+  "date": "2026-06-30",
+  "content": "# AI Daily Digest — 2026-06-30\n\n## 今日のハイライト\n- **MultiHashFormer が LM パラダイムを刷新**: ボキャブラリ非依存のハッシュベース自己回帰言語モデルが 100M〜3B スケールで標準 Transformer を上回る。多言語対応もパラメータ増なしで実現し、次世代 LM アーキテクチャの有力候補として注目。\n- **Claude Code v2.1.195〜v2.1.191 が連続リリース**: 日本語・中国語・タイ語の音声ディクテーション修正、`/rewind` による会話巻き戻し機能、MCP フックマッチャーの完全一致修正など実用的な改善が多数。日本語ユーザーに直接影響する修正が含まれる。\n- **ロボット操作の大規模基盤モデル競争が加速**: Qwen-RobotManip がオープンソースのみで 38,100 時間の学習データを構築し RoboChallenge 1 位 (π0.5 比 20% 改善)。物体中心残差 RL のゼロショット sim-to-real も VLA 精度を 42%→76% に引き上げ、実用化が近づいている。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.195 (2026-06-26)\n\n**主要機能詳細**\n- `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` 環境変数を追加: フルスクリーンモードでマウスクリック・ドラッグ・ホバーを無効化しつつ、ホイールスクロールは維持可能に\n\n**バグ修正**\n- ハイフン含む識別子 (`code-reviewer`, `mcp__brave-search` 等) のフックマッチャーが部分一致していた問題を修正 → 完全一致に変更。全ツールマッチには `mcp__brave-search__.*` を使用\n- macOS でデフォルト入力デバイス変更後、長時間セッションで音声ディクテーションが無音を録音してしまう問題を修正\n- スペースなしで書く言語 (日本語・中国語・タイ語) で音声ディクテーション自動送信が機能しない問題を修正\n- プロジェクト `.claude/settings.json` のみで有効化された外部プラグインが明示的インストール同意を求めない問題を修正\n\n**ユーザーへの影響**: 日本語ユーザーに特に恩恵のある音声ディクテーション修正、MCP サーバー管理の精度向上。\n\n---\n\n### v2.1.193 (2026-06-25)\n\n**主要機能詳細**\n- `autoMode.classifyAllShell` 設定追加: 任意コード実行パターンだけでなく全 Bash/PowerShell コマンドを自動モード分類器でルーティング\n- 自動モード拒否理由をトランスクリプト・拒否トースト・`/permissions` 最近の拒否に追加\n- `claude_code.assistant_response` OpenTelemetry ログイベント追加 (モデル応答テキストを含む)。デフォルトは非表示、`OTEL_LOG_ASSISTANT_RESPONSES=1` で有効化\n- bash モード (`!`) でライブファイルパス補完を追加\n- MCP サーバーが認証必要な場合、起動時に `/mcp` を指す通知を表示\n\n**ユーザーへの影響**: セキュリティポリシーの可視性向上、OpenTelemetry 統合でモデル応答のオブザーバビリティ強化。\n\n---\n\n### v2.1.191 (2026-06-24)\n\n**主要機能詳細**\n- `/rewind` コマンド: `/clear` 実行前の会話に戻って再開できる機能を追加\n\n**バグ修正**\n- ストリーミング応答中に過去の出力を読んでいるとスクロール位置が最下部に飛ぶ問題を修正\n- 停止したバックグラウンドエージェントが復活してしまう問題を修正 (タスクパネルから停止すると永続的に停止)\n- 組織ポリシーで無効化された `/voice` が汎用「利用不可」メッセージを表示していた問題を修正 → 制限理由を説明するメッセージに変更\n- Windows Terminal で `/login` URL が折り返して切り捨てられる問題を修正\n- Ghostty over ssh/tmux でのフルスクリーンモード Cmd+クリックを修正\n\n**ユーザーへの影響**: 会話の巻き戻し機能でより柔軟なセッション管理が可能に。\n\n## 注目論文 TOP 10\n\n**1. MultiHashFormer: Hash-based Generative Language Models** | 16 upvotes | https://arxiv.org/abs/2606.28057\n🎯**背景**: LM の埋め込み行列はボキャブラリサイズに比例してパラメータが増加する。エンコーダのみモデルではハッシュで効率化できるが、多対一衝突のためデコーダ型 LM への適用は不可能だった。\n🔧**手法**: 各トークンを複数の独立ハッシュ関数で生成した「ハッシュシグネチャ（短い離散 ID 列）」で表現。Hash Encoder が Transformer デコーダ処理用の潜在ベクトルに圧縮し、Hash Decoder が次トークンのハッシュシグネチャを生成してテキストに逆変換。\n📊**結果**: 100M・1B・3B パラメータスケールで評価し、複数ベンチマークで標準 Transformer LM を一貫して上回る。多言語ボキャブラリ拡張もパラメータ数を変えずに対応。\n💡**意義**: ボキャブラリ規模に依存しない生成型 LM の新パラダイムを確立。スケール時のパラメータ効率を大幅改善。\n⚠️**限界**: ハッシュ衝突の確率的リスクが残存。既存の fine-tuning エコシステムとの互換性確認が必要。\n\n**2. The Tatoxa System for Text Detoxification in Low-Resource Languages: The Case of Tatar** | 9 upvotes | https://arxiv.org/abs/2606.26015\n🎯**背景**: オンラインコミュニティの安全確保に有害コンテンツ検出・緩和は不可欠だが、タタール語のような低リソース言語はほとんど研究されていない。\n🔧**手法**: タタール語専用デトキシフィケーションシステム Tatoxa を提案。ネイティブタタール語データでの fine-tuning と、ロシア語等他言語からのクロスリンガル転移実験を実施。新たなタタール語デトキシフィケーションデータセットも構築。\n📊**結果**: オープンソース・商用 LLM を主要品質指標で上回る SOTA を達成。ロシア語等からの転移は、たとえ大規模コーパスがあっても、ネイティブデータでの学習に大きく劣ることが判明。\n💡**意義**: 低リソース言語の安全 AI 研究に具体的な手法論と公開データセットを提供。Tatar 語 NLP の基盤構築。\n⚠️**限界**: タタール語単言語に特化しており、他の低リソース言語への直接適用には追加研究が必要。\n\n**3. GBC: Gradient-Based Connections for Optimizing Multi-Agent Systems** | 8 upvotes | https://arxiv.org/abs/2606.28187\n🎯**背景**: LLM ベースのマルチエージェントシステム (MAS) は複雑タスクに有効だが、エージェント間の細粒度クレジット割り当てが困難で、粗粒度フィードバックに依存しエラー原因の特定が難しかった。\n🔧**手法**: MAS を計算グラフとしてモデル化し、勾配ベース接続重みを導入。各エージェント出力の下流エージェントへのトークンレベルの影響を定量化。アトリビューショングラフを構築しタスク固有損失信号を逆伝播することで、エラー源を正確に特定してプロンプト最適化を実施。実装は AgentChord (プレフィックスベース勾配計算)。\n📊**結果**: MultiWOZ・τ-bench での実験で、強力な単一エージェント・マルチエージェントベースラインを上回る。高アトリビューション品質が最適化効果と相関。\n💡**意義**: MAS の細粒度デバッグと自動最適化を実現する初の勾配ベースフレームワーク。LLM エージェント研究に新たな手法論を提示。\n⚠️**限界**: 勾配計算のコストが大規模 MAS では高くなる可能性。プロンプト最適化の収束保証がない。\n\n**4. Parallel Rollout Approximation for Pixel-Space Autoregressive Image Generation** | 4 upvotes | https://arxiv.org/abs/2606.27978\n🎯**背景**: ピクセル空間 AR 画像生成は離散トークン化を不要にするが、高次元パッチ生成の大きな単一ステップ誤差と、teacher-forced 学習と推論時の分布ギャップによる誤差累積が課題だった。\n🔧**手法**: Parallel Rollout Approximation (PRA): 高次元ピクセルパッチの代わりに低次元中間状態を生成し、ピクセルデコーダでピクセル空間トークンに変換。推論時と同じ中間状態→ピクセル経路を並列で構築し、逐次サンプリングなしで推論ライクな学習を実現。\n📊**結果**: PRA-S (135M params) が ImageNet-1K 256×256 でFID 2.58 を達成 (従来のビリオンスケール SOTA 3.60 を上回る)。PRA-L (511M) はFID 1.94 でピクセル空間 AR モデルの新 SOTA。ImageNet 分類プロービング精度でも他モデルを凌駕。\n💡**意義**: パラメータ効率が高くピクセル空間統一生成・理解モデルへの道を拓く。スケール効率の大幅改善。\n⚠️**限界**: 高解像度へのスケールアップ検証が不十分。中間状態設計の最適化が必要。\n\n**5. Thinking While Speaking: Inference-Time Knowledge Transfer for Responsive and Intelligent Conversational Voice Agents** | 4 upvotes | https://arxiv.org/abs/2511.07397\n🎯**背景**: 音声エージェントは「高度な推論には時間がかかる」vs「会話はミリ秒オーダーの応答が必要」という根本的トレードオフに直面。小型リアルタイムモデルはレイテンシを満たすが能力が低い。\n🔧**手法**: Conversational Infill: 小型 talker モデルが外部 reasoner モデルの応答待ち時間中に文脈的に自然な応答を即時生成しつつ、推論中にストリーミングで届く reasoner の知識を流暢に統合。290,571 例の合成データセット (6 ドメイン) で学習。実装: ConvFill。\n📊**結果**: 7 つの小型 LM (135M~1.7B) で学習可能を確認。ミリ秒レベルの応答開始時間を維持しつつ、対応 frontier reasoner との精度差を 6.3% 以内に抑制。ユーザースタディ (n=18) で frontier モデルと同等評価を獲得、検索タスクで選好され、応答性で有意に高評価。\n💡**意義**: レイテンシ-能力のパレートフロンティアに新たな動作点を提供。実用的な高性能音声エージェントへの道を開く。\n⚠️**限界**: 合成データへの依存と実世界の多様な音声条件での評価が限定的。\n\n\n**6. Learning to Fold: prizewinning solution at LeHome Challenge 2026** | 4 upvotes | https://arxiv.org/abs/2606.27163\n🎯**背景**: ICRA 2026 の両腕衣類折り畳みコンペ LeHome Challenge 2026。62 チーム参加のシミュレーション部門で 1 位、リアルワールド部門で 2 位を獲得した解法。\n🔧**手法**: Vision-Language-Action (VLA) ポリシーを強化学習ループで改善。同一ネットワークがアクション予測・成功予測・進行度予測・タスク関連将来量予測を兼任し、アドバンテージ推定・ライブ失敗検出・候補選択に活用。AWR+RECAP を flow-matching VLA に組合せ、HuggingFace Hub 経由の非同期分散学習/ロールアウトパイプラインと Thompson サンプリングによる推論時ハイパーパラメータ最適化を実装。\n📊**結果**: オンラインラウンド 1 位 / 62 チーム、リアルワールドファイナル 2 位という top-2 パフォーマンス。\n💡**意義**: VLA と RL を組み合わせた sim-to-real の実践的レシピを公開。個々の RL アイデアをモジュール的に使える汎用フレームワーク。\n⚠️**限界**: 特定コンペ設定への最適化。一般的な衣類折り畳みシナリオへの汎化は未検証。\n\n**7. Object-Centric Residual RL for Zero-Shot Sim-to-Real VLA Enhancement** | 3 upvotes | https://arxiv.org/abs/2606.18953\n🎯**背景**: VLA モデルは汎化性が高いが精密な物理インタラクションで誤差が蓄積しやすい。Residual RL は補正ポリシーを学習するが、特権状態法・画像ベース法・実世界 RL のいずれも sim-to-real の壁がある。\n🔧**手法**: 物体中心の残差 RL フレームワーク: 物体ポーズを使って VLA アクションを精緻化。コンパクトな観測空間がシミュレーションと現実で一貫して転移。同じテレオペデモをシミュレーションで再生し VLA の sim 対応物を訓練。ポーズノイズ注入とドロップアウトで sim のみ訓練 → ゼロショット実機転移。\n📊**結果**: 5 つの操作タスクで成功率 42% → 76% へゼロショット改善 (Franka Research 3)。改善ロールアウトを VLA の再訓練に活用し追加テレオペなしで自己改善。\n💡**意義**: 実世界 RL コストなしで VLA 精度を大幅向上する実用的フレームワーク。自己改善ループによる継続的改善の可能性。\n⚠️**限界**: 物体ポーズ推定の精度に依存。複雑形状・非剛体物体への適用は困難。\n\n**8. Cluster, Route, Escalate: Cascaded Framework for Cost-Aware LLM Serving** | 2 upvotes | https://arxiv.org/abs/2606.27457\n🎯**背景**: LLM の本番デプロイは精度とコストのトレードオフが不可避。単一モデルでは簡単なクエリに過剰コストかかるか、難しいクエリへの能力不足のどちらかになりがち。\n🔧**手法**: 2 段カスケード: Stage 1 でクエリをクラスタリングし各クラスタに最もコスト効率の良いモデルを割り当て (コスト予算は解釈可能なハイパーパラメータでオフライン調整)。Stage 2 で品質推定 (QE) カスケードを追加し、低品質出力は強力モデルへエスカレーション。\n📊**結果**: テストデータセットで最強モデルの精度 97-99% を維持しながら TPOT (Time Per Output Token) を削減。タスク正解ラベルのみ必要で、モデルプール変更に手動再設定不要。\n💡**意義**: 解釈可能なコスト制御と自動エスカレーションで現実的なコスト最適化 LLM サービングを実現。\n⚠️**限界**: Stage 1 クラスタリング品質がシステム全体性能に影響。品質推定器自体の精度保証が課題。\n\n**9. AgentOdyssey: Open-Ended Long-Horizon Text Game Generation for Test-Time Continual Learning Agents** | 2 upvotes | https://arxiv.org/abs/2606.24893\n🎯**背景**: テスト時継続学習エージェントを評価するには探索・知識獲得・エピソード記憶・長期計画が試される環境が必要だが、既存ベンチマークはテスト時学習を想定していない。\n🔧**手法**: AgentOdyssey: 豊富なエンティティ・世界ダイナミクス・長期タスクを持つオープンエンドテキストゲームを手続き生成する評価フレームワーク。学習と推論をデプロイ中に交互に行う連続長期ホライズン設定。ゲーム進行・世界知識獲得・エピソード記憶・探索多様性・行動多様性・モデルコストの多面的評価。\n📊**結果**: 多様なエージェントパラダイムを評価。短期記憶が複数パラダイムで有効な要素と判明。強いベースモデルでスケール、しかし最高エージェントでも人間パフォーマンスを大きく下回る。\n💡**意義**: テスト時継続学習エージェントの標準評価フレームワークの確立。エージェント研究の方向性を示す診断ツール。\n⚠️**限界**: テキストゲームという限定ドメインでの評価。視覚・身体化エージェントへの拡張は未対応。\n\n**10. Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models** | 2 upvotes | https://arxiv.org/abs/2606.17846\n🎯**背景**: 言語・マルチモーダルの基盤モデルは統一定式化でスケールを達成するが、ロボット操作データは性質上異質でコスト高・多様性低くスケールが困難だった。\n🔧**手法**: Qwen-VL 上に構築した Qwen-RobotManip: 表現・モーション・行動の 3 次元で統一アライメントフレームワークを導入し、大規模マルチソース学習を一貫性あるものに。人間中心視点のハンドデモをロボット軌跡に変換する pipeline で 15 プラットフォーム対応、厳格なキュレーション pipeline で異質データセットを統合。約 38,100 時間の事前学習コーパスを構築 (独自データ収集なし・オープンソースのみ)。\n📊**結果**: RoboCasa365・LIBERO-Plus・EBench・RoboTwin-Clean2Rand 等 OOD 設定で π0.5 を含む従来 SOTA を大幅上回る。RoboChallenge 1 位 (20% 相対改善)。AgileX ALOHA・Franka・UR・ARX の実機検証済み。\n💡**意義**: オープンソースのみで frontier 級ロボット操作モデルを実現。アライメントがスケールを解放するという新パラダイムを実証。\n⚠️**限界**: 事前学習データの分布に依存。極めて細かい精密操作や未見の物体カテゴリへの汎化は要検証。\n\n",
+  "fetched_at": "2026-06-29T22:09:36.405700+00:00",
+  "papers": [
+    {
+      "title": "MultiHashFormer: Hash-based Generative Language Models",
+      "upvotes": 16,
+      "paper_id": "2606.28057",
+      "abstract": "Language models (LMs) represent tokens using embedding matrices that scale linearly with the vocabulary size. To constrain the parameter footprint, prior work proposes hashing many tokens into a single vector within encoder-only models. While this offers parameter efficiency, many-to-one collisions prevent its use in causal LMs. In this paper, we propose MultiHashFormer, a new framework that allows hash-based autoregression."
+    },
+    {
+      "title": "The Tatoxa System for Text Detoxification in Low-Resource Languages: The Case of Tatar",
+      "upvotes": 9,
+      "paper_id": "2606.26015",
+      "abstract": "Text detoxification, the automated detection and mitigation of abusive and harmful content, is essential for ensuring the safety of online communities and protecting users. However, low resource languages such as Tatar have received little research attention. In this paper we present Tatoxa, a novel state-of-the-art system for text detoxification in the Tatar language."
+    },
+    {
+      "title": "GBC: Gradient-Based Connections for Optimizing Multi-Agent Systems",
+      "upvotes": 8,
+      "paper_id": "2606.28187",
+      "abstract": "Multi-agent systems (MAS) built on large language models (LLMs) provide a promising framework for solving complex tasks through role specialization and structured interaction. However, their performance is often limited by miscoordination and, more fundamentally, the lack of fine-grained credit assignment across agents."
+    },
+    {
+      "title": "Parallel Rollout Approximation for Pixel-Space Autoregressive Image Generation",
+      "upvotes": 4,
+      "paper_id": "2606.27978",
+      "abstract": "Pixel-space continuous-token autoregressive (AR) generation directly models images as sequences of raw pixel patches, avoiding discrete tokenization or a separately pretrained tokenizer. However, it faces coupled challenges: high-dimensional patch generation causes large single-step errors, and teacher-forced training creates a train-inference gap."
+    },
+    {
+      "title": "Thinking While Speaking: Inference-Time Knowledge Transfer for Responsive and Intelligent Conversational Voice Agents",
+      "upvotes": 4,
+      "paper_id": "2511.07397",
+      "abstract": "Voice agents face a fundamental tension: the reasoning, retrieval, and tool use that make foundation models capable are iterative and slow, while conversational interaction demands responses on a millisecond timescale. We introduce conversational infill, where a small talker model both immediately generates contextually grounded responses."
+    },
+    {
+      "title": "Learning to Fold: prizewinning solution at LeHome Challenge 2026 (1st place online, 2nd offline)",
+      "upvotes": 4,
+      "paper_id": "2606.27163",
+      "abstract": "I describe my solution to the LeHome Challenge 2026, an ICRA 2026 competition on bimanual garment folding. The system placed 1st of 62 teams in the online (simulation) round and 2nd in the real-world final. It improves a vision-language-action (VLA) policy with a reinforcement-learning loop."
+    },
+    {
+      "title": "Object-Centric Residual RL for Zero-Shot Sim-to-Real VLA Enhancement",
+      "upvotes": 3,
+      "paper_id": "2606.18953",
+      "abstract": "Vision-Language-Action (VLA) models can generalize across diverse manipulation tasks, but their imitation-learning-based policies remain brittle in precise physical interactions due to compounding execution errors. We propose an object-centric residual RL framework that refines VLA actions using object poses."
+    },
+    {
+      "title": "Cluster, Route, Escalate: Cascaded Framework for Cost-Aware LLM Serving",
+      "upvotes": 2,
+      "paper_id": "2606.27457",
+      "abstract": "Efficient deployment of large language models (LLMs) in production forces a trade-off between accuracy and cost. We propose a two-stage cascaded solution. Stage 1 clusters incoming queries and assigns each cluster to its most cost-effective model. Stage 2 adds a quality estimation cascade."
+    },
+    {
+      "title": "AgentOdyssey: Open-Ended Long-Horizon Text Game Generation for Test-Time Continual Learning Agents",
+      "upvotes": 2,
+      "paper_id": "2606.24893",
+      "abstract": "For agents to learn continuously from interaction with the world at test time, they must be able to explore effectively, acquire new world knowledge and skills, retain relevant episodic experiences, and plan over long horizons. We introduce AgentOdyssey, a novel evaluation framework that procedurally generates open-ended text games."
+    },
+    {
+      "title": "Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models",
+      "upvotes": 2,
+      "paper_id": "2606.17846",
+      "abstract": "Foundation models in language and multimodality achieve strong generalization by aligning heterogeneous data under a unified formulation and training at scale. We present Qwen-RobotManip, a generalizable Vision-Language-Action foundation model built on Qwen-VL."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.195",
+      "published_at": "2026-06-26",
+      "body": "Added `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` to disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll\nFixed hook matchers with hyphenated identifiers (e.g. `code-reviewer`, `mcp__brave-search`) accidentally substring-matching — they now exact-match. Use `mcp__brave-search__.*` to match all tools from a hyphenated MCP server.\nFixed voice dictation on macOS capturing silence in long-running sessions after the default input device changes\nFixed voice dictation auto-submit never firing for languages written without spaces (Japanese, Chinese, Thai)\nFixed external plugins enabled only by project `.claude/settings.json` not requiring explicit install consent on every loader path"
+    },
+    {
+      "tag_name": "v2.1.193",
+      "published_at": "2026-06-25",
+      "body": "Added `autoMode.classifyAllShell` setting to route all Bash/PowerShell commands through the auto-mode classifier\nAdded auto-mode denial reasons to the transcript, the denial toast, and `/permissions` recent denials\nAdded `claude_code.assistant_response` OpenTelemetry log event containing the model's response text\nAdded live file path autocomplete to bash mode (`!`)\nAdded a startup notice when MCP servers need authentication, pointing at `/mcp`"
+    },
+    {
+      "tag_name": "v2.1.191",
+      "published_at": "2026-06-24",
+      "body": "Added `/rewind` support for resuming a conversation from before `/clear` was run\nFixed scroll position jumping to the bottom while reading earlier output during a streaming response\nFixed background agents resurrecting after being stopped\nFixed `/voice` showing a generic \"not available\" message when disabled by an organization's policy\nFixed `/login` URL opening truncated in Windows Terminal when it wraps across lines"
+    }
+  ]
+}
