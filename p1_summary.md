@@ -1,6 +1,6 @@
-**1. MultiHashFormer: Hash-based Generative Language Models (ハッシュベース生成言語モデル)**
-**著者**: (2606.28057 authors) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.28057
+**1. Agentic Abstention: Do Agents Know When to Stop Instead of Act?**
+**著者**: (Agentic Abstention Team) et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.28733
 
 **まとめ**:
-LM の語彙埋め込み行列を複数ハッシュ関数によるシグネチャ表現に置き換え、ボキャブラリサイズに依存しないデコーダ型言語モデルを実現。100M〜3B スケールで標準 Transformer を上回り、多言語ボキャブラリ拡張もパラメータ増なしで対応。LM のパラメータ効率化における新パラダイムを提示した論文。
+LLMエージェントが「行動を止めるべき時」を判断できるかを初めて体系的に評価。28,000件以上のタスクで13モデルを検証した結果、現行エージェントの多くは不要な行動を続けてしまうことが判明。Context engineeringによるアプローチ（convolve）で、パラメータ更新なしにAbsRec@1を26.7%→57.4%に改善した。

@@ -1,6 +1,6 @@
-**2. The Tatoxa System for Text Detoxification in Low-Resource Languages (低リソース言語テキスト解毒システム: タタール語)**
-**著者**: Ilseyar Alimova et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.26015
+**2. Beyond IID: How General Are Tabular Foundation Models, Really?**
+**著者**: BeyondArena Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.30410
 
 **まとめ**:
-オンラインコミュニティの安全確保に必須なテキスト解毒において、研究が手薄だったタタール語向けシステム Tatoxa を提案。既存のオープンソース・商用 LLM を品質指標で上回る SOTA を達成しつつ、ロシア語等からの転移学習はネイティブデータ学習に大きく劣ることを実証。低リソース言語 NLP 安全研究の道を拓く重要な貢献。
+表形式データ（Tabular Data）向け基盤モデルの真の汎化性能を問い直す論文。IID設定では強いものの、非IID・大規模・高次元データではツリーベースや深層学習モデルに劣ることを142データセットで実証。統一ベンチマーク「BeyondArena」とフレームワーク「Data Foundry」を公開し、研究コミュニティの評価標準化に貢献する。
