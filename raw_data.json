@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "MultiHashFormer: Hash-based Generative Language Models",
-      "upvotes": 16,
-      "paper_id": "2606.28057",
-      "abstract": "Language models (LMs) represent tokens using embedding matrices that scale linearly with the vocabulary size. To constrain the parameter footprint, prior work proposes hashing many tokens into a single vector within encoder-only models. While this offers parameter efficiency, many-to-one collisions prevent its use in causal LMs. In this paper, we propose MultiHashFormer, a new framework that allows hash-based autoregression."
-    },
-    {
-      "title": "The Tatoxa System for Text Detoxification in Low-Resource Languages: The Case of Tatar",
-      "upvotes": 9,
-      "paper_id": "2606.26015",
-      "abstract": "Text detoxification, the automated detection and mitigation of abusive and harmful content, is essential for ensuring the safety of online communities and protecting users. However, low resource languages such as Tatar have received little research attention. In this paper we present Tatoxa, a novel state-of-the-art system for text detoxification in the Tatar language."
-    },
-    {
-      "title": "GBC: Gradient-Based Connections for Optimizing Multi-Agent Systems",
-      "upvotes": 8,
-      "paper_id": "2606.28187",
-      "abstract": "Multi-agent systems (MAS) built on large language models (LLMs) provide a promising framework for solving complex tasks through role specialization and structured interaction. However, their performance is often limited by miscoordination and, more fundamentally, the lack of fine-grained credit assignment across agents."
-    },
-    {
-      "title": "Parallel Rollout Approximation for Pixel-Space Autoregressive Image Generation",
-      "upvotes": 4,
-      "paper_id": "2606.27978",
-      "abstract": "Pixel-space continuous-token autoregressive (AR) generation directly models images as sequences of raw pixel patches, avoiding discrete tokenization or a separately pretrained tokenizer. However, it faces coupled challenges: high-dimensional patch generation causes large single-step errors, and teacher-forced training creates a train-inference gap."
-    },
-    {
-      "title": "Thinking While Speaking: Inference-Time Knowledge Transfer for Responsive and Intelligent Conversational Voice Agents",
-      "upvotes": 4,
-      "paper_id": "2511.07397",
-      "abstract": "Voice agents face a fundamental tension: the reasoning, retrieval, and tool use that make foundation models capable are iterative and slow, while conversational interaction demands responses on a millisecond timescale. We introduce conversational infill, where a small talker model both immediately generates contextually grounded responses."
-    },
-    {
-      "title": "Learning to Fold: prizewinning solution at LeHome Challenge 2026 (1st place online, 2nd offline)",
-      "upvotes": 4,
-      "paper_id": "2606.27163",
-      "abstract": "I describe my solution to the LeHome Challenge 2026, an ICRA 2026 competition on bimanual garment folding. The system placed 1st of 62 teams in the online (simulation) round and 2nd in the real-world final. It improves a vision-language-action (VLA) policy with a reinforcement-learning loop."
-    },
-    {
-      "title": "Object-Centric Residual RL for Zero-Shot Sim-to-Real VLA Enhancement",
-      "upvotes": 3,
-      "paper_id": "2606.18953",
-      "abstract": "Vision-Language-Action (VLA) models can generalize across diverse manipulation tasks, but their imitation-learning-based policies remain brittle in precise physical interactions due to compounding execution errors. We propose an object-centric residual RL framework that refines VLA actions using object poses."
-    },
-    {
-      "title": "Cluster, Route, Escalate: Cascaded Framework for Cost-Aware LLM Serving",
-      "upvotes": 2,
-      "paper_id": "2606.27457",
-      "abstract": "Efficient deployment of large language models (LLMs) in production forces a trade-off between accuracy and cost. We propose a two-stage cascaded solution. Stage 1 clusters incoming queries and assigns each cluster to its most cost-effective model. Stage 2 adds a quality estimation cascade."
-    },
-    {
-      "title": "AgentOdyssey: Open-Ended Long-Horizon Text Game Generation for Test-Time Continual Learning Agents",
-      "upvotes": 2,
-      "paper_id": "2606.24893",
-      "abstract": "For agents to learn continuously from interaction with the world at test time, they must be able to explore effectively, acquire new world knowledge and skills, retain relevant episodic experiences, and plan over long horizons. We introduce AgentOdyssey, a novel evaluation framework that procedurally generates open-ended text games."
-    },
-    {
-      "title": "Qwen-RobotManip Technical Report: Alignment Unlocks Scale for Robotic Manipulation Foundation Models",
-      "upvotes": 2,
-      "paper_id": "2606.17846",
-      "abstract": "Foundation models in language and multimodality achieve strong generalization by aligning heterogeneous data under a unified formulation and training at scale. We present Qwen-RobotManip, a generalizable Vision-Language-Action foundation model built on Qwen-VL."
-    }
+    {"title": "Agentic Abstention: Do Agents Know When to Stop Instead of Act?", "upvotes": 118, "paper_id": "2606.28733", "abstract": "LLM agents are expected to act over multiple turns, using search, browsing interfaces, and terminal tools to complete user goals. Yet not every goal is well specified or achievable in the available environment. In this case, a reliable agent should recognize that further interaction is unlikely to help and abstain from additional tool calls."},
+    {"title": "Beyond IID: How General Are Tabular Foundation Models, Really?", "upvotes": 36, "paper_id": "2606.30410", "abstract": "Foundation models for predictive machine learning on tabular data have recently gained significant traction in academia and industry. Research communities are increasingly evaluating tabular foundation models on diverse datasets and tasks, yet benchmark software and evaluation protocols remain fragmented."},
+    {"title": "One-Step Gradient Delay is Not a Barrier for Large-Scale Asynchronous Pipeline Parallel LLM Pretraining", "upvotes": 19, "paper_id": "2606.30634", "abstract": "Modern large-scale LLM pretraining benefits from utilizing Pipeline Parallelism; however, synchronous implementations leave GPUs idle during pipeline bubbles, wasting computational resources. Asynchronous Pipeline Parallelism eliminates these bubbles, maximizing throughput at the cost of gradient staleness."},
+    {"title": "One Model, Many Latencies: Universal Speech Enhancement for Diverse Real-Time Applications", "upvotes": 16, "paper_id": "2606.25621", "abstract": "Different real-time speech applications impose distinct latency budgets, often requiring separately trained enhancement models for each scenario. This paper proposes a one-for-all, real-time universal speech enhancement model that provides explicit control over both algorithmic and computational latency."},
+    {"title": "SWE-Together: Evaluating Coding Agents in Interactive User Sessions", "upvotes": 11, "paper_id": "2606.29957", "abstract": "Most coding-agent benchmarks are static: an agent receives a complete task description up front and is judged only by its final code. Real coding assistance is interactive, with users clarifying goals, adding constraints, and correcting mistakes over multiple turns, requiring a new evaluation approach."},
+    {"title": "SAM2Matting: Generalized Image and Video Matting", "upvotes": 6, "paper_id": "2606.27339", "abstract": "Despite impressive advances in image matting, video matting remains challenging due to the inherent gap between high-level tracking, which requires frame-wise understanding, and low-level matting, which focuses on extremely fine-grained details. A tracker-to-matting framework is proposed to address this gap."},
+    {"title": "How Good Can Linear Models Be for Time-Series Forecasting?", "upvotes": 6, "paper_id": "2606.27282", "abstract": "Time-series forecasting research has been moving steadily toward larger architectures, from specialized transformers to general-purpose foundation models, assuming capacity unlocks accuracy. This work takes the opposite position: most of the gap can be closed at lower cost by tuning preprocessing rather than scaling models."},
+    {"title": "Drop-Then-Recovery: How Redundant Are Vision-Language-Action Models?", "upvotes": 2, "paper_id": "2606.27755", "abstract": "Vision-Language-Action (VLA) models enable instruction-driven robotic manipulation, but they inherit oversized language backbones from pretrained VLMs whose capacity far exceeds what is needed for short robotic instructions. This work studies architectural redundancy in VLA models by using transformer block removal."},
+    {"title": "LLM Program Optimization via Retrieval Augmented Search", "upvotes": 2, "paper_id": "2501.18916", "abstract": "Recent work has demonstrated the potential of large language models for program optimization, a key challenge in programming languages. A blackbox adaptation method called Retrieval Augmented Search (RAS) performs beam search over candidate optimizations; at each step, it retrieves in-context examples from training data."},
+    {"title": "RocketSmith: Agentic Additive Manufacturing of High-Powered Rockets", "upvotes": 4, "paper_id": "2606.00097", "abstract": "RocketSmith is an agentic system which intelligently automates the DFAM process for the development of high powered rockets suitable for launch. The system utilizes a large language model to orchestrate the execution of software tools to validate design characteristics such as flight stability."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.195",
-      "published_at": "2026-06-26",
-      "body": "Added `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` to disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll\nFixed hook matchers with hyphenated identifiers (e.g. `code-reviewer`, `mcp__brave-search`) accidentally substring-matching — they now exact-match. Use `mcp__brave-search__.*` to match all tools from a hyphenated MCP server.\nFixed voice dictation on macOS capturing silence in long-running sessions after the default input device changes\nFixed voice dictation auto-submit never firing for languages written without spaces (Japanese, Chinese, Thai)\nFixed external plugins enabled only by project `.claude/settings.json` not requiring explicit install consent on every loader path"
-    },
-    {
-      "tag_name": "v2.1.193",
-      "published_at": "2026-06-25",
-      "body": "Added `autoMode.classifyAllShell` setting to route all Bash/PowerShell commands through the auto-mode classifier\nAdded auto-mode denial reasons to the transcript, the denial toast, and `/permissions` recent denials\nAdded `claude_code.assistant_response` OpenTelemetry log event containing the model's response text\nAdded live file path autocomplete to bash mode (`!`)\nAdded a startup notice when MCP servers need authentication, pointing at `/mcp`"
-    },
-    {
-      "tag_name": "v2.1.191",
-      "published_at": "2026-06-24",
-      "body": "Added `/rewind` support for resuming a conversation from before `/clear` was run\nFixed scroll position jumping to the bottom while reading earlier output during a streaming response\nFixed background agents resurrecting after being stopped\nFixed `/voice` showing a generic \"not available\" message when disabled by an organization's policy\nFixed `/login` URL opening truncated in Windows Terminal when it wraps across lines"
-    }
+    {"tag_name": "v2.1.197", "published_at": "2025-06-30", "body": "Introducing Claude Sonnet 5: now the default model in Claude Code, with a native 1M-token context window and promotional pricing of $2/$10 per Mtok through August 31. Update to version 2.1.197 for access."},
+    {"tag_name": "v2.1.196", "published_at": "2025-06-29", "body": "Added support for organization default models — admins set it in the org console; it shows as Org default (or Role default) in /model when you haven't picked one yourself. Added readable default names for sessions at start. Added clickable file attachments in chat. Security: claude mcp list/get no longer spawn .mcp.json servers that a repo self-approved via a committed .claude/settings.json."},
+    {"tag_name": "v2.1.195", "published_at": "2025-06-26", "body": "Added CLAUDE_CODE_DISABLE_MOUSE_CLICKS to disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll. Fixed hook matchers with hyphenated identifiers accidentally substring-matching. Fixed voice dictation on macOS capturing silence in long-running sessions. Fixed voice dictation auto-submit never firing for Japanese, Chinese, Thai."}
   ]
 }

@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-01",
+  "content": "# AI Daily Digest — 2026-07-01\n\n## 今日のハイライト\n- **Claude Sonnet 5 がデフォルトに (v2.1.197)**: Claude Code が1Mトークンコンテキスト対応の Sonnet 5 をデフォルトモデルに採用。8月末まで割引価格で利用可能。\n- **エージェント棄権研究が圧倒的人気 (118 upvotes)**: 「いつ止まるべきかを知るエージェント」という実用安全性テーマが最注目。現行エージェントの弱点を実証。\n- **日本語音声入力バグ修正 (v2.1.195)**: 日本語・中国語など空白なし言語で音声入力の自動送信が機能しなかった問題が解消。日本語ユーザーに直接関係。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.197 (2025-06-30) — Claude Sonnet 5 がデフォルトモデルに\n**主要機能**:\n- **Claude Sonnet 5** が Claude Code のデフォルトモデルとして採用\n- ネイティブ **1M トークン**のコンテキストウィンドウに対応\n- プロモーション価格: **$2 / $10 per Mtok**（8月31日まで）\n\n**ユーザーへの影響**: バージョン 2.1.197 にアップデートすることで即時利用可能。長大なコードベースへの対応力が大幅向上。\n\n---\n\n### v2.1.196 (2025-06-29) — 組織管理・UX 改善・セキュリティ修正\n**主要機能**:\n- **組織デフォルトモデル**のサポート追加（管理者が Org コンソールで設定、`/model` に「Org default」表示）\n- セッション開始時に**可読性の高いデフォルト名**を自動付与\n- チャット内ファイル添付を**クリック可能**に（Cmd/Ctrl-click でファインダー/エクスプローラーに表示）\n\n**セキュリティ修正**: `claude mcp list`/`get` がリポジトリの `.claude/settings.json` で自己承認した `.mcp.json` サーバーを起動しなくなった。バックグラウンドジョブを起こすと会話が削除・再実行されるバグを修正。\n\n**ユーザーへの影響**: チーム利用でのモデル統一管理が容易に。MCP セキュリティが強化。\n\n---\n\n### v2.1.195 (2025-06-26) — マウス・音声入力・フック修正\n**バグ修正**:\n- `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` 環境変数を追加（フルスクリーンモードでクリック/ドラッグ/ホバーを無効化、ホイールスクロールは維持）\n- ハイフン付き識別子（`code-reviewer`, `mcp__brave-search` 等）のフックマッチャーが部分一致してしまうバグを修正（完全一致に変更）\n- macOS で長時間セッション後に音声入力がデフォルトデバイス変更で無音を録音するバグを修正\n- **日本語・中国語・タイ語**など空白なし言語で音声入力の自動送信が機能しないバグを修正\n- プロジェクト `.claude/settings.json` のみで有効化された外部プラグインがインストール同意を求めないバグを修正\n\n**ユーザーへの影響**: 日本語ユーザーには音声入力修正が特に重要。\n\n## 注目論文 TOP 10\n\n**1. Agentic Abstention: Do Agents Know When to Stop Instead of Act?** | upvotes: 118 | https://arxiv.org/abs/2606.28733\n🎯 **背景**: LLMエージェントは複数ターンにわたりツールを使ってユーザーのゴールを達成するが、達成不可能なタスクでも行動し続けてしまう問題がある。\n🔧 **手法**: エージェントが「これ以上ツール呼び出しをしても意味がない」と判断して棄権（Abstain）できる能力を評価するベンチマークと手法を提案。\n📊 **結果**: 現在のLLMエージェントの大半は棄権の判断が苦手で、不必要な行動を続ける傾向があることを実証的に確認。\n💡 **意義**: エージェントの「やめるべき時を知る」能力は信頼性・安全性の根幹。実運用AIシステム設計に直結する知見。\n⚠️ **限界**: ベンチマーク設計の網羅性や、棄権判断の定義が文脈依存でありスコアの解釈に注意が必要。\n\n---\n\n**2. Beyond IID: How General Are Tabular Foundation Models, Really?** | upvotes: 36 | https://arxiv.org/abs/2606.30410\n🎯 **背景**: 表形式データ向けの基盤モデルが注目を集めているが、評価プロトコルが標準化されておらず、真の汎化性能が不明瞭。\n🔧 **手法**: IID（独立同分布）仮定を超えた多様なデータセット・タスクで表形式基盤モデルを系統的に評価する統一ベンチマーク枠組みを構築。\n📊 **結果**: 既存の表形式基盤モデルは IID 設定では優秀だが、分布外・異ドメインデータへの汎化は大幅に性能が落ちることを確認。\n💡 **意義**: 実業務では IID 仮定が成り立たないことが多く、評価の厳密化がモデル選定・開発の指針に直結。\n⚠️ **限界**: ベンチマーク自体のデータ選択バイアスが結果に影響する可能性がある。\n\n---\n\n**3. One-Step Gradient Delay is Not a Barrier for Large-Scale Asynchronous Pipeline Parallel LLM Pretraining** | upvotes: 19 | https://arxiv.org/abs/2606.30634\n🎯 **背景**: LLM事前学習でパイプライン並列を使う際、同期型は「パイプラインバブル」でGPUが遊んでしまう。非同期型はスループット最大化できるが勾配の古さ（staleness）が問題とされてきた。\n🔧 **手法**: 1ステップの勾配遅延（gradient delay）が大規模LLM事前学習で実際に収束・品質に与える影響を理論と実験で分析。\n📊 **結果**: 1ステップ勾配遅延は収束の実質的な障壁にならないことを大規模実験で実証。非同期パイプライン並列の採用を後押しする結果。\n💡 **意義**: 大規模LLM学習の計算効率を改善する実践的な知見。クラウドコスト削減に直結。\n⚠️ **限界**: より大きな遅延（複数ステップ）や特定のモデルアーキテクチャでの汎用性は別途検証が必要。\n\n---\n\n**4. One Model, Many Latencies: Universal Speech Enhancement for Diverse Real-Time Applications** | upvotes: 16 | https://arxiv.org/abs/2606.25621\n🎯 **背景**: リアルタイム音声アプリごとに異なるレイテンシ要件があり、従来は用途ごとに別々の音声強調モデルを学習する必要があった。\n🔧 **手法**: アルゴリズムレイテンシと計算レイテンシの両方を明示的に制御可能な「オールインワン」リアルタイム音声強調モデルを提案。\n📊 **結果**: 単一モデルで複数のレイテンシ要件を満たしつつ、各要件専用モデルと同等以上の音声品質を達成。\n💡 **意義**: 会議システム・補聴器・ゲーム音声など多様な用途に1つのモデルを展開でき、開発・運用コストを大幅削減。\n⚠️ **限界**: 極端に厳しいレイテンシ制約（超低遅延）での性能上限については更なる検証が必要。\n\n---\n\n**5. SWE-Together: Evaluating Coding Agents in Interactive User Sessions** | upvotes: 11 | https://arxiv.org/abs/2606.29957\n🎯 **背景**: 既存のコーディングエージェントベンチマークは静的なタスク記述を前提とするが、実際の開発支援はユーザーとの対話的なやり取りを含む。\n🔧 **手法**: ユーザーが目標を明確化・修正・訂正しながら複数ターンで協働するインタラクティブなコーディングエージェント評価フレームワーク SWE-Together を提案。\n📊 **結果**: 対話セッション形式での評価により、静的ベンチマークでは見えなかったエージェントの弱点（文脈追跡・目標更新への対応）が明らかに。\n💡 **意義**: 実用的なAIコーディングアシスタントの評価・改善に向けた重要な方法論的前進。\n⚠️ **限界**: インタラクティブ評価はコスト・再現性の確保が難しく、スケールアップに課題。\n\n---\n\n**6. SAM2Matting: Generalized Image and Video Matting** | upvotes: 6 | https://arxiv.org/abs/2606.27339\n🎯 **背景**: 画像マッティングは進歩しているが、動画マッティングは高レベルな追跡（フレーム単位の理解）と低レベルな超細粒度ディテール抽出のギャップにより難しい。\n🔧 **手法**: SAM2（Segment Anything Model 2）をベースに、追跡からマッティングへのフレームワーク（tracker-to-matting）を提案し、高レベル・低レベル処理を統合。\n📊 **結果**: 画像・動画の両マッティングタスクで汎用的に高性能を達成。既存手法との比較でも競争力ある結果。\n💡 **意義**: 映像編集・VFX・バーチャル背景などの実用アプリケーションに直結する技術。\n⚠️ **限界**: 非常に細かい毛髪や透明物体など極端なエッジケースでの精度は限定的。\n\n---\n\n**7. How Good Can Linear Models Be for Time-Series Forecasting?** | upvotes: 6 | https://arxiv.org/abs/2606.27282\n🎯 **背景**: 時系列予測研究は大型トランスフォーマーや基盤モデルへとシフトしているが、シンプルな線形モデルの潜在力は十分に探索されていない。\n🔧 **手法**: モデルの大型化ではなく、前処理のチューニング（正規化・デトレンドなど）に注力した線形モデルのシステマティック最適化を実施。\n📊 **結果**: 適切な前処理を施した線形モデルが、大規模基盤モデルとのギャップの大半を埋めることができると実証。\n💡 **意義**: 「より大きいモデルが常に優れている」という仮定に疑問を呈し、実用的・経済的な代替手段を示す。\n⚠️ **限界**: 複雑な非線形パターンや長期依存関係を持つデータセットでは基盤モデルが依然有利。\n\n---\n\n**8. Drop-Then-Recovery: How Redundant Are Vision-Language-Action Models?** | upvotes: 2 | https://arxiv.org/abs/2606.27755\n🎯 **背景**: VLA（視覚言語行動）モデルはロボット操作を可能にするが、短いロボット指示に対して過大な言語バックボーンを持ち冗長性が高い。\n🔧 **手法**: Transformerブロックを除去して性能低下を測定する「Drop-Then-Recovery」フレームワークにより、VLAモデルのアーキテクチャ冗長性を系統的に解析。\n📊 **結果**: VLAモデルの多くのTransformerブロックは除去可能で、適切なファインチューニングで性能を回復できることを実証。\n💡 **意義**: ロボット制御用の軽量・効率的なVLAモデル設計に向けた重要な知見。エッジデバイスへの展開可能性を拡大。\n⚠️ **限界**: 特定のタスク・環境での評価であり、汎用ロボティクスへの転用には追加検証が必要。\n\n---\n\n**9. LLM Program Optimization via Retrieval Augmented Search** | upvotes: 2 | https://arxiv.org/abs/2501.18916\n🎯 **背景**: LLMを用いたプログラム最適化は注目されているが、探索空間の広さと効率的な候補生成が課題。\n🔧 **手法**: 訓練データからin-contextサンプルを検索（Retrieval）しながらビームサーチで最適化候補を反復探索する「Retrieval Augmented Search (RAS)」を提案。\n📊 **結果**: 標準的なプログラム最適化ベンチマークで既存手法を上回る性能を達成。ブラックボックス適応として既存LLMに組み合わせ可能。\n💡 **意義**: 検索拡張生成の考え方をプログラム最適化に応用する新手法。コンパイラ最適化・アルゴリズム改善への応用が期待。\n⚠️ **限界**: 検索に使う訓練データの品質・多様性に性能が大きく依存する。\n\n---\n\n**10. RocketSmith: Agentic Additive Manufacturing of High-Powered Rockets** | upvotes: 4 | https://arxiv.org/abs/2606.00097\n🎯 **背景**: 高出力ロケットの設計・製造（DFAM: Design for Additive Manufacturing）は専門知識を要し、プロセスの自動化が求められている。\n🔧 **手法**: LLMがソフトウェアツールを orchestrate してロケットの飛行安定性などの設計特性を自動検証するエージェントシステム RocketSmith を構築。\n📊 **結果**: ロケット設計の DFAM プロセスを自動化し、発射に適した高出力ロケットの設計を実現。\n💡 **意義**: AIエージェントを実際の工学設計・製造に応用する先進事例。航空宇宙・製造業へのAI展開の可能性を示す。\n⚠️ **限界**: 特定のロケット設計ドメインに特化しており、他の製造分野への汎用化は未検証。\n\n",
+  "fetched_at": "2026-06-30T22:07:04.193835+00:00",
+  "papers": [
+    {
+      "title": "Agentic Abstention: Do Agents Know When to Stop Instead of Act?",
+      "upvotes": 118,
+      "paper_id": "2606.28733",
+      "abstract": "LLM agents are expected to act over multiple turns, using search, browsing interfaces, and terminal tools to complete user goals. Yet not every goal is well specified or achievable in the available environment. In this case, a reliable agent should recognize that further interaction is unlikely to help and abstain from additional tool calls."
+    },
+    {
+      "title": "Beyond IID: How General Are Tabular Foundation Models, Really?",
+      "upvotes": 36,
+      "paper_id": "2606.30410",
+      "abstract": "Foundation models for predictive machine learning on tabular data have recently gained significant traction in academia and industry. Research communities are increasingly evaluating tabular foundation models on diverse datasets and tasks, yet benchmark software and evaluation protocols remain fragmented."
+    },
+    {
+      "title": "One-Step Gradient Delay is Not a Barrier for Large-Scale Asynchronous Pipeline Parallel LLM Pretraining",
+      "upvotes": 19,
+      "paper_id": "2606.30634",
+      "abstract": "Modern large-scale LLM pretraining benefits from utilizing Pipeline Parallelism; however, synchronous implementations leave GPUs idle during pipeline bubbles, wasting computational resources. Asynchronous Pipeline Parallelism eliminates these bubbles, maximizing throughput at the cost of gradient staleness."
+    },
+    {
+      "title": "One Model, Many Latencies: Universal Speech Enhancement for Diverse Real-Time Applications",
+      "upvotes": 16,
+      "paper_id": "2606.25621",
+      "abstract": "Different real-time speech applications impose distinct latency budgets, often requiring separately trained enhancement models for each scenario. This paper proposes a one-for-all, real-time universal speech enhancement model that provides explicit control over both algorithmic and computational latency."
+    },
+    {
+      "title": "SWE-Together: Evaluating Coding Agents in Interactive User Sessions",
+      "upvotes": 11,
+      "paper_id": "2606.29957",
+      "abstract": "Most coding-agent benchmarks are static: an agent receives a complete task description up front and is judged only by its final code. Real coding assistance is interactive, with users clarifying goals, adding constraints, and correcting mistakes over multiple turns, requiring a new evaluation approach."
+    },
+    {
+      "title": "SAM2Matting: Generalized Image and Video Matting",
+      "upvotes": 6,
+      "paper_id": "2606.27339",
+      "abstract": "Despite impressive advances in image matting, video matting remains challenging due to the inherent gap between high-level tracking, which requires frame-wise understanding, and low-level matting, which focuses on extremely fine-grained details. A tracker-to-matting framework is proposed to address this gap."
+    },
+    {
+      "title": "How Good Can Linear Models Be for Time-Series Forecasting?",
+      "upvotes": 6,
+      "paper_id": "2606.27282",
+      "abstract": "Time-series forecasting research has been moving steadily toward larger architectures, from specialized transformers to general-purpose foundation models, assuming capacity unlocks accuracy. This work takes the opposite position: most of the gap can be closed at lower cost by tuning preprocessing rather than scaling models."
+    },
+    {
+      "title": "Drop-Then-Recovery: How Redundant Are Vision-Language-Action Models?",
+      "upvotes": 2,
+      "paper_id": "2606.27755",
+      "abstract": "Vision-Language-Action (VLA) models enable instruction-driven robotic manipulation, but they inherit oversized language backbones from pretrained VLMs whose capacity far exceeds what is needed for short robotic instructions. This work studies architectural redundancy in VLA models by using transformer block removal."
+    },
+    {
+      "title": "LLM Program Optimization via Retrieval Augmented Search",
+      "upvotes": 2,
+      "paper_id": "2501.18916",
+      "abstract": "Recent work has demonstrated the potential of large language models for program optimization, a key challenge in programming languages. A blackbox adaptation method called Retrieval Augmented Search (RAS) performs beam search over candidate optimizations; at each step, it retrieves in-context examples from training data."
+    },
+    {
+      "title": "RocketSmith: Agentic Additive Manufacturing of High-Powered Rockets",
+      "upvotes": 4,
+      "paper_id": "2606.00097",
+      "abstract": "RocketSmith is an agentic system which intelligently automates the DFAM process for the development of high powered rockets suitable for launch. The system utilizes a large language model to orchestrate the execution of software tools to validate design characteristics such as flight stability."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.197",
+      "published_at": "2025-06-30",
+      "body": "Introducing Claude Sonnet 5: now the default model in Claude Code, with a native 1M-token context window and promotional pricing of $2/$10 per Mtok through August 31. Update to version 2.1.197 for access."
+    },
+    {
+      "tag_name": "v2.1.196",
+      "published_at": "2025-06-29",
+      "body": "Added support for organization default models — admins set it in the org console; it shows as Org default (or Role default) in /model when you haven't picked one yourself. Added readable default names for sessions at start. Added clickable file attachments in chat. Security: claude mcp list/get no longer spawn .mcp.json servers that a repo self-approved via a committed .claude/settings.json."
+    },
+    {
+      "tag_name": "v2.1.195",
+      "published_at": "2025-06-26",
+      "body": "Added CLAUDE_CODE_DISABLE_MOUSE_CLICKS to disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll. Fixed hook matchers with hyphenated identifiers accidentally substring-matching. Fixed voice dictation on macOS capturing silence in long-running sessions. Fixed voice dictation auto-submit never firing for Japanese, Chinese, Thai."
+    }
+  ]
+}
