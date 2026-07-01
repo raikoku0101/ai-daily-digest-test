@@ -1,6 +1,7 @@
-**1. Agentic Abstention: Do Agents Know When to Stop Instead of Act?**
-**著者**: (Agentic Abstention Team) et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.28733
+**1. Does VLA Even Know the Basics? Measuring Commonsense and World Knowledge Retention in Vision-Language-Action Models**
+**著者**: VLA Research Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.19297
+**upvotes**: 41
 
 **まとめ**:
-LLMエージェントが「行動を止めるべき時」を判断できるかを初めて体系的に評価。28,000件以上のタスクで13モデルを検証した結果、現行エージェントの多くは不要な行動を続けてしまうことが判明。Context engineeringによるアプローチ（convolve）で、パラメータ更新なしにAbsRec@1を26.7%→57.4%に改善した。
+VLA（Vision-Language-Action）モデルがロボット制御タスクに適応する際、事前学習で獲得した常識・世界知識がどれだけ保持されているかを初めて定量評価した研究。Act2Answer プロトコルを提案し、7 種の VLA モデル・9 種の VLM ベースラインで検証。VLA とベース VLM の間に最大 20-40 ポイントの知識保持ギャップが存在することを明らかにし、今後の VLA 基盤モデル開発の重要な評価標準を提供。

@@ -1,6 +1,7 @@
-**3. One-Step Gradient Delay is Not a Barrier for Large-Scale Async Pipeline Parallel LLM Pretraining**
-**著者**: Pipeline Parallelism Research Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2606.30634
+**3. Managing Procedural Memory in LLM Agents: Control, Adaptation, and Evaluation**
+**著者**: Procedural Memory Research Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.23127
+**upvotes**: 17
 
 **まとめ**:
-LLM事前学習の非同期パイプライン並列化で生じる「1ステップ勾配遅延（gradient staleness）」が実質的な障壁にならないことを最大10Bパラメータのモデルで実証。AdamWより新手法Muonが高い耐性を示し、誤差フィードバック補正と組み合わせることで同期学習と同等の性能を達成。大規模LLM学習のGPU効率を大幅に改善する実践的知見。
+LLM エージェントにおける手続き的記憶（Procedural Memory）の転移可能性を体系的に研究。6 職種・382 タスク・22 スキルのベンチマーク AFTER を構築し、スキルがロール・モデル間でどこまで汎化するかを定量評価。多様なモデルのトレースから進化したスキルが単一モデル学習比で +13.7 ポイントを達成し、推論コストも 62% 削減。一方で役割特異化による転移限界（-4.8〜-7.5 ポイント）も明らかにした。
