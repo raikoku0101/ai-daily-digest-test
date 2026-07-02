@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-03",
+  "content": "# AI Daily Digest — 2026-07-03\n\n## 今日のハイライト\n- **Claude Sonnet 5 が Claude Code のデフォルトに (v2.1.197)**: 100 万トークンの超大コンテキストが標準搭載。期間限定プロモーション価格 ($2/$10/Mtok) で大規模コードベースの一括解析が現実的に。\n- **バックグラウンドエージェントが PR まで自動化 (v2.1.198)**: コード完成後にコミット・プッシュ・ドラフト PR 作成まで完全自動化。Chrome 拡張 GA も加わり開発フローが一変。\n- **マルチモーダル評価の信頼性問題が顕在化**: PerceptionRubrics (👍33) と coding agent ベンチマーク監査論文が同日登場し、AI 評価指標そのものへの疑義が高まっている。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.198 (2025-07-01) — Chrome GA・バックグラウンドエージェント強化\n**主要機能**\n- **Claude in Chrome が正式 GA**: ブラウザ拡張が一般公開され、Web 上でシームレスに Claude を利用可能に\n- **バックグラウンドエージェント通知**: エージェントがコード作業を完了すると自動でコミット・プッシュし、ドラフト PR を作成\n- **/dataviz スキル追加**: データビジュアライゼーション専用スキルが新たに搭載\n- **Gateway 強化**: AWS 上の Claude Platform サポートが追加\n\n**バグ修正**\n- ネットワーク切断による応答中断の修正\n- バックグラウンドクラシファイアの過剰リクエスト問題を解消\n- Agent Teams メッセージング、/diff パネル更新、Markdown テーブルオーバーフロー、AWS トークン期限切れ、macOS ローカルネットワーク、/desktop ワークツリーエラー、バックグラウンドエージェント再接続ループを修正\n\n**ユーザーへの影響**: バックグラウンドで動くエージェントが PR まで自動作成するようになり、開発フローが大幅に効率化。Chrome 拡張の GA により Web 作業とコーディング支援が統合される。\n\n---\n\n### v2.1.197 (2025-06-30) — Claude Sonnet 5 デフォルト採用\n**主要機能**\n- **Claude Sonnet 5 が Claude Code のデフォルトモデルに**: ネイティブ 100 万トークンコンテキストウィンドウを搭載\n- **プロモーション価格**: 2026 年 8 月 31 日まで $2/$10 per Mtok（入力/出力）\n\n**ユーザーへの影響**: 長大なコードベースや大規模ドキュメントを一度のコンテキストに収められるようになり、Claude Code の実力が飛躍的に向上。コスト面でも期間限定の優遇価格が適用される。\n\n---\n\n### v2.1.196 (2025-06-29) — 組織管理・セキュリティ強化\n**主要機能**\n- **組織デフォルトモデル**: 管理コンソールから組織全体のデフォルトモデルを設定可能に\n- **セッション名の可読化**: セッションにデフォルトの読みやすい名前が付くように改善\n- **ファイル添付クリック対応**: チャット内のファイル添付がクリック可能に\n\n**セキュリティ**\n- 信頼されていないワークスペースの `.claude/settings.json` に含まれる `.mcp.json` サーバーが自動起動しなくなり、サプライチェーン攻撃リスクを低減\n\n**バグ修正**\n- バックグラウンドジョブのデータ損失、レート制限警告のちらつき、PowerShell コマンド報告、セッション再開、プラグイン検証などを修正\n\n---\n\n## 注目論文 TOP 10\n\n**1. PerceptionRubrics: Calibrating Multimodal Evaluation to Human Perception** | 👍 33 | https://arxiv.org/abs/2606.28322\n🎯 **背景**: マルチモーダルモデルのベンチマークスコアが実際の使用感と乖離している問題が深刻化。定量評価だけでは「見落とし」が起きやすい。\n🔧 **手法**: ルーブリック（評価基準表）ベースの評価フレームワーク。必須視覚的事実の失敗にペナルティを与えるゲーテッドスコアリングと原子的監査を組み合わせ、細粒度評価を実現。\n📊 **結果**: 人間の知覚判断との整合性が従来ベンチマークより大幅に改善。強制的な視覚的事実チェックにより幻覚検出精度が向上。\n💡 **意義**: AI モデル評価における「スコアインフレ」問題への実践的解答。人間中心の評価設計の新たな標準となりうる。\n⚠️ **限界**: ルーブリック設計自体に人間の主観が入り込む余地があり、ドメイン間での汎用性に課題が残る。\n\n**2. ELDR: Expert-Locality-Aware Decode Routing for PD-Disaggregated MoE Serving** | 👍 19 | https://arxiv.org/abs/2607.00466\n🎯 **背景**: Mixture-of-Experts (MoE) モデルのプリフィル・デコード分離サービングでは、エキスパートの偏在によりレイテンシが増大するという未解決課題があった。\n🔧 **手法**: デコードリクエストのエキスパート活性化パターンを事前予測し、エキスパートが集中するノードへルーティングする「エキスパート局所性考慮型デコードルーター」を開発。\n📊 **結果**: デコードレイテンシを大幅削減。エキスパート移動コストを最小化しながらスループットを維持。\n💡 **意義**: 大規模 MoE モデル (Mixtral, DeepSeek 等) の商用サービングコストを直接削減する実装価値の高い研究。\n⚠️ **限界**: エキスパート活性化予測の精度がモデル・データ依存であり、動的ワークロードへの適応に追加チューニングが必要。\n\n**3. Multimodal Continuous Reasoning via Asymmetric Mutual Variational Learning** | 👍 16 | https://arxiv.org/abs/2607.00461\n🎯 **背景**: マルチモーダル推論モデルの訓練と推論間のミスマッチ（テキストと画像の潜在空間の不整合）が性能上限を制約していた。\n🔧 **手法**: 非対称相互変分学習フレームワークを提案。双方向キャリブレーション目的関数により解答漏洩を防ぎつつ、潜在空間の安定性を向上させる。\n📊 **結果**: 複数のマルチモーダル推論ベンチマークで既存手法を上回るスコアを達成。訓練-推論ギャップを効果的に縮小。\n💡 **意義**: 画像理解と言語推論を融合した連続的推論の質を根本から改善する手法で、将来の視覚言語モデル設計に影響を与える。\n⚠️ **限界**: 変分学習の計算コストが高く、大規模モデルへのスケーリング時に訓練コストが増大する懸念がある。\n\n**4. Seed2.0 Model Card: Towards Intelligence Frontier for Real-World Complexity** | 👍 16 | https://arxiv.org/abs/2607.00248\n🎯 **背景**: 実世界の複雑タスク（ロングテール知識・複合的推論・視覚理解の同時要求）に対応できる汎用 AI モデルの構築が課題だった。\n🔧 **手法**: ユーザーグラウンデッド評価を中心に、長尾知識獲得・指示追従・推論・視覚理解・検索能力を統合した Seed2.0 モデルシリーズを開発。\n📊 **結果**: 複雑な実世界タスク評価で競合モデルに対して優位性を示す。特に長文脈・マルチモーダル・検索拡張タスクで高性能。\n💡 **意義**: 学術ベンチマーク特化ではなく実世界の使用感を設計の中心に据えたアプローチは、AI 開発の方向性を示す重要なモデルカード。\n⚠️ **限界**: 商用モデルのため詳細アーキテクチャが非公開。再現性の検証が困難。\n\n**5. Are Performance-Optimization Benchmarks Reliably Measuring Coding Agents?** | 👍 4 | https://arxiv.org/abs/2607.01211\n🎯 **背景**: コーディングエージェントの性能評価に使われる GSO・SWE-Perf・SWE-fficiency 等のベンチマークの信頼性が問われてきた。\n🔧 **手法**: ベンチマーク設計の監査を実施。実行時不安定性・スコアリングルール依存性・リーダーボードランキングの膨張を定量的に分析。\n📊 **結果**: 主要なパフォーマンス最適化ベンチマークに重大な測定信頼性の問題を発見。同一システムでも実行ごとにスコアが大幅に変動。\n💡 **意義**: AI コーディングエージェントの評価基盤そのものの問題を指摘した重要なメタ研究。ベンチマーク設計の改善を促す。\n⚠️ **限界**: 特定ベンチマークの監査に留まり、代替評価フレームワークの提案が薄い。\n\n**6. Graph-Native Reinforcement Learning Enables Traceable Scientific Hypothesis Generation** | 👍 4 | https://arxiv.org/abs/2607.00924\n🎯 **背景**: 科学的仮説生成 AI は推論過程が不透明で、材料科学・創薬などの専門家が検証しにくいという課題があった。\n🔧 **手法**: グラフネイティブな推論モデルに Group Relative Policy Optimization (GRPO) を適用。知識グラフの構造を活かした追跡可能な仮説生成を実現。\n📊 **結果**: 材料発見タスクで 40-65% の性能向上。仮説の根拠となるグラフパスが明示されるため、専門家によるレビューが容易に。\n💡 **意義**: AI 科学研究の「ブラックボックス問題」を解消する方向性を示す。科学的発見の加速と信頼性向上を両立。\n⚠️ **限界**: グラフ知識ベースの品質に大きく依存するため、知識グラフが整備されていない分野への適用は限定的。\n\n**7. Rank-Aware Hyperbolic Alignment for Vision-Language Dataset Distillation** | 👍 3 | https://arxiv.org/abs/2606.29464\n🎯 **背景**: 大規模視覚言語モデルの訓練には膨大なデータセットが必要で、コスト削減のためのデータセット蒸留技術が求められていた。\n🔧 **手法**: 双曲空間（Hyperbolic space）を用いてランク情報を考慮した画像-テキストペアの合成・最適化を実施。モダリティ間の多様性を維持しながらデータを圧縮。\n📊 **結果**: 蒸留データセットで訓練したモデルが対比学習タスクで競争力のある性能を維持しつつ、データ量を大幅削減。\n💡 **意義**: 視覚言語モデルの民主化に貢献。少ないデータで高性能なモデルを訓練できる可能性を示す。\n⚠️ **限界**: 双曲空間の計算コストが高く、超大規模データセットへのスケーリング時の実用性に課題。\n\n**8. SciIR: A Large-scale Training Dataset and Benchmark for Scientific Image Reasoning** | 👍 3 | https://arxiv.org/abs/2606.30124\n🎯 **背景**: テキストから画像を生成する AI モデルが科学的文脈の図表・グラフを正確に再現できないという問題があった。\n🔧 **手法**: 8 万件の科学的画像-テキストペアを含む SciIR-82k データセットと、SciIR-Bench 評価フレームワークを構築。意味的整合性と論理的推論の両方を評価。\n📊 **結果**: 既存モデルが SciIR-Bench で苦戦することを実証。このデータセットで追加訓練することでモデルの科学的画像理解が改善。\n💡 **意義**: 科学分野特化の生成 AI 評価基盤を整備した貢献は大きく、AI 科学出版・教育への応用を加速する。\n⚠️ **限界**: 特定の学術分野に偏りがある可能性があり、全科学領域を網羅しているわけではない。\n\n**9. AI translation of literary texts is fine, but readers still prefer human translations** | 👍 3 | https://arxiv.org/abs/2606.26040\n🎯 **背景**: AI による文学翻訳の質向上が著しい一方、実際の読者がどちらを好むか、その理由は何かが十分に研究されていなかった。\n🔧 **手法**: 読者中心の評価実験を実施。LAIT データセット（読者コメント・判断・スパンレベルアノテーション付き）を構築し、AI 翻訳と人間翻訳の比較を体系化。\n📊 **結果**: AI 翻訳は「十分な品質」と評価されるが、読者は依然として人間翻訳を好む傾向が明確に存在。文体・ニュアンス・文化的文脈で差異が顕著。\n💡 **意義**: AI 翻訳の「適切さ」と「好ましさ」の乖離を定量化した重要な知見。文学・出版業界の AI 活用議論に実証的根拠を提供。\n⚠️ **限界**: 評価対象が特定言語ペアに限定されている可能性があり、全言語・全文学ジャンルへの一般化は要検証。\n\n**10. Personalization as Inverse Planning: Learning Latent Design Intents for Agentic Slide Generation** | 👍 3 | https://arxiv.org/abs/2607.00407\n🎯 **背景**: スライド生成 AI がユーザーの個人的なデザイン意図（フォント・色・レイアウト好み）を学習し反映することが難しかった。\n🔧 **手法**: スライドのページレベルパーソナライゼーションを逆計画問題として定式化。マルチエージェント強化学習でデザイン意図を発見し、特定ツール知識なしに適用。\n📊 **結果**: ユーザー好みへの適合度が既存手法を上回り、エージェント型スライド生成でのパーソナライゼーション精度が向上。\n💡 **意義**: 「ユーザーが何を好むか」を AI が能動的に学習・適用する枠組みは、プレゼンテーション以外の UI/UX 分野にも波及する汎用的アプローチ。\n⚠️ **限界**: 個人のデザイン意図の多様性が高く、少数の事例から意図を正確に推定することには本質的な難しさが残る。\n\n",
+  "fetched_at": "2026-07-02T22:05:32.545122+00:00",
+  "papers": [
+    {
+      "title": "PerceptionRubrics: Calibrating Multimodal Evaluation to Human Perception",
+      "upvotes": 33,
+      "paper_id": "2606.28322",
+      "abstract": "A rubric-based evaluation framework addressing gaps between benchmark scores and real-world brittleness through atomic auditing and gated scoring mechanisms that penalize failures on mandatory visual facts."
+    },
+    {
+      "title": "ELDR: Expert-Locality-Aware Decode Routing for PD-Disaggregated MoE Serving",
+      "upvotes": 19,
+      "paper_id": "2607.00466",
+      "abstract": "Expert-locality-aware decode router for mixture-of-experts models that predicts expert activations and routes requests to optimize latency in prefill-decode disaggregated LLM serving."
+    },
+    {
+      "title": "Multimodal Continuous Reasoning via Asymmetric Mutual Variational Learning",
+      "upvotes": 16,
+      "paper_id": "2607.00461",
+      "abstract": "Framework resolving train-inference mismatch in multimodal reasoning through bidirectional calibration objectives that prevent answer leakage and improve latent-space stability in language models."
+    },
+    {
+      "title": "Seed2.0 Model Card: Towards Intelligence Frontier for Real-World Complexity",
+      "upvotes": 16,
+      "paper_id": "2607.00248",
+      "abstract": "Model series addressing complex real-world tasks by tackling long-tail knowledge and instruction following while enhancing reasoning, visual understanding, and search capabilities through user-grounded evaluation."
+    },
+    {
+      "title": "Are Performance-Optimization Benchmarks Reliably Measuring Coding Agents?",
+      "upvotes": 4,
+      "paper_id": "2607.01211",
+      "abstract": "Audit of performance-optimization benchmarks revealing issues with runtime instability, scoring rule dependencies, and inflated leaderboard rankings across GSO, SWE-Perf, and SWE-fficiency datasets."
+    },
+    {
+      "title": "Graph-Native Reinforcement Learning Enables Traceable Scientific Hypothesis Generation",
+      "upvotes": 4,
+      "paper_id": "2607.00924",
+      "abstract": "Graph-native reasoning model using Group Relative Policy Optimization for structured scientific hypothesis generation, achieving 40-65% improvements in materials discovery through enhanced reasoning traceability."
+    },
+    {
+      "title": "Rank-Aware Hyperbolic Alignment for Vision-Language Dataset Distillation",
+      "upvotes": 3,
+      "paper_id": "2606.29464",
+      "abstract": "Vision-language dataset distillation method using hyperbolic space to optimize synthetic image-text pairs for efficient contrastive model training while preserving modality-specific diversity."
+    },
+    {
+      "title": "SciIR: A Large-scale Training Dataset and Benchmark for Scientific Image Reasoning",
+      "upvotes": 3,
+      "paper_id": "2606.30124",
+      "abstract": "Comprehensive resource introducing SciIR-82k dataset with 80,000 scientific image-text pairs and SciIR-Bench evaluation framework for improving text-to-image models' semantic alignment and logical reasoning."
+    },
+    {
+      "title": "AI translation of literary texts is fine, but readers still prefer human translations",
+      "upvotes": 3,
+      "paper_id": "2606.26040",
+      "abstract": "Reader-centered evaluation revealing preference for human translations despite machine versions being adequate, with LAIT dataset containing reader comments, judgments, and span-level annotations for literary translation assessment."
+    },
+    {
+      "title": "Personalization as Inverse Planning: Learning Latent Design Intents for Agentic Slide Generation",
+      "upvotes": 3,
+      "paper_id": "2607.00407",
+      "abstract": "Framework formulating page-level slide personalization as inverse planning, using multi-agent reinforcement learning to discover design intents without requiring specific tool knowledge for presentation generation."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.198",
+      "published_at": "2025-07-01",
+      "body": "Claude in Chrome is now generally available. Added background agent notifications, /dataviz skill, Gateway improvements with Claude Platform on AWS support. Background agents now commit, push, and open draft PRs when finishing code work. Fixed network drops mid-response, excessive background classifier requests, agent teams messaging issues, /diff panel refresh, markdown table overflow, AWS token expiration, local-network host issues on macOS, /desktop worktree errors, background agent reconnection loops, and various other improvements including focus mode enhancements and syntax highlighting upgrades."
+    },
+    {
+      "tag_name": "v2.1.197",
+      "published_at": "2025-06-30",
+      "body": "Introducing Claude Sonnet 5: now the default model in Claude Code, with a native 1M-token context window and promotional pricing of $2/$10 per Mtok through August 31. Update to version 2.1.197 for access."
+    },
+    {
+      "tag_name": "v2.1.196",
+      "published_at": "2025-06-29",
+      "body": "Added support for organization default models in admin console. Added readable default names for sessions and clickable file attachments in chat. Security: .mcp.json servers no longer spawn from committed .claude/settings.json in untrusted workspaces. Fixed background job data loss issues, rate-limit warnings flickering, duplicate recap lines, PowerShell command reporting, agents panel issues, session resume problems, plugin validation, and various other improvements including background session reliability and /code-review token usage optimization."
+    }
+  ]
+}
