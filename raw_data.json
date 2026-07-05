@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "In-Context World Modeling for Robotic Control", "upvotes": 49, "paper_id": "2606.26025", "abstract": "Framework enabling robot policies to infer system variables from self-generated interactions, allowing adaptation to novel configurations without parameter updates by treating system identification as an in-context adaptation problem."},
-    {"title": "The Verification Horizon: No Silver Bullet for Coding Agent Rewards", "upvotes": 40, "paper_id": "2606.26300", "abstract": "Challenges in coding agent verification arise from difficulty aligning proxy signals with human intent, requiring adaptive verification systems that evolve alongside generative capabilities across different task types."},
-    {"title": "JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting", "upvotes": 31, "paper_id": "2606.18394", "abstract": "Speculative decoding framework combining efficient forward drafting with causal conditioning to improve LLM inference speed and acceptance rates, achieving up to 9.64x speedup on mathematical benchmarks."},
-    {"title": "GUI vs. CLI: Execution Bottlenecks in Screen-Only and Skill-Mediated Computer-Use Agents", "upvotes": 28, "paper_id": "2606.24551", "abstract": "Matched benchmark comparing graphical and command-line agent interfaces reveals different execution bottlenecks: GUI agents struggle with long-horizon grounded interaction, CLI agents with skill coverage."},
-    {"title": "Why Multi-Step Tool-Use Reinforcement Learning Collapses and How Supervisory Signals Fix It", "upvotes": 15, "paper_id": "2606.26027", "abstract": "Investigates how supervisory signals and interleaved training strategies improve stability in tool-use tasks, addressing catastrophic collapse through diverse guidance mechanisms and format-aware learning."},
-    {"title": "LISA: Likelihood Score Alignment for Visual-condition Controllable Generation", "upvotes": 13, "paper_id": "2606.27192", "abstract": "Regularization method aligning intermediate features with likelihood scores accelerates training convergence and improves synthetic results in visual-condition controllable generation tasks."},
-    {"title": "Information-Aware KV Cache Compression for Long Reasoning", "upvotes": 9, "paper_id": "2606.26875", "abstract": "Entropy-aware KV cache compression framework enhancing long-context reasoning in LLMs by incorporating information-theoretic signals alongside attention weights."},
-    {"title": "Confidence-Aware Tool Orchestration for Robust Video Understanding", "upvotes": 9, "paper_id": "2606.26904", "abstract": "Framework integrating per-frame trustworthiness into video reasoning to address the Blind Trust Problem under realistic perturbations like motion blur and occlusion."},
-    {"title": "Hallucination in World Models is Predictable and Preventable", "upvotes": 8, "paper_id": "2606.27326", "abstract": "World models exhibit hallucinations in low-data regions, detectable through data-centric signals and mitigatable using coverage-aware sampling techniques for efficient fine-tuning."},
-    {"title": "CoffeeBench: Benchmarking Long-Horizon LLM Agents in Heterogeneous Multi-Agent Economies", "upvotes": 8, "paper_id": "2606.16613", "abstract": "Evaluates LLM agents in a multi-agent economic simulation where firms interact over 90 days, revealing performance differences and communication patterns among various models."}
+    {
+      "title": "AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents",
+      "upvotes": 46,
+      "paper_id": "2607.02255",
+      "abstract": "Memory for a long-horizon LLM agent is a contract about what each future decision is allowed to see. The simplest contract appends past observations, tool calls, and reflections to every prompt, which makes prior context easy to access but also turns it into a jumbled mixture"
+    },
+    {
+      "title": "EvoPolicyGym: Evaluating Autonomous Policy Evolution in Interactive Environments",
+      "upvotes": 43,
+      "paper_id": "2607.02440",
+      "abstract": "Autonomous agents are increasingly expected to improve executable policies through feedback, yet existing evaluations often collapse this process into a final score or confound it with open-ended software-engineering progress."
+    },
+    {
+      "title": "Breaking Failure Cascades: Step-Aware Reinforcement Learning for Medical Multimodal Reasoning",
+      "upvotes": 19,
+      "paper_id": "2606.31825",
+      "abstract": "Recent multimodal large language models have shown great promise in clinical image reasoning, but existing post-training pipelines remain predominantly outcome-centric, relying on final answer correctness or sequence-level preferences. This suffers from sparse credit assignment"
+    },
+    {
+      "title": "SkillCoach: Self-Evolving Rubrics for Evaluating and Enhancing Agentic Skill-Use",
+      "upvotes": 15,
+      "paper_id": "2607.01874",
+      "abstract": "Skills are becoming a reusable operational layer for LLM agents, encoding SOPs, domain rules, tool workflows, scripts, and validation routines. In realistic skill repositories, overlapping skills make reliable skill-use difficult. Final verifier success is too coarse for both evaluation and training"
+    },
+    {
+      "title": "Logit-Contribution Scoring Identifies Non-Literal Retrieval Heads",
+      "upvotes": 15,
+      "paper_id": "2607.01002",
+      "abstract": "In long-context use, large language models frequently synthesize answers from the meaning of a relevant context span rather than literally copy-pasting them. Identifying which attention heads perform this synthesis matters for interpreting long-context model behavior. Yet existing detectors miss these heads by"
+    },
+    {
+      "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
+      "upvotes": 14,
+      "paper_id": "2607.01224",
+      "abstract": "Memory expertise is a learned skill: knowing what to encode, when to retrieve, and how to organize knowledge--a capacity known in cognitive science as metamemory. We bring this perspective to LLMs by treating memory management as a trainable skill. We promote file-system operations to first-class memory actions"
+    },
+    {
+      "title": "AGVBench: A Reliability-Oriented Benchmark of Data Augmentation for Vein Recognition",
+      "upvotes": 13,
+      "paper_id": "2607.02271",
+      "abstract": "Vein recognition is a secure biometric technology often constrained by limited annotated data and imaging variations. While data augmentation mitigates this, strategies designed for natural images may disrupt the fine-grained topology and textures essential for identity discrimination. We present AGVBench, which evaluates 30"
+    },
+    {
+      "title": "From SRA to Self-Flow: Data Augmentation or Self-Supervision?",
+      "upvotes": 10,
+      "paper_id": "2607.02508",
+      "abstract": "Representation alignment has become an effective way to accelerate diffusion transformer training and improve generation quality. Recent self-alignment methods, such as SRA and Self-Flow, further remove the dependency on external pretrained encoders by constructing alignment within the diffusion model itself."
+    },
+    {
+      "title": "WARP: Weight-Space Analysis for Recovering Training Data Portfolios",
+      "upvotes": 6,
+      "paper_id": "2607.01686",
+      "abstract": "Foundation models are routinely released to the public, yet the data recipes used to train them -- such as domain mixture weights that determine how different sources are sampled -- are rarely disclosed. This creates an access asymmetry: researchers study the resulting models but lack visibility into the training distribution"
+    },
+    {
+      "title": "DuoMem: Towards Capable On-Device Memory Agents via Dual-Space Distillation",
+      "upvotes": 6,
+      "paper_id": "2606.29961",
+      "abstract": "Large Language Model (LLM)-based agents can solve complex procedural tasks by interacting with environments over multiple turns, but this ability typically depends on large models, long contexts, and repeated inference calls. This makes advanced memory-augmented agents difficult to deploy on resource-constrained devices."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.195", "published_at": "2026-06-26", "body": "Added CLAUDE_CODE_DISABLE_MOUSE_CLICKS to disable mouse click/drag/hover in fullscreen mode while keeping wheel scroll. Fixed hook matchers with hyphenated identifiers accidentally substring-matching. Fixed voice dictation on macOS capturing silence in long-running sessions. Fixed voice dictation auto-submit never firing for languages written without spaces (Japanese, Chinese, Thai). Fixed external plugins not requiring explicit install consent on every loader path. Fixed /plugin Enable/Disable not working when a plugin's name differs from its marketplace entry name."},
-    {"tag_name": "v2.1.193", "published_at": "2026-06-25", "body": "Added autoMode.classifyAllShell setting to route all Bash/PowerShell commands through the auto-mode classifier. Added auto-mode denial reasons to the transcript and /permissions recent denials. Added claude_code.assistant_response OpenTelemetry log event. Added live file path autocomplete to bash mode. Added a startup notice when MCP servers need authentication. Added automatic memory-pressure reaping for idle background shell commands."},
-    {"tag_name": "v2.1.191", "published_at": "2026-06-24", "body": "Added /rewind support for resuming a conversation from before /clear was run. Fixed scroll position jumping to the bottom while reading earlier output during streaming. Fixed background agents resurrecting after being stopped. Fixed /voice showing a generic message when disabled by policy. Fixed /login URL opening truncated in Windows Terminal. Improved sandbox network permission dialog: hosts you allow with Yes are now remembered for the rest of the session."}
+    {
+      "tag_name": "v2.1.201",
+      "published_at": "2025-07-03",
+      "body": "Claude Sonnet 5 sessions no longer use the mid-conversation system role for harness reminders"
+    },
+    {
+      "tag_name": "v2.1.200",
+      "published_at": "2025-07-03",
+      "body": "Changed AskUserQuestion dialogs to no longer auto-continue by default; opt into an idle timeout via /config. Changed the default permission mode to Manual across the CLI, --help, VS Code, and JetBrains. Fixed a crash at startup when disabledMcpServers or enabledMcpServers in .claude.json is set to a non-array value. Fixed background sessions silently stopping mid-turn after sleep/wake or when reopening a stalled session. Fixed background sessions re-running a turn cancelled with Esc after a stall respawn. Fixed background-agent daemon handover so a reinstalled older build can no longer take over the daemon; build recency is now judged by the version's embedded build timestamp."
+    },
+    {
+      "tag_name": "v2.1.199",
+      "published_at": "2025-07-02",
+      "body": "Stacked slash-skill invocations like /skill-a /skill-b do XYZ now load all leading skills (up to 5), not just the first. Fixed SSL certificate errors (TLS-inspecting proxies, missing NODE_EXTRA_CA_CERTS, expired certs) burning retries before showing actionable guidance -- they now fail immediately with the fix hint. Fixed streaming responses being discarded when the API emits a mid-stream overloaded/server error after partial output -- the partial is now kept with an incomplete-response notice. Fixed subagents cut off by a rate limit or server error silently failing instead of returning their partial work to the parent."
+    }
   ]
 }
