@@ -1,7 +1,6 @@
-**3. JetSpec: Breaking the Scaling Ceiling of Speculative Decoding with Parallel Tree Drafting (投機的デコードのスケーリング上限を突破する並列ツリードラフティング)**
-**著者**: JetSpec Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.18394
-**upvotes**: 31
+**3. Breaking Failure Cascades: Step-Aware Reinforcement Learning for Medical Multimodal Reasoning**
+**著者**: MRPO Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2606.31825
 
 **まとめ**:
-投機的デコード（Speculative Decoding）の高速化に新たな突破口を開いた研究。並列ツリードラフティング（Parallel Tree Drafting）と因果的コンディショニング（Causal Conditioning）を組み合わせることで、ドラフトモデルのスケールアップ時に発生する受理率の頭打ち問題を解決し、数学ベンチマークで最大9.64倍のスループット向上を達成した。
+医療マルチモーダル推論における「失敗カスケード（Failure Cascades）」問題を解決する MRPO（Medical Reasoning-aware Policy Optimization）を提案。最終回答の正誤のみに依存する従来の RL 手法と異なり、ステップ単位のプロセス報酬（Process Reward）を導入することで、早期推論失敗を 64.0% から 13.0% に大幅削減。Qwen3-VL-8B-Instruct で HuatuoGPT-Vision-34B を 2.79 ポイント上回る成果を達成し、医療 AI の信頼性向上に貢献する。

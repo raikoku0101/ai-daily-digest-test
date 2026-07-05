@@ -1,7 +1,6 @@
-**1. In-Context World Modeling for Robotic Control (ロボット制御のためのインコンテキストワールドモデリング)**
-**著者**: Grigorii Khromov et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.26025
-**upvotes**: 49
+**1. AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents**
+**著者**: AgenticSTS Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.02255
 
 **まとめ**:
-本研究は、ロボットポリシーがパラメータ更新なしに新しいカメラアングルやロボット形態へ適応できない問題を解決する。自己生成インタラクションからシステム変数をコンテキスト内で推論する「インコンテキストワールドモデリング」フレームワークを提案し、システム識別をインコンテキスト適応問題として再定式化する。Foundation Model 的なアプローチをロボット制御に応用した重要研究であり、実環境への汎化能力を大幅に向上させる。
+長期 LLM エージェントにおける有界メモリ（Bounded Memory）の影響を隔離評価するテストベッド。デッキ構築ゲーム「Slay the Spire 2」を環境として、型付き検索（Typed Retrieval）でプロンプトサイズを固定しながら各メモリ・スキルレイヤーを独立に除去・追加できる設計を実現。メモリ管理戦略が長期エージェント性能に与える影響を定量化する再現可能な研究基盤を提供する。

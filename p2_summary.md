@@ -1,7 +1,6 @@
-**2. The Verification Horizon: No Silver Bullet for Coding Agent Rewards (検証の地平線: コーディングエージェント報酬に銀の弾丸なし)**
-**著者**: Hritik Bansal et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.26300
-**upvotes**: 40
+**2. EvoPolicyGym: Evaluating Autonomous Policy Evolution in Interactive Environments**
+**著者**: EvoPolicyGym Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.02440
 
 **まとめ**:
-コーディングエージェントの強化学習において報酬シグナルの正確な設計が困難であることを体系的に分析した研究。プロキシ検証信号（ユニットテスト等）が人間の意図と乖離するケースを定量化し、単一の検証手法がすべてのタスクタイプで機能する「銀の弾丸」は存在しないことを実証した。タスク種別に応じた適応型検証システムの必要性を示す警告論文として重要。
+自律エージェントが固定された相互作用予算（Interaction Budget）内でポリシーを反復的に進化させる能力を評価する新しいベンチマーク EvoPolicyGym を提案。16 の強化学習（RL）環境を含み、最終スコアではなく軌跡レベルの診断指標（予算配分・フィードバック活用・パラメトリック調整）でエージェントの自律改善能力を定量評価する。既存評価の「最終スコアへの集約」という欠点を克服し、ポリシー進化プロセス自体を評価対象にした先駆的フレームワーク。

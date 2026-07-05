@@ -1,7 +1,6 @@
-**5. Why Multi-Step Tool-Use Reinforcement Learning Collapses and How Supervisory Signals Fix It (多段階ツール使用強化学習が崩壊する理由と教師的信号による解決)**
-**著者**: Multi-Step RL Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.26027
-**upvotes**: 15
+**5. Logit-Contribution Scoring Identifies Non-Literal Retrieval Heads**
+**著者**: LOCOS Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.01002
 
 **まとめ**:
-ツール使用タスクの多段階強化学習において発生する壊滅的崩壊（Catastrophic Collapse）の原因を解明し、教師的信号とインターリーブ学習戦略による解決策を提案した研究。適切な教師的信号の導入と多様なガイダンスメカニズムの組み合わせにより、安定した学習を実現することを実証。実用的なエージェント開発の処方箋として価値が高い。
+LLM が長文脈から意味を「合成」して回答する際に働く「非字義的検索ヘッド（Non-Literal Retrieval Heads）」を特定する新手法 LOCOS（Logit-Contribution Scoring）を提案。従来の「読む」箇所検出に加え「書く」メカニズムも評価する出力値回路（OV-Circuit）ベースの計測により、Qwen3-8B で 50 ヘッド除外時に ROUGE-L が 0.401→0.000 に低下することを実証。LLM の長文脈処理メカニズム解釈に大きな前進をもたらす基礎研究。
