@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents",
-      "upvotes": 46,
-      "paper_id": "2607.02255",
-      "abstract": "Memory for a long-horizon LLM agent is a contract about what each future decision is allowed to see. The simplest contract appends past observations, tool calls, and reflections to every prompt, which makes prior context easy to access but also turns it into a jumbled mixture"
-    },
-    {
-      "title": "EvoPolicyGym: Evaluating Autonomous Policy Evolution in Interactive Environments",
-      "upvotes": 43,
-      "paper_id": "2607.02440",
-      "abstract": "Autonomous agents are increasingly expected to improve executable policies through feedback, yet existing evaluations often collapse this process into a final score or confound it with open-ended software-engineering progress."
-    },
-    {
-      "title": "Breaking Failure Cascades: Step-Aware Reinforcement Learning for Medical Multimodal Reasoning",
-      "upvotes": 19,
-      "paper_id": "2606.31825",
-      "abstract": "Recent multimodal large language models have shown great promise in clinical image reasoning, but existing post-training pipelines remain predominantly outcome-centric, relying on final answer correctness or sequence-level preferences. This suffers from sparse credit assignment"
-    },
-    {
-      "title": "SkillCoach: Self-Evolving Rubrics for Evaluating and Enhancing Agentic Skill-Use",
-      "upvotes": 15,
-      "paper_id": "2607.01874",
-      "abstract": "Skills are becoming a reusable operational layer for LLM agents, encoding SOPs, domain rules, tool workflows, scripts, and validation routines. In realistic skill repositories, overlapping skills make reliable skill-use difficult. Final verifier success is too coarse for both evaluation and training"
-    },
-    {
-      "title": "Logit-Contribution Scoring Identifies Non-Literal Retrieval Heads",
-      "upvotes": 15,
-      "paper_id": "2607.01002",
-      "abstract": "In long-context use, large language models frequently synthesize answers from the meaning of a relevant context span rather than literally copy-pasting them. Identifying which attention heads perform this synthesis matters for interpreting long-context model behavior. Yet existing detectors miss these heads by"
-    },
-    {
-      "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
-      "upvotes": 14,
-      "paper_id": "2607.01224",
-      "abstract": "Memory expertise is a learned skill: knowing what to encode, when to retrieve, and how to organize knowledge--a capacity known in cognitive science as metamemory. We bring this perspective to LLMs by treating memory management as a trainable skill. We promote file-system operations to first-class memory actions"
-    },
-    {
-      "title": "AGVBench: A Reliability-Oriented Benchmark of Data Augmentation for Vein Recognition",
-      "upvotes": 13,
-      "paper_id": "2607.02271",
-      "abstract": "Vein recognition is a secure biometric technology often constrained by limited annotated data and imaging variations. While data augmentation mitigates this, strategies designed for natural images may disrupt the fine-grained topology and textures essential for identity discrimination. We present AGVBench, which evaluates 30"
-    },
-    {
-      "title": "From SRA to Self-Flow: Data Augmentation or Self-Supervision?",
-      "upvotes": 10,
-      "paper_id": "2607.02508",
-      "abstract": "Representation alignment has become an effective way to accelerate diffusion transformer training and improve generation quality. Recent self-alignment methods, such as SRA and Self-Flow, further remove the dependency on external pretrained encoders by constructing alignment within the diffusion model itself."
-    },
-    {
-      "title": "WARP: Weight-Space Analysis for Recovering Training Data Portfolios",
-      "upvotes": 6,
-      "paper_id": "2607.01686",
-      "abstract": "Foundation models are routinely released to the public, yet the data recipes used to train them -- such as domain mixture weights that determine how different sources are sampled -- are rarely disclosed. This creates an access asymmetry: researchers study the resulting models but lack visibility into the training distribution"
-    },
-    {
-      "title": "DuoMem: Towards Capable On-Device Memory Agents via Dual-Space Distillation",
-      "upvotes": 6,
-      "paper_id": "2606.29961",
-      "abstract": "Large Language Model (LLM)-based agents can solve complex procedural tasks by interacting with environments over multiple turns, but this ability typically depends on large models, long contexts, and repeated inference calls. This makes advanced memory-augmented agents difficult to deploy on resource-constrained devices."
-    }
+    {"title": "The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning", "upvotes": 140, "paper_id": "2606.29526", "abstract": "Reinforcement learning for LLMs faces instability due to training-inference mismatch. The paper proposes Monotonic Inference Policy Improvement (MIPI) and framework MIPU to ensure consistent policy improvements between training and inference phases."},
+    {"title": "Embodied.cpp: A Portable Inference Runtime of Embodied AI Models on Heterogeneous Robots", "upvotes": 35, "paper_id": "2607.02501", "abstract": "A portable C++ runtime enabling efficient deployment of vision-language-action and world-action models across heterogeneous edge devices through modular execution layers and optimized inference strategies."},
+    {"title": "OrbitQuant: Data-Agnostic Quantization for Image and Video Diffusion Transformers", "upvotes": 26, "paper_id": "2607.02461", "abstract": "Post-training quantization method for diffusion transformers using normalized rotated basis, eliminating recalibration needs across timesteps and modalities for efficient image and video generation."},
+    {"title": "VLA-Corrector: Lightweight Detect-and-Correct Inference for Adaptive Action Horizon", "upvotes": 22, "paper_id": "2607.01804", "abstract": "Lightweight framework addressing action chunking limitations in vision-language-action models through latent-space vision monitoring and adaptive corrective replanning for robust manipulation tasks."},
+    {"title": "AutoMem: Automated Learning of Memory as a Cognitive Skill", "upvotes": 17, "paper_id": "2607.01224", "abstract": "Framework treating memory management as a trainable skill for LLMs, automating both memory structure optimization and proficiency enhancement, yielding 2x-4x improvements in long-horizon tasks."},
+    {"title": "DataComp-VLM: Improved Open Datasets for Vision-Language Models", "upvotes": 15, "paper_id": "2606.28551", "abstract": "Comprehensive benchmark for evaluating data curation strategies in vision-language models, demonstrating that data mixing rather than filtering significantly improves performance at scale."},
+    {"title": "Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming", "upvotes": 8, "paper_id": "2606.31227", "abstract": "Open-source framework organizing AI red teaming across infrastructure, protocol, agent behavior, and model layers, including supply-chain auditing of agent skills and components."},
+    {"title": "WARP: Weight-Space Analysis for Recovering Training Data Portfolios", "upvotes": 7, "paper_id": "2607.01686", "abstract": "Framework inferring training data compositions from released model weights by analyzing geometric footprints in weight space through model merging and feature extraction techniques."},
+    {"title": "Interpretation-Oriented Cloud Removal via Observation-Anchored Residual Flow with Geo-Contextual Alignment", "upvotes": 4, "paper_id": "2607.02471", "abstract": "Cloud removal framework addressing semantic drift through physically grounded residual inversion combined with semantic manifold constraints from vision foundation models for remote sensing."},
+    {"title": "Parameter-Efficient Quantum-Inspired Fast Weight Programmers for Traffic-Matrix Forecasting", "upvotes": 4, "paper_id": "2606.27821", "abstract": "Quantum-inspired recurrent models using gated QKAN-FWPs demonstrate superior forecasting accuracy with reduced computational requirements for network traffic-matrix prediction tasks."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.201",
-      "published_at": "2025-07-03",
-      "body": "Claude Sonnet 5 sessions no longer use the mid-conversation system role for harness reminders"
-    },
-    {
-      "tag_name": "v2.1.200",
-      "published_at": "2025-07-03",
-      "body": "Changed AskUserQuestion dialogs to no longer auto-continue by default; opt into an idle timeout via /config. Changed the default permission mode to Manual across the CLI, --help, VS Code, and JetBrains. Fixed a crash at startup when disabledMcpServers or enabledMcpServers in .claude.json is set to a non-array value. Fixed background sessions silently stopping mid-turn after sleep/wake or when reopening a stalled session. Fixed background sessions re-running a turn cancelled with Esc after a stall respawn. Fixed background-agent daemon handover so a reinstalled older build can no longer take over the daemon; build recency is now judged by the version's embedded build timestamp."
-    },
-    {
-      "tag_name": "v2.1.199",
-      "published_at": "2025-07-02",
-      "body": "Stacked slash-skill invocations like /skill-a /skill-b do XYZ now load all leading skills (up to 5), not just the first. Fixed SSL certificate errors (TLS-inspecting proxies, missing NODE_EXTRA_CA_CERTS, expired certs) burning retries before showing actionable guidance -- they now fail immediately with the fix hint. Fixed streaming responses being discarded when the API emits a mid-stream overloaded/server error after partial output -- the partial is now kept with an incomplete-response notice. Fixed subagents cut off by a rate limit or server error silently failing instead of returning their partial work to the parent."
-    }
+    {"tag_name": "v2.1.201", "published_at": "2025-07-03", "body": "Claude Sonnet 5 sessions no longer use the mid-conversation system role for harness reminders"},
+    {"tag_name": "v2.1.200", "published_at": "2025-07-03", "body": "Changed AskUserQuestion dialogs to no longer auto-continue by default; opt into an idle timeout via /config. Changed the \"default\" permission mode to \"Manual\" across the CLI, --help, VS Code, and JetBrains. Fixed a crash at startup when disabledMcpServers or enabledMcpServers in .claude.json is set to a non-array value. Fixed background sessions silently stopping mid-turn after sleep/wake or when reopening a stalled session. Fixed background sessions re-running a turn cancelled with Esc after a stall respawn. Fixed background-agent daemon handover so a reinstalled older build can no longer take over the daemon. Fixed background-agent roster issues including transient corruption. Fixed subagents cut off by a rate limit returning an empty result instead of failing cleanly. Fixed control bytes from background-agent output reaching the terminal. Multiple additional fixes for plugins, MCP servers, voice dictation, screen readers, and the install script."},
+    {"tag_name": "v2.1.199", "published_at": "2025-07-02", "body": "Stacked slash-skill invocations like /skill-a /skill-b do XYZ now load all leading skills (up to 5), not just the first. Fixed SSL certificate errors (TLS-inspecting proxies, missing NODE_EXTRA_CA_CERTS, expired certs) burning retries before showing actionable guidance. Fixed streaming responses being discarded when the API emits a mid-stream overloaded/server error after partial output. Fixed subagents cut off by a rate limit or server error silently failing instead of returning their partial work to the parent. Fixed subagents reporting API errors as successful results. Fixed the background-agent daemon on Linux killing itself after an unclean shutdown. Fixed background agents failing to cold-start over SSH on macOS. Multiple additional reliability and UX improvements for background sessions, MCP servers, and agent management."}
   ]
 }
