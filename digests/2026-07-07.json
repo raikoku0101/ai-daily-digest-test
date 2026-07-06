@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-07",
+  "content": "# AI Daily Digest — 2026-07-07\n\n## 今日のハイライト\n- **🏆 MIPI: LLM RL の訓練-推論ミスマッチを解決する新理論 (👍140)**: 訓練時の最適化が推論時性能に反映されない根本問題を Monotonic Inference Policy Improvement で解決。RLHF 等の実用的 RL パイプライン全般に影響する重要理論。\n- **🔧 Claude Code v2.1.200: バックグラウンドエージェントの大規模安定化**: デーモン引き継ぎ・スリープ後停止・サブエージェントのレート制限問題など 10 以上のバグを一括修正。自動化ワークフロー利用者に直接恩恵。\n- **🤖 AutoMem: LLM が自ら記憶システムを学習・最適化する新パラダイム (👍17)**: 記憶管理をスキルとして訓練し長期タスクで 2x〜4x 改善。エージェント自律性の次世代アーキテクチャを提示。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.201 (2025-07-03)\n**主要機能**: Claude Sonnet 5 セッションにおいて、会話中間のシステムロールによるハーネスリマインダーを廃止。これによりセッションの一貫性が向上し、意図しない動作の割り込みが減少。\n\n**ユーザーへの影響**: Sonnet 5 を使用する自動化セッションの安定性が向上。背景エージェントやバッチ処理の信頼性改善に直結。\n\n---\n\n### v2.1.200 (2025-07-03)\n**主要機能**:\n- `AskUserQuestion` ダイアログのオートコンティニューをデフォルト無効化（`/config` でアイドルタイムアウトをオプトイン可能）\n- デフォルト権限モードを CLI・`--help`・VS Code・JetBrains 全体で「Manual」に変更\n\n**バグ修正**:\n- `.claude.json` の `disabledMcpServers` / `enabledMcpServers` が非配列値のときのクラッシュを修正\n- スリープ/ウェイク後やセッション再起動時にバックグラウンドセッションが無音で停止する問題を修正\n- Esc キャンセル後にバックグラウンドセッションがターンを再実行するバグを修正\n- デーモン引き継ぎの問題修正（旧ビルドが新ビルドのデーモンを乗っ取れないよう）\n- レート制限でカットされたサブエージェントが空結果を返す問題を修正\n- その他プラグイン・MCP サーバー・音声入力・スクリーンリーダーの複数修正\n\n**ユーザーへの影響**: バックグラウンドエージェント利用者に大きなメリット。ダイアログの自動継続廃止により、意図しない自動承認が防止される。\n\n---\n\n### v2.1.199 (2025-07-02)\n**主要機能**:\n- スタックスラッシュスキル（`/skill-a /skill-b do XYZ`）が最大 5 スキルを同時ロード可能に\n\n**バグ修正**:\n- TLS 検査プロキシ・証明書エラーのリトライ無駄遣いを修正（即時エラーと修正ヒントを表示）\n- ストリーミングレスポンスが途中でサーバーエラーになった場合、部分出力を破棄せず保持するよう修正\n- レート制限・サーバーエラーで途切れたサブエージェントが親エージェントに部分作業を返すよう修正\n- Linux でのデーモン自己終了問題・macOS SSH 上のコールドスタート失敗を修正\n\n**ユーザーへの影響**: 複数スキルの組み合わせ利用が容易になり、エラー診断が大幅に改善。\n\n## 注目論文 TOP 10\n\n**1. The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning** | 👍 140 | [arxiv:2606.29526](https://arxiv.org/abs/2606.29526)\n🎯 **背景**: LLM の強化学習（RL）において、訓練時の方策最適化が推論時の実際の性能向上につながらない「訓練-推論ミスマッチ」が深刻な問題となっている。\n🔧 **手法**: Monotonic Inference Policy Improvement（MIPI）原理を提唱し、訓練と推論フェーズで一貫した方策改善を保証するフレームワーク MIPU を構築。訓練時の最適化目標を推論時性能に直結させる数理的保証を導入。\n📊 **結果**: MIPU を適用した LLM は従来の RL 手法と比較して訓練安定性が大幅改善。推論時の性能低下（ミスマッチ）を系統的に排除。\n💡 **意義**: LLM の RL 訓練における根本的な設計原則を再定義。RLHF や RLAIF 等の実用的な RL パイプライン全般に適用可能な理論的基盤を提供。\n⚠️ **限界**: 提案フレームワークの計算コストや実装複雑性の詳細評価が限定的。大規模モデルへのスケーラビリティ検証が今後の課題。\n\n**2. Embodied.cpp: A Portable Inference Runtime of Embodied AI Models on Heterogeneous Robots** | 👍 35 | [arxiv:2607.02501](https://arxiv.org/abs/2607.02501)\n🎯 **背景**: 視覚-言語-行動（VLA）モデルやワールドアクションモデルをエッジロボットに展開する際、デバイス間の異質なハードウェア環境が大きな障壁となっている。\n🔧 **手法**: モジュール型実行レイヤーと最適化推論戦略を持つポータブル C++ ランタイムを構築。異種エッジデバイス（ARM/x86/GPU）間での統一デプロイを実現。\n📊 **結果**: 複数のヘテロジニアスロボットプラットフォームで VLA モデルの効率的推論を実証。デバイス固有の最適化なしに高性能を達成。\n💡 **意義**: 具現化 AI（Embodied AI）の現場展開を民主化。研究室モデルをそのまま現場ロボットへ移植可能にするインフラを提供。\n⚠️ **限界**: リアルタイム性要件の厳しいユースケースや最新 VLA モデルとの互換性についての詳細評価が必要。\n\n**3. OrbitQuant: Data-Agnostic Quantization for Image and Video Diffusion Transformers** | 👍 26 | [arxiv:2607.02461](https://arxiv.org/abs/2607.02461)\n🎯 **背景**: 拡散トランスフォーマー（DiT）の量子化において、タイムステップや入力モダリティごとにキャリブレーションデータを用意する必要があり、運用コストが高い問題がある。\n🔧 **手法**: 正規化回転基底（Normalized Rotated Basis）を利用したポスト学習量子化手法 OrbitQuant を提案。データ依存のキャリブレーションなしに量子化後の品質を維持する数学的変換を適用。\n📊 **結果**: 画像・動画生成タスクの双方で、従来手法と同等以上の品質を維持しながら量子化を達成。タイムステップ横断での性能安定性を確認。\n💡 **意義**: 運用コストを大幅削減。企業・研究者が大規模拡散モデルを低コストで量子化・配備できる実用的なソリューション。\n⚠️ **限界**: 極端な低ビット量子化（2-bit など）での品質低下や、動的コンテンツへの汎化性能の更なる検証が必要。\n\n**4. VLA-Corrector: Lightweight Detect-and-Correct Inference for Adaptive Action Horizon** | 👍 22 | [arxiv:2607.01804](https://arxiv.org/abs/2607.01804)\n🎯 **背景**: VLA モデルのアクションチャンキング（複数ステップを一括予測）は効率的だが、途中で状況が変化した際に修正が困難という根本的な制約がある。\n🔧 **手法**: 潜在空間上のビジョンモニタリングと適応的修正リプランニング（Corrective Replanning）を組み合わせた軽量フレームワーク。逐次監視で異常を早期検知し、必要な場合のみ再計画を実行。\n📊 **結果**: 物体操作タスクで VLA の成功率を大幅改善。従来手法比でリプランニングのコスト効率が向上。\n💡 **意義**: ロボット操作の実用信頼性を向上。チャンキング型 VLA の弱点を補完し、動的環境での安定動作を実現。\n⚠️ **限界**: 潜在空間モニタリングの精度がベースモデルの品質に依存する点や、高速変化環境でのリアルタイム性評価が課題。\n\n**5. AutoMem: Automated Learning of Memory as a Cognitive Skill** | 👍 17 | [arxiv:2607.01224](https://arxiv.org/abs/2607.01224)\n🎯 **背景**: LLM の長期記憶管理は手動設計に頼ることが多く、最適な記憶構造の選択やメモリ活用能力の学習が自動化されていない。\n🔧 **手法**: 記憶管理を訓練可能な認知スキルとして定式化。記憶構造の最適化（何を・どう保存するか）と記憶活用能力の強化（いつ・どう使うか）を自動学習するフレームワーク AutoMem を構築。\n📊 **結果**: 長期タスクにおいて 2x〜4x の性能改善を達成。記憶構造の自動最適化により、手動設計比で大幅な効率向上。\n💡 **意義**: LLM エージェントの長期自律動作能力を革新。エージェントが自ら記憶システムを改善・進化させる新パラダイムを開く。\n⚠️ **限界**: 特定ドメインタスクへの過学習リスクや、計算コストの増加、汎用タスクへのスケーラビリティ検証が課題。\n\n**6. DataComp-VLM: Improved Open Datasets for Vision-Language Models** | 👍 15 | [arxiv:2606.28551](https://arxiv.org/abs/2606.28551)\n🎯 **背景**: 視覚-言語モデル（VLM）のデータキュレーション戦略の評価・比較が困難で、フィルタリング vs ミキシングのどちらが有効かの系統的研究が不足していた。\n🔧 **手法**: VLM 向けデータキュレーション戦略を評価する包括的ベンチマーク DataComp-VLM を構築。フィルタリング・ミキシング・スケーリングの各戦略を統一評価フレームワークで比較検証。\n📊 **結果**: スケール増加時において、データのフィルタリングよりもデータミキシングが性能向上に有効であることを実証。\n💡 **意義**: VLM 開発者にデータ戦略の明確な指針を提供。オープンデータセットの改善により、研究・産業双方のアクセシビリティが向上。\n⚠️ **限界**: 特定のモデルアーキテクチャや学習設定への依存性、および低リソース環境での汎化性能の検証が必要。\n\n**7. Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming** | 👍 8 | [arxiv:2606.31227](https://arxiv.org/abs/2606.31227)\n🎯 **背景**: AI エージェントのセキュリティ脅威がインフラ・プロトコル・行動・モデルの複数レイヤーに存在するにもかかわらず、統一的な評価フレームワークが存在しなかった。\n🔧 **手法**: インフラ層・プロトコル層・エージェント行動層・モデル層の 4 層にわたる AI レッドチーミングを体系化するオープンソースフレームワークを提案。エージェントスキルとコンポーネントのサプライチェーン監査機能も含む。\n📊 **結果**: 複数の代表的 AI エージェントシステムに対してフレームワークを適用し、各層固有の脆弱性を系統的に発見。\n💡 **意義**: AI エージェントのセキュリティ評価を標準化。エンタープライズ展開や高信頼性アプリケーションでのリスク管理に直結。\n⚠️ **限界**: フレームワークの有効性が評価対象エージェントの種類に依存し、新規攻撃手法への迅速な対応機構が課題。\n\n**8. WARP: Weight-Space Analysis for Recovering Training Data Portfolios** | 👍 7 | [arxiv:2607.01686](https://arxiv.org/abs/2607.01686)\n🎯 **背景**: 公開モデルの重みから学習データの構成（どのデータがどの割合で使用されたか）を推定する手法が存在せず、モデルの透明性・監査可能性が低い。\n🔧 **手法**: モデルマージと特徴抽出技術により重み空間の幾何学的フットプリントを解析。モデル融合（Model Merging）の原理を逆用してデータ組成を推定する WARP フレームワークを提案。\n📊 **結果**: 既知のデータ構成で訓練されたモデルに対して、WARP によるデータポートフォリオ推定の有効性を実証。\n💡 **意義**: モデル監査・著作権問題・データ由来追跡に革新的なアプローチ。AI ガバナンスと透明性向上に重要な貢献。\n⚠️ **限界**: 多様なデータソースの混合や、ファインチューニングが複雑な場合の精度低下、計算コストの問題が残る。\n\n**9. Interpretation-Oriented Cloud Removal via Observation-Anchored Residual Flow with Geo-Contextual Alignment** | 👍 4 | [arxiv:2607.02471](https://arxiv.org/abs/2607.02471)\n🎯 **背景**: リモートセンシング画像の雲除去において、従来手法は視覚的品質を優先するあまり地理的・意味的整合性（Semantic Consistency）を損なう「意味論的ドリフト」が問題。\n🔧 **手法**: 物理的に根拠のある残差インバージョン（Residual Inversion）と、視覚基盤モデルからのセマンティックマニフォールド制約を組み合わせた雲除去フレームワークを提案。\n📊 **結果**: 衛星画像の雲除去タスクで従来手法比で意味論的整合性が大幅向上。土地利用分類等の下流タスクでの精度向上を確認。\n💡 **意義**: 農業モニタリング・都市計画・災害対応等のリモートセンシング応用で、信頼性の高い画像解析が可能に。\n⚠️ **限界**: 厚い雲層や夜間・センサーノイズが多い条件での性能、計算コストの現場適用性が課題。\n\n**10. Parameter-Efficient Quantum-Inspired Fast Weight Programmers for Traffic-Matrix Forecasting** | 👍 4 | [arxiv:2606.27821](https://arxiv.org/abs/2606.27821)\n🎯 **背景**: ネットワークトラフィック行列の予測は通信インフラ管理に重要だが、従来の深層学習モデルは計算コストが高く、リアルタイム予測が困難。\n🔧 **手法**: 量子インスパイア型ゲート付き QKAN-FWP（Quantum Kernel Associative Network - Fast Weight Programmer）を用いたリカレントモデルを提案。量子演算の効率性をクラシカルハードウェアで模倣。\n📊 **結果**: トラフィック行列予測の精度で従来手法を上回りつつ、パラメータ効率が大幅向上。計算要件を削減しながら優れた予測精度を達成。\n💡 **意義**: 通信網の効率的管理・異常検知・容量計画に直接応用可能。量子インスパイア手法の実用的価値を実証。\n⚠️ **限界**: 実際の量子ハードウェアとの関連性の明確化や、より大規模・複雑なネットワークトポロジーへの汎化性能検証が必要。\n\n",
+  "fetched_at": "2026-07-06T22:04:58.395049+00:00",
+  "papers": [
+    {
+      "title": "The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning",
+      "upvotes": 140,
+      "paper_id": "2606.29526",
+      "abstract": "Reinforcement learning for LLMs faces instability due to training-inference mismatch. The paper proposes Monotonic Inference Policy Improvement (MIPI) and framework MIPU to ensure consistent policy improvements between training and inference phases."
+    },
+    {
+      "title": "Embodied.cpp: A Portable Inference Runtime of Embodied AI Models on Heterogeneous Robots",
+      "upvotes": 35,
+      "paper_id": "2607.02501",
+      "abstract": "A portable C++ runtime enabling efficient deployment of vision-language-action and world-action models across heterogeneous edge devices through modular execution layers and optimized inference strategies."
+    },
+    {
+      "title": "OrbitQuant: Data-Agnostic Quantization for Image and Video Diffusion Transformers",
+      "upvotes": 26,
+      "paper_id": "2607.02461",
+      "abstract": "Post-training quantization method for diffusion transformers using normalized rotated basis, eliminating recalibration needs across timesteps and modalities for efficient image and video generation."
+    },
+    {
+      "title": "VLA-Corrector: Lightweight Detect-and-Correct Inference for Adaptive Action Horizon",
+      "upvotes": 22,
+      "paper_id": "2607.01804",
+      "abstract": "Lightweight framework addressing action chunking limitations in vision-language-action models through latent-space vision monitoring and adaptive corrective replanning for robust manipulation tasks."
+    },
+    {
+      "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
+      "upvotes": 17,
+      "paper_id": "2607.01224",
+      "abstract": "Framework treating memory management as a trainable skill for LLMs, automating both memory structure optimization and proficiency enhancement, yielding 2x-4x improvements in long-horizon tasks."
+    },
+    {
+      "title": "DataComp-VLM: Improved Open Datasets for Vision-Language Models",
+      "upvotes": 15,
+      "paper_id": "2606.28551",
+      "abstract": "Comprehensive benchmark for evaluating data curation strategies in vision-language models, demonstrating that data mixing rather than filtering significantly improves performance at scale."
+    },
+    {
+      "title": "Securing the AI Agent: A Unified Framework for Multi-Layer Agent Red Teaming",
+      "upvotes": 8,
+      "paper_id": "2606.31227",
+      "abstract": "Open-source framework organizing AI red teaming across infrastructure, protocol, agent behavior, and model layers, including supply-chain auditing of agent skills and components."
+    },
+    {
+      "title": "WARP: Weight-Space Analysis for Recovering Training Data Portfolios",
+      "upvotes": 7,
+      "paper_id": "2607.01686",
+      "abstract": "Framework inferring training data compositions from released model weights by analyzing geometric footprints in weight space through model merging and feature extraction techniques."
+    },
+    {
+      "title": "Interpretation-Oriented Cloud Removal via Observation-Anchored Residual Flow with Geo-Contextual Alignment",
+      "upvotes": 4,
+      "paper_id": "2607.02471",
+      "abstract": "Cloud removal framework addressing semantic drift through physically grounded residual inversion combined with semantic manifold constraints from vision foundation models for remote sensing."
+    },
+    {
+      "title": "Parameter-Efficient Quantum-Inspired Fast Weight Programmers for Traffic-Matrix Forecasting",
+      "upvotes": 4,
+      "paper_id": "2606.27821",
+      "abstract": "Quantum-inspired recurrent models using gated QKAN-FWPs demonstrate superior forecasting accuracy with reduced computational requirements for network traffic-matrix prediction tasks."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.201",
+      "published_at": "2025-07-03",
+      "body": "Claude Sonnet 5 sessions no longer use the mid-conversation system role for harness reminders"
+    },
+    {
+      "tag_name": "v2.1.200",
+      "published_at": "2025-07-03",
+      "body": "Changed AskUserQuestion dialogs to no longer auto-continue by default; opt into an idle timeout via /config. Changed the \"default\" permission mode to \"Manual\" across the CLI, --help, VS Code, and JetBrains. Fixed a crash at startup when disabledMcpServers or enabledMcpServers in .claude.json is set to a non-array value. Fixed background sessions silently stopping mid-turn after sleep/wake or when reopening a stalled session. Fixed background sessions re-running a turn cancelled with Esc after a stall respawn. Fixed background-agent daemon handover so a reinstalled older build can no longer take over the daemon. Fixed background-agent roster issues including transient corruption. Fixed subagents cut off by a rate limit returning an empty result instead of failing cleanly. Fixed control bytes from background-agent output reaching the terminal. Multiple additional fixes for plugins, MCP servers, voice dictation, screen readers, and the install script."
+    },
+    {
+      "tag_name": "v2.1.199",
+      "published_at": "2025-07-02",
+      "body": "Stacked slash-skill invocations like /skill-a /skill-b do XYZ now load all leading skills (up to 5), not just the first. Fixed SSL certificate errors (TLS-inspecting proxies, missing NODE_EXTRA_CA_CERTS, expired certs) burning retries before showing actionable guidance. Fixed streaming responses being discarded when the API emits a mid-stream overloaded/server error after partial output. Fixed subagents cut off by a rate limit or server error silently failing instead of returning their partial work to the parent. Fixed subagents reporting API errors as successful results. Fixed the background-agent daemon on Linux killing itself after an unclean shutdown. Fixed background agents failing to cold-start over SSH on macOS. Multiple additional reliability and UX improvements for background sessions, MCP servers, and agent management."
+    }
+  ]
+}
