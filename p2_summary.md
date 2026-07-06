@@ -1,6 +1,6 @@
-**2. EvoPolicyGym: Evaluating Autonomous Policy Evolution in Interactive Environments**
-**著者**: EvoPolicyGym Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.02440
+**2. Embodied.cpp: A Portable Inference Runtime of Embodied AI Models on Heterogeneous Robots**
+**著者**: (Corresponding authors) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.02501
 
 **まとめ**:
-自律エージェントが固定された相互作用予算（Interaction Budget）内でポリシーを反復的に進化させる能力を評価する新しいベンチマーク EvoPolicyGym を提案。16 の強化学習（RL）環境を含み、最終スコアではなく軌跡レベルの診断指標（予算配分・フィードバック活用・パラメトリック調整）でエージェントの自律改善能力を定量評価する。既存評価の「最終スコアへの集約」という欠点を克服し、ポリシー進化プロセス自体を評価対象にした先駆的フレームワーク。
+VLA (Vision-Language-Action) モデルとワールドアクションモデル (WAM) の異種ロボットへの展開を可能にするポータブル C++ 推論ランタイム。5 層モジュールアーキテクチャにより閉ループ制御でのマルチレート実行・レイテンシ優先推論・拡張可能 I/O を実現。HY-VLA で 100%、pi0.5 で 91% のタスク成功率を達成し、量子化で重みメモリを約 72% 削減。

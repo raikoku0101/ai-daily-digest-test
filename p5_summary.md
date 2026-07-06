@@ -1,6 +1,6 @@
-**5. Logit-Contribution Scoring Identifies Non-Literal Retrieval Heads**
-**著者**: LOCOS Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.01002
+**5. AutoMem: Automated Learning of Memory as a Cognitive Skill**
+**著者**: (Corresponding authors) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.01224
 
 **まとめ**:
-LLM が長文脈から意味を「合成」して回答する際に働く「非字義的検索ヘッド（Non-Literal Retrieval Heads）」を特定する新手法 LOCOS（Logit-Contribution Scoring）を提案。従来の「読む」箇所検出に加え「書く」メカニズムも評価する出力値回路（OV-Circuit）ベースの計測により、Qwen3-8B で 50 ヘッド除外時に ROUGE-L が 0.401→0.000 に低下することを実証。LLM の長文脈処理メカニズム解釈に大きな前進をもたらす基礎研究。
+LLM の記憶管理を認知科学の「メタメモリ」概念から学習可能なスキルとして定式化するフレームワーク AutoMem を提案。2 ループ構造（構造最適化 + 習熟度向上）によりメモリスキャフォルドと LoRA 適応モデルを自動生成。Crafter・MiniHack・NetHack ゲーム環境で進捗率が約 1.9x〜3.7x に向上し、32B オープンモデルが Claude Opus 4.5 と競合水準に。不生産行動 32-65% 削減、冗長メモリ書き込み 68-83% 削減を達成。

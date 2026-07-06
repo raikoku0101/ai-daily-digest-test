@@ -1,6 +1,6 @@
-**1. AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents**
-**著者**: AgenticSTS Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.02255
+**1. The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning**
+**著者**: (Corresponding authors) et al. (2026)
+**arXiv**: https://arxiv.org/abs/2606.29526
 
 **まとめ**:
-長期 LLM エージェントにおける有界メモリ（Bounded Memory）の影響を隔離評価するテストベッド。デッキ構築ゲーム「Slay the Spire 2」を環境として、型付き検索（Typed Retrieval）でプロンプトサイズを固定しながら各メモリ・スキルレイヤーを独立に除去・追加できる設計を実現。メモリ管理戦略が長期エージェント性能に与える影響を定量化する再現可能な研究基盤を提供する。
+LLM の強化学習における「訓練-推論ミスマッチ」問題に対し、訓練ポリシー最適化ではなく推論ポリシーの単調改善 (MIPI 原則) を真の目標と定義。これを実装する MIPU フレームワークは FP8 量子化等の高ミスマッチ環境下でも安定した訓練を実現し、MATH-500・AIME24 等のベンチマークで既存手法を上回る。RLHF/RLAIF 等の実用パイプライン全体に影響する重要な理論的貢献。
