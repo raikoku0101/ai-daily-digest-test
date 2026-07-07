@@ -1,6 +1,6 @@
-**1. The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning**
-**著者**: (Corresponding authors) et al. (2026)
-**arXiv**: https://arxiv.org/abs/2606.29526
+**1. MANCE: Manifold Aware Concept Erasure**
+**著者**: (Manifold Aware Concept Erasure チーム) (2025)
+**arXiv**: https://arxiv.org/abs/2607.03973
 
 **まとめ**:
-LLM の強化学習における「訓練-推論ミスマッチ」問題に対し、訓練ポリシー最適化ではなく推論ポリシーの単調改善 (MIPI 原則) を真の目標と定義。これを実装する MIPU フレームワークは FP8 量子化等の高ミスマッチ環境下でも安定した訓練を実現し、MATH-500・AIME24 等のベンチマークで既存手法を上回る。RLHF/RLAIF 等の実用パイプライン全体に影響する重要な理論的貢献。
+LLM・画像モデルから特定概念を外科的に消去する「概念消去」技術に多様体制約を組み込んだMANCEを提案。自然な表現は低次元多様体に集中するという仮説（MCH）に基づき、介入を接空間に制限することで既存手法を上回る非線形概念消去精度を達成。テキスト・ビジョン双方の119設定で検証され、著作権・プライバシー保護への実用化が期待される。
