@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-08",
+  "content": "# AI Daily Digest — 2026-07-08\n\n## 今日のハイライト\n- **MANCE が概念消去の新基準を樹立 (31 votes)**: LLM・画像モデルから特定概念を安全に削除する技術が非線形領域に拡張。著作権保護・コンテンツポリシー適用への実用化が現実味を帯びる。\n- **Claude Code v2.1.203 リリース**: バックグラウンドセッションのトークン失効バグとmacOS長期停止バグを修正。MCP roots/list 拡張でIDEとの連携も改善。\n- **KVキャッシュ圧縮の競争が激化 (KVpop 16票・SeKV 6票)**: 超長文脈LLMのメモリ問題に異なるアプローチで挑む2論文が同日登場。GPU メモリ 53% 削減など実用的成果が続く。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.203 (2025-07-07) — 最新版\n\n**主要機能**\n- **ログイン期限切れ警告**: セッショントークンの有効期限が近づくと事前警告を表示。バックグラウンドセッションが中断される前に再認証が可能になった。\n- **手動権限モード表示**: フッターにグレーの一時停止バッジを常時表示。現在のモードが一目でわかるようになった。\n- **MCP roots/list 拡張**: セッションの追加作業ディレクトリを `roots/list` に含め、変更時に `notifications/roots/list_changed` を送信するようになった。\n\n**バグ修正**\n- macOS でバックグラウンドエージェントセッションを開く・切り替える際に 15〜20 秒のフリーズが発生していた問題を修正（v2.1.196 のリグレッション）。\n- デーモンのセッショントークンが失効した際にバックグラウンドセッションが attach・応答・停止に永続的に反応しなくなる問題を修正。セッションが自動回復するようになった。\n\n**ユーザーへの影響**: macOS ユーザーや長時間のバックグラウンドセッションを使うユーザーに特に恩恵が大きい安定性改善。即時アップデートを推奨。\n\n---\n\n### v2.1.202 (2025-07-06)\n\n**主要機能**\n- **Dynamic Workflow Size 設定**: `/config` に「ダイナミックワークフローのサイズ」設定を追加。small/medium/large のエージェント数ガイドラインを選択可能（強制上限ではなくガイドライン）。\n- **OpenTelemetry 属性追加**: ワークフロー起動エージェントのテレメトリに `workflow.run_id` と `workflow.name` 属性を追加。OTel データからワークフロー実行の全体像を再構築できるようになった。\n\n**バグ修正**\n- `Ctrl+R` インライン履歴検索中に accept/cancel すると発生するクラッシュを修正。\n- バックグラウンドセッションで `/rename` したセッション名がジョブ再起動時に元に戻る問題を修正。\n\n**ユーザーへの影響**: 大規模ワークフローを運用するユーザーにとってオブザーバビリティが向上。\n\n---\n\n### v2.1.201 (2025-07-03)\n\n**変更点**: Claude Sonnet 5 セッションでは会話中盤のシステムロールによるハーネスリマインダーが廃止された。より自然な対話フローを実現。\n\n## 注目論文 TOP 10\n\n**1. MANCE: Manifold Aware Concept Erasure** | upvotes: 31 | https://arxiv.org/abs/2607.03973\n🎯**背景**: テキスト・画像モデルから特定概念（人物・スタイル等）を消去する「概念消去」技術は、著作権・プライバシー保護に不可欠。しかし既存手法は線形変換に限定され、深層の非線形表現には不十分だった。\n🔧**手法**: 介入を「自然な表現多様体（manifold）」に制約するMANCEを提案。多様体上でのみ概念干渉を行い、無関係な表現への影響を最小化。線形・非線形の両方の概念消去をサポート。\n📊**結果**: テキスト・ビジョンタスク双方で既存手法を上回る非線形概念消去の最高精度を達成。\n💡**意義**: モデルの概念制御技術が実用段階に近づく。コンテンツポリシー適用や著作権保護への応用可能性が高い。\n⚠️**限界**: 多様体推定のコストや、概念間の相互依存関係への対応が今後の課題。\n\n---\n\n**2. KVpop: Key-Value Cache Compression with Predictive Online Pruning** | upvotes: 16 | https://arxiv.org/abs/2607.05061\n🎯**背景**: LLMの長文脈推論ではKVキャッシュのメモリ使用量が爆発的に増大。効率的なキャッシュ圧縮は大規模デプロイの要。\n🔧**手法**: 将来のアテンション重みを教師信号として「保持/削除」バイナリ判定を学習するKVpopを提案。オンラインで予測しながら最適なトークンをリアルタイム枝刈り。\n📊**結果**: 数学的推論タスクで大幅なメモリ削減を達成しながら高精度を維持。\n💡**意義**: LLMの実用的な長文脈対応コストを削減。デプロイ効率と性能のトレードオフを大きく改善。\n⚠️**限界**: 教師信号生成のオーバーヘッドと、異なるドメインへの汎化性能が課題。\n\n---\n\n**3. Multi-Turn Agentic Scientific Literature Search via Workflow Induction** | upvotes: 15 | https://arxiv.org/abs/2607.00597\n🎯**背景**: 研究者の文献探索は反復的・多段階であり、単一クエリの検索システムでは複雑な情報ニーズに対応できない。\n🔧**手法**: PaperPilotは論文検索オペレータの実行可能なDAG（有向非巡回グラフ）を構築するマルチターンエージェント。ユーザーフィードバックをもとにワークフローをリアルタイム更新。\n📊**結果**: 検索精度指標を大幅改善。従来の単発検索より大幅に高い適合率・再現率。\n💡**意義**: AIエージェントによる研究支援の実用化。研究者の探索プロセスを自動化し、発見を加速。\n⚠️**限界**: 初期ワークフロー設計の品質依存や、専門分野外への適用精度が課題。\n\n---\n\n**4. Perceptual Flow Matching for Few-Step Generative Modeling** | upvotes: 11 | https://arxiv.org/abs/2607.03524\n🎯**背景**: フローマッチング生成モデルはVAE潜在空間での学習が標準だが、人間の知覚特性を反映した空間での学習は未探索だった。\n🔧**手法**: VAE潜在空間ではなく知覚的特徴空間でフローマッチングを監督するPFM（Perceptual Flow Matching）を提案。最小限の修正で既存アーキテクチャに適用可能。\n📊**結果**: 画像・動画・編集タスクで少ないステップ数で高品質生成を実現。推論速度と品質のバランスが改善。\n💡**意義**: 高品質な生成AIのリアルタイム応用（モバイル・リアルタイム編集等）への道を拓く。\n⚠️**限界**: 知覚特徴空間の設計依存性と、特定ドメイン外での汎化性能が今後の検証課題。\n\n---\n\n**5. Unified Audio Intelligence Without Regressing on Text Intelligence** | upvotes: 7 | https://arxiv.org/abs/2607.05196\n🎯**背景**: 音声認識・TTS・音声生成を単一モデルで統合するマルチモーダルLLMは、テキスト能力が劣化する「破滅的忘却」問題を抱えていた。\n🔧**手法**: AudexはテキストLLMの知識を保持しながら音声能力を追加する統合アーキテクチャ。音声・テキスト双方のタスクで共同学習。\n📊**結果**: 音声認識・TTS・音声生成で最高水準の性能を達成しつつ、テキスト推論能力も維持。\n💡**意義**: 音声AIと言語AIの統合という長年の難問に対する実践的解法。マルチモーダルアシスタントへの直接応用が可能。\n⚠️**限界**: 学習コストと、多言語環境での性能維持が今後の課題。\n\n**6. MV-Forcing: Long Multi-View Video Generation via 4D-Grounded Spatio-Temporal Self-Forcing** | upvotes: 7 | https://arxiv.org/abs/2607.05376\n🎯**背景**: 複数カメラ視点で一貫した長尺動画の生成は、3D一貫性と時間軸整合性を同時に満たす必要があり既存手法では困難だった。\n🔧**手法**: 時間方向・視点方向の自己回帰と4D幾何学的ブリッジングを組み合わせたMV-Forcingを提案。時空間蒸留で動的シーン合成を実現。\n📊**結果**: 多視点一貫性と長尺動画品質の両立に成功。既存の単視点・短尺生成モデルを上回る品質。\n💡**意義**: 自動運転シミュレーション・映像制作・VR/AR コンテンツ生成への応用が期待される。\n⚠️**限界**: 計算コストが高く、リアルタイム生成への適用はまだ困難。\n\n---\n\n**7. SeKV: Resolution-Adaptive KV Cache with Hierarchical Semantic Memory for Long-Context LLM Inference** | upvotes: 6 | https://arxiv.org/abs/2606.31145\n🎯**背景**: 128K トークンを超える超長文脈 LLM 推論では、GPU メモリのKVキャッシュが律速ボトルネックになる。\n🔧**手法**: エントロピー誘導のセマンティックスパンをGPU-CPU階層に分散保存し、選択的トークンレベル再構築でキャッシュを動的に管理。\n📊**結果**: 128K コンテキストでGPUメモリを 53.3% 削減しながら推論精度を維持。\n💡**意義**: 超長文脈LLMのデプロイコストを大幅削減。長文書処理・コード解析・研究支援AIの普及を後押し。\n⚠️**限界**: CPU-GPU 間のデータ転送レイテンシと、動的再構築の予測精度が性能に影響する。\n\n---\n\n**8. Transition-Aware best-of-N sampling for Longitudinal Chest X-ray Reports** | upvotes: 5 | https://arxiv.org/abs/2606.28393\n🎯**背景**: 胸部X線レポート自動生成は医療AI の重要課題。特に経時的な変化（改善・悪化・新出）を正確に記述することは難しい。\n🔧**手法**: 患者の経時的履歴変化をセット間距離指標としてエンコードし、キャッシュされた正解ベクトルを使った訓練不要 best-of-N サンプリング手法を提案。\n📊**結果**: 経時変化の記述精度が向上し、標準的なレポート生成指標で改善を確認。\n💡**意義**: 既存モデルへの追加学習なしで性能改善が可能。臨床現場への即時適用しやすさが強み。\n⚠️**限界**: ベースモデルの品質依存度が高く、稀なパターンの変化記述には課題が残る。\n\n---\n\n**9. Speaker-Aware Temporal Aggregation Strategies for Depression Detection in Dyadic Interaction** | upvotes: 3 | https://arxiv.org/abs/2607.02904\n🎯**背景**: 対話音声からうつ病を検出する臨床AIは、話者や時間軸の集約方法によって性能が大きく変動する問題があった。\n🔧**手法**: DEPOOL ベンチマークで複数の音声バックボーンと時間集約戦略を系統的に比較評価。話者認識を組み込んだ時間集約のロバスト性を分析。\n📊**結果**: 集約戦略の選択が精度に大きな影響を与えることを実証。臨床応用上のロバスト性懸念を定量化。\n💡**意義**: 音声ベースメンタルヘルス診断AIの信頼性向上に向けた実践的ガイドラインを提供。\n⚠️**限界**: 被験者数が限定的であり、多様な文化・言語環境への汎化性能は未検証。\n\n---\n\n**10. CONFLUX: A Latent Diffusion Model for 3D Chest-CT Synthesis with RL Post-Training** | upvotes: 3 | https://arxiv.org/abs/2607.02998\n🎯**背景**: 3D胸部CT画像の合成は医療データ不足の解消と研究促進に重要だが、臨床属性の制御が難しかった。\n🔧**手法**: 潜在拡散モデルによる3D胸部CTボリューム生成に強化学習ポストトレーニングを組み合わせたCONFLUXを提案。臨床属性の制御性を強化。\n📊**結果**: ベースラインモデルに比べ臨床属性の再現信頼性を 47% 改善。\n💡**意義**: 希少疾患データの増強や医療AI学習用合成データ生成の実用化が加速する。\n⚠️**限界**: 生成データの多様性と、実際の臨床診断への適用には倫理・検証上の課題がある。\n\n",
+  "fetched_at": "2026-07-07T22:05:59.075460+00:00",
+  "papers": [
+    {
+      "title": "MANCE: Manifold Aware Concept Erasure",
+      "upvotes": 31,
+      "paper_id": "2607.03973",
+      "abstract": "Concept erasure removes target concepts from representations while preserving other information. MANCE constrains interventions to natural representation manifolds, achieving state-of-the-art nonlinear concept erasure across text and vision tasks."
+    },
+    {
+      "title": "KVpop -- Key-Value Cache Compression with Predictive Online Pruning",
+      "upvotes": 16,
+      "paper_id": "2607.05061",
+      "abstract": "KVpop learns optimal KV cache eviction by supervising keep-or-drop decisions using future-attention targets, achieving high performance with significant memory reduction on mathematical reasoning tasks."
+    },
+    {
+      "title": "Multi-Turn Agentic Scientific Literature Search via Workflow Induction",
+      "upvotes": 15,
+      "paper_id": "2607.00597",
+      "abstract": "PaperPilot is a multi-turn literature search agent that constructs executable DAGs of paper-search operators and refines workflows based on user feedback, substantially improving search accuracy metrics."
+    },
+    {
+      "title": "Perceptual Flow Matching for Few-Step Generative Modeling",
+      "upvotes": 11,
+      "paper_id": "2607.03524",
+      "abstract": "PFM supervises flow matching in perceptual feature space rather than VAE latent space, enabling efficient few-step generation for images, videos, and editing with minimal modifications."
+    },
+    {
+      "title": "Unified Audio Intelligence Without Regressing on Text Intelligence",
+      "upvotes": 7,
+      "paper_id": "2607.05196",
+      "abstract": "Audex is a unified audio-text LLM delivering state-of-the-art performance across speech recognition, text-to-speech, and audio generation while preserving strong text reasoning capabilities and knowledge."
+    },
+    {
+      "title": "MV-Forcing: Long Multi-View Video Generation via 4D-Grounded Spatio-Temporal Self-Forcing",
+      "upvotes": 7,
+      "paper_id": "2607.05376",
+      "abstract": "MV-Forcing generates long, multi-view consistent videos through temporal and view-wise autoregression with 4D geometric bridging and spatio-temporal distillation for dynamic scene synthesis."
+    },
+    {
+      "title": "SeKV: Resolution-Adaptive KV Cache with Hierarchical Semantic Memory for Long-Context LLM Inference",
+      "upvotes": 6,
+      "paper_id": "2606.31145",
+      "abstract": "SeKV compresses KV cache using entropy-guided semantic spans stored across GPU-CPU hierarchies with selective token-level reconstruction, reducing GPU memory by 53.3% at 128K context."
+    },
+    {
+      "title": "Transition-Aware best-of-N sampling for Longitudinal Chest X-ray Reports",
+      "upvotes": 5,
+      "paper_id": "2606.28393",
+      "abstract": "A training-free best-of-N sampling method for chest X-ray report generation that encodes longitudinal patient history transitions through set-to-set distance metrics and cached ground-truth vectors."
+    },
+    {
+      "title": "Speaker-Aware Temporal Aggregation Strategies on Segment Representations for Depression Detection in Dyadic Interaction: A Benchmark Study",
+      "upvotes": 3,
+      "paper_id": "2607.02904",
+      "abstract": "DEPOOL benchmark reveals temporal aggregation inconsistencies across speech backbones for depression detection, highlighting robustness concerns for clinical speech-based prediction systems."
+    },
+    {
+      "title": "CONFLUX: A Latent Diffusion Model for 3D Chest-CT Synthesis with RL Post-Training",
+      "upvotes": 3,
+      "paper_id": "2607.02998",
+      "abstract": "CONFLUX generates controllable 3D chest CT volumes using latent diffusion with reinforcement learning post-training, improving clinical attribute reliability by 47% over baseline models."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.203",
+      "published_at": "2025-07-07",
+      "body": "Added a warning when your login is about to expire, so you can re-authenticate before background sessions are interrupted. Added a grey pause badge to the footer when in manual permission mode, making the active mode always visible. Added the session's additional working directories to MCP roots/list, with notifications/roots/list_changed sent when the set changes. Fixed opening or switching background agent sessions on macOS stalling for 15-20 seconds due to a false low-memory detection (regression in 2.1.196). Fixed background sessions becoming permanently unresponsive to attach, replies, and stop when the daemon's session token went stale."
+    },
+    {
+      "tag_name": "v2.1.202",
+      "published_at": "2025-07-06",
+      "body": "Added a Dynamic workflow size setting in /config for controlling how large Claude generally makes dynamic workflows (small/medium/large agent counts). Added workflow.run_id and workflow.name OpenTelemetry attributes to telemetry emitted by workflow-spawned agents. Fixed a crash in the inline Ctrl+R history search when accepting or cancelling while the search was still scanning the history file. Fixed /rename on background sessions being reverted when the job restarts."
+    },
+    {
+      "tag_name": "v2.1.201",
+      "published_at": "2025-07-03",
+      "body": "Claude Sonnet 5 sessions no longer use the mid-conversation system role for harness reminders."
+    }
+  ]
+}
