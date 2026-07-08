@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-09",
+  "content": "# AI Daily Digest — 2026-07-09\n\n## 今日のハイライト\n- **Claude Code v2.1.205リリース**: セッショントランスクリプト保護など7件のバグ修正。Windows・バックグラウンドエージェント利用者は特に恩恵あり。\n- **VLAロボット実用化の新手法 (11 upvotes)**: LingBot-VLA 2.0が実験室と実世界のギャップを埋める実践的アプローチを提示。ロボット工学AI応用の最前線。\n- **SWE-Review: コーディングエージェントの品質ループを確立**: AIが自動生成したPRを自動レビュー・修正するクローズドループフレームワークが登場し、AI駆動ソフトウェア開発の信頼性向上に寄与。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.205（2025-07-08）\n**主要機能追加**\n- セッションのトランスクリプトファイルへの改ざんをブロックするautoモードルールを追加\n\n**バグ修正**\n- `--json-schema` でスキーマが無効な場合に非構造化出力を生成してしまう問題を修正。`format` キーワードを使用したスキーマが拒否される問題も修正\n- `--max-turns` 制限でターンが終了した際、作業中のClaudeに送信したメッセージが無言で失われる問題を修正\n- Windows環境でワークツリー内にNTFSジャンクションやディレクトリシンボリックリンクが存在する場合、ワークツリー外のファイルが削除される問題を修正\n- バックグラウンドエージェントを `SendMessage` で再開後も「失敗」または「完了」と表示され続ける問題を修正\n- エージェントのターンに読み取り可能なテキストがない場合、バックグラウンドジョブが「入力待ち」から「作業中」に戻る問題を修正\n- バックグラウンドエージェントのアップグレード再起動中に `claude attach` がエラーになる問題を修正（再起動完了を待つように変更）\n\n**ユーザーへの影響**: セキュリティ強化（トランスクリプト保護）と複数の安定性改善。特にWindows利用者とバックグラウンドエージェントを活用するユーザーに恩恵あり。\n\n---\n\n### v2.1.204（2025-07-08）\n**バグ修正**\n- ヘッドレスセッションのSessionStartフック中にフックイベントがストリーミングされない問題を修正（リモートワーカーがフック実行中にアイドル回収される可能性があった）\n\n**ユーザーへの影響**: リモート実行環境・CI環境でのSessionStartフックの信頼性が向上。\n\n---\n\n### v2.1.203（2025-07-07）\n**主要機能追加**\n- ログインの有効期限が近づいた際に警告を表示し、バックグラウンドセッションが中断される前に再認証できるようになった\n- 手動パーミッションモード時にフッターにグレーの⏸バッジを表示し、現在のモードを常時可視化\n- MCPの `roots/list` にセッションの追加作業ディレクトリを追加。セットが変更された際に `notifications/roots/list_changed` を送信\n\n**バグ修正**\n- macOSでバックグラウンドエージェントセッションを開く・切り替える際に15〜20秒スタックする問題を修正（v2.1.196からのリグレッション）\n- デーモンのセッショントークンが失効した際にバックグラウンドセッションがattach・返信・停止に永続的に応答しなくなる問題を修正（自動回復するように改善）\n\n**ユーザーへの影響**: macOSユーザーの体験が大幅改善。認証期限切れによるセッション中断を事前に回避できるようになった。\n\n## 注目論文 TOP 10\n\n**1. From Foundation to Application: Improving VLA Models in Practice** | 11 upvotes | https://arxiv.org/abs/2607.06403\n🎯 **背景**: VLA（視覚言語行動）基盤モデルは実験室では優れた性能を示すが、実世界応用では大きなギャップがある。\n🔧 **手法**: LingBot-VLA 2.0を提案し、実世界ロボット展開のためのファインチューニング手法・データ収集・デプロイパイプラインを改善。\n📊 **結果**: 実環境での操作タスクにおいて既存VLAモデルを大幅に上回る成功率を達成。\n💡 **意義**: VLAモデルの実用化に向けた具体的なギャップを特定し、実践的なソリューションを提供。\n⚠️ **限界**: 特定のロボットハードウェア・環境への依存性が高く、汎化性能の検証が限られている。\n\n---\n\n**2. CanvasAgent: Enabling Complex Image Creation and Editing via Visual Tool Orchestration** | 8 upvotes | https://arxiv.org/abs/2607.05465\n🎯 **背景**: 複雑な画像作成・編集は単一の生成モデルでは困難で、複数のツールを協調させる必要がある。\n🔧 **手法**: 視覚ツールオーケストレーションフレームワーク「CanvasAgent」を構築し、画像合成・オブジェクト検出・セグメンテーション・テキスト認識・画像強調などを統合的に制御。\n📊 **結果**: 複雑なユーザー要求（複数段階の編集タスク）において既存の単一モデルアプローチを質的に超える出力を達成。\n💡 **意義**: マルチツール協調によるAI画像編集の新パラダイムを確立し、実用的なクリエイティブワークフローへの道を開く。\n⚠️ **限界**: ツール間の中間出力の品質に依存し、エラーが伝播する可能性がある。\n\n---\n\n**3. Rank-Then-Act: Reward-Free Control from Frame-Order Progress** | 5 upvotes | https://arxiv.org/abs/2607.01897\n🎯 **背景**: 環境報酬なしでエキスパート動画デモから制御ポリシーを学習するリワードフリー学習の実現が課題。\n🔧 **手法**: VLMをオフラインで進捗ベースの序数スコアラーとして訓練し（GRPO目標使用）、フレームの順序から進捗を推定してアクションを決定するRank-Then-Act（RTA）フレームワークを提案。\n📊 **結果**: 報酬なしでも報酬あり手法に匹敵する制御性能を達成し、複数の操作タスクで優れた結果を示す。\n💡 **意義**: 報酬設計なしに動画デモだけから学習できるため、ロボット学習のデータ効率を大幅に改善する可能性がある。\n⚠️ **限界**: フレーム順序の推定精度に依存し、動的・非単調な進捗を持つタスクには不向きな場合がある。\n\n---\n\n**4. Attending to Multimodal Generation One Token at a Time** | 4 upvotes | https://arxiv.org/abs/2607.03738\n🎯 **背景**: マルチモーダル大規模言語モデル（MLLM）のトークンレベルの解釈可能性は未解明で、視覚情報がどのように逐次的に処理されるかが不明。\n🔧 **手法**: 自己回帰生成の各トークン生成ステップにおけるアテンション機構を分析し、視覚・言語情報の統合ダイナミクスをトークンレベルで可視化。\n📊 **結果**: 生成の初期段階で視覚トークンへのアテンションが集中し、後半では言語コンテキストが優勢になることを発見。\n💡 **意義**: MLLMの解釈可能性研究を前進させ、モデルの偏りや弱点の特定、信頼性向上に貢献。\n⚠️ **限界**: 特定のモデルアーキテクチャへの依存性があり、全MLLMへの一般化には更なる検証が必要。\n\n---\n\n**5. PluraMath: Extending Mathematical Reasoning Evaluation Beyond High-Resource Languages** | 4 upvotes | https://arxiv.org/abs/2607.05992\n🎯 **背景**: 数学的推論ベンチマークが英語・中国語に偏重しており、低リソース言語でのLLM評価が困難。\n🔧 **手法**: 多言語数学ベンチマーク「PluraMath」を構築し、高リソース言語から低リソース言語まで幅広い言語での数学的推論を評価するデータセットを整備。\n📊 **結果**: 主要LLMが高リソース言語では高精度を示す一方、低リソース言語では大幅に性能が劣化することを実証。\n💡 **意義**: 多言語公平性の観点からLLMの数学的推論能力の真の限界を明らかにし、インクルーシブなAI開発を促進。\n⚠️ **限界**: 翻訳品質の差異が評価に影響する可能性があり、文化的文脈固有の数学表現の違いを完全には捉えられない。\n\n**6. Is One Layer Enough? Training A Single Transformer Layer Can Match Full-Parameter RL Training** | 3 upvotes | https://arxiv.org/abs/2607.01232\n🎯 **背景**: RLによるLLMポストトレーニングで全パラメータを更新するのが一般的だが、どの層がRL適応に重要か不明。\n🔧 **手法**: 単一TransformerレイヤーのみをRL学習の対象として訓練し、全パラメータ更新との性能比較を実施。\n📊 **結果**: 単一層のみのRL訓練が全パラメータ更新と同等の性能を達成できることを示す。\n💡 **意義**: RL訓練の計算コストを大幅に削減できる可能性を示し、効率的なポストトレーニング手法の開発に貢献。\n⚠️ **限界**: 特定のタスク・モデルへの検証に留まり、広範なタスクへの汎化性は今後の課題。\n\n---\n\n**7. HunyuanOCR-1.5: Making Lightweight OCR VLMs Faster and Better** | 3 upvotes | https://arxiv.org/abs/2607.04884\n🎯 **背景**: OCR特化の視覚言語モデルに対して軽量かつ高精度な端末向けソリューションの需要が高まっている。\n🔧 **手法**: ドキュメント解析・テキスト検出・情報抽出・テキスト画像翻訳・マルチ画像文書理解を単一VLMに統合した軽量モデルHunyuanOCR-1.5を構築。\n📊 **結果**: 軽量モデルでありながら既存OCR VLMを多くのベンチマークで上回る精度と速度を達成。\n💡 **意義**: エッジデバイスでの高性能OCRを実現し、オフライン・プライバシー重視のドキュメント処理に貢献。\n⚠️ **限界**: 極端に複雑なレイアウトや稀少フォント、手書き文字での精度に改善の余地がある。\n\n---\n\n**8. SWE-Review: Closing the Loop on Issue Resolution with Agentic Code Review** | 3 upvotes | https://arxiv.org/abs/2607.06065\n🎯 **背景**: コーディングエージェントがPRを自動生成するが、レビューなしの一発生成では品質保証が難しい。\n🔧 **手法**: エージェンティックなコードレビューフレームワーク「SWE-Review」を構築し、PR生成→自動レビュー→診断→修正のループを形成。\n📊 **結果**: SWE-Review導入によりPRの品質スコアが向上し、バグや不完全な実装の検出率が改善。\n💡 **意義**: ソフトウェアエンジニアリングの自動化において「クローズドループ」パラダイムを確立し、実用的なAI開発支援を前進。\n⚠️ **限界**: 複雑なドメイン固有の知識が必要なレビューや、大規模コードベース変更への適用には課題が残る。\n\n---\n\n**9. LLM-as-a-Tutor: Policy-Aware Prompt Adaptation for Non-Verifiable RL** | 2 upvotes | https://arxiv.org/abs/2607.04412\n🎯 **背景**: 非検証可能な指示追従タスクのRL訓練でLLMジャッジを報酬として使うが、訓練プロンプトが静的なままでは学習効率が低い。\n🔧 **手法**: LLMをチューターとして位置づけ、ポリシーの進化に合わせてトレーニングプロンプト自体を動的に適応させる「Policy-Aware Prompt Adaptation」を提案。\n📊 **結果**: 動的プロンプト適応により非検証可能タスクでの学習効率と最終性能が向上。\n💡 **意義**: RL for LLMの効率化において、プロンプトの動的最適化という新しいアプローチを提示。\n⚠️ **限界**: チューターLLMの品質に大きく依存し、不適切な適応が学習を妨げるリスクがある。\n\n---\n\n**10. Where to cut, how deep: BPE and Unigram-LM on chemistry SMILES** | 2 upvotes | https://arxiv.org/abs/2607.05691\n🎯 **背景**: 化学言語モデルのSMILES表現トークン化に自然言語由来のBPEが使われているが、化学構造との適合性は未検証。\n🔧 **手法**: BPEとUnigram-LMの2つのトークン化手法を化学SMILESデータに適用し、語彙構造・サブワード分割・下流タスク性能を比較分析。\n📊 **結果**: Unigram-LMがBPEより化学的に意味のあるサブワード分割を行い、特定の化学タスクで優れた性能を示す。\n💡 **意義**: 化学AIにおけるトークン化選択の重要性を示し、ドメイン特化トークナイザー設計の指針を提供。\n⚠️ **限界**: SMILESに限定した分析であり、InChIなど他の化学表現への適用は今後の課題。\n\n",
+  "fetched_at": "2026-07-08T22:06:10.664250+00:00",
+  "papers": [
+    {
+      "title": "From Foundation to Application: Improving VLA Models in Practice",
+      "upvotes": 11,
+      "paper_id": "2607.06403",
+      "abstract": "Despite recent progress of VLA foundation models, the disparity between laboratory conditions and real-world applications continues to impede their practical implementation. To bridge this gap, we present LingBot-VLA 2.0"
+    },
+    {
+      "title": "CanvasAgent: Enabling Complex Image Creation and Editing via Visual Tool Orchestration",
+      "upvotes": 8,
+      "paper_id": "2607.05465",
+      "abstract": "Complex image creation and editing often require more than a single generation or editing model. A user request may involve synthesizing images, localizing objects, segmenting regions, editing selected content, compositing intermediate assets, reading text, and enhancing the final"
+    },
+    {
+      "title": "Rank-Then-Act: Reward-Free Control from Frame-Order Progress",
+      "upvotes": 5,
+      "paper_id": "2607.01897",
+      "abstract": "We introduce Rank-Then-Act (RTA), a framework for learning control policies from expert video demonstrations without environment rewards. RTA trains a Vision-Language Model (VLM) offline as a progress-based ordinal scorer, using a Group Relative Policy Optimization (GRPO) objective"
+    },
+    {
+      "title": "Attending to Multimodal Generation One Token at a Time",
+      "upvotes": 4,
+      "paper_id": "2607.03738",
+      "abstract": "Multimodal large language models (MLLMs) generate responses autoregressively, integrating visual and linguistic information in an evolving context. Prior work on interpretability has focused on individual layers and circuits, leaving the token-level dynamics of multimodal computation"
+    },
+    {
+      "title": "PluraMath: Extending Mathematical Reasoning Evaluation Beyond High-Resource Languages",
+      "upvotes": 4,
+      "paper_id": "2607.05992",
+      "abstract": "Mathematical reasoning has become a central task for evaluating and tuning reasoning Large Language Models (LLMs), yet existing benchmarks remain heavily biased toward high-resource languages, with English and Chinese dominating both pre-training corpora and evaluation suites."
+    },
+    {
+      "title": "Is One Layer Enough? Training A Single Transformer Layer Can Match Full-Parameter RL Training",
+      "upvotes": 3,
+      "paper_id": "2607.01232",
+      "abstract": "Reinforcement learning (RL) has become a central component of post-training large language models (LLMs), yet little is understood about how RL adaptation is distributed across transformer layers. Existing approaches typically update all model parameters uniformly."
+    },
+    {
+      "title": "HunyuanOCR-1.5: Making Lightweight OCR VLMs Faster and Better",
+      "upvotes": 3,
+      "paper_id": "2607.04884",
+      "abstract": "We present HunyuanOCR-1.5, a lightweight end-to-end OCR-specialized vision-language model. HunyuanOCR unifies document parsing, text spotting, information extraction, text-image translation, and multi-image document understanding within a single end-to-end VLM."
+    },
+    {
+      "title": "SWE-Review: Closing the Loop on Issue Resolution with Agentic Code Review",
+      "upvotes": 3,
+      "paper_id": "2607.06065",
+      "abstract": "Coding agents increasingly generate pull requests (PRs) for real-world software issues, yet one-shot PR generation remains open-loop: the PR is proposed without systematic review, diagnosis, or revision. We introduce SWE-Review, a framework for closing this loop with agentic code"
+    },
+    {
+      "title": "LLM-as-a-Tutor: Policy-Aware Prompt Adaptation for Non-Verifiable RL",
+      "upvotes": 2,
+      "paper_id": "2607.04412",
+      "abstract": "Reinforcement learning (RL) for non-verifiable instruction following increasingly relies on LLM judges with prompt-specific rubrics as reward signals. While recent methods adapt these rubrics to the evolving policy during training, the training prompts themselves remain static."
+    },
+    {
+      "title": "Where to cut, how deep: BPE and Unigram-LM on chemistry SMILES",
+      "upvotes": 2,
+      "paper_id": "2607.05691",
+      "abstract": "Every chemical language model reading SMILES begins with a tokenizer, yet the field has inherited byte-pair encoding (BPE) from natural language with little scrutiny. In natural language, BPE's principal alternative, Unigram-LM, is known to build structurally different vocabularies."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.205",
+      "published_at": "2025-07-08",
+      "body": "What's changed: Added an auto mode rule that blocks tampering with session transcript files. Fixed --json-schema silently producing unstructured output when the schema was invalid, and schemas using the format keyword being rejected. Fixed a message sent while Claude was working being silently lost when the turn ended at the --max-turns limit. Fixed Windows worktree removal deleting files outside the worktree when an NTFS junction or directory symlink existed inside it. Fixed background agents staying shown as failed or completed in the agent list after being resumed with SendMessage. Fixed background jobs flipping from needs input back to working in the agent list when the agent's turn contained no readable text. Fixed claude attach erroring when a background agent was mid-upgrade restart instead of waiting for it to come back."
+    },
+    {
+      "tag_name": "v2.1.204",
+      "published_at": "2025-07-08",
+      "body": "What's changed: Fixed hook events not streaming during SessionStart hooks in headless sessions, which could cause remote workers to be idle-reaped mid-hook."
+    },
+    {
+      "tag_name": "v2.1.203",
+      "published_at": "2025-07-07",
+      "body": "What's changed: Added a warning when your login is about to expire, so you can re-authenticate before background sessions are interrupted. Added a grey pause badge to the footer when in manual permission mode, making the active mode always visible. Added the session's additional working directories to MCP roots/list, with notifications/roots/list_changed sent when the set changes. Fixed opening or switching background agent sessions on macOS stalling for 15-20 seconds due to a false low-memory detection (regression in 2.1.196). Fixed background sessions becoming permanently unresponsive to attach, replies, and stop when the daemon's session token went stale - the session now recovers automatically."
+    }
+  ]
+}
