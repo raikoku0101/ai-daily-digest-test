@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "MANCE: Manifold Aware Concept Erasure", "upvotes": 31, "paper_id": "2607.03973", "abstract": "Concept erasure removes target concepts from representations while preserving other information. MANCE constrains interventions to natural representation manifolds, achieving state-of-the-art nonlinear concept erasure across text and vision tasks."},
-    {"title": "KVpop -- Key-Value Cache Compression with Predictive Online Pruning", "upvotes": 16, "paper_id": "2607.05061", "abstract": "KVpop learns optimal KV cache eviction by supervising keep-or-drop decisions using future-attention targets, achieving high performance with significant memory reduction on mathematical reasoning tasks."},
-    {"title": "Multi-Turn Agentic Scientific Literature Search via Workflow Induction", "upvotes": 15, "paper_id": "2607.00597", "abstract": "PaperPilot is a multi-turn literature search agent that constructs executable DAGs of paper-search operators and refines workflows based on user feedback, substantially improving search accuracy metrics."},
-    {"title": "Perceptual Flow Matching for Few-Step Generative Modeling", "upvotes": 11, "paper_id": "2607.03524", "abstract": "PFM supervises flow matching in perceptual feature space rather than VAE latent space, enabling efficient few-step generation for images, videos, and editing with minimal modifications."},
-    {"title": "Unified Audio Intelligence Without Regressing on Text Intelligence", "upvotes": 7, "paper_id": "2607.05196", "abstract": "Audex is a unified audio-text LLM delivering state-of-the-art performance across speech recognition, text-to-speech, and audio generation while preserving strong text reasoning capabilities and knowledge."},
-    {"title": "MV-Forcing: Long Multi-View Video Generation via 4D-Grounded Spatio-Temporal Self-Forcing", "upvotes": 7, "paper_id": "2607.05376", "abstract": "MV-Forcing generates long, multi-view consistent videos through temporal and view-wise autoregression with 4D geometric bridging and spatio-temporal distillation for dynamic scene synthesis."},
-    {"title": "SeKV: Resolution-Adaptive KV Cache with Hierarchical Semantic Memory for Long-Context LLM Inference", "upvotes": 6, "paper_id": "2606.31145", "abstract": "SeKV compresses KV cache using entropy-guided semantic spans stored across GPU-CPU hierarchies with selective token-level reconstruction, reducing GPU memory by 53.3% at 128K context."},
-    {"title": "Transition-Aware best-of-N sampling for Longitudinal Chest X-ray Reports", "upvotes": 5, "paper_id": "2606.28393", "abstract": "A training-free best-of-N sampling method for chest X-ray report generation that encodes longitudinal patient history transitions through set-to-set distance metrics and cached ground-truth vectors."},
-    {"title": "Speaker-Aware Temporal Aggregation Strategies on Segment Representations for Depression Detection in Dyadic Interaction: A Benchmark Study", "upvotes": 3, "paper_id": "2607.02904", "abstract": "DEPOOL benchmark reveals temporal aggregation inconsistencies across speech backbones for depression detection, highlighting robustness concerns for clinical speech-based prediction systems."},
-    {"title": "CONFLUX: A Latent Diffusion Model for 3D Chest-CT Synthesis with RL Post-Training", "upvotes": 3, "paper_id": "2607.02998", "abstract": "CONFLUX generates controllable 3D chest CT volumes using latent diffusion with reinforcement learning post-training, improving clinical attribute reliability by 47% over baseline models."}
+    {
+      "title": "From Foundation to Application: Improving VLA Models in Practice",
+      "upvotes": 11,
+      "paper_id": "2607.06403",
+      "abstract": "Despite recent progress of VLA foundation models, the disparity between laboratory conditions and real-world applications continues to impede their practical implementation. To bridge this gap, we present LingBot-VLA 2.0"
+    },
+    {
+      "title": "CanvasAgent: Enabling Complex Image Creation and Editing via Visual Tool Orchestration",
+      "upvotes": 8,
+      "paper_id": "2607.05465",
+      "abstract": "Complex image creation and editing often require more than a single generation or editing model. A user request may involve synthesizing images, localizing objects, segmenting regions, editing selected content, compositing intermediate assets, reading text, and enhancing the final"
+    },
+    {
+      "title": "Rank-Then-Act: Reward-Free Control from Frame-Order Progress",
+      "upvotes": 5,
+      "paper_id": "2607.01897",
+      "abstract": "We introduce Rank-Then-Act (RTA), a framework for learning control policies from expert video demonstrations without environment rewards. RTA trains a Vision-Language Model (VLM) offline as a progress-based ordinal scorer, using a Group Relative Policy Optimization (GRPO) objective"
+    },
+    {
+      "title": "Attending to Multimodal Generation One Token at a Time",
+      "upvotes": 4,
+      "paper_id": "2607.03738",
+      "abstract": "Multimodal large language models (MLLMs) generate responses autoregressively, integrating visual and linguistic information in an evolving context. Prior work on interpretability has focused on individual layers and circuits, leaving the token-level dynamics of multimodal computation"
+    },
+    {
+      "title": "PluraMath: Extending Mathematical Reasoning Evaluation Beyond High-Resource Languages",
+      "upvotes": 4,
+      "paper_id": "2607.05992",
+      "abstract": "Mathematical reasoning has become a central task for evaluating and tuning reasoning Large Language Models (LLMs), yet existing benchmarks remain heavily biased toward high-resource languages, with English and Chinese dominating both pre-training corpora and evaluation suites."
+    },
+    {
+      "title": "Is One Layer Enough? Training A Single Transformer Layer Can Match Full-Parameter RL Training",
+      "upvotes": 3,
+      "paper_id": "2607.01232",
+      "abstract": "Reinforcement learning (RL) has become a central component of post-training large language models (LLMs), yet little is understood about how RL adaptation is distributed across transformer layers. Existing approaches typically update all model parameters uniformly."
+    },
+    {
+      "title": "HunyuanOCR-1.5: Making Lightweight OCR VLMs Faster and Better",
+      "upvotes": 3,
+      "paper_id": "2607.04884",
+      "abstract": "We present HunyuanOCR-1.5, a lightweight end-to-end OCR-specialized vision-language model. HunyuanOCR unifies document parsing, text spotting, information extraction, text-image translation, and multi-image document understanding within a single end-to-end VLM."
+    },
+    {
+      "title": "SWE-Review: Closing the Loop on Issue Resolution with Agentic Code Review",
+      "upvotes": 3,
+      "paper_id": "2607.06065",
+      "abstract": "Coding agents increasingly generate pull requests (PRs) for real-world software issues, yet one-shot PR generation remains open-loop: the PR is proposed without systematic review, diagnosis, or revision. We introduce SWE-Review, a framework for closing this loop with agentic code"
+    },
+    {
+      "title": "LLM-as-a-Tutor: Policy-Aware Prompt Adaptation for Non-Verifiable RL",
+      "upvotes": 2,
+      "paper_id": "2607.04412",
+      "abstract": "Reinforcement learning (RL) for non-verifiable instruction following increasingly relies on LLM judges with prompt-specific rubrics as reward signals. While recent methods adapt these rubrics to the evolving policy during training, the training prompts themselves remain static."
+    },
+    {
+      "title": "Where to cut, how deep: BPE and Unigram-LM on chemistry SMILES",
+      "upvotes": 2,
+      "paper_id": "2607.05691",
+      "abstract": "Every chemical language model reading SMILES begins with a tokenizer, yet the field has inherited byte-pair encoding (BPE) from natural language with little scrutiny. In natural language, BPE's principal alternative, Unigram-LM, is known to build structurally different vocabularies."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.203", "published_at": "2025-07-07", "body": "Added a warning when your login is about to expire, so you can re-authenticate before background sessions are interrupted. Added a grey pause badge to the footer when in manual permission mode, making the active mode always visible. Added the session's additional working directories to MCP roots/list, with notifications/roots/list_changed sent when the set changes. Fixed opening or switching background agent sessions on macOS stalling for 15-20 seconds due to a false low-memory detection (regression in 2.1.196). Fixed background sessions becoming permanently unresponsive to attach, replies, and stop when the daemon's session token went stale."},
-    {"tag_name": "v2.1.202", "published_at": "2025-07-06", "body": "Added a Dynamic workflow size setting in /config for controlling how large Claude generally makes dynamic workflows (small/medium/large agent counts). Added workflow.run_id and workflow.name OpenTelemetry attributes to telemetry emitted by workflow-spawned agents. Fixed a crash in the inline Ctrl+R history search when accepting or cancelling while the search was still scanning the history file. Fixed /rename on background sessions being reverted when the job restarts."},
-    {"tag_name": "v2.1.201", "published_at": "2025-07-03", "body": "Claude Sonnet 5 sessions no longer use the mid-conversation system role for harness reminders."}
+    {
+      "tag_name": "v2.1.205",
+      "published_at": "2025-07-08",
+      "body": "What's changed: Added an auto mode rule that blocks tampering with session transcript files. Fixed --json-schema silently producing unstructured output when the schema was invalid, and schemas using the format keyword being rejected. Fixed a message sent while Claude was working being silently lost when the turn ended at the --max-turns limit. Fixed Windows worktree removal deleting files outside the worktree when an NTFS junction or directory symlink existed inside it. Fixed background agents staying shown as failed or completed in the agent list after being resumed with SendMessage. Fixed background jobs flipping from needs input back to working in the agent list when the agent's turn contained no readable text. Fixed claude attach erroring when a background agent was mid-upgrade restart instead of waiting for it to come back."
+    },
+    {
+      "tag_name": "v2.1.204",
+      "published_at": "2025-07-08",
+      "body": "What's changed: Fixed hook events not streaming during SessionStart hooks in headless sessions, which could cause remote workers to be idle-reaped mid-hook."
+    },
+    {
+      "tag_name": "v2.1.203",
+      "published_at": "2025-07-07",
+      "body": "What's changed: Added a warning when your login is about to expire, so you can re-authenticate before background sessions are interrupted. Added a grey pause badge to the footer when in manual permission mode, making the active mode always visible. Added the session's additional working directories to MCP roots/list, with notifications/roots/list_changed sent when the set changes. Fixed opening or switching background agent sessions on macOS stalling for 15-20 seconds due to a false low-memory detection (regression in 2.1.196). Fixed background sessions becoming permanently unresponsive to attach, replies, and stop when the daemon's session token went stale - the session now recovers automatically."
+    }
   ]
 }
