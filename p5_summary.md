@@ -1,6 +1,6 @@
-**5. Unified Audio Intelligence Without Regressing on Text Intelligence**
-**著者**: NVIDIA Audex チーム (2025)
-**arXiv**: https://arxiv.org/abs/2607.05196
+**5. PluraMath: Extending Mathematical Reasoning Evaluation Beyond High-Resource Languages（低リソース言語への数学推論評価の拡張）**
+**著者**: PluraMath Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.05992
 
 **まとめ**:
-音声認識・TTS・音声生成とテキスト推論を単一モデルで両立するAudexを提案。MoE LLM「Nemotron-Cascade-2-30B-A3B」をバックボーンに157.4B音声トークン+320.5Bテキストトークンで多段階訓練。音声タスクで最高水準の性能を達成しながら、テキスト推論・知識・長文脈処理の能力を従来モデルよりも維持できる統合アーキテクチャを実現した。
+英語・中国語中心の数学推論ベンチマークの偏りを解消するため、6つの言語族にまたがる18の低・中リソース言語を追加した多言語ベンチマーク「PluraMath」を構築。ネイティブスピーカーによる品質検証済みのデータで27のLLMを評価し、高・低リソース言語間の持続的な性能ギャップを実証。データセット・パイプライン・評価フレームワークをオープンソース化し、インクルーシブなAI評価を促進。
