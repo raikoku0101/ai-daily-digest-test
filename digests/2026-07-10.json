@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-10",
+  "content": "# AI Daily Digest — 2026-07-10\n\n## 今日のハイライト\n- **科学AI基盤モデルの躍進 (2607.07708)**: タンパク質・分子・結晶を横断するマルチモーダル基盤モデルが86ベンチマーク中67でSOTAを達成。創薬・材料科学の研究加速が期待される。\n- **Claude Code v2.1.205リリース**: セッショントランスクリプトへの改ざん防止、バックグラウンドエージェント安定性の大幅改善、Windows worktree の安全性強化など多数のバグ修正。\n- **ロボット長期記憶の進化 (2607.07608)**: VLAモデルにデュアル潜在メモリを統合し、長期ロボット操作タスクを大幅改善。ロボットが「記憶」を持つ時代が近づいている。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.205 (2025-07-08)\n**主要機能・セキュリティ強化**\n- セッショントランスクリプトファイルへの改ざんをブロックする auto mode ルールを追加。安全性が向上。\n\n**バグ修正**\n- `--json-schema` でスキーマが無効な場合に非構造化出力が生成される問題を修正\n- `format` キーワードを使用したスキーマが拒否される問題を修正\n- `--max-turns` 制限でターンが終了した際にメッセージが無音で失われる問題を修正\n- Windows 環境での worktree 削除が NTFS ジャンクション外のファイルを削除する問題を修正\n- `SendMessage` で再開後もバックグラウンドエージェントが \"failed\"/\"completed\" のまま表示される問題を修正\n- バックグラウンドジョブが \"needs input\" から \"working\" に戻るフリップ問題を修正\n- `claude attach` がアップグレード再起動中のエージェントでエラーになる問題を修正\n\n**ユーザーへの影響**: バックグラウンドエージェントの安定性が大幅に向上。Windows ユーザーはファイル削除の安全性が改善。\n\n---\n\n### v2.1.204 (2025-07-08)\n**バグ修正**\n- ヘッドレスセッションの SessionStart フック中にフックイベントがストリームされない問題を修正\n- これにより remote worker がフック実行中にアイドル回収されるリスクを解消\n\n**ユーザーへの影響**: CI/CD やリモート実行環境でのセッション開始フックが安定動作するようになった。\n\n---\n\n### v2.1.203 (2025-07-07)\n**新機能**\n- ログイン期限切れ前の警告を追加 — バックグラウンドセッションが中断される前に再認証できるよう通知\n- 手動パーミッションモード時にフッターにグレーの ⏸ バッジを表示 — 現在のモードが常時可視化\n- セッションの追加作業ディレクトリを MCP `roots/list` に追加、変更時に `notifications/roots/list_changed` を送信\n\n**バグ修正**\n- macOS で false low-memory 検出によりバックグラウンドエージェント切り替え時に 15〜20 秒のスタールが発生する問題を修正 (2.1.196 のリグレッション)\n- デーモンのセッショントークンが古くなった際にバックグラウンドセッションが永続的に無応答になる問題を修正 (自動回復)\n- `claude agents` に戻る際にサブエージェントが暗黙的に停止し最初から再実行される問題を修正\n\n**ユーザーへの影響**: macOS ユーザーとリモートセッション利用者にとって特に重要な安定性改善。MCP 連携が強化。\n\n## 注目論文 TOP 10\n\n**1. Accurate, Interdisciplinary and Transparent Structure-property Understanding with Deep Native Structural Reasoning** | 71 upvotes | https://arxiv.org/abs/2607.07708\n🎯**背景**: タンパク質・分子・結晶など異なる構造データを統一的に扱えるマルチモーダル科学基盤モデルが求められていた。\n🔧**手法**: 構造要素を統一ボキャブラリーに離散化し、ネイティブ構造推論を行う Deep Native Structural Reasoning (DNSR) アーキテクチャを採用。\n📊**結果**: 86ベンチマーク中67項目でSOTA達成。分野横断的な構造-特性予測で既存モデルを凌駕。\n💡**意義**: 創薬・材料科学・タンパク質工学を横断する汎用的な科学 AI 基盤として期待大。\n⚠️**限界**: 計算コストが高く、各ドメインの専門モデルと比較した際の解釈性に課題が残る可能性。\n\n**2. Dual Latent Memory in Vision-Language-Action Models for Robotic Manipulation** | 44 upvotes | https://arxiv.org/abs/2607.07608\n🎯**背景**: VLA (Vision-Language-Action) モデルはロボット操作において長期記憶と時系列推論が弱く、長期タスクの実行が困難だった。\n🔧**手法**: 過去の経験をメモリトークンとして再構成するデュアル潜在メモリ (Dual Latent Memory) フレームワークを提案。短期・長期の協調メモリコンポーネントで時系列推論を実現。\n📊**結果**: 長時間ロボット操作タスクにおいて既存 VLA モデルより大幅な性能向上を達成。\n💡**意義**: ロボットが長期にわたる複雑なタスクを人間のように記憶を活用して実行できるようになる。\n⚠️**限界**: メモリ管理の計算オーバーヘッドが増大し、リアルタイム応答への影響が懸念される。\n\n**3. Scaling Mixture-of-Experts Video Pretraining for Embodied Intelligence** | 39 upvotes | https://arxiv.org/abs/2607.07675\n🎯**背景**: 身体性AI（エンボディドAI）は映像からの大規模な事前学習が必要だが、スケール効率的なアーキテクチャが不足していた。\n🔧**手法**: DiT (Diffusion Transformer) ベースのビデオ事前学習に Mixture-of-Experts (MoE) アーキテクチャを統合。ロボット向け映像データと多次元報酬システムを組み合わせる。\n📊**結果**: デジタル創造性と物理的アクチュエーションのブリッジングに成功し、身体性タスクで大幅なスコア向上。\n💡**意義**: 物理ロボットとデジタル世界を繋ぐ基盤モデルの実現に向けた重要な一歩。\n⚠️**限界**: ロボット向け映像データの収集・キュレーションコストが高く、汎化性能の検証が必要。\n\n**4. Infinite Worlds with Versatile Interactions** | 21 upvotes | https://arxiv.org/abs/2607.07534\n🎯**背景**: インタラクティブな仮想世界モデルはインタラクション期間が限定され、リアルタイムのマルチプレイヤー環境への対応が困難だった。\n🔧**手法**: パイロットエージェントとディレクターエージェントを統合し、リアルタイム 60fps でアンバウンデッドなインタラクションを実現する先進的ワールドモデリングシステム。\n📊**結果**: 無制限のインタラクションホライズンを達成し、60fps でのリアルタイムマルチプレイヤー環境を実現。\n💡**意義**: ゲーム・シミュレーション・メタバースへの応用が期待され、世界モデルの新しいパラダイムを確立。\n⚠️**限界**: 計算資源の要求が高く、複雑なシーンでの物理的一貫性の維持に課題が残る可能性。\n\n**5. RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist Robot Manipulation Policies** | 6 upvotes | https://arxiv.org/abs/2607.04434\n🎯**背景**: 汎用ロボット操作ポリシーの評価は断片化されており、シミュレーションと実世界間の評価ギャップが問題だった。\n🔧**手法**: シミュレーション42タスク・実世界18タスクを含む統一ベンチマークを構築し、汎化性・長期実行・ロバスト性など5次元で評価。\n📊**結果**: 複数の汎用ロボットポリシーを横断的に比較し、既存評価の盲点を明確化。\n💡**意義**: 研究コミュニティに標準化された評価基盤を提供し、汎用ロボット開発を加速させる。\n⚠️**限界**: 評価タスクの多様性はまだ限定的で、特定の産業応用シナリオが不足している。\n\n**6. Single-Rollout Asynchronous Optimization for Agentic Reinforcement Learning** | 5 upvotes | https://arxiv.org/abs/2607.07508\n🎯**背景**: エージェント型強化学習 (RL) において、グループサンプリング (GRPO) はメモリ効率が悪く長期訓練が不安定だった。\n🔧**手法**: グループ単位サンプリングをシングルロールアウトサンプリングに置き換えた非同期最適化手法を提案。\n📊**結果**: 1000ステップ以上の安定した訓練を実現し、SWE-Bench などコーディング・推論ベンチマークで GRPO を上回る性能。\n💡**意義**: メモリ効率的なエージェント RL 訓練の実現により、より大規模なエージェントシステムの構築が可能に。\n⚠️**限界**: 非同期更新による学習の不整合が一部タスクで問題になる可能性がある。\n\n**7. Sparse Delta Memory: Scaling the State of Linear RNNs through Sparsity** | 5 upvotes | https://arxiv.org/abs/2607.07386\n🎯**背景**: Linear RNN はゲート付き構造により長期記憶に限界があり、長文脈学習への対応が困難だった。\n🔧**手法**: スパースアドレッシングにより隠れ状態容量を劇的に拡張した Sparse Delta Memory アーキテクチャを提案。\n📊**結果**: isoFLOP 制約下で長文脈学習能力が大幅に向上し、計算効率を維持したまま性能改善。\n💡**意義**: Transformer の注意機構に依存せず、長文脈を効率的に扱える次世代 RNN アーキテクチャの可能性を示す。\n⚠️**限界**: スパースパターンの設計に専門知識が必要で、タスク依存の最適化が求められる。\n\n**8. Automating the Design of Embodied Agent Architectures** | 5 upvotes | https://arxiv.org/abs/2606.30111\n🎯**背景**: 身体性エージェントのアーキテクチャ設計は手作業で行われており、最適な構成の探索が困難だった。\n🔧**手法**: AgentCanvas ランタイムと KDLoop 探索手続きを持つ Agent Architecture Search (AAS) システムを提案。自動的にアーキテクチャを探索・最適化。\n📊**結果**: 視覚言語ナビゲーションおよびマニピュレーションタスクで実装可能な性能向上を実証。\n💡**意義**: エージェントアーキテクチャ設計の自動化により、専門知識なしに高性能エージェントを構築できる可能性。\n⚠️**限界**: 探索空間が広く計算コストが高い。実世界への転移可能性の検証が必要。\n\n**9. OmniTacTune: Policy-Agnostic Real-World RL for Tactile Residual Adaptation of Visual Policies** | 3 upvotes | https://arxiv.org/abs/2607.03723\n🎯**背景**: 視覚ベースのロボットポリシーは接触豊富なタスクで触覚フィードバックが不足しており、成功率が低かった。\n🔧**手法**: 視覚ポリシーに触覚残差適応を行う2段階 RL パイプラインを提案。ポリシーに依存せず触覚フィードバックを統合。\n📊**結果**: 接触豊富なタスクでの成功率を 5-40% から 85-100% に改善。40-80分のインタラクションで達成。\n💡**意義**: 既存のビジョンベースポリシーに触覚能力を後付けで付加できる汎用的なアプローチ。\n⚠️**限界**: 触覚センサーの実装コストと、センサーの種類による汎化性能の差異が課題。\n\n**10. AgentLens: Production-Assessed Trajectory Reviews for Coding Agent Evaluation** | 3 upvotes | https://arxiv.org/abs/2607.06624\n🎯**背景**: コーディングエージェントの評価は最終出力のみに焦点を当てており、エージェントの意思決定プロセス全体の評価が不足していた。\n🔧**手法**: 形式検証と LLM によるレビューを組み合わせ、エージェントのトラジェクトリ全体を評価する本番環境対応ベンチマーク AgentLens を構築。\n📊**結果**: 対話的コードエージェントの完全なトラジェクトリを評価し、エージェント性能の読みやすい説明を生成。\n💡**意義**: エージェントの「何をしたか」だけでなく「どのようにしたか」を評価する新しい評価パラダイムを提供。\n⚠️**限界**: 評価の計算コストが高く、トラジェクトリの長さによって評価品質にばらつきが生じる可能性。\n\n",
+  "fetched_at": "2026-07-09T22:05:50.864515+00:00",
+  "papers": [
+    {
+      "title": "Accurate, Interdisciplinary and Transparent Structure-property Understanding with Deep Native Structural Reasoning",
+      "upvotes": 71,
+      "paper_id": "2607.07708",
+      "abstract": "Multimodal scientific foundation model for native structural reasoning across proteins, molecules and crystals. Discretizes structural elements into unified vocabulary, achieving state-of-the-art on 67 of 86 benchmarks."
+    },
+    {
+      "title": "Dual Latent Memory in Vision-Language-Action Models for Robotic Manipulation",
+      "upvotes": 44,
+      "paper_id": "2607.07608",
+      "abstract": "Latent-memory-native framework for VLA models that reconstructs historical experience into memory tokens. Enables temporal reasoning for long-horizon robotic tasks through coordinated memory components."
+    },
+    {
+      "title": "Scaling Mixture-of-Experts Video Pretraining for Embodied Intelligence",
+      "upvotes": 39,
+      "paper_id": "2607.07675",
+      "abstract": "DiT-based video pretraining with Mixture-of-Experts architecture for embodied AI. Integrates robot-oriented footage and multi-dimensional reward system to bridge digital creativity with physical actuation."
+    },
+    {
+      "title": "Infinite Worlds with Versatile Interactions",
+      "upvotes": 21,
+      "paper_id": "2607.07534",
+      "abstract": "Advanced world modeling system achieving unbounded interaction horizons with real-time 60fps performance. Integrates pilot and director agents for multi-player collaborative virtual environments."
+    },
+    {
+      "title": "RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist Robot Manipulation Policies",
+      "upvotes": 6,
+      "paper_id": "2607.04434",
+      "abstract": "Unified sim-and-real benchmark with 42 simulation and 18 real-world tasks evaluating generalist robot manipulation across five dimensions including generalization and long-horizon execution."
+    },
+    {
+      "title": "Single-Rollout Asynchronous Optimization for Agentic Reinforcement Learning",
+      "upvotes": 5,
+      "paper_id": "2607.07508",
+      "abstract": "Asynchronous RL method replacing group-wise sampling with single-rollout sampling. Trains stably for 1000+ steps, outperforming GRPO on coding and reasoning benchmarks like SWE-Bench."
+    },
+    {
+      "title": "Sparse Delta Memory: Scaling the State of Linear RNNs through Sparsity",
+      "upvotes": 5,
+      "paper_id": "2607.07386",
+      "abstract": "Architecture extending gated linear RNNs with sparse addressing to dramatically increase hidden state capacity. Improves long-context learning while maintaining computational efficiency under isoFLOP constraints."
+    },
+    {
+      "title": "Automating the Design of Embodied Agent Architectures",
+      "upvotes": 5,
+      "paper_id": "2606.30111",
+      "abstract": "Agent Architecture Search system for embodied agents. Introduces AgentCanvas runtime and KDLoop search procedure, demonstrating deployable gains on vision-language navigation and manipulation tasks."
+    },
+    {
+      "title": "OmniTacTune: Policy-Agnostic Real-World RL for Tactile Residual Adaptation of Visual Policies",
+      "upvotes": 3,
+      "paper_id": "2607.03723",
+      "abstract": "Two-stage RL pipeline adapting tactile feedback to visual robot policies. Improves success rates from 5-40% to 85-100% in contact-rich tasks within 40-80 minutes of interaction."
+    },
+    {
+      "title": "AgentLens: Production-Assessed Trajectory Reviews for Coding Agent Evaluation",
+      "upvotes": 3,
+      "paper_id": "2607.06624",
+      "abstract": "Production-assessed benchmark for interactive code agents evaluating entire trajectories. Combines formal verification with LLM-written reviews for readable explanations of agent performance."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.205",
+      "published_at": "2025-07-08",
+      "body": "Added an auto mode rule that blocks tampering with session transcript files. Fixed --json-schema silently producing unstructured output when the schema was invalid, and schemas using the format keyword being rejected. Fixed a message sent while Claude was working being silently lost when the turn ended at the --max-turns limit. Fixed Windows worktree removal deleting files outside the worktree when an NTFS junction or directory symlink existed inside it. Fixed background agents staying shown as failed or completed in the agent list after being resumed with SendMessage. Fixed background jobs flipping from needs input back to working in the agent list when the agent turn contained no readable text. Fixed claude attach erroring when a background agent was mid-upgrade restart instead of waiting for it to come back."
+    },
+    {
+      "tag_name": "v2.1.204",
+      "published_at": "2025-07-08",
+      "body": "Fixed hook events not streaming during SessionStart hooks in headless sessions, which could cause remote workers to be idle-reaped mid-hook."
+    },
+    {
+      "tag_name": "v2.1.203",
+      "published_at": "2025-07-07",
+      "body": "Added a warning when your login is about to expire, so you can re-authenticate before background sessions are interrupted. Added a grey pause badge to the footer when in manual permission mode, making the active mode always visible. Added the session additional working directories to MCP roots/list. Fixed opening or switching background agent sessions on macOS stalling for 15-20 seconds due to a false low-memory detection. Fixed background sessions becoming permanently unresponsive to attach, replies, and stop when the daemon session token went stale. Fixed returning to claude agents silently stopping running subagents and re-running the prompt from scratch."
+    }
+  ]
+}

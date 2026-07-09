@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "From Foundation to Application: Improving VLA Models in Practice",
-      "upvotes": 11,
-      "paper_id": "2607.06403",
-      "abstract": "Despite recent progress of VLA foundation models, the disparity between laboratory conditions and real-world applications continues to impede their practical implementation. To bridge this gap, we present LingBot-VLA 2.0"
-    },
-    {
-      "title": "CanvasAgent: Enabling Complex Image Creation and Editing via Visual Tool Orchestration",
-      "upvotes": 8,
-      "paper_id": "2607.05465",
-      "abstract": "Complex image creation and editing often require more than a single generation or editing model. A user request may involve synthesizing images, localizing objects, segmenting regions, editing selected content, compositing intermediate assets, reading text, and enhancing the final"
-    },
-    {
-      "title": "Rank-Then-Act: Reward-Free Control from Frame-Order Progress",
-      "upvotes": 5,
-      "paper_id": "2607.01897",
-      "abstract": "We introduce Rank-Then-Act (RTA), a framework for learning control policies from expert video demonstrations without environment rewards. RTA trains a Vision-Language Model (VLM) offline as a progress-based ordinal scorer, using a Group Relative Policy Optimization (GRPO) objective"
-    },
-    {
-      "title": "Attending to Multimodal Generation One Token at a Time",
-      "upvotes": 4,
-      "paper_id": "2607.03738",
-      "abstract": "Multimodal large language models (MLLMs) generate responses autoregressively, integrating visual and linguistic information in an evolving context. Prior work on interpretability has focused on individual layers and circuits, leaving the token-level dynamics of multimodal computation"
-    },
-    {
-      "title": "PluraMath: Extending Mathematical Reasoning Evaluation Beyond High-Resource Languages",
-      "upvotes": 4,
-      "paper_id": "2607.05992",
-      "abstract": "Mathematical reasoning has become a central task for evaluating and tuning reasoning Large Language Models (LLMs), yet existing benchmarks remain heavily biased toward high-resource languages, with English and Chinese dominating both pre-training corpora and evaluation suites."
-    },
-    {
-      "title": "Is One Layer Enough? Training A Single Transformer Layer Can Match Full-Parameter RL Training",
-      "upvotes": 3,
-      "paper_id": "2607.01232",
-      "abstract": "Reinforcement learning (RL) has become a central component of post-training large language models (LLMs), yet little is understood about how RL adaptation is distributed across transformer layers. Existing approaches typically update all model parameters uniformly."
-    },
-    {
-      "title": "HunyuanOCR-1.5: Making Lightweight OCR VLMs Faster and Better",
-      "upvotes": 3,
-      "paper_id": "2607.04884",
-      "abstract": "We present HunyuanOCR-1.5, a lightweight end-to-end OCR-specialized vision-language model. HunyuanOCR unifies document parsing, text spotting, information extraction, text-image translation, and multi-image document understanding within a single end-to-end VLM."
-    },
-    {
-      "title": "SWE-Review: Closing the Loop on Issue Resolution with Agentic Code Review",
-      "upvotes": 3,
-      "paper_id": "2607.06065",
-      "abstract": "Coding agents increasingly generate pull requests (PRs) for real-world software issues, yet one-shot PR generation remains open-loop: the PR is proposed without systematic review, diagnosis, or revision. We introduce SWE-Review, a framework for closing this loop with agentic code"
-    },
-    {
-      "title": "LLM-as-a-Tutor: Policy-Aware Prompt Adaptation for Non-Verifiable RL",
-      "upvotes": 2,
-      "paper_id": "2607.04412",
-      "abstract": "Reinforcement learning (RL) for non-verifiable instruction following increasingly relies on LLM judges with prompt-specific rubrics as reward signals. While recent methods adapt these rubrics to the evolving policy during training, the training prompts themselves remain static."
-    },
-    {
-      "title": "Where to cut, how deep: BPE and Unigram-LM on chemistry SMILES",
-      "upvotes": 2,
-      "paper_id": "2607.05691",
-      "abstract": "Every chemical language model reading SMILES begins with a tokenizer, yet the field has inherited byte-pair encoding (BPE) from natural language with little scrutiny. In natural language, BPE's principal alternative, Unigram-LM, is known to build structurally different vocabularies."
-    }
+    {"title": "Accurate, Interdisciplinary and Transparent Structure-property Understanding with Deep Native Structural Reasoning", "upvotes": 71, "paper_id": "2607.07708", "abstract": "Multimodal scientific foundation model for native structural reasoning across proteins, molecules and crystals. Discretizes structural elements into unified vocabulary, achieving state-of-the-art on 67 of 86 benchmarks."},
+    {"title": "Dual Latent Memory in Vision-Language-Action Models for Robotic Manipulation", "upvotes": 44, "paper_id": "2607.07608", "abstract": "Latent-memory-native framework for VLA models that reconstructs historical experience into memory tokens. Enables temporal reasoning for long-horizon robotic tasks through coordinated memory components."},
+    {"title": "Scaling Mixture-of-Experts Video Pretraining for Embodied Intelligence", "upvotes": 39, "paper_id": "2607.07675", "abstract": "DiT-based video pretraining with Mixture-of-Experts architecture for embodied AI. Integrates robot-oriented footage and multi-dimensional reward system to bridge digital creativity with physical actuation."},
+    {"title": "Infinite Worlds with Versatile Interactions", "upvotes": 21, "paper_id": "2607.07534", "abstract": "Advanced world modeling system achieving unbounded interaction horizons with real-time 60fps performance. Integrates pilot and director agents for multi-player collaborative virtual environments."},
+    {"title": "RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist Robot Manipulation Policies", "upvotes": 6, "paper_id": "2607.04434", "abstract": "Unified sim-and-real benchmark with 42 simulation and 18 real-world tasks evaluating generalist robot manipulation across five dimensions including generalization and long-horizon execution."},
+    {"title": "Single-Rollout Asynchronous Optimization for Agentic Reinforcement Learning", "upvotes": 5, "paper_id": "2607.07508", "abstract": "Asynchronous RL method replacing group-wise sampling with single-rollout sampling. Trains stably for 1000+ steps, outperforming GRPO on coding and reasoning benchmarks like SWE-Bench."},
+    {"title": "Sparse Delta Memory: Scaling the State of Linear RNNs through Sparsity", "upvotes": 5, "paper_id": "2607.07386", "abstract": "Architecture extending gated linear RNNs with sparse addressing to dramatically increase hidden state capacity. Improves long-context learning while maintaining computational efficiency under isoFLOP constraints."},
+    {"title": "Automating the Design of Embodied Agent Architectures", "upvotes": 5, "paper_id": "2606.30111", "abstract": "Agent Architecture Search system for embodied agents. Introduces AgentCanvas runtime and KDLoop search procedure, demonstrating deployable gains on vision-language navigation and manipulation tasks."},
+    {"title": "OmniTacTune: Policy-Agnostic Real-World RL for Tactile Residual Adaptation of Visual Policies", "upvotes": 3, "paper_id": "2607.03723", "abstract": "Two-stage RL pipeline adapting tactile feedback to visual robot policies. Improves success rates from 5-40% to 85-100% in contact-rich tasks within 40-80 minutes of interaction."},
+    {"title": "AgentLens: Production-Assessed Trajectory Reviews for Coding Agent Evaluation", "upvotes": 3, "paper_id": "2607.06624", "abstract": "Production-assessed benchmark for interactive code agents evaluating entire trajectories. Combines formal verification with LLM-written reviews for readable explanations of agent performance."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.205",
-      "published_at": "2025-07-08",
-      "body": "What's changed: Added an auto mode rule that blocks tampering with session transcript files. Fixed --json-schema silently producing unstructured output when the schema was invalid, and schemas using the format keyword being rejected. Fixed a message sent while Claude was working being silently lost when the turn ended at the --max-turns limit. Fixed Windows worktree removal deleting files outside the worktree when an NTFS junction or directory symlink existed inside it. Fixed background agents staying shown as failed or completed in the agent list after being resumed with SendMessage. Fixed background jobs flipping from needs input back to working in the agent list when the agent's turn contained no readable text. Fixed claude attach erroring when a background agent was mid-upgrade restart instead of waiting for it to come back."
-    },
-    {
-      "tag_name": "v2.1.204",
-      "published_at": "2025-07-08",
-      "body": "What's changed: Fixed hook events not streaming during SessionStart hooks in headless sessions, which could cause remote workers to be idle-reaped mid-hook."
-    },
-    {
-      "tag_name": "v2.1.203",
-      "published_at": "2025-07-07",
-      "body": "What's changed: Added a warning when your login is about to expire, so you can re-authenticate before background sessions are interrupted. Added a grey pause badge to the footer when in manual permission mode, making the active mode always visible. Added the session's additional working directories to MCP roots/list, with notifications/roots/list_changed sent when the set changes. Fixed opening or switching background agent sessions on macOS stalling for 15-20 seconds due to a false low-memory detection (regression in 2.1.196). Fixed background sessions becoming permanently unresponsive to attach, replies, and stop when the daemon's session token went stale - the session now recovers automatically."
-    }
+    {"tag_name": "v2.1.205", "published_at": "2025-07-08", "body": "Added an auto mode rule that blocks tampering with session transcript files. Fixed --json-schema silently producing unstructured output when the schema was invalid, and schemas using the format keyword being rejected. Fixed a message sent while Claude was working being silently lost when the turn ended at the --max-turns limit. Fixed Windows worktree removal deleting files outside the worktree when an NTFS junction or directory symlink existed inside it. Fixed background agents staying shown as failed or completed in the agent list after being resumed with SendMessage. Fixed background jobs flipping from needs input back to working in the agent list when the agent turn contained no readable text. Fixed claude attach erroring when a background agent was mid-upgrade restart instead of waiting for it to come back."},
+    {"tag_name": "v2.1.204", "published_at": "2025-07-08", "body": "Fixed hook events not streaming during SessionStart hooks in headless sessions, which could cause remote workers to be idle-reaped mid-hook."},
+    {"tag_name": "v2.1.203", "published_at": "2025-07-07", "body": "Added a warning when your login is about to expire, so you can re-authenticate before background sessions are interrupted. Added a grey pause badge to the footer when in manual permission mode, making the active mode always visible. Added the session additional working directories to MCP roots/list. Fixed opening or switching background agent sessions on macOS stalling for 15-20 seconds due to a false low-memory detection. Fixed background sessions becoming permanently unresponsive to attach, replies, and stop when the daemon session token went stale. Fixed returning to claude agents silently stopping running subagents and re-running the prompt from scratch."}
   ]
 }
