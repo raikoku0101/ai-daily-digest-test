@@ -1,44 +1,31 @@
 {
-  "title": "Week 22 · May 25–29, 2026",
-  "subtitle": "Run Claude Code on Claude Opus 4.8, orchestrate large tasks with dynamic workflows, catch security issues with the security-guidance plugin, and use fast mode on Opus 4.8 at a lower price.",
+  "title": "Week 26 · June 22–26, 2026",
+  "subtitle": "Authenticate MCP servers from your shell with claude mcp login, get a response to shell mode command output with the ! prefix, and resume a conversation from before /clear with /rewind.",
   "features": [
     {
-      "title": "Claude Opus 4.8",
-      "pill": "new model",
-      "lede": "Opus 4.8 is now the default on Max, Team Premium, Enterprise pay-as-you-go, and the Anthropic API. It defaults to high effort; use /effort xhigh for harder tasks. Requires v2.1.154 or later.",
-      "link": "/en/model-config#available-models"
+      "title": "Authenticate MCP servers from the CLI",
+      "pill": "v2.1.186",
+      "lede": "New `claude mcp login <name>` and `claude mcp logout <name>` commands authenticate a configured MCP server from your shell instead of the interactive /mcp menu. `claude mcp login` runs the server's OAuth flow directly, and `claude mcp logout` clears the stored credentials.",
+      "link": "/en/mcp#authenticate-from-the-command-line"
     },
     {
-      "title": "Dynamic workflows",
-      "pill": "research preview",
-      "lede": "A workflow is an orchestration script Claude writes for your task and runs across many subagents in the background. Use one when a task is too large for one conversation to coordinate: a codebase-wide audit, a large migration, a research question that needs cross-checking. Manage runs with /workflows.",
-      "link": "/en/workflows"
-    },
-    {
-      "title": "Security guidance plugin",
-      "pill": "plugin",
-      "lede": "The security-guidance plugin reviews Claude's code changes for vulnerabilities and fixes them in the same session. It runs a fast pattern check on each edit, a model review at the end of each turn, and a deeper agentic review on commit or push. Add project rules in .claude/claude-security-guidance.md.",
-      "link": "/en/security-guidance"
-    },
-    {
-      "title": "Fast mode on Opus 4.8",
-      "pill": "research preview",
-      "lede": "Fast mode now defaults to Opus 4.8 at $10/$50 per MTok: 2x the standard rate for about 2.5x the speed. Opus 4.7 and 4.6 stay at $30/$150. Opus 4.6 fast mode is deprecated.",
-      "link": "/en/fast-mode#understand-the-cost-tradeoff"
+      "title": "Shell mode responds to command output",
+      "pill": "v2.1.186",
+      "lede": "Commands you run with the ! prefix now get a response from Claude once the output lands in the transcript, so you can run ! npm test and get an explanation of the failures without a second prompt. The response costs the same as sending a normal prompt. To keep the earlier behavior, where the output is added to context without a response, set respondToBashCommands to false in settings.json.",
+      "link": "/en/interactive-mode#shell-mode-with-prefix"
     }
   ],
   "other_wins": [
-    "In claude agents, prefix a shell command with ! to run it as a background job you can attach to and detach from; also available as claude --bg --exec 'pytest -x'",
-    "Plugins in .claude/skills directories are now loaded automatically, no marketplace required, and claude plugin init <name> scaffolds a new plugin",
-    "New /reload-skills command re-scans skill directories without restarting, and SessionStart hooks can return reloadSkills: true to make skills they install available in the same session",
-    "Skills and commands can set disallowed-tools in frontmatter to remove tools from the model while the skill is active",
-    "New MessageDisplay hook event lets hooks transform or hide assistant message text as it is displayed",
-    "Claude Code now switches to your configured --fallback-model for the rest of the session when the primary model is not found, instead of failing every request",
-    "Plugins can declare defaultEnabled: false in plugin.json or a marketplace entry, so they install without turning on until you enable them",
-    "Vim mode: / in NORMAL mode opens reverse history search, matching Bash and Zsh vi-mode",
-    "Streaming tool execution is now always enabled, including with telemetry disabled and on Bedrock, Vertex, and Foundry",
-    "←← to open the agents view now works on Bedrock, Vertex, Foundry, and with telemetry disabled",
-    "Claude in Chrome: pick which connected browser to use via /chrome → \"Select browser…\", or in-chat when a browser action runs with multiple connected",
-    "claude mcp list and claude mcp get now show unapproved .mcp.json servers as pending approval instead of auto-approving and connecting when output is piped"
+    "/rewind can now resume a conversation from before /clear was run",
+    "New sandbox.credentials setting blocks sandboxed commands from reading credential files and secret environment variables",
+    "Org-configured model restrictions now apply to the model picker, --model, /model, and ANTHROPIC_MODEL, with a 'restricted by your organization's settings' message when a restricted model is selected",
+    "New autoMode.classifyAllShell setting routes all Bash and PowerShell commands through the auto-mode classifier, and denial reasons now show in the transcript, the denial toast, and /permissions",
+    "New claude_code.assistant_response OpenTelemetry log event carries the model's response text; deployments that already log prompt content start receiving it on upgrade, so set OTEL_LOG_ASSISTANT_RESPONSES=0 to keep prompts only",
+    "Background subagents now surface permission prompts in the main session instead of auto-denying; the dialog shows which agent is asking, and Esc denies only that tool",
+    "/install-github-app can now install only the GitHub App and skip the Actions workflow and secret steps",
+    "Hosts you allow in the sandbox network permission dialog are remembered for the rest of the session instead of re-prompting on every connection",
+    "Streaming responses use about 37% less CPU, and long-session memory growth from the terminal output cache is reduced",
+    "/review <pr> now uses the same review engine as /code-review medium",
+    "Bash mode ! commands get live file path autocomplete"
   ]
 }
