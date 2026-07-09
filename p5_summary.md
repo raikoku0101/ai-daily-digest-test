@@ -1,6 +1,6 @@
-**5. PluraMath: Extending Mathematical Reasoning Evaluation Beyond High-Resource Languages（低リソース言語への数学推論評価の拡張）**
-**著者**: PluraMath Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.05992
+**5. RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist Robot Manipulation Policies**
+**著者**: Tianxing Chen et al. (44名) (2025)
+**arXiv**: https://arxiv.org/abs/2607.04434
 
 **まとめ**:
-英語・中国語中心の数学推論ベンチマークの偏りを解消するため、6つの言語族にまたがる18の低・中リソース言語を追加した多言語ベンチマーク「PluraMath」を構築。ネイティブスピーカーによる品質検証済みのデータで27のLLMを評価し、高・低リソース言語間の持続的な性能ギャップを実証。データセット・パイプライン・評価フレームワークをオープンソース化し、インクルーシブなAI評価を促進。
+RoboDojo は、汎用ロボット操作ポリシーの包括的評価のためにシミュレーション42タスク・実世界18タスクを統合したベンチマーク。汎化・記憶・精密性・長期実行・オープン語彙命令追従の5次元で評価し、Isaac Sim による異種並列シミュレーション (heterogeneous parallel simulation) と RoboDojo-RealEval システムで実世界も標準化。30ポリシーを統合した XPolicyLab と公開リーダーボードで研究コミュニティに標準評価基盤を提供する。

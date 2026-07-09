@@ -1,6 +1,6 @@
-**4. Attending to Multimodal Generation One Token at a Time（マルチモーダル生成のトークン単位アテンション解析）**
-**著者**: OTaT Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.03738
+**4. Infinite Worlds with Versatile Interactions**
+**著者**: Zelin Gao et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.07534
 
 **まとめ**:
-マルチモーダルLLM（MLLM）の自動回帰生成中のアテンションダイナミクスをトークン単位で追跡する「One Token at a Time (OTaT)」手法を提案。画像・言語情報の統合が時間的にどう変化するかを可視化し、因果介入と注意ブースティングによりVSRタスクで最大28.5%の精度向上を達成。MLLMの解釈可能性研究に新たな時間的視点を付加する。
+LingBot-World 2.0 (LingBot-World-Infinity) は、因果的事前学習パラダイム (causal pretraining paradigm) により無制限の相互作用地平線 (unbounded interaction horizon) を実現した世界シミュレーションシステム。720p/60fps のリアルタイム処理、多様なインタラクション (攻撃・魔法・射撃等)、エージェンティックハーネス (agentic harness) によるパイロット・ディレクターエージェント制御、マルチプレイヤー対応を統合。14B/1.3B の2段階モデルで単一GPUでの運用も実現した。
