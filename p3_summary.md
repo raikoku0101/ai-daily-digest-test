@@ -1,6 +1,6 @@
-**3. Scaling Mixture-of-Experts Video Pretraining for Embodied Intelligence**
-**著者**: Shuailei Ma, Jiaqi Liao, Xinyang Wang et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.07675
+**3. Why Can't I Open My Drawer? Mitigating Object-Driven Shortcuts in Zero-Shot Compositional Action Recognition**
+**著者**: (RCORE チーム) (2026)
+**arXiv**: https://arxiv.org/abs/2601.16211
 
 **まとめ**:
-LingBot-Video は、身体性AI (embodied intelligence) のためにロボット制御に特化したビデオ生成モデル。Mixture-of-Experts (MoE) アーキテクチャによりモデル容量と推論効率を最適化し、操作・移動・一人称視点映像を含むロボット向けデータと多次元報酬システムで訓練。物理的合理性と世界ダイナミクスの理解を重視した初のオープンソース大規模 MoE ビデオ基盤モデルとして、デジタル創造性と物理作用の橋渡しを目指す。
+ゼロショット合成行動認識（Zero-Shot Compositional Action Recognition）において、モデルが時間的証拠ではなくオブジェクトの共起パターンから動詞を予測する「ショートカット学習」の問題に取り組む。RCORE（Robust COmpositional REpresentations）を提案し、共起事前確率正則化（CPR）と時間順序正則化（TORC）によりショートカット依存を抑制。Sth-com および EK100-com データセットで合成的汎化能力を大幅改善。

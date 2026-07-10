@@ -1,6 +1,6 @@
-**5. RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist Robot Manipulation Policies**
-**著者**: Tianxing Chen et al. (44名) (2025)
-**arXiv**: https://arxiv.org/abs/2607.04434
+**5. LongE2V: Long-Horizon Event-based Video Reconstruction, Prediction, and Frame Interpolation with Video Diffusion Models**
+**著者**: (LongE2V チーム) (2026)
+**arXiv**: https://arxiv.org/abs/2607.08770
 
 **まとめ**:
-RoboDojo は、汎用ロボット操作ポリシーの包括的評価のためにシミュレーション42タスク・実世界18タスクを統合したベンチマーク。汎化・記憶・精密性・長期実行・オープン語彙命令追従の5次元で評価し、Isaac Sim による異種並列シミュレーション (heterogeneous parallel simulation) と RoboDojo-RealEval システムで実世界も標準化。30ポリシーを統合した XPolicyLab と公開リーダーボードで研究コミュニティに標準評価基盤を提供する。
+スパースなイベントストリーム（Event Stream）から事前学習済み動画拡散モデル（Video Diffusion Model）を活用し、動画再構成・予測・フレーム補間を統合的に処理するフレームワーク LongE2V を提案。Autoregressive Unrolling（自己回帰展開）と Adaptive Context Switching（適応的文脈切替）により長時間シーケンスでの時間的ドリフトを抑制し、優れた時間的一貫性とゼロショット汎化を実現する。

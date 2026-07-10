@@ -1,6 +1,6 @@
-**2. Dual Latent Memory in Vision-Language-Action Models for Robotic Manipulation**
-**著者**: Hongyu Qu, Jianzhe Gao, Xiaobin Hu et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.07608
+**2. Video-Oasis: Rethinking Evaluation of Video Understanding**
+**著者**: (Video-Oasis チーム) (2026)
+**arXiv**: https://arxiv.org/abs/2603.29616
 
 **まとめ**:
-LaMem-VLA は、VLA (Vision-Language-Action) モデルに短期・長期のデュアル潜在メモリ (Dual Latent Memory) を統合したフレームワーク。従来のマルコフ仮定に基づくVLAモデルでは不可能だった長時間の時系列依存タスクを、潜在メモリトークンとして履歴経験を表現・検索・活用することで解決。SimplerEnv・LIBERO 環境での実験で既存手法を凌駕し、ロボット長期操作の新たな基盤を確立した。
+既存の動画理解ベンチマークを体系的に監査する診断スイート「Video-Oasis」を提案。55% のサンプルが視覚・時間情報なしで解答可能という衝撃的な事実を発見。ショートカットを除去した真の動画理解タスクでは、最先端モデルもランダム推定をわずかに上回る程度。動画 AI の過大評価を正す重要なメタ研究。
