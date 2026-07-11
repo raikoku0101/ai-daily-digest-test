@@ -1,18 +1,19 @@
-## 1. はじめに (Introduction)
+## 1. Introduction (はじめに)
+ゼロショット複合行動認識（Zero-Shot Compositional Action Recognition: ZS-CAR）では、学習済みの動詞とオブジェクトを組み合わせて未知の行動を認識する必要がある。しかし、既存モデルは実際の動作パターンではなく「物体駆動型ショートカット（Object-Driven Shortcuts）」—例えば引き出しが映れば「開ける」と推定—に依存してしまい、新しい組み合わせへの汎化が困難となっている。
 
-ゼロショット合成行動認識（Zero-Shot Compositional Action Recognition）は、既知の動詞とオブジェクトの組み合わせから未知の組み合わせを認識する能力を評価するタスクである。しかし現在のモデルは「引き出しを開ける」という行動を認識する際に、動詞「開ける」を時間的な動き（Temporal Evidence）から推論するのではなく、オブジェクト「引き出し」の存在から直接推測するという「ショートカット学習」に依存している。これがゼロショット汎化の大きな障害となっている。
+## 2. Related Work (関連研究)
+既存の ZS-CAR 手法は訓練データにおける動詞-オブジェクトの共起パターン（Co-occurrence Patterns）に過度に適応しており、時間的な動詞手がかり（Temporal Verb Cues）を十分に活用していない。この非対称な学習と疎な合成教師信号が、オブジェクト情報への依存を強める主要因。
 
-## 2. 手法 (Method)
+## 3. Method (手法)
+提案手法 RCORE（Robust COmpositional REpresentations）は 2 つのコンポーネントで構成：
+(1) **共起事前分布正則化（Co-occurrence Prior Regularization: CPR）**: 未見の組み合わせに明示的な教師信号を追加し、頻繁な共起パターンを困難な負例（Hard Negatives）として扱う。
+(2) **合成用時間順序正則化（Temporal Order Regularization for Composition: TORC）**: 時間順序への感度を強制し、時間的に基礎付けられた動詞表現学習（Temporal Verb Grounding）を促進。
 
-本研究では RCORE（Robust COmpositional REpresentations）を提案する。主な構成要素は：
-- 共起事前確率正則化（Co-occurrence Prior Regularization: CPR）: 動詞とオブジェクトの共起バイアスを明示的にモデル化し、その影響を低減する。
-- 時間順序正則化（Temporal Order Regularization: TORC）: モデルが時系列的な動き情報に基づいて動詞を認識するよう促す。
-これらの正則化を組み合わせることで、オブジェクト駆動ショートカットへの依存を抑制する。
+## 4. Experiments (実験)
+Sth-com および EK100-com データセットを使用して評価。ショートカット依存度を定量化するための新たな診断指標を導入し、既存手法が訓練共起パターンへの過適応と時間的手がかりの軽視を示すことを実証。
 
-## 3. 実験・結果 (Experiments/Results)
+## 5. Results (結果)
+RCORE はショートカット診断指標を削減し、複合行動認識性能を向上。特に訓練時に見ていない動詞-オブジェクト組み合わせに対して顕著な改善を達成。既存ベースラインと比較して汎化能力が大幅に向上した。
 
-Something-Something Compositional（Sth-com）および Epic-Kitchens 100 Compositional（EK100-com）の2つのベンチマークで評価。RCORE は従来手法と比較してショートカット診断指標（Shortcut Diagnostic）を削減し、合成的一般化（Compositional Generalization）を改善。未見の動詞-オブジェクト組み合わせの認識精度が向上した。
-
-## 4. まとめ (Conclusion)
-
-本研究は行動認識モデルが「オブジェクトを見て動詞を判断する」という本質的な欠陥を正面から解決しようとする試みである。RCORE により、真に時間的動きから動詞を推論するより堅牢な表現学習が可能になった。視覚言語モデル（Vision-Language Model）の弱点を解消し、実世界の多様な行動認識シナリオへの適用に向けた重要なステップとなる。
+## 6. Conclusion (結論)
+物体駆動型ショートカット学習という根本的問題に対し、時間的接地性と明示的な合成教師信号の組み合わせによる実用的解決策を提示。本手法はロボティクス・AR/VR など実世界の行動認識応用での信頼性向上に直接貢献する。
