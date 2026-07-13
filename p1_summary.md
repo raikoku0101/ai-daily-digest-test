@@ -1,6 +1,7 @@
-**1. Vidu S1: A Real-Time Interactive Video Generation Model**
-**著者**: Vidu Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.03118
+**1. Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading**
+**著者**: LHT-Bench Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.08964
+**upvotes**: 45
 
 **まとめ**:
-Vidu S1は、音声コマンドによるリアルタイムインタラクティブ動画生成の新パラダイムを実現したモデルです。TurboDiffusionとTurboServeという独自技術により、コンシューマーGPU上で最大42FPS・540p解像度の無限長動画生成を達成。ユーザーがリアルタイムで動画内キャラクターをコントロールできる画期的なシステムであり、デジタルエンターテインメントと仮想ライブ配信の革新をもたらします。
+AIエージェントの長期ターミナルタスク能力を評価する新ベンチマーク。46タスク・9カテゴリーで細粒度の段階的評価を実施した結果、最強モデル（GPT-5.5）でも成功率わずか15.2%に留まり、現在のエージェントが長期的一貫性・自己検証能力で大きな限界を抱えることが明らかになった。

@@ -1,6 +1,7 @@
-**4. UniClawBench: A Universal Benchmark for Proactive Agents on Real-World Tasks**
-**著者**: UniClawBench Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.08768
+**4. Trust Region Policy Distillation**
+**著者**: TOP-D Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.04751
+**upvotes**: 17
 
 **まとめ**:
-UniClawBenchは、LLM/マルチモーダルLLMベースのプロアクティブエージェントを現実的環境で評価する能力駆動型ベンチマークです。スキル活用・探索・長文脈推論・マルチモーダル理解・クロスプラットフォーム協調の5能力を、ライブDockerコンテナ上の400件バイリンガルタスクで評価。現状の最先端エージェントでも高い失敗率を示し、実世界AIエージェントの重大な能力ギャップを露呈します。
+オンポリシー蒸留（On-Policy Distillation）の不安定性を解決する信頼領域ポリシー蒸留（TOP-D）を提案。外部近傍教師と内部信頼領域イテレーションの2要素で構成され、追加計算コストなしでQwen3-8BのAIME24精度を24.58%→50.42%（+25.84ポイント）に大幅改善。数学的推論タスクでのLLM強化学習の安定化に重要な貢献。

@@ -1,76 +1,76 @@
 {
   "papers": [
     {
-      "title": "Vidu S1: A Real-Time Interactive Video Generation Model",
-      "upvotes": 116,
-      "paper_id": "2607.03118",
-      "abstract": "Real-time interactive video generation model supporting voice control of digital characters with infinite-length video generation at up to 42 FPS on consumer GPUs, supporting custom image uploads."
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading",
+      "upvotes": 45,
+      "paper_id": "2607.08964",
+      "abstract": "A benchmark of 46 long-horizon tasks spanning nine categories evaluates AI agents through fine-grained graded subtasks. Tasks require hundreds of episodes and minutes to hours of execution, revealing significant headroom for improvement in agent capabilities."
     },
     {
-      "title": "Video-Oasis: Rethinking Evaluation of Video Understanding",
-      "upvotes": 48,
-      "paper_id": "2603.29616",
-      "abstract": "Diagnostic suite revealing 55% of video understanding benchmarks are solvable without visual input, exposing capability gaps and providing foundation for rigorous video-LLM evaluation."
+      "title": "Video Generation Models are General-Purpose Vision Learners",
+      "upvotes": 40,
+      "paper_id": "2607.09024",
+      "abstract": "Large-scale text-to-video generation serves as a strong pre-training paradigm for computer vision. GenCeption leverages a pre-trained video generative diffusion backbone for various vision tasks, achieving state-of-the-art performance across depth, surface normal, camera pose estimation, and other benchmarks."
     },
     {
-      "title": "Why Can't I Open My Drawer? Mitigating Object-Driven Shortcuts in Zero-Shot Compositional Action Recognition",
-      "upvotes": 46,
-      "paper_id": "2601.16211",
-      "abstract": "Addresses object-driven shortcuts in zero-shot compositional action recognition through co-occurrence prior regularization and temporal order regularization to improve generalization."
+      "title": "Scalable Visual Pretraining for Language Intelligence",
+      "upvotes": 40,
+      "paper_id": "2607.09657",
+      "abstract": "Visual pretraining on documents and web pages outperforms text-only pretraining for foundation models. Rich visual information from figures, equations, and layouts carries knowledge that cannot be fully captured by text extraction alone."
     },
     {
-      "title": "UniClawBench: A Universal Benchmark for Proactive Agents on Real-World Tasks",
-      "upvotes": 26,
-      "paper_id": "2607.08768",
-      "abstract": "Capability-driven benchmark evaluating proactive agents in dynamic real-world settings across five foundational model capabilities using live Docker containers and closed-loop evaluation."
+      "title": "Trust Region Policy Distillation",
+      "upvotes": 17,
+      "paper_id": "2607.04751",
+      "abstract": "Transforms unstable on-policy distillation into a stable training paradigm through dynamic proximal teacher construction. Dramatically enhances training stability and sample efficiency on mathematical reasoning tasks with zero additional computational overhead."
     },
     {
-      "title": "LongE2V: Long-Horizon Event-based Video Reconstruction, Prediction, and Frame Interpolation with Video Diffusion Models",
-      "upvotes": 24,
-      "paper_id": "2607.08770",
-      "abstract": "Leverages pre-trained video diffusion priors for event-based video reconstruction with temporal stability improvements, achieving state-of-the-art results across reconstruction and interpolation tasks."
-    },
-    {
-      "title": "Enhancing In-context Panoramic Generation via Geometric-aware Pretraining",
-      "upvotes": 16,
-      "paper_id": "2607.08765",
-      "abstract": "Two-stage framework combining geometry-aware pretraining with fine-tuning for panoramic image generation, featuring 1M paired samples and parallel depth generation for improved geometric consistency."
-    },
-    {
-      "title": "DrugGen 2: A disease-aware language model for enhancing drug discovery",
-      "upvotes": 16,
-      "paper_id": "2607.08404",
-      "abstract": "Fine-tuned GPT-2 model generating small molecules conditioned on disease ontology and target protein sequences, achieving superior binding affinity and molecular diversity compared to baselines."
-    },
-    {
-      "title": "CineMobile: On-Device Image-to-Video Diffusion for Cinematic Camera Motion Generation",
-      "upvotes": 10,
-      "paper_id": "2607.03803",
-      "abstract": "Efficient image-to-video generation on mobile devices through distillation-guided pruning and hybrid quantization, achieving 40x speedup while maintaining visual quality for cinematic effects."
+      "title": "KronQ: LLM Quantization via Kronecker-Factored Hessian",
+      "upvotes": 15,
+      "paper_id": "2607.07964",
+      "abstract": "Post-training quantization framework incorporating gradient covariance into quantization pipelines. KronQ achieves 7.93 perplexity on 2-bit weight-only quantization for LLaMA-3-70B, significantly outperforming existing methods like GPTQ."
     },
     {
       "title": "Linear Attention Architectures: Mechanisms, Trade-offs, and Cross-Layer Routing",
-      "upvotes": 9,
+      "upvotes": 13,
       "paper_id": "2607.07953",
-      "abstract": "Comparative study of softmax and recurrent linear-attention architectures, analyzing expressivity, memory decay, and training throughput across different model scales and sequence lengths."
+      "abstract": "Comparative study of softmax attention and four recurrent linear-attention architectures. Kimi Delta Attention with Muon optimizer reaches lowest validation loss, while Cross-Layer Value Routing yields modest improvements over matched baselines."
     },
     {
-      "title": "Remember When It Matters: Proactive Memory Agent for Long-Horizon Agents",
+      "title": "From RGB Generation to Dense Field Readout: Pixel-Space Dense Prediction with Text-to-Image Models",
+      "upvotes": 9,
+      "paper_id": "2607.06553",
+      "abstract": "Adapts pretrained text-to-image models for dense prediction by mapping tokens to task-native outputs rather than generating RGB images. Sets new state-of-the-art on trimap-free matting, KITTI depth, and referring segmentation benchmarks."
+    },
+    {
+      "title": "Towards Mechanistically Understanding Why Memorized Knowledge Fails to Generalize in Large Language Model Finetuning",
       "upvotes": 7,
-      "paper_id": "2607.08716",
-      "abstract": "Plug-and-play memory agent running alongside action agents, updating structured memory banks and selectively injecting reminders to prevent behavioral state decay in long-horizon tasks."
+      "paper_id": "2607.08393",
+      "abstract": "Formalizes the 'Knowing-Using Gap' where LLMs memorize facts but fail at reasoning. Uses self-patching intervention technique to identify activation locations where knowledge routing fails, recovering 58-75% of oracle generalization headroom."
+    },
+    {
+      "title": "Self-Guided Test-Time Training for Long-Context LLMs",
+      "upvotes": 7,
+      "paper_id": "2607.09415",
+      "abstract": "Proposes Self-Guided TTT method where models identify evidence spans before adaptation. Achieves up to 15% relative improvement on LongBench-v2 and LongBench-Pro benchmarks for both Qwen3-4B-Thinking-2507 and Llama-3.1-8B-Instruct models."
+    },
+    {
+      "title": "PanoWorld: Real-World Panoramic Generation",
+      "upvotes": 7,
+      "paper_id": "2607.09661",
+      "abstract": "Addresses long-range memory in panoramic world models by exploiting rotation-equivariant properties. Introduces World360 dataset with real-world and simulated panoramic video clips for evaluating physical consistency under diverse conditions."
     }
   ],
   "cc_updates": [
     {
       "tag_name": "v2.1.207",
       "published_at": "2025-07-11",
-      "body": "Auto mode is now available without CLAUDE_CODE_ENABLE_AUTO_MODE opt-in on Bedrock, Vertex AI, and Foundry; disable via disableAutoMode in settings. Fixed the terminal freezing and keystrokes lagging while streaming responses containing very long lists, tables, paragraphs, or code blocks. Fixed remote managed settings from a non-interactive run being permanently recorded as consented without ever showing the security consent dialog. Fixed spurious prompt-injection warnings triggered by benign system-generated conversation updates. Fixed the auto-updater overwriting a custom launcher script or symlink at ~/.local/bin/claude on every release; /doctor now reports an externally managed launcher."
+      "body": "Auto mode is now available without CLAUDE_CODE_ENABLE_AUTO_MODE opt-in on Bedrock, Vertex AI, and Foundry; disable via disableAutoMode in settings. Fixed the terminal freezing and keystrokes lagging while streaming responses containing very long lists, tables, paragraphs, or code blocks. Fixed remote managed settings from a non-interactive run being permanently recorded as consented without showing the security consent dialog. Fixed spurious prompt-injection warnings triggered by benign system-generated conversation updates. Fixed the auto-updater overwriting a custom launcher script or symlink at ~/.local/bin/claude on every release."
     },
     {
       "tag_name": "v2.1.206",
       "published_at": "2025-07-10",
-      "body": "Added directory path suggestions to /cd, matching /add-dir behavior. Added a /doctor check that proposes trimming checked-in CLAUDE.md files by cutting content Claude could derive from the codebase. /commit-push-pr now auto-allows git push to the repo's configured push remote in addition to origin. Gateway: /login now supports Anthropic-operated public gateway endpoints. EnterWorktree now asks for confirmation before entering a git worktree outside the project's .claude/worktrees/ directory."
+      "body": "Added directory path suggestions to /cd, matching /add-dir behavior. Added a /doctor check that proposes trimming checked-in CLAUDE.md files by cutting content Claude could derive from the codebase. /commit-push-pr now auto-allows git push to the repo configured push remote. Gateway: /login now supports Anthropic-operated public gateway endpoints. Background agents now upgrade to a new version in the background right after a Claude Code update, instead of paying a slow stale-session upgrade when you attach."
     },
     {
       "tag_name": "v2.1.205",
