@@ -1,7 +1,6 @@
-**1. Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading**
-**著者**: LHT-Bench Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.08964
-**upvotes**: 45
+**1. Weak-to-Strong Generalization via Direct On-Policy Distillation**
+**著者**: Liu et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.05394
 
 **まとめ**:
-AIエージェントの長期ターミナルタスク能力を評価する新ベンチマーク。46タスク・9カテゴリーで細粒度の段階的評価を実施した結果、最強モデル（GPT-5.5）でも成功率わずか15.2%に留まり、現在のエージェントが長期的一貫性・自己検証能力で大きな限界を抱えることが明らかになった。
+弱い教師モデルのRL学習後の「政策シフト（log比率差分）」を強い学生モデルへ転送する Direct On-Policy Distillation (Direct-OPD) を提案。教師モデルより能力が高い学生モデルでも改善可能で、AIME 2024でQwen3-1.7Bを48.3%→58.3%に向上。RLVR全体の計算コストを大幅に削減しながら推論強化の恩恵を広く普及させる新手法。

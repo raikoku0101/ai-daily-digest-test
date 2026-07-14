@@ -1,7 +1,6 @@
-**4. Trust Region Policy Distillation**
-**著者**: TOP-D Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.04751
-**upvotes**: 17
+**4. 4D Human-Scene Reconstruction from Low-Overlap Captures**
+**著者**: StudioRecon Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.09125
 
 **まとめ**:
-オンポリシー蒸留（On-Policy Distillation）の不安定性を解決する信頼領域ポリシー蒸留（TOP-D）を提案。外部近傍教師と内部信頼領域イテレーションの2要素で構成され、追加計算コストなしでQwen3-8BのAIME24精度を24.58%→50.42%（+25.84ポイント）に大幅改善。数学的推論タスクでのLLM強化学習の安定化に重要な貢献。
+4台の低オーバーラップカメラだけで動的人物シーン（4D）を高品質再構成する StudioRecon を提案。背景はビデオ拡散モデル(GEN3C)で仮想視点を大量生成して密な教師信号を合成し、人物はSMPL骨格プライオリと Linear Blend Skinning で幾何制約。運動適応的一貫性注入（光学フロー+EMA）でちらつきを抑制。既存手法対比 LPIPS で36%改善を達成した。

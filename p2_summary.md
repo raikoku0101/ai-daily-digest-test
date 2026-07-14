@@ -1,7 +1,6 @@
-**2. Video Generation Models are General-Purpose Vision Learners**
-**著者**: GenCeption Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.09024
-**upvotes**: 40
+**2. ABot-N1: Toward a General Visual Language Navigation Foundation Model**
+**著者**: ABot Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.10383
 
 **まとめ**:
-テキスト→ビデオ生成モデル（WAN 2.1）を汎用視覚知覚モデルに転用するGenCeptionを提案。深度・法線推定からキーポイント検出まで単一アーキテクチャで対応し、タスク特化モデルと同等以上の性能を達成。7〜500倍少ないデータで競合手法と同等性能を実現し、大規模動画生成事前学習が真の汎用視覚知能の基盤となることを示した。
+視覚言語ナビゲーション(VLN)の汎用基盤モデル ABot-N1 を提案。4B Qwenによる「遅い思考系」がCoTとピクセル目標を生成し、2B Qwenによる「速い行動系」が連続ウェイポイントを高頻度出力する二重システム構造を採用。ポイント目標・物体目標・POI到達・人物追跡など5タスクで最先端性能を達成し、実世界ロボットへの転移も確認。都市規模の長時間自律ナビゲーションを実現した。
