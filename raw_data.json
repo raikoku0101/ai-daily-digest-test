@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading",
-      "upvotes": 45,
-      "paper_id": "2607.08964",
-      "abstract": "A benchmark of 46 long-horizon tasks spanning nine categories evaluates AI agents through fine-grained graded subtasks. Tasks require hundreds of episodes and minutes to hours of execution, revealing significant headroom for improvement in agent capabilities."
+      "title": "SynthDocBench: Controlled Benchmark for Long-Context Visual Document Understanding",
+      "upvotes": 50,
+      "paper_id": "2607.10400",
+      "abstract": "Vision language models (VLMs) have achieved strong performance on visual document understanding benchmarks such as DocVQA, ChartQA, and MMLongBench-Doc. However, real-world documents combine multiple factors such as length, layout complexity, modality, and question difficulty, which makes it difficult to attribute model failures to specific causes."
     },
     {
-      "title": "Video Generation Models are General-Purpose Vision Learners",
+      "title": "Read It Back: Pretrained MLLMs Are Zero-Shot Reward Models for Text-to-Image Generation",
       "upvotes": 40,
-      "paper_id": "2607.09024",
-      "abstract": "Large-scale text-to-video generation serves as a strong pre-training paradigm for computer vision. GenCeption leverages a pre-trained video generative diffusion backbone for various vision tasks, achieving state-of-the-art performance across depth, surface normal, camera pose estimation, and other benchmarks."
+      "paper_id": "2607.11886",
+      "abstract": "In this paper, we propose SpectraReward, a training-free reward function that turns pretrained MLLMs into off-the-shelf reward models for image-generation reinforcement learning. Instead of asking the MLLM to judge a generated image or answer decomposed verification questions, SpectraReward measures how well the original prompt can be recovered from the generated image through a single image-conditioned, teacher-forced forward pass."
     },
     {
-      "title": "Scalable Visual Pretraining for Language Intelligence",
-      "upvotes": 40,
-      "paper_id": "2607.09657",
-      "abstract": "Visual pretraining on documents and web pages outperforms text-only pretraining for foundation models. Rich visual information from figures, equations, and layouts carries knowledge that cannot be fully captured by text extraction alone."
+      "title": "Xiaomi-Robotics-U0: Unified Embodied Synthesis with World Foundation Model",
+      "upvotes": 30,
+      "paper_id": "2607.11643",
+      "abstract": "Recent foundation image and video generation models offer strong generalization and controllability, but their direct application to embodied scenarios is limited by requirements for multi-view consistency, geometric coherence, and robot embodiment constraints. Existing methods typically adapt foundation models with limited robot data, often sacrificing visual knowledge acquired during large-scale pre-training."
     },
     {
-      "title": "Trust Region Policy Distillation",
-      "upvotes": 17,
-      "paper_id": "2607.04751",
-      "abstract": "Transforms unstable on-policy distillation into a stable training paradigm through dynamic proximal teacher construction. Dramatically enhances training stability and sample efficiency on mathematical reasoning tasks with zero additional computational overhead."
+      "title": "Search Beyond What Can Be Taught: Evolving the Knowledge Boundary in Agentic Visual Generation",
+      "upvotes": 26,
+      "paper_id": "2607.05382",
+      "abstract": "Visual generators excel at rendering, but they confidently fabricate what they do not know. User requests are unbounded, evolving, and deeply long-tailed: new characters, trending entities, post-cutoff events, and more. This world-knowledge bottleneck is structural: generators are trained on fixed corpora, but the visual world is open-ended."
     },
     {
-      "title": "KronQ: LLM Quantization via Kronecker-Factored Hessian",
-      "upvotes": 15,
-      "paper_id": "2607.07964",
-      "abstract": "Post-training quantization framework incorporating gradient covariance into quantization pipelines. KronQ achieves 7.93 perplexity on 2-bit weight-only quantization for LLaMA-3-70B, significantly outperforming existing methods like GPTQ."
+      "title": "Blind-Spots-Bench: Evaluating Blind Spots in Multimodal Models",
+      "upvotes": 19,
+      "paper_id": "2607.08317",
+      "abstract": "Modern AI models achieve strong performance on many established benchmarks, yet they still fail on tasks that humans find almost trivial, such as manipulating a string or drawing a dog with five legs. These examples suggest that existing benchmarks may under-measure persistent blind spots in current systems."
     },
     {
-      "title": "Linear Attention Architectures: Mechanisms, Trade-offs, and Cross-Layer Routing",
-      "upvotes": 13,
-      "paper_id": "2607.07953",
-      "abstract": "Comparative study of softmax attention and four recurrent linear-attention architectures. Kimi Delta Attention with Muon optimizer reaches lowest validation loss, while Cross-Layer Value Routing yields modest improvements over matched baselines."
+      "title": "Proxy Exploration and Reusable Guidance: A Modular LLM Post-Training Paradigm via Proxy-Guided Update Signals",
+      "upvotes": 10,
+      "paper_id": "2607.11505",
+      "abstract": "Post-training is essential for refining the domain-specific capabilities of large language models (LLMs), yet existing reward optimization and distribution matching methods tightly couple policy exploration with distribution alignment. This coupling forces expensive exploration directly on the policy model and severely hinders the asynchronous generation, reuse, and cross-model transfer of optimization signals."
     },
     {
-      "title": "From RGB Generation to Dense Field Readout: Pixel-Space Dense Prediction with Text-to-Image Models",
-      "upvotes": 9,
-      "paper_id": "2607.06553",
-      "abstract": "Adapts pretrained text-to-image models for dense prediction by mapping tokens to task-native outputs rather than generating RGB images. Sets new state-of-the-art on trimap-free matting, KITTI depth, and referring segmentation benchmarks."
+      "title": "Multi-Agent LLMs Fail to Explore Each Other",
+      "upvotes": 8,
+      "paper_id": "2607.11250",
+      "abstract": "Exploration is essential for reliable autonomy in multi-agent systems, yet it remains unclear whether large language model (LLM) agents can explore effectively when interacting with one another. We show that modern LLM agents fail to do so, often exhibiting myopic and polarized interaction patterns that lead to suboptimal coordination and increased regret."
     },
     {
-      "title": "Towards Mechanistically Understanding Why Memorized Knowledge Fails to Generalize in Large Language Model Finetuning",
+      "title": "EgoSteer: A Full-Stack System Towards Steerable Dexterous Manipulation from Egocentric Videos",
+      "upvotes": 8,
+      "paper_id": "2607.09701",
+      "abstract": "Steerability is a defining capability of generalist robot policies, yet remains largely absent in dexterous-hand systems for lack of large-scale, language-aligned, and action-accurate demonstration data. To address this bottleneck, we present a full-stack system that scales dexterous VLA pre-training from egocentric human videos and enables data-efficient real-robot post-training."
+    },
+    {
+      "title": "MET: Theory-Grounded and Culture-Aware Multilingual Moral Reasoning",
       "upvotes": 7,
-      "paper_id": "2607.08393",
-      "abstract": "Formalizes the 'Knowing-Using Gap' where LLMs memorize facts but fail at reasoning. Uses self-patching intervention technique to identify activation locations where knowledge routing fails, recovering 58-75% of oracle generalization headroom."
+      "paper_id": "2607.11736",
+      "abstract": "Language models are increasingly used for moral decision-making across diverse linguistic and cultural contexts, yet existing work overlooks multilinguality on three aspects: 1) multilingual evaluation benchmarks use direct translation, failing to adapt culture-specific items; 2) inference-time methods for moral reasoning rely on static, English-centric scaffolds and lack grounding in moral theory"
     },
     {
-      "title": "Self-Guided Test-Time Training for Long-Context LLMs",
-      "upvotes": 7,
-      "paper_id": "2607.09415",
-      "abstract": "Proposes Self-Guided TTT method where models identify evidence spans before adaptation. Achieves up to 15% relative improvement on LongBench-v2 and LongBench-Pro benchmarks for both Qwen3-4B-Thinking-2507 and Llama-3.1-8B-Instruct models."
-    },
-    {
-      "title": "PanoWorld: Real-World Panoramic Generation",
-      "upvotes": 7,
-      "paper_id": "2607.09661",
-      "abstract": "Addresses long-range memory in panoramic world models by exploiting rotation-equivariant properties. Introduces World360 dataset with real-world and simulated panoramic video clips for evaluating physical consistency under diverse conditions."
+      "title": "Know Before Fix: QA-Driven Repository Knowledge Acquisition for Software Issue Resolution",
+      "upvotes": 6,
+      "paper_id": "2607.11111",
+      "abstract": "LLM-based coding agents have significantly advanced automated software issue resolution, yet they remain highly prone to factual errors caused by insufficient repository understanding. Recent methods attempt to mitigate this limitation through pre-repair repository exploration; however, their fix-driven strategies explore repositories without identifying the agent's knowledge gaps, often yielding imprecise context."
     }
   ],
   "cc_updates": [
     {
-      "tag_name": "v2.1.207",
-      "published_at": "2025-07-11",
-      "body": "Auto mode is now available without CLAUDE_CODE_ENABLE_AUTO_MODE opt-in on Bedrock, Vertex AI, and Foundry; disable via disableAutoMode in settings. Fixed the terminal freezing and keystrokes lagging while streaming responses containing very long lists, tables, paragraphs, or code blocks. Fixed remote managed settings from a non-interactive run being permanently recorded as consented without showing the security consent dialog. Fixed spurious prompt-injection warnings triggered by benign system-generated conversation updates. Fixed the auto-updater overwriting a custom launcher script or symlink at ~/.local/bin/claude on every release."
+      "tag_name": "v2.1.210",
+      "published_at": "2025-07-14",
+      "body": "Added a live elapsed-time counter to the collapsed tool summary line so long-running tool calls visibly tick instead of looking stuck. Added a startup warning for `Write(path)`, `NotebookEdit(path)`, and `Glob(path)` permission rules — use `Edit(path)` or `Read(path)` instead. Fixed `isolation: 'worktree'` subagents being able to run git-mutating commands against the main repo checkout instead of their own isolated worktree. Fixed the `ultracode` keyword opt-in firing on non-human-originated input such as webhook payloads and relayed PR comments."
     },
     {
-      "tag_name": "v2.1.206",
-      "published_at": "2025-07-10",
-      "body": "Added directory path suggestions to /cd, matching /add-dir behavior. Added a /doctor check that proposes trimming checked-in CLAUDE.md files by cutting content Claude could derive from the codebase. /commit-push-pr now auto-allows git push to the repo configured push remote. Gateway: /login now supports Anthropic-operated public gateway endpoints. Background agents now upgrade to a new version in the background right after a Claude Code update, instead of paying a slow stale-session upgrade when you attach."
+      "tag_name": "v2.1.209",
+      "published_at": "2025-07-14",
+      "body": "Fixed /model and other dialogs being blocked in `claude agents` background sessions (reverts an overly broad guard)"
     },
     {
-      "tag_name": "v2.1.205",
-      "published_at": "2025-07-08",
-      "body": "Added an auto mode rule that blocks tampering with session transcript files. Fixed --json-schema silently producing unstructured output when the schema was invalid, and schemas using the format keyword being rejected. Fixed a message sent while Claude was working being silently lost when the turn ended at the --max-turns limit. Fixed Windows worktree removal deleting files outside the worktree when an NTFS junction or directory symlink existed inside it. Fixed background agents staying shown as failed or completed in the agent list after being resumed with SendMessage."
+      "tag_name": "v2.1.208",
+      "published_at": "2025-07-14",
+      "body": "Added screen reader mode: opt-in plain-text rendering for screen reader users. Run `claude --ax-screen-reader`, set CLAUDE_AX_SCREEN_READER=1, or add \"axScreenReader\": true to settings. Added `vimInsertModeRemaps` setting: map two-key insert-mode sequences like `jj` to Escape in vim mode. Added `CLAUDE_CODE_PROCESS_WRAPPER`: agent view and the background service now honor a corporate launcher by running every Claude Code self-spawn through a required wrapper executable."
     }
   ]
 }
