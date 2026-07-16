@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-11",
+  "content": "# AI Daily Digest — 2026-07-11\n\n## 今日のハイライト\n- **Vidu S1 が動画生成をリアルタイム化**: 音声制御でデジタルキャラクターを任意タイミングに操作できる世界初クラスのリアルタイム動画生成モデル。108 upvotes でコミュニティの注目を独占。インタラクティブメディアの商用展開に直結する大きな技術進展。\n- **Claude Code v2.1.206 リリース (2026-07-10)**: `/cd` 補完・`/doctor` 改善・ゲートウェイログイン強化など UX 改善が多数。ワークツリー外への意図しない操作を防ぐ安全機能も追加。\n- **動画 AI ベンチマークの55%が「ズル回答」可能と判明**: Video-Oasis が既存ベンチマークの深刻な欠陥を暴露。最先端モデルも真の動画理解能力はランダム推定とほぼ同レベルという衝撃的な知見が得られた。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.206 — 2026-07-10\n**主要機能**\n- `/cd` コマンドにディレクトリパス補完を追加 (`/add-dir` と同動作)\n- `/doctor` チェックにチェックイン済み `CLAUDE.md` ファイルのトリミング提案を追加\n- `/commit-push-pr` がリポジトリの設定済みプッシュリモートへの `git push` を自動許可\n- `/login` が Anthropic 運営のパブリックゲートウェイエンドポイントをサポート\n- `EnterWorktree` がプロジェクトの `.claude/worktrees/` 外のワークツリーに入る前に確認を要求\n- バックグラウンドエージェントが Claude Code アップデート直後にバックグラウンドで新バージョンにアップグレード\n\n**ユーザーへの影響**: 日常ワークフローの利便性向上。`/cd` 補完により作業ディレクトリ切り替えが素早くなり、ゲートウェイログインの柔軟性が増した。\n\n---\n\n### v2.1.205 — 2026-07-08\n**主要機能**\n- セッショントランスクリプトファイルの改ざんをブロックする自動モードルールを追加\n\n**バグ修正**\n- `--json-schema` に無効なスキーマを渡した際に非構造化出力が生成されていた問題を修正\n- `--max-turns` 上限で応答終了時にメッセージが消失していたバグを修正\n- Windows で NTFS ジャンクション/シンボリックリンクが存在する場合にワークツリー外のファイルを削除していた問題を修正\n- `SendMessage` で再開後もバックグラウンドエージェントが「failed」「completed」のまま表示されていたバグを修正\n\n**ユーザーへの影響**: Windows ユーザーのデータ消失リスクを防ぐ重要な修正。JSON スキーマの信頼性も向上。\n\n---\n\n### v2.1.204 — 2026-07-08\n**バグ修正**\n- ヘッドレスセッションの `SessionStart` フック中にフックイベントがストリーミングされない問題を修正。これによりリモートワーカーがフック実行中にアイドル回収される可能性があった。\n\n**ユーザーへの影響**: リモート実行環境 (Claude Code on the web 等) でのセッション開始の安定性が向上。\n\n## 注目論文 TOP 10\n\n**1. Vidu S1: A Real-Time Interactive Video Generation Model** | 108 upvotes | https://arxiv.org/abs/2607.03118\n🎯**背景**: リアルタイムのインタラクティブ動画生成は、ユーザーが自然言語や音声でコンテンツを制御できる次世代メディア体験の実現に向けた研究領域。既存モデルはバッチ処理が前提でリアルタイム制御が困難だった。\n🔧**手法**: TurboDiffusion と TurboServe を組み合わせたアーキテクチャ。音声命令でデジタルキャラクターをリアルタイム制御可能。無限長動画のストリーミング生成を 540p 解像度で実現。\n📊**結果**: ブラーやドリフト、視覚的歪みなしに無限長の動画をリアルタイム生成。ユーザーが任意のタイミングで音声入力によりコンテンツを変更可能。\n💡**意義**: 動画生成 AI の「リアルタイム性」という課題を突破。インタラクティブエンターテインメントやバーチャル体験の商用応用に直結する技術革新。\n⚠️**限界**: 540p という解像度制限、音声認識精度への依存性、商用クローズドモデルのため再現性評価が困難。\n\n**2. Video-Oasis: Rethinking Evaluation of Video Understanding** | 43 upvotes | https://arxiv.org/abs/2603.29616\n🎯**背景**: 動画理解ベンチマークの信頼性への疑問が高まる中、既存評価手法が実際の動画理解能力を正しく測れているかを体系的に検証する必要があった。\n🔧**手法**: 既存ベンチマークの診断スイートを構築し、視覚・時間情報なしで解けるサンプルをフィルタリング。「ショートカット」を除去した後の真の動画ネイティブ課題を特定。\n📊**結果**: 既存ベンチマークの 55% のサンプルが視覚入力や時間コンテキストなしで解答可能。ショートカット除去後、最先端モデルでもランダム推定をわずかに上回る程度の精度しか達成できない。\n💡**意義**: 動画 AI の「本当の能力」が過大評価されていることを示すメタ研究。今後のベンチマーク設計と評価プロトコルに大きな影響を与える。\n⚠️**限界**: フィルタリング基準の主観性、特定のショートカット除去手法の汎化性能への疑問が残る。\n\n**3. Why Can't I Open My Drawer? Mitigating Object-Driven Shortcuts in Zero-Shot Compositional Action Recognition** | 42 upvotes | https://arxiv.org/abs/2601.16211\n🎯**背景**: ゼロショット行動認識では、モデルが「動詞」の理解より「オブジェクト」の共起パターンに依存するショートカット学習が深刻な問題。例えば「引き出しを開ける」でオブジェクト(引き出し)だけから動詞を推測してしまう。\n🔧**手法**: RCORE (Robust COmpositional REpresentations) を提案。共起事前確率の正則化と時系列順序正則化を組み合わせ、オブジェクト駆動ショートカットを抑制。\n📊**結果**: ゼロショット設定での動詞予測精度が向上。時間的証拠を適切に活用した行動認識を実現。\n💡**意義**: 行動認識 AI の根本的な弱点であるショートカット学習に正面から取り組む研究。より堅牢な視覚言語モデルの構築に貢献。\n⚠️**限界**: 特定のデータセット・設定での評価に留まり、実世界の多様な行動認識シナリオでの汎化が未検証。\n\n**4. UniClawBench: A Universal Benchmark for Proactive Agents on Real-World Tasks** | 21 upvotes | https://arxiv.org/abs/2607.08768\n🎯**背景**: 自律エージェントの実世界評価が既存ベンチマークでは不十分。特に動的環境での「先回り能力 (Proactivity)」を測る評価基盤が欠如していた。\n🔧**手法**: 400 件の日英バイリンガル実世界タスクを 5 つの能力軸 (スキル活用・探索・長文脈推論・マルチモーダル理解・クロスプラットフォーム連携) で構成。Live Docker コンテナで実行し細粒度チェックポイントで評価。\n📊**結果**: 現行エージェントの能力限界を可視化。複合タスクでの失敗パターンを体系的に分類可能。\n💡**意義**: エージェント AI の実用化評価において実世界に近い条件で測定できる初のユニバーサルベンチマーク。\n⚠️**限界**: Docker 環境での実行に限定されるため、物理世界やブラウザ環境のカバレッジに制限がある。\n\n**5. LongE2V: Long-Horizon Event-based Video Reconstruction, Prediction, and Frame Interpolation with Video Diffusion Models** | 19 upvotes | https://arxiv.org/abs/2607.08770\n🎯**背景**: イベントカメラは高速・低消費電力のセンサーだが、スパースなイベントストリームから高品質動画を復元することは困難。特に長時間シーケンスでの時間的ドリフトが課題。\n🔧**手法**: 事前学習済み動画拡散モデルを活用し、動画再構成・予測・フレーム補間を統合処理。Autoregressive Unrolling と Adaptive Context Switching により長時間シーケンスのドリフトを抑制。\n📊**結果**: 極めて長いシーケンスでの優れた時間的一貫性を実証。ゼロショット汎化性能も確認。\n💡**意義**: 拡散モデルのプリオールをイベントカメラ処理に応用した革新的アプローチ。自動運転・ロボティクスへの応用が期待される。\n⚠️**限界**: 拡散モデルの推論コストが高く、リアルタイム処理には課題が残る。\n\n**6. Enhancing In-context Panoramic Generation via Geometric-aware Pretraining** | 14 upvotes | https://arxiv.org/abs/2607.08765\n🎯**背景**: パノラマ画像生成では幾何学的一貫性の維持が課題。既存の in-context 生成手法は境界部での歪みや不整合が生じやすい。\n🔧**手法**: Canvas360 フレームワークを提案。1M サンプルの Canvas360Dataset を用いた幾何学的事前学習と、並列深度生成・速度循環パディング・類似度損失正則化を組み合わせたファインチューニング。\n📊**結果**: テキスト→パノラマ生成の幾何学的一貫性が向上。境界接続部の品質が大幅改善。\n💡**意義**: XR・メタバース・建築設計など高品質パノラマコンテンツが必要な分野への応用が期待される。\n⚠️**限界**: 1M サンプルの専用データセットが必要で、データ収集コストが高い。\n\n**7. DrugGen 2: A disease-aware language model for enhancing drug discovery** | 12 upvotes | https://arxiv.org/abs/2607.08404\n🎯**背景**: 創薬における小分子設計は膨大な化学空間の探索が必要。疾患オントロジーとタンパク質配列の両方を条件とした分子生成モデルは未開拓だった。\n🔧**手法**: GPT-2 をベースに、疾患オントロジーと標的タンパク質配列を条件とした小分子生成モデルを構築。教師あり学習後に GRPO (Group Relative Policy Optimization) による強化学習でファインチューニング。\n📊**結果**: 既存ベースラインを大幅に上回る独自分子生成能力。承認済み薬剤との構造類似性スコアが向上。\n💡**意義**: 疾患文脈を理解した創薬 AI という新アプローチ。標的疾患に特化した化合物ライブラリの効率的生成が可能に。\n⚠️**限界**: インシリコ評価のみで湿式実験による検証が未実施。GPT-2 ベースのため大規模モデルとの比較が必要。\n\n**8. CineMobile: On-Device Image-to-Video Diffusion for Cinematic Camera Motion Generation** | 8 upvotes | https://arxiv.org/abs/2607.03803\n🎯**背景**: 動画拡散モデルはモバイルデバイスには重すぎる。エッジデバイスでの高品質動画生成実現が産業上重要な課題。\n🔧**手法**: 蒸留ガイド付きプルーニング・拡散蒸留・ハイブリッド量子化の組み合わせでモデルを軽量化。H200 GPU では 0.6秒/ステップ、MediaTek Dimensity プラットフォームでは 20秒で処理。\n📊**結果**: ティーチャーモデル比 40x の高速化を達成しつつ視覚品質を維持。49フレーム 480p 動画をモバイルで生成可能。\n💡**意義**: 動画生成 AI のエッジ展開における重要なマイルストーン。クラウド依存なしのオンデバイスプロ品質動画生成への道を開く。\n⚠️**限界**: 480p という解像度上限、MediaTek プラットフォームへの最適化依存。\n\n**9. Linear Attention Architectures: Mechanisms, Trade-offs, and Cross-Layer Routing** | 5 upvotes | https://arxiv.org/abs/2607.07953\n🎯**背景**: Transformer の二次計算コストを克服するための線形注意機構が多数提案されているが、統一的な比較分析が不足していた。\n🔧**手法**: ソフトマックス注意と 4 つの線形注意アーキテクチャ (DeltaNet, Gated DeltaNet, Kimi Delta Attention, Gated DeltaNet-2) を共通の再帰メモリ表記法で比較。350M パラメータモデルで評価。\n📊**結果**: 各アーキテクチャの表現力・メモリ減衰・消去/書き込み制御・学習スループット・実装複雑度のトレードオフを定量化。\n💡**意義**: 線形注意機構の設計空間を体系的に整理。研究者・実務者が適切なアーキテクチャを選択するための実用的ガイドライン。\n⚠️**限界**: 350M パラメータの小規模評価に留まり、大規模スケールでの結論への一般化が必要。\n\n**10. Remember When It Matters: Proactive Memory Agent for Long-Horizon Agents** | 2 upvotes | https://arxiv.org/abs/2607.08716\n🎯**背景**: 長期タスクを実行するエージェントはコンテキスト長の制限から重要情報を忘れてしまう。従来の受動的な記憶検索では、必要なタイミングでの情報注入が不十分だった。\n🔧**手法**: アクションエージェントと並行して動作する独立したメモリエージェントを設計。構造化メモリバンクを更新しながら、記憶に基づくリマインダーを注入すべきタイミングを能動的に判断。\n📊**結果**: Terminal-Bench 2.0 で +8.3pp、τ²-Bench で +6.8pp の pass@1 向上を達成。\n💡**意義**: メモリを「受動的な辞書」から「能動的な介入ツール」として再定義する新パラダイム。長期エージェントの信頼性向上に貢献。\n⚠️**限界**: メモリエージェント追加による計算コスト増加、メモリバンクの設計に依存する性能のばらつき。\n\n",
+  "fetched_at": "2026-07-10T22:06:20.977112+00:00",
+  "papers": [
+    {
+      "title": "Vidu S1: A Real-Time Interactive Video Generation Model",
+      "upvotes": 108,
+      "paper_id": "2607.03118",
+      "abstract": "A real-time interactive video generation model supporting voice control of digital characters. Users can control video generation content at any moment through voice instructions. Vidu S1 supports infinite-length real-time video generation without blurring, drift, or visual distortion."
+    },
+    {
+      "title": "Video-Oasis: Rethinking Evaluation of Video Understanding",
+      "upvotes": 43,
+      "paper_id": "2603.29616",
+      "abstract": "A diagnostic suite for systematically auditing existing video understanding benchmarks. Audit reveals that 55% of existing benchmark samples are solvable without visual input or temporal context. After filtering these shortcuts, remaining video-native challenges expose substantial capability gaps."
+    },
+    {
+      "title": "Why Can't I Open My Drawer? Mitigating Object-Driven Shortcuts in Zero-Shot Compositional Action Recognition",
+      "upvotes": 42,
+      "paper_id": "2601.16211",
+      "abstract": "Zero-Shot Compositional Action Recognition requires recognizing novel verb-object combinations composed of previously observed primitives. This work tackles a key failure mode: models predict verbs via object-driven shortcuts rather than temporal evidence. Proposes RCORE with co-occurrence prior regularization and temporal order regularization."
+    },
+    {
+      "title": "UniClawBench: A Universal Benchmark for Proactive Agents on Real-World Tasks",
+      "upvotes": 21,
+      "paper_id": "2607.08768",
+      "abstract": "A capability-driven benchmark for evaluating proactive agents in dynamic, real-world settings. Comprises 400 bilingual real-world tasks across five foundational capabilities: Skill Usage, Exploration, Long-Context Reasoning, Multimodal Understanding, and Cross-Platform Coordination."
+    },
+    {
+      "title": "LongE2V: Long-Horizon Event-based Video Reconstruction, Prediction, and Frame Interpolation with Video Diffusion Models",
+      "upvotes": 19,
+      "paper_id": "2607.08770",
+      "abstract": "Recovering high-quality video from sparse event streams using pre-trained video diffusion priors to jointly handle event-based video reconstruction, prediction, and frame interpolation. Introduces Autoregressive Unrolling and Adaptive Context Switching to mitigate temporal drift in extremely long sequences."
+    },
+    {
+      "title": "Enhancing In-context Panoramic Generation via Geometric-aware Pretraining",
+      "upvotes": 14,
+      "paper_id": "2607.08765",
+      "abstract": "Canvas360 framework for in-context panoramic generation combining geometry-aware pretraining with downstream task-specific fine-tuning. Proposes Canvas360Dataset with 1M high-quality paired panoramic samples."
+    },
+    {
+      "title": "DrugGen 2: A disease-aware language model for enhancing drug discovery",
+      "upvotes": 12,
+      "paper_id": "2607.08404",
+      "abstract": "A generative model designing small molecules conditioned on both disease ontology and target protein sequences. Developed by fine-tuning GPT-2 using supervised fine-tuning followed by reinforcement learning via group relative policy optimization."
+    },
+    {
+      "title": "CineMobile: On-Device Image-to-Video Diffusion for Cinematic Camera Motion Generation",
+      "upvotes": 8,
+      "paper_id": "2607.03803",
+      "abstract": "Enables efficient image-to-video generation on mobile devices through distillation-guided pruning, diffusion distillation, and hybrid quantization techniques. Achieves 40x speedup compared to teacher model while maintaining visual quality."
+    },
+    {
+      "title": "Linear Attention Architectures: Mechanisms, Trade-offs, and Cross-Layer Routing",
+      "upvotes": 5,
+      "paper_id": "2607.07953",
+      "abstract": "Comparative study of softmax attention and four recent recurrent linear-attention architectures: DeltaNet, Gated DeltaNet, Kimi Delta Attention, and Gated DeltaNet-2."
+    },
+    {
+      "title": "Remember When It Matters: Proactive Memory Agent for Long-Horizon Agents",
+      "upvotes": 2,
+      "paper_id": "2607.08716",
+      "abstract": "Studies memory as active intervention mechanism rather than passive retrieval for long-horizon tasks. Separate memory agent runs alongside action agent, updating structured memory bank and deciding whether to inject memory-grounded reminder."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.206",
+      "published_at": "2026-07-10",
+      "body": "Added directory path suggestions to `/cd`, matching `/add-dir` behavior. Added a `/doctor` check that proposes trimming checked-in `CLAUDE.md` files. `/commit-push-pr` now auto-allows `git push` to the repo's configured push remote. Gateway: `/login` now supports Anthropic-operated public gateway endpoints. `EnterWorktree` now asks for confirmation before entering a git worktree outside the project's `.claude/worktrees/` directory. Background agents now upgrade to a new version in the background right after a Claude Code update."
+    },
+    {
+      "tag_name": "v2.1.205",
+      "published_at": "2026-07-08",
+      "body": "Added an auto mode rule that blocks tampering with session transcript files. Fixed `--json-schema` silently producing unstructured output when the schema was invalid. Fixed a message sent while Claude was working being silently lost when the turn ended at the `--max-turns` limit. Fixed Windows worktree removal deleting files outside the worktree when an NTFS junction or directory symlink existed inside it. Fixed background agents staying shown as failed or completed in the agent list after being resumed with SendMessage."
+    },
+    {
+      "tag_name": "v2.1.204",
+      "published_at": "2026-07-08",
+      "body": "Fixed hook events not streaming during SessionStart hooks in headless sessions, which could cause remote workers to be idle-reaped mid-hook."
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-14",
+  "content": "# AI Daily Digest — 2026-07-14\n\n## 今日のハイライト\n- **AIエージェントの長期タスク限界が明らかに**: LHT-Bench により最新エージェントでも46の長期ターミナルタスクに対して大きな達成率ギャップが示された。エージェント研究の次なる重要課題が提示された。\n- **動画生成モデルが汎用ビジョン学習器として機能**: GenCeption が動画生成拡散バックボーンを深度・法線・姿勢推定に転用し最先端を更新。大規模生成モデルの知識が予想以上に汎用的であることを示す。\n- **Claude Code v2.1.207 が Auto モードを全主要プラットフォームに開放**: Bedrock・Vertex AI・Foundry でオプトイン不要に。同時にストリーミング時のターミナルフリーズ問題も修正され、実務利用の安定性が向上。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.207 (2025-07-11)\n**主要機能**:\n- Auto モードが Bedrock・Vertex AI・Foundry で `CLAUDE_CODE_ENABLE_AUTO_MODE` なしに利用可能になった。無効化は設定の `disableAutoMode` で対応。\n\n**バグ修正**:\n- 長いリスト・テーブル・段落・コードブロックを含むレスポンスのストリーミング中に発生していた、ターミナルのフリーズやキー入力の遅延を修正。\n- 非インタラクティブ実行時にリモートの管理設定がセキュリティ同意ダイアログを表示せずに記録されていた問題を修正。\n- システムが生成した会話更新によって誤発生していた プロンプトインジェクション警告を修正。\n- 毎リリースで `~/.local/bin/claude` のカスタムランチャースクリプトやシンボリックリンクを上書きしていた自動アップデータのバグを修正。\n\n**ユーザーへの影響**: Auto モードがより多くのプラットフォームで利用可能になり、ストリーミング安定性が大幅に向上。\n\n---\n\n### v2.1.206 (2025-07-10)\n**主要機能**:\n- `/cd` コマンドにディレクトリパスのサジェスト機能を追加（`/add-dir` と同様の動作）。\n- `/doctor` コマンドにチェック機能を追加：コードベースから導出可能なコンテンツを削減する `CLAUDE.md` のトリミングを提案。\n- `/commit-push-pr` がリポジトリの設定済みプッシュリモートへの `git push` を自動許可。\n- Gateway: `/login` が Anthropic の公式パブリックゲートウェイエンドポイントをサポート。\n- バックグラウンドエージェントが Claude Code 更新直後にバックグラウンドで新バージョンにアップグレード。\n\n**ユーザーへの影響**: ワークフローの自動化が向上し、`/doctor` による CLAUDE.md 最適化が容易に。\n\n---\n\n### v2.1.205 (2025-07-08)\n**主要機能**:\n- セッション トランスクリプトファイルの改ざんをブロックする Auto モードルールを追加。\n\n**バグ修正**:\n- `--json-schema` で無効なスキーマ使用時に非構造化出力が生成されていた問題、および `format` キーワード使用スキーマが拒否されていた問題を修正。\n- `--max-turns` 制限でターンが終了した際、作業中に送信されたメッセージが消失していたバグを修正。\n- Windows で NTFS ジャンクションやシンボリックリンクが存在する場合、ワークツリーの削除がワークツリー外のファイルを削除していた問題を修正。\n- `SendMessage` で再開後もバックグラウンドエージェントが 'failed' または 'completed' と表示され続ける問題を修正。\n\n**ユーザーへの影響**: セキュリティ強化とクロスプラットフォームの信頼性向上。特に Windows ユーザーに恩恵。\n\n## 注目論文 TOP 10\n\n**1. Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading** | 45 upvotes | https://arxiv.org/abs/2607.08964\n🎯 **背景**: AIエージェントの長期タスク遂行能力を評価するベンチマークが不足しており、既存の評価は短い単発タスクに偏っていた。\n🔧 **手法**: 9カテゴリー46の長期タスクを用意し、細粒度の段階的サブタスク評価（Dense Reward）で進捗を定量化。タスクには数百エピソード・数分〜数時間の実行が必要。\n📊 **結果**: 最新のAIエージェントでも達成率は低く、長期タスクで大きな改善余地があることを実証。\n💡 **意義**: エージェント研究コミュニティに長期・連続的なタスク設計の重要性を示すベンチマークを提供。\n⚠️ **限界**: 46タスクに限定されており、実世界の多様性を完全には網羅できていない。\n\n---\n\n**2. Video Generation Models are General-Purpose Vision Learners** | 40 upvotes | https://arxiv.org/abs/2607.09024\n🎯 **背景**: コンピュータビジョンの事前学習パラダイムにおいて、テキスト→動画生成モデルを汎用Vision基盤として活用する可能性が未探索だった。\n🔧 **手法**: GenCeptionは事前学習済みの動画生成拡散バックボーンを深度推定・法線推定・カメラ姿勢推定等のビジョンタスクにファインチューニングなしで適用。\n📊 **結果**: 深度推定・表面法線推定・カメラ姿勢推定等の複数ベンチマークで最先端性能を達成。\n💡 **意義**: 動画生成の大規模事前学習が視覚的世界理解を獲得しており、汎用ビジョン学習の強力なパラダイムになることを示す。\n⚠️ **限界**: 動画生成の推論コストが高く、リアルタイム応用には課題が残る。\n\n---\n\n**3. Scalable Visual Pretraining for Language Intelligence** | 40 upvotes | https://arxiv.org/abs/2607.09657\n🎯 **背景**: テキストのみの事前学習では、ドキュメントや Web ページに含まれる図・数式・レイアウト等の視覚的情報が失われ、基盤モデルの性能に限界がある。\n🔧 **手法**: ドキュメントやウェブページからの視覚的事前学習を大規模に実施。視覚情報（図表・数式・レイアウト）をテキスト抽出だけでは捉えられない知識として活用。\n📊 **結果**: テキスト単体での事前学習を大幅に上回る性能をスケールとともに達成。特に文書理解タスクで顕著な向上。\n💡 **意義**: 言語知能のための視覚事前学習がスケール可能であることを証明し、マルチモーダル基盤モデルの新設計原則を提示。\n⚠️ **限界**: 視覚データの品質・多様性がモデル性能に大きく依存する。\n\n---\n\n**4. Trust Region Policy Distillation** | 17 upvotes | https://arxiv.org/abs/2607.04751\n🎯 **背景**: オンポリシー蒸留（強力な教師モデルから学生モデルへの知識転移）は訓練が不安定になりやすく、数学的推論タスクで特に課題が大きかった。\n🔧 **手法**: 動的近位教師構築（Dynamic Proximal Teacher Construction）により信頼領域内での安定した蒸留を実現。追加計算コストゼロで既存パイプラインに統合可能。\n📊 **結果**: 数学的推論タスクで訓練安定性とサンプル効率を劇的に改善。既存オンポリシー蒸留手法を大幅に上回る性能。\n💡 **意義**: 計算コスト追加なしで蒸留の安定性を改善する実用的なアプローチ。LLM の推論能力向上に直結。\n⚠️ **限界**: 数学的推論タスクに焦点が当たっており、他ドメインへの汎化性能は未検証。\n\n---\n\n**5. KronQ: LLM Quantization via Kronecker-Factored Hessian** | 15 upvotes | https://arxiv.org/abs/2607.07964\n🎯 **背景**: 大規模言語モデルの2ビット重み量子化は精度の大幅な劣化を招くため、実用的な軽量化が困難だった。\n🔧 **手法**: クロネッカー積分解されたヘッセ行列（勾配共分散）を量子化パイプラインに組み込み、より精度の高い感度推定を実現。\n📊 **結果**: LLaMA-3-70Bの2ビット重み量子化でパープレキシティ7.93を達成。GPTQ等の既存手法を大幅に上回る。\n💡 **意義**: 超低ビット量子化の精度限界を押し上げ、大規模モデルの省メモリ展開を実現する可能性。\n⚠️ **限界**: クロネッカー因子分解の計算コストが追加で発生するため、量子化自体の処理時間が増加。\n\n**6. Linear Attention Architectures: Mechanisms, Trade-offs, and Cross-Layer Routing** | 13 upvotes | https://arxiv.org/abs/2607.07953\n🎯 **背景**: ソフトマックスアテンションは2乗コストの問題があり、線形アテンションの実用性比較が不明確だった。\n🔧 **手法**: ソフトマックスアテンションと4つの線形アテンションアーキテクチャを比較。Kimi Delta Attention + Muon オプティマイザーの組み合わせ、およびクロスレイヤー値ルーティングを評価。\n📊 **結果**: Kimi Delta Attention + Muon が最低バリデーション損失を達成。クロスレイヤー値ルーティングはベースラインに対して控えめな改善。\n💡 **意義**: 線形アテンションの実用化に向けた包括的比較研究として、アーキテクチャ設計の指針を提供。\n⚠️ **限界**: 特定のタスクやスケールに限定した評価であり、全般的な優位性は未確定。\n\n---\n\n**7. From RGB Generation to Dense Field Readout: Pixel-Space Dense Prediction with Text-to-Image Models** | 9 upvotes | https://arxiv.org/abs/2607.06553\n🎯 **背景**: テキスト→画像生成モデルはRGB生成に最適化されており、深度・マッティング等の密な予測タスクへの転用が困難だった。\n🔧 **手法**: RGB画像を生成するのではなく、トークンをタスク固有の出力（深度値・マスク等）に直接マッピングする手法を採用。事前学習済みT2Iモデルを再利用。\n📊 **結果**: トリマップフリーのマッティング・KITTI深度推定・参照セグメンテーションで新たな最先端性能を達成。\n💡 **意義**: 大規模T2Iモデルの知識をRGB以外の視覚タスクにも活用できることを示す。\n⚠️ **限界**: 各タスクごとに個別のヘッドや微調整が必要であり、完全なゼロショット転用は困難。\n\n---\n\n**8. Towards Mechanistically Understanding Why Memorized Knowledge Fails to Generalize in Large Language Model Finetuning** | 7 upvotes | https://arxiv.org/abs/2607.08393\n🎯 **背景**: LLMは事実を記憶しているにも関わらず、推論タスクでその知識を活用できない「Knowing-Using Gap（知識使用ギャップ）」が問題視されていた。\n🔧 **手法**: セルフパッチング介入技術（Self-Patching Intervention）を使用して、知識ルーティングが失敗する活性化箇所を特定し、メカニズムを解析。\n📊 **結果**: オラクルの汎化性能の58〜75%を回復することに成功。知識が存在するにも関わらず活用されない具体的な箇所を特定。\n💡 **意義**: LLMのファインチューニング限界をメカニズムレベルで理解し、今後の改善方針を示す重要な基礎研究。\n⚠️ **限界**: 特定のモデルアーキテクチャと介入手法に依存しており、汎用性の検証が必要。\n\n---\n\n**9. Self-Guided Test-Time Training for Long-Context LLMs** | 7 upvotes | https://arxiv.org/abs/2607.09415\n🎯 **背景**: 長文コンテキストを扱うLLMは、テスト時に関連情報を特定して適応する能力が不足しており、長文ベンチマークでの性能が限定的だった。\n🔧 **手法**: Self-Guided TTT（テスト時訓練）：モデルが適応前に証拠スパンを自己同定し、それをガイドとしてテスト時の訓練を実施。\n📊 **結果**: LongBench-v2とLongBench-Proで最大15%の相対的改善。Qwen3-4B-Thinking-2507とLlama-3.1-8B-Instructの両モデルで有効性を確認。\n💡 **意義**: 追加の学習データなしに長文理解を向上させる実用的なアプローチ。推論時コンピュートの効果的な活用法を示す。\n⚠️ **限界**: テスト時訓練に伴う追加計算コストが発生し、リアルタイム応用には不向きな場合がある。\n\n---\n\n**10. PanoWorld: Real-World Panoramic Generation** | 7 upvotes | https://arxiv.org/abs/2607.09661\n🎯 **背景**: パノラマ動画生成（360度世界モデル）は、長距離の空間的整合性と物理的一貫性の維持が困難であり、実世界データセットも不足していた。\n🔧 **手法**: 回転等変性（Rotation-Equivariant Properties）を活用した長距離メモリ機構を導入。実世界と シミュレーションのパノラマ動画クリップからなるWorld360データセットを新規構築。\n📊 **結果**: 多様な環境条件下での物理的一貫性評価で既存手法を上回る性能を達成。\n💡 **意義**: 自動運転・VR/AR・ロボティクス向けの高品質なパノラマ世界モデルの実現に貢献する基盤を提供。\n⚠️ **限界**: World360データセットは特定の環境シナリオに偏っており、野外環境での汎化に課題。\n\n",
+  "fetched_at": "2026-07-13T22:06:32.001142+00:00",
+  "papers": [
+    {
+      "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading",
+      "upvotes": 45,
+      "paper_id": "2607.08964",
+      "abstract": "A benchmark of 46 long-horizon tasks spanning nine categories evaluates AI agents through fine-grained graded subtasks. Tasks require hundreds of episodes and minutes to hours of execution, revealing significant headroom for improvement in agent capabilities."
+    },
+    {
+      "title": "Video Generation Models are General-Purpose Vision Learners",
+      "upvotes": 40,
+      "paper_id": "2607.09024",
+      "abstract": "Large-scale text-to-video generation serves as a strong pre-training paradigm for computer vision. GenCeption leverages a pre-trained video generative diffusion backbone for various vision tasks, achieving state-of-the-art performance across depth, surface normal, camera pose estimation, and other benchmarks."
+    },
+    {
+      "title": "Scalable Visual Pretraining for Language Intelligence",
+      "upvotes": 40,
+      "paper_id": "2607.09657",
+      "abstract": "Visual pretraining on documents and web pages outperforms text-only pretraining for foundation models. Rich visual information from figures, equations, and layouts carries knowledge that cannot be fully captured by text extraction alone."
+    },
+    {
+      "title": "Trust Region Policy Distillation",
+      "upvotes": 17,
+      "paper_id": "2607.04751",
+      "abstract": "Transforms unstable on-policy distillation into a stable training paradigm through dynamic proximal teacher construction. Dramatically enhances training stability and sample efficiency on mathematical reasoning tasks with zero additional computational overhead."
+    },
+    {
+      "title": "KronQ: LLM Quantization via Kronecker-Factored Hessian",
+      "upvotes": 15,
+      "paper_id": "2607.07964",
+      "abstract": "Post-training quantization framework incorporating gradient covariance into quantization pipelines. KronQ achieves 7.93 perplexity on 2-bit weight-only quantization for LLaMA-3-70B, significantly outperforming existing methods like GPTQ."
+    },
+    {
+      "title": "Linear Attention Architectures: Mechanisms, Trade-offs, and Cross-Layer Routing",
+      "upvotes": 13,
+      "paper_id": "2607.07953",
+      "abstract": "Comparative study of softmax attention and four recurrent linear-attention architectures. Kimi Delta Attention with Muon optimizer reaches lowest validation loss, while Cross-Layer Value Routing yields modest improvements over matched baselines."
+    },
+    {
+      "title": "From RGB Generation to Dense Field Readout: Pixel-Space Dense Prediction with Text-to-Image Models",
+      "upvotes": 9,
+      "paper_id": "2607.06553",
+      "abstract": "Adapts pretrained text-to-image models for dense prediction by mapping tokens to task-native outputs rather than generating RGB images. Sets new state-of-the-art on trimap-free matting, KITTI depth, and referring segmentation benchmarks."
+    },
+    {
+      "title": "Towards Mechanistically Understanding Why Memorized Knowledge Fails to Generalize in Large Language Model Finetuning",
+      "upvotes": 7,
+      "paper_id": "2607.08393",
+      "abstract": "Formalizes the 'Knowing-Using Gap' where LLMs memorize facts but fail at reasoning. Uses self-patching intervention technique to identify activation locations where knowledge routing fails, recovering 58-75% of oracle generalization headroom."
+    },
+    {
+      "title": "Self-Guided Test-Time Training for Long-Context LLMs",
+      "upvotes": 7,
+      "paper_id": "2607.09415",
+      "abstract": "Proposes Self-Guided TTT method where models identify evidence spans before adaptation. Achieves up to 15% relative improvement on LongBench-v2 and LongBench-Pro benchmarks for both Qwen3-4B-Thinking-2507 and Llama-3.1-8B-Instruct models."
+    },
+    {
+      "title": "PanoWorld: Real-World Panoramic Generation",
+      "upvotes": 7,
+      "paper_id": "2607.09661",
+      "abstract": "Addresses long-range memory in panoramic world models by exploiting rotation-equivariant properties. Introduces World360 dataset with real-world and simulated panoramic video clips for evaluating physical consistency under diverse conditions."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.207",
+      "published_at": "2025-07-11",
+      "body": "Auto mode is now available without CLAUDE_CODE_ENABLE_AUTO_MODE opt-in on Bedrock, Vertex AI, and Foundry; disable via disableAutoMode in settings. Fixed the terminal freezing and keystrokes lagging while streaming responses containing very long lists, tables, paragraphs, or code blocks. Fixed remote managed settings from a non-interactive run being permanently recorded as consented without showing the security consent dialog. Fixed spurious prompt-injection warnings triggered by benign system-generated conversation updates. Fixed the auto-updater overwriting a custom launcher script or symlink at ~/.local/bin/claude on every release."
+    },
+    {
+      "tag_name": "v2.1.206",
+      "published_at": "2025-07-10",
+      "body": "Added directory path suggestions to /cd, matching /add-dir behavior. Added a /doctor check that proposes trimming checked-in CLAUDE.md files by cutting content Claude could derive from the codebase. /commit-push-pr now auto-allows git push to the repo configured push remote. Gateway: /login now supports Anthropic-operated public gateway endpoints. Background agents now upgrade to a new version in the background right after a Claude Code update, instead of paying a slow stale-session upgrade when you attach."
+    },
+    {
+      "tag_name": "v2.1.205",
+      "published_at": "2025-07-08",
+      "body": "Added an auto mode rule that blocks tampering with session transcript files. Fixed --json-schema silently producing unstructured output when the schema was invalid, and schemas using the format keyword being rejected. Fixed a message sent while Claude was working being silently lost when the turn ended at the --max-turns limit. Fixed Windows worktree removal deleting files outside the worktree when an NTFS junction or directory symlink existed inside it. Fixed background agents staying shown as failed or completed in the agent list after being resumed with SendMessage."
+    }
+  ]
+}

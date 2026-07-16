@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-17",
+  "content": "# AI Daily Digest — 2026-07-17\n\n## 今日のハイライト\n- **Boogu-Image-0.1が107票でトップ**: オープンソース統合マルチモーダルモデルとして、商用最先端に迫る品質でテキスト・画像の理解・生成・編集を単一モデルで実現。日英バイリンガル対応も含む実用レベルの成果。\n- **Claude Code v2.1.211 リリース**: サブエージェントテキストのstream-json出力への転送機能追加に加え、セキュリティ修正（双方向オーバーライド文字の無害化）やマルチセッション安定性向上など、実運用上重要な修正が多数含まれる。\n- **AIエージェント自己改善サーベイ公開**: 現代エージェントシステムの自己改善を体系的に分類・整理したサーベイが登場。研究領域の標準化に向けた重要な基盤論文として注目。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.211 (2025-07-15)\n\n**主要機能**\n- `--forward-subagent-text` フラグと `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` 環境変数を追加。サブエージェントのテキスト・思考を stream-json 出力に含めることが可能になり、デバッグや監査に大きく貢献。\n\n**バグ修正**\n- チャットチャンネルへ中継されるパーミッションプレビューで、双方向オーバーライド・ゼロ幅文字・類似引用符が無害化されない問題を修正（セキュリティ改善）。\n- `PreToolUse` フックの `ask` 決定を auto モードが上書きしてしまうバグを修正。\n- スリープ解除後に複数の Claude Code セッションが同時ログアウトする問題を修正。\n- アイドル状態のウェブセッション復帰後にプラグイン MCP サーバーが再接続されない問題を修正。\n- Vertex / Bedrock 環境で起動時にデフォルト Opus モデルを試みてしまうバグを修正。\n- 明示的モデル上書きで起動したサブエージェントが親モデルに戻ってしまう問題を修正。\n- ネストした `.claude/rules/*.md` ファイルがプロジェクト設定除外時にも読み込まれる問題を修正。\n- DOS デバイスサフィックスや末尾ドットを持つファイルのアップロードバリデーションを修正。\n- Chrome からのリモート・CLI セッションでのファイルアップロードを修正。\n\n**ユーザーへの影響**: サブエージェントの動作透明性が向上し、セキュリティ面でも重要な修正が含まれる。マルチセッション運用での安定性が改善。\n\n---\n\n### v2.1.210 (2025-07-14)\n\n**主要機能**\n- 長時間実行ツール呼び出しの折りたたみサマリー行にリアルタイム経過時間カウンターを追加。\n- `Write(path)`・`NotebookEdit(path)`・`Glob(path)` パーミッションルールに対する起動時警告を追加。\n\n**バグ修正**\n- `isolation: 'worktree'` サブエージェントがメインリポジトリに対して git 変更コマンドを実行してしまうバグを修正（重要）。\n- `ultracode` キーワードが人間以外のインプットで発動してしまう問題を修正。\n- 外部エディターへのペーストマーカー漏洩を修正。\n- トランジション中の `claude attach` 失敗を修正。\n- bigint を返すツール結果レンダラーによるセッションクラッシュを修正。\n- フックコールバックのタイムアウトが誤ってユーザー拒否として報告される問題を修正。\n- バックグラウンドコマンド後に `cd` が有効になったと Claude が誤認する問題を修正。\n\n**ユーザーへの影響**: ワークツリー分離の安全性が大幅に向上。UI の使いやすさが改善され、セッション安定性も強化。\n\n---\n\n### v2.1.209 (2025-07-14)\n\n**バグ修正**\n- `claude agents` バックグラウンドセッションで `/model` などのダイアログがブロックされる問題を修正（過度に広いガードをリバート）。\n\n**ユーザーへの影響**: エージェントバックグラウンドセッションでのモデル切り替えが正常に動作するよう改善。\n\n## 注目論文 TOP 10\n\n**1. Boogu-Image-0.1: Boosting Open-Source Unified Multimodal Understanding and Generation** | 👍 107 | [arxiv 2607.13125](https://arxiv.org/abs/2607.13125)\n🎯**背景**: オープンソースのマルチモーダル統合モデルは、商用モデルとのギャップを縮める重要な研究領域。テキスト・画像の理解と生成を単一モデルで統合することが求められていた。\n🔧**手法**: Base・Turbo・Edit・Edit-Turbo の4バリアントを提供。テキスト→画像生成、高速推論、指示ベース編集をカバーし、日英バイリンガルテキスト描画にも対応。\n📊**結果**: テキスト→画像生成において競合商用モデルに匹敵する性能を達成。Turbo バリアントで推論速度を大幅に向上。\n💡**意義**: オープンソースコミュニティに実用レベルの統合マルチモーダルモデルを提供。商用代替としての可能性が高い。\n⚠️**限界**: 商用最先端モデルとの全面的なベンチマーク比較が不明確。バイリンガル対応の品質詳細が未開示。\n\n---\n\n**2. PolicyShiftGuard: Benchmarking and Improving Policy-Adaptive Image Guardrails** | 👍 30 | [arxiv 2607.05910](https://arxiv.org/abs/2607.05910)\n🎯**背景**: AI 安全性において、コンテキストに応じた安全ポリシーへ適応できる画像ガードレールが重要課題。固定ルールでは多様なユースケースに対応できない。\n🔧**手法**: 二段階学習アプローチを採用。ランダム化ポリシー SFT（Supervised Fine-Tuning）と境界ペア適応を組み合わせ、未知のポリシー定義への汎化を実現。\n📊**結果**: ホールドアウトポリシー定義への汎化能力で従来手法を上回る成果。ポリシー適応ベンチマークで優れた性能を示す。\n💡**意義**: 企業・プラットフォーム固有の安全ポリシーに動的適応できるガードレール技術。AI 安全性の実用化に直結。\n⚠️**限界**: 実世界の多様なポリシー網羅性が限定的な可能性。敵対的入力への耐性評価が不明。\n\n---\n\n**3. MetaView: Monocular Novel View Synthesis with Scale-Aware Implicit Geometry Priors** | 👍 22 | [arxiv 2607.12000](https://arxiv.org/abs/2607.12000)\n🎯**背景**: 単一カメラ映像からの新規視点合成は3D理解の核心課題。大きな視点変化に対して幾何学的整合性を保つことが難しかった。\n🔧**手法**: 拡散モデルベースのフレームワークで暗黙的幾何学モデリングと明示的3Dキューを統合。メトリック深度を活用した暗黙的幾何学事前分布でスケール認識を実現。\n📊**結果**: 大きな視点変化下でも幾何学的整合性と精密な制御性を達成。既存手法と比較して視点合成品質が向上。\n💡**意義**: 自動運転・AR/VR・ロボティクスでの3D再構成に応用可能。単眼カメラのみで高品質な視点合成が可能になる。\n⚠️**限界**: リアルタイム処理への適用可能性が未検証。屋外大規模シーンでの性能が不明。\n\n---\n\n**4. GigaWorld-Policy-0.5: A Faster and Stronger WAM Empowered by AutoResearch** | 👍 21 | [arxiv 2607.13960](https://arxiv.org/abs/2607.13960)\n🎯**背景**: ロボット制御のための World Action Model（WAM）は将来の視覚的ダイナミクス予測を活用するが、推論速度と性能のトレードオフが課題だった。\n🔧**手法**: AC-WM と WAM の混合学習戦略に加え、Mixture-of-Transformers（MoT）アーキテクチャを採用。AutoResearch で自動的に研究・改善を推進。\n📊**結果**: 前バージョンと比較して推論速度が大幅に向上しつつ、将来視覚ダイナミクス監督の恩恵を維持。\n💡**意義**: 実際のロボット展開に近い速度と性能を両立。AutoResearch による自律的モデル改善の有効性を示す。\n⚠️**限界**: 実環境ロボットでの検証範囲が限定的。MoT アーキテクチャの学習安定性に関する詳細が不明。\n\n---\n\n**5. Registers Matter for Pixel-Space Diffusion Transformers** | 👍 16 | [arxiv 2605.16147](https://arxiv.org/abs/2605.16147)\n🎯**背景**: レジスタトークンは Vision Transformer で特徴マップの品質向上に有効であることが示されていたが、拡散モデルへの応用は未探索だった。\n🔧**手法**: ピクセル空間拡散 Transformer にレジスタトークンを導入し、高ノイズレベルでの効果を分析。Register Guidance 技術でレジスタの寄与を増幅する新手法を提案。\n📊**結果**: 高ノイズレベルでのクリーンな特徴マップを実現。Register Guidance により視覚的構造が改善された画像生成品質を達成。\n💡**意義**: 拡散モデルの特徴表現品質向上に新しい視点を提供。画像生成における構造的一貫性改善に貢献。\n⚠️**限界**: レイテンシ空間拡散モデルとの比較が不十分。大規模モデルでのスケーラビリティ検証が必要。\n\n---\n\n**6. Self-Improvements in Modern Agentic Systems: A Survey** | 👍 13 | [arxiv 2607.13104](https://arxiv.org/abs/2607.13104)\n🎯**背景**: AIエージェントの自己改善能力は次世代 AI の重要な特性。しかし体系的な分類や評価フレームワークが欠如していた。\n🔧**手法**: 自己改善エージェントを「経験を能力向上に変換する適応システム」として定義。更新ターゲットと駆動シグナルによる分類体系を構築し、アプリケーション・評価・将来方向を網羅的にレビュー。\n📊**結果**: 自己改善アプローチの統一的な分類体系を確立。既存研究の系統的な整理と将来課題の特定。\n💡**意義**: 研究者が自己改善エージェントを設計・評価する際の共通言語と枠組みを提供。分野全体の進歩を加速。\n⚠️**限界**: サーベイの性質上、具体的な実験的検証がない。急速に進化する分野のため情報が古くなるリスクがある。\n\n---\n\n**7. Hallo4D: Multi-Modal Hallucination Mitigation for Consistent Spatio-Temporal Generation** | 👍 11 | [arxiv 2607.12752](https://arxiv.org/abs/2607.12752)\n🎯**背景**: 3D・4D コンテンツ生成において空間的・時間的な不整合（ハルシネーション）が重大な品質問題。マルチモーダル LLM の活用で解決を目指す。\n🔧**手法**: 生成→検出→修正のパラダイムを採用。コンセンサス駆動最適化とモーション認識サンプリングにより空間・時間の一貫性を統一フレームワークで維持。\n📊**結果**: 3D・4D 生成における空間的・時間的整合性が大幅に向上。既存のハルシネーション検出手法と比較して優れた修正率を達成。\n💡**意義**: 映像生成・VR/AR・デジタルツイン等の高品質4Dコンテンツ生成に直結。商用応用への道を開く。\n⚠️**限界**: 計算コストが高い可能性。実時間生成への適用可能性が未検証。修正パラダイムによる生成多様性の低下リスク。\n\n---\n\n**8. AgentCompass: A Unified Evaluation Infrastructure for Agent Capabilities** | 👍 9 | [arxiv 2607.13705](https://arxiv.org/abs/2607.13705)\n🎯**背景**: LLM ベースエージェントの評価は断片化しており、ベンチマーク・ハーネス・環境の非互換性が比較研究を困難にしていた。\n🔧**手法**: Benchmark・Harness・Environment を独立コンポーネントとして分離したオープンソースの軽量インフラを構築。フォルトトレラント非同期ランタイムとトラジェクトリ解析ツールで 20+ ベンチマークをサポート。\n📊**結果**: 20以上のベンチマークを統一インターフェースで実行可能。評価のオーバーヘッドを大幅に削減。\n💡**意義**: エージェント研究コミュニティの評価標準化に貢献。再現可能な研究の促進と公平な比較を可能にする。\n⚠️**限界**: 新しいベンチマーク追加時の対応範囲と容易さが不明。クローズドソースモデルとの統合制約がある可能性。\n\n---\n\n**9. Vinci2: Providing Proactive Assistance in Continuous Egocentric Videos** | 👍 9 | [arxiv 2607.11523](https://arxiv.org/abs/2607.11523)\n🎯**背景**: 一人称視点の連続動画から文脈を理解し、ユーザーが必要とするタイミングで能動的に支援するシステムは AR グラスの核心機能。\n🔧**手法**: EgoMemo エージェントがマルチスケール時間サマリー・意味的知識グラフ・視覚埋め込みを維持。「いつ」「何を」支援するかを文脈依存推論で判断し、根拠ある応答を生成。\n📊**結果**: 連続一人称動画での文脈理解と介入タイミング判断において既存手法を上回る性能を実証。\n💡**意義**: AR/VR デバイスでの能動的アシスタント実現に向けた重要なステップ。メモリ効率的な長期コンテキスト管理の新アプローチを提供。\n⚠️**限界**: プライバシー問題（常時映像記録）への対処が不明。リアルタイム処理への制約がある可能性。\n\n---\n\n**10. Tracing Agentic Failure from the Flow of Success** | 👍 8 | [arxiv 2607.12747](https://arxiv.org/abs/2607.12747)\n🎯**背景**: エージェントシステムの失敗原因を自動的に特定することは品質保証の重要課題。ラベル付き失敗データの入手困難さが課題だった。\n🔧**手法**: 成功軌跡のみで学習するワンクラス学習とニューラル制御微分方程式（NCDE）を組み合わせた教師なし手法。成功ダイナミクスからの逸脱で失敗ステップを検出。\n📊**結果**: プロンプティングベースラインと比較して 200-5000 倍高速な失敗帰属を達成。失敗ラベルなしでの効果的な失敗検出を実現。\n💡**意義**: 大規模エージェント展開での品質監視に実用的。失敗データ収集コストを大幅に削減できる教師なしアプローチの有効性を示す。\n⚠️**限界**: NCDE の計算安定性と複雑なエージェント軌跡への適用可能性が不明。成功軌跡の収集自体がコスト要因になる可能性。\n\n",
+  "fetched_at": "2026-07-16T22:05:51.173836+00:00",
+  "papers": [
+    {
+      "title": "Boogu-Image-0.1: Boosting Open-Source Unified Multimodal Understanding and Generation",
+      "upvotes": 107,
+      "paper_id": "2607.13125",
+      "abstract": "Open-source unified multimodal understanding and generation model family with Base, Turbo, Edit, and Edit-Turbo variants delivering competitive performance in text-to-image generation, fast inference, and instruction-based editing with bilingual text rendering."
+    },
+    {
+      "title": "PolicyShiftGuard: Benchmarking and Improving Policy-Adaptive Image Guardrails",
+      "upvotes": 30,
+      "paper_id": "2607.05910",
+      "abstract": "Comprehensive benchmark and method for policy-adaptive image guardrailing where models must decide if images violate supplied safety policies and generalize to held-out policy definitions using two-stage training combining randomized policy SFT with boundary-pair adaptation."
+    },
+    {
+      "title": "MetaView: Monocular Novel View Synthesis with Scale-Aware Implicit Geometry Priors",
+      "upvotes": 22,
+      "paper_id": "2607.12000",
+      "abstract": "Diffusion-based monocular novel view synthesis framework combining implicit geometry modeling with explicit 3D cues using implicit geometry priors and metric depth for geometry consistency and precise controllability under large viewpoint changes."
+    },
+    {
+      "title": "GigaWorld-Policy-0.5: A Faster and Stronger WAM Empowered by AutoResearch",
+      "upvotes": 21,
+      "paper_id": "2607.13960",
+      "abstract": "Enhanced action-centered World Action Model for robot control using mixed AC-WM and WAM training strategy with Mixture-of-Transformers architecture for efficient inference while preserving benefits of future visual dynamics supervision during training."
+    },
+    {
+      "title": "Registers Matter for Pixel-Space Diffusion Transformers",
+      "upvotes": 16,
+      "paper_id": "2605.16147",
+      "abstract": "Study showing register tokens benefit pixel-space Diffusion Transformers differently than Vision Transformers, producing cleaner feature maps at high noise levels and proposing Register Guidance technique to amplify register contributions for improved visual structure."
+    },
+    {
+      "title": "Self-Improvements in Modern Agentic Systems: A Survey",
+      "upvotes": 13,
+      "paper_id": "2607.13104",
+      "abstract": "Comprehensive survey framing self-improving agents as adaptive systems converting experience into capability gains, organizing work by update target and driving signals while discussing applications, evaluation, and future directions for autonomous agent evolution."
+    },
+    {
+      "title": "Hallo4D: Multi-Modal Hallucination Mitigation for Consistent Spatio-Temporal Generation",
+      "upvotes": 11,
+      "paper_id": "2607.12752",
+      "abstract": "Unified framework leveraging large multimodal language models to identify and mitigate spatial and temporal inconsistencies in 3D and 4D generation through generation-detection-correction paradigm with consensus-driven optimization and motion-aware sampling."
+    },
+    {
+      "title": "AgentCompass: A Unified Evaluation Infrastructure for Agent Capabilities",
+      "upvotes": 9,
+      "paper_id": "2607.13705",
+      "abstract": "Open-source lightweight infrastructure organizing LLM-based agent evaluation around independent Benchmark, Harness, and Environment components with fault-tolerant asynchronous runtime and trajectory analysis tools supporting 20+ benchmarks."
+    },
+    {
+      "title": "Vinci2: Providing Proactive Assistance in Continuous Egocentric Videos",
+      "upvotes": 9,
+      "paper_id": "2607.11523",
+      "abstract": "Proactive egocentric assistance system with EgoMemo agent maintaining multi-scale temporal summaries, semantic knowledge graphs, and visual embeddings for context-dependent reasoning about when and whether to intervene with grounded responses."
+    },
+    {
+      "title": "Tracing Agentic Failure from the Flow of Success",
+      "upvotes": 8,
+      "paper_id": "2607.12747",
+      "abstract": "Unsupervised failure attribution method using one-class learning with neural controlled differential equations to identify error steps by detecting deviations from dynamics learned exclusively on successful trajectories, 200-5000x faster than prompting baselines."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.211",
+      "published_at": "2025-07-15",
+      "body": "Added `--forward-subagent-text` flag and `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` environment variable to include subagent text and thinking in stream-json output. Fixed permission previews relayed to chat channels not neutralizing bidirectional-override, zero-width, and look-alike quote characters. Fixed auto mode overriding a PreToolUse hook's `ask` decision for unsandboxed Bash. Fixed parallel Claude Code sessions logging out simultaneously after wake-from-sleep. Fixed plugin MCP servers not reconnecting after idle web session woke. Fixed Claude Code on Vertex and Bedrock attempting default Opus model at startup. Fixed subagents spawned with explicit model override reverting to parent's model. Fixed nested `.claude/rules/*.md` files loading when sources exclude project settings. Fixed file upload validation for DOS device suffixes and trailing dots. Fixed file uploads to Claude in Chrome from remote and CLI sessions."
+    },
+    {
+      "tag_name": "v2.1.210",
+      "published_at": "2025-07-14",
+      "body": "Added live elapsed-time counter to collapsed tool summary line for long-running tool calls. Added startup warning for `Write(path)`, `NotebookEdit(path)`, and `Glob(path)` permission rules. Fixed `isolation: 'worktree'` subagents running git-mutating commands against main repo. Fixed `ultracode` keyword opt-in firing on non-human-originated input. Fixed paste markers leaking into external editors. Fixed `claude attach` failing with job/agent errors during transitions. Fixed session crash when tool's result renderer returned numeric bigint. Fixed hook callback timeout misreported as user rejection. Fixed Claude assuming `cd` took effect after backgrounded command. Fixed plugin-provided MCP servers torn down during re-sync. Fixed plan approvals without edits labeled as edited by user."
+    },
+    {
+      "tag_name": "v2.1.209",
+      "published_at": "2025-07-14",
+      "body": "Fixed `/model` and other dialogs being blocked in `claude agents` background sessions (reverted overly broad guard)."
+    }
+  ]
+}
