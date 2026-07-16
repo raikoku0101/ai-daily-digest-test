@@ -1,6 +1,6 @@
-**4. Infinite Worlds with Versatile Interactions**
-**著者**: LingBot-World Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.07534
+**4. GigaWorld-Policy-0.5: A Faster and Stronger WAM Empowered by AutoResearch**
+**著者**: GigaWorld Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.13960
 
 **まとめ**:
-因果的事前学習パラダイム（causal pretraining paradigm）により無制限の相互作用地平線（unbounded interaction horizon）を実現した世界シミュレーションシステム「LingBot-World 2.0」。720p/60fps のリアルタイム処理、多様なインタラクション（攻撃・魔法・射撃等）、パイロット・ディレクターエージェントによる二層制御、マルチプレイヤー対応を統合。14B/1.3B の2段階モデル構成で単一GPUでの運用も実現した。
+ロボット制御向けWorld Action Model（WAM）の推論効率問題を解決した研究。訓練時は将来の視覚的ダイナミクス（visual dynamics）を活用しながら、推論時はアクションのみをデコードするアクション中心定式化（action-centric formulation）を採用。Mixture-of-TransformersアーキテクチャとエージェントベースAutoResearchパイプラインにより、RTX 4090で85msの推論レイテンシを達成し、リアルタイム閉ループ制御への実用展開への道を開いた。

@@ -1,6 +1,6 @@
-**3. Scaling Mixture-of-Experts Video Pretraining for Embodied Intelligence**
-**著者**: LingBot-Video Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.07675
+**3. MetaView: Monocular Novel View Synthesis with Scale-Aware Implicit Geometry Priors**
+**著者**: Yufei Cai et al. (2025) — ECCV 2026採録
+**arXiv**: https://arxiv.org/abs/2607.12000
 
 **まとめ**:
-身体性AI（embodied intelligence）のためにロボット制御に特化した動画生成モデル「LingBot-Video」を提案。Mixture-of-Experts（MoE）アーキテクチャによりモデル容量と推論効率を最適化し、ロボット操作・移動・一人称視点映像を含む独自データと多次元報酬システムで訓練。物理的合理性と世界ダイナミクスの理解を重視した初のオープンソース大規模MoEビデオ基盤モデルとして、デジタル創造性と物理アクチュエーションの橋渡しを目指す。
+単一カメラ映像からの新規視点合成（monocular novel view synthesis）における幾何的整合性の課題に取り組む拡散モデルベースフレームワーク。feed-forwardジオメトリ知覚ネットワークからの暗黙的幾何事前分布（implicit geometry priors）とメトリック深度（metric depth）を組み合わせ、大きな視点変化下でも幾何的一貫性と精密な制御性を両立。ECCV 2026採録の高品質研究として3D理解・AR/VRへの応用が期待される。

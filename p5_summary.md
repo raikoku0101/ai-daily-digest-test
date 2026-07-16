@@ -1,6 +1,6 @@
-**5. RoboDojo: A Unified Sim-and-Real Benchmark for Comprehensive Evaluation of Generalist Robot Manipulation Policies**
-**著者**: Tianxing Chen et al. (44名) (2025)
-**arXiv**: https://arxiv.org/abs/2607.04434
+**5. Registers Matter for Pixel-Space Diffusion Transformers**
+**著者**: Research Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.16147
 
 **まとめ**:
-RoboDojo は、汎用ロボット操作ポリシーの包括的評価のためにシミュレーション42タスク・実世界18タスクを統合したベンチマーク。汎化・記憶・精密性・長期実行・オープン語彙命令追従の5次元で評価し、Isaac Sim による異種並列シミュレーション (heterogeneous parallel simulation) と RoboDojo-RealEval システムで実世界も標準化。30ポリシーを統合した XPolicyLab と公開リーダーボードで研究コミュニティに標準評価基盤を提供する。
+Vision Transformer（ViT）で有効なレジスタトークン（register tokens）が拡散トランスフォーマー（Diffusion Transformers, DiTs）でも有効かを実証的に検証した研究。DiTsはViTsと異なりパッチトークンの外れ値を示さないにもかかわらずレジスタから恩恵を受けること、とりわけピクセル空間DiTsで効果が顕著であることを発見。さらにレジスタの寄与を増幅するRegister Guidance技術を提案し、画像生成の視覚的構造品質を向上させる。
