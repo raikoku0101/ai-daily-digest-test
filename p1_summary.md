@@ -1,6 +1,6 @@
-**1. Boogu-Image-0.1: Boosting Open-Source Unified Multimodal Understanding and Generation**
-**著者**: Boogu Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.13125
+**1. VideoChat3: Fully Open Video MLLM for Efficient and Generalist Video Understanding**
+**著者**: VideoChat3 Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.14935
 
 **まとめ**:
-オープンソースの統合マルチモーダル理解・生成モデルファミリー。Base・Turbo・Edit・Edit-Turboの4バリアントを提供し、約2億枚の画像と推定40万ドルの学習コストで商用クローズドシステムに匹敵するテキスト→画像生成・指示ベース編集・日英バイリンガル文字描画性能を実現。Apache 2.0ライセンスで公開され、オープンソースコミュニティへの実用的貢献として注目される。
+VideoChat3は、動画理解における効率性と汎用性を両立した完全オープンな動画MLLM（Multimodal Large Language Model）です。I3D-ViT（Inflated 3D Vision Transformer）による16倍の時空間圧縮と、適応解像度ストリーミング知覚を組み合わせ、短尺・長尺・ストリーミング動画すべてに対応。モデル重み・訓練コード・データセットをすべて公開し、再現性の高い研究基盤を提供します。

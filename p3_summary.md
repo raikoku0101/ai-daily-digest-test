@@ -1,6 +1,6 @@
-**3. MetaView: Monocular Novel View Synthesis with Scale-Aware Implicit Geometry Priors**
-**著者**: Yufei Cai et al. (2025) — ECCV 2026採録
-**arXiv**: https://arxiv.org/abs/2607.12000
+**3. KeyFrame-Compass: Towards Comprehensive Evaluation of Keyframe-Conditioned Video Generation**
+**著者**: KeyFrame-Compass Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.14202
 
 **まとめ**:
-単一カメラ映像からの新規視点合成（monocular novel view synthesis）における幾何的整合性の課題に取り組む拡散モデルベースフレームワーク。feed-forwardジオメトリ知覚ネットワークからの暗黙的幾何事前分布（implicit geometry priors）とメトリック深度（metric depth）を組み合わせ、大きな視点変化下でも幾何的一貫性と精密な制御性を両立。ECCV 2026採録の高品質研究として3D理解・AR/VRへの応用が期待される。
+キーフレーム条件付き動画生成を評価する初の包括的ベンチマークです。3応用領域・4キーフレーム密度にわたる386サンプルを用意し、キーフレームの忠実性（存在・忠実度・時間順序・位置・永続性・ユニークさ）と動画品質を同時評価。9つの代表的モデルを評価した結果、忠実なキーフレーム再現と自然な動画合成の間に明確なトレードオフが存在することを初めて定量化しました。

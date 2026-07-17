@@ -1,6 +1,6 @@
-**4. GigaWorld-Policy-0.5: A Faster and Stronger WAM Empowered by AutoResearch**
-**著者**: GigaWorld Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.13960
+**4. MultiRef-Compass: Towards Comprehensive Evaluation of Multi-Reference-to-Audio-Video Generation**
+**著者**: MultiRef-Compass Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.14189
 
 **まとめ**:
-ロボット制御向けWorld Action Model（WAM）の推論効率問題を解決した研究。訓練時は将来の視覚的ダイナミクス（visual dynamics）を活用しながら、推論時はアクションのみをデコードするアクション中心定式化（action-centric formulation）を採用。Mixture-of-TransformersアーキテクチャとエージェントベースAutoResearchパイプラインにより、RTX 4090で85msの推論レイテンシを達成し、リアルタイム閉ループ制御への実用展開への道を開いた。
+複数の参照画像と文字指示から音声・映像を同時生成する MR2AV（Multi-Reference-to-Audio-Video）タスクの初の包括的ベンチマークです。350個の厳選サンプルで基本品質・参照一貫性・音声映像同期・指示追従の4次元・14メトリクスを評価。8つの代表的システムを評価した結果、複数参照の同時推論と音声映像同期に大きな改善余地があることを明らかにしました。

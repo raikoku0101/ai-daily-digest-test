@@ -1,6 +1,6 @@
-**2. PolicyShiftGuard: Benchmarking and Improving Policy-Adaptive Image Guardrails**
-**著者**: PolicyShiftGuard Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.05910
+**2. LongStraw: Long-Context RL Beyond 2M Tokens under a Fixed GPU Budget**
+**著者**: LongStraw Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.14952
 
 **まとめ**:
-画像コンテンツ安全フィルタリングにおけるポリシー適応性の欠如という重要課題に取り組む研究。2,000件のポリシー判別インスタンスを含むPolicyShiftBenchベンチマークを新規導入し、二段階学習（Randomized Policy SFT + Boundary-Pair Policy Adaptation）による提案手法PolicyShiftGuardが既存VLMsと専門フィルタリング手法を上回る76.9 F1スコアを達成。AI安全性の実用化において動的ポリシー対応の道を開く。
+推論時は100万トークン超のコンテキストが利用可能なのに対し、RL後学習は256K以下に留まるという大きなギャップを解決するフレームワークです。固定GPUバジェット（8基のH20 GPU）で2Mトークン超のRL学習を実現する実行スタックを提案。GRPO（Group Relative Policy Optimization）を用いてメモリ効率と計算効率を両立し、4.46Mポジションまでのストレステストをクリアしています。
