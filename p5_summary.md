@@ -1,6 +1,6 @@
-**5. Concurrent Image Understanding and Generation: Self-Correcting Coupled Markov Jump Processes**
-**著者**: SC-CMJP Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.13188
+**5. UniVR: Thinking in Visual Space for Unified Visual Reasoning**
+**著者**: UniVR Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.12800
 
 **まとめ**:
-人間の認知のように画像「理解」と「生成」を同時・相互補正的に行うフレームワーク SC-CMJP（Self-Correcting Coupled Markov Jump Processes）を提案します。マスク拡散モデル（MDM）を基盤に、一方のモダリティの遷移率が他方の信頼度スコアに依存する結合構造を導入。訓練不要なサンプラー CO₂Jump により、画像理解・編集・視覚推論で最高の結合性能を達成しました。
+視覚デモンストレーションから複雑な推論・物理ダイナミクス・長期計画を同時に学習する初の統一フレームワーク。VR-GRPO（グローバル＋ステップレベル報酬の強化学習）により、VR-Xベンチマークで最大25%の性能向上を達成。コード・データ・モデルは全てオープンソース公開済み。

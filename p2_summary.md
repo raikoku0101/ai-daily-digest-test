@@ -1,6 +1,6 @@
-**2. LongStraw: Long-Context RL Beyond 2M Tokens under a Fixed GPU Budget**
-**著者**: LongStraw Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.14952
+**2. VideoChat3: Fully Open Video MLLM for Efficient and Generalist Video Understanding**
+**著者**: VideoChat3 Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.14935
 
 **まとめ**:
-推論時は100万トークン超のコンテキストが利用可能なのに対し、RL後学習は256K以下に留まるという大きなギャップを解決するフレームワークです。固定GPUバジェット（8基のH20 GPU）で2Mトークン超のRL学習を実現する実行スタックを提案。GRPO（Group Relative Policy Optimization）を用いてメモリ効率と計算効率を両立し、4.46Mポジションまでのストレステストをクリアしています。
+動き認識・長尺動画・ストリーミングインタラクションを統合した汎用動画理解モデル。I3D-ViT（Inflated 3D Vision Transformer）と適応フレーム解像度技術により、わずか4Bパラメータで先行モデルを上回る性能を達成。完全オープンモデルとして公開され、研究再現性と実用展開の双方に貢献する。
