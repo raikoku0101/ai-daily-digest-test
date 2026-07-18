@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-19",
+  "content": "# AI Daily Digest — 2026-07-19\n\n## 今日のハイライト\n- **LongStraw が RL 長文脈学習の壁を突破 (171 upvotes)**: 2M トークン超の RL ポストトレーニングを固定 GPU バジェットで実現。推論時コンテキスト長と学習時コンテキスト長の格差解消に向けた重要な技術的ブレークスルー。\n- **Claude Code v2.1.214 がセキュリティ修正を多数リリース**: パーミッションチェックの迂回脆弱性 6 件を一括修正。PowerShell・zsh・長いコマンドなど多様な攻撃ベクターへの対策が強化され、企業利用環境での安全性が向上。\n- **VideoChat3 が 4B パラメータで汎用動画理解を実現 (119 upvotes)**: I3D-ViT と適応的フレームサンプリングにより、小型でありながら動作認識・長尺動画・ストリーミング対応を統合。完全オープンモデルとして公開されており、研究者が即座に活用可能。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.214 (2025-07-18) — セキュリティ修正リリース\n\n**主要機能・変更点**:\n- `Edit(src/**)` のような `dir/**` 形式のパーミッションルールが、ワークツリー外の同名ディレクトリにも誤って適用される問題を修正\n\n**バグ修正**:\n- Windows PowerShell 5.1 セッションでのパーミッションチェック迂回の脆弱性を修正\n- ファイルディスクリプタリダイレクト形式の Bash コマンドが誤って自動承認される問題を修正\n- 10,000文字超の長いコマンドでのパーミッション判定ミスを修正（現在は常にプロンプト表示）\n- zsh 変数サブスクリプトと修飾子が無害テキストとして扱われる問題を修正\n- `help` / `man` コマンドの一部が危険なオプションを伴っても自動承認される問題を修正\n\n**ユーザーへの影響**: 主にセキュリティ修正リリース。ファイル編集パーミッションの挙動が意図通りに制限され、悪意ある入力によるコマンド実行リスクが低減。\n\n---\n\n### v2.1.212 (2025-07-17) — 主要機能追加\n\n**主要機能・変更点**:\n- `/fork` コマンドが会話をバックグラウンドセッションにコピーする動作に変更（旧 `/fork` の機能は `/subtask` に移行）\n- `claude auto-mode reset` コマンド追加（デフォルト設定の復元、`--yes` でプロンプトスキップ）\n- WebSearch ツールのセッション全体上限追加（デフォルト200回、`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` で調整可能）\n- サブエージェントスポーン数の上限追加（デフォルト200回、`CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION` で設定、`/clear` でリセット）\n- 2分超の MCP ツール呼び出しが自動でバックグラウンド移行（`CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS` で閾値設定・無効化可）\n\n**ユーザーへの影響**: 暴走ループへの対策が強化され、長時間 MCP 呼び出し中もセッションが応答可能に。\n\n---\n\n### v2.1.211 (2025-07-15) — 安定性・セキュリティ改善\n\n**主要機能・変更点**:\n- `--forward-subagent-text` フラグと `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` 環境変数を追加（stream-json 出力にサブエージェントのテキストを含める）\n\n**バグ修正**:\n- パーミッション確認画面での双方向オーバーライド・ゼロ幅・見た目が似た引用符文字の無効化\n- PreToolUse フックの `ask` 判定がサンドボックスなし Bash で自動モードにより上書きされる問題を修正\n- 複数の Claude Code セッションがスリープ復帰時に一斉ログアウトする問題を修正\n- アイドル後のウェブセッション復帰時にプラグイン MCP サーバーが再接続しない問題を修正\n\n**ユーザーへの影響**: セキュリティと安定性の向上。マルチセッション利用者に特に恩恵。\n\n## 注目論文 TOP 10\n\n**1. LongStraw: Long-Context RL Beyond 2M Tokens under a Fixed GPU Budget**\nupvotes: 171 | https://arxiv.org/abs/2607.14952\n🎯 **背景**: 推論時のコンテキスト長と RL ポストトレーニングの間に拡大する格差が問題となっている。\n🔧 **手法**: アーキテクチャ対応の実行スタック「LongStraw」を構築し、Group Relative Policy Optimization (GRPO) を活用して固定 GPU バジェット下で 100 万トークン超の RL 学習を実現。\n📊 **結果**: 固定 GPU リソースで 2M トークン超の長文脈 RL ポストトレーニングを達成。\n💡 **意義**: 長文脈モデルの RL 学習コストを現実的な範囲に抑え、より高性能な長文脈対応 LLM の開発を加速。\n⚠️ **限界**: 特定のアーキテクチャ前提に依存するため、汎用性の検証が必要。\n\n---\n\n**2. VideoChat3: Fully Open Video MLLM for Efficient and Generalist Video Understanding**\nupvotes: 119 | https://arxiv.org/abs/2607.14935\n🎯 **背景**: 動作認識・長尺動画・ストリーミングインタラクションなど、動画理解の多様な課題に単一モデルで対応する必要性がある。\n🔧 **手法**: I3D-ViT と適応的フレームサンプリングを組み合わせた 4B パラメータの動画中心 MLLM を設計。完全オープンなモデルとして公開。\n📊 **結果**: 4B パラメータという小型モデルながら、汎用動画理解で競合モデルに匹敵する性能を達成。\n💡 **意義**: 完全オープンな動画 MLLM として、研究コミュニティへの貢献と再現性の向上に寄与。\n⚠️ **限界**: 4B という制約から、超長尺や高解像度動画での性能に上限がある可能性。\n\n---\n\n**3. KeyFrame-Compass: Towards Comprehensive Evaluation of Keyframe-Conditioned Video Generation**\nupvotes: 35 | https://arxiv.org/abs/2607.14202\n🎯 **背景**: キーフレームを条件とした動画生成の評価に標準的ベンチマークが存在しない。\n🔧 **手法**: 386 サンプルと自動評価フレームワークを用いた初の包括的ベンチマーク「KeyFrame-Compass」を構築。\n📊 **結果**: 複数の動画生成モデルをキーフレーム整合性・品質・多様性の観点から定量評価。\n💡 **意義**: 動画生成研究における公平な比較基盤を提供し、キーフレーム条件付き生成の進歩を体系的に追跡可能に。\n⚠️ **限界**: 386 サンプルという規模は限られており、実世界の多様性を十分に反映していない可能性。\n\n---\n\n**4. MultiRef-Compass: Towards Comprehensive Evaluation of Multi-Reference-to-Audio-Video Generation**\nupvotes: 31 | https://arxiv.org/abs/2607.14189\n🎯 **背景**: 複数参照からの音声・動画生成の評価が体系化されていない。\n🔧 **手法**: 350 の精選サンプルと 4 評価次元・14 サブメトリクスからなる包括的評価フレームワークを提案。\n📊 **結果**: 既存の生成モデルを多角的に評価し、モデル間の強み・弱みを明確化。\n💡 **意義**: マルチモーダル生成研究の標準化に貢献し、今後の研究の比較基盤を確立。\n⚠️ **限界**: 評価メトリクスの一部が主観的判断に依存しており、完全自動化が困難な側面がある。\n\n---\n\n**5. UniVR: Thinking in Visual Space for Unified Visual Reasoning**\nupvotes: 28 | https://arxiv.org/abs/2607.12800\n🎯 **背景**: 視覚データからの世界知識学習には、複雑な推論・物理ダイナミクス・長期計画の同時習得が必要。\n🔧 **手法**: VR-GRPO 強化学習と 16 多様ソースからなる VR-X ベンチマークを組み合わせ、視覚空間での推論を統合的に学習。\n📊 **結果**: VR-X ベンチマーク上で既存モデルを上回り、物理推論と長期計画タスクの双方で改善。\n💡 **意義**: 視覚推論の統一フレームワークとして、ロボティクスや自律エージェントへの応用可能性を広げる。\n⚠️ **限界**: 学習データの多様性に依存しており、未知の視覚ドメインへの汎化が課題。\n\n---\n\n**6. From Pixels to States: Rethinking Interactive World Models as Game Engines**\nupvotes: 27 | https://arxiv.org/abs/2607.14076\n🎯 **背景**: インタラクティブな世界のモデル化には、物理ルールに従った結果、持続的な因果関係、リアルタイム生成が求められる。\n🔧 **手法**: インタラクティブゲーム世界のモデリングを 4 次元で分析し、Black Myth: Wukong から構築したスケーラブルなデータセットを活用。\n📊 **結果**: 提案フレームワークがピクセルレベルからゲーム状態への変換において既存手法を上回る性能を示す。\n💡 **意義**: ゲームエンジンとしての世界モデルという新視点は、シミュレーション・自律エージェント研究に新たな方向性を提示。\n⚠️ **限界**: ゲームドメイン特有のデータに依存しており、現実世界のシナリオへの転移学習が課題。\n\n---\n\n**7. Spectral Rewiring for Exploration, Purification, and Model Merging**\nupvotes: 22 | https://arxiv.org/abs/2607.03065\n🎯 **背景**: RL ポストトレーニングはデプロイ時のボトルネックを生む。モデル全体の更新は計算コストが高く、効率的な手法が求められる。\n🔧 **手法**: Subspace-Aligned Rewiring (SAR) がパラメータのわずか 0.58% を使って推論効果の高い更新を抽出し、99% の性能を維持。\n📊 **結果**: 探索性の向上とクロスドメインマージングを実現しながら、ほぼ同等の性能を保持。\n💡 **意義**: 超効率的なモデル更新・マージング技術として、多数のユースケースへの LLM 展開コストを大幅に削減可能。\n⚠️ **限界**: 特定のサブスペース構造を前提とするため、アーキテクチャ依存性がある。\n\n---\n\n**8. RxBrain: Embodied Cognition Foundation Model with Joint Language-Visual Reasoning and Imagination**\nupvotes: 20 | https://arxiv.org/abs/2607.14187\n🎯 **背景**: 身体化認知には高レベル推論と物理状態の接続が必要。既存手法はそれぞれを別々に扱いがち。\n🔧 **手法**: Hy-Embodied-RxBrain が言語（計画構造）と視覚想像（世界状態予測によるグラウンディング）を統合した共同推論機構を採用。\n📊 **結果**: ロボティクスタスクおよび身体化認知ベンチマークで既存モデルを超える性能を達成。\n💡 **意義**: 言語と視覚推論の統合フレームワークは、汎用ロボット・具体化 AI エージェントの実現に向けた重要な一歩。\n⚠️ **限界**: リアルタイムの物理環境での検証が限られており、シミュレーションからの転移が課題。\n\n---\n\n**9. DeepLoop: Depth Scaling for Looped Transformers**\nupvotes: 12 | https://arxiv.org/abs/2607.13491\n🎯 **背景**: ループ型トランスフォーマーはコンパクトなブロックスタックを再利用して逐次計算をスケールするが、残差スケーリングに問題がある。\n🔧 **手法**: 訪問アライメント係数 (visit-alignment coefficients) を通じた残差スケーリング手法を提案。\n📊 **結果**: GPT-2 スケールの言語モデルで検証損失と精度の改善を確認。\n💡 **意義**: ループ型アーキテクチャの性能改善により、計算効率の高い深いモデル設計が可能に。\n⚠️ **限界**: GPT-2 規模での検証に留まり、大規模モデルへのスケーラビリティが未検証。\n\n---\n\n**10. Token Time Continuous Diffusion for Language Modeling**\nupvotes: 6 | https://arxiv.org/abs/2607.14106\n🎯 **背景**: 離散的拡散言語モデルは生成速度と品質のトレードオフに悩む。連続空間での拡散アプローチに新たな可能性がある。\n🔧 **手法**: トークンごとに異なる時間ステップを持つ連続空間拡散言語モデル (TTCD) を提案。各トークンで異なる精錬率を許容。\n📊 **結果**: 非条件・条件付き生成、および数独解法タスクで離散モデルを高速倍率で上回る性能を達成。\n💡 **意義**: 連続拡散による言語モデリングの新アプローチとして、生成速度と品質の両立可能性を示す。\n⚠️ **限界**: 連続空間での拡散は計算コストが高く、実用スケールでの検証が今後の課題。\n\n",
+  "fetched_at": "2026-07-18T22:05:51.167346+00:00",
+  "papers": [
+    {
+      "title": "LongStraw: Long-Context RL Beyond 2M Tokens under a Fixed GPU Budget",
+      "upvotes": 171,
+      "paper_id": "2607.14952",
+      "abstract": "A growing gap separates inference context lengths from RL post-training. LongStraw is an architecture-aware execution stack enabling million-token RL post-training under fixed GPU budgets using Group Relative Policy Optimization."
+    },
+    {
+      "title": "VideoChat3: Fully Open Video MLLM for Efficient and Generalist Video Understanding",
+      "upvotes": 119,
+      "paper_id": "2607.14935",
+      "abstract": "Recent advances in video understanding have spanned motion, long video, and streaming interaction. VideoChat3 introduces an efficient, generalist video-centric MLLM with only 4B parameters through I3D-ViT and adaptive frame"
+    },
+    {
+      "title": "KeyFrame-Compass: Towards Comprehensive Evaluation of Keyframe-Conditioned Video Generation",
+      "upvotes": 35,
+      "paper_id": "2607.14202",
+      "abstract": "Video generation relies increasingly on keyframe-based workflows. KeyFrame-Compass presents the first comprehensive benchmark evaluating keyframe-conditioned video generation across 386 samples with automated evaluation frameworks."
+    },
+    {
+      "title": "MultiRef-Compass: Towards Comprehensive Evaluation of Multi-Reference-to-Audio-Video Generation",
+      "upvotes": 31,
+      "paper_id": "2607.14189",
+      "abstract": "Multi-reference-to-audio-video generation aims to generate coherent audio-video content conditioned on multiple references. MultiRef-Compass introduces 350 curated samples with four evaluation dimensions and 14 sub-metrics for comprehensive assessment."
+    },
+    {
+      "title": "UniVR: Thinking in Visual Space for Unified Visual Reasoning",
+      "upvotes": 28,
+      "paper_id": "2607.12800",
+      "abstract": "Learning world knowledge from visual data requires complex reasoning, physical dynamics, and long-term planning. UniVR investigates these capabilities simultaneously through VR-GRPO reinforcement learning and VR-X benchmark with 16 diverse sources."
+    },
+    {
+      "title": "From Pixels to States: Rethinking Interactive World Models as Game Engines",
+      "upvotes": 27,
+      "paper_id": "2607.14076",
+      "abstract": "Building interactive worlds requires interaction outcomes following rules, persistent consequences, and real-time generation. This work examines interactive game world modeling across four dimensions and presents a scalable dataset from Black Myth: Wukong."
+    },
+    {
+      "title": "Spectral Rewiring for Exploration, Purification, and Model Merging",
+      "upvotes": 22,
+      "paper_id": "2607.03065",
+      "abstract": "Reinforcement learning post-training creates deployment bottlenecks. Subspace-Aligned Rewiring extracts reasoning-effective updates using 0.58% of parameters, preserving 99% performance while improving exploration and enabling cross-domain merging."
+    },
+    {
+      "title": "RxBrain: Embodied Cognition Foundation Model with Joint Language-Visual Reasoning and Imagination",
+      "upvotes": 20,
+      "paper_id": "2607.14187",
+      "abstract": "Embodied cognition requires connecting high-level reasoning with physical states. Hy-Embodied-RxBrain features joint language-visual reasoning where language provides plan structure while visual imagination grounds it through world state prediction."
+    },
+    {
+      "title": "DeepLoop: Depth Scaling for Looped Transformers",
+      "upvotes": 12,
+      "paper_id": "2607.13491",
+      "abstract": "Looped Transformers scale sequential computation by reusing compact block stacks. DeepLoop addresses residual-scaling through visit-alignment coefficients, improving validation loss and accuracy on GPT-2 scale language models."
+    },
+    {
+      "title": "Token Time Continuous Diffusion for Language Modeling",
+      "upvotes": 6,
+      "paper_id": "2607.14106",
+      "abstract": "A new diffusion language model operates in continuous space with per-token times allowing varied refinement rates. TTCD outperforms discrete models at high speedups in unconditional and conditional generation, plus Sudoku solving tasks."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.214",
+      "published_at": "2025-07-18",
+      "body": "* Fixed single-segment `dir/**` allow rules like `Edit(src/**)` auto-approving writes to nested directories\n* Fixed a permission-check bypass affecting commands run in Windows PowerShell 5.1 sessions\n* Fixed Bash permission checks to fail closed on file-descriptor redirect forms\n* Fixed Bash permission checks misjudging very long commands over 10,000 characters\n* Fixed Bash permission checks treating zsh variable subscripts and modifiers as inert text\n* Fixed Bash permission checks to no longer auto-approve certain `help` and `man` commands that could run unsafe options"
+    },
+    {
+      "tag_name": "v2.1.212",
+      "published_at": "2025-07-17",
+      "body": "* `/fork` now copies your conversation into a new background session while you keep working; the in-session subagent is now `/subtask`\n* Added `claude auto-mode reset` to restore the default auto-mode configuration\n* Added a session-wide limit on WebSearch tool calls (default 200, tunable via CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION)\n* Added a per-session cap on subagent spawns (default 200, override with CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION)\n* MCP tool calls running longer than 2 minutes now move to the background automatically"
+    },
+    {
+      "tag_name": "v2.1.211",
+      "published_at": "2025-07-15",
+      "body": "* Added `--forward-subagent-text` flag and CLAUDE_CODE_FORWARD_SUBAGENT_TEXT env var to include subagent text in stream-json output\n* Fixed permission previews not neutralizing bidirectional-override, zero-width, and look-alike quote characters\n* Fixed auto mode overriding a PreToolUse hook's `ask` decision for unsandboxed Bash\n* Fixed parallel Claude Code sessions all logging out simultaneously after wake-from-sleep\n* Fixed plugin MCP servers not reconnecting after an idle web session woke"
+    }
+  ]
+}
