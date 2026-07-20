@@ -1,6 +1,6 @@
-**3. KeyFrame-Compass: Towards Comprehensive Evaluation of Keyframe-Conditioned Video Generation**
-**著者**: KeyFrame-Compass Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.14202
+**3. Xiaomi-Robotics-1: Scaling Vision-Language-Action Models with over 100K Hours of Real-World Trajectories**
+**著者**: Xiaomi Robotics Team (2026)
+**arXiv**: https://arxiv.org/abs/2607.15330
 
 **まとめ**:
-キーフレーム条件付きビデオ生成を包括的に評価するベンチマーク「KeyFrame-Compass」を提案。386サンプルと6つの補完的指標（presence/fidelity/temporal ordering/localization/persistence/uniqueness）を用い、9つの主要ビデオ生成システムを評価。「忠実なキーフレーム実行と自然なビデオ合成の間に明確なトレードオフが存在する」という重要な知見を示し、今後の開発指針を提供。
+10万時間超の実世界操作軌跡を活用した VLA 基盤モデル Xiaomi-Robotics-1 を提案。Mixture-of-Transformers (MoT) + Diffusion Transformer により、UMI デバイスで収集したデータから汎用行動生成を学習し、10 時間未満のファインチューニングで平均 75% 成功率（π0.5 を大幅上回る）を実現。データ・モデル両軸のスケーリングが未知環境での即時性能と適応効率の両立を可能にした、ロボット基盤モデルの重要なマイルストーンである。

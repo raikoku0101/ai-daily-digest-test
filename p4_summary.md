@@ -1,6 +1,6 @@
-**4. MultiRef-Compass: Towards Comprehensive Evaluation of Multi-Reference-to-Audio-Video Generation**
-**著者**: MultiRef-Compass Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.14189
+**4. xHC: Expanded Hyper-Connections**
+**著者**: Anonymous et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.14530
 
 **まとめ**:
-複数参照画像からオーディオ・ビデオを統合生成するMR2AVタスクの評価ベンチマーク「MultiRef-Compass」を提案。350サンプル・4評価次元・14サブメトリクスで構成され、8つの主要システムを評価。既存モデルの参照一貫性と構成能力に大きな課題があることを示し、マルチメディア生成AI研究の重要な評価基盤を確立。
+Transformer の残差ストリーム（residual stream）を N 本の並列ストリームに拡張する Hyper-Connections を、N>4 でも有効にする xHC を提案。多スケール因果畳み込みによる時間的特徴拡張と、k=4 のみの疎更新により情報・計算ボトルネックを解消。18B/28B MoE モデルでバニラ比 +4 ポイント超の改善を、FLOPs 増加わずか 4% で実現し、「展開率（expansion）」という新しいスケーリング軸の実用性を確立した。

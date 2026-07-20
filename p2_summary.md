@@ -1,6 +1,6 @@
-**2. VideoChat3: Fully Open Video MLLM for Efficient and Generalist Video Understanding**
-**著者**: VideoChat3 Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.14935
+**2. RAGU: A Multi-Step GraphRAG Engine with a Compact Domain-Adapted LLM**
+**著者**: Tikhomirov et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.11683
 
 **まとめ**:
-4Bパラメータという小規模でありながら、動き認識・長尺動画・ストリーミング対話に対応する完全オープンなビデオMLLM「VideoChat3」を提案。I3D-ViTと適応的フレーム解像度調整により効率性を実現し、3種類の高品質データセット(計2M+サンプル)を構築。訓練コード・データ・戦略の完全公開により、ビデオAI研究のオープンエコシステムに大きく貢献。
+GraphRAG の知識グラフ構築を単一パスから多段階に改善したオープンソースエンジン RAGU を提案。二段階エンティティ・リレーション抽出、DBSCAN+LLM による重複排除、Leiden クラスタリングによるコミュニティ検出を組み合わせる。コンパクトな 7B 特化モデル Meno-Lite-0.1 が Qwen2.5-32B を IE ベンチマークで +12.5% 上回り、単 GPU 環境での本番利用を実現した。広範な文脈合成が必要なタスクで特に強みを発揮する。
