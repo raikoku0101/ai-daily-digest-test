@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-21",
+  "content": "# AI Daily Digest — 2026-07-21\n\n## 今日のハイライト\n- **RESOURCE2SKILL が 112 upvotes でトップ**: マルチモーダルリソース（動画・文書）からエージェントスキルを自動蒸留する手法が登場。手書きスキルライブラリが不要になる可能性があり、AI エージェント開発の効率化に直結する重要な進展です\n- **Claude Code v2.1.214 のセキュリティ修正**: Windows PowerShell 5.1 での権限チェックバイパスや、ファイルディスクリプタリダイレクト形式の権限回避が修正されました。Claude Code を使用している全ユーザー、特に Windows 環境のユーザーは速やかなアップデートを強く推奨します\n- **Xiaomi Robotics-1 が 10 万時間超の実世界データで VLA を大規模スケール**: ロボット操作のための Vision-Language-Action モデルがついに実世界トレーニングデータの規模で新段階に突入。未知環境へのゼロショット汎化という重要なマイルストーンを達成しています\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.215 (2025-07-19)\n**主要変更**:\n- `/verify` および `/code-review` スキルが Claude によって自動実行されなくなりました。これらを使いたい場合はユーザーが明示的に `/verify` または `/code-review` と入力して呼び出す必要があります。\n\n**ユーザーへの影響**: 自動レビュー・検証が走らなくなるため、コード変更後のレビューは手動でスキルを呼び出してください。意図せぬ自動実行が抑制され、より予測可能な動作になります。\n\n---\n\n### v2.1.214 (2025-07-18)\n**バグ修正**:\n- `Edit(src/**)` のような `dir/**` 許可ルールが、`<cwd>/dir/` 以外のネストされたディレクトリにも誤って適用されていた問題を修正\n- Windows PowerShell 5.1 セッションでの権限チェックバイパスの脆弱性を修正\n- Bash 権限チェックがファイルディスクリプタリダイレクト形式でフェイルクローズするよう修正\n\n**主要機能追加**:\n- `EndConversation` ツールを追加（不適切なユーザー対応用）\n- 長時間実行ツールコールへの定期的な進捗ハートビート追加\n- メモリファイルのフロントマターに ISO `modified` タイムスタンプを追加\n- オートモード改善、各種クラッシュ・ハング修正、エージェントビュー描画改善\n\n**ユーザーへの影響**: セキュリティ上重要な修正が含まれます。特に Windows ユーザーと複雑な権限ルールを使用しているユーザーは速やかにアップデートを推奨します。\n\n---\n\n### v2.1.212 (2025-07-17)\n**主要機能追加**:\n- `/fork` コマンドが現在の会話をバックグラウンドセッションにコピーしながら作業継続可能に。セッション内サブエージェントは `/subtask` に改称\n- `claude auto-mode reset` コマンドを追加\n- WebSearch ツールコールのセッション全体での上限を追加（デフォルト 200 回）\n- 2 分超の MCP ツールコールが自動的にバックグラウンド移行するよう改善\n- プランモードでファイル変更コマンドが許可プロンプトなしで自動実行されていたバグを修正\n- シンボリックリンクをたどるワークツリー作成の修正\n\n**ユーザーへの影響**: `/fork` を活用することで並行作業が大幅に効率化されます。長時間 MCP コールのバックグラウンド化で操作性が向上します。\n\n## 注目論文 TOP 10\n\n**1. RESOURCE2SKILL: Distilling Executable Agent Skills from Human-Created Multimodal Resources** | 👍 112 | https://arxiv.org/abs/2606.29538\n🎯**背景**: ソフトウェアエージェントのスキルライブラリは手書きやエージェントトレース由来が多く、チュートリアル動画などのマルチモーダルリソースが未活用だった\n🔧**手法**: 人間が作成したマルチモーダルリソース（動画・文書等）から実行可能なエージェントスキルを自動的に蒸留・抽出するフレームワークを提案\n📊**結果**: 既存のスキルライブラリと比較して、多様なマルチモーダルリソースから高品質な実行可能スキルを大規模に獲得することに成功\n💡**意義**: エージェントの能力獲得を人間の既存知識資産から自動化できるため、スキル構築コストを大幅に削減できる可能性がある\n⚠️**限界**: 動画や文書の品質・形式に依存するため、低品質なリソースからの蒸留精度が課題として残る\n\n---\n\n**2. RAGU: A Multi-Step GraphRAG Engine with a Compact Domain-Adapted LLM** | 👍 110 | https://arxiv.org/abs/2607.11683\n🎯**背景**: 既存の GraphRAG システムは知識グラフをシングルパスで構築するため、ノイズの多いエンティティと脆弱な検索が問題だった\n🔧**手法**: マルチステップの知識グラフ構築と、コンパクトなドメイン適応 LLM を組み合わせたオープンソース GraphRAG エンジン RAGU を提案\n📊**結果**: 既存システムより精度の高いエンティティ抽出と堅牢な検索を実現し、ドメイン特化タスクで優れたパフォーマンスを示した\n💡**意義**: コンパクトな LLM でもドメイン適応により大規模モデルに匹敵する RAG 性能が出せることを示し、実用的な低コスト展開への道を開く\n⚠️**限界**: ドメイン適応のためのファインチューニングデータ準備が必要であり、汎用ドメインへの適用には追加コストが発生する\n\n---\n\n**3. Xiaomi-Robotics-1: Scaling Vision-Language-Action Models with over 100K Hours of Real-World Trajectories** | 👍 53 | https://arxiv.org/abs/2607.15330\n🎯**背景**: ロボット操作における汎化性能は限られたデータと環境依存で頭打ちになっており、大規模実世界データによる VLA モデルのスケールアップが求められていた\n🔧**手法**: 10 万時間超の実世界軌跡データで訓練した Vision-Language-Action (VLA) 基盤モデル Xiaomi-Robotics-1 を開発\n📊**結果**: 未知環境でのモバイル操作タスクをゼロショットで実行し、少量のデータで新タスクへの効率的な適応も実現\n💡**意義**: 大規模実世界データを活用した VLA モデルが、ロボット汎化の重要なブレークスルーとなる可能性を示す\n⚠️**限界**: 100K 時間という膨大なデータ収集コストと、小米の独自ロボットプラットフォーム依存という再現性の課題がある\n\n---\n\n**4. xHC: Expanded Hyper-Connections** | 👍 45 | https://arxiv.org/abs/2607.14530\n🎯**背景**: Transformer の残差ストリームはモデル幅・深さに縛られており、HC（Hyper-Connections）による N 並列ストリームでメモリスケーリングが図れるが、大規模化時の安定性が課題だった\n🔧**手法**: Manifold-Constrained HC (mHC) で安定化した上で N>1 の拡張ハイパー接続 (xHC) を提案。ストリーム間の情報流を構造的に拡張\n📊**結果**: N=1 から N を増やすことで大幅な性能向上を確認。スケール時の安定性も維持\n💡**意義**: モデルアーキテクチャのスケールアップにおける新たな次元（並列ストリーム数）を導入し、従来の幅・深さによるスケールを補完する\n⚠️**限界**: N が増えるとメモリ使用量が増大するため、リソース制約のある環境での適用に限界がある\n\n---\n\n**5. On-Policy Delta Distillation** | 👍 26 | https://arxiv.org/abs/2607.15161\n🎯**背景**: 強化学習のポストトレーニングでは報酬モデルの制約が問題であり、オンポリシー蒸留がトークンレベル教師信号による代替手法として注目されていた\n🔧**手法**: 教師モデルと生徒モデルの出力差分（デルタ）を活用したオンポリシー蒸留手法を提案。報酬モデル不要でトークンレベルの監督を実現\n📊**結果**: 既存のオンポリシー蒸留手法と比較して、より効率的な知識転移と性能向上を達成\n💡**意義**: 報酬モデルなしで LLM の RL ポストトレーニングを行える手法として、安全で効率的なモデル改善パイプラインへの応用が期待される\n⚠️**限界**: 高品質な教師モデルへのアクセスが前提となるため、教師モデルのバイアスが生徒に伝播するリスクがある\n\n\n**6. Recursive Harness Self-Improvement** | 👍 13 | https://arxiv.org/abs/2607.15524\n🎯**背景**: モデルとハーネスが共進化する環境では、ハーネスは推論時の足場だけでなく将来モデルを形成するデータ生成コンポーネントでもあるという認識が欠けていた\n🔧**手法**: ハーネスをループ内に組み込み学習する「harness-in-the-loop」学習を提案。ハーネスが生成する実行トレースを用いてハーネス自体を最適化する再帰的改善フレームワーク\n📊**結果**: ハーネスの自己改善により、モデルパフォーマンスとハーネス品質の両方が向上することを確認\n💡**意義**: AI システムのエージェント的スキャフォールディングを自動最適化できる可能性を示し、システム全体の継続的改善サイクルを実現する\n⚠️**限界**: 再帰的自己改善は意図しない方向への最適化リスクがあり、改善の方向性を適切に制御する安全機構が必要\n\n---\n\n**7. Qwen-Music Technical Report** | 👍 17 | https://arxiv.org/abs/2607.11699\n🎯**背景**: 高忠実度の音楽生成（特に完全な声楽歌唱を含む楽曲）は依然として困難であり、既存モデルは音楽性や音質で課題を抱えていた\n🔧**手法**: テキストから音楽生成と音楽条件付き生成の 2 つのコアタスクをサポートする音楽生成モデル Qwen-Music を構築\n📊**結果**: 高い音楽性と高忠実度の楽曲生成を実現し、完全な声楽歌唱を含む楽曲制作が可能になった\n💡**意義**: Qwen シリーズの多様なモダリティへの拡張として、テキスト指示からプロ品質の音楽を自動生成できる実用的なシステムの実現を示す\n⚠️**限界**: 生成される音楽の著作権・スタイル模倣の倫理問題や、主観的な音楽品質評価の困難さが課題として残る\n\n---\n\n**8. When Does Muon Help Agentic Reinforcement Learning?** | 👍 12 | https://arxiv.org/abs/2607.16169\n🎯**背景**: Muon オプティマイザーは大規模事前学習で AdamW と競合するが、疎な報酬を持つエージェント RL でのポストトレーニングにおける有効性は不明だった\n🔧**手法**: ALFWorld などの疎報酬エージェント RL 環境で Muon と AdamW を単一シードの対照比較実験で体系的に検証\n📊**結果**: 特定の条件下では Muon が RL ポストトレーニングでも AdamW を上回るが、その優位性はシナリオに依存することが判明\n💡**意義**: LLM の RL ファインチューニングにおけるオプティマイザー選択の指針を提供し、Muon の適用範囲を明確化する実証的知見となる\n⚠️**限界**: 単一シード比較という手法の限界から統計的有意性が低く、より広範なベンチマークでの検証が必要\n\n---\n\n**9. S1-Omni: A Unified Multimodal Reasoning Model for Scientific Understanding, Prediction, and Generation** | 👍 8 | https://arxiv.org/abs/2607.15686\n🎯**背景**: AI for Science (AI4S) はドメイン特化モデルやツール拡張 LLM で進展してきたが、科学的理解・予測・生成を統一的に扱えるマルチモーダル推論モデルが不足していた\n🔧**手法**: 科学的理解、予測、生成の 3 つのタスクを統一的に扱える S1-Omni マルチモーダル推論モデルを提案\n📊**結果**: 複数の科学領域にわたる理解・予測・生成タスクで統一モデルとしての有効性を実証\n💡**意義**: 科学 AI の分散したアプローチを統合し、単一モデルで科学的ワークフロー全体をカバーできる可能性を示す\n⚠️**限界**: 統合モデルは各特化モデルと比較して個別タスクの精度が劣る可能性があり、専門性とのトレードオフが課題\n\n---\n\n**10. VideoRAE: Taming Video Foundation Models for Generative Modeling via Representation Autoencoders** | 👍 8 | https://arxiv.org/abs/2607.14088\n🎯**背景**: 動画生成モデルの潜在空間は 3D-VAE で学習されるが、ピクセルレベル再構成の最適化に偏り意味的・時空間的構造の捕捉が不十分だった\n🔧**手法**: 動画基盤モデルの表現を活用した Representation Autoencoder (VideoRAE) を提案。意味的に豊かな潜在空間を構築し生成モデリングに適した表現を学習\n📊**結果**: 従来の 3D-VAE と比較して意味的・時空間的に整合性の高い動画生成が可能となった\n💡**意義**: 動画基盤モデルの知識を生成モデリングのための豊かな表現空間に変換する新パラダイムを提示し、高品質動画生成の基盤となる\n⚠️**限界**: 動画基盤モデルへの依存により、基盤モデルのバイアスや制限が生成モデルに伝播するリスクがある\n\n",
+  "fetched_at": "2026-07-20T22:06:19.344485+00:00",
+  "papers": [
+    {
+      "title": "RESOURCE2SKILL: Distilling Executable Agent Skills from Human-Created Multimodal Resources",
+      "upvotes": 112,
+      "paper_id": "2606.29538",
+      "abstract": "Skills are a useful abstraction for software agents, turning human and agent experience into reusable procedural knowledge. Yet existing skill libraries are mostly hand-written, text-centric, or derived from agent traces, leaving tutorial videos..."
+    },
+    {
+      "title": "RAGU: A Multi-Step GraphRAG Engine with a Compact Domain-Adapted LLM",
+      "upvotes": 110,
+      "paper_id": "2607.11683",
+      "abstract": "Graph retrieval-augmented generation (GraphRAG) enhances large language models with structured knowledge, yet existing systems construct knowledge graphs in a single extraction pass, producing noisy entities and brittle retrieval. RAGU, an open-source..."
+    },
+    {
+      "title": "Xiaomi-Robotics-1: Scaling Vision-Language-Action Models with over 100K Hours of Real-World Trajectories",
+      "upvotes": 53,
+      "paper_id": "2607.15330",
+      "abstract": "We present Xiaomi-Robotics-1, a foundational VLA model capable of following diverse language instructions to perform a wide range of mobile manipulation tasks in unseen environments out-of-the-box, and efficiently adapting..."
+    },
+    {
+      "title": "xHC: Expanded Hyper-Connections",
+      "upvotes": 45,
+      "paper_id": "2607.14530",
+      "abstract": "Hyper-Connections (HC) expand the residual stream of Transformers into N parallel streams, providing a form of memory scaling beyond model width and depth. Manifold-Constrained HC (mHC) stabilizes this formulation at scale."
+    },
+    {
+      "title": "On-Policy Delta Distillation",
+      "upvotes": 26,
+      "paper_id": "2607.15161",
+      "abstract": "On-policy distillation is an alternative post-training method in reinforcement learning that alleviates the constraints imposed by reward models by providing token-level supervision from a teacher model."
+    },
+    {
+      "title": "When Does Muon Help Agentic Reinforcement Learning?",
+      "upvotes": 12,
+      "paper_id": "2607.16169",
+      "abstract": "Muon is competitive with AdamW in large-scale pre-training, but its value for reinforcement-learning (RL) post-training remains unclear. We study vanilla Muon in sparse-reward agentic RL through matched single-seed comparisons with AdamW on ALFWorld..."
+    },
+    {
+      "title": "Recursive Harness Self-Improvement",
+      "upvotes": 13,
+      "paper_id": "2607.15524",
+      "abstract": "Under model-harness co-evolution, harnesses are not merely inference-time scaffolds but data-generating components whose execution traces can shape future foundation models."
+    },
+    {
+      "title": "Qwen-Music Technical Report",
+      "upvotes": 17,
+      "paper_id": "2607.11699",
+      "abstract": "We introduce Qwen-Music, a powerful music generation model capable of producing highly musical and high-fidelity songs with complete vocal singing. Supports Text to Music Generation and other core tasks."
+    },
+    {
+      "title": "S1-Omni: A Unified Multimodal Reasoning Model for Scientific Understanding, Prediction, and Generation",
+      "upvotes": 8,
+      "paper_id": "2607.15686",
+      "abstract": "We present S1-Omni, a unified multimodal reasoning model for scientific understanding, prediction, and generation. AI for Science (AI4S) has advanced significantly through domain-specific models, tool-augmented LLMs."
+    },
+    {
+      "title": "VideoRAE: Taming Video Foundation Models for Generative Modeling via Representation Autoencoders",
+      "upvotes": 8,
+      "paper_id": "2607.14088",
+      "abstract": "Video generative models commonly rely on latent spaces learned by 3D Variational Autoencoders (3D-VAEs). However, conventional 3D-VAEs are mainly optimized for pixel-level reconstruction, limiting semantic structure."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.215",
+      "published_at": "2025-07-19",
+      "body": "Claude no longer runs the `/verify` and `/code-review` skills on its own; invoke them with `/verify` or `/code-review` when you want them"
+    },
+    {
+      "tag_name": "v2.1.214",
+      "published_at": "2025-07-18",
+      "body": "Fixed single-segment `dir/**` allow rules like `Edit(src/**)` auto-approving writes to nested `dir/` directories anywhere in the tree instead of only `<cwd>/dir`. Fixed a permission-check bypass affecting commands run in Windows PowerShell 5.1 sessions. Fixed Bash permission checks to fail closed on file-descriptor redirect forms. Added the EndConversation tool for handling abusive users. Added periodic progress heartbeat for long-running tool calls. Added ISO `modified` timestamp to memory file frontmatter. Improved auto mode, fixed various crashes and hangs, and improved agent view rendering."
+    },
+    {
+      "tag_name": "v2.1.212",
+      "published_at": "2025-07-17",
+      "body": "`/fork` now copies your conversation into a new background session while you keep working; the in-session subagent is now `/subtask`. Added `claude auto-mode reset` command. Added session-wide limit on WebSearch tool calls (default 200). MCP tool calls over 2 minutes now move to background automatically. Fixed plan mode auto-running file-modifying commands without permission prompts. Fixed worktree creation following symlinks. Improved background agent attach and result reporting."
+    }
+  ]
+}
