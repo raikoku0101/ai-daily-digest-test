@@ -1,6 +1,7 @@
-**5. On-Policy Delta Distillation**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.15161
+**5. Open-AoE: An Open Egocentric Manipulation Dataset and Toolchain for Embodied Learning**
+**著者**: Open-AoE Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.14183
+**upvotes**: 24
 
 **まとめ**:
-LLM の推論能力向上に向け、「教師モデルと基礎モデルの差分（デルタシグナル）」を報酬として活用するオンポリシー蒸留手法 OPD2 を提案。報酬センタリングと結合条件という 2 つの設計技法で収束を安定化し、Qwen3-4B 非思考モードで平均 64.0→70.3（ExOPD 比 +6.3 ポイント）を達成。報酬モデル不要で推論能力を転移できる実用的なポストトレーニング手法として重要な進歩である。
+500人以上の貢献者が400台以上のスマートフォンで収集した約2,000時間のエゴセントリック操作動画データセット「Open-AoE」を公開。テキスト説明・MANO手姿勢・カメラ軌跡・原子的行動アノテーションを付与し、VLA（Vision-Language-Action）ポリシーやワールドモデル訓練用のツールチェーンを提供。身体的AI研究のオープンエコシステムを構築する。

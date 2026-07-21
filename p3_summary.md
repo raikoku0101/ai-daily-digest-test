@@ -1,6 +1,7 @@
-**3. Xiaomi-Robotics-1: Scaling Vision-Language-Action Models with over 100K Hours of Real-World Trajectories**
-**著者**: Xiaomi Robotics Team (2026)
-**arXiv**: https://arxiv.org/abs/2607.15330
+**3. GigaChat Audio: Time-aware Large Audio Language Model**
+**著者**: Aleksandr Kutsakov, Mariia Sadovina, Georgii Gospodinov et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.10387
+**upvotes**: 30
 
 **まとめ**:
-10万時間超の実世界操作軌跡を活用した VLA 基盤モデル Xiaomi-Robotics-1 を提案。Mixture-of-Transformers (MoT) + Diffusion Transformer により、UMI デバイスで収集したデータから汎用行動生成を学習し、10 時間未満のファインチューニングで平均 75% 成功率（π0.5 を大幅上回る）を実現。データ・モデル両軸のスケーリングが未知環境での即時性能と適応効率の両立を可能にした、ロボット基盤モデルの重要なマイルストーンである。
+長尺音声（最大120分）に対して明示的なタイムスタンプ付きで質問に回答できる時間認識型大規模音声言語モデルを提案。連続音声トークンに周期的な時間マーカーを交互に挿入するアーキテクチャを採用し、大規模合成監督データで訓練。短・長期ベンチマークで高い時間的グラウンディング精度を達成し、Interspeech 2026に採択。HuggingFaceでモデルと学習データを公開。

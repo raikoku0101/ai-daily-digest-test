@@ -1,6 +1,7 @@
-**4. xHC: Expanded Hyper-Connections**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.14530
+**4. GigaAM Multilingual: Foundation Model for Underrepresented Languages**
+**著者**: Andrei Kuzmenko et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.10371
+**upvotes**: 28
 
 **まとめ**:
-Transformer の残差ストリーム（residual stream）を N 本の並列ストリームに拡張する Hyper-Connections を、N>4 でも有効にする xHC を提案。多スケール因果畳み込みによる時間的特徴拡張と、k=4 のみの疎更新により情報・計算ボトルネックを解消。18B/28B MoE モデルでバニラ比 +4 ポイント超の改善を、FLOPs 増加わずか 4% で実現し、「展開率（expansion）」という新しいスケーリング軸の実用性を確立した。
+カザフ語・キルギス語・ウズベク語などデータが少ない中央アジアの低リソース言語向けに、200万時間の音声データでConformerエンコーダーをHuBERTスタイルで事前学習した多言語基盤モデルを提案。クラスタレベルのデータバランシングとドメイン認識サンプリングにより言語間の性能格差を緩和し、Whisper Large v3を上回る精度を達成。Interspeech 2026採択・モデル公開済み。
