@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "DeepSearch-World: Self-Distillation for Deep Search Agents in a Verifiable Environment",
-      "upvotes": 71,
-      "paper_id": "2607.07820",
-      "abstract": "Training tool-use agents to improve from their own experience remains challenging, as supervised fine-tuning relies on fixed teacher-distilled trajectories, while sparse-reward reinforcement learning provides weak supervision for long-horizon interactions. We present DeepSearch-Evolve"
+      "title": "ABot-World-0: Infinite Interactive World Rollout on a Single Desktop GPU",
+      "upvotes": 165,
+      "paper_id": "2607.19191",
+      "abstract": "Action-conditioned video world model for real-time, long-horizon closed-loop interaction. Multi-source data infrastructure from games, simulations, and internet videos enables learning of controllable world dynamics with streaming inference capability."
     },
     {
-      "title": "Apple-π: Benchmarking Thinking with Video Towards Law-Grounded Physical Intelligence",
-      "upvotes": 37,
-      "paper_id": "2607.16401",
-      "abstract": "Modern video generation models are increasingly hailed as emerging world models with an internalized grasp of physical law. Yet existing benchmarks largely evaluate physical plausibility only at the output level, without verifying whether the model arrives there through a faithful, law-grounded"
+      "title": "DataFlow-Harness: A Grounded Code-Agent Platform for Constructing Editable LLM Data Pipelines",
+      "upvotes": 120,
+      "paper_id": "2607.16617",
+      "abstract": "Platform guiding LLM agents to construct persistent, editable data pipelines through typed mutations. Achieves 93.3% pass rate while reducing cost by 72.5% and latency by 49.9% compared to vanilla approaches."
     },
     {
-      "title": "GigaChat Audio: Time-aware Large Audio Language Model",
-      "upvotes": 30,
-      "paper_id": "2607.10387",
-      "abstract": "Temporal grounding in long recordings remains challenging for audio-conditioned LLMs. We present a time-aware audio LLM that answers questions with explicit timestamps over up to 120 minutes of input. Our approach interleaves periodic time markers with continuous audio tokens using large-scale"
+      "title": "Text Template Tokens Are Implicit Semantic Registers in Diffusion Transformers",
+      "upvotes": 66,
+      "paper_id": "2607.19139",
+      "abstract": "Causal interpretability framework for diffusion transformers revealing how structural tokens act as implicit semantic registers during denoising. Training-free pruning removes 20% of attention with minimal quality loss while demonstrating internal mechanism organization."
     },
     {
-      "title": "GigaAM Multilingual: Foundation Model for Underrepresented Languages",
-      "upvotes": 28,
-      "paper_id": "2607.10371",
-      "abstract": "Despite recent scaling successes, multilingual ASR performance remains highly uneven, with long-tail languages suffering from severe data scarcity. This work addresses the challenge of building robust foundation models for underrepresented Central Asian languages (Kazakh, Kyrgyz, Uzbek). We"
+      "title": "Generative World Renderer at the Speed of Play",
+      "upvotes": 64,
+      "paper_id": "2607.18703",
+      "abstract": "Real-time generative forward world renderer pushes performance from 0.56 FPS to 31.54 FPS through autoregressive streaming and lightweight distilled codecs. Enables fully playable generative worlds at 30 FPS while preserving core rendering capabilities."
     },
     {
-      "title": "Open-AoE: An Open Egocentric Manipulation Dataset and Toolchain for Embodied Learning",
-      "upvotes": 24,
-      "paper_id": "2607.14183",
-      "abstract": "Egocentric videos of human manipulation provide scalable supervision for embodied intelligence, yet existing resources rarely combine low-cost continuous capture, manipulation-level structured annotations, and reusable tools for robot learning. We present Open-AoE, an open, community-oriented"
+      "title": "AlayaWorld: Interactive Long-Horizon World Modeling -- Full Technical Report",
+      "upvotes": 46,
+      "paper_id": "2607.18367",
+      "abstract": "Interactive long-horizon video world model generating 24-fps video at 540p and 720p. Built on 15B video diffusion transformer with discrete autoregressive distillation reducing inference steps from 30 to 4."
     },
     {
-      "title": "FlowMimic: Mask-free Visual Editing and Generation with Pixel-pair Warped Flow Field for Online Video Editing Data Generation and Modality Mimicry",
-      "upvotes": 23,
-      "paper_id": "2607.18227",
-      "abstract": "In line with the prevailing direction of vision research, we explore the integration of both generation and editing capabilities for video and image modalities within a single model. Current approaches to collecting video editing data typically depend on labour-intensive, time-consuming curated"
+      "title": "Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning",
+      "upvotes": 29,
+      "paper_id": "2607.18722",
+      "abstract": "Staleness-Adaptive Trust Region method for asynchronous RL using detached log-ratio as staleness proxy. Achieves best observed AIME24 performance at 35.83 with lag 1 and 34.79 with lag 8."
     },
     {
-      "title": "Do Language Models Dream of Binding Molecules? Benchmarking LLMs under Spatial Constraints",
-      "upvotes": 12,
-      "paper_id": "2607.18144",
-      "abstract": "Structure-based drug design (SBDD) leverages the 3D structure of protein targets, often complemented by other spatial constraints, to generate candidate binding molecules. While diffusion models have dominated as a leading paradigm for high-quality 3D molecule generation, LLM-based methods are"
+      "title": "AgentDebugX: An Open-Source Toolkit for Failure Observability, Attribution, and Recovery in LLM Agents",
+      "upvotes": 17,
+      "paper_id": "2607.18754",
+      "abstract": "Debugging framework for LLM agent failures using multi-turn root-cause diagnosis. DeepDebug achieves 28.8% exact attribution accuracy and repairs 13 of 73 failed tasks, improving overall accuracy from 55.8% to 63.6%."
     },
     {
-      "title": "HarmoHOI: Harmonizing Appearance and 3D Motion for Multi-view Hand-Object Interaction Synthesis",
-      "upvotes": 9,
-      "paper_id": "2607.17097",
-      "abstract": "Hand-Object Interaction (HOI) synthesis is a cornerstone for animation production and embodied AI. Despite the strong priors of video foundation models, multi-view consistent HOI synthesis remains challenging due to complex hand motions and occlusions. We present HarmoHOI, a unified diffusion"
+      "title": "SciForma: Structure-Faithful Generation of Scientific Diagrams",
+      "upvotes": 15,
+      "paper_id": "2607.18091",
+      "abstract": "Framework ensuring structural fidelity in scientific diagram generation through multi-dimensional preference optimization. SciForma-9B exceeds open-source baselines and proprietary models on logic-verified evaluation benchmarks."
     },
     {
-      "title": "ShotPlan: Cinematic Video Generation with Learnable Planning Token",
-      "upvotes": 3,
-      "paper_id": "2607.17675",
-      "abstract": "Current video generation models achieve impressive results in single-shot generation, yet remain limited in cinematic video generation, where coherent narratives and effective multi-shot composition require explicit shot planning. To address this challenge, we propose ShotPlan, a framework for explicit"
+      "title": "HPD-Parsing: Hierarchical Parallel Document Parsing",
+      "upvotes": 7,
+      "paper_id": "2607.18839",
+      "abstract": "Hierarchical parallel decoding replaces sequential generation bottleneck in document parsing. Achieves 4,752 tokens per second, delivering 2.62x throughput of fastest existing models while maintaining competitive accuracy."
     },
     {
-      "title": "Diagnosing and Calibrating Tool-Call Boundary Drift in Multi-Teacher On-Policy Distillation",
-      "upvotes": 3,
-      "paper_id": "2607.07050",
-      "abstract": "Agentic language models must learn when to call tools, when to consume tool responses, and when to answer directly. This makes multi-teacher on-policy distillation a natural training strategy: one teacher can specialize in tool calls, another in direct responses, and the student can learn from"
+      "title": "Two-Level Meta-Rubrics for Evaluating Open-Ended Generation: GAMUT, a Benchmark for Factual Completeness",
+      "upvotes": 6,
+      "paper_id": "2607.19322",
+      "abstract": "Two-level meta-rubric framework for evaluating factual completeness in long-form generation. Benchmark with 1,813 questions across diverse domains proves genuinely challenging with best score 58.7% from Gemini 3.1 Pro."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent. Added screen-reader announcements for text deletions. Fixed Windows paths with u-prefixed segments being corrupted. Fixed left arrow key discarding conversations. Added HTTP status to claude mcp list. Fixed multi-line paste collapsing. Fixed /ultrareview with descriptive arguments. Fixed /code-review ultra in non-interactive sessions. Various other fixes for plugin panels, crashes, and telemetry."
+    },
+    {
       "tag_name": "v2.1.217",
       "published_at": "2025-07-21",
-      "body": "Added emoji shortcode autocomplete in the prompt input: type :heart: to insert heart emoji, or :hea for suggestions - disable with the emojiCompletionEnabled setting\nAdded warnings when transcript writes are failing (e.g. disk full) or when session saving is off due to an inherited environment variable, instead of losing transcripts silently\nFixed a memory leak where truncated MCP tool outputs kept the full untruncated result in memory for the rest of the session\nFixed Windows auto-update failures that could leave claude.exe missing; failed updates now restore the preserved executable automatically"
+      "body": "Added emoji shortcode autocomplete. Added warnings for transcript write failures. Fixed memory leak in truncated MCP tool outputs. Fixed Windows auto-update failures. Fixed background session isolation for symlinked directories. Fixed auto-compact for Claude Opus 4.8 on Bedrock. Fixed corporate mTLS and proxy settings. Fixed screen reader mode startup announcement. Capped concurrent subagents to 20 by default."
     },
     {
       "tag_name": "v2.1.216",
       "published_at": "2025-07-20",
-      "body": "Added sandbox.filesystem.disabled setting to skip filesystem isolation while keeping network egress control\nFixed a slowdown in long sessions where message normalization cost grew quadratically with the number of turns, causing multi-second stalls and slow resumes\nFixed auto mode denying commands with HTTP 401 classifier errors after the OAuth token expired or rotated mid-session\nFixed AskUserQuestion telling Claude to continue even when your answer asked it to wait or explain first - free-text answers now get neutral wording"
-    },
-    {
-      "tag_name": "v2.1.215",
-      "published_at": "2025-07-19",
-      "body": "Claude no longer runs the /verify and /code-review skills on its own; invoke them with /verify or /code-review when you want them"
+      "body": "Added sandbox.filesystem.disabled setting. Fixed quadratic slowdown in long sessions from message normalization. Fixed auto mode denying after OAuth token expiry. Fixed AskUserQuestion continuing after user decline. Fixed Claude Code web re-asking questions after idle. Fixed worktree isolation issues. Fixed background session restoration. Fixed Bash command parsing and permission checks. Various UI and dialog fixes for fullscreen mode."
     }
   ]
 }
