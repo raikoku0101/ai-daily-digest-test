@@ -1,7 +1,6 @@
-**2. Apple-π: Benchmarking Thinking with Video Towards Law-Grounded Physical Intelligence**
-**著者**: Runmao Yao, Kairui Hu, Yukang Cao et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.16401
-**upvotes**: 37
+**2. DataFlow-Harness: A Grounded Code-Agent Platform for Constructing Editable LLM Data Pipelines**
+**著者**: DataFlow Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.16617
 
 **まとめ**:
-映像生成モデルが「物理法則に基づいた推論過程」を経て出力を生成しているかを評価する初のベンチマーク「Apple-π」を提案。古典力学10項目をカバーする400本の映像データセット「Orchard」と、知覚→定式化→演繹の3段階評価プロトコルを組み合わせる。11モデルの評価で最高性能モデルでも0.473スコアに留まり、現在の映像生成モデルは真の物理的理解からほど遠いことを実証した。
+LLMエージェントが永続的・編集可能なデータパイプラインを構築するための「NL2Pipeline gap」を解消するプラットフォーム。型付きミューテーション（typed mutations）と Request-Validate-Commit プロトコルにより、93.3%のパス率を達成しながらコスト72.5%削減・レイテンシ49.9%削減を実現。会話型UIと視覚的DAGエディターを統合し、LLMと人間の協調データエンジニアリングを可能にする。

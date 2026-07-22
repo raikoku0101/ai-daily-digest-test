@@ -1,7 +1,6 @@
-**4. GigaAM Multilingual: Foundation Model for Underrepresented Languages**
-**著者**: Andrei Kuzmenko et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.10371
-**upvotes**: 28
+**4. Generative World Renderer at the Speed of Play**
+**著者**: AlayaRenderer Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.18703
 
 **まとめ**:
-カザフ語・キルギス語・ウズベク語などデータが少ない中央アジアの低リソース言語向けに、200万時間の音声データでConformerエンコーダーをHuBERTスタイルで事前学習した多言語基盤モデルを提案。クラスタレベルのデータバランシングとドメイン認識サンプリングにより言語間の性能格差を緩和し、Whisper Large v3を上回る精度を達成。Interspeech 2026採択・モデル公開済み。
+ゲームエンジンのG-buffer（幾何・材質情報）を条件とした生成型レンダラーをリアルタイム化した研究。自己回帰ストリーミング・4ステップ蒸留・軽量コーデックの組み合わせにより、0.56 FPSから31.54 FPSへ約56倍の高速化を達成。Black Myth: Wukongデータセットでの評価でSuperTuxKartへの統合も実証し、リアルタイム生成ゲームの実用化を実現した。

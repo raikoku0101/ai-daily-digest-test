@@ -1,7 +1,6 @@
-**3. GigaChat Audio: Time-aware Large Audio Language Model**
-**著者**: Aleksandr Kutsakov, Mariia Sadovina, Georgii Gospodinov et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.10387
-**upvotes**: 30
+**3. Text Template Tokens Are Implicit Semantic Registers in Diffusion Transformers**
+**著者**: Research Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.19139
 
 **まとめ**:
-長尺音声（最大120分）に対して明示的なタイムスタンプ付きで質問に回答できる時間認識型大規模音声言語モデルを提案。連続音声トークンに周期的な時間マーカーを交互に挿入するアーキテクチャを採用し、大規模合成監督データで訓練。短・長期ベンチマークで高い時間的グラウンディング精度を達成し、Interspeech 2026に採択。HuggingFaceでモデルと学習データを公開。
+拡散トランスフォーマー（DiT）において、チャットテンプレートの構造トークン（区切り子等）が意味トークンより約11〜13倍多くの注意を吸収し、暗黙的なセマンティックレジスタとして機能することを発見。この知見に基づく訓練不要のヘッド剪定で注意演算の20%削減を達成しながら品質低下を最小限に抑えた。拡散モデルの内部メカニズム解明に向けた重要な因果的解釈可能性研究。
