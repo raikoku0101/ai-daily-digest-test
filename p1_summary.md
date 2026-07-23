@@ -1,6 +1,6 @@
-**1. ABot-World-0: Infinite Interactive World Rollout on a Single Desktop GPU**
-**著者**: ABot Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.19191
+**1. SLAI T-Rex: Full-Parameter Post-training of the DeepSeek-V4 Family on Ascend SuperPOD**
+**著者**: SLAI Research Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.20145
 
 **まとめ**:
-単一デスクトップGPU（RTX 5090）でリアルタイムのインタラクティブ世界シミュレーションを実現した研究。ゲーム・シミュレーション・インターネット動画の多源データと段階的蒸留（LongForcing）を組み合わせ、720P/最大16FPSで長時間安定した動作を達成。アクション条件付き動画生成の民主化に向けた実用的なブレークスルー。
+兆パラメータ規模の MoE モデル（DeepSeek-V4 ファミリー）を Ascend NPU SuperPOD 上でフルパラメータ ポストトレーニングする際のシステム最適化を報告。Model FLOPs Utilization 34.22%（ベースライン比 2.93x）を達成し、特化モデルは OR タスクでゼロショット Pass@1 71.81% を記録。GPU 中心でない AI インフラの可能性を実証する重要な研究。
