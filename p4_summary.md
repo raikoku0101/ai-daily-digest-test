@@ -1,6 +1,6 @@
-**4. Generative World Renderer at the Speed of Play**
-**著者**: AlayaRenderer Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.18703
+**4. An Exam for Active Observers**
+**著者**: ActiveVision Research Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.16165
 
 **まとめ**:
-ゲームエンジンのG-buffer（幾何・材質情報）を条件とした生成型レンダラーをリアルタイム化した研究。自己回帰ストリーミング・4ステップ蒸留・軽量コーデックの組み合わせにより、0.56 FPSから31.54 FPSへ約56倍の高速化を達成。Black Myth: Wukongデータセットでの評価でSuperTuxKartへの統合も実証し、リアルタイム生成ゲームの実用化を実現した。
+マルチモーダル LLM の「能動的観察（active observation）」能力を定量評価する ActiveVision ベンチマークを提案。GPT-5.5 は 10.6%、Claude Fable はわずか 3.5% の正解率に対し、人間参加者の平均は 96.1%。現行フロンティアモデルが本質的な視覚的能動観察能力を欠いていることを実証し、閉ループ型の知覚-推論アーキテクチャの必要性を示す衝撃的な研究。
