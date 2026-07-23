@@ -1,6 +1,6 @@
-**2. DataFlow-Harness: A Grounded Code-Agent Platform for Constructing Editable LLM Data Pipelines**
-**著者**: DataFlow Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.16617
+**2. Self Gradient Forcing: Native Long Video Extrapolation**
+**著者**: SGF Research Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.20368
 
 **まとめ**:
-LLMエージェントが永続的・編集可能なデータパイプラインを構築するための「NL2Pipeline gap」を解消するプラットフォーム。型付きミューテーション（typed mutations）と Request-Validate-Commit プロトコルにより、93.3%のパス率を達成しながらコスト72.5%削減・レイテンシ49.9%削減を実現。会話型UIと視覚的DAGエディターを統合し、LLMと人間の協調データエンジニアリングを可能にする。
+自己回帰型動画拡散モデルの Self Forcing における「過去コンテキストと勾配のギャップ（historical context-gradient gap）」問題を解決する Self Gradient Forcing（SGF）を提案。2パスの訓練戦略で過去フレームへの勾配監督を復元し、被写体の一貫性・背景・時間的安定性において既存手法を大幅に上回る長尺動画生成を実現。5秒の訓練ウィンドウのみで数分間の動画外挿が可能。
