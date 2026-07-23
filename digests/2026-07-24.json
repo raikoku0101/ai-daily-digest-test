@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-24",
+  "content": "# AI Daily Digest — 2026-07-24\n\n## 今日のハイライト\n- **SLAI T-Rex (45 upvotes)**: 兆パラメータ MoE モデルの Ascend NPU 上でのフルパラメータ訓練最適化。ベースライン比 2.93x の MFU 向上は大規模 AI 訓練インフラの多様化を示す重要成果。\n- **GPT-5.5 の能動的観察能力が人間の1/9**: ActiveVision ベンチマークでフロンティア LLM が 10.6% しか正解できない事実は、現行 AI の視覚的推論の根本的な限界を示す警鐘。\n- **Claude Code v2.1.218**: `/code-review` のバックグラウンド化と Windows パス文字化けの修正は実務ユーザーの体験を直接向上させる重要なリリース。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.218 (2025-07-22)\n**主要機能**\n- `/code-review` がバックグラウンド サブエージェントとして実行されるように変更。レビュー作業が会話を埋め尽くさなくなり、スタックされたスラッシュコマンドもレビュー対象として維持される。\n- スクリーンリーダー対応: 単語・行削除時の削除テキストアナウンス追加。\n- `claude mcp list` および `/mcp` でサーバー接続失敗時の HTTP ステータスとエラーテキストを表示。\n\n**バグ修正**\n- Windows: `\\u` プレフィックス付きパスが CJK 文字に化ける問題を修正。\n- 左矢印キーで会話がアンドゥ不可状態で消える問題を修正。\n- 複数行ペーストが `j` で改行なし1行に潰れる問題を修正。\n- `/context` がコンパクト前の古いトークン使用量を報告する問題を修正。\n- `/ultrareview` が説明的引数で失敗する問題を修正。\n\n**ユーザーへの影響**: コードレビューがバックグラウンドで動くため、メインの会話フローが妨げられなくなる。Windows ユーザーは日本語ファイルパス問題が解消される。\n\n---\n\n### v2.1.217 (2025-07-21)\n**主要機能**\n- 絵文字ショートコード自動補完: `:heart:` と入力すると ❤️ に変換、`:hea` で候補表示。`emojiCompletionEnabled` 設定で無効化可。\n- トランスクリプト書き込み失敗時や環境変数によるセッション保存オフ時の警告追加。\n- 同時実行サブエージェント数の上限追加（デフォルト20、`CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` で変更可）。\n\n**バグ修正**\n- MCP ツール出力の切り詰め時に全文がメモリに残るメモリリークを修正。\n- Windows 自動更新失敗で `claude.exe` が消える問題を修正。\n- Bedrock 上の Claude Opus 4.8 で自動コンパクトがトリガーされない問題を修正。\n\n**ユーザーへの影響**: 長時間セッションのメモリ効率が向上。並行エージェント実行数の制御が可能になりリソース管理が改善。\n\n---\n\n### v2.1.216 (2025-07-20)\n**主要機能**\n- `sandbox.filesystem.disabled` 設定追加: ファイルシステム分離をスキップしつつネットワーク出力制御を維持可能。\n\n**バグ修正**\n- 長時間セッションでメッセージ正規化コストが턴数の二乗で増大する重大なパフォーマンス低下を修正（マルチ秒の停止・遅い再開が解消）。\n- OAuth トークン切れ後に自動モードが「HTTP 401」で拒否する問題を修正。\n- `AskUserQuestion` が「待って」と答えても続行を指示する問題を修正。\n- Web 上の Claude Code がアイドル後に同じ質問を再度聞いて回答を破棄する問題を修正。\n\n**ユーザーへの影響**: 長時間セッションのパフォーマンスが劇的に改善。OAuth 切れによる突然の拒否が解消される。\n\n## 注目論文 TOP 10\n\n**1. SLAI T-Rex: Full-Parameter Post-training of the DeepSeek-V4 Family on Ascend SuperPOD** | 45 upvotes | https://arxiv.org/abs/2607.20145\n🎯 **背景**: 兆パラメータ規模の MoE モデルをフルパラメータでポストトレーニングする際のシステムレベルの課題を解決する研究。Ascend NPU SuperPOD 上での大規模訓練最適化を目指す。\n🔧 **手法**: エンドツーエンドの最適化を Ascend NPU SuperPOD 上で実施。通信・計算オーバーラップ、メモリ効率化、負荷分散を組み合わせたシステム設計。\n📊 **結果**: Model FLOPs Utilization 34.22% を達成し、ベースラインから 2.93x の改善。\n💡 **意義**: オープンソースの大規模 MoE モデルを実際のハードウェアで効率的に訓練する実践的な知見を提供。Ascend NPU エコシステムの可能性を示す。\n⚠️ **限界**: Ascend SuperPOD という特定ハードウェア環境に依存しており、他のアーキテクチャへの汎用性は未検証。\n\n---\n\n**2. Self Gradient Forcing: Native Long Video Extrapolation** | 29 upvotes | https://arxiv.org/abs/2607.20368\n🎯 **背景**: 自己回帰型動画拡散モデルの Self Forcing 手法は露出バイアスを低減するが、「過去コンテキストと勾配のギャップ」という新たな問題が生じる。\n🔧 **手法**: Self Gradient Forcing (SGF) を提案。学生モデルが自己ロールアウトの履歴で訓練する際、勾配の流れを過去コンテキストにも適切に伝播させる機構を導入。\n📊 **結果**: 長尺動画の外挿において既存手法を上回る品質と一貫性を実現。ネイティブな長尺生成が可能。\n💡 **意義**: 動画生成における時間的一貫性の根本的な課題にアプローチし、長尺動画生成の実用性を高める。\n⚠️ **限界**: 訓練コストの増加と、極端に長いシーケンスでの安定性についての検証が必要。\n\n---\n\n**3. Beyond Relevance-Centric Retrieval: Rubric-Oriented Document Set Selection and Ranking** | 24 upvotes | https://arxiv.org/abs/2607.19747\n🎯 **背景**: 既存の検索評価システム（nDCG など）は文書を独立にスコアリングし、文書間の相互作用を無視している。実際のユーザーニーズはセット全体の品質に依存する。\n🔧 **手法**: SetwiseEvalKit（28K 評価ルーブリックの3レベルベンチマーク）と Rubric4Setwise（学習不要の文書セット最適化手法）を提案。ルーブリック指向で文書セットを評価・選択する。\n📊 **結果**: 既存の関連性中心手法を上回るセット品質を実現。28K のルーブリックによる包括的評価で優位性を示す。\n💡 **意義**: RAG システムや情報検索の評価・最適化を文書間の多様性・補完性まで考慮した新パラダイムに移行させる。\n⚠️ **限界**: ルーブリック作成コストと、ドメイン特化ルーブリックの汎化性に課題が残る可能性。\n\n---\n\n**4. An Exam for Active Observers** | 18 upvotes | https://arxiv.org/abs/2607.16165\n🎯 **背景**: マルチモーダル LLM の「能動的観察」能力が定量評価されてこなかった。フロンティアモデルが視覚的能動観察においてどれほど弱いかが未知。\n🔧 **手法**: ActiveVision ベンチマークを構築。能動的観察が必要なタスクを設計し、フロンティアモデルと人間参加者を比較評価。\n📊 **結果**: GPT-5.5 はわずか 10.6% しか解けず、人間の平均 96.1% と比較して壊滅的な差。現行 MLLM の能動的視覚観察能力の欠如を実証。\n💡 **意義**: AI の視覚理解の重大な盲点を明示。能動的観察を要する実世界タスク（ロボット操作、医療診断など）への応用における限界を示す。\n⚠️ **限界**: ベンチマーク構成の詳細と、「能動的観察」の操作的定義の妥当性についてさらなる検証が必要。\n\n---\n\n**5. Scaling Laws for Hypernetwork-Based Knowledge Injection in Large Language Models** | 11 upvotes | https://arxiv.org/abs/2607.19604\n🎯 **背景**: LLM への大規模知識注入手法としてハイパーネットワークが有望視されているが、スケーリング特性が不明。どの程度のデータ・規模で効果が出るかの予測が困難だった。\n🔧 **手法**: MegaWikiQA データセット（数千万件の例を含む）を構築し、ハイパーネットワークによる知識注入のスケーリング則を実験的に導出。\n📊 **結果**: 予測的なべき乗則スケーリングを実証。スケールを増大させても信頼性のある分布外汎化を確認。\n💡 **意義**: 知識注入のスケーリングを予測可能にすることで、LLM の継続的知識更新の設計指針を提供。ファインチューニング不要な知識更新への道を開く。\n⚠️ **限界**: MegaWikiQA という特定データセットに依存しており、他のドメインや知識タイプへの適用性は未検証。\n\n**6. Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment** | 10 upvotes | https://arxiv.org/abs/2607.13429\n🎯 **背景**: ロボット工学向けに VLA（Vision-Language-Action）モデルを行動クローニングでファインチューニングすると、事前学習済み表現が上書きされ汎化性能が低下する。\n🔧 **手法**: Anchor-Align フレームワークを提案。Vision-Language Anchoring（VLA 表現のアンカリング）と Language-Action Alignment（言語と行動の整合）の2機構を組み合わせ、事前学習表現を保護しながら行動を学習。\n📊 **結果**: 実ロボットでの成功率がベースラインの 28% から 54% へと大幅に向上。\n💡 **意義**: ロボット操作 AI の実用化における重大な課題（汎化性の喪失）を解決し、少ないデータで多様なタスクに対応できるロボット学習を実現。\n⚠️ **限界**: 特定のロボットプラットフォームでの評価に限られており、他のロボット構成への転用可能性は不明。\n\n---\n\n**7. Beyond Euclidean Clipping: Overcoming Exploration Collapse in LLM RL via Riemannian Isometric Policy Optimization** | 9 upvotes | https://arxiv.org/abs/2607.10169\n🎯 **背景**: PPO-Clip の根本的欠陥として、ポリシーの差異をリーマン多様体の幾何学と整合しないユークリッド距離で計測している問題があり、探索崩壊を引き起こす。\n🔧 **手法**: RIPO（Riemannian Isometric Policy Optimization）を提案。ポリシー更新がリーマン多様体上で等長（isometric）となることを保証し、適切な探索を維持。\n📊 **結果**: AIME24 において GRPO と比較して最大 60% の改善を達成。\n💡 **意義**: LLM の強化学習における探索崩壊という根本問題を幾何学的視点から解決。数学的推論タスクでの大幅な性能向上を実現。\n⚠️ **限界**: リーマン計量の計算コストが高く、実装の複雑さと計算効率のトレードオフが課題。\n\n---\n\n**8. DocOps: A Verifiable Benchmark for Autonomous Agents in Complex Document Operations** | 4 upvotes | https://arxiv.org/abs/2607.19865\n🎯 **背景**: 自律エージェントによる複雑な文書操作タスクの評価が困難で、再現性・検証可能性の欠如が問題。実務的な文書処理能力の定量評価が求められている。\n🔧 **手法**: DocOps は決定論的に検証可能な評価フレームワーク。実際の文書操作シナリオを網羅し、エージェントの行動を確実に評価できるベンチマークを提供。\n📊 **結果**: 現行エージェントの3つの主要失敗モードを特定: 長期状態追跡の崩壊、浅い意味的検証、破壊的メタデータ編集。\n💡 **意義**: エンタープライズ AI における文書自動化の現状と限界を明確化。実用化に向けた具体的な改善方向を示す。\n⚠️ **限界**: ベンチマークの文書タイプが限定的で、多様な業界文書への適用性と構築コストが課題。\n\n---\n\n**9. FVAttn: Adaptive Sparse Attention with Runtime Load Balancing for Video Generation** | 4 upvotes | https://arxiv.org/abs/2607.16190\n🎯 **背景**: 動画拡散トランスフォーマー（DiT）はアテンション計算がボトルネックになっており、長尺・高解像度動画生成の効率化が急務。\n🔧 **手法**: FVAttn は適応的 Top-p ルーティングとランタイム負荷分散を組み合わせたスパースアテンション機構を実装。GPU 間の計算負荷を動的に均等化。\n📊 **結果**: FlashAttention 比 4.41x のアテンション高速化、DiT 推論全体で 2.02-2.11x の高速化を達成しつつ動画品質を維持。\n💡 **意義**: 動画生成 AI の実用的な高速化を実現。4K 動画生成や長尺コンテンツ生成の商用展開を促進する技術基盤となる。\n⚠️ **限界**: 特定のモデルアーキテクチャへの依存度と、極端に動的なシーンでのスパースパターン安定性の検証が必要。\n\n---\n\n**10. Trace: A Taxonomy-Guided Environment for Multidomain Visual Reasoning** | 3 upvotes | https://arxiv.org/abs/2607.19790\n🎯 **背景**: マルチドメイン視覚推論の包括的なベンチマークが不足しており、AI の視覚推論能力の体系的評価が困難だった。\n🔧 **手法**: Trace は分類学に基づく環境設計。277 のシーン文法と 11 の視覚ドメインにわたる 1,000 タスクを構築。64,000 件のインスタンスで RLVR（強化学習による視覚推論）を実施。\n📊 **結果**: 24 の外部ベンチマークにわたるマクロ平均で 3.51-4.06 ポイントの改善を達成。\n💡 **意義**: 単一ドメインに偏らない多様な視覚推論能力の評価・向上フレームワークを提供。AI の汎用視覚知性の発展を促進。\n⚠️ **限界**: タスク構築の分類学的アプローチが実世界の視覚推論の多様性を十分にカバーできているかの検証が必要。\n\n",
+  "fetched_at": "2026-07-23T22:06:00.806277+00:00",
+  "papers": [
+    {
+      "title": "SLAI T-Rex: Full-Parameter Post-training of the DeepSeek-V4 Family on Ascend SuperPOD",
+      "upvotes": 45,
+      "paper_id": "2607.20145",
+      "abstract": "Full-parameter post-training of trillion-parameter-scale MoE models introduces substantial system-level challenges. We present end-to-end optimization on Ascend NPU SuperPOD, achieving 34.22% Model FLOPs Utilization with 2.93x improvement over baseline"
+    },
+    {
+      "title": "Self Gradient Forcing: Native Long Video Extrapolation",
+      "upvotes": 29,
+      "paper_id": "2607.20368",
+      "abstract": "Recent autoregressive video diffusion methods use Self Forcing, where the student trains on histories from its own rollout rather than ground-truth contexts. This reduces exposure bias but leaves a historical context-gradient gap. We propose Self Gradient Forcing (SGF)"
+    },
+    {
+      "title": "Beyond Relevance-Centric Retrieval: Rubric-Oriented Document Set Selection and Ranking",
+      "upvotes": 24,
+      "paper_id": "2607.19747",
+      "abstract": "Existing evaluation systems score documents independently via nDCG, ignoring inter-document interactions. We propose SetwiseEvalKit, a three-level benchmark with 28K evaluation rubrics, and Rubric4Setwise, a training-free method for document set optimization"
+    },
+    {
+      "title": "An Exam for Active Observers",
+      "upvotes": 18,
+      "paper_id": "2607.16165",
+      "abstract": "ActiveVision is a benchmark making active observation measurable for multimodal LLMs. Frontier models collapse on it: GPT-5.5 solves only 10.6% of items, while human participants average 96.1%, indicating current MLLMs lack robust active visual observation"
+    },
+    {
+      "title": "Scaling Laws for Hypernetwork-Based Knowledge Injection in Large Language Models",
+      "upvotes": 11,
+      "paper_id": "2607.19604",
+      "abstract": "Hypernetworks provide promising solutions for large-scale knowledge injection into LLMs. We construct MegaWikiQA dataset with tens of millions of examples, demonstrating predictive power law scaling and reliable out-of-distribution generalization at increasing scales"
+    },
+    {
+      "title": "Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment",
+      "upvotes": 10,
+      "paper_id": "2607.13429",
+      "abstract": "Behavior cloning finetuning of vision-language models for robotics overwrites pretrained representations. We propose Anchor-Align with Vision-Language Anchoring and Language-Action Alignment, improving real-robot success from 28% to 54%"
+    },
+    {
+      "title": "Beyond Euclidean Clipping: Overcoming Exploration Collapse in LLM RL via Riemannian Isometric Policy Optimization",
+      "upvotes": 9,
+      "paper_id": "2607.10169",
+      "abstract": "PPO-Clip fundamental flaw is measuring policy discrepancy using Euclidean metrics inconsistent with policy Riemannian manifold geometry. We propose RIPO, guaranteeing isometric updates, achieving up to 60% improvement over GRPO on AIME24"
+    },
+    {
+      "title": "DocOps: A Verifiable Benchmark for Autonomous Agents in Complex Document Operations",
+      "upvotes": 4,
+      "paper_id": "2607.19865",
+      "abstract": "DocOps is a deterministically verifiable evaluation framework for document manipulation by autonomous agents. Analysis reveals three key failure modes: long-term state tracking collapse, shallow semantic verification, and destructive metadata editing"
+    },
+    {
+      "title": "FVAttn: Adaptive Sparse Attention with Runtime Load Balancing for Video Generation",
+      "upvotes": 4,
+      "paper_id": "2607.16190",
+      "abstract": "Video Diffusion Transformers face attention bottlenecks. FVAttn uses adaptive Top-p routing with runtime load balancing, achieving 4.41x attention speedup over FlashAttention and 2.02-2.11x DiT inference speedup with competitive video quality"
+    },
+    {
+      "title": "Trace: A Taxonomy-Guided Environment for Multidomain Visual Reasoning",
+      "upvotes": 3,
+      "paper_id": "2607.19790",
+      "abstract": "Trace is a taxonomy-guided environment for multidomain visual reasoning with 1,000 tasks across 277 scene grammars and 11 visual domains. RLVR on 64,000 instances improves macro-average by 3.51-4.06 percentage points across 24 external benchmarks"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation. Added screen-reader announcements of deleted text. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters. Fixed the left arrow key discarding the conversation with no undo. Added HTTP status and error text to claude mcp list when a server fails to connect. Fixed multi-line paste collapsing into one line. Fixed /context reporting stale pre-compact token usage. Fixed /ultrareview failing on descriptive arguments. Fixed /code-review ultra silently running a local review in non-interactive sessions."
+    },
+    {
+      "tag_name": "v2.1.217",
+      "published_at": "2025-07-21",
+      "body": "Added emoji shortcode autocomplete in prompt input: type :heart: to insert emoji. Added warnings when transcript writes are failing. Fixed a memory leak where truncated MCP tool outputs kept the full untruncated result in memory. Fixed Windows auto-update failures that could leave claude.exe missing. Fixed auto-compact never triggering for Claude Opus 4.8 on Bedrock. Added a cap on concurrently-running subagents (default 20, override with CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS)."
+    },
+    {
+      "tag_name": "v2.1.216",
+      "published_at": "2025-07-20",
+      "body": "Added sandbox.filesystem.disabled setting to skip filesystem isolation while keeping network egress control. Fixed a slowdown in long sessions where message normalization cost grew quadratically with the number of turns. Fixed auto mode denying commands with HTTP 401 classifier errors after OAuth token expired. Fixed AskUserQuestion telling Claude to continue even when your answer asked it to wait. Fixed Claude Code on the web re-asking the same question and dropping your answer after the session sat idle."
+    }
+  ]
+}
