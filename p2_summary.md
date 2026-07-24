@@ -1,6 +1,6 @@
-**2. Self Gradient Forcing: Native Long Video Extrapolation**
-**著者**: SGF Research Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.20368
+**2. ReferTrack: Referring Then Tracking for Embodied Visual Tracking**
+**著者**: Hanjing Ye, Tianle Zeng, Jiazhao Zhang et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.20061
 
 **まとめ**:
-自己回帰型動画拡散モデルの Self Forcing における「過去コンテキストと勾配のギャップ（historical context-gradient gap）」問題を解決する Self Gradient Forcing（SGF）を提案。2パスの訓練戦略で過去フレームへの勾配監督を復元し、被写体の一貫性・背景・時間的安定性において既存手法を大幅に上回る長尺動画生成を実現。5秒の訓練ウィンドウのみで数分間の動画外挿が可能。
+単一前向き RGB カメラのみで自然言語指示→人物追跡を実現する「ReferTrack」を提案。インデックス付き境界ボックス（Bounding Box）の選択として目標特定を定式化し、TVBI（Temporal-Viewpoint-BBox Indicator）トークンで時間的・幾何的情報を視覚履歴に注入する。Qwen3-4B の教師あり微調整のみで EVT-Bench 最高成功率を達成し、脚型・ヒューマノイドロボットへの実世界展開でも堅牢性を実証した。

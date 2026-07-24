@@ -1,6 +1,6 @@
-**5. Scaling Laws for Hypernetwork-Based Knowledge Injection in Large Language Models**
-**著者**: Hypernetwork Scaling Research Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.19604
+**5. Show, Don't Tell: Evaluating Spatial Cognition in Generative Pixels Rather Than LLM Text**
+**著者**: 著者情報非公開 (2025)
+**arXiv**: https://arxiv.org/abs/2607.21072
 
 **まとめ**:
-ハイパーネットワークを使った LLM への知識注入がべき乗則スケーリングを示すことを初めて実証。3,900 万件以上のマルチホップ Q&A を含む MegaWikiQA データセットを構築し、深さ・幅・ターゲットモデルサイズにわたる予測可能なスケーリング則を発見。分布外汎化においても従来手法より優れたスケーリング指数を達成し、LLM の継続的知識更新の新たな基盤を確立。
+テキスト回答を前提とした既存ベンチマークでは評価できない画像生成モデルの空間認知能力を測るため、ProVisE フレームワークと SpatialGen-Bench（14 サブタスク・470 サンプル）を提案。テキスト VLM（GPT-5.4 で 61.04 点）が総合上位を占める一方、深度マップ・グラウンディング等ピクセル空間表現タスクでは画像生成モデルが競争力を発揮。両モダリティの相補的強みを初めて統一評価軸で定量化した。

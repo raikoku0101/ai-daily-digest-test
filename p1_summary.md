@@ -1,6 +1,6 @@
-**1. SLAI T-Rex: Full-Parameter Post-training of the DeepSeek-V4 Family on Ascend SuperPOD**
-**著者**: SLAI Research Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.20145
+**1. AREX: Towards a Recursively Self-Improving Agent for Deep Research**
+**著者**: Shuqi Lu, Chaofan Li, Kun Luo et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.21461
 
 **まとめ**:
-兆パラメータ規模の MoE モデル（DeepSeek-V4 ファミリー）を Ascend NPU SuperPOD 上でフルパラメータ ポストトレーニングする際のシステム最適化を報告。Model FLOPs Utilization 34.22%（ベースライン比 2.93x）を達成し、特化モデルは OR タスクでゼロショット Pass@1 71.81% を記録。GPU 中心でない AI インフラの可能性を実証する重要な研究。
+複数制約を同時に満たす答えを求める深層リサーチタスク向けに、証拠収集ループと自己改善ループを交互に実行する AREX を提案。「発見より検証が簡単」という非対称性を活用し、制約ごとに暫定答えを監査しながら再帰的に精度を高める。4B の AREX-Turbo から 122B MoE の AREX-Base まで展開し、BrowseComp で 82.5%、GAIA で 85.4% を達成してベースライン大幅超過。キーステップへの選択的監督が訓練効率の鍵であることをアブレーション研究で確認。

@@ -1,6 +1,6 @@
-**4. An Exam for Active Observers**
-**著者**: ActiveVision Research Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.16165
+**4. K12-KGraph: A Curriculum-Aligned Knowledge Graph for Benchmarking and Training Educational LLMs**
+**著者**: Qihan Lin, Zhaoyang Han, Xiaochen Ma et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.09635
 
 **まとめ**:
-マルチモーダル LLM の「能動的観察（active observation）」能力を定量評価する ActiveVision ベンチマークを提案。GPT-5.5 は 10.6%、Claude Fable はわずか 3.5% の正解率に対し、人間参加者の平均は 96.1%。現行フロンティアモデルが本質的な視覚的能動観察能力を欠いていることを実証し、閉ループ型の知覚-推論アーキテクチャの必要性を示す衝撃的な研究。
+中国 K-12 教科書から抽出したカリキュラム整合知識グラフ（9 種ノード・14 種エッジ）を基盤に、23,640 問のベンチマーク K12-Bench と 7,335 件の訓練データ K12-Train を統一的に構築。既存強力 LLM も最難関タスク（前提条件推論・近傍推奨）では 35% 以下に留まり、構造的理解の重要性を浮き彫りに。K12-Train-Text は同一サンプル予算で 8 種主流データセットを上回り、Qwen3-4B で GaokaoBench +24.1 点を達成した。
