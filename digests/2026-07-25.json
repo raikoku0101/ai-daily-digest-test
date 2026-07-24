@@ -1,84 +1,84 @@
 {
   "date": "2026-07-25",
-  "content": "# 📅 Claude Code 週刊アップデート — Week 29 · July 13–17, 2026\n\n> 公開済みアーティファクトから MCP コネクターを通じてライブデータを取得できるようになりました。また、新しいスクリーンリーダーモードで Claude Code をスクリーンリーダーと併用できるようになりました。\n\n## 🚀 主要機能 (2 件)\n\n### Artifacts call your MCP connectors `web`\n公開済みアーティファクトが、誰かがそれを閲覧するたびに MCP コネクターを呼び出せるようになりました。これにより、ダッシュボードはセッション作成時のスナップショットではなく、ライブデータを表示し、必要に応じてアクションを実行できます。各呼び出しは閲覧者自身のアカウントの接続を通じて実行され、閲覧者はページが最初にコネクターを呼び出す前にアクセスを承認します。今週は公開共有リンク、Team・Enterprise プランでの共同編集のためのエディタロール、Claude Tag セッションから作成されたアーティファクトも追加されました。\n🔗 https://code.claude.com/en/artifacts#pull-live-data-with-mcp-connectors\n\n### Screen reader mode `CLI`\nスクリーンリーダーモードは、ビジュアルなターミナルインターフェースをプレーンなリニアテキストに置き換えます。ボックス、スピナー、画面内書き換えの代わりに、Claude Code は VoiceOver や NVDA などのスクリーンリーダーが順番に読み上げられるラベル付き行を出力するため、権限の承認や出力のレビューをエンドツーエンドで行えます。セッションごとにフラグで有効化、シェルごとに `CLAUDE_AX_SCREEN_READER` 環境変数で、またはすべての場所で `axScreenReader` 設定を使って有効にできます。\n🔗 https://code.claude.com/en/accessibility#turn-on-screen-reader-mode\n\n## ✨ その他のアップデート\n\n- `/fork` は会話を新しいバックグラウンドセッションにコピーし、作業を続けながら `claude agents` に独自の行を追加するようになりました。以前の「セッション内フォークサブエージェント」機能は `/subtask` に改名されました\n- Auto モードは Amazon Bedrock、Google Cloud の Agent Platform、Microsoft Foundry で `CLAUDE_CODE_ENABLE_AUTO_MODE` のオプトインが不要になりました。管理者は `disableAutoMode` で無効化できます\n- 2 分以上かかる MCP ツール呼び出しは、セッションを使い続けられるよう自動的にバックグラウンドに移行します。`CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS` でしきい値を調整または無効化できます\n- 新しい `claude auto-mode reset` コマンドでデフォルトの Auto モード設定を復元できます。`--yes` フラグで確認プロンプトをスキップできます\n- 新しい企業向けランチャーサポート: `CLAUDE_CODE_PROCESS_WRAPPER` または `processWrapper` 設定で、Claude Code がバイナリから起動するプロセス（バックグラウンドサービスやエージェントビューセッション）を必要なラッパー実行可能ファイルを通して実行できます\n- `vimInsertModeRemaps` 設定で `jj` から Escape へのような2キーの挿入モードシーケンスを vim モードにマッピングできます\n- `--forward-subagent-text` および `CLAUDE_CODE_FORWARD_SUBAGENT_TEXT` でサブエージェントのテキストとシンキングブロックを stream-json 出力に含めることができます\n- セッション全体の上限でループの暴走を防止: WebSearch 呼び出しとサブエージェントの生成はそれぞれデフォルト 200 に設定され、`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` と `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION` で調整できます\n- 「常に許可」の権限ルールがリポジトリのルートに保存されるようになり、git ワークツリーで許可された承認がセッションやワークツリーをまたいで永続化されます\n- Amazon Bedrock、Google Cloud の Agent Platform、AWS 上の Claude Platform がデフォルトで Claude Opus 4.8 を使用するようになりました\n- 折りたたまれたツールのサマリー行にライブ経過時間カウンターが表示されるようになり、長時間実行中のツール呼び出しが止まっているように見えなくなりました\n\n📄 原文: https://code.claude.com/docs/en/whats-new/2026-w29\n",
-  "fetched_at": "2026-07-24T22:06:28.002836+00:00",
+  "content": "# AI Daily Digest — 2026-07-25\n\n## 今日のハイライト\n- **Claude Opus 5 デフォルト化 (v2.1.219)**: Anthropic の最新フラッグシップモデルが Claude Code のデフォルト Opus として採用。100 万トークンコンテキスト対応で大規模コードベース解析が格段に向上し、実務利用の効率が飛躍的に高まる\n- **AREX — 自己改善する深層リサーチエージェント (115 upvotes)**: エビデンス収集と自己監査を交互に行う再帰的アーキテクチャが登場。AI エージェントが「研究しながら自らを改善する」新パラダイムとして注目\n- **ReferTrack — 言語指示で追跡するロボットビジョン (43 upvotes)**: 単一 RGB カメラで自然言語指示→対象追跡を実現し、脚型・ヒューマノイドロボットへの実世界展開を実証。低コストロボティクスへの波及効果が期待される\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.219 (2025-07-24) — 最新リリース\n\n**主要新機能:**\n- **Claude Opus 5 追加**: `claude-opus-5` がデフォルト Opus モデルに。100万コンテキスト対応、Fast モード料金は $10/$50 per Mtok\n- **sandbox.network.strictAllowlist**: サンドボックスコマンドで非許可リストホストを確認なしに拒否する新設定\n- **DirectoryAdded フック**: `/add-dir` や SDK `register_repo_root` でセッション中に新しい作業ディレクトリが登録された後に発火する新フック\n- ヘッドレス `stream-json` init イベントに `mcp_server_errors` を追加\n- `stream-json` でネストされたサブエージェントフォワーディングをサポート\n\n**バグ修正:**\n- `claude -p` でターン中に API エラーが発生した際、既に生成済みの回答が消える問題を修正\n- `claude mcp list` と `/mcp` でサーバー接続失敗時に HTTP ステータスとエラーテキストを表示\n- `/model` ピッカーで Opus 行が単に「Opus」と表示される問題を修正（正: 「Opus (1M context)」）\n\n**ユーザーへの影響:** Claude Opus 5 への移行により大幅な能力向上と 100 万トークンコンテキストが利用可能になります。DirectoryAdded フックによりマルチリポジトリワークフローの自動化が可能になります。\n\n---\n\n### v2.1.218 (2025-07-22)\n\n**主要変更:**\n- **`/code-review` がバックグラウンドサブエージェントに**: レビュー作業が会話を埋めなくなり、スタックされたスラッシュコマンドがレビュー対象を維持\n- スクリーンリーダーモードで単語・行削除時のアナウンスを追加\n\n**バグ修正:**\n- Windows でパス中の `\\u` プレフィックスセグメントが CJK 文字に化ける問題を修正\n- 左矢印キーで確認なしに会話が破棄される問題を修正\n- 複数行ペーストが `j` で一行に折り畳まれる問題を修正\n\n---\n\n### v2.1.217 (2025-07-21)\n\n**主要新機能:**\n- **絵文字ショートコード補完**: プロンプト入力で `:heart:` → ❤️。`emojiCompletionEnabled` 設定で無効化可能\n- トランスクリプト書き込み失敗時（ディスク満杯など）に警告を追加\n\n**バグ修正:**\n- 切り詰めた MCP ツール出力がセッション終了までメモリに残るメモリリークを修正\n- Windows で自動更新失敗時に `claude.exe` が消える問題を修正（バックアップから自動復元）\n- Bedrock で Claude Opus 4.8 の自動コンパクトが発動しない問題を修正\n\n## 注目論文 TOP 10\n\n**1. AREX: Towards a Recursively Self-Improving Agent for Deep Research**\nupvotes: 115 | https://arxiv.org/abs/2607.21461\n🎯**背景**: 複雑な情報収集タスクでは単一のリサーチループでは証拠不足・矛盾などが発生しやすく、エージェントの自己改善が求められていた\n🔧**手法**: 証拠収集ループと自己改善ループを交互に実行する AREX を提案。自律的なコンテキスト圧縮により長文脈を管理しながら回答品質を監査\n📊**結果**: 複数制約を満たす回答生成においてベースラインを大幅に上回る精度を達成\n💡**意義**: 「リサーチしながら自らを改善する」再帰的アーキテクチャがエージェント研究に新たなパラダイムを提示\n⚠️**限界**: 自己改善ループのコスト増大と収束保証の難しさが課題\n\n---\n\n**2. ReferTrack: Referring Then Tracking for Embodied Visual Tracking**\nupvotes: 43 | https://arxiv.org/abs/2607.20061\n🎯**背景**: 身体化エージェント（ロボット等）が自然言語指示で対象を追跡する技術は、実世界ロボティクス応用に不可欠だった\n🔧**手法**: 単一 RGB カメラで「参照（Referring）→追跡（Tracking）」の二段階パラダイムを採用。言語指示で対象を特定後、継続追跡に移行\n📊**結果**: ベンチマークで最先端の成功率を達成、脚型・ヒューマノイドロボットへの実世界展開を実証\n💡**意義**: 深度センサーなしの単眼 RGB のみで現実的な身体化追跡を実現し、低コストロボットへの応用可能性を示す\n⚠️**限界**: 急激な視点変化や複数類似物体が存在する環境での頑健性が未検証\n\n---\n\n**3. Visual Contrastive Self-Distillation**\nupvotes: 39 | https://arxiv.org/abs/2607.21556\n🎯**背景**: 視覚言語モデル（VLM）の改善に外部教師や特権的信号（ラベル等）が必要とされており、自己教師あり改善手法の開発が求められていた\n🔧**手法**: VCSD は画像コンテンツ除去をオンポリシーの自己蒸留シグナルに変換。外部教師なしで VLM 自身が蒸留信号を生成\n📊**結果**: 様々なスケールの視覚言語モデルで一貫した性能向上を達成\n💡**意義**: 追加アノテーションや教師モデル不要で VLM を継続改善できる自己完結的フレームワークの確立\n⚠️**限界**: コンテンツ除去の品質に依存するため、特定画像ドメインでは効果が限定的な可能性\n\n---\n\n**4. K12-KGraph: A Curriculum-Aligned Knowledge Graph for Benchmarking and Training Educational LLMs**\nupvotes: 39 | https://arxiv.org/abs/2605.09635\n🎯**背景**: 教育分野の LLM 評価は汎用ベンチマークが多く、実際の学校カリキュラムとの整合性を測る指標が不足していた\n🔧**手法**: 教科書から抽出したカリキュラム整合知識グラフを構築。23,640 問のベンチマークと教育特化訓練データを提供\n📊**結果**: 既存 LLM のカリキュラム認知タスクにおける能力を定量評価、モデル間の明確な差異を明示\n💡**意義**: K-12 教育に特化した評価・訓練基盤として、教育 AI の研究加速と標準化に貢献\n⚠️**限界**: 特定の教育システム・言語に偏る可能性があり、グローバルなカリキュラム多様性の反映が課題\n\n---\n\n**5. Show, Don't Tell: Evaluating Spatial Cognition in Generative Pixels Rather Than LLM Text**\nupvotes: 34 | https://arxiv.org/abs/2607.21072\n🎯**背景**: 空間推論の評価は従来テキスト回答に依存していたが、画像生成モデルの空間認知能力を「見せる」形で評価する枠組みが欠如していた\n🔧**手法**: ProVisE フレームワークが空間推論タスクに対して画像生成モデルから視覚的回答を引き出し評価。テキスト VLM と直接比較\n📊**結果**: 画像モデルはピクセル空間の空間表現で優位、テキスト VLM は構成的推論でリード — 相補的な強みを発見\n💡**意義**: 生成モデルの空間認知評価を「描かせる」アプローチに転換し、多様なモデル能力の新たな評価軸を確立\n⚠️**限界**: 視覚的回答の自動評価指標の精度と、タスクの難易度設定の妥当性が今後の課題\n\n---\n\n**6. Color Pass-Through via Camera-Display Coupling**\nupvotes: 17 | https://arxiv.org/abs/2607.12746\n🎯**背景**: AR/VR パススルー映像での色再現は、カメラと表示装置を独立システムとして扱う従来アプローチで品質限界が生じていた\n🔧**手法**: カメラと表示装置を結合システムとして扱うエンドツーエンド学習フレームワークを提案。両端を同時最適化\n📊**結果**: ユーザースタディで +2.0 ポイント、メトリクスで 2 倍の色再現改善を達成\n💡**意義**: パススルー映像の色忠実度を大幅に向上し、没入感の高い AR/VR 体験の実現に貢献\n⚠️**限界**: 特定カメラ・ディスプレイペアへの依存度が高く、汎用性の検証が必要\n\n---\n\n**7. Tencent WorkBuddy Bench: A Multi-Domain Coding-Agent Benchmark**\nupvotes: 17 | https://arxiv.org/abs/2607.20911\n🎯**背景**: コーディングエージェントのベンチマークはデータ汚染と単一ドメイン評価の問題があり、実用的な多様性評価が困難だった\n🔧**手法**: Code・Web・Office・Security の 4 ドメインをカバーする汚染耐性タスク構築手法を採用したマルチドメイン評価スイート\n📊**結果**: 主要モデルをクロスモデルリーダーボードで比較し、ドメイン別の強弱パターンを明確化\n💡**意義**: 現実的な職場ワークフローを模したベンチマークにより、実用コーディングエージェントの能力評価を標準化\n⚠️**限界**: テンセントの内部ツール・ワークフローへの依存度が汎用性を制限する可能性\n\n---\n\n**8. LLMs Get Lost in Evolving User Intent**\nupvotes: 15 | https://arxiv.org/abs/2607.20734\n🎯**背景**: LLM の評価は静的タスクが中心で、実際の対話でユーザー意図が変化する動的シナリオへの対応力が未評価だった\n🔧**手法**: 静的タスクをユーザー意図が進化するダイナミックな会話に変換するフレームワークを構築、複数モデルファミリーで評価\n📊**結果**: 静的設定での高性能が動的意図変化設定には転移しないことをモデルファミリー横断で実証\n💡**意義**: 実運用シナリオに近い「意図変化」評価軸を提案し、LLM の実用性評価に新たな重要指標を追加\n⚠️**限界**: 意図変化のシナリオ多様性と自動生成の質が評価信頼性に影響\n\n---\n\n**9. SANA-Video 2.0: Hybrid Linear Attention for Efficient Video Generation**\nupvotes: 14 | https://arxiv.org/abs/2607.21553\n🎯**背景**: 動画生成の Transformer ベースモデルは二次計算コストが課題で、品質を落とさずに高速化する手法が求められていた\n🔧**手法**: ゲート線形アテンションと周期的ソフトマックスアンカーを組み合わせたハイブリッド動画拡散 Transformer を提案\n📊**結果**: 競合品質を維持しながら 3.2 倍の速度向上、フルスタック最適化で 120 倍の加速を実現\n💡**意義**: 線形アテンションの効率性とソフトマックスアテンションの表現力を融合した実用的アーキテクチャの確立\n⚠️**限界**: 長時間・高解像度動画での品質維持と、ハイブリッドアーキテクチャのスケーリング挙動の検証が必要\n\n---\n\n**10. Self-Supervised Learning of Structured Dynamics from Videos**\nupvotes: 14 | https://arxiv.org/abs/2607.21576\n🎯**背景**: 動画からカメラ運動と物体運動を分離して学習する自己教師あり手法は、ビデオ理解・生成の基盤として重要性が増している\n🔧**手法**: SDM（Structured Dynamics Model）が将来特徴予測を通じてカメラ運動と物体運動を分離。弱監督で事前学習済み画像モデルを動画ダイナミクス表現に変換\n📊**結果**: 事前学習画像モデルが構造化された動画ダイナミクス表現として機能することを実証\n💡**意義**: 追加ラベルなしで画像表現を動画理解に活用できる自己教師あり学習パラダイムを前進\n⚠️**限界**: 複雑な多物体シーンや急激な照明変化でのカメラ・物体分離精度に改善余地\n",
+  "fetched_at": "2026-07-24T22:09:29.006507+00:00",
   "papers": [
     {
-      "title": "SLAI T-Rex: Full-Parameter Post-training of the DeepSeek-V4 Family on Ascend SuperPOD",
-      "upvotes": 45,
-      "paper_id": "2607.20145",
-      "abstract": "Full-parameter post-training of trillion-parameter-scale MoE models introduces substantial system-level challenges. We present end-to-end optimization on Ascend NPU SuperPOD, achieving 34.22% Model FLOPs Utilization with 2.93x improvement over baseline"
+      "title": "AREX: Towards a Recursively Self-Improving Agent for Deep Research",
+      "upvotes": 115,
+      "paper_id": "2607.21461",
+      "abstract": "Deep research requires agents to find answers satisfying multiple constraints. AREX alternates between research loops gathering evidence and self-improvement loops auditing answers, learning autonomous context compression."
     },
     {
-      "title": "Self Gradient Forcing: Native Long Video Extrapolation",
-      "upvotes": 29,
-      "paper_id": "2607.20368",
-      "abstract": "Recent autoregressive video diffusion methods use Self Forcing, where the student trains on histories from its own rollout rather than ground-truth contexts. This reduces exposure bias but leaves a historical context-gradient gap. We propose Self Gradient Forcing (SGF)"
+      "title": "ReferTrack: Referring Then Tracking for Embodied Visual Tracking",
+      "upvotes": 43,
+      "paper_id": "2607.20061",
+      "abstract": "Introduces referring-then-tracking paradigm for embodied visual tracking using single RGB camera. Achieves state-of-the-art success rates on benchmarks with real-world deployment on legged and humanoid robots."
     },
     {
-      "title": "Beyond Relevance-Centric Retrieval: Rubric-Oriented Document Set Selection and Ranking",
-      "upvotes": 24,
-      "paper_id": "2607.19747",
-      "abstract": "Existing evaluation systems score documents independently via nDCG, ignoring inter-document interactions. We propose SetwiseEvalKit, a three-level benchmark with 28K evaluation rubrics, and Rubric4Setwise, a training-free method for document set optimization"
+      "title": "Visual Contrastive Self-Distillation",
+      "upvotes": 39,
+      "paper_id": "2607.21556",
+      "abstract": "VCSD converts image-content removal into on-policy self-distillation signals, achieving improvements without external teachers or privileged signals across vision-language models of various scales."
     },
     {
-      "title": "An Exam for Active Observers",
-      "upvotes": 18,
-      "paper_id": "2607.16165",
-      "abstract": "ActiveVision is a benchmark making active observation measurable for multimodal LLMs. Frontier models collapse on it: GPT-5.5 solves only 10.6% of items, while human participants average 96.1%, indicating current MLLMs lack robust active visual observation"
+      "title": "K12-KGraph: A Curriculum-Aligned Knowledge Graph for Benchmarking and Training Educational LLMs",
+      "upvotes": 39,
+      "paper_id": "2605.09635",
+      "abstract": "Introduces curriculum-aligned knowledge graph extracted from textbooks with 23,640-question benchmark and training data for evaluating and training educational LLMs on curriculum cognition tasks."
     },
     {
-      "title": "Scaling Laws for Hypernetwork-Based Knowledge Injection in Large Language Models",
-      "upvotes": 11,
-      "paper_id": "2607.19604",
-      "abstract": "Hypernetworks provide promising solutions for large-scale knowledge injection into LLMs. We construct MegaWikiQA dataset with tens of millions of examples, demonstrating predictive power law scaling and reliable out-of-distribution generalization at increasing scales"
+      "title": "Show, Don't Tell: Evaluating Spatial Cognition in Generative Pixels Rather Than LLM Text",
+      "upvotes": 34,
+      "paper_id": "2607.21072",
+      "abstract": "ProVisE framework elicits visual answers from image-generation models for spatial reasoning tasks. Reveals complementary strengths: image models excel in pixel-space spatial expression while text VLMs lead in compositional reasoning."
     },
     {
-      "title": "Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment",
-      "upvotes": 10,
-      "paper_id": "2607.13429",
-      "abstract": "Behavior cloning finetuning of vision-language models for robotics overwrites pretrained representations. We propose Anchor-Align with Vision-Language Anchoring and Language-Action Alignment, improving real-robot success from 28% to 54%"
+      "title": "Color Pass-Through via Camera-Display Coupling",
+      "upvotes": 17,
+      "paper_id": "2607.12746",
+      "abstract": "End-to-end learned framework treating camera and display as coupled system rather than isolated stages. Achieves +2.0 points on user study and 2x improvement on metrics for color reproduction."
     },
     {
-      "title": "Beyond Euclidean Clipping: Overcoming Exploration Collapse in LLM RL via Riemannian Isometric Policy Optimization",
-      "upvotes": 9,
-      "paper_id": "2607.10169",
-      "abstract": "PPO-Clip fundamental flaw is measuring policy discrepancy using Euclidean metrics inconsistent with policy Riemannian manifold geometry. We propose RIPO, guaranteeing isometric updates, achieving up to 60% improvement over GRPO on AIME24"
+      "title": "Tencent WorkBuddy Bench: A Multi-Domain Coding-Agent Benchmark with Contamination-Resistant Task Construction",
+      "upvotes": 17,
+      "paper_id": "2607.20911",
+      "abstract": "Multi-domain evaluation suite for coding agents across Code, Web, Office, and Security domains with contamination-resistant task construction methodology and cross-model leaderboard."
     },
     {
-      "title": "DocOps: A Verifiable Benchmark for Autonomous Agents in Complex Document Operations",
-      "upvotes": 4,
-      "paper_id": "2607.19865",
-      "abstract": "DocOps is a deterministically verifiable evaluation framework for document manipulation by autonomous agents. Analysis reveals three key failure modes: long-term state tracking collapse, shallow semantic verification, and destructive metadata editing"
+      "title": "LLMs Get Lost in Evolving User Intent",
+      "upvotes": 15,
+      "paper_id": "2607.20734",
+      "abstract": "Framework transforming static tasks into dynamic conversations where user intent evolves. Reveals strong static-setting performance doesn't transfer to evolving-intent settings across model families."
     },
     {
-      "title": "FVAttn: Adaptive Sparse Attention with Runtime Load Balancing for Video Generation",
-      "upvotes": 4,
-      "paper_id": "2607.16190",
-      "abstract": "Video Diffusion Transformers face attention bottlenecks. FVAttn uses adaptive Top-p routing with runtime load balancing, achieving 4.41x attention speedup over FlashAttention and 2.02-2.11x DiT inference speedup with competitive video quality"
+      "title": "SANA-Video 2.0: Hybrid Linear Attention with Attention Residuals for Efficient Video Generation",
+      "upvotes": 14,
+      "paper_id": "2607.21553",
+      "abstract": "Hybrid video diffusion transformer combining gated linear attention with periodic softmax anchors. Achieves competitive quality with 3.2x speedup and 120x acceleration with full-stack optimization."
     },
     {
-      "title": "Trace: A Taxonomy-Guided Environment for Multidomain Visual Reasoning",
-      "upvotes": 3,
-      "paper_id": "2607.19790",
-      "abstract": "Trace is a taxonomy-guided environment for multidomain visual reasoning with 1,000 tasks across 277 scene grammars and 11 visual domains. RLVR on 64,000 instances improves macro-average by 3.51-4.06 percentage points across 24 external benchmarks"
+      "title": "Self-Supervised Learning of Structured Dynamics from Videos",
+      "upvotes": 14,
+      "paper_id": "2607.21576",
+      "abstract": "Proposes SDM separating camera motion from object motion through future-feature prediction. Demonstrates pretrained image models can become structured video-dynamics representations with weak supervision."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event. Added nested subagent forwarding in stream-json. Fixed claude -p text output dropping the answer already produced when a turn dies on a mid-stream API error. Added HTTP status and error text to claude mcp list and /mcp when a server fails to connect."
+    },
+    {
       "tag_name": "v2.1.218",
       "published_at": "2025-07-22",
-      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation. Added screen-reader announcements of deleted text. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters. Fixed the left arrow key discarding the conversation with no undo. Added HTTP status and error text to claude mcp list when a server fails to connect. Fixed multi-line paste collapsing into one line. Fixed /context reporting stale pre-compact token usage. Fixed /ultrareview failing on descriptive arguments. Fixed /code-review ultra silently running a local review in non-interactive sessions."
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with u-prefixed segments being corrupted into CJK characters in tool inputs. Fixed the left arrow key discarding the conversation with no undo."
     },
     {
       "tag_name": "v2.1.217",
       "published_at": "2025-07-21",
-      "body": "Added emoji shortcode autocomplete in prompt input: type :heart: to insert emoji. Added warnings when transcript writes are failing. Fixed a memory leak where truncated MCP tool outputs kept the full untruncated result in memory. Fixed Windows auto-update failures that could leave claude.exe missing. Fixed auto-compact never triggering for Claude Opus 4.8 on Bedrock. Added a cap on concurrently-running subagents (default 20, override with CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS)."
-    },
-    {
-      "tag_name": "v2.1.216",
-      "published_at": "2025-07-20",
-      "body": "Added sandbox.filesystem.disabled setting to skip filesystem isolation while keeping network egress control. Fixed a slowdown in long sessions where message normalization cost grew quadratically with the number of turns. Fixed auto mode denying commands with HTTP 401 classifier errors after OAuth token expired. Fixed AskUserQuestion telling Claude to continue even when your answer asked it to wait. Fixed Claude Code on the web re-asking the same question and dropping your answer after the session sat idle."
+      "body": "Added emoji shortcode autocomplete in the prompt input: type :heart: to insert heart emoji — disable with emojiCompletionEnabled setting. Added warnings when transcript writes are failing or when session saving is off. Fixed a memory leak where truncated MCP tool outputs kept the full untruncated result in memory. Fixed Windows auto-update failures that could leave claude.exe missing."
     }
   ]
 }
