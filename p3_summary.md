@@ -1,6 +1,6 @@
-**3. Visual Contrastive Self-Distillation (VCSD)**
-**著者**: Yijun Liang, Yunjie Tian, Yijiang Li et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.21556
+**3. ReferTrack: Referring Then Tracking for Embodied Visual Tracking**
+**著者**: ReferTrack Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.20061
 
 **まとめ**:
-外部教師・特権情報・視覚的証拠信号なしで自己蒸留の非対称性を構築する VCSD を提案。元画像と内容消去画像（黒画像）の条件下での教師モデル予測分布の対比から蒸留ターゲットを生成する。Qwen3-VL 2B で +4.77 ポイント（62.27%→67.04%）など 7 ベンチマーク全スケールで改善を達成し、言語漂流（Language Drift）の抑制と訓練安定性も向上した。
+自然言語で記述されたターゲットを単一前向きカメラのみで追跡する身体化ビジュアルトラッキング (EVT) に向け、「参照→追跡」二段階パラダイムを提案。境界ボックスカタログから対象インデックスを選択する Refer-CoT と、時間的視点 bboxインジケータ (TVBI) を組み合わせ、4Bパラメータ・SFTのみで EVT-Bench 最先端を達成。Unitree ロボットへの実世界展開でも10.6Hzの安定制御を実現。

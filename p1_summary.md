@@ -1,6 +1,6 @@
 **1. AREX: Towards a Recursively Self-Improving Agent for Deep Research**
-**著者**: Shuqi Lu, Chaofan Li, Kun Luo et al. (2025)
+**著者**: AREX Team et al. (2025)
 **arXiv**: https://arxiv.org/abs/2607.21461
 
 **まとめ**:
-複数制約を同時に満たす答えを求める深層リサーチタスク向けに、証拠収集ループと自己改善ループを交互に実行する AREX を提案。「発見より検証が簡単」という非対称性を活用し、制約ごとに暫定答えを監査しながら再帰的に精度を高める。4B の AREX-Turbo から 122B MoE の AREX-Base まで展開し、BrowseComp で 82.5%、GAIA で 85.4% を達成してベースライン大幅超過。キーステップへの選択的監督が訓練効率の鍵であることをアブレーション研究で確認。
+深層リサーチにおける「発見・検証非対称性」(候補の検証は発見より容易) を活用し、部分的に検証済みの解を起点に再帰的に研究問題を自己改善するエージェント AREX を提案。AREX-Turbo (4B) と AREX-Base (122B-A10B MoE) の2サイズで実装し、BrowseComp (82.5%)、GAIA (85.4%)、DeepSearchQA (89.9%) など主要ベンチマークで大規模モデルを超える性能を達成。自律的コンテキスト更新と重要ステップ焦点化監督が性能の要。

@@ -1,6 +1,6 @@
-**4. K12-KGraph: A Curriculum-Aligned Knowledge Graph for Benchmarking and Training Educational LLMs**
-**著者**: Qihan Lin, Zhaoyang Han, Xiaochen Ma et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.09635
+**4. Visual Contrastive Self-Distillation**
+**著者**: VCSD Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.21556
 
 **まとめ**:
-中国 K-12 教科書から抽出したカリキュラム整合知識グラフ（9 種ノード・14 種エッジ）を基盤に、23,640 問のベンチマーク K12-Bench と 7,335 件の訓練データ K12-Train を統一的に構築。既存強力 LLM も最難関タスク（前提条件推論・近傍推奨）では 35% 以下に留まり、構造的理解の重要性を浮き彫りに。K12-Train-Text は同一サンプル予算で 8 種主流データセットを上回り、Qwen3-4B で GaokaoBench +24.1 点を達成した。
+外部教師・特権回答・視覚エビデンス信号を一切不要とするオンポリシー自己蒸留手法 VCSD を提案。元画像と内容削除制御画像 (黒色画像) の条件下で教師の予測を対比し、その差分を生徒への蒸留ターゲットとする。Qwen3-VL-2B で +4.77%、8B で +3.75% の精度向上を7ベンチマーク集計で達成し、同スケールの OPSD 比較手法をすべて上回った。

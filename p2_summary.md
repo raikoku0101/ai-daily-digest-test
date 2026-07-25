@@ -1,6 +1,6 @@
-**2. ReferTrack: Referring Then Tracking for Embodied Visual Tracking**
-**著者**: Hanjing Ye, Tianle Zeng, Jiazhao Zhang et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.20061
+**2. K12-KGraph: A Curriculum-Aligned Knowledge Graph for Benchmarking and Training Educational LLMs**
+**著者**: K12-KGraph Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2605.09635
 
 **まとめ**:
-単一前向き RGB カメラのみで自然言語指示→人物追跡を実現する「ReferTrack」を提案。インデックス付き境界ボックス（Bounding Box）の選択として目標特定を定式化し、TVBI（Temporal-Viewpoint-BBox Indicator）トークンで時間的・幾何的情報を視覚履歴に注入する。Qwen3-4B の教師あり微調整のみで EVT-Bench 最高成功率を達成し、脚型・ヒューマノイドロボットへの実世界展開でも堅牢性を実証した。
+LLMはK-12試験への解答は得意だが「カリキュラム認知」(概念間の前提条件・知識構造の理解) が欠落している。本研究は中国公式教科書から6,579コンセプト・1,364スキルを含む異種プロパティグラフ (K12-KGraph) を構築し、23,640問のベンチマーク (K12-Bench) と教育特化SFTデータ (K12-Train) を整備。Gemini-3-Flash でも正答率57%に留まり、既存モデルのカリキュラム構造理解の限界を明確化した。
