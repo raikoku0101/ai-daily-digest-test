@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-27",
+  "content": "# AI Daily Digest — 2026-07-27\n\n## 今日のハイライト\n- **AREX が自己改善型リサーチエージェントを実証**: 再帰的な自己改善ループにより複雑な多制約リサーチを解決。AI が自律的に研究能力を向上させるパラダイムで、今後のエージェント研究に大きな影響を与える可能性（⬆️ 139）。\n- **Claude Opus 5 が正式リリース (v2.1.219)**: 1Mトークンコンテキスト・Fast モード対応の最新 Opus モデルが Claude Code のデフォルトに。`sandbox.network.strictAllowlist` 等のセキュリティ強化も同時投入。\n- **K-12 教育 LLM 評価の新基盤 K12-KGraph**: 既存ベンチマークが見落としていた「カリキュラム認知」能力を知識グラフで定量評価。教育 AI の実力を正確に測る初の包括的基盤（⬆️ 57）。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.220 (2025-07-25)\n**主要機能**: バグ修正と信頼性の改善。\n\n---\n\n### v2.1.219 (2025-07-24)\n**主要機能詳細**:\n- **Claude Opus 5 (`claude-opus-5`) を追加**: デフォルトの Opus モデルになりました。1M トークンのコンテキスト長に対応し、Fast モード料金は入力 $10/Mtok・出力 $50/Mtok。\n- **`sandbox.network.strictAllowlist` 設定を追加**: サンドボックスコマンドでホワイトリスト外のホストへのアクセスをプロンプトなしで拒否できるようになりました。\n- **`DirectoryAdded` フック追加**: `/add-dir` またはSDKの `register_repo_root` で新しい作業ディレクトリが登録されたときに発火。\n- **`mcp_server_errors` をヘッドレスstreamイベントに追加**: 設定検証でスキップされた `--mcp-config` エントリを一覧表示。\n- **`workflowSizeGuideline` 設定キーを追加**: 任意の設定ファイルからダイナミックワークフローサイズのガイドラインを変更可能に。\n\n**ユーザーへの影響**: Claude Opus 5 の導入により大規模な推論・長文タスクが大幅に強化。セキュリティポリシーの細粒度制御が可能に。\n\n---\n\n### v2.1.218 (2025-07-22)\n**主要機能詳細**:\n- **`/code-review` がバックグラウンドサブエージェントに変更**: レビュー作業が会話コンテキストを埋めなくなり、スタックされたスラッシュコマンドへのレビュー対象が維持されます。\n- **スクリーンリーダーアナウンス追加**: `--ax-screen-reader` モードで削除テキストの音声読み上げ対応。\n\n**バグ修正**:\n- Windows パスの `\\u` プレフィックスセグメント（`C:\\Users\\...` 等）がCJK文字に化けていた問題を修正。\n- 左矢印キーで会話が消えてしまう（Undoなし）バグを修正。\n\n**ユーザーへの影響**: コードレビューのUX改善。Windowsユーザーのパス処理バグが解消。\n\n## 注目論文 TOP 10\n\n**1. AREX: Towards a Recursively Self-Improving Agent for Deep Research** | ⬆️ 139 | https://arxiv.org/abs/2607.21461\n🎯**背景**: 深層リサーチには複数の制約を同時に満たす回答が必要だが、候補を発見するコストは高い。\n🔧**手法**: エージェントが自己改善ループを再帰的に実行し、制約ごとの検証を組み合わせた AREX フレームワークを提案。\n📊**結果**: 深層リサーチベンチマークで既存手法を上回る精度・効率を達成。\n💡**意義**: AI エージェントが自律的に研究能力を向上させる新しいパラダイムを提示。\n⚠️**限界**: 計算コストが高く、制約定義の品質に依存する可能性がある。\n\n**2. K12-KGraph: A Curriculum-Aligned Knowledge Graph for Benchmarking and Training Educational LLMs** | ⬆️ 57 | https://arxiv.org/abs/2605.09635\n🎯**背景**: K-12 教育での LLM 活用が増加しているが、既存ベンチマークは試験問題解答に偏り、カリキュラム知識の構造理解（カリキュラム認知）を評価できていない。\n🔧**手法**: 学習指導要領に整合した知識グラフ（K12-KGraph）を構築し、知識の構造・視覚的提示を評価するベンチマークを設計。\n📊**結果**: 主要 LLM のカリキュラム認知能力の差異を定量化し、教育特化型モデルの訓練にも有効。\n💡**意義**: 教育 AI の評価・改善に特化した初の包括的ナレッジグラフベースベンチマーク。\n⚠️**限界**: 特定言語・地域のカリキュラムに依存し、他国への汎化は要検討。\n\n**3. ReferTrack: Referring Then Tracking for Embodied Visual Tracking** | ⬆️ 49 | https://arxiv.org/abs/2607.20061\n🎯**背景**: 身体化ビジュアルトラッキング（EVT）は自然言語で記述されたターゲットを移動エージェントが追跡する課題。VLA ポリシーの CoT 推論が抽象空間で動作し、画像空間検出との整合が弱い。\n🔧**手法**: 「参照（Referring）→追跡（Tracking）」の2段階パイプラインを採用。明示的な画像空間検出を中間表現として導入し、監視と整合性を強化。\n📊**結果**: 複数の EVT ベンチマークで SOTA を達成。特に遮蔽・外見変化のあるシナリオで大幅な改善。\n💡**意義**: 言語指示による身体化エージェントの視覚追跡を実用レベルに引き上げる。\n⚠️**限界**: 2段階処理によるレイテンシ増加。実環境での長時間追跡は未検証。\n\n**4. Visual Contrastive Self-Distillation** | ⬆️ 43 | https://arxiv.org/abs/2607.21556\n🎯**背景**: On-policy 自己蒸留（OPSD）は外部教師を不要にするが、教師と生徒の間に非対称な情報が必要。これを自然に実現する方法が課題。\n🔧**手法**: 視覚的コントラスト学習を自己蒸留に統合。同一画像の異なる拡張ビューを活用して教師・生徒間の非対称性を生成し、より強い学習信号を実現。\n📊**結果**: ImageNet および下流タスクで OPSD ベースラインを上回る表現学習性能。\n💡**意義**: 外部データ・モデルなしで視覚表現を自己改善できる効率的な蒸留フレームワーク。\n⚠️**限界**: コントラスト学習特有のハイパーパラメータ依存性。大規模実験はまだ限定的。\n\n**5. Show, Don't Tell: Evaluating Spatial Cognition in Generative Pixels Rather Than LLM Text** | ⬆️ 35 | https://arxiv.org/abs/2607.21072\n🎯**背景**: 空間知性は物理世界インタラクションに不可欠だが、テキスト出力ではなく視覚的生成（ポインティング・マーキング・描画）で評価すべきという問題提起。\n🔧**手法**: LLM のテキスト応答ではなく、画像生成モデルの「ピクセルレベル空間出力」で空間認知能力を評価する新たなベンチマーク体制を構築。\n📊**結果**: 現行モデルは視覚的空間タスクにおいてテキスト空間タスクより大幅に劣ることを実証。\n💡**意義**: AI の空間知性評価を「言葉で語るな、示せ」原則で刷新。より実用的な評価指標を提供。\n⚠️**限界**: 生成品質の評価基準に主観性が残る。評価コストが高い。\n\n**6. SANA-Video 2.0: Hybrid Linear Attention with Attention Residuals for Efficient Video Generation** | ⬆️ 27 | https://arxiv.org/abs/2607.21553\n🎯**背景**: 高品質動画生成には Full-softmax Attention が必要だが計算コストが高い。Linear Attention は効率的だが品質が劣る。\n🔧**手法**: Linear Attention に Attention Residuals（残差補正）を組み合わせたハイブリッドアーキテクチャを提案。5B・14B パラメータの Video DiT として実装。\n📊**結果**: 720p 動画生成を単一 GPU で実現しながら、Full-softmax DiT と同等品質を達成。\n💡**意義**: 産業・個人ユースで高品質動画生成を民主化する効率的なアーキテクチャ。\n⚠️**限界**: 最大解像度・動画長に制限あり。リアルタイム生成はまだ困難。\n\n**7. LLMs Get Lost in Evolving User Intent** | ⬆️ 21 | https://arxiv.org/abs/2607.20734\n🎯**背景**: LLM が協調エージェントとして使われる場面では、ユーザーの意図が会話を通じて変化・更新される。既存モデルはこの動的な意図変化への追随が不十分。\n🔧**手法**: ユーザー意図が進化する対話シナリオを体系的に設計し、LLM の意図追跡能力を評価するベンチマークを構築。\n📊**結果**: 主要 LLM は意図変化に追随できず、初期の意図に固執する傾向が顕著。\n💡**意義**: 動的な意図変化への対応が LLM の実用化における重要な未解決課題であることを示す。\n⚠️**限界**: ベンチマーク設計の主観性。特定ドメインに偏りがある可能性。\n\n**8. Tencent WorkBuddy Bench: A Multi-Domain Coding-Agent Benchmark with Contamination-Resistant Task Construction** | ⬆️ 21 | https://arxiv.org/abs/2607.20911\n🎯**背景**: コーディングエージェントの評価ベンチマークは汚染（データリーク）問題と単一ドメイン偏重の課題がある。\n🔧**手法**: Code・Web・Office・Security の4ドメインにわたる汚染耐性タスク構築手法を採用した多ドメインベンチマークを設計。\n📊**結果**: 複数の主要モデルを横断するリーダーボードを公開。ドメイン間での能力差を定量化。\n💡**意義**: 実業務に近い多様なコーディングシナリオで AI エージェントを公平に評価できる基盤を提供。\n⚠️**限界**: 企業内部ユースケースへの特化があり、汎化性能の完全な検証は今後の課題。\n\n**9. Self-Supervised Learning of Structured Dynamics from Videos** | ⬆️ 18 | https://arxiv.org/abs/2607.21576\n🎯**背景**: 動画の動き理解はカメラモーションと物体モーションが混在し、自己教師あり学習でのこれらの分解は未開拓。\n🔧**手法**: 自己教師あり手法でカメラモーションと物体モーションを構造的に分離して学習する新フレームワークを提案。\n📊**結果**: 複数の動画理解ベンチマークで分解の有効性を検証し、下流タスクの表現品質を改善。\n💡**意義**: ラベルなしで動画の構造化ダイナミクスを学習できる効率的なアプローチ。\n⚠️**限界**: 複雑な多物体シナリオでの分解精度は改善の余地あり。\n\n**10. Color Pass-Through via Camera-Display Coupling** | ⬆️ 18 | https://arxiv.org/abs/2607.12746\n🎯**背景**: スマートフォンカメラで撮影した画像が画面表示時に色・明度・コントラストが大きく異なる問題は、カメラとディスプレイの独立した最適化が原因。\n🔧**手法**: カメラとディスプレイを連成（Coupling）して最適化する Color Pass-Through 手法を提案。カメラパイプラインとディスプレイ変換を共同で調整。\n📊**結果**: 現実の色が忠実に再現される Color Pass-Through を実証。既存手法と比較して色差が大幅減少。\n💡**意義**: 日常的なスマートフォン体験の品質向上に直結する実用的な貢献。\n⚠️**限界**: ハードウェア/ソフトウェア両方の変更が必要なため普及には時間がかかる可能性。\n\n",
+  "fetched_at": "2026-07-26T22:06:16.465551+00:00",
+  "papers": [
+    {
+      "title": "AREX: Towards a Recursively Self-Improving Agent for Deep Research",
+      "upvotes": 139,
+      "paper_id": "2607.21461",
+      "abstract": "Deep research requires agents to find answers that jointly satisfy multiple constraints. Discovering such answers is costly, whereas verifying a candidate can often be decomposed into tractable constraint-wise checks."
+    },
+    {
+      "title": "K12-KGraph: A Curriculum-Aligned Knowledge Graph for Benchmarking and Training Educational LLMs",
+      "upvotes": 57,
+      "paper_id": "2605.09635",
+      "abstract": "Large language models are increasingly used in K-12 education, but existing benchmarks mainly test exam question answering rather than understanding how curriculum knowledge is structured and visually presented."
+    },
+    {
+      "title": "ReferTrack: Referring Then Tracking for Embodied Visual Tracking",
+      "upvotes": 49,
+      "paper_id": "2607.20061",
+      "abstract": "Embodied visual tracking (EVT) requires a mobile agent to continuously follow a specific target described in natural language using only onboard vision."
+    },
+    {
+      "title": "Visual Contrastive Self-Distillation",
+      "upvotes": 43,
+      "paper_id": "2607.21556",
+      "abstract": "On-policy self-distillation (OPSD) is promising as it removes the external teacher required by on-policy distillation (OPD), yet it still needs asymmetric information between teacher and student to ensure that the self-teacher provides a stronger learning signal than the student."
+    },
+    {
+      "title": "Show, Don't Tell: Evaluating Spatial Cognition in Generative Pixels Rather Than LLM Text",
+      "upvotes": 35,
+      "paper_id": "2607.21072",
+      "abstract": "Spatial intelligence is essential for agents to move from static semantic understanding toward interacting with the physical world. Many spatial tasks are grounded in continuous visual scenes."
+    },
+    {
+      "title": "SANA-Video 2.0: Hybrid Linear Attention with Attention Residuals for Efficient Video Generation",
+      "upvotes": 27,
+      "paper_id": "2607.21553",
+      "abstract": "We introduce SANA-Video 2.0, a hybrid video diffusion transformer instantiated at 5B and 14B scales under a unified architecture. Designed to generate high-quality video up to 720p on a single GPU."
+    },
+    {
+      "title": "LLMs Get Lost in Evolving User Intent",
+      "upvotes": 21,
+      "paper_id": "2607.20734",
+      "abstract": "As LLMs become more capable, they are increasingly deployed as collaborative agents, taking on user-delegated tasks through iterative interaction. Yet genuine interaction is inherently dynamic."
+    },
+    {
+      "title": "Tencent WorkBuddy Bench: A Multi-Domain Coding-Agent Benchmark with Contamination-Resistant Task Construction",
+      "upvotes": 21,
+      "paper_id": "2607.20911",
+      "abstract": "We introduce Tencent WorkBuddy Bench, a multi-domain evaluation suite for coding agents; this report documents its construction methodology, scoring protocol, and a cross-model leaderboard."
+    },
+    {
+      "title": "Self-Supervised Learning of Structured Dynamics from Videos",
+      "upvotes": 18,
+      "paper_id": "2607.21576",
+      "abstract": "Understanding motion in video is a fundamental challenge for visual learning, as frame-to-frame change entangles two sources of dynamics: camera motion and object motion."
+    },
+    {
+      "title": "Color Pass-Through via Camera-Display Coupling",
+      "upvotes": 18,
+      "paper_id": "2607.12746",
+      "abstract": "When a real-world scene is captured by a smartphone camera and viewed on its screen, the displayed image often differs noticeably from the original scene in color, brightness, and contrast."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (`claude-opus-5`), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok\nAdded `sandbox.network.strictAllowlist` setting to deny non-allowlisted hosts for sandboxed commands without prompting\nAdded `DirectoryAdded` hook that fires after `/add-dir` or the SDK `register_repo_root` control request registers a new working directory mid-session\nAdded `mcp_server_errors` to the headless stream-json init event, listing `--mcp-config` entries skipped by config validation\nAdded the `workflowSizeGuideline` settings key"
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed `/code-review` to run as a background subagent, so review work no longer fills your conversation\nAdded screen-reader announcements of deleted text in `--ax-screen-reader` mode\nFixed Windows paths with `\\u`-prefixed segments being corrupted into CJK characters in tool inputs\nFixed the left arrow key discarding the conversation with no undo"
+    }
+  ]
+}
