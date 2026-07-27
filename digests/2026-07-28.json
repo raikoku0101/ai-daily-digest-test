@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-28",
+  "content": "# AI Daily Digest — 2026-07-28\n\n## 今日のハイライト\n- **Claude Opus 5 が Claude Code に追加**: v2.1.219 で `claude-opus-5` がデフォルト Opus モデルに。1Mコンテキスト対応・fast モード$10/$50 per Mtok と大幅なスペックアップで、複雑なコーディングタスクに威力を発揮\n- **DataPrep-Bench が LLM データ準備評価を標準化**: upvotes 38 でトップ。LLMによる学習データ準備の初統一ベンチマーク。DAS指標で下流性能との連動評価を実現し、自動データパイプラインの信頼性評価に道筋をつけた\n- **Skill Self-Play でLLMが自律進化**: upvotes 30 で第2位。外部データなしにプロポーザー・ソルバー・スキルコントローラーが相互作用する共進化フレームワーク。LLM自律学習の新パラダイムとして注目\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.220 (2025-07-25)\n**主要機能**: バグ修正と安定性の向上\n\n**ユーザーへの影響**: 全体的な信頼性が改善されます。\n\n---\n\n### v2.1.219 (2025-07-24)\n**主要機能**:\n- **Claude Opus 5 追加**: `claude-opus-5` が新デフォルト Opus モデルに。コンテキスト長 1M、fast モード対応（$10/$50 per Mtok）\n- **sandbox.network.strictAllowlist**: サンドボックスコマンドで許可リスト外ホストをプロンプトなしで拒否する新設定\n- **DirectoryAdded フック**: `/add-dir` またはSDK経由でディレクトリ登録時に発火する新フック\n- **workflowSizeGuideline 設定キー**: 任意の設定ファイルからワークフローサイズガイドラインを制御可能に\n- **ネスト型サブエージェント対応**: depth-2以上のサブエージェントが `--forward-subagent-text` 使用時に表示されるように\n\n**バグ修正**:\n- `claude -p` でAPIエラー時に生成済み回答が失われる問題を修正\n- `/model` ピッカーで Opus が 'Opus (1M context)' と正しく表示されるよう修正\n- Opus 4.7 を fast モードから削除（`/fast` は Opus 5 と Opus 4.8 に適用）\n- サブエージェントのネスト深度がデフォルト3に拡張（以前は1）\n\n**ユーザーへの影響**: Opus 5 への移行により、より高性能なモデルが標準利用可能に。サブエージェントのネスト深度拡張で複雑なワークフローが構築しやすくなります。\n\n---\n\n### v2.1.218 (2025-07-22)\n**主要機能**:\n- **`/code-review` のバックグラウンド実行化**: レビュー作業が会話を占有せず、スタックされたスラッシュコマンドをレビュー対象として維持\n\n**バグ修正**:\n- Windows パスで `\\u` プレフィックスセグメントが CJK 文字に化ける問題を修正\n- 左矢印キーで会話が確認なしに破棄される問題を修正\n- 複数行ペーストが Ctrl+J エンコードターミナルで1行に折りたたまれる問題を修正\n- `/context` がコンパクト後に古いトークン使用量を表示する問題を修正\n- `/ultrareview` が説明的引数で失敗する問題を修正\n- ツール呼び出し中断後に偽の '[Request interrupted by user]' が表示される問題を修正\n\n**ユーザーへの影響**: `/code-review` のバックグラウンド化で快適なレビュー体験に。Windows ユーザーのパス問題も解消。\n\n## 注目論文 TOP 10\n\n**1. DataPrep-Bench: Benchmarking LLMs as Training Data Preparators** | 38 upvotes | https://arxiv.org/abs/2607.20465\n🎯**背景**: LLMを学習データ準備作業に活用する研究が急増しているが、統一的な評価基準が存在しなかった\n🔧**手法**: データ構築能力とデータ品質評価能力の2軸でLLMを評価するベンチマーク「DataPrep-Bench」を構築。Data-Construction-Skill エージェントとDownstream Alignment Score (DAS) 指標を導入\n📊**結果**: 既存手法と比較して、下流タスク性能に連動した評価が可能なことを実証\n💡**意義**: LLMによるデータパイプライン自動化の標準評価フレームワークを提供。産業応用への道筋を示す\n⚠️**限界**: 特定のデータ種別やドメインへの適用範囲が限定的な可能性がある\n\n---\n\n**2. Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills** | 30 upvotes | https://arxiv.org/abs/2607.22529\n🎯**背景**: LLM学習はインタラクション駆動の自己進化へとシフトしているが、タスク多様性と検証信頼性の両立が課題\n🔧**手法**: プロポーザー・ソルバー・スキルコントローラーが強化学習ループで相互作用する共進化フレームワークを提案。エージェントスキルを介してタスク多様性と検証可能性を両立\n📊**結果**: 標準的なRL学習と比較してLLM能力の継続的向上を実現\n💡**意義**: 外部データなしにLLMが自律的にスキルを向上させる新パラダイムを提示\n⚠️**限界**: スキルの収束・発散の制御が難しく、長期安定性に課題がある可能性\n\n---\n\n**3. Molt: A Scalable PyTorch-Native Training Framework for Agentic Reinforcement Learning** | 21 upvotes | https://arxiv.org/abs/2607.21653\n🎯**背景**: エージェントRLの研究では、アルゴリズムの変更が複数レイヤーにわたって伝播するため実験効率が低い\n🔧**手法**: PyTorchネイティブなエージェントRL研究フレームワーク「Molt」を開発。エンドツーエンドでアルゴリズムを変更可能な構造を採用\n📊**結果**: Megatronベースの最先端システムと同等のパフォーマンスを達成\n💡**意義**: 研究者がアルゴリズム変更を容易に実験できる環境を提供。エージェントRL研究の加速が期待される\n⚠️**限界**: Megatronの一部最適化が未実装の可能性。超大規模モデルでのスケーラビリティは未検証\n\n---\n\n**4. Agentic Context Management: Solving Agent Memory and Cost by Treating Them as Lifecycle and Architecture Problems** | 16 upvotes | https://arxiv.org/abs/2607.21503\n🎯**背景**: 本番エージェントの多くがコンテキスト管理の課題（メモリ不足・コスト増大）で失敗している\n🔧**手法**: エージェントのライフサイクル管理のための5つのプリミティブを導入。検証済みコンパクション手法で線形トークンコストを実現しつつ推論コンテキストの忠実性を維持\n📊**結果**: コンテキスト圧縮後も推論品質を維持しながらトークンコストを線形に抑制\n💡**意義**: 実用的なエージェントシステムの設計原則を体系化。コスト効率の良い長期エージェント実行を可能に\n⚠️**限界**: 特定のアーキテクチャ前提があり、汎用性に制約がある可能性\n\n---\n\n**5. Interactive Training 2: Auditable Control Plane for Live Model Training** | 15 upvotes | https://arxiv.org/abs/2607.18314\n🎯**背景**: 学習中のモデルへのリアルタイム介入・監査が困難で、学習プロセスの制御性が低かった\n🔧**手法**: 学習アプリケーションが公開設定とアクションを宣言できるオープンソース制御プレーンを構築。人間と自動コントローラーが統一インターフェース経由でリクエスト送信し、学習ループが安全な制御ポイントで変更を適用\n📊**結果**: リアルタイム介入と完全な監査ログを備えた学習制御を実証\n💡**意義**: AIシステムの人間による監督を技術的に具現化。安全なAI開発に向けた実践的アーキテクチャを提供\n⚠️**限界**: リアルタイム介入のオーバーヘッドが学習効率に影響する可能性\n\n**6. Scaling Native Multimodal Pre-Training From Scratch** | 13 upvotes | https://arxiv.org/abs/2607.22043\n🎯**背景**: 固定計算予算下での視覚言語モデルの最適なモデルサイズとトークン数が不明だった\n🔧**手法**: 固定計算予算下でのVLM学習における最適なモデルサイズとトークン数を体系的に調査。言語とマルチモーダル目標のスケーリング特性の違いを分析\n📊**結果**: 言語とマルチモーダル目標が異なるスケーリング特性を示し、データ構成が効率に大きく影響することを実証\n💡**意義**: VLMのスケーリング則に関する基礎的知見を提供。効率的なマルチモーダル学習の設計指針となる\n⚠️**限界**: 特定のアーキテクチャやデータセット構成に依存した結果の可能性\n\n---\n\n**7. Three-Body Scattering for Generative Modeling** | 10 upvotes | https://arxiv.org/abs/2607.18198\n🎯**背景**: 拡散モデルはマルチステップ推論が必要で、ワンステップ生成が難しかった\n🔧**手法**: サンプルレベルの射影体相互作用を通じてワンステップ生成器を実現するエネルギーベース生成手法を提案。三体散乱の物理原理を生成モデルに応用\n📊**結果**: ImageNet-256でのFIDスコアで拡散ベースアプローチと比較して最小限の計算オーバーヘッドで強力な性能を達成\n💡**意義**: 物理インスパイアドの新しい生成モデルパラダイム。推論速度と品質のバランスを改善\n⚠️**限界**: 高解像度や複雑なシーンでの性能は未検証\n\n---\n\n**8. Multi-Turn On-Policy Distillation with Prefix Replay** | 9 upvotes | https://arxiv.org/abs/2607.04763\n🎯**背景**: マルチターンエージェントタスクでのオンポリシー蒸留は分布シフトに悩まされていた\n🔧**手法**: 事前収集済み軌跡をプレフィックスとして再利用する「ReOPD」を提案。分布シフトを解消しながらオンライン手法と比較してトレーニング中のツール呼び出しを削減\n📊**結果**: マルチターンエージェントタスクでの効率と性能を向上。オンライン手法を上回る効率を実現\n💡**意義**: エージェント蒸留の実用性を高める。計算効率の良いマルチターン学習手法として価値がある\n⚠️**限界**: プレフィックスの選択戦略が性能に大きく影響する可能性\n\n---\n\n**9. LAMAR: An Open Language-Aware Multilingual Alignment Reranker** | 8 upvotes | https://arxiv.org/abs/2607.22042\n🎯**背景**: 多言語検索では意味的関連性だけでなく言語一貫性も重要だが、既存リランカーはこれを無視していた\n🔧**手法**: 英語アンカー蒸留と嗜好アライメントで学習したクロスエンコーダー。意味的関連性と言語一貫性の両方を考慮した多言語リランキングを実現\n📊**結果**: 複数言語にわたって最高性能を達成。英語偏重のリトリーバルを多言語に拡張\n💡**意義**: 多言語RAGシステムの性能向上に直接貢献。言語を問わない情報検索品質の改善\n⚠️**限界**: 低リソース言語や系統的に異なる言語族での性能は限定的な可能性\n\n---\n\n**10. O-VAD: Industrial Video Anomaly Detection through Object-Centric Tracking and Reasoning** | 8 upvotes | https://arxiv.org/abs/2607.18142\n🎯**背景**: 産業用異常検知では学習データなしに複雑な動的異常を検出することが困難だった\n🔧**手法**: オブジェクト状態変化を重視する学習不要なエージェンティックフレームワーク。時空間ダイナミクスを追跡し、物体軌跡に対して推論\n📊**結果**: 最先端VLMとファインチューニング手法を複数データセットで上回る性能を達成\n💡**意義**: 産業AIへのVLM応用の実用性を示す。製造業での品質管理自動化を前進させる\n⚠️**限界**: 高速動作や遮蔽が多いシナリオでの物体追跡の信頼性に課題がある可能性\n\n",
+  "fetched_at": "2026-07-27T22:07:22.972223+00:00",
+  "papers": [
+    {
+      "title": "DataPrep-Bench: Benchmarking LLMs as Training Data Preparators",
+      "upvotes": 38,
+      "paper_id": "2607.20465",
+      "abstract": "First unified benchmark evaluating LLM-driven data preparation across data construction and quality evaluation capabilities. Releases Data-Construction-Skill agent and Distributional Alignment Score (DAS) metric for downstream-grounded assessment."
+    },
+    {
+      "title": "Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills",
+      "upvotes": 30,
+      "paper_id": "2607.22529",
+      "abstract": "LLM training shifts toward interaction-driven self-evolution. This work reconciles task diversity with verification reliability through agent skills, introducing a co-evolutionary framework where proposer, solver, and skill controller interact in reinforcement learning loops."
+    },
+    {
+      "title": "Molt: A Scalable PyTorch-Native Training Framework for Agentic Reinforcement Learning",
+      "upvotes": 21,
+      "paper_id": "2607.21653",
+      "abstract": "A PyTorch-native training framework designed for agentic RL research, enabling researchers to modify algorithms end-to-end without threading changes through multiple layers. Offers performance comparable to state-of-the-art Megatron-based systems."
+    },
+    {
+      "title": "Agentic Context Management: Solving Agent Memory and Cost by Treating Them as Lifecycle and Architecture Problems",
+      "upvotes": 16,
+      "paper_id": "2607.21503",
+      "abstract": "Addresses production agent failures stemming from context management challenges. Introduces five primitives for agentic lifecycle management and demonstrates validated compaction achieving linear token cost while preserving fidelity in reasoning contexts."
+    },
+    {
+      "title": "Interactive Training 2: Auditable Control Plane for Live Model Training",
+      "upvotes": 15,
+      "paper_id": "2607.18314",
+      "abstract": "Open-source control plane enabling training applications to declare exposed settings and actions. Humans and automated controllers submit requests through unified interface, with training loop validating and applying changes at safe control points."
+    },
+    {
+      "title": "Scaling Native Multimodal Pre-Training From Scratch",
+      "upvotes": 13,
+      "paper_id": "2607.22043",
+      "abstract": "Investigates optimal model size and token count for vision-language model training under fixed computational budget. Demonstrates language and multimodal objectives exhibit distinct scaling behaviors, with data composition significantly affecting efficiency."
+    },
+    {
+      "title": "Three-Body Scattering for Generative Modeling",
+      "upvotes": 10,
+      "paper_id": "2607.18198",
+      "abstract": "Proposes energy-based generation method enabling one-step generators through sample-level projectile interactions. Achieves strong FID scores on ImageNet-256 with minimal computational overhead over diffusion-based approaches."
+    },
+    {
+      "title": "Multi-Turn On-Policy Distillation with Prefix Replay",
+      "upvotes": 9,
+      "paper_id": "2607.04763",
+      "abstract": "Studies on-policy distillation for multi-turn agentic tasks. ReOPD reuses pre-collected trajectories as prefixes, addressing distribution shifts while reducing tool calls during training and improving efficiency over online approaches."
+    },
+    {
+      "title": "LAMAR: An Open Language-Aware Multilingual Alignment Reranker",
+      "upvotes": 8,
+      "paper_id": "2607.22042",
+      "abstract": "Addresses multilingual retrieval by accounting for both semantic relevance and language coherence. Cross-encoder trained with English-anchored distillation and preference alignment achieves strongest performance across languages."
+    },
+    {
+      "title": "O-VAD: Industrial Video Anomaly Detection through Object-Centric Tracking and Reasoning",
+      "upvotes": 8,
+      "paper_id": "2607.18142",
+      "abstract": "Training-free agentic framework for industrial anomaly detection emphasizing object state evolution. Tracks spatial-temporal dynamics and reasons over object trajectories, outperforming frontier VLMs and fine-tuned methods across datasets."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation; terminal runs print a startup warning. Added the workflowSizeGuideline settings key so the advisory Dynamic workflow size guideline can be set from any settings file. Added nested subagent forwarding in stream-json: subagents spawned at depth-2+ now appear when --forward-subagent-text is set. Fixed claude -p text output dropping the answer already produced when a turn dies on a mid-stream API error. Fixed /model picker showing the merged Opus row as plain 'Opus' instead of 'Opus (1M context)'. Removed Opus 4.7 from fast mode; /fast now applies to Opus 5 and Opus 4.8. Subagents can now spawn nested subagents up to depth 3 by default (was 1)."
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs. Fixed the left arrow key discarding the conversation with no undo. Fixed multi-line paste collapsing into one line in terminals that encode pasted newlines as Ctrl+J. Fixed /context reporting stale pre-compact token usage after compacting from the message picker. Fixed /ultrareview failing on descriptive arguments. Fixed spurious '[Request interrupted by user]' messages after interrupted tool calls."
+    }
+  ]
+}
