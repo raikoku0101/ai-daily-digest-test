@@ -1,6 +1,6 @@
-**1. AREX: Towards a Recursively Self-Improving Agent for Deep Research**
-**著者**: AREX Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.21461
+**1. DataPrep-Bench: Benchmarking LLMs as Training Data Preparators**
+**著者**: DataPrep-Bench Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.20465
 
 **まとめ**:
-ARExは「発見–検証の非対称性」に着目し、仮の回答を制約ごとに検証・精製する再帰的自己改善ループを実装した深層リサーチエージェントである。自律的文脈更新（ACU）により長期的な研究状態を自己管理し、外部教師モデル不要で研究能力を向上させる。BrowseComp等の複数ベンチマークで、より大規模なモデルと競合する性能を達成した。
+LLMが学習データ準備作業（データ構築・品質評価）を行う能力を評価する初の統一ベンチマーク。6ドメインにわたり、下流タスク性能に連動した評価指標DASを導入。Data-Construction-Skillエージェントにより専門ドメインでの高品質データ生成が可能になった。LLM駆動の自動データパイプライン構築に向けた重要な標準化フレームワーク。

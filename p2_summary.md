@@ -1,6 +1,6 @@
-**2. K12-KGraph: A Curriculum-Aligned Knowledge Graph for Benchmarking and Training Educational LLMs**
-**著者**: K12-KGraph Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2605.09635
+**2. Skill Self-Play: Pushing the Frontier of LLM Capability with Co-Evolving Skills**
+**著者**: Skill-SP Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.22529
 
 **まとめ**:
-K12-KGraphは中国の公式K-12教科書から抽出した知識グラフで、「カリキュラム認知（Curriculum Cognition）」という新たな能力軸でLLMを評価する。既存ベンチマークが評価できなかった前提条件推論・隣接推奨等のタスクを含むK12-Benchを構築し、主要LLMがこれらで大幅に苦戦することを実証。構造的根拠付きK12-Trainでの学習が少サンプルで高い効率を示した。
+LLMの自己進化フレームワーク「Skill Self-Play」を提案。タスク多様性と検証信頼性のジレンマを、スキルを介した共進化構造（提案者・解法者・スキル制御器）で解決。外部データ不要でLLMが自律的にスキルを向上させる新パラダイム。ツール使用・スキル推論ベンチマークで継続的な性能向上を実証。

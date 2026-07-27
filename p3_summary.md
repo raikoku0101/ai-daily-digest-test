@@ -1,6 +1,6 @@
-**3. ReferTrack: Referring Then Tracking for Embodied Visual Tracking**
-**著者**: ReferTrack Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.20061
+**3. Molt: A Scalable PyTorch-Native Training Framework for Agentic Reinforcement Learning**
+**著者**: Molt Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.21653
 
 **まとめ**:
-ReferTrack は「参照してから追跡する（Referring Then Tracking）」パラダイムで身体化ビジュアルトラッキング（EVT）に取り組む。自然言語指示に基づいて画像空間の境界ボックスで目標を選択し、TVBI（Time-Viewpoint-BoundingBox Index）トークンで時間的追跡を強化する2段階アーキテクチャを採用。EVT-Bench で先行手法を上回り、実機ロボットでの sim-to-real 転送も実証した。
+エージェント型RL研究の開発コストを削減するPyTorchネイティブフレームワーク「Molt」を提案。アルゴリズムをエンドツーエンドで追跡・変更可能な軽量設計を実現し、最先端のMegatronベーススタックと統計的に同等の性能を達成。研究者が全体を理解・改善できるオープンソースツールとして、エージェントRLの研究加速に貢献。
