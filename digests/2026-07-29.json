@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-29",
+  "content": "# AI Daily Digest — 2026-07-29\n\n## 今日のハイライト\n- **拡散モデル蒸留の CFG 問題を解明 (👍61)**: Classifier-Free Guidance と on-policy 蒸留の組み合わせ方法を理論的に分析し最適化。拡散モデルの高速推論化と画質向上を両立する重要な基礎研究。\n- **Claude Code v2.1.219: Claude Opus 5 が正式デフォルト化**: 1M コンテキスト対応の最新 Opus 5 モデルがデフォルトに。ネットワーク制限設定の追加でエンタープライズセキュリティも強化。\n- **動画生成の推論高速化 (👍24)**: Sol-Attn がアテンションスパース化でトークン列ボトルネックを解消。トレーニング不要で既存モデルに適用可能なため、動画生成の実用普及を後押し。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.220 (2025-07-25)\n**主要機能**: バグ修正と安定性向上\n\n**バグ修正**:\n- 各種信頼性の改善\n\n**ユーザーへの影響**: 日常利用において安定性が向上。特定の不具合が修正されたマイナーリリース。\n\n---\n\n### v2.1.219 (2025-07-24)\n**主要機能**:\n- **Claude Opus 5** (`claude-opus-5`) を追加、デフォルト Opus モデルに昇格 — コンテキスト 1M トークン、Fast モード料金 $10/$50 per Mtok\n- `sandbox.network.strictAllowlist` 設定を追加: サンドボックスコマンドで許可リスト外ホストへの接続をプロンプトなしで拒否可能に\n- `DirectoryAdded` フックを追加: `/add-dir` または SDK の `register_repo_root` でセッション中に新しい作業ディレクトリが登録された際に発火\n- ヘッドレス stream-json の init イベントに `mcp_server_errors` を追加: `--mcp-config` でスキップされたエントリを一覧表示\n\n**ユーザーへの影響**: 最新・最強の Opus 5 モデルが即座に利用可能に。セキュリティ強化のためのネットワーク制限設定が追加され、企業利用時のセキュリティポリシー適用が容易になった。\n\n---\n\n### v2.1.218 (2025-07-22)\n**主要機能**:\n- `/code-review` がバックグラウンドサブエージェントとして実行されるよう変更: レビュー作業が会話を埋め尽くさなくなり、スタックされたスラッシュコマンドがレビュー対象として保持される\n- `--ax-screen-reader` モードで単語・行削除時の削除テキストのスクリーンリーダーアナウンスを追加\n\n**バグ修正**:\n- Windows パスで `\\u` プレフィックスを含むセグメント（例: `C:\\Users\\unicorn`）がツール入力で CJK 文字に破損する問題を修正\n\n**ユーザーへの影響**: コードレビューがより快適になり、会話の流れを妨げない。アクセシビリティ機能の強化と Windows ユーザーへの重要なバグ修正。\n\n## 注目論文 TOP 10\n\n**1. Rethinking Classifier-Free Guidance in On-Policy Diffusion Distillation** | 👍 61 | [arxiv:2607.24731](https://arxiv.org/abs/2607.24731)\n🎯**背景**: 拡散モデルの蒸留手法（OPD）は現在の生徒モデルが生成した軌跡に沿って教師に問い合わせるが、現代の拡散システムの標準コンポーネントである CFG（Classifier-Free Guidance）との組み合わせ方法が不明確だった。\n🔧**手法**: CFG が on-policy 蒸留においてどう機能すべきかを理論的に分析し、生徒・教師間の CFG スケールの不整合問題を特定。新しい CFG 適用戦略を提案し、蒸留効率を向上。\n📊**結果**: 既存の on-policy 蒸留手法と比べて画質・多様性の両面で改善を達成。CFG スケールの最適化により少ないステップで高品質な生成が可能に。\n💡**意義**: 拡散モデルの高速推論化に直結する知見であり、動画・画像生成システムの実用化コスト削減に貢献。\n⚠️**限界**: 特定のアーキテクチャや教師モデルへの依存性があり、汎用性の検証が必要。\n\n**2. Sol-Attn: Accelerating Video Generation Inference via On-the-Fly Attention Sparsification** | 👍 24 | [arxiv:2607.24027](https://arxiv.org/abs/2607.24027)\n🎯**背景**: 拡散トランスフォーマーは高品質な動画生成に不可欠だが、長いトークン列がアテンション計算のボトルネックを生む。既存のトレーニング不要な動的スパースアテンション手法には限界がある。\n🔧**手法**: 推論時にオンザフライでアテンションのスパース化を行う手法を提案。重要なキー・バリューブロックのみを選択的に計算し、計算コストを削減しつつ品質を維持。\n📊**結果**: 動画生成の推論速度を大幅に向上。アテンション計算のボトルネックを解消し、長尺動画生成が現実的なコストで可能に。\n💡**意義**: トレーニング不要で既存モデルに適用できる点が実用的。動画生成の民主化に貢献する手法。\n⚠️**限界**: スパース化によって細部の精度が低下する可能性があり、タスクによっては品質トレードオフが生じる。\n\n**3. Oxygen-TryOn: Fashion-Native Foundation Model for Any-item Virtual Try-On** | 👍 20 | [arxiv:2607.21694](https://arxiv.org/abs/2607.21694)\n🎯**背景**: バーチャル試着は EC の重要な機能だが、既存手法は汎用画像編集モデルを転用したものが多く、ファッション特有の要件（テクスチャ保持、フィット感表現）に対応しきれていない。\n🔧**手法**: ファッションネイティブな基盤モデル Oxygen-TryOn を構築。専用のデータエンジンと試着特化のトレーニングにより、衣服・アクセサリー等あらゆるアイテムの仮想着用を統一的に処理。\n📊**結果**: 既存の試着モデルと比較して、衣服テクスチャの忠実な再現とリアルなフィット感の表現で優れた性能を示す。多品目への汎化性能も高い。\n💡**意義**: ファッション EC の UX を根本から変革する可能性を持つ。実店舗不要の試着体験により返品率低下・購買率向上が期待される。\n⚠️**限界**: 複雑なシルエット変形（体型差が大きい場合など）や非標準的な衣服カテゴリへの適用性は未検証。\n\n**4. The Physics of Multi-Turn Long-Horizon Planning** | 👍 19 | [arxiv:2607.24720](https://arxiv.org/abs/2607.24720)\n🎯**背景**: 基盤モデルエージェントにとってマルチターン長期計画は重要だが、どのように改善するかが不明確。既存モデルは制御不能で不透明なインターネットデータで学習されており、計画能力がどう獲得されるかを特定しにくい。\n🔧**手法**: 事前学習から事後学習まで、単一・複数教師を用いたオンポリシー エージェントの蒸留手法を体系的に研究。「長期計画の物理学」として計画能力の源泉を分析。\n📊**結果**: 適切な蒸留手法の組み合わせにより、マルチターン長期計画タスクでの性能が大幅に向上。特に複数教師を活用した手法が効果的。\n💡**意義**: エージェント AI の計画能力を体系的に理解・向上させる枠組みを提供。実用的な AI エージェント開発に直結する知見。\n⚠️**限界**: 特定のベンチマーク設定への適合可能性があり、実世界の開放的環境での汎化性能の検証が今後の課題。\n\n**5. Chamaileon: Cross-Context Binder Design with Contextualized Modeling and Mixed Sampling** | 👍 6 | [arxiv:2607.23518](https://arxiv.org/abs/2607.23518)\n🎯**背景**: 生成モデルの進化によりタンパク質バインダー設計が進展しているが、既存手法は単一の構造コンテキスト内での設計に限定されており、複数の結合コンテキストを横断した設計が困難だった。\n🔧**手法**: コンテキスト化モデリングと混合サンプリングを組み合わせた Chamaileon を提案。複数の結合コンテキストを同時に考慮しつつ、配列と構造を統合的に設計する。\n📊**結果**: 複数の結合コンテキストにまたがるバインダー設計で既存手法を上回る性能を実現。多様な構造環境への汎化性能が向上。\n💡**意義**: 構造生物学における創薬研究を加速。柔軟なバインダー設計が可能になることで、医薬品開発のコスト削減・期間短縮に貢献。\n⚠️**限界**: 計算コストが高く、実験的な検証なしには設計の実用性を確認しにくい。\n\n\n**6. dRAE: Representation Autoencoder with Hyper-Spherical Codes** | 👍 6 | [arxiv:2607.22148](https://arxiv.org/abs/2607.22148)\n🎯**背景**: 高次元の視覚表現を言語モデルと橋渡しするためには離散化が必要だが、既存の量子化手法はコードブック崩壊の問題に悩まされ、スケールしながら意味的一貫性を保つことが難しい。\n🔧**手法**: 超球面コードを用いた表現オートエンコーダ（dRAE）を提案。超球面空間での離散化により、コードブック崩壊を防ぎつつ意味的に豊かな離散表現を学習。\n📊**結果**: コードブック利用率が大幅に向上し、既存の VQ-VAE 系手法と比べて再構成品質と意味的表現の両面で改善を達成。\n💡**意義**: 視覚と言語を橋渡しするマルチモーダルモデルの表現学習基盤を強化。より効率的なマルチモーダル LLM の実現に貢献。\n⚠️**限界**: 超球面空間での最適化は計算コストが高く、非常に大規模なコードブックへのスケーラビリティの検証が必要。\n\n**7. Reasoning Denoiser: Denoising Reasoning Traces for Hallucination Detection in Large Reasoning Models** | 👍 5 | [arxiv:2607.22098](https://arxiv.org/abs/2607.22098)\n🎯**背景**: 大規模推論モデル（LRM）は最終回答前に長い推論トレースを生成する。これらのトレースはハルシネーション検出に有用な信号を含む可能性があるが、長い軌跡にはノイズが多く活用が難しい。\n🔧**手法**: 推論トレースのノイジーなステップを除去（デノイズ）し、ハルシネーション検出に有効な信号を抽出する Reasoning Denoiser を提案。ノイズフィルタリングにより真のエラーパターンを顕在化。\n📊**結果**: ノイズ除去後の推論トレースを用いることで、ハルシネーション検出の精度が従来手法を上回る。誤りの早期検出が可能になる。\n💡**意義**: LRM の信頼性向上に直結。自動的なファクトチェック・品質管理システムの構築基盤を提供。\n⚠️**限界**: デノイジング手法自体がモデル依存であり、異なるアーキテクチャへの転用性と処理オーバーヘッドの検証が必要。\n\n**8. Codifying the Judge: Scalable Evaluation via Program Distillation** | 👍 5 | [arxiv:2607.22561](https://arxiv.org/abs/2607.22561)\n🎯**背景**: LLM-as-a-judge は自動評価の標準になっているが、高コスト・高レイテンシ・不透明な判断という課題がスケーラビリティと信頼性を損なっている。\n🔧**手法**: LLM ジャッジの推論をプログラムとして蒸留するシンプルで効率的な代替手法を提案。ジャッジの判断ロジックを実行可能なコードとして抽出し、高速・低コストな評価を実現。\n📊**結果**: LLM ジャッジと同等の判断精度を維持しながら、推論コストを大幅に削減。評価の透明性も向上し、判断根拠のトレースが可能に。\n💡**意義**: AI モデル評価インフラのコスト・速度問題を解決。大規模な自動評価パイプラインの構築を現実的にする。\n⚠️**限界**: 蒸留されたプログラムは特定のタスク・ドメインに特化しており、新しい評価基準への適応には再蒸留が必要。\n\n**9. Leveraging External Knowledge for Historical Document Restoration via Retrieval-Augmented Large Language Models** | 👍 3 | [arxiv:2607.21936](https://arxiv.org/abs/2607.21936)\n🎯**背景**: 歴史的文書は物理的な劣化・損傷により判読困難になることが多い。既存の masked language modeling に基づく復元手法はローカルコンテキストを効果的に活用するが、文書固有の専門知識が必要な部分の復元に苦労する。\n🔧**手法**: 検索拡張大規模言語モデル（RAG + LLM）を用いて外部知識を活用。歴史的文書の内容に関連する外部資料を動的に検索し、文脈に基づいた復元を実現。\n📊**結果**: 特に専門用語・固有名詞を含む歴史的文書の復元精度が既存手法を大幅に上回る。外部知識の活用により文脈的に適切な復元が可能に。\n💡**意義**: 図書館・博物館・研究機関での文化遺産のデジタル保存を加速。歴史研究の資料アクセス性を大幅に向上させる。\n⚠️**限界**: 外部知識ベースの品質・カバレッジに性能が依存。稀少言語や極めて専門的な分野の文書には外部資料が不足する可能性。\n\n**10. TRACE: Business Rule-Grounded Reasoning Curriculum for Knowledge-Preserving Parametric Tool Retrieval in Enterprise LLMs** | 👍 2 | [arxiv:2607.22639](https://arxiv.org/abs/2607.22639)\n🎯**背景**: パラメトリック検索は LLM が各 API に固有の仮想トークンを割り当て、制約付きビームサーチで生成することでツールを暗黙的に検索する手法だが、既存知識を破壊し未学習ツールへの汎化が困難という問題がある。\n🔧**手法**: ビジネスルールに基づいた推論カリキュラム（TRACE）を提案。知識を保持しながらパラメトリックツール検索を学習するための段階的なカリキュラム学習手法を設計。\n📊**結果**: エンタープライズ環境での新規 API ツール検索において、既存知識を保持しながら精度を向上。未学習ツールへの汎化性能も改善。\n💡**意義**: 企業の LLM システムでのツール呼び出し精度向上に直結。継続学習によるカスタム API への適応が実現し、エンタープライズ AI の実用性が高まる。\n⚠️**限界**: 企業固有のビジネスルールへの依存度が高く、汎用化のためには各企業でのカスタマイズが必要。大規模 API カタログへのスケーラビリティも検証が必要。\n\n",
+  "fetched_at": "2026-07-28T22:06:20.340335+00:00",
+  "papers": [
+    {
+      "title": "Rethinking Classifier-Free Guidance in On-Policy Diffusion Distillation",
+      "upvotes": 61,
+      "paper_id": "2607.24731",
+      "summary": "On-policy distillation (OPD) adapts diffusion models by querying a teacher along trajectories generated by the current student, but how it should behave under classifier-free guidance (CFG), a default component of modern diffusion systems, remains"
+    },
+    {
+      "title": "Sol-Attn: Accelerating Video Generation Inference via On-the-Fly Attention Sparsification",
+      "upvotes": 24,
+      "paper_id": "2607.24027",
+      "summary": "Diffusion transformers are essential for high-fidelity video generation, but long token sequences make attention a dominant inference bottleneck. Training-free dynamic sparse attention alleviates this bottleneck by computing only selected key-value blocks."
+    },
+    {
+      "title": "Oxygen-TryOn: Fashion-Native Foundation Model for Any-item Virtual Try-On",
+      "upvotes": 20,
+      "paper_id": "2607.21694",
+      "summary": "We present Oxygen-TryOn, a unified foundation model for any-item virtual try-on. Rather than repurposing a general-purpose image editor, Oxygen-TryOn is fashion-native, built for try-on through a dedicated data engine and try-on-specific training."
+    },
+    {
+      "title": "The Physics of Multi-Turn Long-Horizon Planning: From Pre-training to Post-training via Single- and Multi-Teacher On-Policy Agentic Distillation",
+      "upvotes": 19,
+      "paper_id": "2607.24720",
+      "summary": "Multi-turn long-horizon planning is critical for foundation model agents, yet how to fundamentally improve it remains unclear. Existing models are trained on uncontrollable and opaque Internet data, making it difficult to identify how planning ability is acquired."
+    },
+    {
+      "title": "Chamaileon: Cross-Context Binder Design with Contextualized Modeling and Mixed Sampling",
+      "upvotes": 6,
+      "paper_id": "2607.23518",
+      "summary": "The rapid evolution of generative models has unlocked new potentials in protein binder design, a pivotal task in structural biology, by facilitating end-to-end generation via joint sequence-structure modeling or hallucination."
+    },
+    {
+      "title": "dRAE: Representation Autoencoder with Hyper-Spherical Codes",
+      "upvotes": 6,
+      "paper_id": "2607.22148",
+      "summary": "In this work, we aim to discretize the high-dimensional visual representations to bridge the gap with language models - a non-trivial challenge, as existing quantization methods suffer from codebook collapse, failing to scale while preserving semantic coherence."
+    },
+    {
+      "title": "Reasoning Denoiser: Denoising Reasoning Traces for Hallucination Detection in Large Reasoning Models",
+      "upvotes": 5,
+      "paper_id": "2607.22098",
+      "summary": "Large reasoning models (LRMs) generate long reasoning traces before producing final answers. While these traces may contain useful signals for hallucination detection, harnessing them is non-trivial because long trajectories often include noisy steps."
+    },
+    {
+      "title": "Codifying the Judge: Scalable Evaluation via Program Distillation",
+      "upvotes": 5,
+      "paper_id": "2607.22561",
+      "summary": "LLM-as-a-judge has become the standard for automated evaluation, but it suffers from high cost, significant latency, and opaque decisions. We address these with a simple, efficient alternative: program distillation from judge reasoning."
+    },
+    {
+      "title": "Leveraging External Knowledge for Historical Document Restoration via Retrieval-Augmented Large Language Models",
+      "upvotes": 3,
+      "paper_id": "2607.21936",
+      "summary": "Historical documents act as invaluable knowledge archives but often suffer from illegibility due to physical deterioration and damage. While existing restoration methods based on masked language modeling effectively utilize local context, they struggle to restore."
+    },
+    {
+      "title": "TRACE: Business Rule-Grounded Reasoning Curriculum for Knowledge-Preserving Parametric Tool Retrieval in Enterprise LLMs",
+      "upvotes": 2,
+      "paper_id": "2607.22639",
+      "summary": "Parametric retrieval enables LLMs to retrieve tools implicitly by assigning each API a unique virtual token and training the model to generate it via constrained beam search."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok\nAdded sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting\nAdded DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session\nAdded mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation"
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation\nAdded screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode\nFixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs"
+    }
+  ]
+}
