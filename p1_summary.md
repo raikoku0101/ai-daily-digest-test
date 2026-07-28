@@ -1,6 +1,6 @@
-**1. DataPrep-Bench: Benchmarking LLMs as Training Data Preparators**
-**著者**: DataPrep-Bench Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.20465
+**1. Rethinking Classifier-Free Guidance in On-Policy Diffusion Distillation**
+**著者**: (anonymous et al.) (2025)
+**arXiv**: https://arxiv.org/abs/2607.24731
 
 **まとめ**:
-LLMが学習データ準備作業（データ構築・品質評価）を行う能力を評価する初の統一ベンチマーク。6ドメインにわたり、下流タスク性能に連動した評価指標DASを導入。Data-Construction-Skillエージェントにより専門ドメインでの高品質データ生成が可能になった。LLM駆動の自動データパイプライン構築に向けた重要な標準化フレームワーク。
+On-Policy 蒸留（OPD）と Classifier-Free Guidance（CFG）の組み合わせに潜む「Negative Branch Asymmetry（NBA）」問題を発見・定式化。教師モデルが特権情報（参照画像など）を持つ場合、naïve なマッチングが負の分岐誤差を増大させガイダンス感度が崩壊することを示した。提案手法 PDM（Positive-Direction Matching）により両分岐誤差をゼロに制約し、推論時のスケール変更に対して堅牢な蒸留を実現。動画制御ベンチマークで naïve 手法と比較して MPJPEを約50%改善した。
