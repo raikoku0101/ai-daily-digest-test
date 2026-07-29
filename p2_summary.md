@@ -1,6 +1,6 @@
-**2. Sol-Attn: Accelerating Video Generation Inference via On-the-Fly Attention Sparsification**
-**著者**: Haopeng Li, Yitong Li, Junsong Chen et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.24027
+**2. CodeNib: A Multi-View Data System for Serving Repository Context to Coding Agents**
+**著者**: CodeNib Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.25431
 
 **まとめ**:
-拡散トランスフォーマーによる動画生成で長いトークン列がアテンション計算のボトルネックとなる問題に対し、トレーニング不要な動的スパースアテンション手法 Sol-Attn を提案。オンライン・ソフトマックスパスでのブロック閾値処理とプロキシスコアの再利用により、動的予算制御と高精度な近似を両立。動画生成で2.1倍、編集タスクで2.3倍の高速化を達成しながら視覚品質を維持した。
+コーディングエージェントが繰り返す非効率な検索を解消するため、リポジトリをデータベースとして扱うマルチビューシステムを提案。字句・密ベクトル・構造グラフの3ビューをコミット単位で管理し、増分更新で中央値8.67倍 (グラフ)・25.44倍 (ベクトル) の高速化を達成。文脈配信ポリシーにより精度を維持しつつトークンを50〜87%削減。
