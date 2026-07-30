@@ -1,6 +1,6 @@
-**5. Novel Claim or Deja Vu? Rethinking Contamination-Free Dynamic Evaluation for Multimodal Automated Fact-Checking**
-**著者**: MAFC Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.23514
+**5. SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution**
+**著者**: SkillRise Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.26784
 
 **まとめ**:
-マルチモーダル自動ファクトチェック (MAFC) の動的ベンチマークでも「デジャヴ」汚染が17〜29%の割合で発生することを実証。LLM 内部知識との類似度を METEOR + 埋め込みベースで測定する3ステップ検知パイプラインを提案。汚染された主張では精度が最大10.88ポイント水増しされ、モデルランキングまで歪むことを示し、汚染制御下の再評価の重要性を提起。
+関連タスクを難易度順に並べたシーケンスで、LLMエージェントが「解答」と「スキル文書編集」を交替実行するフレームワーク SkillRise を提案。分離型クレジット割り当て（解答には現タスク報酬、スキル編集には割引後の後続タスク報酬）でスキル転移を最適化。ALFWorld+2.3pt・WebShop+7.1pt・ScienceWorld+8.5pt と全ベースラインを上回り、従来マルチステージパイプライン比で6倍の高速化も達成。
