@@ -1,0 +1,84 @@
+{
+  "date": "2026-07-31",
+  "content": "# AI Daily Digest — 2026-07-31\n\n## 今日のハイライト\n- **Claude Opus 5 が Claude Code v2.1.219 で正式追加**: 100万トークンコンテキスト・Fast Mode対応の最新 Opus が即座に利用可能。大規模コードベース解析や長文処理のユースケースに直結する重要アップグレード。\n- **CoRT が HuggingFace 本日 No.1 (👍73)**: トークンレベルのクレジット割り当て問題を counterfactual replay で解決。RLHFパイプラインの精度向上に貢献する手法として注目度が高い。\n- **AI エージェントによる open-ended 研究の限界が判明**: NeurIPS 未発表論文でのシャドウ評価で、エンジニアリングは可能でも研究的判断・創造的問題解決は苦手と判明。AI研究自動化の現実的な射程を示す重要な知見。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.220 (2025-07-25)\n**主要機能**: バグ修正と安定性の向上\n- 細かな信頼性改善が施されたメンテナンスリリース\n\n**ユーザーへの影響**: 既存ワークフローへの破壊的変更なし。より安定した動作が期待できます。\n\n---\n\n### v2.1.219 (2025-07-24)\n**主要機能 (新機能)**:\n- **Claude Opus 5 追加** (`claude-opus-5`): 新しいデフォルト Opus モデル。100万トークンのコンテキスト、Fast Mode で $10/$50 per Mtok。Claude Code が最先端モデルに即時対応。\n- **`sandbox.network.strictAllowlist` 設定**: サンドボックスコマンドで許可リスト外ホストへの接続をプロンプトなしで拒否。セキュリティ強化に直結。\n- **`DirectoryAdded` フック**: `/add-dir` やSDKの `register_repo_root` でセッション中に作業ディレクトリが追加された際に発火する新フック。自動化パイプラインの制御が精緻に。\n- **`mcp_server_errors`**: ヘッドレスモードの init イベントに追加。無効な MCP 設定エントリを起動時に報告。\n\n**ユーザーへの影響**: Opus 使用者は `claude-opus-5` へ自動的にアップグレード。ネットワークセキュリティポリシーを厳格化したいチームは `strictAllowlist` を即活用可能。\n\n---\n\n### v2.1.218 (2025-07-22)\n**主要機能 (改善・修正)**:\n- **`/code-review` のバックグラウンド実行化**: レビュー処理がサブエージェントで動作し、メイン会話のコンテキストを圧迫しなくなりました。\n- **スクリーンリーダー対応強化**: `--ax-screen-reader` モードで単語・行削除操作のアナウンスを追加。アクセシビリティ向上。\n- **Windows パスのバグ修正**: `\\u` プレフィックスを含むパス（例: `C:\\Users\\unicorn`）が CJK 文字に化けてファイルアクセス不能になる問題を修正。\n- **左矢印キーのバグ修正**: 誤操作で会話が消えてしまうバグを修正。Esc キーでバックグラウンド会話への復帰も可能に。\n\n**ユーザーへの影響**: Windows ユーザーは特にパス文字化けバグ修正の恩恵大。コードレビュー多用者はコンテキスト節約効果を体感できます。\n\n## 注目論文 TOP 10\n\n**1. CoRT: Counterfactual Replay for Token-Level Rubric-Guided Policy Optimization** | 👍 73 | https://arxiv.org/abs/2607.25659\n🎯**背景**: RLHFにおけるトークンレベルのクレジット割り当て問題。ルーブリック（採点基準）を使った強化学習では、どのトークンが良い回答に貢献したかが不明確だった。\n🔧**手法**: Counterfactual Replay（反事実再生）を用い、ルーブリックに基づいて応答を再スコアリング。各トークンへのアドバンテージを再分配することで、細粒度のクレジット割り当てを実現。\n📊**結果**: 複数のベンチマークで既存手法を上回る性能改善。ルーブリックガイド型の政策最適化として明確な改善を達成。\n💡**意義**: LLMの品質向上に欠かせないトークンレベルの報酬設計問題に対する実用的な解決策。RLHFパイプラインの精度向上に直結。\n⚠️**限界**: ルーブリック自体の品質に依存。ルーブリック設計が不適切な場合は効果が限定的になる可能性。\n\n**2. DecoEvo: Score-Decoupled Co-Evolution of Solver and Rubric-Generator Skills in Text Space** | 👍 54 | https://arxiv.org/abs/2607.25675\n🎯**背景**: LLMの自然言語アーティファクト（プロンプト、ルーブリック）をテキスト空間で最適化するアプローチが注目されているが、ソルバーと評価器の共進化には目的の絡み合いという課題があった。\n🔧**手法**: スコアを分離（Decouple）した共進化（Co-Evolution）戦略。ソルバーとルーブリック生成器を独立した目的で並行進化させることで、相互干渉を防ぎながら両者を改善。\n📊**結果**: 5つのベンチマークでベースラインに対して2.8〜5.0%の相対的な性能向上を達成。\n💡**意義**: テキスト空間での最適化という新しいパラダイムを強化。グラジェントフリーでLLMの能力を引き出せる汎用的なフレームワーク。\n⚠️**限界**: 進化的アプローチのため計算コストが高い。小規模実験での検証が中心で、大規模適用時の効果は未検証。\n\n**3. CLBench-V: Evaluating Multimodal Context Learning from Grounding to Knowledge Acquisition** | 👍 40 | https://arxiv.org/abs/2607.25294\n🎯**背景**: マルチモーダルLLMのコンテキスト学習能力を体系的に評価するベンチマークが不足していた。特に科学、金融、Webタスクなど実用的な領域での評価が課題。\n🔧**手法**: タスク固有のマルチモーダルコンテキストからモデルが学習する能力を評価する包括的ベンチマーク。グラウンディング（視覚的理解）から知識習得まで段階的に評価。\n📊**結果**: 最高スコアでも0.2847止まりという低水準。現行の最先端モデルでさえ、マルチモーダルコンテキスト学習において大きな改善余地があることが判明。\n💡**意義**: マルチモーダルAIの実力を現実的に測る重要な評価基盤。研究者が改善すべき能力のギャップを特定する指針となる。\n⚠️**限界**: 特定ドメイン（科学・金融・Web）に限定されており、他の重要な応用領域がカバーされていない可能性。\n\n**4. CAST: Game Solvers as Turn-Level Teachers for LLM Agents** | 👍 28 | https://arxiv.org/abs/2607.25308\n🎯**背景**: LLMエージェントの訓練に適した教師信号の設計が難しく、特にターンレベルでの細かなフィードバックが不足していた。ゲームソルバーの持つ密な価値情報を活用するアイデア。\n🔧**手法**: ゲームソルバーの価値変化をターンレベルの教師信号に変換。エージェントの各行動ステップにソルバーの評価差分を対応させ、密な学習シグナルを生成。\n📊**結果**: パズルゲームで全訓練ベースラインを上回り、ALFWorldとWebShopでゼロショット性能最高を達成。汎化性能も実証。\n💡**意義**: ゲームソルバーという既存資産を活用した新しい訓練パラダイム。ドメイン特化型の密な報酬設計を自動化できる可能性。\n⚠️**限界**: ゲームソルバーが存在する環境に限定。現実世界タスクへの適用には、等価なソルバーの構築が必要。\n\n**5. SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution** | 👍 18 | https://arxiv.org/abs/2607.26784\n🎯**背景**: 複数タスクをまたぐスキル転移と進化的学習の組み合わせは、エージェントAIの汎化能力向上に重要だが、段階的な難易度設計が課題だった。\n🔧**手法**: インスタンスを段階的に難しくなるシーケンスに整理し、エージェント強化学習でタスク横断的なスキル進化を促進。カリキュラム学習的アプローチをエージェントRL に統合。\n📊**結果**: 複数の環境でベースラインに対して2.3〜8.5ポイントの改善。クロスタスク汎化の有効性を定量的に実証。\n💡**意義**: エージェントAIの汎化能力を計画的に高めるフレームワーク。実用的なAIエージェント開発への橋渡しとなる研究。\n⚠️**限界**: 環境設計と難易度シーケンスの手動設計が必要。自動化が不十分な場合、スケールアップが困難。\n\n**6. MindForge: Teaching Small Language Models Whole-Life-Cycle Software Engineering via Source-Free Program Synthesis** | 👍 17 | https://arxiv.org/abs/2607.27146\n🎯**背景**: 小型LLMにソフトウェアエンジニアリング全工程を教える際、ソースコード自体を訓練データに使わずに学習させるアプローチが求められていた。著作権問題を回避しながら実用的なSEスキルを習得させる課題。\n🔧**手法**: オープンソースプログラムをソースフリーの訓練環境へ自動変換するパイプライン。プログラムの動作・仕様情報を活用し、コードを直接参照せずに生命周期全体（要件→設計→実装→テスト）を学習。\n📊**結果**: Qwen3.6-27BのProgramBenchスコアが37.98%→49.51%に向上。大型フロンティアモデルと比肩する性能を達成。\n💡**意義**: 著作権リスクを回避しながらSEスキルを習得できる実用的フレームワーク。産業界での小型モデル活用に直結。\n⚠️**限界**: 変換パイプラインの品質がオリジナルプログラムの構造に依存。非構造化コードや複雑なシステムへの適用は困難な可能性。\n\n**7. SpecFirst: Behavioral Specification Elicitation as a First-Class Step in Agent-Based Program Synthesis from Scratch** | 👍 15 | https://arxiv.org/abs/2607.27167\n🎯**背景**: LLMによる自動プログラム合成において、要件定義が不十分なままコード生成に突入することで品質が低下する問題があった。仕様書先行アプローチの有効性を検証。\n🔧**手法**: 仕様抽出（Specification Elicitation）をコード合成の前段階として必須ステップに位置づける2段階フレームワーク。エージェントが先に振る舞い仕様を明示化してからコードを生成。\n📊**結果**: シングルループベースラインに対してテスト通過率6.9〜21.3%向上、バイナリ探索カバレッジ9.4〜18.5%向上を達成。\n💡**意義**: 「仕様を先に書く」という人間のベストプラクティスをAIエージェントに組み込む重要なアプローチ。信頼性の高い自動コード生成への道筋。\n⚠️**限界**: 仕様抽出ステップの追加により処理時間が増加。仕様が不明確なドメインでは効果が限定的な可能性。\n\n**8. Can AI agents conduct open-ended AI research? Early evidence from two case studies** | 👍 12 | https://arxiv.org/abs/2607.27191\n🎯**背景**: AIエージェントが自律的にAI研究を遂行できるかという根本的な問いへの実証的アプローチ。未発表NeurIPSペーパーを用いたシャドウ評価という独自の評価設計。\n🔧**手法**: 未発表論文の問題設定をエージェントに与え、元著者が採点するシャドウ評価を実施。工学的実装力と研究的判断力を分離して評価。\n📊**結果**: エンジニアリングタスクは完遂できるが、研究的判断、創造的問題解決、行き詰まりからの軌道修正で苦手を露呈。\n💡**意義**: AIが「研究者」として機能するための能力ギャップを具体的に特定した先駆的研究。今後のAI研究自動化の方向性を示す。\n⚠️**限界**: 2ケーススタディのみという限られたサンプル数。「早期エビデンス」と題されており、一般化には追加検証が必要。\n\n**9. StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation** | 👍 12 | https://arxiv.org/abs/2607.26754\n🎯**背景**: ゲーム世界モデルの生成において、視覚的なリアリティは高まっているが、ゲームメカニクス（物理法則、ルール）の一貫性が保たれないという問題があった。\n🔧**手法**: ゲーム状態（インベントリ、スコア、物理量等）を明示的に予測する世界モデルを設計。視覚コンテンツとゲーム状態を同時に予測する結合モデル。\n📊**結果**: 明示的な状態モデリングを持たないモデルと比較して、メカニクス忠実度を18.6%改善。\n💡**意義**: ゲームAIとコンテンツ生成の融合領域で、プロシージャル生成の品質を大きく引き上げる可能性。ゲーム開発への実用応用が近い。\n⚠️**限界**: 特定ゲームジャンルでの評価に限定。複雑なルールセットを持つゲームへの汎化や、リアルタイム生成への応用は未検証。\n\n**10. OmegaUse-OfficeVal: Benchmarking LLM Agents on Long-Horizon Office-Suite Tasks with Economic Grounding** | 👍 7 | https://arxiv.org/abs/2607.27155\n🎯**背景**: LLMエージェントのオフィスタスク（Word、Excel、PowerPoint等）遂行能力を、経済的観点（コスト・時間）を含めて現実的に評価するベンチマークの必要性。\n🔧**手法**: 100種のオフィスタスクを経済シグナル付きで構築。人間作業との直接コスト比較を可能にする評価設計。長期ホライズン（複数ステップ）タスクに焦点。\n📊**結果**: 評価した全LLMが人間より安価・高速だが、成果物の品質では人間レベルに未達。スピードとコストは代替可能でも品質はまだ不足。\n💡**意義**: 「AIは仕事を奪うか」という問いに対し、コスト・速度・品質の三軸で現状を定量評価。企業のAI導入判断に資するデータを提供。\n⚠️**限界**: 100タスクというサンプル数は多様なオフィス業務全体を網羅するには不十分。経済シグナルの計測方法の標準化も課題。\n\n",
+  "fetched_at": "2026-07-30T22:07:00.154319+00:00",
+  "papers": [
+    {
+      "title": "CoRT: Counterfactual Replay for Token-Level Rubric-Guided Policy Optimization",
+      "upvotes": 73,
+      "paper_id": "2607.25659",
+      "abstract": "Rubric-based reinforcement learning enriches language model training by evaluating outputs against explicit criteria. CoRT uses counterfactual replay to rescore responses, redistributing advantage across tokens for improved credit allocation within responses."
+    },
+    {
+      "title": "DecoEvo: Score-Decoupled Co-Evolution of Solver and Rubric-Generator Skills in Text Space",
+      "upvotes": 54,
+      "paper_id": "2607.25675",
+      "abstract": "Text-space optimization for LLMs by editing natural-language artifacts. DecoEvo co-evolves solver and rubric-generator skills under decoupled objectives, yielding 2.8-5.0% relative gains over baselines across five benchmarks."
+    },
+    {
+      "title": "CLBench-V: Evaluating Multimodal Context Learning from Grounding to Knowledge Acquisition",
+      "upvotes": 40,
+      "paper_id": "2607.25294",
+      "abstract": "Benchmark for multimodal context learning across science, finance, and web-based tasks. Evaluates how models learn from task-specific multimodal context, with best scores only reaching 0.2847, indicating substantial room for improvement."
+    },
+    {
+      "title": "CAST: Game Solvers as Turn-Level Teachers for LLM Agents",
+      "upvotes": 28,
+      "paper_id": "2607.25308",
+      "abstract": "Converts game solver value changes into turn-level teaching signals for agent training. Outperforms all trained baselines on puzzle games and achieves highest zero-shot performance on ALFWorld and WebShop."
+    },
+    {
+      "title": "SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution",
+      "upvotes": 18,
+      "paper_id": "2607.26784",
+      "abstract": "Framework for learning skills across tasks through agentic reinforcement learning. Organizes instances into progressively challenging sequences, achieving 2.3-8.5 percentage point gains over baselines on multiple environments."
+    },
+    {
+      "title": "MindForge: Teaching Small Language Models Whole-Life-Cycle Software Engineering via Source-Free Program Synthesis",
+      "upvotes": 17,
+      "paper_id": "2607.27146",
+      "abstract": "Automated pipeline converting open-source programs into source-free training environments. Fine-tuning Qwen3.6-27B increases ProgramBench performance from 37.98% to 49.51%, achieving performance comparable to substantially larger frontier models."
+    },
+    {
+      "title": "SpecFirst: Behavioral Specification Elicitation as a First-Class Step in Agent-Based Program Synthesis from Scratch",
+      "upvotes": 15,
+      "paper_id": "2607.27167",
+      "abstract": "Two-stage framework forcing specification elicitation before code synthesis. SpecFirst consistently outperforms single-loop baselines, improving test pass rates by 6.9%-21.3% and binary exploration coverage by 9.4%-18.5%."
+    },
+    {
+      "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+      "upvotes": 12,
+      "paper_id": "2607.27191",
+      "abstract": "Shadow evaluations where agents tackle unpublished NeurIPS papers graded by original authors. Agents completed engineering but struggled with research judgment, creative problem-solving, and backtracking from dead ends."
+    },
+    {
+      "title": "StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation",
+      "upvotes": 12,
+      "paper_id": "2607.26754",
+      "abstract": "Game world model jointly predicting visual content and game states for mechanics-consistent generation. Improves mechanics fidelity in generated rollouts by 18.6% compared with models lacking explicit state modeling."
+    },
+    {
+      "title": "OmegaUse-OfficeVal: Benchmarking LLM Agents on Long-Horizon Office-Suite Tasks with Economic Grounding",
+      "upvotes": 7,
+      "paper_id": "2607.27155",
+      "abstract": "Benchmark with 100 office-suite tasks paired with economic signals for cost comparison. All evaluated LLMs are cheaper and faster than humans but have not achieved human-level deliverable quality."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok\nAdded sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting\nAdded DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session\nAdded mcp_server_errors to the headless stream-json init event\nAdded the workflowSizeGuideline settings key"
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation\nAdded screen-reader announcements of deleted text in --ax-screen-reader mode\nFixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs\nFixed the left arrow key discarding the conversation with no undo"
+    }
+  ]
+}
