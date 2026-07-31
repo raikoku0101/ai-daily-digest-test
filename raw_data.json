@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "CoRT: Counterfactual Replay for Token-Level Rubric-Guided Policy Optimization", "upvotes": 73, "paper_id": "2607.25659", "abstract": "Rubric-based reinforcement learning enriches language model training by evaluating outputs against explicit criteria. CoRT uses counterfactual replay to rescore responses, redistributing advantage across tokens for improved credit allocation within responses."},
-    {"title": "DecoEvo: Score-Decoupled Co-Evolution of Solver and Rubric-Generator Skills in Text Space", "upvotes": 54, "paper_id": "2607.25675", "abstract": "Text-space optimization for LLMs by editing natural-language artifacts. DecoEvo co-evolves solver and rubric-generator skills under decoupled objectives, yielding 2.8-5.0% relative gains over baselines across five benchmarks."},
-    {"title": "CLBench-V: Evaluating Multimodal Context Learning from Grounding to Knowledge Acquisition", "upvotes": 40, "paper_id": "2607.25294", "abstract": "Benchmark for multimodal context learning across science, finance, and web-based tasks. Evaluates how models learn from task-specific multimodal context, with best scores only reaching 0.2847, indicating substantial room for improvement."},
-    {"title": "CAST: Game Solvers as Turn-Level Teachers for LLM Agents", "upvotes": 28, "paper_id": "2607.25308", "abstract": "Converts game solver value changes into turn-level teaching signals for agent training. Outperforms all trained baselines on puzzle games and achieves highest zero-shot performance on ALFWorld and WebShop."},
-    {"title": "SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution", "upvotes": 18, "paper_id": "2607.26784", "abstract": "Framework for learning skills across tasks through agentic reinforcement learning. Organizes instances into progressively challenging sequences, achieving 2.3-8.5 percentage point gains over baselines on multiple environments."},
-    {"title": "MindForge: Teaching Small Language Models Whole-Life-Cycle Software Engineering via Source-Free Program Synthesis", "upvotes": 17, "paper_id": "2607.27146", "abstract": "Automated pipeline converting open-source programs into source-free training environments. Fine-tuning Qwen3.6-27B increases ProgramBench performance from 37.98% to 49.51%, achieving performance comparable to substantially larger frontier models."},
-    {"title": "SpecFirst: Behavioral Specification Elicitation as a First-Class Step in Agent-Based Program Synthesis from Scratch", "upvotes": 15, "paper_id": "2607.27167", "abstract": "Two-stage framework forcing specification elicitation before code synthesis. SpecFirst consistently outperforms single-loop baselines, improving test pass rates by 6.9%-21.3% and binary exploration coverage by 9.4%-18.5%."},
-    {"title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies", "upvotes": 12, "paper_id": "2607.27191", "abstract": "Shadow evaluations where agents tackle unpublished NeurIPS papers graded by original authors. Agents completed engineering but struggled with research judgment, creative problem-solving, and backtracking from dead ends."},
-    {"title": "StatePlay: State-Aware Game World Models for Mechanics-Consistent Generation", "upvotes": 12, "paper_id": "2607.26754", "abstract": "Game world model jointly predicting visual content and game states for mechanics-consistent generation. Improves mechanics fidelity in generated rollouts by 18.6% compared with models lacking explicit state modeling."},
-    {"title": "OmegaUse-OfficeVal: Benchmarking LLM Agents on Long-Horizon Office-Suite Tasks with Economic Grounding", "upvotes": 7, "paper_id": "2607.27155", "abstract": "Benchmark with 100 office-suite tasks paired with economic signals for cost comparison. All evaluated LLMs are cheaper and faster than humans but have not achieved human-level deliverable quality."}
+    {
+      "title": "MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing",
+      "upvotes": 35,
+      "paper_id": "2607.27616",
+      "abstract": "Text-to-image and personalized editing models now synthesize high-fidelity single-subject images with ease. Yet placing multiple named people into shared contact actions such as embrace, carry, or grapple still exposes major failures."
+    },
+    {
+      "title": "Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation",
+      "upvotes": 30,
+      "paper_id": "2607.27816",
+      "abstract": "Role-playing agents (RPAs) have become one of the most important consumer applications of large language models. Users engage in multi-turn conversations with RPAs for experiences such as emotional comfort, making reliable evaluation essential."
+    },
+    {
+      "title": "See2Think: Do Multimodal Models Really Use Intermediate Visual States?",
+      "upvotes": 21,
+      "paper_id": "2607.26769",
+      "abstract": "Multimodal large language models increasingly use sketches, annotations, tools, and intermediate images during reasoning, but it remains unclear whether they truly rely on these visual states. Existing benchmarks are limited both by task collections."
+    },
+    {
+      "title": "ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow",
+      "upvotes": 16,
+      "paper_id": "2607.28362",
+      "abstract": "We present ShadowDancer, a novel approach to any-action, frame-level control of interactive video world models. The obstacle is representational: existing interfaces either encode an action loosely, leaving how it unfolds for the model."
+    },
+    {
+      "title": "β-OPSD: Deriving with Policy Optimization, Training with Self-Distillation",
+      "upvotes": 13,
+      "paper_id": "2607.28582",
+      "abstract": "On-policy self-distillation (OPSD) is a promising approach to improve reasoning language models, but it remains brittle in practice: making it work reliably often requires substantial engineering effort. We identify a structural source of this difficulty."
+    },
+    {
+      "title": "Can Large Language Models Execute Parent Orders?",
+      "upvotes": 12,
+      "paper_id": "2607.28410",
+      "abstract": "Parent-order execution is a core problem in algorithmic trading, where the goal is to split a large order into smaller orders while reducing execution costs. Existing approaches either rely on pre-specified market assumptions that may not hold."
+    },
+    {
+      "title": "INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models",
+      "upvotes": 11,
+      "paper_id": "2607.26056",
+      "abstract": "Forward latent world models predict how actions change a scene, but recover actions for a desired change only through expensive test-time search. We introduce INTACT (INtent-To-ACTion), an end-to-end JEPA that turns action-labeled trajectories."
+    },
+    {
+      "title": "Multi-Head Attention Residuals",
+      "upvotes": 8,
+      "paper_id": "2607.27230",
+      "abstract": "Transformers propagate information across depth through a single additive residual stream: every sublayer reads only the most recent state. Attention residuals relax this by letting each sublayer attend, through a learned softmax."
+    },
+    {
+      "title": "Σ-Mem: An Online Reliability Memory for LLM-based Multi-Agent Systems",
+      "upvotes": 7,
+      "paper_id": "2607.27958",
+      "abstract": "Memory is central to long-horizon LLM agents, yet existing memory systems primarily preserve interaction content rather than modeling which agents can be trusted and under what conditions."
+    },
+    {
+      "title": "Filesystem-Based Memory for LLM Agents: Organization, Evolution, and Sustainability",
+      "upvotes": 6,
+      "paper_id": "2607.26637",
+      "abstract": "Deployed LLM agents increasingly keep their long-term memory as a filesystem: a directory tree of markdown files that the agent itself reads, writes, and reorganizes through generic file tools."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.220", "published_at": "2025-07-25", "body": "Bug fixes and reliability improvements"},
-    {"tag_name": "v2.1.219", "published_at": "2025-07-24", "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok\nAdded sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting\nAdded DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session\nAdded mcp_server_errors to the headless stream-json init event\nAdded the workflowSizeGuideline settings key"},
-    {"tag_name": "v2.1.218", "published_at": "2025-07-22", "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation\nAdded screen-reader announcements of deleted text in --ax-screen-reader mode\nFixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs\nFixed the left arrow key discarding the conversation with no undo"}
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation; terminal runs print a startup warning."
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs."
+    }
   ]
 }
