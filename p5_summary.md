@@ -1,6 +1,7 @@
-**5. SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution**
-**著者**: SkillRise Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.26784
+**5. β-OPSD: Deriving with Policy Optimization, Training with Self-Distillation**
+**著者**: β-OPSD Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.28582
+**upvotes**: 13
 
 **まとめ**:
-関連タスクを難易度順に並べたシーケンスで、LLMエージェントが「解答」と「スキル文書編集」を交替実行するフレームワーク SkillRise を提案。分離型クレジット割り当て（解答には現タスク報酬、スキル編集には割引後の後続タスク報酬）でスキル転移を最適化。ALFWorld+2.3pt・WebShop+7.1pt・ScienceWorld+8.5pt と全ベースラインを上回り、従来マルチステージパイプライン比で6倍の高速化も達成。
+推論言語モデルの自己改善手法であるオンポリシー自己蒸留（OPSD）の脆弱性を解決する「β-OPSD」を提案。バニラOPSDがKL正則化RL族のβ=1の特殊ケースであることを示し、βを制御可能なパラメータとして扱うことで滑らかな目標遷移を実現。Qwen3モデルでAIMEやHMMTベンチマークにて最大5.74ポイントの性能向上を達成し、安定したトレーニングを確保した。

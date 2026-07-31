@@ -1,6 +1,7 @@
-**4. CAST: Game Solvers as Turn-Level Teachers for LLM Agents**
-**著者**: CAST Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.25308
+**4. ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow**
+**著者**: ShadowDancer Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.28362
+**upvotes**: 16
 
 **まとめ**:
-ゲームソルバーの状態価値変化をターンレベルの教師信号に変換し、LLMエージェント訓練に活用するCASTを提案。ソルバーアドバンテージ（行動前後の状態コスト差分）をasinh圧縮・RMS正規化で安定化してRLVRに統合。ソコバンでDAPOを+17.4pt上回り、ALFWorld・WebShopへのゼロショット転移でも全訓練済み手法を凌駕。DAPOのピーク性能到達に必要な訓練ステップを1.7〜2.0倍削減する訓練効率も実証。
+「影のペア」（同一動作を異なる外観で撮影した動画ペア）から動的表現を学習し、ビデオワールドモデルを任意アクションでフレームレベル制御する手法「ShadowDancer」を提案。交差影予測（Cross-shadow Prediction）により、外観と動きを構成的に分離。人間動作・ロボット操作・ゲームプレイなど多様なドメインで既存の潜在アクションモデルを平均86%上回る性能を達成した。

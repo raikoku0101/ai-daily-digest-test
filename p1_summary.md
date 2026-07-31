@@ -1,6 +1,7 @@
-**1. CoRT: Counterfactual Replay for Token-Level Rubric-Guided Policy Optimization**
-**著者**: CoRT Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.25659
+**1. MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing**
+**著者**: MPIE-Bench Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.27616
+**upvotes**: 35
 
 **まとめ**:
-RLHFにおけるトークンレベルのクレジット割り当て問題を、反事実的再評価（Counterfactual Replay）で解決する手法。ルーブリック基準の有無で同一応答を再スコアリングし、各トークンへのアドバンテージを適切に再分配することで、GRPOベースラインを平均4.4ポイント上回る性能を達成。今日のHuggingFace論文 No.1（👍73）として注目度も高い研究。
+複数人物が身体接触を伴うシーン（抱擁・運搬・格闘など）の画像編集を評価する初のベンチマーク「MPIE-Bench」を提案。2,500サンプル・14カテゴリ・4段階の接触密度を網羅し、解剖学的完全性（Anatomy）と相互作用適合性（Interaction）の2つの新評価軸を導入。VLMが0.95以上と過大評価する中、メッシュベース評価では最大0.72にとどまり、現状モデルの深刻な限界を明示した。
