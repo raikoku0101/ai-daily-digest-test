@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing",
-      "upvotes": 35,
-      "paper_id": "2607.27616",
-      "abstract": "Text-to-image and personalized editing models now synthesize high-fidelity single-subject images with ease. Yet placing multiple named people into shared contact actions such as embrace, carry, or grapple still exposes major failures."
-    },
-    {
-      "title": "Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation",
-      "upvotes": 30,
-      "paper_id": "2607.27816",
-      "abstract": "Role-playing agents (RPAs) have become one of the most important consumer applications of large language models. Users engage in multi-turn conversations with RPAs for experiences such as emotional comfort, making reliable evaluation essential."
-    },
-    {
-      "title": "See2Think: Do Multimodal Models Really Use Intermediate Visual States?",
-      "upvotes": 21,
-      "paper_id": "2607.26769",
-      "abstract": "Multimodal large language models increasingly use sketches, annotations, tools, and intermediate images during reasoning, but it remains unclear whether they truly rely on these visual states. Existing benchmarks are limited both by task collections."
-    },
-    {
-      "title": "ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow",
-      "upvotes": 16,
-      "paper_id": "2607.28362",
-      "abstract": "We present ShadowDancer, a novel approach to any-action, frame-level control of interactive video world models. The obstacle is representational: existing interfaces either encode an action loosely, leaving how it unfolds for the model."
-    },
-    {
-      "title": "β-OPSD: Deriving with Policy Optimization, Training with Self-Distillation",
-      "upvotes": 13,
-      "paper_id": "2607.28582",
-      "abstract": "On-policy self-distillation (OPSD) is a promising approach to improve reasoning language models, but it remains brittle in practice: making it work reliably often requires substantial engineering effort. We identify a structural source of this difficulty."
-    },
-    {
-      "title": "Can Large Language Models Execute Parent Orders?",
-      "upvotes": 12,
-      "paper_id": "2607.28410",
-      "abstract": "Parent-order execution is a core problem in algorithmic trading, where the goal is to split a large order into smaller orders while reducing execution costs. Existing approaches either rely on pre-specified market assumptions that may not hold."
-    },
-    {
-      "title": "INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models",
-      "upvotes": 11,
-      "paper_id": "2607.26056",
-      "abstract": "Forward latent world models predict how actions change a scene, but recover actions for a desired change only through expensive test-time search. We introduce INTACT (INtent-To-ACTion), an end-to-end JEPA that turns action-labeled trajectories."
-    },
-    {
-      "title": "Multi-Head Attention Residuals",
-      "upvotes": 8,
-      "paper_id": "2607.27230",
-      "abstract": "Transformers propagate information across depth through a single additive residual stream: every sublayer reads only the most recent state. Attention residuals relax this by letting each sublayer attend, through a learned softmax."
-    },
-    {
-      "title": "Σ-Mem: An Online Reliability Memory for LLM-based Multi-Agent Systems",
-      "upvotes": 7,
-      "paper_id": "2607.27958",
-      "abstract": "Memory is central to long-horizon LLM agents, yet existing memory systems primarily preserve interaction content rather than modeling which agents can be trusted and under what conditions."
-    },
-    {
-      "title": "Filesystem-Based Memory for LLM Agents: Organization, Evolution, and Sustainability",
-      "upvotes": 6,
-      "paper_id": "2607.26637",
-      "abstract": "Deployed LLM agents increasingly keep their long-term memory as a filesystem: a directory tree of markdown files that the agent itself reads, writes, and reorganizes through generic file tools."
-    }
+    {"title": "MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing", "upvotes": 37, "paper_id": "2607.27616", "abstract": "Text-to-image and personalized editing models synthesize high-fidelity single-subject images with ease. Yet placing multiple named people into shared contact actions exposes major failures: fused limbs, invented extremities, and interpenetrating bodies."},
+    {"title": "Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation", "upvotes": 30, "paper_id": "2607.27816", "abstract": "Role-playing agents have become one of the most important consumer applications of large language models. Users engage in multi-turn conversations for experiences such as emotional comfort, making reliable evaluation essential."},
+    {"title": "See2Think: Do Multimodal Models Really Use Intermediate Visual States?", "upvotes": 22, "paper_id": "2607.26769", "abstract": "Multimodal large language models increasingly use sketches, annotations, tools, and intermediate images during reasoning, but it remains unclear whether they truly rely on these visual states."},
+    {"title": "ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow", "upvotes": 16, "paper_id": "2607.28362", "abstract": "A novel approach to any-action, frame-level control of interactive video world models. Shadow pairs replay the same dynamics under independently resampled appearance, enabling precise control across diverse dynamics."},
+    {"title": "Can Large Language Models Execute Parent Orders?", "upvotes": 14, "paper_id": "2607.28410", "abstract": "First systematic study of large language models for parent-order execution in algorithmic trading. PACE framework decomposes execution into long-horizon planning and short-horizon execution without explicit market assumptions."},
+    {"title": "Sigma-Mem: An Online Reliability Memory for LLM-based Multi-Agent Systems", "upvotes": 12, "paper_id": "2607.27958", "abstract": "An online reliability memory that records historical competence evidence for individual peers and peer relationship evidence across peer sets in multi-agent systems without retraining underlying models."},
+    {"title": "INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models", "upvotes": 12, "paper_id": "2607.26056", "abstract": "End-to-end JEPA that turns action-labeled, reward-free trajectories into a deployable intent-to-action interface. Supports robust distributional action law without pointwise latent matching or globally linear dynamics."},
+    {"title": "Explorative Modeling: Unlocking a Third Pretraining Axis and End-to-End Generation", "upvotes": 11, "paper_id": "2607.27372", "abstract": "New paradigm that factors the training loop by exploring K candidate matches between model generations and data, and training on the best. Establishes exploration as a pretraining axis for generative models."},
+    {"title": "LEDGERMIND: Provenance-Constrained Multimodal Agentic Reasoning with a Structured Evidence Ledger", "upvotes": 10, "paper_id": "2607.28374", "abstract": "Treats multimodal agent trajectory as a provenance-constrained state machine. Tool outputs normalize into a Structured Evidence Ledger serving as trajectory state with grounding checked at entity and numeric level."},
+    {"title": "Multi-Head Attention Residuals", "upvotes": 8, "paper_id": "2607.27230", "abstract": "Introduces Multi-Head Attention Residuals where routing query reshapes into H per-subspace heads, each with its own softmax over depth history. Improves validation loss across 100M to 1B parameter scales."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.220",
-      "published_at": "2025-07-25",
-      "body": "Bug fixes and reliability improvements"
-    },
-    {
-      "tag_name": "v2.1.219",
-      "published_at": "2025-07-24",
-      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation; terminal runs print a startup warning."
-    },
-    {
-      "tag_name": "v2.1.218",
-      "published_at": "2025-07-22",
-      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs."
-    }
+    {"tag_name": "v2.1.220", "published_at": "2025-07-25", "body": "Bug fixes and reliability improvements"},
+    {"tag_name": "v2.1.219", "published_at": "2025-07-24", "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event. Added workflowSizeGuideline settings key. Added nested subagent forwarding in stream-json. Fixed claude -p text output dropping the answer already produced when a turn dies on a mid-stream API error."},
+    {"tag_name": "v2.1.218", "published_at": "2025-07-22", "body": "Changed /code-review to run as a background subagent. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs. Fixed the left arrow key discarding the conversation with no undo. Added HTTP status and error text to claude mcp list and /mcp when a server fails to connect. Fixed multi-line paste collapsing into one line with j in place of newlines."}
   ]
 }
