@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-02",
+  "content": "# AI Daily Digest — 2026-08-02\n\n## 今日のハイライト\n- **Claude Opus 5 が正式リリース (v2.1.219)**: 100万トークンのコンテキストウィンドウを持つ新しいデフォルトOpusモデルが登場。fast モード対応で大規模推論タスクの処理能力が飛躍的に向上。\n- **多人数インタラクション編集の限界を可視化 (MPIE-Bench, 37 upvotes)**: 画像生成AI最大の未解決課題「複数人が触れ合う場面の生成」を系統的にベンチマーク化。手足の融合・幽霊肢問題の定量評価が初めて可能に。\n- **マルチモーダルLLMは視覚状態を「本当には」使っていない (See2Think, 22 upvotes)**: 中間視覚表現を生成するモデルでも、実際の推論ではほぼ活用されていないことが判明。マルチモーダル推論の根本的改善に向けた重要な発見。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.220 (2025-07-25)\n**主要機能**: バグ修正と信頼性向上\n- **ユーザーへの影響**: 安定性の改善。既存のワークフローへの影響は最小限。\n\n### v2.1.219 (2025-07-24)\n**主要機能**:\n- **Claude Opus 5 追加**: `claude-opus-5` がデフォルトの Opus モデルに。100万トークンコンテキスト対応、fast モードは $10/$50 per Mtok\n- **sandbox.network.strictAllowlist**: サンドボックスコマンドで許可リスト外のホストへの接続をプロンプトなしで拒否する新設定\n- **DirectoryAdded フック**: `/add-dir` または SDK の `register_repo_root` でセッション中に新しい作業ディレクトリが登録された後に発火\n- **workflowSizeGuideline 設定キー**: Dynamic workflow size ガイドラインを任意の設定ファイルから指定可能に\n- **ネストされたサブエージェント転送**: `--forward-subagent-text` 設定時、深さ2以上のサブエージェントのテキストも表示\n\n**バグ修正**: ミッドストリーム API エラーで `claude -p` の回答が欠落する問題を修正\n\n**ユーザーへの影響**: Opus 5 により大規模コンテキスト処理が大幅に強化。セキュリティ設定の細粒度制御が可能に。\n\n### v2.1.218 (2025-07-22)\n**主要機能**:\n- **/code-review のバックグラウンド化**: レビュー作業がメイン会話を占有しなくなり、スタックされたスラッシュコマンドをレビュー対象として保持\n- **スクリーンリーダー対応強化**: `--ax-screen-reader` モードでの削除テキストのアナウンス追加\n\n**バグ修正**:\n- Windows パスの `\\u` プレフィックスセグメントが CJK 文字に破損する問題を修正\n- 左矢印キーで確認なしに会話が破棄される問題を修正\n- マルチラインペーストが `j` で1行に折りたたまれる問題を修正\n- `/context` がコンパクト後に古いトークン使用量を表示する問題を修正\n\n**ユーザーへの影響**: Windows ユーザーのパス処理改善、コードレビュー体験の向上。\n\n## 注目論文 TOP 10\n\n**1. MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing** | 37 upvotes | https://arxiv.org/abs/2607.27616\n🎯 **背景**: テキストから画像を生成するモデルは単一人物の高品質画像は得意だが、複数の人物が接触する場面（握手・抱擁等）では手足の融合・幽霊肢・身体の重なりといった深刻な失敗が生じる。\n🔧 **手法**: 解剖学的に妥当な多人数インタラクション編集を評価するベンチマーク MPIE-Bench を構築。名前付き人物を共有接触動作に配置するタスクを系統的に評価する枠組みを提案。\n📊 **結果**: 現行モデルの多人数インタラクション編集における具体的な失敗パターンを定量化し、モデル間の性能差を明示。\n💡 **意義**: 多人数インタラクション編集という未解決問題に初めて体系的なベンチマークを提供し、今後の研究の比較基盤を確立。\n⚠️ **限界**: 評価対象は静止画像のみで動画への拡張は未検討。接触タイプの網羅性にも課題の可能性。\n\n**2. Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation** | 30 upvotes | https://arxiv.org/abs/2607.27816\n🎯 **背景**: ロールプレイエージェントはLLMの重要な消費者向け応用の一つだが、多ターン会話の信頼性ある評価手法が確立されていない。\n🔧 **手法**: ユーザーシミュレーションを人物整合型で設計し、借用された履歴（他キャラの設定流用）を廃して各ユーザーの個性に合わせたシミュレーションを実現するフレームワークを提案。\n📊 **結果**: 人物整合型シミュレーションが従来手法より評価の信頼性・妥当性を向上させることを実験で確認。\n💡 **意義**: 感情的サポートや没入型体験など実用的なロールプレイ評価の質を大幅に改善する新評価基盤を提供。\n⚠️ **限界**: シミュレーション自体の品質がベースモデルの能力に依存するため、評価ループが循環する恐れ。\n\n**3. See2Think: Do Multimodal Models Really Use Intermediate Visual States?** | 22 upvotes | https://arxiv.org/abs/2607.26769\n🎯 **背景**: マルチモーダルLLMがスケッチ・アノテーション・ツール・中間画像を推論中に使用するが、それらの視覚的状態を本当に活用しているのかは不明。\n🔧 **手法**: 中間視覚状態の実際の利用度を測定する See2Think フレームワークを構築。介入実験・アブレーション研究・注意分析を組み合わせ、視覚的依存性を体系的に検証。\n📊 **結果**: 多くのモデルが中間視覚状態を生成するが、実際の推論にはほぼ活用していないことを定量的に示した。\n💡 **意義**: マルチモーダル推論の「見かけ上の利用」と「実際の利用」のギャップを明らかにし、本質的な視覚理解改善の方向性を示す。\n⚠️ **限界**: 分析対象モデルや視覚状態の種類が限定的で、より広範な検証が必要。\n\n**4. ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow** | 16 upvotes | https://arxiv.org/abs/2607.28362\n🎯 **背景**: インタラクティブな映像ワールドモデルの任意のアクションによるフレームレベル制御は、汎用的な動作表現学習の困難さから未解決。\n🔧 **手法**: ビデオとその「シャドウ」（独立してリサンプリングされた外観下で同じダイナミクスを再現したペア）から統一ダイナミクス表現を学習。外観変化に不変な動作表現を獲得。\n📊 **結果**: 多様なダイナミクスにわたって精密な制御を実現し、任意アクション・フレームレベル制御における新たなSOTAを達成。\n💡 **意義**: 外観とダイナミクスの分離により、ゲーム・シミュレーション等で高度な映像世界モデル制御が可能に。\n⚠️ **限界**: シャドウペアの生成コストが高く、多様なドメインへの転用性は未検証。\n\n**5. Can Large Language Models Execute Parent Orders?** | 14 upvotes | https://arxiv.org/abs/2607.28410\n🎯 **背景**: アルゴリズム取引における親注文執行（大きな注文を市場影響最小化のため分割して実行）へのLLM適用の可能性が未開拓。\n🔧 **手法**: PACE（Parent-order ACtion Execution）フレームワークを提案。長期計画と短期執行を分解し、明示的な市場仮定なしに動作可能な設計。強化学習・ルールベース・LLMハイブリッドで評価。\n📊 **結果**: LLMは単純な戦略を超えた执行性能を示し、市場環境に応じた適応的な注文分割が可能であることを実証。\n💡 **意義**: 金融AI応用において、LLMが高頻度取引の意思決定に実用的に貢献できる可能性を初めて系統的に示した研究。\n⚠️ **限界**: リアルタイムの取引環境での評価が不足。レイテンシやスリッページの現実的モデリングが課題。\n\n**6. Sigma-Mem: An Online Reliability Memory for LLM-based Multi-Agent Systems** | 12 upvotes | https://arxiv.org/abs/2607.27958\n🎯 **背景**: LLMベースのマルチエージェントシステムでは、各エージェントの信頼性・能力履歴や相互関係を動的に追跡する仕組みが欠如しており、非効率な協調が生じる。\n🔧 **手法**: 個々のエージェントの過去の能力証跡と、エージェントセット間の関係証跡をリアルタイムで記録するオンライン信頼性メモリ（Sigma-Mem）を提案。ベースモデルの再学習不要。\n📊 **結果**: 動的なメモリ管理によりマルチエージェントの協調精度と信頼性が向上することを実験で確認。\n💡 **意義**: 大規模マルチエージェントシステムのロバスト化に向けた、プラグイン型の信頼性管理レイヤーを提供。\n⚠️ **限界**: メモリの規模が大きくなると計算・ストレージコストが増加。長期的なメモリ管理戦略の検討が必要。\n\n**7. INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models** | 12 upvotes | https://arxiv.org/abs/2607.26056\n🎯 **背景**: ワールドモデルにおけるインテント（意図）からアクション（行動）へのマッピングは、従来手法では探索コストが高く、動作分布の変化に脆弱。\n🔧 **手法**: アクションラベル付き・報酬なしの軌跡からエンドツーエンドのJEPA（Joint-Embedding Predictive Architecture）を学習し、意図からアクションへの同型インターフェースを構築。点集合的な潜在マッチングや全域線形ダイナミクスを必要としない。\n📊 **結果**: 分散的なアクション則に対してロバストな性能を示し、探索フリーのワールドモデルとして有効性を実証。\n💡 **意義**: ロボティクス・ゲームAI等での汎用世界モデル構築において、探索コストゼロで高精度なインテント-アクション学習を実現。\n⚠️ **限界**: アクションラベルの品質に性能が依存。ラベルなし環境への適用には追加の研究が必要。\n\n**8. Explorative Modeling: Unlocking a Third Pretraining Axis and End-to-End Generation** | 11 upvotes | https://arxiv.org/abs/2607.27372\n🎯 **背景**: 生成モデルの事前学習は主にアーキテクチャとデータの2軸で最適化されてきたが、第3の軸として「探索（exploration）」の可能性が未開拓。\n🔧 **手法**: 訓練ループを因子化し、K個の候補マッチング（モデル生成とデータのペアリング）を探索した上で最良のものを選んで学習する「Explorative Modeling」パラダイムを提案。\n📊 **結果**: 100Mから1Bパラメータスケールで検証損失が改善し、探索軸が一貫した利点をもたらすことを示した。\n💡 **意義**: 事前学習の最適化に新たな自由度を加え、生成モデルの品質向上に向けた新パラダイムを提示。\n⚠️ **限界**: K候補の探索コストにより学習時間・計算コストが増加。大規模モデルへのスケーリング効率は要検証。\n\n**9. LEDGERMIND: Provenance-Constrained Multimodal Agentic Reasoning with a Structured Evidence Ledger** | 10 upvotes | https://arxiv.org/abs/2607.28374\n🎯 **背景**: マルチモーダルエージェントの推論軌跡は出典追跡が難しく、エンティティ・数値レベルでの根拠確認が困難。\n🔧 **手法**: マルチモーダルエージェント軌跡を出典制約付き状態機械として扱い、ツール出力を構造化証拠台帳（Structured Evidence Ledger）に正規化。エンティティ・数値レベルでのグラウンディング検証を軌跡状態として管理。\n📊 **結果**: 出典制約により推論の信頼性とトレーサビリティが向上し、複雑なマルチモーダル推論タスクで有効性を実証。\n💡 **意義**: 医療・法律・金融など高信頼性が求められる分野でのマルチモーダルエージェント活用に向けた基盤技術を提供。\n⚠️ **限界**: 台帳管理のオーバーヘッドがあり、リアルタイム推論への適用には最適化が必要。\n\n**10. Multi-Head Attention Residuals** | 8 upvotes | https://arxiv.org/abs/2607.27230\n🎯 **背景**: Transformerの注意機構において、単一のsoftmaxによる深さ方向の参照は表現力に制限があり、大規模モデルの検証損失改善が課題。\n🔧 **手法**: Multi-Head Attention Residuals（MHAR）を提案。ルーティングクエリをH個のサブスペースヘッドに再形成し、各ヘッドが深さ履歴に対して独自のsoftmaxを持つ構造を採用。\n📊 **結果**: 100Mから1Bパラメータスケールにわたり、検証損失の一貫した改善を確認。スケーラビリティの高い手法。\n💡 **意義**: 既存のTransformerアーキテクチャへ低コストで組み込める注意機構の改良として、LLM性能向上に貢献。\n⚠️ **限界**: さらに大規模なモデル（10B+）での検証が未実施。他アーキテクチャとの組み合わせ効果は未知。\n\n",
+  "fetched_at": "2026-08-01T22:07:07.365659+00:00",
+  "papers": [
+    {
+      "title": "MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing",
+      "upvotes": 37,
+      "paper_id": "2607.27616",
+      "abstract": "Text-to-image and personalized editing models synthesize high-fidelity single-subject images with ease. Yet placing multiple named people into shared contact actions exposes major failures: fused limbs, invented extremities, and interpenetrating bodies."
+    },
+    {
+      "title": "Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation",
+      "upvotes": 30,
+      "paper_id": "2607.27816",
+      "abstract": "Role-playing agents have become one of the most important consumer applications of large language models. Users engage in multi-turn conversations for experiences such as emotional comfort, making reliable evaluation essential."
+    },
+    {
+      "title": "See2Think: Do Multimodal Models Really Use Intermediate Visual States?",
+      "upvotes": 22,
+      "paper_id": "2607.26769",
+      "abstract": "Multimodal large language models increasingly use sketches, annotations, tools, and intermediate images during reasoning, but it remains unclear whether they truly rely on these visual states."
+    },
+    {
+      "title": "ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow",
+      "upvotes": 16,
+      "paper_id": "2607.28362",
+      "abstract": "A novel approach to any-action, frame-level control of interactive video world models. Shadow pairs replay the same dynamics under independently resampled appearance, enabling precise control across diverse dynamics."
+    },
+    {
+      "title": "Can Large Language Models Execute Parent Orders?",
+      "upvotes": 14,
+      "paper_id": "2607.28410",
+      "abstract": "First systematic study of large language models for parent-order execution in algorithmic trading. PACE framework decomposes execution into long-horizon planning and short-horizon execution without explicit market assumptions."
+    },
+    {
+      "title": "Sigma-Mem: An Online Reliability Memory for LLM-based Multi-Agent Systems",
+      "upvotes": 12,
+      "paper_id": "2607.27958",
+      "abstract": "An online reliability memory that records historical competence evidence for individual peers and peer relationship evidence across peer sets in multi-agent systems without retraining underlying models."
+    },
+    {
+      "title": "INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models",
+      "upvotes": 12,
+      "paper_id": "2607.26056",
+      "abstract": "End-to-end JEPA that turns action-labeled, reward-free trajectories into a deployable intent-to-action interface. Supports robust distributional action law without pointwise latent matching or globally linear dynamics."
+    },
+    {
+      "title": "Explorative Modeling: Unlocking a Third Pretraining Axis and End-to-End Generation",
+      "upvotes": 11,
+      "paper_id": "2607.27372",
+      "abstract": "New paradigm that factors the training loop by exploring K candidate matches between model generations and data, and training on the best. Establishes exploration as a pretraining axis for generative models."
+    },
+    {
+      "title": "LEDGERMIND: Provenance-Constrained Multimodal Agentic Reasoning with a Structured Evidence Ledger",
+      "upvotes": 10,
+      "paper_id": "2607.28374",
+      "abstract": "Treats multimodal agent trajectory as a provenance-constrained state machine. Tool outputs normalize into a Structured Evidence Ledger serving as trajectory state with grounding checked at entity and numeric level."
+    },
+    {
+      "title": "Multi-Head Attention Residuals",
+      "upvotes": 8,
+      "paper_id": "2607.27230",
+      "abstract": "Introduces Multi-Head Attention Residuals where routing query reshapes into H per-subspace heads, each with its own softmax over depth history. Improves validation loss across 100M to 1B parameter scales."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event. Added workflowSizeGuideline settings key. Added nested subagent forwarding in stream-json. Fixed claude -p text output dropping the answer already produced when a turn dies on a mid-stream API error."
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs. Fixed the left arrow key discarding the conversation with no undo. Added HTTP status and error text to claude mcp list and /mcp when a server fails to connect. Fixed multi-line paste collapsing into one line with j in place of newlines."
+    }
+  ]
+}
