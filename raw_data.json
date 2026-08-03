@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing", "upvotes": 37, "paper_id": "2607.27616", "abstract": "Introduces a benchmark for evaluating multi-person interaction editing in images, addressing failures like fused limbs and invented extremities through mesh-based anatomical and geometric scoring."},
-    {"title": "Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation", "upvotes": 31, "paper_id": "2607.27816", "abstract": "Proposes PALATE, a scalable role-playing agent benchmark using personalized user simulators and tailored rubrics to evaluate user-RPA interactions across multi-turn conversations with character profiles."},
-    {"title": "See2Think: Do Multimodal Models Really Use Intermediate Visual States?", "upvotes": 22, "paper_id": "2607.26769", "abstract": "Evaluates whether multimodal models genuinely rely on intermediate visual states during reasoning through See2ThinkBench, a framework with 1,200 visually-dependent problems across 12 task categories."},
-    {"title": "β-OPSD: Deriving with Policy Optimization, Training with Self-Distillation", "upvotes": 19, "paper_id": "2607.28582", "abstract": "Proposes β-OPSD to improve reasoning language models by generalizing on-policy self-distillation as a policy-optimization family, trading off proximity to reference policies against teacher guidance."},
-    {"title": "ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations", "upvotes": 16, "paper_id": "2607.28362", "abstract": "Introduces shadow pairs and cross-shadow prediction to enable frame-level control of interactive video world models, allowing demonstrated actions to transfer to new scenes without fine-tuning."},
-    {"title": "Can Large Language Models Execute Parent Orders?", "upvotes": 15, "paper_id": "2607.28410", "abstract": "Presents PACE, a hierarchical LLM framework for algorithmic trading order execution that performs hierarchical planning and control without requiring explicit market assumptions or task-specific training."},
-    {"title": "Explorative Modeling: Unlocking a Third Pretraining Axis and End-to-End Generation", "upvotes": 13, "paper_id": "2607.27372", "abstract": "Introduces Explorative Modeling, a paradigm that factors training loops to explore multiple candidate matches, improving generative model efficiency by 4.1x FLOP and enabling end-to-end generation."},
-    {"title": "Σ-Mem: An Online Reliability Memory for LLM-based Multi-Agent Systems", "upvotes": 12, "paper_id": "2607.27958", "abstract": "Proposes a reliability memory system using spectral methods to track peer competence and relationships, enabling adaptive coordination in multi-agent systems through online Weyl-inequality-bounded updates."},
-    {"title": "LEDGERMIND: Provenance-Constrained Multimodal Agentic Reasoning with a Structured Evidence Ledger", "upvotes": 10, "paper_id": "2607.28374", "abstract": "Introduces a provenance-constrained framework treating multimodal agent trajectories as state machines with structured evidence ledgers, improving both answer accuracy and trajectory-level faithfulness."},
-    {"title": "Multi-Head Attention Residuals", "upvotes": 8, "paper_id": "2607.27230", "abstract": "Proposes MHAR to improve information propagation by reshaping routing queries into per-subspace heads, achieving validation loss improvements of -0.061 to -0.149 across model scales from 100M to 1B."}
+    {
+      "title": "Mental World Modeling",
+      "upvotes": 52,
+      "paper_id": "2607.27201",
+      "abstract": "World models enable predictive substrate for planning, yet existing formulations miss hidden mental state. This work formulates Mental World Modeling (MWM), a framework"
+    },
+    {
+      "title": "N_0-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation",
+      "upvotes": 27,
+      "paper_id": "2607.23783",
+      "abstract": "A tactile-native world-action model for contact-rich manipulation predicting future vision and contact. Trained at large scale with visuo-tactile joint training across six"
+    },
+    {
+      "title": "SAF-OPD: Stable Advantage Fusion for On-Policy Distillation",
+      "upvotes": 23,
+      "paper_id": "2607.29209",
+      "abstract": "Reinforcement learning with verifiable rewards broadcasts response-level reward to every token. This work proposes SAF, a Stable Advantage Fusion framework resolving"
+    },
+    {
+      "title": "Fewer Clarifications, Better Code: Benchmarking Cross-Session Personalized Ambiguity Adaptation in Coding Assistants",
+      "upvotes": 19,
+      "paper_id": "2607.26611",
+      "abstract": "AI-assisted coding translates informal user intent into executable software, yet requests contain ambiguities recurring in user-specific ways. This work introduces CAPA,"
+    },
+    {
+      "title": "Enhancing Rubric-based RL via Self-Distillation",
+      "upvotes": 15,
+      "paper_id": "2607.18082",
+      "abstract": "Rubric-based RL shows promise in improving LLMs on open-ended tasks. This work proposes Criterion-Distilled Policy Optimization (CriPO), addressing both unexplored"
+    },
+    {
+      "title": "Evaluation-Verification Reward for Consistent Multi-Reference Image Editing",
+      "upvotes": 11,
+      "paper_id": "2607.29025",
+      "abstract": "Recent image editing models face challenges in multi-reference editing, particularly maintaining visual consistency. This work addresses this with Multi-dimensional"
+    },
+    {
+      "title": "ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow",
+      "upvotes": 7,
+      "paper_id": "2607.27924",
+      "abstract": "Space and time are fundamentally continuous in the physical world. This work introduces Physical-Time Flow (PT-Flow), learning continuous latent velocity fields"
+    },
+    {
+      "title": "RL^2-VLA: Adaptive RL Latent Compositional Steering with Test-Time Scaling for Vision-Language-Action Models",
+      "upvotes": 4,
+      "paper_id": "2607.26991",
+      "abstract": "Vision-Language-Action models show impressive capabilities yet degrade on challenging tasks. This work introduces RL^2, an adaptive inference-time steering framework"
+    },
+    {
+      "title": "EMBL AI Librarian: Life-Sciences Knowledge Layer for AI Agents",
+      "upvotes": 4,
+      "paper_id": "2607.28229",
+      "abstract": "The web is increasingly accessed by AI agents rather than humans. This work introduces EMBL AI Librarian, a knowledge layer upgrading Europe PMC interface for"
+    },
+    {
+      "title": "One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA",
+      "upvotes": 3,
+      "paper_id": "2607.28443",
+      "abstract": "Can every robot in a swarm predict the same future collective state from local observations? This work formulates decentralized shared-state prediction and introduces"
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.220", "published_at": "2025-07-25", "body": "Bug fixes and reliability improvements"},
-    {"tag_name": "v2.1.219", "published_at": "2025-07-24", "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event. Added nested subagent forwarding in stream-json. Fixed claude -p text output dropping the answer. Improved HTTP status error reporting. Fixed various permission and model selection issues. Removed Opus 4.7 from fast mode."},
-    {"tag_name": "v2.1.218", "published_at": "2025-07-22", "body": "Changed /code-review to run as a background subagent. Added screen-reader announcements of deleted text. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters. Fixed left arrow key discarding conversation. Added HTTP status and error text to claude mcp list. Fixed multi-line paste collapsing. Fixed /context reporting stale token usage. Fixed /ultrareview failing on descriptive arguments. Fixed various permission, MCP, and rendering issues. Improved auto mode and error feedback."}
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation; terminal runs print a startup warning. Added the workflowSizeGuideline settings key so the advisory Dynamic workflow size guideline can be set from any settings file."
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs. Fixed the left arrow key discarding the conversation with no undo."
+    }
   ]
 }
