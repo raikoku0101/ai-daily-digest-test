@@ -1,6 +1,6 @@
-**5. ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations**
-**著者**: Jin Cao, Zian Meng, Kaipeng Zhang (2026)
-**arXiv**: https://arxiv.org/abs/2607.28362
+**5. Enhancing Rubric-based RL via Self-Distillation (CriPO: 自己蒸留によるルーブリックベース強化学習の強化)**
+**著者**: CriPO Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.18082
 
 **まとめ**:
-ビデオ世界モデルへの汎用的なアクション制御を実現するため、「シャドウペア」と「クロスシャドウ予測（Cross-Shadow Prediction）」という2つの革新的手法を提案。同じダイナミクスを異なる外観で再現したビデオペアから統一的なダイナミクス表現を学習し、ラベル付けや微調整なしにデモンストレーションクリップを新環境に転用可能にした。ブラインドロールアウト比較で86%の勝率を達成し、既存の潜在アクションベースラインを大幅に上回った。
+ルーブリックベースの強化学習で「未探索基準（どのサンプルも満たさない評価軸）」と「抑圧された基準（満たしているのに負の報酬を受ける評価軸）」という2つの失敗モードを特定し、オンポリシー自己蒸留 (OPSD) で解決する CriPO を提案する。GRPO と組み合わせることで Qwen3-1.7B で平均 +3.2pt・4B で +1.4pt の改善を達成し、学習ステップ数を約半分に削減。医学・科学ドメインのオープンエンドタスクで有効性を実証した。

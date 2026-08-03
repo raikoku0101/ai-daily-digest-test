@@ -1,6 +1,6 @@
-**1. MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing**
-**著者**: Harish Bharadhwaj et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.27616
+**1. Mental World Modeling (メンタルワールドモデリング)**
+**著者**: Mental World Modeling Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.27201
 
 **まとめ**:
-複数人物が接触・相互作用する画像編集において、既存モデルの「手足の融合」「不自然な身体生成」問題を定量的に評価するベンチマーク MPIE-Bench を提案。映像から2,500サンプルを収集し、メッシュベースの解剖学的・幾何学的スコアリングで評価する。VLMスコアが高くても実際の身体整合性は低い（最高0.65-0.72）ことを実証し、複数人生成AIの重要な評価基準を確立した。
+既存のワールドモデルが物理的状態のみを追跡するのに対し、本研究は信念・意図・感情など「隠れた心的状態」を明示的にモデル化する Mental World Modeling (MWM) フレームワークを提案する。POMDPs を拡張して物理・心的チャネルを統合し、人間の行動予測の精度を飛躍的に向上させた。マルチエージェント協調・ケアロボット・教育AIなど社会的インテリジェンスを要する幅広い分野への応用が期待される。

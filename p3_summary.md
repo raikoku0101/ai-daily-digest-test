@@ -1,6 +1,6 @@
-**3. See2Think: Do Multimodal Models Really Use Intermediate Visual States?**
-**著者**: Siyu Yan et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.26769
+**3. SAF-OPD: Stable Advantage Fusion for On-Policy Distillation (安定的優位性融合によるオンポリシー蒸留)**
+**著者**: SAF Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.29209
 
 **まとめ**:
-マルチモーダル大規模言語モデル（MLLM）が推論中に中間視覚状態（スケッチ・注釈・中間画像等）を本当に活用しているかを検証する統合評価フレームワーク See2Think を提案。12カテゴリ1,200問のベンチマーク See2ThinkBench と視覚的思考プロセスの記録手法 VAoT（Visual Action-of-Thought）を構築し、視覚推論はモデルと環境に強く依存すること、忠実なレンダリングが最大のボトルネックであることを実証した。
+検証可能な報酬を用いた強化学習 (RLVR) と教師モデル蒸留 (OPD) を組み合わせる際に生じる「大きさの不一致」「時間的不一致」という2つの校正問題を解決する SAF フレームワークを提案する。スパーシフィケーション・tanh 圧縮・KL ウォームアップ・線形アニーリングの4段階パイプラインで、Qwen3 全スケールで 0.51%〜2.70% の安定した性能向上を達成した。追加モデル不要で既存パイプラインに即座に統合可能。

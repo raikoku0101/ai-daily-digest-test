@@ -1,6 +1,6 @@
-**2. Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation**
-**著者**: Yuhang Zhu et al. (中国科学技術大学, MetaStone Technology, 2025)
-**arXiv**: https://arxiv.org/abs/2607.27816
+**2. N₀-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation**
+**著者**: NeoRobotics Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.23783
 
 **まとめ**:
-ロールプレイングエージェント（RPA）の評価において、固定の対話履歴と汎用ルーブリックに依存する既存手法の限界を克服するため、PALATE フレームワークを提案。300のキャラクタープロファイルに基づいたパーソナライズされたユーザーシミュレーターを用いて多ターン対話を評価し、16モデルの比較実験でパーソナライズされたルーブリックが人間判断との一致度で優れることを実証した。
+接触豊富なロボット操作において、視覚だけでなく触覚を「一等市民」として統合した初の大規模ワールド・アクションモデル N₀-TWAM を提案する。Mixture-of-Transformers アーキテクチャで将来の視覚・接触を同時予測し、実ロボット 8 タスクで VLA ベースライン (30.0%) を大きく上回る 46.3% の成功率を達成。30,000 時間超の触覚同期データによる事前学習が、分布シフト耐性と汎化性能を大幅に向上させた。
