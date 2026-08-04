@@ -1,6 +1,6 @@
-**1. Mental World Modeling (メンタルワールドモデリング)**
-**著者**: Mental World Modeling Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.27201
+**1. GradCuit: Credit-Assigned Gradient Flow Enables Robust and Interpretable Test-Time Latent Reasoning**
+**著者**: GradCuit Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.02585
 
 **まとめ**:
-既存のワールドモデルが物理的状態のみを追跡するのに対し、本研究は信念・意図・感情など「隠れた心的状態」を明示的にモデル化する Mental World Modeling (MWM) フレームワークを提案する。POMDPs を拡張して物理・心的チャネルを統合し、人間の行動予測の精度を飛躍的に向上させた。マルチエージェント協調・ケアロボット・教育AIなど社会的インテリジェンスを要する幅広い分野への応用が期待される。
+LLMのパラメータを凍結したままTransformer中間層に最適化可能な潜在状態を挿入し、報酬加重勾配で直接更新するテスト時最適化手法。因果自己注意による「circuit-like gradient flow」により、離散トークンを介さない直接的なクレジット割当を実現。5種類のバックボーンモデル×3ベンチマークで平均64.5%の精度を達成し、Chain-of-Thoughtを6.6ポイント上回る。解釈可能性分析では「because」「therefore」等の推論接続詞が最大の勾配強度を持つことも判明。

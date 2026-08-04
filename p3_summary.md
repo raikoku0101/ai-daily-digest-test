@@ -1,6 +1,6 @@
-**3. SAF-OPD: Stable Advantage Fusion for On-Policy Distillation (安定的優位性融合によるオンポリシー蒸留)**
-**著者**: SAF Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.29209
+**3. To Add Is Machine, To Delete Is Human: Measuring and Mitigating Deletion Avoidance in LLM Code Editing**
+**著者**: Deletion Avoidance Study Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.28887
 
 **まとめ**:
-検証可能な報酬を用いた強化学習 (RLVR) と教師モデル蒸留 (OPD) を組み合わせる際に生じる「大きさの不一致」「時間的不一致」という2つの校正問題を解決する SAF フレームワークを提案する。スパーシフィケーション・tanh 圧縮・KL ウォームアップ・線形アニーリングの4段階パイプラインで、Qwen3 全スケールで 0.51%〜2.70% の安定した性能向上を達成した。追加モデル不要で既存パイプラインに即座に統合可能。
+LLMが生成するコードパッチにおける「削除回避 (deletion avoidance)」を初めて定量化した研究。SWE-bench Verifiedで解決済みとされたパッチでも開発者の削除の28〜35%が残存し、テスト合格が削除の正確性を保証しないことを示す。削除感応テストを追加すると合格率が63.2%→41.9%に急落。CanItDeleteベンチマークを新設し、後訓練で削除例を0.7%追加するだけでCanItDelete成功が倍増、SWE-bench全体も5.3pp改善することを実証。

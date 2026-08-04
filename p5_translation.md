@@ -1,17 +1,20 @@
 ## 1. Introduction (はじめに)
-大規模言語モデル (LLM) の推論能力向上において、「検証可能な報酬からの強化学習 (RLVR)」が注目されています。数学問題やコード生成など明確な正解がある領域では成功していますが、医学相談や長文作成などのオープンエンドタスクでは困難です。本論文は複数の評価基準に分解したルーブリックベースの報酬を用いるアプローチに焦点を当て、「未探索基準 (unexplored criteria)」と「抑圧された基準 (suppressed criteria)」という2つの失敗モードを特定しました。統計分析では訓練過程を通じて 57% 以上のサンプルが抑圧された基準を含むと報告されています。
+マルチモーダル大言語モデル(MLLM)は視覚理解に優れるがパラメータ知識に限定されており、動的な知識集約問題に対応できない。本論文は「vision-in-the-loop search」という新パラダイムを提案。検索途中に発見した画像が後続クエリを駆動し、複数ターンにわたって視覚的証拠が推論を導く。既存手法は視覚を入力段階または答え段階に限定し、中間推論での視覚依存性を見落としていた。
 
-## 2. Method — CriPO (手法)
-CriPO（Criterion-Distilled Policy Optimization）は GRPO の安定性を維持しながらオンポリシー自己蒸留 (OPSD) を組み込んでいます。未探索基準への対応：最高報酬ロールアウトに対して基準注入型自己教師を構築し、forward-KL 発散の補助損失で欠落した行動を注入。貢献度ガイド付きトークンフィルタリングにより基準関連のトークンのみに蒸留を制限します。抑圧された基準への対応：反事実的自己教師を用いて基準関連トークンを特定し、それらのトークンレベルアドバンテージを正の値に反転させます。
+## 2. Method (手法) — データ合成 (EventVoyage-VL)
+WikipediaとニュースからイベントをグラフG=(V,E,M,I,A,F)として正規化。Visual Co-occurrence Networks・Temporal Event Chains・Spatial Co-location Structures等の構造的述語で部分グラフを抽出し、視覚的に解決される依存関係を持つ合成QAを生成。品質管理では完全性・制約最小性・情報漏洩・画像テキスト一致・counterfactual removal(視覚なしで複数解が存在すること)を検証。
 
-## 3. Experiments (実験)
-医学ベンチマーク（RaR-Medicine、HealthBench、LLMEval-Med）と科学ベンチマーク（RaR-Science、ResearchQA）で評価を実施。Qwen3-1.7B および Qwen3-4B の両モデルで、CriPO は GRPO 比で 1.7B で平均 +3.2 ポイント、4B で +1.4 ポイントの改善を達成しました。
+## 3. Method (手法) — エージェント設計
+TextSearch・ImageSearch・ReverseImageSearch・WebVisit・FetchImage・CropImage・PythonInterpreterの7ツールを装備。能動的画像獲得(active image acquisition)により、Image discoverability(URL参照)とobservability(実読込み)を分離。視覚レジスタVが複数ターンで観察を保存し、FetchImageとCropImageのみがポリシーコンテキストに視覚トークンを導入する設計。
 
-## 4. Results and Ablation (結果とアブレーション)
-GRPO の最終性能に到達するために必要なステップ数が約 2 倍削減されるなど最適化効率も向上。アブレーション研究により、貢献度フィルタリングと最高ロールアウト選択がいずれも重要であること、また反事実的トークン特定がランダム選択より有意に優れることが確認されました。
+## 4. Training (訓練)
+難易度層別化：Direct-answer probeでツールなし解不可問題を選定し、8回ロールアウトでeasy/medium/hardに分類。強い教師モデルがmedium/hard問題の軌跡を再生成しLLMジャッジで検証。SFT損失で言語主幹のみを更新(視覚エンコーダ・multimodal mergerは凍結)。強化学習なし。
 
-## 5. Related Work (関連研究)
-ルーブリックベース RL 研究は、開放的タスク向けに基準の明示的分解を活用する方向に進化しています。既存の探索強化手法（RuscaRL、HeRL）は外部ガイダンスを使用してロールアウト生成を改善しますが、訓練推論ミスマッチと抑圧基準の見落としという課題があります。本研究は GRPO 主軸に OPSD 補助モジュールを統合するハイブリッドアプローチを採用しています。
+## 5. Results (結果)
+10のマルチモーダル情報検索ベンチマークで評価。30B-A3B: Direct Answer 20.7→Agentic 40.7→DeepVoyager-VL 58.6(+17.9)。8B: 17.5→35.3→54.8(+19.5)。オープンソースエージェントとして30B-A3Bが10中9、8Bが10中8ベンチマークで最高スコア。Vision-DeepResearch・LMM-Searcherを凌駕。
 
-## 6. Conclusion (結論)
-ルーブリックベース RL 固有の2つの基準レベル失敗モードを体系的に分析し、統合的フレームワーク CriPO を提案しました。安定した報酬グラウンド最適化を保持しながら局所的トークンレベル補正を提供するハイブリッド設計により、一貫した改善と効率性向上が実証されました。スカラー報酬集約による報酬曖昧性と探索限界の同時解決に向けた新たな方向性を提示しています。
+## 6. Ablation (アブレーション)
++7K VIL(Vision-in-the-Loop)軌跡の追加で8B+5.4・30B+6.5ポイント。Summary・ImageSearch・FetchImage・CropImage削除でそれぞれ2.5〜4.0ポイント低下。CropImageはVDR-Benchで特に重要。
+
+## 7. Conclusion (結論)
+中間視覚依存性を持つマルチモーダルイベントグラフ由来のデータが、長horizon マルチモーダル検索の効果的な学習路であることを実証。強化学習なしの教師あり微調整のみで、既存エージェントを大幅に上回る性能を達成。

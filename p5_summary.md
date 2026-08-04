@@ -1,6 +1,6 @@
-**5. Enhancing Rubric-based RL via Self-Distillation (CriPO: 自己蒸留によるルーブリックベース強化学習の強化)**
-**著者**: CriPO Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.18082
+**5. DeepVoyager-VL: Incentivizing Vision-in-the-Loop Search for Long-Horizon Multimodal Agents**
+**著者**: DeepVoyager-VL Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.01827
 
 **まとめ**:
-ルーブリックベースの強化学習で「未探索基準（どのサンプルも満たさない評価軸）」と「抑圧された基準（満たしているのに負の報酬を受ける評価軸）」という2つの失敗モードを特定し、オンポリシー自己蒸留 (OPSD) で解決する CriPO を提案する。GRPO と組み合わせることで Qwen3-1.7B で平均 +3.2pt・4B で +1.4pt の改善を達成し、学習ステップ数を約半分に削減。医学・科学ドメインのオープンエンドタスクで有効性を実証した。
+マルチモーダルエージェントの長期推論において、検索途中で発見した画像が後続クエリを駆動する「Vision-in-the-Loop」パラダイムを提案。Wikipediaとニュースから構築したマルチモーダルイベントグラフで合成問題を生成し、7種の専用ツールと能動的画像獲得機構を備えたエージェントを教師あり微調整(強化学習なし)で訓練。10ベンチマークで8Bモデルが55%、30B-A3Bが44%の相対改善を達成し、既存マルチモーダル深層検索エージェントを凌駕した。

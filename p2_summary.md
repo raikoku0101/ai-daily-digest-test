@@ -1,6 +1,6 @@
-**2. N₀-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation**
-**著者**: NeoRobotics Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.23783
+**2. Motion Beyond Morphology: Bootstrapping Cross-Category Motion Transfer from Abstract Motion Representations**
+**著者**: Motion Beyond Morphology Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.01628
 
 **まとめ**:
-接触豊富なロボット操作において、視覚だけでなく触覚を「一等市民」として統合した初の大規模ワールド・アクションモデル N₀-TWAM を提案する。Mixture-of-Transformers アーキテクチャで将来の視覚・接触を同時予測し、実ロボット 8 タスクで VLA ベースライン (30.0%) を大きく上回る 46.3% の成功率を達成。30,000 時間超の触覚同期データによる事前学習が、分布シフト耐性と汎化性能を大幅に向上させた。
+形態学的に異なるオブジェクト間でのビデオモーション転送を実現する2段階フレームワーク。Stage Iでは意味的運動学・深度対応軌跡・密度点トラック等5種の多粒度運動ビューを統一インターフェースで学習し、クロスカテゴリーペアをブートストラップ生成。Stage IIでは明示的運動条件を生参照動画に置き換えることで形態固有のショートカットを回避し、転送可能な動力学を内在化。I2VとT2V両方で全指標SOTA達成、人的評価でも93〜97%の選好率を記録した。
