@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-04",
+  "content": "# AI Daily Digest — 2026-08-04\n\n## 今日のハイライト\n- **Mental World Modeling が今日のトップ論文 (👍52)**: AI エージェントが他者の「心の状態」（信念・意図）を予測するフレームワーク MWM を提案。マルチエージェントや社会的 AI の知性向上に直結する研究。\n- **Claude Code v2.1.219: Claude Opus 5 が新デフォルトに**: 1M トークンコンテキストに対応した最新 Opus モデルが Claude Code のデフォルトに。同バージョンでネットワーク制御強化・新フックも追加され、大規模エージェント開発が加速。\n- **触覚ネイティブ World-Action Model (N₀-TWAM、👍27)**: 視覚だけでなく触覚センサーを一等市民として扱う大規模ロボット操作モデルが登場。接触豊富な製造・組立タスクへの実用的 AI 適用に向けた重要な一歩。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.220 (2025-07-25)\n**バグ修正・信頼性向上**\n- 各種バグ修正と安定性の改善が行われました。\n\n**ユーザーへの影響**: 日常的な使用がより安定・信頼性の高いものになります。\n\n---\n\n### v2.1.219 (2025-07-24)\n**主要機能追加**\n- **Claude Opus 5 (`claude-opus-5`) 追加**: 新デフォルト Opus モデル。最大 1M コンテキスト対応、Fast Mode で $10/$50 per Mtok の価格設定。\n- **`sandbox.network.strictAllowlist` 設定追加**: サンドボックスコマンドに対して、許可リスト外ホストへのアクセスをプロンプトなしで拒否できる。\n- **`DirectoryAdded` フック追加**: `/add-dir` または SDK の `register_repo_root` で新しい作業ディレクトリが登録された際に発火する新フック。\n- **`mcp_server_errors` をヘッドレス stream-json init イベントに追加**: `--mcp-config` の設定検証でスキップされたエントリを列挙。ターミナル実行時は起動時に警告を表示。\n- **`workflowSizeGuideline` 設定キー追加**: 任意の設定ファイルからダイナミックワークフローサイズのガイドラインを設定可能。\n\n**ユーザーへの影響**: 最新・最強の Opus 5 モデルが使えるようになったことで、より高品質な応答が期待できます。ネットワーク制御の強化でセキュリティも向上。\n\n---\n\n### v2.1.218 (2025-07-22)\n**主要機能変更・バグ修正**\n- **`/code-review` のバックグラウンド化**: コードレビューがバックグラウンドサブエージェントとして実行されるようになり、会話を埋め尽くさなくなった。\n- **スクリーンリーダー対応強化**: `--ax-screen-reader` モードで単語・行削除操作のアナウンスを追加。\n- **Windows パスバグ修正**: `\\u` プレフィックスを持つパス（例: `C:\\Users\\unicorn`）が CJK 文字に化けてファイルアクセス不能になる問題を修正。\n- **左矢印キーのバグ修正**: 誤って会話が破棄される問題を修正。編集直後の押下は確認ダイアログを表示、Esc でエージェントビューから元の会話に戻れるように。\n\n**ユーザーへの影響**: コードレビューがバックグラウンドで動作するため作業効率が向上。Windows ユーザーの深刻なバグが修正されました。\n\n## 注目論文 TOP 10\n\n**1. Mental World Modeling** | 👍 52 | https://arxiv.org/abs/2607.27201\n🎯 **背景**: 既存のワールドモデルは物理的な状態予測に特化しており、エージェントの「心的状態」（信念・意図・感情）を考慮していない。\n🔧 **手法**: Mental World Modeling (MWM) フレームワークを提案。隠れた心的状態を明示的にモデル化し、行動予測と計画に組み込む。\n📊 **結果**: 心的状態を含むシナリオでの予測精度が従来手法を大幅に上回ることを実証。\n💡 **意義**: マルチエージェント環境・社会的AI・ロボティクスにおける他者理解能力の向上に貢献。\n⚠️ **限界**: 心的状態のアノテーションが難しく、大規模な実世界データでの検証はまだ限定的。\n\n---\n\n**2. N₀-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation** | 👍 27 | https://arxiv.org/abs/2607.23783\n🎯 **背景**: ロボット操作における接触豊富なタスク（精密把持・組立等）では、視覚情報だけでは不十分で触覚フィードバックが不可欠。\n🔧 **手法**: 視触覚の同時学習による触覚ネイティブなワールド・アクションモデルを提案。6種類のロボットプラットフォームで大規模学習。\n📊 **結果**: 接触豊富なタスクで従来視覚のみのモデルを大幅に上回る成功率を達成。\n💡 **意義**: 触覚を一等市民として扱う初の大規模 World-Action Model。産業ロボットへの応用に道を開く。\n⚠️ **限界**: 触覚センサー付きロボットに限定。一般化はハードウェア依存。\n\n---\n\n**3. SAF-OPD: Stable Advantage Fusion for On-Policy Distillation** | 👍 23 | https://arxiv.org/abs/2607.29209\n🎯 **背景**: 検証可能な報酬を用いた強化学習では、応答レベルの報酬が全トークンに均等にブロードキャストされ、品質の低い推論ステップに誤って報酬が与えられる問題がある。\n🔧 **手法**: SAF (Stable Advantage Fusion) フレームワークを提案。オンポリシー蒸留と安定的なアドバンテージ推定を組み合わせ、トークンレベルで正確な信用割り当てを実現。\n📊 **結果**: 数学推論・コード生成ベンチマークで既存の RL 手法を超える安定した性能向上を達成。\n💡 **意義**: LLM の強化学習訓練における報酬のノイズ問題を根本から解決するアプローチ。\n⚠️ **限界**: 教師モデルの品質に依存し、蒸留コストが追加で発生。\n\n---\n\n**4. Fewer Clarifications, Better Code: Benchmarking Cross-Session Personalized Ambiguity Adaptation in Coding Assistants** | 👍 19 | https://arxiv.org/abs/2607.26611\n🎯 **背景**: AI コーディングアシスタントは曖昧なリクエストに頻繁に直面するが、同じユーザーが繰り返す曖昧さのパターンを跨セッションで学習できていない。\n🔧 **手法**: CAPA ベンチマークを導入。クロスセッション個人化曖昧性適応を評価する初の体系的フレームワーク。ユーザー固有の曖昧さパターンと選好を追跡・学習。\n📊 **結果**: 既存システムは跨セッション適応が著しく苦手であることを実証。パーソナライズにより確認要求が大幅減少。\n💡 **意義**: コーディングアシスタントの実用性向上に直結。ユーザー体験の摩擦を減らす。\n⚠️ **限界**: ユーザーのプライバシー考慮が必要。選好データの収集・保存コスト。\n\n---\n\n**5. Enhancing Rubric-based RL via Self-Distillation** | 👍 15 | https://arxiv.org/abs/2607.18082\n🎯 **背景**: ルーブリックベースの強化学習（採点基準を用いた RL）はオープンエンドタスクで有望だが、未探索の課題と解空間の多様性に限界がある。\n🔧 **手法**: Criterion-Distilled Policy Optimization (CriPO) を提案。自己蒸留でルーブリック基準を内面化し、より多様で高品質な応答を生成。\n📊 **結果**: 創作・分析・コード生成等のオープンエンドタスクで既存のルーブリック RL を超える性能。\n💡 **意義**: 人手の報酬設計なしに、AI が自律的に評価基準を学習・改善できる可能性を示す。\n⚠️ **限界**: 自己蒸留の収束安定性、評価基準の品質依存。\n\n---\n\n**6. Evaluation-Verification Reward for Consistent Multi-Reference Image Editing** | 👍 11 | https://arxiv.org/abs/2607.29025\n🎯 **背景**: 複数参照画像を用いた画像編集では、各参照の視覚的一貫性を保ちながら編集することが難しい。\n🔧 **手法**: 評価（Evaluation）と検証（Verification）を組み合わせた新たな報酬設計を提案。多次元一貫性を定量化し学習に活用。\n📊 **結果**: 複数参照シナリオでの視覚一貫性スコアが大幅改善。ユーザー評価でも高い評価。\n💡 **意義**: 複雑な参照ベース画像編集の実用化を前進させる。クリエイティブ分野への応用が期待。\n⚠️ **限界**: 参照画像間の矛盾が大きい場合の処理が課題。\n\n---\n\n**7. ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow** | 👍 7 | https://arxiv.org/abs/2607.27924\n🎯 **背景**: 既存のワールドモデルは離散的な時間ステップで動作し、物理世界の本質的な連続性を捉えられない。\n🔧 **手法**: Physical-Time Flow (PT-Flow) を導入。連続的な潜在速度場を学習し、任意の時間点でのシステム状態を予測。常微分方程式（ODE）をベースとした動的モデル。\n📊 **結果**: 物理シミュレーションタスクで離散モデルより高精度かつ時間補間能力を実証。\n💡 **意義**: 連続時間のワールドモデルは物理シミュレーション・ロボット制御に革新をもたらす可能性。\n⚠️ **限界**: ODE ソルバーの計算コストが高く、リアルタイム応用は困難。\n\n---\n\n**8. RL²-VLA: Adaptive RL Latent Compositional Steering with Test-Time Scaling for Vision-Language-Action Models** | 👍 4 | https://arxiv.org/abs/2607.26991\n🎯 **背景**: Vision-Language-Action (VLA) モデルは印象的な能力を持つが、困難なタスクでは性能が大幅に劣化する。\n🔧 **手法**: RL² を提案。推論時の適応的ステアリングフレームワークで、強化学習に基づく潜在空間の合成的制御とテスト時スケーリングを組み合わせ。\n📊 **結果**: 標準ベンチマークと難しいタスクの両方でベースライン VLA を上回る。\n💡 **意義**: テスト時に追加学習なしで VLA の性能を適応的に向上できる初のフレームワーク。\n⚠️ **限界**: 推論コストの増加。実世界ロボットでの検証は限定的。\n\n---\n\n**9. EMBL AI Librarian: Life-Sciences Knowledge Layer for AI Agents** | 👍 4 | https://arxiv.org/abs/2607.28229\n🎯 **背景**: ウェブは人間よりも AI エージェントにアクセスされる割合が増えており、既存の学術情報サービスは AI エージェントに最適化されていない。\n🔧 **手法**: Europe PMC インターフェースを AI エージェント向けにアップグレードした EMBL AI Librarian を構築。ライフサイエンス知識への構造化アクセスを提供。\n📊 **結果**: AI エージェントが生命科学文献を効率的に検索・取得できることを実証。\n💡 **意義**: 科学的な AI エージェントのための知識インフラとして、生命科学研究の加速に貢献。\n⚠️ **限界**: ライフサイエンス分野に限定。他領域への拡張は今後の課題。\n\n---\n\n**10. One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA** | 👍 3 | https://arxiv.org/abs/2607.28443\n🎯 **背景**: 分散型ロボット群（スウォーム）の各ロボットが局所観測から全体の集団状態を予測できるかという問題に取り組む。\n🔧 **手法**: 分散型 JEPA（Joint Embedding Predictive Architecture）を提案。ラベル効率の高い集団状態予測を実現し、各ロボットが同一の未来状態を予測するよう学習。\n📊 **結果**: 少数ラベルで効果的な集団状態予測を達成。スウォームの協調行動が改善。\n💡 **意義**: 大規模ロボット群の自律協調に向けた基盤技術。物流・探索・災害対応への応用が期待。\n⚠️ **限界**: シミュレーション中心の評価。実世界スウォームでの通信コスト・スケーラビリティは未検証。\n\n",
+  "fetched_at": "2026-08-03T22:06:10.521689+00:00",
+  "papers": [
+    {
+      "title": "Mental World Modeling",
+      "upvotes": 52,
+      "paper_id": "2607.27201",
+      "abstract": "World models enable predictive substrate for planning, yet existing formulations miss hidden mental state. This work formulates Mental World Modeling (MWM), a framework"
+    },
+    {
+      "title": "N_0-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation",
+      "upvotes": 27,
+      "paper_id": "2607.23783",
+      "abstract": "A tactile-native world-action model for contact-rich manipulation predicting future vision and contact. Trained at large scale with visuo-tactile joint training across six"
+    },
+    {
+      "title": "SAF-OPD: Stable Advantage Fusion for On-Policy Distillation",
+      "upvotes": 23,
+      "paper_id": "2607.29209",
+      "abstract": "Reinforcement learning with verifiable rewards broadcasts response-level reward to every token. This work proposes SAF, a Stable Advantage Fusion framework resolving"
+    },
+    {
+      "title": "Fewer Clarifications, Better Code: Benchmarking Cross-Session Personalized Ambiguity Adaptation in Coding Assistants",
+      "upvotes": 19,
+      "paper_id": "2607.26611",
+      "abstract": "AI-assisted coding translates informal user intent into executable software, yet requests contain ambiguities recurring in user-specific ways. This work introduces CAPA,"
+    },
+    {
+      "title": "Enhancing Rubric-based RL via Self-Distillation",
+      "upvotes": 15,
+      "paper_id": "2607.18082",
+      "abstract": "Rubric-based RL shows promise in improving LLMs on open-ended tasks. This work proposes Criterion-Distilled Policy Optimization (CriPO), addressing both unexplored"
+    },
+    {
+      "title": "Evaluation-Verification Reward for Consistent Multi-Reference Image Editing",
+      "upvotes": 11,
+      "paper_id": "2607.29025",
+      "abstract": "Recent image editing models face challenges in multi-reference editing, particularly maintaining visual consistency. This work addresses this with Multi-dimensional"
+    },
+    {
+      "title": "ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow",
+      "upvotes": 7,
+      "paper_id": "2607.27924",
+      "abstract": "Space and time are fundamentally continuous in the physical world. This work introduces Physical-Time Flow (PT-Flow), learning continuous latent velocity fields"
+    },
+    {
+      "title": "RL^2-VLA: Adaptive RL Latent Compositional Steering with Test-Time Scaling for Vision-Language-Action Models",
+      "upvotes": 4,
+      "paper_id": "2607.26991",
+      "abstract": "Vision-Language-Action models show impressive capabilities yet degrade on challenging tasks. This work introduces RL^2, an adaptive inference-time steering framework"
+    },
+    {
+      "title": "EMBL AI Librarian: Life-Sciences Knowledge Layer for AI Agents",
+      "upvotes": 4,
+      "paper_id": "2607.28229",
+      "abstract": "The web is increasingly accessed by AI agents rather than humans. This work introduces EMBL AI Librarian, a knowledge layer upgrading Europe PMC interface for"
+    },
+    {
+      "title": "One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA",
+      "upvotes": 3,
+      "paper_id": "2607.28443",
+      "abstract": "Can every robot in a swarm predict the same future collective state from local observations? This work formulates decentralized shared-state prediction and introduces"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation; terminal runs print a startup warning. Added the workflowSizeGuideline settings key so the advisory Dynamic workflow size guideline can be set from any settings file."
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs. Fixed the left arrow key discarding the conversation with no undo."
+    }
+  ]
+}

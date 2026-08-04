@@ -1,7 +1,6 @@
-**4. ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow**
-**著者**: ShadowDancer Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2607.28362
-**upvotes**: 16
+**4. Fewer Clarifications, Better Code: Benchmarking Cross-Session Personalized Ambiguity Adaptation in Coding Assistants**
+**著者**: CAPA Research Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2607.26611
 
 **まとめ**:
-「影のペア」（同一動作を異なる外観で撮影した動画ペア）から動的表現を学習し、ビデオワールドモデルを任意アクションでフレームレベル制御する手法「ShadowDancer」を提案。交差影予測（Cross-shadow Prediction）により、外観と動きを構成的に分離。人間動作・ロボット操作・ゲームプレイなど多様なドメインで既存の潜在アクションモデルを平均86%上回る性能を達成した。
+AIコーディングアシスタントにおいて、同じユーザーが繰り返す曖昧さのパターンをクロスセッションで学習・適用する「個人化曖昧性適応」タスクを初めて定式化し、CAPA ベンチマーク（600セッション・6曖昧性メカニズム）を構築した。跨セッション履歴の活用により全12モデルで初回成功率が平均15.6pp向上し、確認要求回数が0.81ターン短縮。実用的なコーディングアシスタントの摩擦削減に向けた重要な基盤研究。

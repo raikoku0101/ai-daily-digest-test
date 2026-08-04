@@ -1,64 +1,64 @@
 {
   "papers": [
     {
-      "title": "MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing",
-      "upvotes": 35,
-      "paper_id": "2607.27616",
-      "abstract": "Text-to-image and personalized editing models now synthesize high-fidelity single-subject images with ease. Yet placing multiple named people into shared contact actions such as embrace, carry, or grapple still exposes major failures."
+      "title": "Mental World Modeling",
+      "upvotes": 52,
+      "paper_id": "2607.27201",
+      "abstract": "World models enable predictive substrate for planning, yet existing formulations miss hidden mental state. This work formulates Mental World Modeling (MWM), a framework"
     },
     {
-      "title": "Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation",
-      "upvotes": 30,
-      "paper_id": "2607.27816",
-      "abstract": "Role-playing agents (RPAs) have become one of the most important consumer applications of large language models. Users engage in multi-turn conversations with RPAs for experiences such as emotional comfort, making reliable evaluation essential."
+      "title": "N_0-TWAM: Scaling Tactile-Native World-Action Model for Contact-Rich Manipulation",
+      "upvotes": 27,
+      "paper_id": "2607.23783",
+      "abstract": "A tactile-native world-action model for contact-rich manipulation predicting future vision and contact. Trained at large scale with visuo-tactile joint training across six"
     },
     {
-      "title": "See2Think: Do Multimodal Models Really Use Intermediate Visual States?",
-      "upvotes": 21,
-      "paper_id": "2607.26769",
-      "abstract": "Multimodal large language models increasingly use sketches, annotations, tools, and intermediate images during reasoning, but it remains unclear whether they truly rely on these visual states. Existing benchmarks are limited both by task collections."
+      "title": "SAF-OPD: Stable Advantage Fusion for On-Policy Distillation",
+      "upvotes": 23,
+      "paper_id": "2607.29209",
+      "abstract": "Reinforcement learning with verifiable rewards broadcasts response-level reward to every token. This work proposes SAF, a Stable Advantage Fusion framework resolving"
     },
     {
-      "title": "ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow",
-      "upvotes": 16,
-      "paper_id": "2607.28362",
-      "abstract": "We present ShadowDancer, a novel approach to any-action, frame-level control of interactive video world models. The obstacle is representational: existing interfaces either encode an action loosely, leaving how it unfolds for the model."
+      "title": "Fewer Clarifications, Better Code: Benchmarking Cross-Session Personalized Ambiguity Adaptation in Coding Assistants",
+      "upvotes": 19,
+      "paper_id": "2607.26611",
+      "abstract": "AI-assisted coding translates informal user intent into executable software, yet requests contain ambiguities recurring in user-specific ways. This work introduces CAPA,"
     },
     {
-      "title": "β-OPSD: Deriving with Policy Optimization, Training with Self-Distillation",
-      "upvotes": 13,
-      "paper_id": "2607.28582",
-      "abstract": "On-policy self-distillation (OPSD) is a promising approach to improve reasoning language models, but it remains brittle in practice: making it work reliably often requires substantial engineering effort. We identify a structural source of this difficulty."
+      "title": "Enhancing Rubric-based RL via Self-Distillation",
+      "upvotes": 15,
+      "paper_id": "2607.18082",
+      "abstract": "Rubric-based RL shows promise in improving LLMs on open-ended tasks. This work proposes Criterion-Distilled Policy Optimization (CriPO), addressing both unexplored"
     },
     {
-      "title": "Can Large Language Models Execute Parent Orders?",
-      "upvotes": 12,
-      "paper_id": "2607.28410",
-      "abstract": "Parent-order execution is a core problem in algorithmic trading, where the goal is to split a large order into smaller orders while reducing execution costs. Existing approaches either rely on pre-specified market assumptions that may not hold."
-    },
-    {
-      "title": "INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models",
+      "title": "Evaluation-Verification Reward for Consistent Multi-Reference Image Editing",
       "upvotes": 11,
-      "paper_id": "2607.26056",
-      "abstract": "Forward latent world models predict how actions change a scene, but recover actions for a desired change only through expensive test-time search. We introduce INTACT (INtent-To-ACTion), an end-to-end JEPA that turns action-labeled trajectories."
+      "paper_id": "2607.29025",
+      "abstract": "Recent image editing models face challenges in multi-reference editing, particularly maintaining visual consistency. This work addresses this with Multi-dimensional"
     },
     {
-      "title": "Multi-Head Attention Residuals",
-      "upvotes": 8,
-      "paper_id": "2607.27230",
-      "abstract": "Transformers propagate information across depth through a single additive residual stream: every sublayer reads only the most recent state. Attention residuals relax this by letting each sublayer attend, through a learned softmax."
-    },
-    {
-      "title": "Σ-Mem: An Online Reliability Memory for LLM-based Multi-Agent Systems",
+      "title": "ODEWorld: A Continuous Predictive Architecture via Physical-Time Flow",
       "upvotes": 7,
-      "paper_id": "2607.27958",
-      "abstract": "Memory is central to long-horizon LLM agents, yet existing memory systems primarily preserve interaction content rather than modeling which agents can be trusted and under what conditions."
+      "paper_id": "2607.27924",
+      "abstract": "Space and time are fundamentally continuous in the physical world. This work introduces Physical-Time Flow (PT-Flow), learning continuous latent velocity fields"
     },
     {
-      "title": "Filesystem-Based Memory for LLM Agents: Organization, Evolution, and Sustainability",
-      "upvotes": 6,
-      "paper_id": "2607.26637",
-      "abstract": "Deployed LLM agents increasingly keep their long-term memory as a filesystem: a directory tree of markdown files that the agent itself reads, writes, and reorganizes through generic file tools."
+      "title": "RL^2-VLA: Adaptive RL Latent Compositional Steering with Test-Time Scaling for Vision-Language-Action Models",
+      "upvotes": 4,
+      "paper_id": "2607.26991",
+      "abstract": "Vision-Language-Action models show impressive capabilities yet degrade on challenging tasks. This work introduces RL^2, an adaptive inference-time steering framework"
+    },
+    {
+      "title": "EMBL AI Librarian: Life-Sciences Knowledge Layer for AI Agents",
+      "upvotes": 4,
+      "paper_id": "2607.28229",
+      "abstract": "The web is increasingly accessed by AI agents rather than humans. This work introduces EMBL AI Librarian, a knowledge layer upgrading Europe PMC interface for"
+    },
+    {
+      "title": "One Future, Every Robot: Label-Efficient Collective-State Prediction with Decentralized JEPA",
+      "upvotes": 3,
+      "paper_id": "2607.28443",
+      "abstract": "Can every robot in a swarm predict the same future collective state from local observations? This work formulates decentralized shared-state prediction and introduces"
     }
   ],
   "cc_updates": [
@@ -70,12 +70,12 @@
     {
       "tag_name": "v2.1.219",
       "published_at": "2025-07-24",
-      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation; terminal runs print a startup warning."
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation; terminal runs print a startup warning. Added the workflowSizeGuideline settings key so the advisory Dynamic workflow size guideline can be set from any settings file."
     },
     {
       "tag_name": "v2.1.218",
       "published_at": "2025-07-22",
-      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs."
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs. Fixed the left arrow key discarding the conversation with no undo."
     }
   ]
 }
