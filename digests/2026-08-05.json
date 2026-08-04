@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-05",
+  "content": "# AI Daily Digest — 2026-08-05\n\n## 今日のハイライト\n- **GradCuit がテスト時潜在推論で 64.5% 達成**: パラメータを凍結したまま Transformer 層に最適化可能な潜在状態を挿入し、報酬加重勾配で推論時性能を向上させる革新的手法。デプロイ済みモデルの能力拡張に直結する実用的ブレークスルー。\n- **Claude Code v2.1.221 リリース (2025-08-04)**: VSCode 向け Focus ビュー追加、サンドボックス資格情報マスクモード対応、zsh の権限バイパス脆弱性修正など重要アップデート。即時アップグレードを推奨。\n- **LLM の「削除回避」バイアスを初定量化**: 「To Add Is Machine, To Delete Is Human」論文がコード編集における系統的な削除忌避傾向を発見。削除チェックテストで性能が 63.2% → 41.9% に急落。後訓練での明示的学習が改善策として有効。\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.221 (2025-08-04) — 最新リリース\n\n**主要新機能**\n- **[VSCode] Focus ビュー**: ツール活動をターン別サマリーに折りたたむチャットメニュートグル。ライブ実行中ツールインジケーター付き。`Ctrl+Alt+F` または「Claude Code: Toggle Focus view」コマンドで切り替え可能。\n- **サンドボックス資格情報ファイルのマスクモード**: Linux・WSL 向けに `mode: \"mask\"` を追加。サンドボックスコマンドはセンチネルコピーを読み込み、サンドボックスプロキシが出口で実際の値に置換。macOS ではファイルマスキングが `deny` にフォールバック。\n- **プラグイン検証強化**: `claude plugin validate` がマーケットプレイス名・プラグイン名を事前チェックし、Claude Desktop のマネージドマーケットプレイス同期で拒否される名前に警告を表示。\n- **prompt-audit サブコマンド**: `claude-api` スキルに追加。旧モデル向けに書かれたプロンプトやツール説明のパターンを監査する機能。\n\n**バグ修正**\n- Bash ツールの権限チェックバイパス問題を修正: zsh が `[[ ]]` の正規表現条件内で隠しコマンドを実行できた問題。対象コマンドは権限プロンプトを表示するよう変更。\n- PowerShell 権限チェックで引用符を含むパスが誤処理されていた Windows の問題を修正。\n\n**ユーザーへの影響**: VSCode ユーザーは Focus ビューにより複雑なタスク中の UI が格段に見やすくなる。セキュリティ関連の修正は重要なので、早期アップデートを推奨。\n\n---\n\n### v2.1.220 (2025-07-25)\n\n**バグ修正と信頼性改善** — 詳細な変更リストなし。安定性向上を主目的としたマイナーリリース。\n\n---\n\n### v2.1.219 (2025-07-24)\n\n**主要新機能**\n- **Claude Opus 5 追加**: `claude-opus-5` が新しいデフォルト Opus モデルに。コンテキストウィンドウ 1M トークン、Fast モードで入力 $10/Mtok・出力 $50/Mtok。\n- **`sandbox.network.strictAllowlist` 設定**: サンドボックスコマンドで許可リスト外ホストへの接続をプロンプトなしで拒否。\n- **`DirectoryAdded` フック**: `/add-dir` または SDK の `register_repo_root` で新しい作業ディレクトリが登録された後に発火する新フック。\n- **`mcp_server_errors` イベント**: ヘッドレス stream-json の init イベントに追加。設定検証でスキップされた `--mcp-config` エントリを一覧表示。\n- **`workflowSizeGuideline` 設定キー**: 任意の設定ファイルから Dynamic workflow size ガイドラインを設定可能に。\n- **stream-json でのネストされたサブエージェント転送**: `--forward-subagent-text` 設定時、深さ2以上のサブエージェントが表示されるように。\n\n**ユーザーへの影響**: Claude Opus 5 の統合により最先端モデルへのアクセスが容易に。`strictAllowlist` はセキュリティ強化に有効。\n\n## 注目論文 TOP 10\n\n**1. GradCuit: Credit-Assigned Gradient Flow Enables Robust and Interpretable Test-Time Latent Reasoning** | 21 upvotes | https://arxiv.org/abs/2608.02585\n🎯**背景**: LLM のパラメータを固定したまま推論時に出力を最適化する「Test-Time Compute」への関心が高まっているが、従来手法は勾配のクレジット割り当てが不明瞭だった。\n🔧**手法**: Transformer の各層に最適化可能な潜在状態 (latent state) を挿入し、出力全体に対する報酬加重勾配を用いて直接潜在クレジット割り当てを実現。パラメータは凍結したまま推論時のみ最適化を行う。\n📊**結果**: 複数ベンチマークで平均 64.5% の精度を達成し、既存の Test-Time Optimization 手法を上回る。\n💡**意義**: モデルを再訓練せずに推論時の性能を向上できるため、デプロイ済みモデルの能力拡張に実用的。解釈可能性も高く、どの層がどの判断に寄与したかが可視化できる。\n⚠️**限界**: 計算コストが推論時に増加するため、レイテンシが許容できる用途に限定される。汎化性能の検証がさらに必要。\n\n**2. Motion Beyond Morphology: Bootstrapping Cross-Category Motion Transfer from Abstract Motion Representations** | 20 upvotes | https://arxiv.org/abs/2608.01628\n🎯**背景**: 動画モーション転送は参照動画の動きでターゲットオブジェクトをアニメーション化する技術だが、形態学的に異なるオブジェクト間 (例: 人間の歩行を犬に転送) では意味ある動きの保持が困難だった。\n🔧**手法**: 2 段階フレームワーク: まず形態に依存しない抽象モーション表現を学習し、クロスカテゴリペアをブートストラップで生成。次にその監督を直接生成に内在化させることで、参照なし生成が可能になる。\n📊**結果**: 形態学的に異なるカテゴリ間のモーション転送で SOTA を達成。自然で意味的に一貫したアニメーション生成。\n💡**意義**: 映画・ゲーム・ロボティクスでのモーション再利用が革命的に簡略化される。カテゴリをまたいだモーション転送という未踏の課題に実用的な解法を示す。\n⚠️**限界**: 極端に形態が異なるケース (例: 人間→魚) では意味ある対応関係の定義自体が困難。学習データのバイアスに影響を受ける可能性。\n\n**3. To Add Is Machine, To Delete Is Human: Measuring and Mitigating Deletion Avoidance in LLM Code Editing** | 18 upvotes | https://arxiv.org/abs/2607.28887\n🎯**背景**: LLM がコード編集タスクで「削除を避ける」傾向があることが実用上の問題になっている。コードの簡略化・リファクタリングでは削除が本質的だが、モデルは代わりにコードを追加しがちだった。\n🔧**手法**: 削除チェックテストを付与するタスク再設計 (retrofitting) で問題を定量化。CanItDelete ベンチマークを構築し、後訓練 (post-training) 段階での削除操作の明示的な学習を提案。\n📊**結果**: 削除チェックテスト付与でモデル性能が 63.2% → 41.9% に低下。削除を明示的に学習させることで回避傾向が改善され、コード編集全般の性能も向上。\n💡**意義**: LLM のコード編集における系統的バイアスを初めて定量化・緩和。削除回避はソフトウェア保守コストに直結する実践的問題であり、業界インパクトが大きい。\n⚠️**限界**: CanItDelete ベンチマークの範囲が主に Python に限定されている可能性。後訓練コストが追加で必要。\n\n**4. GPTQ-2D: Cubic-Time Two-Sided Adaptive Rounding** | 18 upvotes | https://arxiv.org/abs/2607.27042\n🎯**背景**: LLM の量子化 (quantization) は推論コスト削減に重要だが、従来の GPTQ は一辺のみの適応的丸め (rounding) であり、両辺基底行列を考慮した二辺丸めは計算量が4次 (quartic) で現実的ではなかった。\n🔧**手法**: 非特異基底行列が残差の左右両側に作用する二辺行列丸め問題を理論的に解析。反対角線 (anti-diagonal) を並列に丸めることで3次 (cubic) 時間での計算を実現する GPTQ-2D を提案。\n📊**結果**: 従来の4次アルゴリズムと同等の結果を3次時間で達成。計算量を大幅削減しながら量子化精度を維持。\n💡**意義**: 大規模モデルの量子化を現実的なコストで実現する理論的ブレークスルー。2辺適応丸めにより量子化誤差をさらに低減できる可能性を拓く。\n⚠️**限界**: 理論的な計算量削減が実際のハードウェア実装でどれだけ現れるかは実装依存。非特異基底行列の選択が結果に影響する可能性。\n\n**5. DeepVoyager-VL: Incentivizing Vision-in-the-Loop Search for Long-Horizon Multimodal Agents** | 15 upvotes | https://arxiv.org/abs/2608.01827\n🎯**背景**: 長期的なマルチモーダルタスクでは、テキストだけでなく視覚情報を検索ループに組み込んだ「Vision-in-the-Loop」検索が必要だが、既存手法は視覚依存の中間ステップを扱えなかった。\n🔧**手法**: マルチモーダルイベントグラフを用いてデータ合成し、視覚的中間依存関係を持つ訓練データを生成。能動的視覚取得エージェントを設計し、強化学習なしでのファインチューニングを実現。\n📊**結果**: 10 の多様なベンチマークで SOTA レベルの性能を達成。強化学習なしで長期マルチモーダル推論が可能に。\n💡**意義**: 視覚情報を検索の一級市民として扱う初のスケーラブルなフレームワーク。事実確認、複雑な視覚的 QA など実世界タスクへの応用が広い。\n⚠️**限界**: マルチモーダルイベントグラフの品質がデータ合成に依存。特定の視覚ドメインへの偏りが生じる可能性。\n\n**6. 3DZip: Spatial-Aware Feature Diversity-Guided Token Compression for 3D Question Answering** | 14 upvotes | https://arxiv.org/abs/2608.01185\n🎯**背景**: 3D 質問応答では大量の幾何学的トークンが必要だが、数千トークンをそのままマルチモーダル LLM に入力すると計算コストが膨大になる。効果的なトークン圧縮が急務だった。\n🔧**手法**: ボクセル化で空間構造を保持しつつ、行列式点過程 (Determinantal Point Process) による多様性ベースアンカー選択で代表トークンを決定。空間制約付きマージで意味的・幾何学的整合性を維持しながら大幅に削減。\n📊**結果**: 128 トークンで元の性能の 94.7% を保持。3D QA ベンチマークで 1.92 倍の推論高速化を実現。\n💡**意義**: 3D 空間理解タスクにおける実用的なトークン効率化を実証。ロボット・自動運転・AR/VR への応用が期待できる。\n⚠️**限界**: 圧縮率を上げると細粒度の空間情報が失われる。特定の 3D 表現形式 (点群) に特化した手法。\n\n**7. DreamTraj: Generating 6-DoF Object Trajectories by Reading Unrendered Video Diffusion Latents** | 12 upvotes | https://arxiv.org/abs/2608.00486\n🎯**背景**: 単一 RGB 画像から物体の 6-DoF (位置 3 軸 + 回転 3 軸) 軌跡を予測することは、ロボット操作や AR 等で重要だが、既存手法は動画を生成してから軌跡を抽出する2段階アプローチで低速・高コストだった。\n🔧**手法**: 凍結した画像-動画拡散モデルの内部表現 (クエリ-キーアテンショントラック) を直接読み込むフローマッチング Reader を訓練。動画をレンダリングせずに潜在表現から直接ポーズを復元。\n📊**結果**: 既存の生成-抽出パイプラインと同等の精度で 4.6 倍の高速化を達成。SOTA レベルの 6-DoF 軌跡予測性能。\n💡**意義**: 拡散モデルの潜在空間が豊富な 3D 運動情報を内包することを示す重要な発見。軽量な Reader の追加のみで強力な物体軌跡予測が可能。\n⚠️**限界**: 凍結拡散モデルの品質に依存。複数物体が絡み合う複雑なシーンでの精度が課題。\n\n**8. Model or Harness? An Interaction-Centric Taxonomy for Localizing Agent Failures** | 8 upvotes | https://arxiv.org/abs/2607.28802\n🎯**背景**: AI エージェントの失敗が「モデルの問題」なのか「ハーネス (実行環境) の問題」なのかを切り分けることが困難で、改善のためのリソース配分が非効率になっていた。\n🔧**手法**: エージェントアーキテクチャコンポーネント間の「インタラクション」に着目した分類体系を構築。41 種類の失敗モードを特定し、モデル後訓練・ハーネス設計・環境再設計のどこに介入すべきかを特定可能にする。\n📊**結果**: 独立した評価者間で Cohen's κ = 0.76 の高い一致率を達成。失敗モードの体系的な分類が可能に。\n💡**意義**: エージェント開発の実務で「どこを直すべきか」の指針を提供する実践的フレームワーク。研究と産業両方で使える共通語彙を確立。\n⚠️**限界**: 分類体系が急速に進化するエージェントアーキテクチャに追いつけない可能性。特定のエージェントフレームワークへの偏りがある可能性。\n\n**9. RecHarness: A Bandit-Routed Agentic Harness for Self-Evolving Recommender Systems** | 7 upvotes | https://arxiv.org/abs/2607.29241\n🎯**背景**: 推薦システムの継続的最適化には専門家による手動調整が必要で、LLM を使った自動化の試みは探索-活用のバランスや停滞からの脱出が困難だった。\n🔧**手法**: バンディットベースのルーティングで修正手法の選択と LLM の仮説生成を分離。停滞時に構造的なジャンプを起こす Jump-basin メカニズムを実装。モデル選択と実際の改善提案を独立させることで安定化。\n📊**結果**: 広告プラットフォームの実際の A/B テストで ADVV が 2.084% 向上、収益が 0.534% 向上。\n💡**意義**: 実運用環境での検証済み自動推薦最適化フレームワーク。LLM とバンディット理論の組み合わせによる実用的な産業応用。\n⚠️**限界**: 広告推薦という特定ドメインでの検証。他のコンテンツ推薦ドメインへの汎化は未検証。\n\n**10. Relax Within, Balance Across: Geometry-Guided Load Balancing for Vision-Language Mixture-of-Experts** | 6 upvotes | https://arxiv.org/abs/2608.00574\n🎯**背景**: Vision-Language MoE モデルでは画像トークンとテキストトークンの数が大きく異なり、既存のロードバランシング手法がモダリティ間の不均衡を招いていた。\n🔧**手法**: モダリティごとに別々のルーティング項を実装し (Relax Within)、画像単位の制約を追加 (Balance Across)。幾何学的観点からモダリティ間のトークン分布差を分析し、制約を設計。\n📊**結果**: ベンチマーク全体でロードバランスが改善。精度を維持しながら解像度変化への頑健性が向上。\n💡**意義**: VLM の実用展開で問題になるモダリティ不均衡を根本から解決するアプローチ。高解像度画像を扱う用途での推論効率改善に貢献。\n⚠️**限界**: MoE アーキテクチャ特有の手法であり、標準的な密なモデルへは適用不可。モダリティ数が増えた場合の複雑化が懸念。\n",
+  "fetched_at": "2026-08-04T22:14:01.753496+00:00",
+  "papers": [
+    {
+      "title": "MPIE-Bench: Benchmarking Anatomically Plausible Multi-Person Interaction Editing",
+      "upvotes": 35,
+      "paper_id": "2607.27616",
+      "abstract": "Text-to-image and personalized editing models now synthesize high-fidelity single-subject images with ease. Yet placing multiple named people into shared contact actions such as embrace, carry, or grapple still exposes major failures."
+    },
+    {
+      "title": "Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation",
+      "upvotes": 30,
+      "paper_id": "2607.27816",
+      "abstract": "Role-playing agents (RPAs) have become one of the most important consumer applications of large language models. Users engage in multi-turn conversations with RPAs for experiences such as emotional comfort, making reliable evaluation essential."
+    },
+    {
+      "title": "See2Think: Do Multimodal Models Really Use Intermediate Visual States?",
+      "upvotes": 21,
+      "paper_id": "2607.26769",
+      "abstract": "Multimodal large language models increasingly use sketches, annotations, tools, and intermediate images during reasoning, but it remains unclear whether they truly rely on these visual states. Existing benchmarks are limited both by task collections."
+    },
+    {
+      "title": "ShadowDancer: Teaching Video World Models Any Action by Learning Unified Dynamics Representations from a Video and Its Shadow",
+      "upvotes": 16,
+      "paper_id": "2607.28362",
+      "abstract": "We present ShadowDancer, a novel approach to any-action, frame-level control of interactive video world models. The obstacle is representational: existing interfaces either encode an action loosely, leaving how it unfolds for the model."
+    },
+    {
+      "title": "β-OPSD: Deriving with Policy Optimization, Training with Self-Distillation",
+      "upvotes": 13,
+      "paper_id": "2607.28582",
+      "abstract": "On-policy self-distillation (OPSD) is a promising approach to improve reasoning language models, but it remains brittle in practice: making it work reliably often requires substantial engineering effort. We identify a structural source of this difficulty."
+    },
+    {
+      "title": "Can Large Language Models Execute Parent Orders?",
+      "upvotes": 12,
+      "paper_id": "2607.28410",
+      "abstract": "Parent-order execution is a core problem in algorithmic trading, where the goal is to split a large order into smaller orders while reducing execution costs. Existing approaches either rely on pre-specified market assumptions that may not hold."
+    },
+    {
+      "title": "INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models",
+      "upvotes": 11,
+      "paper_id": "2607.26056",
+      "abstract": "Forward latent world models predict how actions change a scene, but recover actions for a desired change only through expensive test-time search. We introduce INTACT (INtent-To-ACTion), an end-to-end JEPA that turns action-labeled trajectories."
+    },
+    {
+      "title": "Multi-Head Attention Residuals",
+      "upvotes": 8,
+      "paper_id": "2607.27230",
+      "abstract": "Transformers propagate information across depth through a single additive residual stream: every sublayer reads only the most recent state. Attention residuals relax this by letting each sublayer attend, through a learned softmax."
+    },
+    {
+      "title": "Σ-Mem: An Online Reliability Memory for LLM-based Multi-Agent Systems",
+      "upvotes": 7,
+      "paper_id": "2607.27958",
+      "abstract": "Memory is central to long-horizon LLM agents, yet existing memory systems primarily preserve interaction content rather than modeling which agents can be trusted and under what conditions."
+    },
+    {
+      "title": "Filesystem-Based Memory for LLM Agents: Organization, Evolution, and Sustainability",
+      "upvotes": 6,
+      "paper_id": "2607.26637",
+      "abstract": "Deployed LLM agents increasingly keep their long-term memory as a filesystem: a directory tree of markdown files that the agent itself reads, writes, and reorganizes through generic file tools."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.219",
+      "published_at": "2025-07-24",
+      "body": "Added Claude Opus 5 (claude-opus-5), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok. Added sandbox.network.strictAllowlist setting to deny non-allowlisted hosts for sandboxed commands without prompting. Added DirectoryAdded hook that fires after /add-dir or the SDK register_repo_root control request registers a new working directory mid-session. Added mcp_server_errors to the headless stream-json init event, listing --mcp-config entries skipped by config validation; terminal runs print a startup warning."
+    },
+    {
+      "tag_name": "v2.1.218",
+      "published_at": "2025-07-22",
+      "body": "Changed /code-review to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target. Added screen-reader announcements of deleted text for word and line deletions in --ax-screen-reader mode. Fixed Windows paths with \\u-prefixed segments being corrupted into CJK characters in tool inputs."
+    }
+  ]
+}
