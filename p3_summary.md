@@ -1,6 +1,6 @@
-**3. To Add Is Machine, To Delete Is Human: Measuring and Mitigating Deletion Avoidance in LLM Code Editing**
-**著者**: Deletion Avoidance Study Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.28887
+**3. ContinualSkillBench: Can LLM Agents Truly Evolve Their Capabilities?**
+**著者**: ContinualSkillBench Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.03874
 
 **まとめ**:
-LLMが生成するコードパッチにおける「削除回避 (deletion avoidance)」を初めて定量化した研究。SWE-bench Verifiedで解決済みとされたパッチでも開発者の削除の28〜35%が残存し、テスト合格が削除の正確性を保証しないことを示す。削除感応テストを追加すると合格率が63.2%→41.9%に急落。CanItDeleteベンチマークを新設し、後訓練で削除例を0.7%追加するだけでCanItDelete成功が倍増、SWE-bench全体も5.3pp改善することを実証。
+LLMエージェントが継続的な経験からスキルを蓄積・再利用できるかを問う動的評価フレームワーク。法律・医療・金融など5ドメイン計500タスクで評価した結果、逐次実行が平均16.9%の性能改善をもたらすが、その多くはスキル抽象化ではなく文脈適応によるものと判明。真の「スキル進化」にはまだ課題が残ることを定量的に示した。

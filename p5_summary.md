@@ -1,6 +1,6 @@
-**5. DeepVoyager-VL: Incentivizing Vision-in-the-Loop Search for Long-Horizon Multimodal Agents**
-**著者**: DeepVoyager-VL Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2608.01827
+**5. Decoding Children's Gait Behavior**
+**著者**: CGV Dataset Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.00371
 
 **まとめ**:
-マルチモーダルエージェントの長期推論において、検索途中で発見した画像が後続クエリを駆動する「Vision-in-the-Loop」パラダイムを提案。Wikipediaとニュースから構築したマルチモーダルイベントグラフで合成問題を生成し、7種の専用ツールと能動的画像獲得機構を備えたエージェントを教師あり微調整(強化学習なし)で訓練。10ベンチマークで8Bモデルが55%、30B-A3Bが44%の相対改善を達成し、既存マルチモーダル深層検索エージェントを凌駕した。
+110名の小児患者から1,185本の高フレームレート動画を収集したCGV（Children Gait Video）データセットを構築し、臨床的に意味のある小児歩行分析ベンチマークを提案。最新のマルチモーダルLLM（Gemini 3 Pro・GPT-5.2等）は50〜60%の精度に留まるが、提案するChildGait-Video（骨格キーポイント誘導＋背景除去）は70〜93%を達成。AI小児医療の民主化に向けた重要な基盤研究。
