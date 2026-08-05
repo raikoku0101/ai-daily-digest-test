@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-06",
+  "content": "# AI Daily Digest — 2026-08-06\n\n## 今日のハイライト\n- **動画AIエージェントの新時代**: Video-DeepResearch（45 upvotes）が動画ストリームへの深い理解と調査能力を持つマルチモーダルエージェントを提案。静止画超えの64%精度を達成し、動画コンテンツのAI活用に新展開。\n- **Claude Code v2.1.222セキュリティ強化**: worktree分離の抜け穴とPreToolUseフックのバイパス脆弱性を修正。worktreeを使用しているユーザーには即時アップデートを推奨。\n- **MoE×拡散LMのスケーリング**: LLaDA MoE v2（24 upvotes）が30B規模でQwen3に匹敵する性能を達成。ARモデル以外の選択肢として拡散LMの実用化が現実味を帯びてきた。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.222（2025-08-04）\n\n**主要機能・バグ修正**:\n- **worktreeセキュリティ修正**: worktree分離セッションとそのサブエージェントがメインチェックアウトに対して破壊的なgitコマンドを実行できた問題を修正。すべてのセッションタイプでファイル編集とBashに分離が適用されるようになった。\n- **フックセキュリティ修正**: バックグラウンドエージェントタスク（サマリー・コンパクション・リネーム）でPreToolUse自動許可フックがツール制限をバイパスできた問題を修正。\n- **使用クレジット修正**: TeamおよびEnterpriseの`/usage-credits`で、以前のリクエストが却下されたメンバーが「すでに送信済み」と表示され新規送信できなかった問題を修正。\n- **プロキシ接続修正**: HTTPSプロキシ環境下で起動時の接続チェックがハングしていた問題を修正。プロキシ対応トランスポートを使用し明確なエラーメッセージでタイムアウトするよう改善。\n\n**ユーザーへの影響**: セキュリティ強化が中心。worktree分離を使用している場合は特に重要なアップデート。プロキシ環境でのClaudeCode起動安定性も向上。\n\n---\n\n### v2.1.221（2025-08-04）\n\n**主要機能**:\n- **[VSCode] Focus Viewの追加**: ツールアクティビティを折りたたみ可能なサマリーの背後に隠し、実行中ツールのライブインジケーターを表示するチャットメニュートグル。`Ctrl+Alt+F`または「Claude Code: Toggle Focus view」コマンドで切り替え可能。\n- **サンドボックス認証情報マスキング**: LinuxおよびWSLのサンドボックス認証情報ファイルに`mode: \"mask\"`を追加。サンドボックスコマンドはセンチネルコピーを読み取り、サンドボックスプロキシがエグレス時に実際の値に置換。macOSでは`deny`にフォールバック。\n- **プラグイン検証強化**: `claude plugin validate`で、マーケットプレースやプラグイン名がClaudeDesktopのマネージドマーケットプレース同期で拒否される場合に警告を追加。\n\n**ユーザーへの影響**: VSCodeユーザーはFocus Viewで煩雑なツール表示をすっきりさせることが可能。セキュアなサンドボックス環境の構築が容易になった。\n\n---\n\n### v2.1.220（2025-07-25）\n\nバグ修正と安定性の向上のみのリリース。\n\n## 注目論文 TOP 10\n\n**1. Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent** | ⬆️ 45 | https://arxiv.org/abs/2608.03979\n🎯 **背景**: 既存のマルチモーダルエージェントは静止画像処理に特化しており、動画の時空間的な連続性を活かした深い理解・調査能力が欠けていた。\n🔧 **手法**: 動画ストリームへの密な時空間グラウンディングとオープンウェブ探索を組み合わせたマルチモーダルエージェントフレームワークを構築。動画を単なる入力ではなく調査対象として扱う。\n📊 **結果**: 動画理解ベンチマークで64.0%の精度を達成し、次世代マルチモーダルリサーチエージェントとしての有効性を実証。\n💡 **意義**: 動画コンテンツの自動深掘り調査が可能になり、映像メディアの分析・検索・理解タスクに革新をもたらす可能性。\n⚠️ **限界**: 高精度な時空間グラウンディングには計算コストが高く、リアルタイム処理への適用には課題が残る。\n\n---\n\n**2. LLaDA MoE v2: Scaling Mixture-of-Experts Diffusion Language Models** | ⬆️ 24 | https://arxiv.org/abs/2608.03457\n🎯 **背景**: 拡散言語モデル（Diffusion LM）は従来のARモデルとは異なるパラダイムだが、大規模化における挙動が未解明で、MoEとの組み合わせも探索段階だった。\n🔧 **手法**: MoE（Mixture-of-Experts）アーキテクチャと拡散言語モデルのスケーリング則を体系的に調査し、30B-A3B（アクティブパラメータ3B）モデルを訓練。\n📊 **結果**: 知識・推論・コーディングタスクでQwen3に匹敵する性能を達成。MoEが拡散LMのスケーリングを大幅に効率化することを実証。\n💡 **意義**: 拡散LMの実用規模への道筋を示し、ARモデル支配の言語モデル界に新たな選択肢を提供。\n⚠️ **限界**: 30Bパラメータ規模での評価に留まり、100B+規模でのスケーリング特性は未検証。\n\n---\n\n**3. ContinualSkillBench: Can LLM Agents Truly Evolve Their Capabilities?** | ⬆️ 11 | https://arxiv.org/abs/2608.03874\n🎯 **背景**: LLMエージェントが経験から学習してスキルを向上できるかという根本的な問いに対し、動的かつ公正な評価フレームワークが存在しなかった。\n🔧 **手法**: 5つのドメインにわたるコンテキスト内継続的スキル学習を評価する動的評価フレームワークを構築。エージェントが経験を転移可能なスキルに統合できるかを測定。\n📊 **結果**: 現状のLLMエージェントの多くがスキルの継続的進化に苦戦していることを定量的に示し、各ドメインでの詳細な能力マップを提供。\n💡 **意義**: エージェントAIの「真の学習能力」を評価する標準ベンチマークとなり得る研究で、今後の改善指針を提供。\n⚠️ **限界**: インコンテキスト学習に限定した評価のため、ファインチューニングによる能力向上は対象外。\n\n---\n\n**4. Are the Financial Reasoning from LLMs Credible? A Real World Test over Long-Horizon Statements** | ⬆️ 9 | https://arxiv.org/abs/2607.28661\n🎯 **背景**: LLMを金融分析に活用する動きが加速しているが、切り取られていない実際の財務諸表（最大32Kトークン）に対する推論の信頼性は未検証だった。\n🔧 **手法**: 実際の長期財務諸表（切り抜きなし）を使ったリアルワールドテストを設計。知識ボトルネックと構造的ボトルネックという2種類の脆弱性を分析。\n📊 **結果**: LLMの財務推論には「知識ボトルネック」（財務知識の欠如）と「構造ボトルネック」（長文構造の解析困難）という2つの根本的弱点があることを実証。\n💡 **意義**: 金融AIの信頼性問題に警鐘を鳴らし、実用展開前に乗り越えるべき課題を明確化した実践的研究。\n⚠️ **限界**: 特定の財務諸表形式に限定されており、異なる会計基準や言語への汎化性は未評価。\n\n---\n\n**5. Decoding Children's Gait Behavior** | ⬆️ 9 | https://arxiv.org/abs/2608.00371\n🎯 **背景**: 小児の歩行異常は早期診断が重要だが、3〜17歳の小児歩行を高精度で分析できる大規模データセットと手法が存在しなかった。\n🔧 **手法**: 1,100件以上の高フレームレート動画シーケンスからなる小児歩行データセットを構築し、細粒度の歩行行動分析フレームワークを開発。\n📊 **結果**: 年齢3〜17歳の幅広い小児歩行パターンを高精度で分類・分析でき、臨床診断支援への適用可能性を実証。\n💡 **意義**: 医療AIの小児応用における希少なデータセット公開で、歩行障害の早期発見・診断支援システムの開発を加速。\n⚠️ **限界**: データ収集環境が統制された実験室設定に限られており、実臨床環境での性能は要検証。\n\n---\n\n**6. MiniWorld: Democratizing the Training of Video World Models from Scratch** | ⬆️ 9 | https://arxiv.org/abs/2608.01127\n🎯 **背景**: 動画ワールドモデルの訓練は膨大な計算資源を要し、大手研究機関以外では実施困難だったため、再現可能な研究基盤が欠如していた。\n🔧 **手法**: ブロック因果Video Diffusion Transformerを用いたストリーミング動画ワールドモデルをゼロから訓練できる再現可能フレームワーク。単一の8-GPUサーバーで数日以内に完結。\n📊 **結果**: 8GPU環境で数日内に動画ワールドモデルを完全訓練でき、大規模機関との性能差を大幅に縮小することを実証。\n💡 **意義**: 動画ワールドモデル研究の民主化を実現し、中規模研究機関や個人研究者でも最先端の動画生成モデルを開発できる環境を提供。\n⚠️ **限界**: 8GPUという敷居はまだ個人ユーザーには高く、完全な民主化には至っていない側面がある。\n\n---\n\n**7. When Agents Learn to Be You: Benchmarking Privacy Leakage, Impersonation Risk, and Defenses in Persona Skills** | ⬆️ 8 | https://arxiv.org/abs/2608.03700\n🎯 **背景**: AIペルソナスキル（特定人物を模倣するAI）が普及する中、プライバシー漏洩と成り済ましリスクの定量評価手法が存在しなかった。\n🔧 **手法**: 50プロファイルから7,500の対話トレースを生成し、ペルソナスキルパイプラインにおけるプライバシー漏洩・行動的成り済ましリスクを測定するエンドツーエンドのベンチマークを構築。\n📊 **結果**: 現状のペルソナAIシステムには深刻なプライバシーリスクが存在することを定量化し、各防御手法の効果を比較評価。\n💡 **意義**: AI成り済ましのリスクを社会に警告する重要研究で、規制や防御技術の設計指針となる。\n⚠️ **限界**: テストしたペルソナが50プロファイルに限られており、より多様な人物・文化的背景への汎化性は要確認。\n\n---\n\n**8. Push-Wiper: Toward General-Purpose Robotic Cleaning across Varied Stains and Surfaces with Segmented Pushing Trajectories** | ⬆️ 6 | https://arxiv.org/abs/2608.00730\n🎯 **背景**: 汚れの種類や表面材質が異なる環境での汎用的なロボット清掃は、軌道設計の複雑さから実現が困難だった。\n🔧 **手法**: セグメント化プッシュ軌道とDiffusion Policyを組み合わせ、多様な汚れ・表面に適応可能な清掃フレームワークを開発。\n📊 **結果**: 清掃スコアが最大130%向上し、ゼロショット汎化（未訓練の汚れ・表面への適用）を実証。\n💡 **意義**: 家庭・産業ロボットの清掃能力を大幅に向上させる実用的研究で、汎用ロボット清掃の実現に向けた重要な一歩。\n⚠️ **限界**: 実験環境が限定的で、屋外や極端に不規則な表面での性能は未評価。\n\n---\n\n**9. RestoreKV: Recovering Full-Cache Behavior Under Aggressive Query-Agnostic KV Cache Eviction** | ⬆️ 5 | https://arxiv.org/abs/2608.01247\n🎯 **背景**: LLMの長文処理コスト削減のためKVキャッシュ削減（エビクション）が活用されているが、攻撃的な削減は性能劣化を引き起こす。\n🔧 **手法**: KVキャッシュのエビクション選択を補完するパラメータ効率の高い復元アプローチを開発。学習された復元モジュールで削減による性能劣化を回復。\n📊 **結果**: 4つのバックボーンモデルで圧縮による性能劣化を大幅に改善し、フルキャッシュに近い動作を低コストで実現。\n💡 **意義**: LLMの長文推論の効率化に貢献し、コスト削減と性能維持の両立という実用上の重要課題を解決。\n⚠️ **限界**: クエリ非依存のエビクション戦略に特化しており、クエリ依存エビクションとの組み合わせ効果は未検証。\n\n---\n\n**10. PosterMELD: Multi-Agent Paper-to-Poster Generation for Controllable Design Diversity with Editable Print-Ready Outputs** | ⬆️ 5 | https://arxiv.org/abs/2608.02218\n🎯 **背景**: 学術論文からの自動ポスター生成は研究発表の効率化に有望だが、デザインの多様性と印刷品質の両立が困難だった。\n🔧 **手法**: テンプレート条件付きマルチエージェントパイプラインを用い、論文からデザイン多様性を制御しながら編集可能なポスターを生成。\n📊 **結果**: 1リクエストあたり平均$0.38のコストで81.3%の印刷対応率を達成し、ネイティブ編集可能なポスター出力を実現。\n💡 **意義**: 研究者のポスター作成作業を大幅に自動化し、低コストで高品質なポスター生成を可能にする実用的ツール。\n⚠️ **限界**: テンプレートへの依存度が高く、完全に独自デザインのポスター生成には制限がある。\n\n",
+  "fetched_at": "2026-08-05T22:09:14.879653+00:00",
+  "papers": [
+    {
+      "title": "Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent",
+      "upvotes": 45,
+      "paper_id": "2608.03979",
+      "abstract": "Extends multimodal agents from static images to continuous video streams with dense spatiotemporal grounding and open-web exploration, achieving 64.0% accuracy."
+    },
+    {
+      "title": "LLaDA MoE v2: Scaling Mixture-of-Experts Diffusion Language Models",
+      "upvotes": 24,
+      "paper_id": "2608.03457",
+      "abstract": "Characterizes scaling behavior of Mixture-of-Experts diffusion language models and trains a 30B-A3B model approaching Qwen3 performance on knowledge, reasoning, and coding."
+    },
+    {
+      "title": "ContinualSkillBench: Can LLM Agents Truly Evolve Their Capabilities?",
+      "upvotes": 11,
+      "paper_id": "2608.03874",
+      "abstract": "Dynamic evaluation framework for in-context continual skill learning across five domains, examining whether LLM agents effectively consolidate experience into transferable skills."
+    },
+    {
+      "title": "Are the Financial Reasoning from LLMs Credible? A Real World Test over Long-Horizon Statements",
+      "upvotes": 9,
+      "paper_id": "2607.28661",
+      "abstract": "Evaluates LLM financial reasoning over uncropped financial statements up to 32K tokens, revealing knowledge bottleneck and structural bottleneck vulnerabilities in reasoning."
+    },
+    {
+      "title": "Decoding Children's Gait Behavior",
+      "upvotes": 9,
+      "paper_id": "2608.00371",
+      "abstract": "New dataset of 1,100+ high-frame-rate video sequences for fine-grained analysis of pediatric gait behaviors aged 3-17 years for clinical diagnosis applications."
+    },
+    {
+      "title": "MiniWorld: Democratizing the Training of Video World Models from Scratch",
+      "upvotes": 9,
+      "paper_id": "2608.01127",
+      "abstract": "Reproducible framework for training streaming video world models from scratch using block-causal Video Diffusion Transformer within days on single 8-GPU server."
+    },
+    {
+      "title": "When Agents Learn to Be You: Benchmarking Privacy Leakage, Impersonation Risk, and Defenses in Persona Skills",
+      "upvotes": 8,
+      "paper_id": "2608.03700",
+      "abstract": "End-to-end benchmark measuring privacy leakage and behavioral impersonation risks in persona-skill pipelines with 7,500 dialogue traces from 50 profiles."
+    },
+    {
+      "title": "Push-Wiper: Toward General-Purpose Robotic Cleaning across Varied Stains and Surfaces with Segmented Pushing Trajectories",
+      "upvotes": 6,
+      "paper_id": "2608.00730",
+      "abstract": "Robotic cleaning framework using segmented pushing trajectories with Diffusion Policy achieving up to 130% higher cleaning scores with zero-shot generalization."
+    },
+    {
+      "title": "RestoreKV: Recovering Full-Cache Behavior Under Aggressive Query-Agnostic KV Cache Eviction",
+      "upvotes": 5,
+      "paper_id": "2608.01247",
+      "abstract": "Parameter-efficient approach complementing KV cache eviction selection with learned restoration, improving compression-induced degradation across four backbones."
+    },
+    {
+      "title": "PosterMELD: Multi-Agent Paper-to-Poster Generation for Controllable Design Diversity with Editable Print-Ready Outputs",
+      "upvotes": 5,
+      "paper_id": "2608.02218",
+      "abstract": "Template-conditioned multi-agent pipeline converting papers to editable posters achieving 81.3% print-ready rate with native editability at mean cost of $0.38 per request."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.222",
+      "published_at": "2025-08-04",
+      "body": "Fixed worktree-isolated sessions and their subagents being able to run destructive git commands against the main checkout; isolation now applies to file edits and Bash in every session type. Fixed PreToolUse auto-allow hooks bypassing tool restrictions in background agent tasks (summaries, compaction, renames). Fixed /usage-credits on Team and Enterprise showing already sent a usage credit request for members whose earlier request was dismissed. Fixed the startup connectivity check hanging and then failing behind an HTTPS proxy."
+    },
+    {
+      "tag_name": "v2.1.221",
+      "published_at": "2025-08-04",
+      "body": "[VSCode] Added Focus view: a chat-menu toggle that hides tool activity behind an expandable per-turn summary with a live running-tool indicator, toggled with Ctrl+Alt+F. Added mode: mask for sandbox credential files on Linux and WSL. Added warnings to claude plugin validate when a marketplace or plugin name would be rejected by Claude Desktop managed marketplace sync."
+    },
+    {
+      "tag_name": "v2.1.220",
+      "published_at": "2025-07-25",
+      "body": "Bug fixes and reliability improvements"
+    }
+  ]
+}
