@@ -1,6 +1,6 @@
-**4. Are the Financial Reasoning from LLMs Credible? A Real World Test over Long-Horizon Statements**
-**著者**: FinIndices Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.28661
+**4. AVE-Compass: Towards Holistic Evaluation for Audio-Video Editing Abilities**
+**著者**: AVE-Compass チーム et al. (2025)
+**arXiv**: https://arxiv.org/abs/2607.24821
 
 **まとめ**:
-LLMが金融推論において「真の構造的推論」を行っているのか「パターンマッチング」に依存しているのかを、32Kトークン規模の非圧縮財務諸表で検証。2つの重大な脆弱性（知識ボトルネック・構造ボトルネック）を発見し、公式ヒント除去でGemini-3.1-Proが70%→38%に急落。SFT（教師あり微調整）で一部改善可能だが、金融AIの実用展開には慎重な対応が必要と警告。
+音声と映像が密に結合した実映像の編集評価に特化した包括的ベンチマーク「AVE-Compass」を提案。145本のソース映像・196の音声-映像連携編集指示・2,688の細粒度チェックリスト項目を収録し、既存モデルが「交差モーダル指示の実行と非対象コンテンツ保持のバランス」に著しく苦戦していることを明らかにした。提案の AVE-Agent（計画・実行・評価の3エージェント構成）は既存システムを上回る性能を達成。

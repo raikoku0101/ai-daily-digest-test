@@ -1,6 +1,6 @@
-**3. ContinualSkillBench: Can LLM Agents Truly Evolve Their Capabilities?**
-**著者**: ContinualSkillBench Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2608.03874
+**3. Ego2Robot: Scalable Robot Data Synthesis from Egocentric Human Data**
+**著者**: Ego2Robot チーム et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.02580
 
 **まとめ**:
-LLMエージェントが継続的な経験からスキルを蓄積・再利用できるかを問う動的評価フレームワーク。法律・医療・金融など5ドメイン計500タスクで評価した結果、逐次実行が平均16.9%の性能改善をもたらすが、その多くはスキル抽象化ではなく文脈適応によるものと判明。真の「スキル進化」にはまだ課題が残ることを定量的に示した。
+エゴセントリック（一人称視点）の人間操作映像から、15種類のロボット形態に対応したロボット訓練データを自動生成するパイプライン「Ego2Robot」を提案。アクション調整・視覚調整・品質キュレーションの3段階で18,561時間分のロボット学習データを生成し、VLA モデルの事前学習を強化。RoboTwin2.0での評価では視覚変動（+8）・具身化転移・タスク意味論において既存手法を上回り、実機実験でもブロック配置タスクで+14の成功率向上を達成。
