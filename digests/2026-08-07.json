@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-07",
+  "content": "# AI Daily Digest — 2026-08-07\n\n## 今日のハイライト\n- **[重要] Claude Code v2.1.223 セキュリティ修正**: Bash の権限バイパス脆弱性（crafted コマンドで権限チェックを回避できる問題）が修正された。直ちにアップデートを推奨。マーケットプレイスの org 単位ワイルドカード設定も追加。\n- **ABSeeker (⬆️53): 長距離検索エージェント訓練の革新**: 失敗トラジェクトリ内の有用な行動にも報酬を与える細粒度クレジット配分フレームワーク (ABC) を提案。SFT・RL の両フェーズに適用可能で、スパース報酬問題を根本解決。\n- **Ego2Robot (⬆️17): 人間の一人称映像からロボットデータを大規模合成**: コスト高なロボットデモデータ収集を代替する手法。アクションリターゲティング＋ロボットアーム視覚合成のパイプラインで VLA 事前学習を強化し、汎化性能が向上。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.223 (2025-08-06) — 最新リリース\n\n**主要機能**:\n- **マーケットプレイスのワイルドカード対応**: `strictKnownMarketplaces` / `blockedMarketplaces` 設定に `\"owner/*\"` 形式のエントリを追加可能になり、GitHub org 配下のリポジトリを一括で許可/ブロックできるようになった。\n- **サブエージェントモデル制限の警告**: ワークフローエージェント、フォーク済みスキル、スラッシュコマンド、再開されたバックグラウンドエージェントが要求するモデルが制限されている場合、親モデルが代わりに実行される旨の警告を表示するようになった。\n- **クラウドセッションでの `/teleport` ヒント表示**: `claude --teleport <session id>` でローカル環境に移行する方法をクラウドセッション内でヒント表示するようになった。\n\n**バグ修正**:\n- **Bash 権限バイパスの脆弱性修正**: 細工されたコマンドで権限チェックの一部を隠せるバグを修正。セキュリティ上の重要な修正。\n\n**ユーザーへの影響**: セキュリティ修正を含むため、早めのアップデートを推奨。org 全体のマーケットプレイス管理が簡素化される。\n\n---\n\n### v2.1.222 (2025-08-04)\n\n**主要機能・バグ修正**:\n- **ワークツリー分離の強化**: worktree 分離セッションおよびサブエージェントが、メインチェックアウトに対して破壊的な git コマンドを実行できていた問題を修正。ファイル編集と Bash のすべてのセッションタイプで分離が適用されるようになった。\n- **フック制限バイパスの修正**: `PreToolUse` の自動許可フックが、バックグラウンドエージェントタスク（サマリー、コンパクション、リネーム）でツール制限をバイパスしていた問題を修正。\n- **使用クレジット画面の修正**: Team/Enterprise で `/usage-credits` が「既にリクエスト済み」と誤表示されていた問題を修正。\n- **HTTPS プロキシ環境での起動問題修正**: 接続確認がハングしてから失敗する問題を修正。\n\n---\n\n### v2.1.221 (2025-08-04)\n\n**主要機能**:\n- **[VSCode] フォーカスビュー追加**: ツールの活動を折りたたみ可能なサマリーの後ろに隠せるチャットメニュートグル。実行中ツールのライブインジケーター付き。`Ctrl+Alt+F` または「Claude Code: Toggle Focus view」コマンドで切り替え可能。\n- **サンドボックス資格情報ファイルのマスク対応**: Linux/WSL で `mode: \"mask\"` を追加。サンドボックスコマンドはセンチネルコピーを読み込み、サンドボックスプロキシがエグレス時に実際の値に置換する。macOS ではファイルマスキングが `deny` にフォールバック。\n- **プラグイン検証の警告強化**: `claude plugin validate` でマーケットプレイスやプラグイン名が Claude Desktop の管理マーケットプレイス同期に弾かれる場合の警告を追加。\n\n## 注目論文 TOP 10\n\n**1. ABSeeker: Training Long-Horizon Search Agents via Answer-Backtracked Credit Assignment** | ⬆️ 53 upvotes | https://arxiv.org/abs/2608.05102\n\n🎯**背景**: 長距離検索エージェントは複数のステップ（検索・取得・検証・統合）を経て最終回答に到達するが、既存の訓練手法はトラジェクトリ内の全ステップを均等に扱い、有用な行動と誤った/冗長な行動を区別できていなかった。\n\n🔧**手法**: Answer-Backtracked Credit Assignment (ABC) を提案。スパースなトラジェクトリレベルの結果を、ステップレベルの密な監督信号に変換する細粒度クレジット配分フレームワーク。失敗したトラジェクトリ内の有用な行動にも報酬を与え、誤った/冗長な行動を抑制する。\n\n📊**結果**: 長距離検索タスクにおいて既存ベースラインを大幅に上回る性能を達成。失敗トラジェクトリからも学習信号を回収することで、データ効率が向上。\n\n💡**意義**: LLM エージェントの長距離推論・検索能力の向上に直結する汎用的なフレームワーク。SFT と RL の両フェーズで適用可能。\n\n⚠️**限界**: ステップレベルのクレジット計算コストが増加する可能性。クレジット配分の精度がバックトラッキングアルゴリズムの品質に依存。\n\n---\n\n**2. GDPevo: Evaluating Agent Self-Evolution on Real Business Tasks** | ⬆️ 21 upvotes | https://arxiv.org/abs/2608.03764\n\n🎯**背景**: エージェントの自己進化（過去の経験から永続的な状態を更新し、関連タスクに再活用する能力）の評価は困難で、既存ベンチマークは経済的に価値あるタスク領域のカバレッジが限られており、データ汚染にも脆弱だった。\n\n🔧**手法**: GDP 関連のエンタープライズワークフローに根ざした進化ネイティブベンチマーク「GDPevo」を提案。訓練経験にテスト時の成果を帰属できるよう設計された完全自動化データパイプラインを持つ。\n\n📊**結果**: 実際のビジネスタスクにおけるエージェント自己進化の体系的な評価を初めて可能にし、既存手法の限界を明らかにした。\n\n💡**意義**: ビジネス実務に直結したエージェント評価基盤を提供。自己進化エージェントの実用化研究を加速する。\n\n⚠️**限界**: 特定の GDP 関連ワークフローへのフォーカスにより、他の業種への汎化には追加検証が必要。\n\n---\n\n**3. Ego2Robot: Scalable Robot Data Synthesis from Egocentric Human Data** | ⬆️ 17 upvotes | https://arxiv.org/abs/2608.02580\n\n🎯**背景**: 汎化可能なロボット操作ポリシーの学習には大規模かつ多様なデモデータが必要だが、ロボットデータの収集コストは高い。エゴセントリック（一人称視点）の人間映像はシーンとタスクの多様性に富んでいる。\n\n🔧**手法**: エゴセントリック人間操作映像をロボット訓練データに変換するスケーラブルなパイプライン「Ego2Robot」を提案。アクションのリターゲティング、ロボットアームの視覚合成、マルチレベル品質キュレーションの3段階で構成。\n\n📊**結果**: Vision-Language-Action モデルの事前学習に egocentric 映像が有効であることをスケールで実証。既存手法を上回る汎化性能を達成。\n\n💡**意義**: 低コストで大量のロボット訓練データを生成可能にする手法。実世界へのロボット展開を加速する可能性がある。\n\n⚠️**限界**: 人間とロボットの動作ドメインギャップ（手の形状・自由度の違い）が残存。リターゲティングの精度が下流タスクに影響。\n\n---\n\n**4. AVE-Compass: Towards Holistic Evaluation for Audio-Video Editing Abilities** | ⬆️ 15 upvotes | https://arxiv.org/abs/2607.24821\n\n🎯**背景**: 指示ベースの動画編集が急速に発展する一方、実際の映像では音声と映像が密接に結合しており、一方のモダリティを編集すると他方にも変化が必要になるケースが多い。既存ベンチマークはこの音声・映像の協調編集を評価できていなかった。\n\n🔧**手法**: 145本のキュレーション済みソース動画、196のオーディオ・ビジュアル連携編集指示、2,688の細粒度チェックリスト項目から成る包括的ベンチマーク「AVE-Compass」を提案。\n\n📊**結果**: 複数のモデルをベンチマークし、現状のモデルが音声・映像協調編集において著しく苦手としている領域を特定した。\n\n💡**意義**: マルチモーダル動画生成・編集モデルの評価に必須のベンチマーク。モデル改善の指針を提供する。\n\n⚠️**限界**: 145本の動画サンプルはまだ限定的。クロスモーダル一貫性の評価基準の策定が困難。\n\n---\n\n**5. K-EXAONE 2.0 Technical Report** | ⬆️ 12 upvotes | https://arxiv.org/abs/2608.04505\n\n🎯**背景**: LG AI Research が主にグローバルフロンティアスケールの基盤モデルを目指す取り組みの一環として、多言語対応の大規模言語モデルの開発を進めている。\n\n🔧**手法**: ゼロからの訓練ではなく、既存の K-EXAONE をアップサイクルしてアーキテクチャを拡張。750B 総パラメータ（トークンあたり約37B がアクティブ）の Mixture-of-Experts (MoE) モデルを実現。前モデルの3倍以上のキャパシティを持つ。\n\n📊**結果**: 前モデル比で大幅な性能向上を達成。多言語能力と専門タスクにおける競争力を実証。\n\n💡**意義**: オープンウェイトの多言語 MoE モデルとして公開。研究コミュニティや非英語圏ユーザーへの貢献が大きい。\n\n⚠️**限界**: 750B パラメータのデプロイには高性能インフラが必須。MoE モデル特有のエキスパート負荷分散の課題が残る。\n\n---\n\n**6. Distill Where You Fail: Recovering Learning Signals of Negative RL-Groups from Adaptive Teacher Guidance** | ⬆️ 12 upvotes | https://arxiv.org/abs/2608.00782\n\n🎯**背景**: 検証可能報酬による強化学習（RLVR）は LLM のポストトレーニングの標準手法となっているが、GRPO はグループ内全応答が同一報酬を受けた際に勾配が消失するスパース報酬問題に悩まされていた。\n\n🔧**手法**: 失敗時のみ蒸留を適用する「Distill Where You Fail（RSTG）」を提案。否定的な RL グループ（全応答が失敗したケース）に対して教師モデルから適応的な指導を提供。サンプルレベルとトークンレベルの両方で選択的蒸留を実施。\n\n📊**結果**: RL のみや単純な RL+蒸留の組み合わせよりも大幅に優れた性能を達成。特に困難なタスクでの学習効率が向上。\n\n💡**意義**: RLVR のスパース報酬問題を蒸留で補完する実用的アプローチ。LLM の数学・推論タスクの訓練効率を改善する。\n\n⚠️**限界**: 適切な教師モデルの選定が重要で、弱い教師モデルでは効果が限定的。\n\n---\n\n**7. FocusMem: Factorizing Content, Readout, and Trust in Latent GUI Memory** | ⬆️ 10 upvotes | https://arxiv.org/abs/2608.04530\n\n🎯**背景**: GUI エージェントは過去タスクの有用な経験と現在インタラクションの未完了進捗の両方を記憶する必要がある。潜在メモリは軌跡を少数の連続トークンに圧縮するが、既存手法は各軌跡を1つの固定メモリブロックにマッピングし、次行動監督のみで訓練するため、重要な詳細の損失・読み出しの非効率・無関係軌跡による誤誘導の3つの問題があった。\n\n🔧**手法**: コンテンツ・読み出し・信頼性を分解するFocusMem を提案。役割認識コンテンツ基底と状態条件付き読み出しを持つコンパクトな潜在メモリインターフェース。信頼性スコアにより無関係な記憶の影響を抑制する。\n\n📊**結果**: 複数の GUI ベンチマークで既存の潜在メモリ手法を上回る性能を達成。特に長いインタラクション履歴を持つタスクで顕著な改善。\n\n💡**意義**: GUI エージェントのメモリ機構の設計指針を提供。実用的な長期タスク自動化エージェントの開発に貢献。\n\n⚠️**限界**: メモリの分解コンポーネントが増えることで訓練の複雑さが増加。\n\n---\n\n**8. WorldCycle: Self-Verifiable Reinforcement Learning for Long-Horizon Video World Models** | ⬆️ 8 upvotes | https://arxiv.org/abs/2608.04964\n\n🎯**背景**: インタラクティブなビデオ世界モデルは長期計画・探索に不可欠だが、誤差の累積（Compounding Errors）に悩まされている。任意のアクション系列に対してグラウンドトゥルースが存在しないため、長期ドリフトを検証できないという根本問題があった。\n\n🔧**手法**: 可逆アクションサイクルを使った自己検証可能な RL フレームワーク「WorldCycle」を提案。アクション系列とその逆系列を合成すると初期状態に戻るはずという解析的制約を、アノテーションなしの長距離正確性の教師信号として活用。\n\n📊**結果**: 長期ビデオ生成において誤差累積が大幅に減少。自己検証メカニズムにより、外部データ収集なしに継続的な品質向上が可能。\n\n💡**意義**: 世界モデルの訓練に必要な外部検証コストを大幅削減。ロボティクスやゲームAIへの応用可能性が高い。\n\n⚠️**限界**: 可逆アクションのサイクルが存在しない（または近似が困難な）環境では適用が制限される。\n\n---\n\n**9. Lossless Tensor Compression as Program Synthesis** | ⬆️ 8 upvotes | https://arxiv.org/abs/2608.02162\n\n🎯**背景**: モデルチェックポイントの数とサイズが増大し、アーカイブ・転送・デプロイのコストが課題になっている。汎用圧縮器はテンソル構造を無視し、既存テンソル専用圧縮器は固定パイプラインに依存していた。\n\n🔧**手法**: ロスレステンソル圧縮をプログラム合成問題として定式化した「Brevis」を提案。繰り返し領域や浮動小数点フィールドなどの繰り返しテンソル構造を可逆演算子のセットを通じてキャプチャする型付きドメイン固有言語（DSL）を設計。\n\n📊**結果**: 2.13 TB のチェックポイントデータを 1.41 TB に圧縮（33.93% のストレージ削減）。既存手法と比較して有意な圧縮率の向上を達成。\n\n💡**意義**: 大規模モデルの運用コスト（ストレージ・転送）を削減する実用的手法。モデル配布の民主化に貢献。\n\n⚠️**限界**: プログラム合成の探索空間が大きく、最適プログラムの発見に計算コストがかかる可能性がある。\n\n---\n\n**10. BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation** | ⬆️ 7 upvotes | https://arxiv.org/abs/2608.05042\n\n🎯**背景**: 事前学習済み VLM を使った VLA モデルは3Dロボット操作の有望なパラダイムだが、既存手法はデータ飢餓・分布シフトに対する汎化不足・過去観測の明示的記憶の欠如という3つの限界があった。\n\n🔧**手法**: 前作 BridgeVLA を拡張し、観測履歴を推論するための統合時空間メモリアーキテクチャを追加。データ効率と汎化のために事前学習済み VLM の入出力アライメントを維持しながら3Dアクション学習を行う。\n\n📊**結果**: データが乏しいオープンワールドかつ記憶依存のシナリオで既存 VLA 手法を上回る性能。メモリ拡張により長期依存タスクの成功率が向上。\n\n💡**意義**: 実世界のロボット操作に向けたデータ効率・汎化・記憶の三位一体を実現するフレームワーク。\n\n⚠️**限界**: 3Dアクション学習のための追加アーキテクチャが推論時のオーバーヘッドを増加させる可能性がある。\n\n",
+  "fetched_at": "2026-08-06T22:11:06.524734+00:00",
+  "papers": [
+    {
+      "title": "ABSeeker: Training Long-Horizon Search Agents via Answer-Backtracked Credit Assignment",
+      "upvotes": 53,
+      "paper_id": "2608.05102",
+      "abstract": "Long-horizon search agents must make multiple sequential actions (steps) to search, retrieve, verify, and integrate evidence to reach a final answer. However, existing methods for training these agents typically treat all steps within a trajectory uniformly during both supervised fine-tuning (SFT) and reinforcement learning (RL), failing to distinguish useful actions from erroneous or redundant ones. In this paper, we propose Answer-Backtracked Credit Assignment (ABC), a fine-grained credit assignment framework."
+    },
+    {
+      "title": "GDPevo: Evaluating Agent Self-Evolution on Real Business Tasks",
+      "upvotes": 21,
+      "paper_id": "2608.03764",
+      "abstract": "Agent self-evolution updates an agent's persistent state from prior experience and reuses it to solve related tasks more effectively. Evaluating self-evolution is difficult: existing benchmarks provide limited coverage of economically valuable task domains. We present GDPevo, an evolution-native benchmark grounded in GDP-related enterprise workflows, together with the fully automated data pipeline that generates it."
+    },
+    {
+      "title": "Ego2Robot: Scalable Robot Data Synthesis from Egocentric Human Data",
+      "upvotes": 17,
+      "paper_id": "2608.02580",
+      "abstract": "Learning generalizable robot manipulation policies requires large-scale and diverse demonstration data. Egocentric human manipulation videos offer rich scene and task diversity. We present Ego2Robot, a scalable pipeline that converts egocentric human manipulation videos into robot training data through action retargeting, robot-arm visual synthesis, and multi-level quality curation."
+    },
+    {
+      "title": "AVE-Compass: Towards Holistic Evaluation for Audio-Video Editing Abilities",
+      "upvotes": 15,
+      "paper_id": "2607.24821",
+      "abstract": "While instruction-based video editing has advanced rapidly, real-world videos contain tightly coupled audio and visual signals. We introduce AVE-Compass, a comprehensive benchmark with 145 curated source videos, 196 audio-visually coupled editing instructions, and 2,688 fine-grained checklist items."
+    },
+    {
+      "title": "K-EXAONE 2.0 Technical Report",
+      "upvotes": 12,
+      "paper_id": "2608.04505",
+      "abstract": "This technical report presents K-EXAONE 2.0, an open-weight multilingual foundation model developed by LG AI Research. We upcycle K-EXAONE and expand its architecture, yielding a Mixture-of-Experts (MoE) model with 750B total parameters and approximately 37B activated per token."
+    },
+    {
+      "title": "Distill Where You Fail: Recovering Learning Signals of Negative RL-Groups from Adaptive Teacher Guidance",
+      "upvotes": 12,
+      "paper_id": "2608.00782",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has become a standard paradigm for post-training large language models (LLMs). While Group Relative Policy Optimization (GRPO) is widely adopted, it suffers from sparse reward signals. On-policy distillation (OPD) offers a natural remedy by providing dense, token-level supervision from a teacher model."
+    },
+    {
+      "title": "FocusMem: Factorizing Content, Readout, and Trust in Latent GUI Memory",
+      "upvotes": 10,
+      "paper_id": "2608.04530",
+      "abstract": "GUI agents must remember both useful experience from earlier tasks and unfinished progress in the current interaction. Latent memory offers a compact solution by compressing multimodal trajectories into a few continuous tokens. FocusMem separates responsibilities within a compact latent-memory interface with role-aware content basis and state-conditioned readout."
+    },
+    {
+      "title": "WorldCycle: Self-Verifiable Reinforcement Learning for Long-Horizon Video World Models",
+      "upvotes": 8,
+      "paper_id": "2608.04964",
+      "abstract": "Interactive video world models are essential for long-horizon planning and exploration, yet they suffer from compounding errors. Our key insight is that reversible action cycles make verification possible: a sequence composed with its inverse must analytically return to the initial state, yielding annotation-free supervision on long-horizon correctness."
+    },
+    {
+      "title": "Lossless Tensor Compression as Program Synthesis",
+      "upvotes": 8,
+      "paper_id": "2608.02162",
+      "abstract": "Model checkpoints are growing in both number and size, which makes archival, transfer, and deployment increasingly costly. We present Brevis, which formulates lossless tensor compression as program synthesis. We design a typed domain-specific language (DSL) that captures recurring tensor structures, such as repeated regions and floating-point fields, through a set of reversible operators."
+    },
+    {
+      "title": "BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation",
+      "upvotes": 7,
+      "paper_id": "2608.05042",
+      "abstract": "Leveraging pre-trained vision-language models (VLMs) to construct vision-language-action (VLA) models has emerged as a promising paradigm for 3D robot manipulation. BridgeVLA++ equips the framework with a unified spatio-temporal memory architecture for reasoning over observation histories."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.223",
+      "published_at": "2025-08-06",
+      "body": "Added owner wildcard entries to strictKnownMarketplaces and blockedMarketplaces managed settings for allowing or blocking all marketplace repos under a GitHub org. Added a warning when workflow agents' requested subagent model is restricted and the parent model runs instead. Added a /teleport hint in cloud sessions. Fixed a Bash permission bypass where a crafted command could hide parts of itself from permission checks."
+    },
+    {
+      "tag_name": "v2.1.222",
+      "published_at": "2025-08-04",
+      "body": "Fixed worktree-isolated sessions and their subagents being able to run destructive git commands against the main checkout; isolation now applies to file edits and Bash in every session type. Fixed PreToolUse auto-allow hooks bypassing tool restrictions in background agent tasks. Fixed /usage-credits on Team and Enterprise. Fixed the startup connectivity check hanging behind an HTTPS proxy."
+    },
+    {
+      "tag_name": "v2.1.221",
+      "published_at": "2025-08-04",
+      "body": "[VSCode] Added Focus view: a chat-menu toggle that hides tool activity behind an expandable per-turn summary with a live running-tool indicator, toggled with Ctrl+Alt+F. Added mode: mask for sandbox credential files on Linux and WSL. Added warnings to claude plugin validate when a marketplace or plugin name would be rejected by Claude Desktop's managed marketplace sync."
+    }
+  ]
+}

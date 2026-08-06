@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "Video-DeepResearch: Towards the Next-Generation Multimodal Deepresearch Agent", "upvotes": 45, "paper_id": "2608.03979", "abstract": "Extends multimodal agents from static images to continuous video streams with dense spatiotemporal grounding and open-web exploration, achieving 64.0% accuracy."},
-    {"title": "LLaDA MoE v2: Scaling Mixture-of-Experts Diffusion Language Models", "upvotes": 24, "paper_id": "2608.03457", "abstract": "Characterizes scaling behavior of Mixture-of-Experts diffusion language models and trains a 30B-A3B model approaching Qwen3 performance on knowledge, reasoning, and coding."},
-    {"title": "ContinualSkillBench: Can LLM Agents Truly Evolve Their Capabilities?", "upvotes": 11, "paper_id": "2608.03874", "abstract": "Dynamic evaluation framework for in-context continual skill learning across five domains, examining whether LLM agents effectively consolidate experience into transferable skills."},
-    {"title": "Are the Financial Reasoning from LLMs Credible? A Real World Test over Long-Horizon Statements", "upvotes": 9, "paper_id": "2607.28661", "abstract": "Evaluates LLM financial reasoning over uncropped financial statements up to 32K tokens, revealing knowledge bottleneck and structural bottleneck vulnerabilities in reasoning."},
-    {"title": "Decoding Children's Gait Behavior", "upvotes": 9, "paper_id": "2608.00371", "abstract": "New dataset of 1,100+ high-frame-rate video sequences for fine-grained analysis of pediatric gait behaviors aged 3-17 years for clinical diagnosis applications."},
-    {"title": "MiniWorld: Democratizing the Training of Video World Models from Scratch", "upvotes": 9, "paper_id": "2608.01127", "abstract": "Reproducible framework for training streaming video world models from scratch using block-causal Video Diffusion Transformer within days on single 8-GPU server."},
-    {"title": "When Agents Learn to Be You: Benchmarking Privacy Leakage, Impersonation Risk, and Defenses in Persona Skills", "upvotes": 8, "paper_id": "2608.03700", "abstract": "End-to-end benchmark measuring privacy leakage and behavioral impersonation risks in persona-skill pipelines with 7,500 dialogue traces from 50 profiles."},
-    {"title": "Push-Wiper: Toward General-Purpose Robotic Cleaning across Varied Stains and Surfaces with Segmented Pushing Trajectories", "upvotes": 6, "paper_id": "2608.00730", "abstract": "Robotic cleaning framework using segmented pushing trajectories with Diffusion Policy achieving up to 130% higher cleaning scores with zero-shot generalization."},
-    {"title": "RestoreKV: Recovering Full-Cache Behavior Under Aggressive Query-Agnostic KV Cache Eviction", "upvotes": 5, "paper_id": "2608.01247", "abstract": "Parameter-efficient approach complementing KV cache eviction selection with learned restoration, improving compression-induced degradation across four backbones."},
-    {"title": "PosterMELD: Multi-Agent Paper-to-Poster Generation for Controllable Design Diversity with Editable Print-Ready Outputs", "upvotes": 5, "paper_id": "2608.02218", "abstract": "Template-conditioned multi-agent pipeline converting papers to editable posters achieving 81.3% print-ready rate with native editability at mean cost of $0.38 per request."}
+    {
+      "title": "ABSeeker: Training Long-Horizon Search Agents via Answer-Backtracked Credit Assignment",
+      "upvotes": 53,
+      "paper_id": "2608.05102",
+      "abstract": "Long-horizon search agents must make multiple sequential actions (steps) to search, retrieve, verify, and integrate evidence to reach a final answer. However, existing methods for training these agents typically treat all steps within a trajectory uniformly during both supervised fine-tuning (SFT) and reinforcement learning (RL), failing to distinguish useful actions from erroneous or redundant ones. In this paper, we propose Answer-Backtracked Credit Assignment (ABC), a fine-grained credit assignment framework."
+    },
+    {
+      "title": "GDPevo: Evaluating Agent Self-Evolution on Real Business Tasks",
+      "upvotes": 21,
+      "paper_id": "2608.03764",
+      "abstract": "Agent self-evolution updates an agent's persistent state from prior experience and reuses it to solve related tasks more effectively. Evaluating self-evolution is difficult: existing benchmarks provide limited coverage of economically valuable task domains. We present GDPevo, an evolution-native benchmark grounded in GDP-related enterprise workflows, together with the fully automated data pipeline that generates it."
+    },
+    {
+      "title": "Ego2Robot: Scalable Robot Data Synthesis from Egocentric Human Data",
+      "upvotes": 17,
+      "paper_id": "2608.02580",
+      "abstract": "Learning generalizable robot manipulation policies requires large-scale and diverse demonstration data. Egocentric human manipulation videos offer rich scene and task diversity. We present Ego2Robot, a scalable pipeline that converts egocentric human manipulation videos into robot training data through action retargeting, robot-arm visual synthesis, and multi-level quality curation."
+    },
+    {
+      "title": "AVE-Compass: Towards Holistic Evaluation for Audio-Video Editing Abilities",
+      "upvotes": 15,
+      "paper_id": "2607.24821",
+      "abstract": "While instruction-based video editing has advanced rapidly, real-world videos contain tightly coupled audio and visual signals. We introduce AVE-Compass, a comprehensive benchmark with 145 curated source videos, 196 audio-visually coupled editing instructions, and 2,688 fine-grained checklist items."
+    },
+    {
+      "title": "K-EXAONE 2.0 Technical Report",
+      "upvotes": 12,
+      "paper_id": "2608.04505",
+      "abstract": "This technical report presents K-EXAONE 2.0, an open-weight multilingual foundation model developed by LG AI Research. We upcycle K-EXAONE and expand its architecture, yielding a Mixture-of-Experts (MoE) model with 750B total parameters and approximately 37B activated per token."
+    },
+    {
+      "title": "Distill Where You Fail: Recovering Learning Signals of Negative RL-Groups from Adaptive Teacher Guidance",
+      "upvotes": 12,
+      "paper_id": "2608.00782",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has become a standard paradigm for post-training large language models (LLMs). While Group Relative Policy Optimization (GRPO) is widely adopted, it suffers from sparse reward signals. On-policy distillation (OPD) offers a natural remedy by providing dense, token-level supervision from a teacher model."
+    },
+    {
+      "title": "FocusMem: Factorizing Content, Readout, and Trust in Latent GUI Memory",
+      "upvotes": 10,
+      "paper_id": "2608.04530",
+      "abstract": "GUI agents must remember both useful experience from earlier tasks and unfinished progress in the current interaction. Latent memory offers a compact solution by compressing multimodal trajectories into a few continuous tokens. FocusMem separates responsibilities within a compact latent-memory interface with role-aware content basis and state-conditioned readout."
+    },
+    {
+      "title": "WorldCycle: Self-Verifiable Reinforcement Learning for Long-Horizon Video World Models",
+      "upvotes": 8,
+      "paper_id": "2608.04964",
+      "abstract": "Interactive video world models are essential for long-horizon planning and exploration, yet they suffer from compounding errors. Our key insight is that reversible action cycles make verification possible: a sequence composed with its inverse must analytically return to the initial state, yielding annotation-free supervision on long-horizon correctness."
+    },
+    {
+      "title": "Lossless Tensor Compression as Program Synthesis",
+      "upvotes": 8,
+      "paper_id": "2608.02162",
+      "abstract": "Model checkpoints are growing in both number and size, which makes archival, transfer, and deployment increasingly costly. We present Brevis, which formulates lossless tensor compression as program synthesis. We design a typed domain-specific language (DSL) that captures recurring tensor structures, such as repeated regions and floating-point fields, through a set of reversible operators."
+    },
+    {
+      "title": "BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation",
+      "upvotes": 7,
+      "paper_id": "2608.05042",
+      "abstract": "Leveraging pre-trained vision-language models (VLMs) to construct vision-language-action (VLA) models has emerged as a promising paradigm for 3D robot manipulation. BridgeVLA++ equips the framework with a unified spatio-temporal memory architecture for reasoning over observation histories."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.222", "published_at": "2025-08-04", "body": "Fixed worktree-isolated sessions and their subagents being able to run destructive git commands against the main checkout; isolation now applies to file edits and Bash in every session type. Fixed PreToolUse auto-allow hooks bypassing tool restrictions in background agent tasks (summaries, compaction, renames). Fixed /usage-credits on Team and Enterprise showing already sent a usage credit request for members whose earlier request was dismissed. Fixed the startup connectivity check hanging and then failing behind an HTTPS proxy."},
-    {"tag_name": "v2.1.221", "published_at": "2025-08-04", "body": "[VSCode] Added Focus view: a chat-menu toggle that hides tool activity behind an expandable per-turn summary with a live running-tool indicator, toggled with Ctrl+Alt+F. Added mode: mask for sandbox credential files on Linux and WSL. Added warnings to claude plugin validate when a marketplace or plugin name would be rejected by Claude Desktop managed marketplace sync."},
-    {"tag_name": "v2.1.220", "published_at": "2025-07-25", "body": "Bug fixes and reliability improvements"}
+    {
+      "tag_name": "v2.1.223",
+      "published_at": "2025-08-06",
+      "body": "Added owner wildcard entries to strictKnownMarketplaces and blockedMarketplaces managed settings for allowing or blocking all marketplace repos under a GitHub org. Added a warning when workflow agents' requested subagent model is restricted and the parent model runs instead. Added a /teleport hint in cloud sessions. Fixed a Bash permission bypass where a crafted command could hide parts of itself from permission checks."
+    },
+    {
+      "tag_name": "v2.1.222",
+      "published_at": "2025-08-04",
+      "body": "Fixed worktree-isolated sessions and their subagents being able to run destructive git commands against the main checkout; isolation now applies to file edits and Bash in every session type. Fixed PreToolUse auto-allow hooks bypassing tool restrictions in background agent tasks. Fixed /usage-credits on Team and Enterprise. Fixed the startup connectivity check hanging behind an HTTPS proxy."
+    },
+    {
+      "tag_name": "v2.1.221",
+      "published_at": "2025-08-04",
+      "body": "[VSCode] Added Focus view: a chat-menu toggle that hides tool activity behind an expandable per-turn summary with a live running-tool indicator, toggled with Ctrl+Alt+F. Added mode: mask for sandbox credential files on Linux and WSL. Added warnings to claude plugin validate when a marketplace or plugin name would be rejected by Claude Desktop's managed marketplace sync."
+    }
   ]
 }
