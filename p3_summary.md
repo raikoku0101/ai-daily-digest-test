@@ -1,6 +1,6 @@
-**3. Ego2Robot: Scalable Robot Data Synthesis from Egocentric Human Data**
-**著者**: Ego2Robot チーム et al. (2025)
-**arXiv**: https://arxiv.org/abs/2608.02580
+**3. From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models**
+**著者**: Economic World Models Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.06020
 
 **まとめ**:
-エゴセントリック（一人称視点）の人間操作映像から、15種類のロボット形態に対応したロボット訓練データを自動生成するパイプライン「Ego2Robot」を提案。アクション調整・視覚調整・品質キュレーションの3段階で18,561時間分のロボット学習データを生成し、VLA モデルの事前学習を強化。RoboTwin2.0での評価では視覚変動（+8）・具身化転移・タスク意味論において既存手法を上回り、実機実験でもブロック配置タスクで+14の成功率向上を達成。
+AIエージェントを活用した「経済世界モデル(EWM: Economic World Models)」の実装可能なシステム設計図を提示した。EWMは異質なエージェント・信念・行動・市場メカニズム・制度的相互作用をシミュレートする生成的経済モデルとして定義され、6段階の能力体系（固定規則エージェントからリアルタイム現実整合まで）を提案する。737本の関連論文調査ではL1〜L3に集中し自己進化・制度進化を備えたL4以上のシステムが極めて稀であることを示した。政策シミュレーション・金融リスク分析・RL訓練環境など幅広い応用が期待される。

@@ -1,6 +1,6 @@
-**4. AVE-Compass: Towards Holistic Evaluation for Audio-Video Editing Abilities**
-**著者**: AVE-Compass チーム et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.24821
+**4. DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces**
+**著者**: DataSpace Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.03451
 
 **まとめ**:
-音声と映像が密に結合した実映像の編集評価に特化した包括的ベンチマーク「AVE-Compass」を提案。145本のソース映像・196の音声-映像連携編集指示・2,688の細粒度チェックリスト項目を収録し、既存モデルが「交差モーダル指示の実行と非対象コンテンツ保持のバランス」に著しく苦戦していることを明らかにした。提案の AVE-Agent（計画・実行・評価の3エージェント構成）は既存システムを上回る性能を達成。
+組織内の異種データソース（DB・CSV・PDF・動画等）にまたがる自然言語分析を実現するデータエージェントの評価ベンチマーク「DataSpace」を構築した。410タスク・7,439成果物(15GB)・6モダリティをカバーし、完全一致の表形式出力を要求する厳密な評価基準を採用。最高精度のGrok 4.5でも66.34%に留まり、マルチモーダルタスクや結合処理で最大19.8ポイントの性能低下が確認された。ハーネス選択だけで15.36ポイントの性能差があり、エージェント設計とモデル選択の両方が重要であることを示した。
