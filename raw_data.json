@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "ABSeeker: Training Long-Horizon Search Agents via Answer-Backtracked Credit Assignment",
-      "upvotes": 53,
-      "paper_id": "2608.05102",
-      "abstract": "Long-horizon search agents must make multiple sequential actions (steps) to search, retrieve, verify, and integrate evidence to reach a final answer. However, existing methods for training these agents typically treat all steps within a trajectory uniformly during both supervised fine-tuning (SFT) and reinforcement learning (RL), failing to distinguish useful actions from erroneous or redundant ones. In this paper, we propose Answer-Backtracked Credit Assignment (ABC), a fine-grained credit assignment framework."
+      "title": "OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models",
+      "upvotes": 51,
+      "paper_id": "2607.28609",
+      "abstract": "Computer-using agents (CUAs) are advancing rapidly across the digital world. A CUA trajectory records the agent's actions, states, and reasoning. Verifying whether it fulfilled the task instruction is central to CUA evaluation, data curation, and reinforcement learning."
     },
     {
-      "title": "GDPevo: Evaluating Agent Self-Evolution on Real Business Tasks",
-      "upvotes": 21,
-      "paper_id": "2608.03764",
-      "abstract": "Agent self-evolution updates an agent's persistent state from prior experience and reuses it to solve related tasks more effectively. Evaluating self-evolution is difficult: existing benchmarks provide limited coverage of economically valuable task domains. We present GDPevo, an evolution-native benchmark grounded in GDP-related enterprise workflows, together with the fully automated data pipeline that generates it."
+      "title": "Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval",
+      "upvotes": 46,
+      "paper_id": "2608.01481",
+      "abstract": "Short segments of perceived speech can be retrieved from non-invasive magnetoencephalographic (MEG) recordings by deep networks trained with a CLIP-style objective against wav2vec 2.0 audio embeddings. Yet their weights do not map onto electrophysiological quantities, and it remains unclear which speech properties drive retrieval."
     },
     {
-      "title": "Ego2Robot: Scalable Robot Data Synthesis from Egocentric Human Data",
+      "title": "From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models",
+      "upvotes": 24,
+      "paper_id": "2608.06020",
+      "abstract": "Economic World Models (EWMs) are generative economic models that simulate how economies evolve from within by modeling heterogeneous agents, their beliefs and actions, and the market and institutional mechanisms through which their interactions produce aggregate outcomes."
+    },
+    {
+      "title": "DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces",
+      "upvotes": 19,
+      "paper_id": "2608.03451",
+      "abstract": "Data agents enable natural-language analytics over organizational workspaces, where relevant evidence may be scattered across databases, structured files, long documents, and multimedia. Existing benchmarks largely isolate structured querying, retrieval, or open-ended analysis, leaving heterogeneous evidence discovery, complete tabular outputs, and deterministic evaluation insufficiently unified."
+    },
+    {
+      "title": "Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains",
       "upvotes": 17,
-      "paper_id": "2608.02580",
-      "abstract": "Learning generalizable robot manipulation policies requires large-scale and diverse demonstration data. Egocentric human manipulation videos offer rich scene and task diversity. We present Ego2Robot, a scalable pipeline that converts egocentric human manipulation videos into robot training data through action retargeting, robot-arm visual synthesis, and multi-level quality curation."
+      "paper_id": "2608.05138",
+      "abstract": "Modern Greek is absent from NVIDIA's Nemotron retrieval models and from major multilingual retrieval benchmarks, despite being important for retrieval-augmented generation (RAG) in legal, energy, financial, and medical applications."
     },
     {
-      "title": "AVE-Compass: Towards Holistic Evaluation for Audio-Video Editing Abilities",
-      "upvotes": 15,
-      "paper_id": "2607.24821",
-      "abstract": "While instruction-based video editing has advanced rapidly, real-world videos contain tightly coupled audio and visual signals. We introduce AVE-Compass, a comprehensive benchmark with 145 curated source videos, 196 audio-visually coupled editing instructions, and 2,688 fine-grained checklist items."
-    },
-    {
-      "title": "K-EXAONE 2.0 Technical Report",
+      "title": "EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal",
       "upvotes": 12,
-      "paper_id": "2608.04505",
-      "abstract": "This technical report presents K-EXAONE 2.0, an open-weight multilingual foundation model developed by LG AI Research. We upcycle K-EXAONE and expand its architecture, yielding a Mixture-of-Experts (MoE) model with 750B total parameters and approximately 37B activated per token."
+      "paper_id": "2608.05565",
+      "abstract": "Video object removal must eliminate not only the target object but also its induced effects while maintaining high-fidelity and spatiotemporally coherent restoration. Existing methods mainly learn object-effect correspondences implicitly from predefined effect categories and fixed data distributions, limiting their generalization."
     },
     {
-      "title": "Distill Where You Fail: Recovering Learning Signals of Negative RL-Groups from Adaptive Teacher Guidance",
-      "upvotes": 12,
-      "paper_id": "2608.00782",
-      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has become a standard paradigm for post-training large language models (LLMs). While Group Relative Policy Optimization (GRPO) is widely adopted, it suffers from sparse reward signals. On-policy distillation (OPD) offers a natural remedy by providing dense, token-level supervision from a teacher model."
-    },
-    {
-      "title": "FocusMem: Factorizing Content, Readout, and Trust in Latent GUI Memory",
+      "title": "KVAE: Family of Tokenizers for Multimodal Generative Models",
       "upvotes": 10,
-      "paper_id": "2608.04530",
-      "abstract": "GUI agents must remember both useful experience from earlier tasks and unfinished progress in the current interaction. Latent memory offers a compact solution by compressing multimodal trajectories into a few continuous tokens. FocusMem separates responsibilities within a compact latent-memory interface with role-aware content basis and state-conditioned readout."
+      "paper_id": "2608.05798",
+      "abstract": "Latent diffusion modeling (LDM), a prominent paradigm, utilizes tokenizers to map input signal to compressed representation. This dependency positions tokenizer as an integral part of generation process itself, since it affects learning speed, quality of synthesized samples and lay foundation for later applications."
     },
     {
-      "title": "WorldCycle: Self-Verifiable Reinforcement Learning for Long-Horizon Video World Models",
+      "title": "MameLoshnLM: Yiddish Language Model and Evaluation Benchmark",
+      "upvotes": 10,
+      "paper_id": "2608.05850",
+      "abstract": "We present MameLoshnLM, the first open-source 8B-parameter language model built specifically for Yiddish. Despite Yiddish's rich textual tradition, its limited digital presence and the scarcity of reliable evaluation resources have constrained progress in Yiddish language modeling."
+    },
+    {
+      "title": "PaDoc: Layout-Grounded Parallel Decoding for Document Parsing",
+      "upvotes": 10,
+      "paper_id": "2608.06146",
+      "abstract": "End-to-end document parsers provide a unified interface, but serialize page layouts and regional contents into one autoregressive sequence. This formulation forces independent regions onto a decoding path whose length grows with the total content, whereas crop-based two-stage parsers expose region-level parallelism."
+    },
+    {
+      "title": "Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay",
       "upvotes": 8,
-      "paper_id": "2608.04964",
-      "abstract": "Interactive video world models are essential for long-horizon planning and exploration, yet they suffer from compounding errors. Our key insight is that reversible action cycles make verification possible: a sequence composed with its inverse must analytically return to the initial state, yielding annotation-free supervision on long-horizon correctness."
-    },
-    {
-      "title": "Lossless Tensor Compression as Program Synthesis",
-      "upvotes": 8,
-      "paper_id": "2608.02162",
-      "abstract": "Model checkpoints are growing in both number and size, which makes archival, transfer, and deployment increasingly costly. We present Brevis, which formulates lossless tensor compression as program synthesis. We design a typed domain-specific language (DSL) that captures recurring tensor structures, such as repeated regions and floating-point fields, through a set of reversible operators."
-    },
-    {
-      "title": "BridgeVLA++: A Data-Efficient, Generalizable, and Memory-Augmented Vision-Language-Action Framework for 3D Manipulation",
-      "upvotes": 7,
-      "paper_id": "2608.05042",
-      "abstract": "Leveraging pre-trained vision-language models (VLMs) to construct vision-language-action (VLA) models has emerged as a promising paradigm for 3D robot manipulation. BridgeVLA++ equips the framework with a unified spatio-temporal memory architecture for reasoning over observation histories."
+      "paper_id": "2608.05784",
+      "abstract": "Computer-use agents pay full frontier inference to re-derive routines their user has already performed, because an agent's memory today records what the user said, not what the user did. We compile passively captured screen activity into agent memory with a deterministic, zero-model pipeline."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.224",
+      "published_at": "2025-08-07",
+      "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans. Added `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning. Added a cancel-and-confirm step when removing an unavailable paste changes a command's text. Added `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile over the `AWS_REGION`-derived one."
+    },
+    {
       "tag_name": "v2.1.223",
       "published_at": "2025-08-06",
-      "body": "Added owner wildcard entries to strictKnownMarketplaces and blockedMarketplaces managed settings for allowing or blocking all marketplace repos under a GitHub org. Added a warning when workflow agents' requested subagent model is restricted and the parent model runs instead. Added a /teleport hint in cloud sessions. Fixed a Bash permission bypass where a crafted command could hide parts of itself from permission checks."
+      "body": "Added owner wildcard entries to the `strictKnownMarketplaces` and `blockedMarketplaces` managed settings for allowing or blocking all marketplace repos under a GitHub org. Added a warning when workflow agents, forked skills, slash commands, or resumed background agents' requested subagent model is restricted and the parent model runs instead. Added a `/teleport` hint in cloud sessions showing how to continue locally with `claude --teleport <session id>`."
     },
     {
       "tag_name": "v2.1.222",
       "published_at": "2025-08-04",
-      "body": "Fixed worktree-isolated sessions and their subagents being able to run destructive git commands against the main checkout; isolation now applies to file edits and Bash in every session type. Fixed PreToolUse auto-allow hooks bypassing tool restrictions in background agent tasks. Fixed /usage-credits on Team and Enterprise. Fixed the startup connectivity check hanging behind an HTTPS proxy."
-    },
-    {
-      "tag_name": "v2.1.221",
-      "published_at": "2025-08-04",
-      "body": "[VSCode] Added Focus view: a chat-menu toggle that hides tool activity behind an expandable per-turn summary with a live running-tool indicator, toggled with Ctrl+Alt+F. Added mode: mask for sandbox credential files on Linux and WSL. Added warnings to claude plugin validate when a marketplace or plugin name would be rejected by Claude Desktop's managed marketplace sync."
+      "body": "Fixed worktree-isolated sessions and their subagents being able to run destructive git commands against the main checkout; isolation now applies to file edits and Bash in every session type. Fixed PreToolUse auto-allow hooks bypassing tool restrictions in background agent tasks. Fixed `/usage-credits` on Team and Enterprise showing already sent request for members whose earlier request was dismissed."
     }
   ]
 }
