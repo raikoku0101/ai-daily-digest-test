@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-08",
+  "content": "# AI Daily Digest — 2026-08-08\n\n## 今日のハイライト\n- **Claude Code v2.1.224がセルフホスト環境をサポート**: `claude self-hosted-runner`コマンドで自社インフラ上でClaude Codeを実行可能に。エンタープライズのデータ主権確保とクラウドコスト削減に直結する重大アップデート。\n- **OSReward(51 upvotes)**: コンピュータ操作エージェント(CUA)の標準評価フレームワーク登場。AIエージェントの強化学習・データ収集・評価の質を大幅向上させる可能性があり、自律エージェント研究の加速が期待される。\n- **MEG音声デコード研究(46 upvotes)**: 非侵襲脳波から知覚音声を解釈可能な形で復元する手法が発展。解釈可能なBCI実現に向けた重要な一歩で、神経科学とAIの融合研究の最前線。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.224 (2025-08-07) — 最新リリース\n\n**主要機能**:\n- **セルフホスト環境の追加** (`claude self-hosted-runner`): 自社マシンやコンテナをClaude Code Web・モバイル・デスクトップセッションの実行環境として利用可能に（TeamおよびEnterpriseプラン対象）\n- **`archive`プラグインソース**: HTTPSのzip経由でgit/npmなしにプラグインをインストール可能に。SHA-256ピン留めオプション付き\n- **貼り付けキャンセル確認ステップ**: 利用不可能な貼り付けが削除されコマンドのテキストが変わる場合にキャンセル・確認ステップを追加\n- **`ANTHROPIC_BEDROCK_REGION_PREFIX`環境変数**: Bedrockでの特定クロスリージョン推論プロファイルの優先設定が可能に\n\n**ユーザーへの影響**: セルフホスト機能により、エンタープライズユーザーはデータをクラウド外に保ちつつClaude Codeを活用できる。プラグイン配布がさらに柔軟になった。\n\n---\n\n### v2.1.223 (2025-08-06)\n\n**主要機能**:\n- **オーナーワイルドカードエントリ** (`\"owner/*\"`): `strictKnownMarketplaces`・`blockedMarketplaces`設定でGitHub org配下の全マーケットプレイスリポジトリを一括許可/ブロック\n- **制限サブエージェントモデルの警告**: ワークフローエージェントやスキル等のサブエージェントが要求したモデルが制限される場合、代替として親モデルが使用される旨の警告を表示\n- **`/teleport`ヒント**: クラウドセッションで`claude --teleport <session id>`によるローカル継続方法を案内\n\n**ユーザーへの影響**: 大規模組織でのマーケットプレイス管理が効率化。クラウド↔ローカル間のセッション移行がより分かりやすくなった。\n\n---\n\n### v2.1.222 (2025-08-04)\n\n**バグ修正**:\n- **ワークツリー分離セキュリティ修正**: ワークツリー分離セッションとそのサブエージェントがメインチェックアウトに対して破壊的gitコマンドを実行できた問題を修正。あらゆるセッションタイプでファイル編集・Bashへの分離が適用されるように\n- **PreToolUseフックのバイパス修正**: バックグラウンドエージェントタスクでのPreToolUse自動許可フックがツール制限をバイパスしていた問題を修正\n- **`/usage-credits`表示不具合修正**: チームやエンタープライズプランで、過去のリクエストが却下されたメンバーが新規リクエスト送信できなくなっていた問題を修正\n\n**ユーザーへの影響**: セキュリティが大幅に改善。ワークツリーの分離がより確実になり、エンタープライズユーザーのクレジット管理も正常化。\n\n## 注目論文 TOP 10\n\n**1. OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models** | 51 upvotes | https://arxiv.org/abs/2607.28609\n🎯**背景**: コンピュータ操作エージェント(CUA)の急速な発展に伴い、エージェントの行動軌跡がタスクを正しく達成したか検証する標準化された評価が欠如していた。クロスプラットフォームでの報酬モデル評価基準がなく、研究の再現性・比較が困難だった。\n🔧**手法**: 複数プラットフォーム(Web、デスクトップ等)を横断するCUA軌跡の評価フレームワーク「OSReward」を提案。標準化されたベンチマークと評価プロトコルを設計し、報酬モデルの訓練・評価・比較を統一的に実施できる。\n📊**結果**: OSRewardにより異なる報酬モデル間の公平な比較が可能になり、強化学習を用いたCUA訓練の品質向上が実証された。\n💡**意義**: CUAの自律性向上と安全性確保に向けた基盤的な評価インフラを提供。AIエージェント研究の加速に貢献する。\n⚠️**限界**: プラットフォームの多様性に対応するため評価コストが高く、新しいOSや動的なUIへの汎化に課題が残る。\n\n**2. Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval** | 46 upvotes | https://arxiv.org/abs/2608.01481\n🎯**背景**: 非侵襲的脳波(MEG)記録から知覚された音声を復元する研究が進むが、ディープネットワークの重みが電気生理学的指標と対応せず、どの音声特性が検索を駆動するか不明だった。\n🔧**手法**: CLIP形式の目標関数とwav2vec 2.0音声埋め込みで訓練されたネットワークを用い、MEG信号から音声を復元。解釈可能性向上のため、皮質ソース分析と刺激特徴の寄与度を分析するフレームワークを開発。\n📊**結果**: 音声知覚に関与する皮質領域を特定し、どの音響・音韻特徴がMEGからの音声検索精度を左右するかを明らかにした。\n💡**意義**: 非侵襲BCI(ブレイン・コンピュータ・インターフェース)の解釈可能性を高め、言語処理の神経科学的理解に新たな知見を提供。\n⚠️**限界**: MEG計測は高コスト・高設備要求。被験者数や言語の多様性が限定的で、外部妥当性に課題がある。\n\n**3. From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models** | 24 upvotes | https://arxiv.org/abs/2608.06020\n🎯**背景**: 従来の経済モデルは均質なエージェントや静的な制度を前提としており、現実の複雑な経済ダイナミクスを再現できなかった。AIエージェントを活用した生成的経済モデルへの需要が高まっていた。\n🔧**手法**: 「Economic World Models (EWMs)」というフレームワークを提案。異質なエージェント・信念・行動・市場メカニズム・制度的相互作用をシミュレートする生成的経済モデルのシステム設計図を提示。\n📊**結果**: EWMsは政策シミュレーション、市場予測、経済システムの創発的挙動の研究に有用であることを示した。\n💡**意義**: AIと経済学の融合により、現実的な政策立案支援ツールやリスク分析システムへの応用が期待される。\n⚠️**限界**: 複雑なエージェント間相互作用の計算コストが高く、モデルの検証・較正が困難。\n\n**4. DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces** | 19 upvotes | https://arxiv.org/abs/2608.03451\n🎯**背景**: 組織のワークスペースでは証拠がデータベース・構造化ファイル・長文書・マルチメディアに分散しており、既存ベンチマークは構造化クエリ・検索・オープンエンド分析を個別に評価するにとどまっていた。\n🔧**手法**: 「DataSpace」ベンチマークを構築。異質なデータソース横断のエビデンス発見、完全な表形式出力、決定論的評価を統合した検証可能なアナリティクスフレームワークを提案。\n📊**結果**: 既存のデータエージェントが異質ワークスペース上での複合的分析タスクで大幅に性能低下することを示した。\n💡**意義**: 実世界の組織データ環境に即したエージェント評価基準を提供し、より実用的なデータエージェント開発を促進する。\n⚠️**限界**: ベンチマーク構築の複雑さから、カバーするドメインやデータ形式の網羅性に限界がある。\n\n**5. Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains** | 17 upvotes | https://arxiv.org/abs/2608.05138\n🎯**背景**: 現代ギリシャ語はNVIDIAのNemotron検索モデルや主要多言語検索ベンチマークから欠如しており、法律・エネルギー・金融・医療分野でのRAG応用が困難だった。\n🔧**手法**: 現代ギリシャ語コーパスをマイニングし、専門ドメイン向けの検索モデル適応と生成のグラウンディング手法を開発。Nemotronモデルをギリシャ語対応に特化ファインチューニング。\n📊**結果**: 複数専門ドメインで現代ギリシャ語のRAG性能が大幅に向上。多言語ベンチマークへの追加も実現した。\n💡**意義**: 低リソース言語・専門ドメインでのLLM適応の好事例。他の小規模言語コミュニティへの応用も示唆する。\n⚠️**限界**: ギリシャ語専門コーパスの質・量に依存。他の専門ドメインや方言への汎化には追加データ収集が必要。\n\n**6. EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal** | 12 upvotes | https://arxiv.org/abs/2608.05565\n🎯**背景**: 動画からオブジェクトを除去する際、対象オブジェクトだけでなくその誘発する影・反射・歪み等の二次効果も除去し、時空間的に一貫した復元が求められる。既存手法は固定カテゴリと限定データ分布で効果対応関係を暗黙的に学習しており汎化性が低かった。\n🔧**手法**: 「EffectLearner」は世界知識を活用したオブジェクト-効果推論モジュールを導入。動的な効果カテゴリを認識し、実世界の多様なシーンでオブジェクトとその誘発効果を同時・明示的に除去するフレームワーク。\n📊**結果**: 実世界動画データセットで従来手法を上回る除去品質と時空間一貫性を達成。未知の効果カテゴリへの汎化も改善。\n💡**意義**: 映像編集・映画制作・プライバシー保護など実用分野での高品質自動動画編集を可能にする。\n⚠️**限界**: 世界知識モジュールの計算コストが高く、リアルタイム処理は困難。複雑な物理相互作用(煙・液体等)での効果推論に課題。\n\n**7. KVAE: Family of Tokenizers for Multimodal Generative Models** | 10 upvotes | https://arxiv.org/abs/2608.05798\n🎯**背景**: 潜在拡散モデル(LDM)はトークナイザーに依存して入力信号を圧縮表現にマッピングするが、トークナイザーの品質が学習速度・生成品質・下流応用の基盤を左右する。マルチモーダル生成に適したトークナイザー設計が求められていた。\n🔧**手法**: KVAEファミリーとして、マルチモーダル生成モデル向けに最適化されたトークナイザー群を提案。異なるモダリティ(画像・動画・音声等)に対応した圧縮・復元性能のバランスを取る設計。\n📊**結果**: KVAEトークナイザーは複数のマルチモーダル生成タスクで既存手法より高い生成品質と学習効率を示した。\n💡**意義**: マルチモーダルAI基盤モデルの効率的訓練・展開を支援し、動画生成や音声合成の品質向上に貢献。\n⚠️**限界**: トークナイザー設計の一般化には各モダリティの大規模データが必要。推論時の計算コストも課題。\n\n**8. MameLoshnLM: Yiddish Language Model and Evaluation Benchmark** | 10 upvotes | https://arxiv.org/abs/2608.05850\n🎯**背景**: イディッシュ語は豊かな文字伝統を持つが、デジタル存在感の低さと信頼性ある評価リソースの欠如が言語モデリングの進歩を妨げていた。既存のLLMはイディッシュ語を実質的に無視していた。\n🔧**手法**: MameLoshnLMとして、イディッシュ語専用の初のオープンソース80億パラメータ言語モデルを構築。専用コーパスの収集・前処理とイディッシュ語評価ベンチマークを同時に開発。\n📊**結果**: MameLoshnLMは多言語モデルを上回るイディッシュ語の理解・生成性能を達成。評価ベンチマークも公開。\n💡**意義**: 少数言語・絶滅危惧言語のデジタル保全とAI支援に向けた取り組みのモデルケース。コミュニティ主導のLLM開発手法を示す。\n⚠️**限界**: 80億パラメータは大規模モデルに比べ能力限定。イディッシュ語のデジタルコーパス自体の量・質に上限がある。\n\n**9. PaDoc: Layout-Grounded Parallel Decoding for Document Parsing** | 10 upvotes | https://arxiv.org/abs/2608.06146\n🎯**背景**: エンドツーエンドの文書解析器はページレイアウトと内容を一つの自己回帰シーケンスに直列化するため、独立した領域も全コンテンツ長に比例したデコードパスを辿る非効率性があった。\n🔧**手法**: 「PaDoc」はレイアウトグラウンドの並列デコーディングフレームワークを提案。文書の独立領域を並列にデコードすることで、クロップベースの2段階手法と同等の並列性をエンドツーエンドモデルで実現。\n📊**結果**: PaDocは複雑な文書レイアウトの解析精度を維持しながら、デコード速度を大幅に向上。テーブル・図表・テキスト混在文書に有効。\n💡**意義**: 大規模文書デジタル化・OCR・知識抽出パイプラインの高速化に直結する実用的な手法。\n⚠️**限界**: 並列デコードのスケジューリングが複雑化。レイアウト推定誤りが下流の解析品質に連鎖的に影響する。\n\n**10. Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay** | 8 upvotes | https://arxiv.org/abs/2608.05784\n🎯**背景**: コンピュータ操作エージェントはユーザーが既に実行したルーティンを毎回フロンティア推論で再導出している。エージェントのメモリは「ユーザーが言ったこと」を記録するが「ユーザーがやったこと」を記録しない。\n🔧**手法**: 「Activity Frames」は受動的に収集されたスクリーン活動をエージェントメモリとしてコンパイルする決定論的・ゼロモデルパイプラインを提案。モデル推論なしにスクリーンキャプチャから操作手順を構造化記録。\n📊**結果**: エージェントは記録されたActivity Framesを参照することでルーティンタスクを再学習なしに再現。推論コストを大幅削減。\n💡**意義**: 個人化・効率化されたコンピュータ操作エージェントの実現に向けた軽量なメモリ基盤として機能。\n⚠️**限界**: 決定論的パイプラインは動的・非構造化UIへの対応が困難。プライバシーリスク(スクリーン常時録画)の考慮が必要。\n\n",
+  "fetched_at": "2026-08-07T22:09:05.757529+00:00",
+  "papers": [
+    {
+      "title": "OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models",
+      "upvotes": 51,
+      "paper_id": "2607.28609",
+      "abstract": "Computer-using agents (CUAs) are advancing rapidly across the digital world. A CUA trajectory records the agent's actions, states, and reasoning. Verifying whether it fulfilled the task instruction is central to CUA evaluation, data curation, and reinforcement learning."
+    },
+    {
+      "title": "Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval",
+      "upvotes": 46,
+      "paper_id": "2608.01481",
+      "abstract": "Short segments of perceived speech can be retrieved from non-invasive magnetoencephalographic (MEG) recordings by deep networks trained with a CLIP-style objective against wav2vec 2.0 audio embeddings. Yet their weights do not map onto electrophysiological quantities, and it remains unclear which speech properties drive retrieval."
+    },
+    {
+      "title": "From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models",
+      "upvotes": 24,
+      "paper_id": "2608.06020",
+      "abstract": "Economic World Models (EWMs) are generative economic models that simulate how economies evolve from within by modeling heterogeneous agents, their beliefs and actions, and the market and institutional mechanisms through which their interactions produce aggregate outcomes."
+    },
+    {
+      "title": "DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces",
+      "upvotes": 19,
+      "paper_id": "2608.03451",
+      "abstract": "Data agents enable natural-language analytics over organizational workspaces, where relevant evidence may be scattered across databases, structured files, long documents, and multimedia. Existing benchmarks largely isolate structured querying, retrieval, or open-ended analysis, leaving heterogeneous evidence discovery, complete tabular outputs, and deterministic evaluation insufficiently unified."
+    },
+    {
+      "title": "Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains",
+      "upvotes": 17,
+      "paper_id": "2608.05138",
+      "abstract": "Modern Greek is absent from NVIDIA's Nemotron retrieval models and from major multilingual retrieval benchmarks, despite being important for retrieval-augmented generation (RAG) in legal, energy, financial, and medical applications."
+    },
+    {
+      "title": "EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal",
+      "upvotes": 12,
+      "paper_id": "2608.05565",
+      "abstract": "Video object removal must eliminate not only the target object but also its induced effects while maintaining high-fidelity and spatiotemporally coherent restoration. Existing methods mainly learn object-effect correspondences implicitly from predefined effect categories and fixed data distributions, limiting their generalization."
+    },
+    {
+      "title": "KVAE: Family of Tokenizers for Multimodal Generative Models",
+      "upvotes": 10,
+      "paper_id": "2608.05798",
+      "abstract": "Latent diffusion modeling (LDM), a prominent paradigm, utilizes tokenizers to map input signal to compressed representation. This dependency positions tokenizer as an integral part of generation process itself, since it affects learning speed, quality of synthesized samples and lay foundation for later applications."
+    },
+    {
+      "title": "MameLoshnLM: Yiddish Language Model and Evaluation Benchmark",
+      "upvotes": 10,
+      "paper_id": "2608.05850",
+      "abstract": "We present MameLoshnLM, the first open-source 8B-parameter language model built specifically for Yiddish. Despite Yiddish's rich textual tradition, its limited digital presence and the scarcity of reliable evaluation resources have constrained progress in Yiddish language modeling."
+    },
+    {
+      "title": "PaDoc: Layout-Grounded Parallel Decoding for Document Parsing",
+      "upvotes": 10,
+      "paper_id": "2608.06146",
+      "abstract": "End-to-end document parsers provide a unified interface, but serialize page layouts and regional contents into one autoregressive sequence. This formulation forces independent regions onto a decoding path whose length grows with the total content, whereas crop-based two-stage parsers expose region-level parallelism."
+    },
+    {
+      "title": "Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay",
+      "upvotes": 8,
+      "paper_id": "2608.05784",
+      "abstract": "Computer-use agents pay full frontier inference to re-derive routines their user has already performed, because an agent's memory today records what the user said, not what the user did. We compile passively captured screen activity into agent memory with a deterministic, zero-model pipeline."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.224",
+      "published_at": "2025-08-07",
+      "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans. Added `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning. Added a cancel-and-confirm step when removing an unavailable paste changes a command's text. Added `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile over the `AWS_REGION`-derived one."
+    },
+    {
+      "tag_name": "v2.1.223",
+      "published_at": "2025-08-06",
+      "body": "Added owner wildcard entries to the `strictKnownMarketplaces` and `blockedMarketplaces` managed settings for allowing or blocking all marketplace repos under a GitHub org. Added a warning when workflow agents, forked skills, slash commands, or resumed background agents' requested subagent model is restricted and the parent model runs instead. Added a `/teleport` hint in cloud sessions showing how to continue locally with `claude --teleport <session id>`."
+    },
+    {
+      "tag_name": "v2.1.222",
+      "published_at": "2025-08-04",
+      "body": "Fixed worktree-isolated sessions and their subagents being able to run destructive git commands against the main checkout; isolation now applies to file edits and Bash in every session type. Fixed PreToolUse auto-allow hooks bypassing tool restrictions in background agent tasks. Fixed `/usage-credits` on Team and Enterprise showing already sent request for members whose earlier request was dismissed."
+    }
+  ]
+}
