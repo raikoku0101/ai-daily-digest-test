@@ -1,6 +1,6 @@
 **5. Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains**
-**著者**: NVIDIA / Greek RAG Team et al. (2025)
+**著者**: NVIDIA Research et al. (2026)
 **arXiv**: https://arxiv.org/abs/2608.05138
 
 **まとめ**:
-現代ギリシャ語(Modern Greek)が欠如していたNVIDIAのNemotron検索モデルスタックを法律・エネルギー・金融・医療ドメインに対応させるための包括的な適応研究。65,773のギリシャ語検索ペアでのファインチューニングにより、Nemotron 1B埋め込みモデルのnDCG@10が0.362から0.835へ大幅改善。30B MoEリーダーのLoRA微調整で回答の正確性が29.4%から66.9%に向上し、初の大規模ギリシャ語RAGベンチマーク「HERA」を公開した。低リソース専門言語へのLLMスタック適応の好事例。
+現代ギリシャ語の法律・エネルギー・金融・医療分野向けに Nemotron 検索スタックを包括的に適応。65,773件のギリシャ語検索ペアで埋め込みモデルをファインチューニングし、nDCG@10 を 0.362 → 0.835 へ、回答正確性を 29.4% → 66.9% へと大幅改善。HERAベンチマーク（ギリシャ語RAGの初の大規模評価基準）を導入し、低リソース言語への専門ドメインRAG適応の実用的手法を示した。
