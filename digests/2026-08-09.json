@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-09",
+  "content": "# AI Daily Digest — 2026-08-09\n\n## 今日のハイライト\n- **OSReward がコンピューター操作 AI 評価を標準化** (60 upvotes): コンピューター操作エージェントのリワードモデルに体系的なベンチマークが登場。既存モデルの「寛大バイアス」を発見し、30〜60% コスト削減のオープンモデルも提供。エージェント AI 開発の信頼性向上に直結する重要インフラ。\n- **Claude Code v2.1.224-226 が3連続リリース**: セルフホスト環境サポート・ゲートウェイ支出上限表示・認証バグ修正と重要アップデートが集中。特にセルフホスト runner により企業のオンプレミス利用が現実的に。\n- **MEG 脳波から音声を 39.75% の精度で再現**: CLIP 目標で訓練したモデルが脳磁図から知覚音声を解読。解釈可能な脳領域マッピングも実現し、非侵襲 BCI の実用化に向けた重要なマイルストーン。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.226 (2025-08-08)\n**主要機能**: バグ修正と信頼性向上\n- 全体的な安定性の改善と細部のバグ修正\n\n**ユーザーへの影響**: 安定性・信頼性が向上し、日常利用においてより安定した動作が期待できます。\n\n---\n\n### v2.1.225 (2025-08-08)\n**主要機能**:\n- **ゲートウェイ支出上限サポート**: 使用量警告にゲートウェイの支出上限情報を表示。上限名・リセット時刻・オペレーターメッセージを明示（ゲートウェイ v2.1.225 以降が必要）\n- **`claude agents` に信頼プロンプト追加**: 未信頼ディレクトリに対し `claude` コマンドと同様のワークスペース信頼確認を実施\n\n**バグ修正**:\n- `CLAUDE_CODE_OAUTH_TOKEN` の長期トークンをストアドログインの短期トークンで上書きしてしまう 401 エラーを修正（ヘッドレスセッションがリスタートまで壊れる問題）\n- macOS 上の MCP OAuth サーバーがキーチェーン読み取りタイムアウト後に一時的な 401 エラーを繰り返す問題を修正\n\n**ユーザーへの影響**: コスト管理がより透明になり、セキュリティと認証周りの安定性が向上します。\n\n---\n\n### v2.1.224 (2025-08-07)\n**主要機能**:\n- **セルフホスト環境** (`claude self-hosted-runner`): 自分のマシン・コンテナを Claude Code Web/モバイル/デスクトップセッションの実行環境として利用可能に（Team・Enterprise プラン）\n- **`archive` プラグインソース**: git や npm 不要で HTTPS 経由の zip からプラグインをインストール可能、SHA-256 ピニング対応\n- **`ANTHROPIC_BEDROCK_REGION_PREFIX` 環境変数**: Bedrock が `AWS_REGION` 由来のプロファイルより特定のクロスリージョン推論プロファイルを優先するよう設定可能\n\n**ユーザーへの影響**: 企業環境でのデプロイ自由度が大幅に向上。セルフホスト環境により、セキュリティ要件の厳しい組織でも Claude Code の活用が可能になります。\n\n## 注目論文 TOP 10\n\n**1. OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models** | 60 upvotes | https://arxiv.org/abs/2607.28609\n🎯**背景**: コンピューター操作エージェントの評価に使うリワードモデル（報酬モデル）の標準化された評価基準が存在せず、モデルの客観比較が困難だった。\n🔧**手法**: VLM（視覚言語モデル）をエージェント軌跡の審判として評価する OSReward ベンチマークを構築。複数プラットフォーム横断で統一評価を実施。\n📊**結果**: 最先端モデルが系統的な「寛大バイアス」（エージェントの行動を過大評価する傾向）を持つことを発見。OS-Shepherd オープンリワードモデルは30〜60%のコスト削減を達成。\n💡**意義**: コンピューター操作 AI の評価インフラを標準化することで、エージェント開発の加速と再現性向上に貢献。\n⚠️**限界**: ベンチマーク自体のカバレッジがプラットフォームや操作タスクの多様性に依存するため、特定ドメインへの一般化に課題が残る。\n\n**2. Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval** | 58 upvotes | https://arxiv.org/abs/2608.01481\n🎯**背景**: 脳の MEG（脳磁図）記録から知覚された音声を再現・解読する研究。従来手法は精度が低く、どの脳領域・特徴量が重要かも不明だった。\n🔧**手法**: CLIP スタイルの対照学習目標で訓練されたディープネットワークを使用。モデルの重みをソース空間にマッピングして脳内処理の空間的分布を解析。\n📊**結果**: Top-1 精度 39.75% を達成。ソース空間マッピングにより音声知覚ネットワークのジェネレーターを特定。\n💡**意義**: 脳-コンピューターインターフェース（BCI）への応用可能性を開く。解釈可能性を重視した設計で神経科学的知見も得られる。\n⚠️**限界**: 39.75% という精度は実用的な BCI には不十分。MEG 計測の高コストと個人差も実用化の障壁。\n\n**3. From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models** | 28 upvotes | https://arxiv.org/abs/2608.06020\n🎯**背景**: 経済システム全体を AI エージェントでシミュレートする「経済世界モデル」の構築に向けた体系的設計図が欠如していた。\n🔧**手法**: 異質エージェント・信念・市場メカニズムを通じた経済シミュレーションのロードマップを構築。ルールベースから実証整合型シム・トゥ・リアルまで6段階の能力ラダーを設計。\n📊**結果**: 段階的な能力フレームワークの提案。各レベルで必要な技術要件と評価指標を定義。\n💡**意義**: 政策立案・リスク管理・マクロ経済予測など多様な応用が期待される基盤的フレームワーク。AI エージェントを経済シミュレーションに統合する方向性を示す。\n⚠️**限界**: 理論的ブループリントであり、実証的検証は今後の課題。実際の経済の複雑性を完全に捉えることの根本的困難が残る。\n\n**4. DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces** | 25 upvotes | https://arxiv.org/abs/2608.03451\n🎯**背景**: データ分析 AI エージェントの性能評価に、検証可能な結果を伴う多様なワークスペースでの評価基準が不足していた。\n🔧**手法**: 410 件のクロス言語タスクと 7,439 件のアーティファクトから成る DataSpace ベンチマークを構築。表形式の検証可能な結果で評価。\n📊**結果**: 最高精度は 66.34%。マルチモーダル証拠統合がすべてのモデルで一貫した課題であることを特定。\n💡**意義**: データエージェント開発の標準ベンチマークとして、再現性のある比較評価を可能にする。企業データ分析への AI 応用加速に貢献。\n⚠️**限界**: 現状の最高精度 66.34% は実務利用には不十分。異なるデータ形式や未知のワークスペースへの汎化が課題。\n\n**5. Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains** | 24 upvotes | https://arxiv.org/abs/2608.05138\n🎯**背景**: 現代ギリシャ語は法律・エネルギー・金融・医療などの専門分野で高品質な AI 処理が不足。多言語モデルは低リソース言語で性能が低下する。\n🔧**手法**: Nemotron 検索スタックを現代ギリシャ語向けに適応。コーパスマイニング、ファインチューニングした埋め込みモデル、LoRA チューニングリーダーを組み合わせ。\n📊**結果**: ファインチューニング済み埋め込みモデルが nDCG@10 を 0.362 → 0.835 に改善。LoRA チューニングリーダーが回答正確性を 29.4% → 66.9% に向上。\n💡**意義**: 低リソース言語への専門ドメイン RAG 適応の実用的手法を示す。他の中規模言語への転用可能性が高い。\n⚠️**限界**: ギリシャ語特有の対応であり、他言語への直接移転には追加の言語固有作業が必要。コーパスの品質・網羅性に依存。\n\n\n**6. Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay** | 18 upvotes | https://arxiv.org/abs/2608.05784\n🎯**背景**: 画面操作の記録から AI エージェント向けの記憶・リプレイシステムを構築することが困難。大量のフレームを効率よく圧縮・利用する手法が未確立だった。\n🔧**手法**: 受動的な画面キャプチャをエージェントメモリにコンパイルする決定論的パイプラインを構築。変化のあるフレームのみを選択的に保持。\n📊**結果**: 51 日間・128,756 フレームで日次キャプチャを 86 分の 1 に削減、処理時間 68ms。エージェントの質問応答精度 98.4%（LLM 要約の 66〜80% を大幅に上回る）。\n💡**意義**: パソコン操作の長期的な記憶と再利用を低コストで実現する実用的手法。パーソナル AI アシスタントへの直接応用が期待される。\n⚠️**限界**: 決定論的手法のため、コンテキストに応じた柔軟な記憶選択には対応していない。プライバシーリスクへの対処が実用化の重要課題。\n\n**7. EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal** | 16 upvotes | https://arxiv.org/abs/2608.05565\n🎯**背景**: 動画から物体を削除する際、その物体が引き起こしていた影・光・動きなどの「副次効果」まで除去することが既存手法では困難だった。\n🔧**手法**: VLM ベースの Object-Effect Reasoner と DiT ベースの Video Eraser を組み合わせたセマンティック推論フレームワーク。物体が環境に与える影響を推論してから除去。\n📊**結果**: ROSE-Bench ベンチマークでベースラインを上回る性能。新規 EffectWorld データセットでも複雑な実世界シナリオで優位性を示す。\n💡**意義**: 映像編集・映画制作・AR/VR などへの高品質な物体除去応用を可能にする。物理的整合性を保った編集への重要なステップ。\n⚠️**限界**: EffectWorld データセットが自社構築のため、評価の独立性に疑問余地。複雑な光学効果（透過・屈折）への対応は未検証。\n\n**8. PaDoc: Layout-Grounded Parallel Decoding for Document Parsing** | 15 upvotes | https://arxiv.org/abs/2608.06146\n🎯**背景**: 文書解析（PDF や画像からのテキスト・レイアウト抽出）は逐次デコーディングが遅く、スループットがボトルネックになっていた。\n🔧**手法**: 予測されたレイアウトを分岐構造として扱い、領域ごとにコンテンツを並列デコーディング。レイアウト情報を先読みして並列処理の根拠とする。\n📊**結果**: レイアウト F1 スコア 91.1、総合スコア 94.24。スループット 67.4〜118% 向上、P95 レイテンシ 39.2〜54.9% 削減。\n💡**意義**: 企業の大規模文書処理パイプラインで大幅な効率化が期待できる。OCR・文書 AI の実用化速度を引き上げる実践的改善。\n⚠️**限界**: レイアウト予測の精度に大きく依存するため、非定型文書や手書き文書では性能低下の可能性。\n\n**9. KVAE: Family of Tokenizers for Multimodal Generative Models** | 15 upvotes | https://arxiv.org/abs/2608.05798\n🎯**背景**: 音声・画像・動画の生成モデルに向けた高品質なトークナイザーが不足。既存のフロンティアモデルのトークナイザーは非公開のものが多かった。\n🔧**手法**: テキスト条件付き生成向けに音声・画像・動画の KVAE トークナイザーファミリーを設計。Wan-2.2、HunyuanVideo、FLUX.2、MovieGen と比較評価。\n📊**結果**: 再構成・生成結果でフロンティアトークナイザーと同等以上の性能を達成。コードを公開。\n💡**意義**: マルチモーダル生成 AI の研究コミュニティに強力なオープンソースの基盤ツールを提供。マルチメディア AI の民主化に貢献。\n⚠️**限界**: 論文発表時点での比較対象が限定的。実用展開での計算コストや推論速度の詳細評価が必要。\n\n**10. MameLoshnLM: Yiddish Language Model and Evaluation Benchmark** | 14 upvotes | https://arxiv.org/abs/2608.05850\n🎯**背景**: イディッシュ語（ユダヤ系ヨーロッパの歴史的言語）は深刻な低リソース状態にあり、高品質な言語モデルが存在しなかった。\n🔧**手法**: Oytser コーパスの構築と Kashes ベンチマークによる評価。8B パラメータの初のオープンソースイディッシュ語特化モデルを訓練。\n📊**結果**: 多言語ベースラインを上回る性能。ノイズの多いウェブスケールの多言語データより言語固有の語彙・形態パターンをより適切に捉えることを実証。\n💡**意義**: 絶滅危機言語の AI 技術保存への貢献。低リソース言語コミュニティへのモデル開発アプローチのモデルケース。\n⚠️**限界**: 8B パラメータは最先端モデルと比べて小規模。イディッシュ語話者コミュニティが小さいため実用的な利用シーンが限定される。\n\n",
+  "fetched_at": "2026-08-08T22:08:45.248903+00:00",
+  "papers": [
+    {
+      "title": "OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models",
+      "upvotes": 60,
+      "paper_id": "2607.28609",
+      "abstract": "Introduces OSReward, a benchmark evaluating vision-language models as judges of computer-using agent trajectories. Finds state-of-the-art models have systematic leniency bias; provides OS-Shepherd open reward models at 30-60% lower cost."
+    },
+    {
+      "title": "Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval",
+      "upvotes": 58,
+      "paper_id": "2608.01481",
+      "abstract": "Short segments of perceived speech can be retrieved from MEG recordings by deep networks trained with a CLIP-style objective. The model achieves 39.75% Top-1 accuracy, with weights mapping to source space recovering speech-perception network generators."
+    },
+    {
+      "title": "From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models",
+      "upvotes": 28,
+      "paper_id": "2608.06020",
+      "abstract": "Develops implementation roadmap for economic world models simulating economies through heterogeneous agents, beliefs, and market mechanisms. Organizes EWM systems into six-level capability ladder from rule-based to empirically-aligned sim-to-real twins."
+    },
+    {
+      "title": "DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces",
+      "upvotes": 25,
+      "paper_id": "2608.03451",
+      "abstract": "Introduces DataSpace benchmark with 410 cross-language tasks and 7,439 artifacts for evaluating data agents on verifiable tabular results. Best accuracy reaches 66.34%; identifies multimodal evidence integration as consistent challenge across models."
+    },
+    {
+      "title": "Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains",
+      "upvotes": 24,
+      "paper_id": "2608.05138",
+      "abstract": "Adapts Nemotron retrieval stack for Modern Greek across legal, energy, financial, medical domains. Fine-tuned embedder improves nDCG@10 from 0.362 to 0.835; LoRA-tuned reader increases answer correctness from 29.4% to 66.9%."
+    },
+    {
+      "title": "Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay",
+      "upvotes": 18,
+      "paper_id": "2608.05784",
+      "abstract": "Compiles passively captured screen activity into agent memory with deterministic pipeline. On 128,756 frames over 51 days, reduces daily capture 86x smaller in 68ms; agent answers questions at 98.4% accuracy versus 66-80% for LLM summaries."
+    },
+    {
+      "title": "EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal",
+      "upvotes": 16,
+      "paper_id": "2608.05565",
+      "abstract": "Proposes semantic-reasoning framework combining VLM-based Object-Effect Reasoner with DiT-based Video Eraser for comprehensive object-induced effect removal. Outperforms baselines on ROSE-Bench and complex real-world scenarios in EffectWorld dataset."
+    },
+    {
+      "title": "PaDoc: Layout-Grounded Parallel Decoding for Document Parsing",
+      "upvotes": 15,
+      "paper_id": "2608.06146",
+      "abstract": "Layout-grounded parser treating predicted layout as branching structure enabling concurrent regional content decoding. Achieves 91.1 layout F1 and 94.24 overall score; 67.4-118% faster throughput with 39.2-54.9% lower P95 latency."
+    },
+    {
+      "title": "KVAE: Family of Tokenizers for Multimodal Generative Models",
+      "upvotes": 15,
+      "paper_id": "2608.05798",
+      "abstract": "Presents KVAE tokenizers for audio, image, and video designed for text-conditioned generation. Reconstruction and generation results match or surpass frontier tokenizers from Wan-2.2, HunyuanVideo, FLUX.2, MovieGen with public code release."
+    },
+    {
+      "title": "MameLoshnLM: Yiddish Language Model and Evaluation Benchmark",
+      "upvotes": 14,
+      "paper_id": "2608.05850",
+      "abstract": "First open-source 8B-parameter language model for Yiddish with Oytser corpus and Kashes benchmark. Outperforms multilingual baselines; better captures language-defining lexical and morphological patterns than noisy web-scale multilingual data."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.226",
+      "published_at": "2025-08-08",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.225",
+      "published_at": "2025-08-08",
+      "body": "Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225)\nAdded a workspace trust prompt to `claude agents` for untrusted directories, matching the behavior of `claude`\nFixed a transient 401 replacing a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart\nFixed MCP OAuth servers on macOS intermittently failing with a burst of 401 errors, as if never authenticated, after a keychain read timed out"
+    },
+    {
+      "tag_name": "v2.1.224",
+      "published_at": "2025-08-07",
+      "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans\nAdded `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning\nAdded a cancel-and-confirm step when removing an unavailable paste changes a command's text\nAdded `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile over the `AWS_REGION`-derived one"
+    }
+  ]
+}
