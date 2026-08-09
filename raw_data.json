@@ -2,63 +2,63 @@
   "papers": [
     {
       "title": "OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models",
-      "upvotes": 60,
+      "upvotes": 67,
       "paper_id": "2607.28609",
-      "abstract": "Introduces OSReward, a benchmark evaluating vision-language models as judges of computer-using agent trajectories. Finds state-of-the-art models have systematic leniency bias; provides OS-Shepherd open reward models at 30-60% lower cost."
+      "abstract": "A benchmark evaluating vision-language models as judges of computer-using agent trajectories. Reveals systematic leniency bias in state-of-the-art models and introduces OS-Shepherd open reward models for cost-effective evaluation."
     },
     {
       "title": "Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval",
-      "upvotes": 58,
+      "upvotes": 65,
       "paper_id": "2608.01481",
-      "abstract": "Short segments of perceived speech can be retrieved from MEG recordings by deep networks trained with a CLIP-style objective. The model achieves 39.75% Top-1 accuracy, with weights mapping to source space recovering speech-perception network generators."
+      "abstract": "Short segments of perceived speech can be retrieved from magnetoencephalographic recordings by deep networks. This work redesigns spatial attention using spherical harmonics and reveals which speech properties drive retrieval through occlusion analysis."
     },
     {
       "title": "From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models",
-      "upvotes": 28,
+      "upvotes": 32,
       "paper_id": "2608.06020",
-      "abstract": "Develops implementation roadmap for economic world models simulating economies through heterogeneous agents, beliefs, and market mechanisms. Organizes EWM systems into six-level capability ladder from rule-based to empirically-aligned sim-to-real twins."
+      "abstract": "Develops an implementation roadmap for economic world models that simulate heterogeneous agents interacting through markets and institutions. Organizes systems into capability levels from fixed rule-based agents to evolved institutional worlds."
     },
     {
       "title": "DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces",
-      "upvotes": 25,
+      "upvotes": 30,
       "paper_id": "2608.03451",
-      "abstract": "Introduces DataSpace benchmark with 410 cross-language tasks and 7,439 artifacts for evaluating data agents on verifiable tabular results. Best accuracy reaches 66.34%; identifies multimodal evidence integration as consistent challenge across models."
+      "abstract": "A benchmark containing 410 cross-language tasks across 7,439 artifacts for evaluating data agents producing verifiable results from heterogeneous workspaces. Best accuracy reaches 66.34% across frontier multimodal models."
     },
     {
       "title": "Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains",
-      "upvotes": 24,
+      "upvotes": 29,
       "paper_id": "2608.05138",
-      "abstract": "Adapts Nemotron retrieval stack for Modern Greek across legal, energy, financial, medical domains. Fine-tuned embedder improves nDCG@10 from 0.362 to 0.835; LoRA-tuned reader increases answer correctness from 29.4% to 66.9%."
+      "abstract": "End-to-end adaptation of Nemotron retrieval stack for Modern Greek including corpus mining and synthetic supervision. Introduces HERA benchmark and achieves nDCG@10 improvement from 0.362 to 0.835."
     },
     {
       "title": "Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay",
-      "upvotes": 18,
+      "upvotes": 23,
       "paper_id": "2608.05784",
-      "abstract": "Compiles passively captured screen activity into agent memory with deterministic pipeline. On 128,756 frames over 51 days, reduces daily capture 86x smaller in 68ms; agent answers questions at 98.4% accuracy versus 66-80% for LLM summaries."
-    },
-    {
-      "title": "EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal",
-      "upvotes": 16,
-      "paper_id": "2608.05565",
-      "abstract": "Proposes semantic-reasoning framework combining VLM-based Object-Effect Reasoner with DiT-based Video Eraser for comprehensive object-induced effect removal. Outperforms baselines on ROSE-Bench and complex real-world scenarios in EffectWorld dataset."
-    },
-    {
-      "title": "PaDoc: Layout-Grounded Parallel Decoding for Document Parsing",
-      "upvotes": 15,
-      "paper_id": "2608.06146",
-      "abstract": "Layout-grounded parser treating predicted layout as branching structure enabling concurrent regional content decoding. Achieves 91.1 layout F1 and 94.24 overall score; 67.4-118% faster throughput with 39.2-54.9% lower P95 latency."
+      "abstract": "Compiles passively captured screen activity into agent memory deterministically without models, reducing daily capture to prompt-ready context 86x smaller. Demonstrates agent reading achieves 98.4% accuracy on questions."
     },
     {
       "title": "KVAE: Family of Tokenizers for Multimodal Generative Models",
-      "upvotes": 15,
+      "upvotes": 20,
       "paper_id": "2608.05798",
-      "abstract": "Presents KVAE tokenizers for audio, image, and video designed for text-conditioned generation. Reconstruction and generation results match or surpass frontier tokenizers from Wan-2.2, HunyuanVideo, FLUX.2, MovieGen with public code release."
+      "abstract": "Presents tokenizers for audio, image and video designed for text-conditioned generation. Reconstruction and generation results match or surpass frontier open-source tokenizers from Wan-2.2, HunyuanVideo, FLUX.2."
+    },
+    {
+      "title": "EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal",
+      "upvotes": 20,
+      "paper_id": "2608.05565",
+      "abstract": "Framework combining VLM-based object-effect reasoning with DiT-based video eraser for comprehensive object-effect removal. Constructs EffectWorld dataset for complex real-world scenarios and introduces progressive training curriculum."
     },
     {
       "title": "MameLoshnLM: Yiddish Language Model and Evaluation Benchmark",
-      "upvotes": 14,
+      "upvotes": 19,
       "paper_id": "2608.05850",
-      "abstract": "First open-source 8B-parameter language model for Yiddish with Oytser corpus and Kashes benchmark. Outperforms multilingual baselines; better captures language-defining lexical and morphological patterns than noisy web-scale multilingual data."
+      "abstract": "First open-source 8B-parameter language model for Yiddish with Oytser pretraining corpus and Kashes benchmark. Demonstrates that language-specific models better capture lexical and morphological patterns than multilingual alternatives."
+    },
+    {
+      "title": "Continual Learning in Transition",
+      "upvotes": 18,
+      "paper_id": "2608.06216",
+      "abstract": "Survey examining continual learning evolution through three dimensions: When, How, and Where learning occurs. Traces transition from parameter-centric learning toward system-level adaptation with external components."
     }
   ],
   "cc_updates": [
@@ -70,12 +70,12 @@
     {
       "tag_name": "v2.1.225",
       "published_at": "2025-08-08",
-      "body": "Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225)\nAdded a workspace trust prompt to `claude agents` for untrusted directories, matching the behavior of `claude`\nFixed a transient 401 replacing a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart\nFixed MCP OAuth servers on macOS intermittently failing with a burst of 401 errors, as if never authenticated, after a keychain read timed out"
+      "body": "Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225). Added a workspace trust prompt to `claude agents` for untrusted directories, matching the behavior of `claude`. Fixed a transient 401 replacing a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart. Fixed MCP OAuth servers on macOS intermittently failing with a burst of 401 errors after a keychain read timed out. Fixed auto mode counting a safety-filter refusal toward the consecutive-block limit. Fixed cross-session messages staying parked without notice or expiry in headless sessions. Fixed conversation history breaking on Remote Control session resume after very large conversations were compacted."
     },
     {
       "tag_name": "v2.1.224",
       "published_at": "2025-08-07",
-      "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans\nAdded `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning\nAdded a cancel-and-confirm step when removing an unavailable paste changes a command's text\nAdded `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile over the `AWS_REGION`-derived one"
+      "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans. Added `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning. Added a cancel-and-confirm step when removing an unavailable paste changes a command's text. Added `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile. Added `crossSessionInbound` and `dialogExpiry` settings for cross-session messages. Added sandbox credential-masking options including JWT-aware masking and AWS SigV4 re-signing. Added cross-session `SendMessage`: Claude Code sessions can message each other on any machine with `ListAgents` to discover them (macOS and Linux)."
     }
   ]
 }
