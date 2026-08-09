@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-10",
+  "content": "# AI Daily Digest — 2026-08-10\n\n## 今日のハイライト\n- **OSReward がコンピューター操作評価を標準化**: VLMベースの報酬モデルに系統的な「甘さバイアス」が存在することを初めて実証。エージェントAI評価の信頼性向上に直結する重要な発見。\n- **Claude Code v2.1.224-226 リリース**: セルフホストランナー・クロスセッションメッセージ・アーカイブプラグインなど、エンタープライズ向け機能が大幅強化。ヘッドレス環境の認証バグも修正。\n- **低リソース言語への大規模言語モデル展開加速**: ギリシャ語（Nemotron）・イディッシュ語（MameLoshnLM）向け専用モデルが相次ぎ登場。多言語AIの実用範囲が着実に拡大中。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.226 (2025-08-08)\n**バグ修正・安定性改善**\n- バグ修正と信頼性の向上\n\n**ユーザーへの影響**: 細かい安定性改善。既存ワークフローへの影響は最小限。\n\n---\n\n### v2.1.225 (2025-08-08)\n**主要機能**\n- **ゲートウェイ支出制限サポート**: 使用量警告にキャップ名・リセット時刻・オペレーターメッセージを表示（gateway v2.1.225 以上が必要）\n- **`claude agents` のワークスペース信頼プロンプト**: 未信頼ディレクトリで `claude` と同じ動作になるセキュリティ強化\n\n**バグ修正**\n- `CLAUDE_CODE_OAUTH_TOKEN`（長期トークン）から短期ストアドトークンへの置換時に発生していた一時的な 401 エラー修正（ヘッドレスセッションが再起動まで停止する問題）\n- macOS の MCP OAuth サーバーでキーチェーン読み取りタイムアウト後に 401 エラーが連発する問題修正\n- オートモードで安全フィルターによる拒否が連続ブロックカウントに含まれていた問題修正\n- ヘッドレスセッションでクロスセッションメッセージが通知・有効期限なしに滞留する問題修正\n- 大規模会話が圧縮された後のリモートコントロールセッション再開時の会話履歴破損修正\n\n**ユーザーへの影響**: ヘッドレス・エンタープライズユーザーに重要。OAuth/MCP 関連の不安定さが大幅に改善。\n\n---\n\n### v2.1.224 (2025-08-07)\n**主要機能**\n- **セルフホスト環境 (`claude self-hosted-runner`)**: 自社マシン・コンテナを Claude Code のランナーとして登録可能（Team・Enterprise プラン対象）\n- **`archive` プラグインソース**: HTTPS 経由のzipからプラグインをインストール可能（git/npm 不要、SHA-256ピニングオプション対応）\n- **クロスセッション `SendMessage`**: Claude Code セッション間でメッセージ交換可能（`ListAgents` で検出、macOS/Linux 対応）\n- **Bedrock 向け `ANTHROPIC_BEDROCK_REGION_PREFIX` 環境変数**: 特定のクロスリージョン推論プロファイルを優先指定\n- **サンドボックス資格情報マスキング**: JWT対応マスキング・AWS SigV4 再署名オプション追加\n\n**ユーザーへの影響**: エンタープライズ・チームユーザーに大きな価値。セルフホストランナーによりオンプレミス環境での CI/CD 統合が実現。\n\n## 注目論文 TOP 10\n\n**1. OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models** | ⬆️ 67 | https://arxiv.org/abs/2607.28609\n🎯**背景**: コンピューター操作エージェントの評価において、報酬モデル（VLMベース）の標準化されたベンチマークが存在せず、評価の一貫性が課題となっていた。\n🔧**手法**: クロスプラットフォーム（Windows/Mac/Linux/Web）のエージェントトラジェクトリをVLMで判定するベンチマーク「OSReward」を構築。オープン報酬モデル「OS-Shepherd」も導入。\n📊**結果**: 最先端モデルに系統的な「甘さバイアス（leniency bias）」を発見。OS-Shepherdはコスト効率の良い評価を実現。\n💡**意義**: エージェントAIの評価基盤を標準化する重要な貢献。コンピューター操作タスクの品質保証に直結する。\n⚠️**限界**: 特定プラットフォームやタスク種別への依存が残る可能性。バイアスの根本原因分析は今後の課題。\n\n**2. Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval** | ⬆️ 65 | https://arxiv.org/abs/2608.01481\n🎯**背景**: 脳磁図（MEG）から知覚音声を解読する研究は存在するが、どの脳領域・音声特性が解読を駆動するかの解釈可能性が不足していた。\n🔧**手法**: 球面調和関数を用いた空間アテンション機構を再設計し、オクルージョン解析により解読に寄与する音声特性を特定。\n📊**結果**: 特定の皮質領域と音声特性（音素・韻律）が解読精度に直結することを実証。深層ネットワークによる短時間音声セグメントの高精度復元を達成。\n💡**意義**: ブレイン-コンピューターインターフェース（BCI）の解釈可能性向上に貢献。神経科学的な洞察と実用的な復号の橋渡し。\n⚠️**限界**: 短時間セグメントに限定。個人差・ノイズへの対応が実用化の課題。\n\n**3. From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models** | ⬆️ 32 | https://arxiv.org/abs/2608.06020\n🎯**背景**: 経済学シミュレーションはルールベースの固定エージェントが主流で、現実の市場・制度の複雑な相互作用をモデル化できていなかった。\n🔧**手法**: 固定ルールベースから制度が進化する「インスティチューショナルワールド」まで、能力レベル別に経済ワールドモデルの実装ロードマップを体系化。\n📊**結果**: 異質エージェントが市場・制度を通じて相互作用する経済シミュレーションの設計図を提示。段階的な実装パスを定義。\n💡**意義**: AI駆動の経済政策シミュレーションや市場設計ツールの開発に向けた理論的基盤。\n⚠️**限界**: 実装の複雑さと計算コストが高く、検証が困難。現実世界の制度との乖離リスク。\n\n**4. DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces** | ⬆️ 30 | https://arxiv.org/abs/2608.03451\n🎯**背景**: データ分析エージェントの評価は、均質な単一データソースに偏っており、実務環境の異質なワークスペース（複数言語・形式）への対応が未検証だった。\n🔧**手法**: 7,439アーティファクトにまたがる410クロスランゲージタスクを含むベンチマーク「DataSpace」を構築。検証可能な結果生成を評価基準とする。\n📊**結果**: 最良モデルでも精度66.34%に留まり、異質ワークスペースにおけるデータエージェントの限界を明確化。\n💡**意義**: 実務的なデータ分析シナリオへのAIエージェント適用可能性を厳密に評価する基盤を提供。\n⚠️**限界**: ベンチマーク設計の網羅性と現実のワークスペース多様性のギャップ。検証コストが高い。\n\n**5. Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains** | ⬆️ 29 | https://arxiv.org/abs/2608.05138\n🎯**背景**: 現代ギリシャ語は低リソース言語であり、専門ドメイン（法律・医療等）でのNLP性能が英語等と比べて大きく劣っていた。\n🔧**手法**: コーパスマイニング・合成教師データを用いてNemotronの検索スタックをギリシャ語に適応。HERAベンチマークを新規導入。\n📊**結果**: nDCG@10スコアが0.362→0.835に大幅改善。専門ドメインでの検索・生成精度を飛躍的に向上。\n💡**意義**: 低リソース言語でも高品質なRAGシステムを構築できることを実証。他言語への適用可能性が高い。\n⚠️**限界**: ギリシャ語特有の形態論的複雑さへの対応と、ドメイン外への汎化が課題。\n\n**6. Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay** | ⬆️ 23 | https://arxiv.org/abs/2608.05784\n🎯**背景**: 画面操作の記録・再生はエージェントメモリの重要な要素だが、モデルへの入力として圧縮・構造化する効率的な手法が欠けていた。\n🔧**手法**: モデル非依存で決定論的にスクリーンアクティビティをエージェントメモリにコンパイル。日次キャプチャを86分の1のサイズのプロンプト対応コンテキストに圧縮。\n📊**結果**: エージェント読み取り精度98.4%を達成。大幅なコンテキスト削減と高い情報保持を両立。\n💡**意義**: コンピューター操作エージェントの長期記憶・再生に向けた実用的なインフラ。ログコストを大幅削減。\n⚠️**限界**: 動的・複雑なUIへの対応と、プライバシー情報の取り扱いが課題。\n\n**7. KVAE: Family of Tokenizers for Multimodal Generative Models** | ⬆️ 20 | https://arxiv.org/abs/2608.05798\n🎯**背景**: 音声・画像・動画の統合トークナイザーはマルチモーダル生成モデルの核心コンポーネントだが、テキスト条件付き生成に最適化されたものが少なかった。\n🔧**手法**: 音声・画像・動画それぞれに対応するトークナイザー群「KVAE」を設計。テキスト条件付き生成に特化した学習を実施。\n📊**結果**: Wan-2.2、HunyuanVideo、FLUX.2等の主要オープンソーストークナイザーと同等以上の再構成・生成品質を達成。\n💡**意義**: マルチモーダル基盤モデル開発のための統合トークナイズ基盤。研究コミュニティへのオープンな貢献。\n⚠️**限界**: 特定ドメイン（高速動作・専門音声）での性能と、推論コストの評価が未解決。\n\n**8. EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal** | ⬆️ 20 | https://arxiv.org/abs/2608.05565\n🎯**背景**: 動画からのオブジェクト除去は影・反射・光源変化などの付随効果も除去しなければリアルな結果にならないが、既存手法はオブジェクト単体の除去に留まっていた。\n🔧**手法**: VLMによるオブジェクト-エフェクト推論とDiTベースの動画消去器を組み合わせたフレームワーク。段階的学習カリキュラムとEffectWorldデータセットを構築。\n📊**結果**: 複雑な実世界シナリオ（影・反射込み）での包括的なオブジェクト除去を実現。既存手法を上回る自然な映像品質を達成。\n💡**意義**: 映像編集・VFX・プライバシー保護の実用化に向けた重要な進展。\n⚠️**限界**: 複雑な光学効果（透明物体・多重反射）への対応と、リアルタイム処理速度が課題。\n\n**9. MameLoshnLM: Yiddish Language Model and Evaluation Benchmark** | ⬆️ 19 | https://arxiv.org/abs/2608.05850\n🎯**背景**: イディッシュ語は世界で100万人以上が話す歴史的言語だが、専用の大規模言語モデルや評価基準が存在しなかった。\n🔧**手法**: Oytser事前学習コーパスと8Bパラメータモデル「MameLoshnLM」を構築。Kashesベンチマークで評価。\n📊**結果**: 多言語モデルと比較して語彙・形態論パターンをより正確に捉えることを実証。\n💡**意義**: 絶滅危機言語のデジタル保存と活性化への重要な貢献。低リソース言語モデリングの先例。\n⚠️**限界**: 学習データの量と質の制限。現代イディッシュ語の方言多様性への対応が不完全。\n\n**10. Continual Learning in Transition** | ⬆️ 18 | https://arxiv.org/abs/2608.06216\n🎯**背景**: 継続学習（Continual Learning）の研究は急速に発展しているが、When・How・Whereという三次元での体系的な整理が欠けていた。\n🔧**手法**: 継続学習の進化を「いつ学ぶか」「どう学ぶか」「どこで学ぶか」の三軸でサーベイ。パラメーター中心学習から外部コンポーネントを活用したシステムレベル適応への移行を追跡。\n📊**結果**: 継続学習の研究トレンドと将来方向性を包括的にマッピング。新興パラダイムを整理。\n💡**意義**: LLMの継続学習・適応に関心を持つ研究者・エンジニアへの羅針盤となる総説論文。\n⚠️**限界**: サーベイの網羅性に限界があり、急速進歩するLLM時代の継続学習への完全対応は難しい。\n\n",
+  "fetched_at": "2026-08-09T22:07:58.578238+00:00",
+  "papers": [
+    {
+      "title": "OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models",
+      "upvotes": 67,
+      "paper_id": "2607.28609",
+      "abstract": "A benchmark evaluating vision-language models as judges of computer-using agent trajectories. Reveals systematic leniency bias in state-of-the-art models and introduces OS-Shepherd open reward models for cost-effective evaluation."
+    },
+    {
+      "title": "Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval",
+      "upvotes": 65,
+      "paper_id": "2608.01481",
+      "abstract": "Short segments of perceived speech can be retrieved from magnetoencephalographic recordings by deep networks. This work redesigns spatial attention using spherical harmonics and reveals which speech properties drive retrieval through occlusion analysis."
+    },
+    {
+      "title": "From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models",
+      "upvotes": 32,
+      "paper_id": "2608.06020",
+      "abstract": "Develops an implementation roadmap for economic world models that simulate heterogeneous agents interacting through markets and institutions. Organizes systems into capability levels from fixed rule-based agents to evolved institutional worlds."
+    },
+    {
+      "title": "DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces",
+      "upvotes": 30,
+      "paper_id": "2608.03451",
+      "abstract": "A benchmark containing 410 cross-language tasks across 7,439 artifacts for evaluating data agents producing verifiable results from heterogeneous workspaces. Best accuracy reaches 66.34% across frontier multimodal models."
+    },
+    {
+      "title": "Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains",
+      "upvotes": 29,
+      "paper_id": "2608.05138",
+      "abstract": "End-to-end adaptation of Nemotron retrieval stack for Modern Greek including corpus mining and synthetic supervision. Introduces HERA benchmark and achieves nDCG@10 improvement from 0.362 to 0.835."
+    },
+    {
+      "title": "Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay",
+      "upvotes": 23,
+      "paper_id": "2608.05784",
+      "abstract": "Compiles passively captured screen activity into agent memory deterministically without models, reducing daily capture to prompt-ready context 86x smaller. Demonstrates agent reading achieves 98.4% accuracy on questions."
+    },
+    {
+      "title": "KVAE: Family of Tokenizers for Multimodal Generative Models",
+      "upvotes": 20,
+      "paper_id": "2608.05798",
+      "abstract": "Presents tokenizers for audio, image and video designed for text-conditioned generation. Reconstruction and generation results match or surpass frontier open-source tokenizers from Wan-2.2, HunyuanVideo, FLUX.2."
+    },
+    {
+      "title": "EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal",
+      "upvotes": 20,
+      "paper_id": "2608.05565",
+      "abstract": "Framework combining VLM-based object-effect reasoning with DiT-based video eraser for comprehensive object-effect removal. Constructs EffectWorld dataset for complex real-world scenarios and introduces progressive training curriculum."
+    },
+    {
+      "title": "MameLoshnLM: Yiddish Language Model and Evaluation Benchmark",
+      "upvotes": 19,
+      "paper_id": "2608.05850",
+      "abstract": "First open-source 8B-parameter language model for Yiddish with Oytser pretraining corpus and Kashes benchmark. Demonstrates that language-specific models better capture lexical and morphological patterns than multilingual alternatives."
+    },
+    {
+      "title": "Continual Learning in Transition",
+      "upvotes": 18,
+      "paper_id": "2608.06216",
+      "abstract": "Survey examining continual learning evolution through three dimensions: When, How, and Where learning occurs. Traces transition from parameter-centric learning toward system-level adaptation with external components."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.226",
+      "published_at": "2025-08-08",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.225",
+      "published_at": "2025-08-08",
+      "body": "Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225). Added a workspace trust prompt to `claude agents` for untrusted directories, matching the behavior of `claude`. Fixed a transient 401 replacing a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart. Fixed MCP OAuth servers on macOS intermittently failing with a burst of 401 errors after a keychain read timed out. Fixed auto mode counting a safety-filter refusal toward the consecutive-block limit. Fixed cross-session messages staying parked without notice or expiry in headless sessions. Fixed conversation history breaking on Remote Control session resume after very large conversations were compacted."
+    },
+    {
+      "tag_name": "v2.1.224",
+      "published_at": "2025-08-07",
+      "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans. Added `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning. Added a cancel-and-confirm step when removing an unavailable paste changes a command's text. Added `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile. Added `crossSessionInbound` and `dialogExpiry` settings for cross-session messages. Added sandbox credential-masking options including JWT-aware masking and AWS SigV4 re-signing. Added cross-session `SendMessage`: Claude Code sessions can message each other on any machine with `ListAgents` to discover them (macOS and Linux)."
+    }
+  ]
+}
