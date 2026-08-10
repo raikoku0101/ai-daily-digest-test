@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-11",
+  "content": "# AI Daily Digest — 2026-08-11\n\n## 今日のハイライト\n- **マルチモーダルエージェント環境設計の重要性**: 上位論文が示す通り、環境数のスケーリングより多様性・難易度設計が性能を左右する。エージェント訓練コスト削減の鍵となる知見（28 upvotes）。\n- **Claude Code v2.1.224-226 リリース**: セルフホスト環境対応、ゲートウェイ利用上限表示、MCP 認証安定化など企業・チーム利用を直撃する改善が集中投下。ヘッドレス・CI/CD 運用者は即更新を推奨。\n- **LLM 解釈可能性の信頼性に警鐘**: オラクルモデルが特定概念を「見えないふり」をする盲点現象が発見。解釈可能性研究の評価手法そのものを問い直す重要な発見。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.226 (2025-08-08)\n**主要機能**: バグ修正と信頼性の向上。\n\n**ユーザーへの影響**: 安定性が向上し、日常的な使用における予期せぬエラーが減少します。\n\n---\n\n### v2.1.225 (2025-08-08)\n**主要機能**:\n- **ゲートウェイ利用上限サポート**: 使用量警告に上限名・リセット時刻・オペレーターメッセージを表示\n- **ワークスペース信頼プロンプト**: `claude agents` で非信頼ディレクトリに対するセキュリティ確認を追加\n\n**バグ修正**:\n- `CLAUDE_CODE_OAUTH_TOKEN` 長期トークンを短期トークンへ置換する際の一時的な 401 エラーを修正\n- macOS で MCP OAuth サーバーがキーチェーン読み取りタイムアウト後に断続的に 401 エラーを返す問題を修正\n- auto モードで自身のパーミッションチェックのセーフティフィルター拒否が連続ブロック制限にカウントされる問題を修正\n- ヘッドレスセッションや起動時にクロスセッションメッセージが通知なし・期限なしで保留される問題を修正\n\n**ユーザーへの影響**: ヘッドレスセッションと MCP 認証の安定性が大幅に向上。企業・チーム利用での信頼性が改善されます。\n\n---\n\n### v2.1.224 (2025-08-07)\n**主要機能**:\n- **セルフホスト環境**: `claude self-hosted-runner` でユーザー自身のマシン・コンテナを Claude Code 実行環境として利用可能（Team/Enterprise プラン）\n- **archive プラグインソース**: HTTPS 経由の zip からプラグインをインストール（SHA-256 ピン留め対応）\n- **`ANTHROPIC_BEDROCK_REGION_PREFIX` 環境変数**: Bedrock でクロスリージョン推論プロファイルを優先指定可能\n- **`crossSessionInbound` / `dialogExpiry` 設定**: バイパスパーミッションセッションへのメッセージを承認待ち保留\n\n**ユーザーへの影響**: セルフホスト環境導入でプライバシー重視の組織に対応。Bedrock ユーザーのリージョン管理が柔軟化されます。\n\n## 注目論文 TOP 10\n\n**1. Beyond Simply Environment Scaling: Designing Effective Environment Distributions for Multimodal Agent Learning**\nupvotes: 28 | https://arxiv.org/abs/2608.03571\n🎯 **背景**: マルチモーダルエージェントの訓練に大規模環境プールを用いる手法が主流だが、環境数を増やすだけでは性能向上に限界がある。\n🔧 **手法**: 環境分布の多様性と難易度構造を体系的に分析。効果的な環境配信のための設計原則を提案。\n📊 **結果**: 適切に設計された環境分布により、単純なスケーリングより高い性能を達成。\n💡 **意義**: エージェント学習における「質 vs 量」問題に答え、効率的な訓練戦略の指針を提供。\n⚠️ **限界**: 特定のマルチモーダルドメインに限定されており、汎用性の検証が必要。\n\n**2. DCAS: Decoupling CLI Agent Scaffolding to Internalize Planning across Scaffolds**\nupvotes: 12 | https://arxiv.org/abs/2608.06113\n🎯 **背景**: CLI ベースのソフトウェアエンジニアリングエージェントは訓練スキャフォールド以外では性能が低下する問題がある。\n🔧 **手法**: バックエンド置換傍受レイヤーを導入し、スキャフォールド横断評価と計画認識型軌跡収集を実現。\n📊 **結果**: 異なるスキャフォールド間での性能劣化を大幅に抑制し、汎化性能が向上。\n💡 **意義**: エージェントの汎用性問題を解決し、実用的な CLI エージェント展開に貢献。\n⚠️ **限界**: CLI 環境に特化しており、GUI ベースのエージェントへの適用は未検討。\n\n**3. MatrAIx: Simulating the World with 8.3 Billion Persona Agents**\nupvotes: 11 | https://arxiv.org/abs/2608.04205\n🎯 **背景**: AI システムの評価に多様なユーザー層のシミュレーションが必要だが、既存手法は規模と多様性に限界がある。\n🔧 **手法**: 83 億のペルソナレコードを 1,290 次元で管理する人口規模シミュレーション基盤を構築。\n📊 **結果**: 商取引・金融・医療など複数分野でヘテロジニアスユーザー評価を実現。\n💡 **意義**: AI システムの現実世界展開前テストの精度と規模を飛躍的に向上させる。\n⚠️ **限界**: ペルソナの現実的妥当性の検証が課題。プライバシーリスクも懸念される。\n\n**4. When Activation Oracles Learn Not to Read: Concept-Specific Blind Spots in Fine-Tuned Oracles**\nupvotes: 10 | https://arxiv.org/abs/2607.23379\n🎯 **背景**: LLM の内部活性化について質問応答するオラクルモデルが、特定概念に対して「見ない」訓練をしてしまう現象が発見された。\n🔧 **手法**: 行動的漏洩、表現レベルのデコード可能性、オラクルの言語化能力の三軸で分析。\n📊 **結果**: これら三つの能力が概念特異的に著しく乖離することを実証。\n💡 **意義**: 解釈可能性研究の信頼性に根本的な疑問を提起し、評価手法の再考を促す。\n⚠️ **限界**: 分析対象の概念やモデルが限定的であり、一般化には追加検証が必要。\n\n**5. Efficient Knowledge Distillation for LLMs: Offline Top-K Logits and a Fused Chunked KL Loss**\nupvotes: 9 | https://arxiv.org/abs/2608.03796\n🎯 **背景**: LLM の知識蒸留は計算コストとメモリ使用量の観点から実用的な課題が多い。\n🔧 **手法**: オフライン Top-K ロジット保存と、シーケンス長に対してピークメモリを線形化する Fused Chunked KL Loss を提案。\n📊 **結果**: オフライン KD でイテレーションごとに 29% 高速化。単一 GPU で 4 倍大きなコンテキストを処理可能。\n💡 **意義**: 実務家向けに蒸留訓練の効率を大幅改善し、大規模モデルの軽量化を促進。\n⚠️ **限界**: オフライン事前計算のストレージコストが増加する。Teacher モデルの更新への追従が困難。\n\n**6. Relevant but Incomplete: Referential Dangling as a Paradigm-Level Failure Mode in Hard Prompt Compression**\nupvotes: 7 | https://arxiv.org/abs/2608.04569\n🎯 **背景**: ハードプロンプト圧縮は依存する証拠ペアを分離し、回答は保持しながら定義は削除してしまう問題がある。\n🔧 **手法**: 「参照的ダングリング」という新概念を定義し、複数データセットで圧縮比 0.30 での影響を定量評価。\n📊 **結果**: 圧縮比 0.30 で 34-54% のブリッジ例が不完全な回答経路を示すことが判明。\n💡 **意義**: プロンプト圧縮の体系的失敗モードを明示し、より安全な圧縮手法設計に貢献。\n⚠️ **限界**: 限定的なデータセットと圧縮比での評価。他の圧縮手法への適用が未検証。\n\n**7. Small Foundation Models of Human Cognition and Behaviour**\nupvotes: 5 | https://arxiv.org/abs/2608.05224\n🎯 **背景**: 人間の認知行動をモデル化する基盤モデルの最適規模が不明であり、大規模モデルが常に有利かどうか検証されていない。\n🔧 **手法**: Psych-101 データセット（1,070 万試行）で 135M から 14B パラメータの 14 モデルを訓練し比較評価。\n📊 **結果**: 分布内では 0.6B-1B パラメータで十分。分布外では大規模モデルが有利。\n💡 **意義**: 認知科学と AI の融合において、コスト効率的なモデル選択の指針を提供。\n⚠️ **限界**: 特定の認知タスクデータセットに依存し、実世界の行動多様性を十分に反映しない可能性。\n\n**8. Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection**\nupvotes: 3 | https://arxiv.org/abs/2608.06865\n🎯 **背景**: ディープフェイク動画検出は特定の合成手法に過適合しやすく、未知の手法に対する汎化性が低い。\n🔧 **手法**: 33 種の合成手法を含む FaceVid-Forensics-100K を構築。テクスチャ・照明・動き・物理を担当する 4 エージェントのマルチエージェントフレームワークを提案。\n📊 **結果**: GPT・Gemini を上回る汎化性能を達成。未知の合成手法にも有効。\n💡 **意義**: マルチエージェント的アプローチがディープフェイク検出の汎化問題を解決する可能性を示す。\n⚠️ **限界**: 計算コストが高く、リアルタイム検出への応用には最適化が必要。\n\n**9. Zero Gap Is Not Restoration: Stratified Per-Question Probability Evaluation and Step-wise Mitigation of Benchmark Contamination**\nupvotes: 3 | https://arxiv.org/abs/2608.07341\n🎯 **背景**: ベンチマーク汚染の緩和評価に使われる G-AP 指標は不正確であり、実際の汚染状況を見逃す恐れがある。\n🔧 **手法**: SA-PPG 指標を提案し、生成時にトークンを制限して記憶を抑制する RailCap 戦略を導入。\n📊 **結果**: 既存手法より正確な汚染評価を実現し、段階的な汚染緩和が可能に。\n💡 **意義**: LLM ベンチマークの公正性確保に向けた評価・対策の両面で実用的な貢献。\n⚠️ **限界**: RailCap は一部の汚染パターンにのみ有効であり、巧妙な記憶への対処が課題。\n\n**10. Towards Interpretable Foundation Models for Retinal Fundus Images**\nupvotes: 1 | https://arxiv.org/abs/2603.18846\n🎯 **背景**: 眼底画像の基盤モデルは性能が高いが、臨床現場での信頼性に必要な解釈可能性が欠如している。\n🔧 **手法**: BagNet バックボーンを用いた設計段階からの解釈可能性（DualIFM）を提案。80 万枚以上の眼底写真で訓練。\n📊 **結果**: 16 倍少ないパラメータで RETFound と同等の性能を達成。\n💡 **意義**: 医療 AI の信頼性・透明性確保に向けた実用的な解釈可能基盤モデルの先駆け。\n⚠️ **限界**: BagNet の局所受容野により複雑な病変の全体的パターン認識に限界がある可能性。\n\n",
+  "fetched_at": "2026-08-10T22:08:02.455339+00:00",
+  "papers": [
+    {
+      "title": "Beyond Simply Environment Scaling: Designing Effective Environment Distributions for Multimodal Agent Learning",
+      "upvotes": 28,
+      "paper_id": "2608.03571",
+      "abstract": "Recent works train agents by constructing large-scale multimodal environment pools. However, simply increasing environments does not always benefit. This work studies diversity and difficulty structure."
+    },
+    {
+      "title": "DCAS: Decoupling CLI Agent Scaffolding to Internalize Planning across Scaffolds",
+      "upvotes": 12,
+      "paper_id": "2608.06113",
+      "abstract": "CLI-based software-engineering agents show performance degradation across non-training scaffolds. Proposes backend-substitution interception layer enabling cross-scaffold evaluation and planning-aware trajectory collection."
+    },
+    {
+      "title": "MatrAIx: Simulating the World with 8.3 Billion Persona Agents",
+      "upvotes": 11,
+      "paper_id": "2608.04205",
+      "abstract": "Population-scale simulated-user evaluation infrastructure for testing AI systems with heterogeneous users. Contains 8.3 billion persona records across 1,290 dimensions with applications spanning commerce, finance, healthcare."
+    },
+    {
+      "title": "When Activation Oracles Learn Not to Read: Concept-Specific Blind Spots in Fine-Tuned Oracles",
+      "upvotes": 10,
+      "paper_id": "2607.23379",
+      "abstract": "Language models trained to answer questions about internal activations can become concept-specific anti-readers. Shows behavioral leakage, representation-level decodability, and oracle-verbalizability can diverge significantly."
+    },
+    {
+      "title": "Efficient Knowledge Distillation for LLMs: Offline Top-K Logits and a Fused Chunked KL Loss",
+      "upvotes": 9,
+      "paper_id": "2608.03796",
+      "abstract": "Practitioner's study on efficient distillation training. Offline KD runs 29% faster per iteration; fused chunked KL loss enables four times larger context on single GPU, making peak memory linear in sequence length."
+    },
+    {
+      "title": "Relevant but Incomplete: Referential Dangling as a Paradigm-Level Failure Mode in Hard Prompt Compression",
+      "upvotes": 7,
+      "paper_id": "2608.04569",
+      "abstract": "Hard prompt compression can split dependent evidence pairs, retaining answers while deleting entity definitions. At 0.30 compression ratio, 34-54% of bridge examples show incomplete answer paths across datasets."
+    },
+    {
+      "title": "Small Foundation Models of Human Cognition and Behaviour",
+      "upvotes": 5,
+      "paper_id": "2608.05224",
+      "abstract": "Trains fourteen models from 135M to 14B parameters on Psych-101 dataset of 10.7 million trial-level choices. Shows 0.6B-1B parameters suffice in-distribution; larger models advantaged out-of-distribution on novel task structures."
+    },
+    {
+      "title": "Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection",
+      "upvotes": 3,
+      "paper_id": "2608.06865",
+      "abstract": "Introduces FaceVid-Forensics-100K with 100,000 deepfake videos spanning 33 synthesis methods. Multi-agent framework with four domain-expert agents analyzing texture, lighting, motion, and physics outperforms GPT and Gemini."
+    },
+    {
+      "title": "Zero Gap Is Not Restoration: Stratified Per-Question Probability Evaluation and Step-wise Mitigation of Benchmark Contamination",
+      "upvotes": 3,
+      "paper_id": "2608.07341",
+      "abstract": "Proposes SA-PPG metric to evaluate benchmark contamination mitigation more accurately than existing G-AP metric. Introduces RailCap strategy that caps tokens to suppress memorization during generation process."
+    },
+    {
+      "title": "Towards Interpretable Foundation Models for Retinal Fundus Images",
+      "upvotes": 1,
+      "paper_id": "2603.18846",
+      "abstract": "Proposes DualIFM foundation model with interpretable-by-design approach using BagNet backbone. Trained on 800,000+ fundus photographs; achieves performance comparable to RETFound with 16x fewer parameters."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.226",
+      "published_at": "2025-08-08",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.225",
+      "published_at": "2025-08-08",
+      "body": "Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225). Added a workspace trust prompt to `claude agents` for untrusted directories, matching the behavior of `claude`. Fixed a transient 401 replacing a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart. Fixed MCP OAuth servers on macOS intermittently failing with a burst of 401 errors, as if never authenticated, after a keychain read timed out. Fixed auto mode counting a safety-filter refusal of its own permission check toward the consecutive-block limit; the action is still denied, but the model is now told to move on rather than retry. Fixed cross-session messages staying parked without a notice or expiry in headless sessions and during startup."
+    },
+    {
+      "tag_name": "v2.1.224",
+      "published_at": "2025-08-07",
+      "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans. Added `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning. Added a cancel-and-confirm step when removing an unavailable paste changes a command's text. Added `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile over the `AWS_REGION`-derived one. Added `crossSessionInbound` and `dialogExpiry` settings: cross-session messages sent to a session running with bypassed permissions are held for your approval, and messages to other sessions auto-deliver."
+    }
+  ]
+}
