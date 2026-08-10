@@ -1,6 +1,6 @@
-**1. OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models**
-**著者**: OSReward Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2607.28609
+**1. Beyond Simply Environment Scaling: Designing Effective Environment Distributions for Multimodal Agent Learning**
+**著者**: (2026)
+**arXiv**: https://arxiv.org/abs/2608.03571
 
 **まとめ**:
-コンピューター操作エージェント（CUA）の評価に使用されるVLMベースの報酬モデルに、系統的な「甘さバイアス（失敗を成功と誤判定）」が存在することを初めて実証した。27個のVLMを人間注釈付き1,019軌跡で評価し、失敗判定の精度が特に低いこと（OSReward-Hardでは最良モデルでも69.7%）を明らかにした。この知見を基に、1/30〜1/60のコストで同等性能を達成するオープン報酬モデル「OS-Shepherd」を開発・公開した。
+マルチモーダルエージェント訓練において、環境数の単純増加は負の転移を招くことを実証。能力認識型環境選択（AES）と階層的難度カリキュラム（HDC）を組み合わせることで、200環境から30環境への厳選でも143%以上の相対利得を達成した研究。
