@@ -1,6 +1,6 @@
-**4. DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces**
-**著者**: DataSpace Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.03451
+**4. When Activation Oracles Learn Not to Read: Concept-Specific Blind Spots in Fine-Tuned Oracles**
+**著者**: Tobias Bersia, Tatiana Gaintseva (2026)
+**arXiv**: https://arxiv.org/abs/2607.23379
 
 **まとめ**:
-異種データソース（CSV/JSON/SQLite/PDF/動画等）から完全な表形式結果を返すデータエージェントを評価する統一ベンチマーク「DataSpace」を構築。410タスク・7,439アーティファクト・6言語に対し、最高精度のGrok 4.5でも66.34%に留まった。ハーネス選択だけで最大15ポイントの性能差が生まれ、多モダリティ統合と結合（JOIN）操作が一貫した精度低下を引き起こすことを明確化。実務的なデータ分析シナリオへのAIエージェント適用の現状と課題を厳密に評価した。
+活性化オラクル（Activation Oracle）が訓練中に「特定概念を見ないよう学習する」という盲点現象を発見。表現レベルではデコード可能でも AO が言語化できない状態が体系的に生じ、学習ベースの解釈可能性ツールの信頼性に根本的な疑問を提起する研究。
