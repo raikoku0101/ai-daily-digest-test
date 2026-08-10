@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models",
-      "upvotes": 67,
-      "paper_id": "2607.28609",
-      "abstract": "A benchmark evaluating vision-language models as judges of computer-using agent trajectories. Reveals systematic leniency bias in state-of-the-art models and introduces OS-Shepherd open reward models for cost-effective evaluation."
-    },
-    {
-      "title": "Interpretable MEG Decoding of Perceived Speech: Cortical Sources and the Stimulus Features That Drive Retrieval",
-      "upvotes": 65,
-      "paper_id": "2608.01481",
-      "abstract": "Short segments of perceived speech can be retrieved from magnetoencephalographic recordings by deep networks. This work redesigns spatial attention using spherical harmonics and reveals which speech properties drive retrieval through occlusion analysis."
-    },
-    {
-      "title": "From Economic Agents to Agentic Economies: A Systems Blueprint for Economic World Models",
-      "upvotes": 32,
-      "paper_id": "2608.06020",
-      "abstract": "Develops an implementation roadmap for economic world models that simulate heterogeneous agents interacting through markets and institutions. Organizes systems into capability levels from fixed rule-based agents to evolved institutional worlds."
-    },
-    {
-      "title": "DataSpace: Benchmarking Data Agents for Verifiable Analytics over Heterogeneous Workspaces",
-      "upvotes": 30,
-      "paper_id": "2608.03451",
-      "abstract": "A benchmark containing 410 cross-language tasks across 7,439 artifacts for evaluating data agents producing verifiable results from heterogeneous workspaces. Best accuracy reaches 66.34% across frontier multimodal models."
-    },
-    {
-      "title": "Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains",
-      "upvotes": 29,
-      "paper_id": "2608.05138",
-      "abstract": "End-to-end adaptation of Nemotron retrieval stack for Modern Greek including corpus mining and synthetic supervision. Introduces HERA benchmark and achieves nDCG@10 improvement from 0.362 to 0.835."
-    },
-    {
-      "title": "Activity Frames: Deterministic Screen-Activity Compilation for Agent Memory and Replay",
-      "upvotes": 23,
-      "paper_id": "2608.05784",
-      "abstract": "Compiles passively captured screen activity into agent memory deterministically without models, reducing daily capture to prompt-ready context 86x smaller. Demonstrates agent reading achieves 98.4% accuracy on questions."
-    },
-    {
-      "title": "KVAE: Family of Tokenizers for Multimodal Generative Models",
-      "upvotes": 20,
-      "paper_id": "2608.05798",
-      "abstract": "Presents tokenizers for audio, image and video designed for text-conditioned generation. Reconstruction and generation results match or surpass frontier open-source tokenizers from Wan-2.2, HunyuanVideo, FLUX.2."
-    },
-    {
-      "title": "EffectLearner: World-Aware Object-Effect Reasoning for Real-World Video Object Removal",
-      "upvotes": 20,
-      "paper_id": "2608.05565",
-      "abstract": "Framework combining VLM-based object-effect reasoning with DiT-based video eraser for comprehensive object-effect removal. Constructs EffectWorld dataset for complex real-world scenarios and introduces progressive training curriculum."
-    },
-    {
-      "title": "MameLoshnLM: Yiddish Language Model and Evaluation Benchmark",
-      "upvotes": 19,
-      "paper_id": "2608.05850",
-      "abstract": "First open-source 8B-parameter language model for Yiddish with Oytser pretraining corpus and Kashes benchmark. Demonstrates that language-specific models better capture lexical and morphological patterns than multilingual alternatives."
-    },
-    {
-      "title": "Continual Learning in Transition",
-      "upvotes": 18,
-      "paper_id": "2608.06216",
-      "abstract": "Survey examining continual learning evolution through three dimensions: When, How, and Where learning occurs. Traces transition from parameter-centric learning toward system-level adaptation with external components."
-    }
+    {"title": "Beyond Simply Environment Scaling: Designing Effective Environment Distributions for Multimodal Agent Learning", "upvotes": 28, "paper_id": "2608.03571", "abstract": "Recent works train agents by constructing large-scale multimodal environment pools. However, simply increasing environments does not always benefit. This work studies diversity and difficulty structure."},
+    {"title": "DCAS: Decoupling CLI Agent Scaffolding to Internalize Planning across Scaffolds", "upvotes": 12, "paper_id": "2608.06113", "abstract": "CLI-based software-engineering agents show performance degradation across non-training scaffolds. Proposes backend-substitution interception layer enabling cross-scaffold evaluation and planning-aware trajectory collection."},
+    {"title": "MatrAIx: Simulating the World with 8.3 Billion Persona Agents", "upvotes": 11, "paper_id": "2608.04205", "abstract": "Population-scale simulated-user evaluation infrastructure for testing AI systems with heterogeneous users. Contains 8.3 billion persona records across 1,290 dimensions with applications spanning commerce, finance, healthcare."},
+    {"title": "When Activation Oracles Learn Not to Read: Concept-Specific Blind Spots in Fine-Tuned Oracles", "upvotes": 10, "paper_id": "2607.23379", "abstract": "Language models trained to answer questions about internal activations can become concept-specific anti-readers. Shows behavioral leakage, representation-level decodability, and oracle-verbalizability can diverge significantly."},
+    {"title": "Efficient Knowledge Distillation for LLMs: Offline Top-K Logits and a Fused Chunked KL Loss", "upvotes": 9, "paper_id": "2608.03796", "abstract": "Practitioner's study on efficient distillation training. Offline KD runs 29% faster per iteration; fused chunked KL loss enables four times larger context on single GPU, making peak memory linear in sequence length."},
+    {"title": "Relevant but Incomplete: Referential Dangling as a Paradigm-Level Failure Mode in Hard Prompt Compression", "upvotes": 7, "paper_id": "2608.04569", "abstract": "Hard prompt compression can split dependent evidence pairs, retaining answers while deleting entity definitions. At 0.30 compression ratio, 34-54% of bridge examples show incomplete answer paths across datasets."},
+    {"title": "Small Foundation Models of Human Cognition and Behaviour", "upvotes": 5, "paper_id": "2608.05224", "abstract": "Trains fourteen models from 135M to 14B parameters on Psych-101 dataset of 10.7 million trial-level choices. Shows 0.6B-1B parameters suffice in-distribution; larger models advantaged out-of-distribution on novel task structures."},
+    {"title": "Multi-Agent Forensic Reasoning for Generalizable Deepfake Video Detection", "upvotes": 3, "paper_id": "2608.06865", "abstract": "Introduces FaceVid-Forensics-100K with 100,000 deepfake videos spanning 33 synthesis methods. Multi-agent framework with four domain-expert agents analyzing texture, lighting, motion, and physics outperforms GPT and Gemini."},
+    {"title": "Zero Gap Is Not Restoration: Stratified Per-Question Probability Evaluation and Step-wise Mitigation of Benchmark Contamination", "upvotes": 3, "paper_id": "2608.07341", "abstract": "Proposes SA-PPG metric to evaluate benchmark contamination mitigation more accurately than existing G-AP metric. Introduces RailCap strategy that caps tokens to suppress memorization during generation process."},
+    {"title": "Towards Interpretable Foundation Models for Retinal Fundus Images", "upvotes": 1, "paper_id": "2603.18846", "abstract": "Proposes DualIFM foundation model with interpretable-by-design approach using BagNet backbone. Trained on 800,000+ fundus photographs; achieves performance comparable to RETFound with 16x fewer parameters."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.226",
-      "published_at": "2025-08-08",
-      "body": "Bug fixes and reliability improvements"
-    },
-    {
-      "tag_name": "v2.1.225",
-      "published_at": "2025-08-08",
-      "body": "Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225). Added a workspace trust prompt to `claude agents` for untrusted directories, matching the behavior of `claude`. Fixed a transient 401 replacing a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart. Fixed MCP OAuth servers on macOS intermittently failing with a burst of 401 errors after a keychain read timed out. Fixed auto mode counting a safety-filter refusal toward the consecutive-block limit. Fixed cross-session messages staying parked without notice or expiry in headless sessions. Fixed conversation history breaking on Remote Control session resume after very large conversations were compacted."
-    },
-    {
-      "tag_name": "v2.1.224",
-      "published_at": "2025-08-07",
-      "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans. Added `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning. Added a cancel-and-confirm step when removing an unavailable paste changes a command's text. Added `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile. Added `crossSessionInbound` and `dialogExpiry` settings for cross-session messages. Added sandbox credential-masking options including JWT-aware masking and AWS SigV4 re-signing. Added cross-session `SendMessage`: Claude Code sessions can message each other on any machine with `ListAgents` to discover them (macOS and Linux)."
-    }
+    {"tag_name": "v2.1.226", "published_at": "2025-08-08", "body": "Bug fixes and reliability improvements"},
+    {"tag_name": "v2.1.225", "published_at": "2025-08-08", "body": "Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225). Added a workspace trust prompt to `claude agents` for untrusted directories, matching the behavior of `claude`. Fixed a transient 401 replacing a long-lived `CLAUDE_CODE_OAUTH_TOKEN` with a stored login's short-lived token, breaking headless sessions until restart. Fixed MCP OAuth servers on macOS intermittently failing with a burst of 401 errors, as if never authenticated, after a keychain read timed out. Fixed auto mode counting a safety-filter refusal of its own permission check toward the consecutive-block limit; the action is still denied, but the model is now told to move on rather than retry. Fixed cross-session messages staying parked without a notice or expiry in headless sessions and during startup."},
+    {"tag_name": "v2.1.224", "published_at": "2025-08-07", "body": "Added self-hosted environments: `claude self-hosted-runner` turns your own machines or containers into a place Claude Code web, mobile, and desktop sessions can run, on Team and Enterprise plans. Added `archive` plugin source: install plugins from a zip over HTTPS without git or npm, with optional SHA-256 pinning. Added a cancel-and-confirm step when removing an unavailable paste changes a command's text. Added `ANTHROPIC_BEDROCK_REGION_PREFIX` env var for Bedrock to prefer a specific cross-region inference profile over the `AWS_REGION`-derived one. Added `crossSessionInbound` and `dialogExpiry` settings: cross-session messages sent to a session running with bypassed permissions are held for your approval, and messages to other sessions auto-deliver."}
   ]
 }
