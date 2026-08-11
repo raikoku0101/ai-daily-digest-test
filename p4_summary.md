@@ -1,6 +1,6 @@
-**4. When Activation Oracles Learn Not to Read: Concept-Specific Blind Spots in Fine-Tuned Oracles**
-**著者**: Tobias Bersia, Tatiana Gaintseva (2026)
-**arXiv**: https://arxiv.org/abs/2607.23379
+**4. A^2E: An End-to-End Agent Auditing Engine**
+**著者**: A2E Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.07346
 
 **まとめ**:
-活性化オラクル（Activation Oracle）が訓練中に「特定概念を見ないよう学習する」という盲点現象を発見。表現レベルではデコード可能でも AO が言語化できない状態が体系的に生じ、学習ベースの解釈可能性ツールの信頼性に根本的な疑問を提起する研究。
+異なるエージェントハーネス間の能力を体系的に評価するエンドツーエンド評価エンジンA²Eを提案。新規エージェント・タスク・プロトコル（ATP）により異なるハーネスと迅速統合し、自動計測モニターが標準化された実行トレースを生成。正確性だけでなく実行効率・ツール利用・タスク計画・エラー回復を多次元評価し、「いかなるモデル・ハーネス組み合わせも全タスクで優位性を持たない」という重要な知見を提示。

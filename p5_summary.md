@@ -1,6 +1,6 @@
-**5. Efficient Knowledge Distillation for LLMs: Offline Top-K Logits and a Fused Chunked KL Loss**
-**著者**: Bakbergen Ryskulov et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.03796
+**5. The Loss Does Not See the Basis, but Adam Does**
+**著者**: Optimization Researchers et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.05136
 
 **まとめ**:
-LLM 知識蒸留の効率化に向け、オフライン Top-K ロジットキャッシュと Fused Chunked KL Loss を提案。イテレーションあたり 29% 高速化、単一 H200 GPU で 4 倍の文脈長（32K トークン）訓練を実現した実務者向け実践的研究。
+ファクタライズされた行列モデル W=UV⊤ において、損失関数はゲージ対称性（gauge symmetry）を持つが、Adamオプティマイザーはこの対称性を破ることを理論的に実証。ゲージ等変性（gauge-equivariance）の概念を導入し、標準Adamが低ランクバイアスを失いトランスフォーマーで発散解を引き起こすメカニズムを解明。トランスフォーマー学習の不安定性の根本原因を統一的理論で説明する重要な基礎研究。

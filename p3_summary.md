@@ -1,6 +1,6 @@
-**3. MatrAIx: Simulating the World with 8.3 Billion Persona Agents**
-**著者**: Xiaomin Li et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.04205
+**3. Stealing Reasoning Traces from Proprietary LLM APIs**
+**著者**: Security Researchers et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.09867
 
 **まとめ**:
-83億のペルソナレコードを 1,290 次元で管理する人口規模シミュレーション評価基盤。宣言的行動の抑制率 91.5% を達成し、AI システムやデジタル製品を多様なユーザー特性でテストするエンドツーエンド評価インフラを提供する研究。
+主要LLMプロバイダー（Anthropic・OpenAI・Google）の暗号化推論トレースに重大な設計脆弱性を発見。暗号化トレースがセッション・ユーザー・モデル間で互換・交換可能という建築上の欠陥を悪用し、315,320個の暗号化ブロックを復号。367件の個人識別情報と182個の認証情報を回収し、蒸留防止機構の迂回・大規模データ抽出・プロンプト注入攻撃が可能であることを実証。
