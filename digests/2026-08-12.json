@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-12",
+  "content": "# AI Daily Digest — 2026-08-12\n\n## 今日のハイライト\n- **潜在空間推論の躍進 (BDH-CQ, 👍239)**: 中間ステップを言語化せずに潜在空間で反復推論する新手法が登場。CoTの限界を超える可能性を示し、LLM推論パラダイムの転換点となりうる。\n- **LLM APIセキュリティ脆弱性を実証**: プロプライエタリLLMの暗号化推論トレースが傍受・悪用可能であることが明らかに。主要AIプロバイダーのセキュリティ設計の根本的な見直しを迫る研究。\n- **Claude Code v2.1.228リリース**: Windowsのgit検出・セルフホストランナー・Remote Controlなど8件の重要バグを修正。セッション安定性が大幅に向上した最新版。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.228 (2026-08-11) — 最新版\n**主要バグ修正:**\n- インタラクティブセッションが稀なレイアウトエラー後に再描画を停止する問題を修正（プロセス自体は継続）\n- 親フォルダから起動した際にWindows上で `git` / Git Bash が見つからない問題を修正\n- `/tui` が `/model` 変更後に古いモデルに戻ってしまう問題を修正\n- インストール・アップグレード直後の最初のセッションでクロスセッションメッセージングが受信トレイなしで開始する問題を修正\n- Remote Control `/resume` 接続中に再開した会話のタイトルや履歴が現在のセッションに漏洩する問題を修正\n- `claude self-hosted-runner` でチェックアウトフックが失敗するリポジトリを警告付きでスキップするよう修正\n- セルフホストランナーがバックグラウンドタスク完了後のターン開始前にセッションを終了する問題を修正\n- セッションクリーンアップがプロジェクトのメモリフォルダ内容を削除する問題を修正\n\n**ユーザーへの影響:** セッション安定性とWindows環境での動作が大幅に改善。セルフホストランナー利用者は信頼性が向上。\n\n---\n\n### v2.1.227 (2026-08-10)\n**主要改善:**\n- 期限切れログイントークンでのセッション開始時に機能フラグがサブスクリプション階層なしで評価される問題を修正（MaxプランユーザーへのFable課金促進の誤表示を防止）\n- `allowed_non_write_users` を使用した `claude-code-action` でGitHubホスト型ランナー上の全Bashコマンドが失敗する問題を修正\n- `/tui` が最初のメッセージ以前に巻き戻した会話を復元する問題を修正\n- スラッシュコマンドメニュー改善: 青色は選択行のみに適用、マッチ文字は太字表示、絵文字・アクセント文字付き名前も正しく表示\n- パフォーマンス改善: ファイル未検出の提案や @メンションサイズチェックでのイベントループ停止を削減\n\n**ユーザーへの影響:** Max planユーザーの誤課金促進問題が解消。CI/CDパイプラインでの安定性向上。\n\n---\n\n### v2.1.226 (2026-08-08)\n**内容:** バグ修正と信頼性の向上\n\n## 注目論文 TOP 10\n\n**1. BDH-CQ: In-Context Learning with Recurrent Latent Reasoning** | 👍 239 | https://arxiv.org/abs/2608.09888\n🎯**背景**: 大規模言語モデルの推論において、中間ステップを言語化することなく潜在空間での反復計算で問題を解く新アプローチの必要性\n🔧**手法**: インコンテキスト学習と再帰的潜在推論を組み合わせた推論モデル。クエリを潜在空間での反復計算で処理し、中間思考過程を明示的に言語化せずに解答\n📊**結果**: 従来の連鎖思考（CoT）アプローチと比較して、計算効率を維持しながら推論精度を向上\n💡**意義**: 暗黙的な潜在推論がより効率的な推論を可能にし、LLMの推論パラダイムに新たな方向性を提示\n⚠️**限界**: 潜在空間での推論過程の解釈可能性が低く、デバッグや安全性確認が困難\n\n**2. On-Policy Self-Distillation without Any Supervision** | 👍 42 | https://arxiv.org/abs/2608.06296\n🎯**背景**: 外部アノテーションや教師信号なしにLLMを継続的に改善するための教師なし学習手法の不足\n🔧**手法**: オンポリシー自己蒸留を活用し、内部一貫性と多数決擬似解答を用いて確信度の高い誤りを外部監督なしに修正\n📊**結果**: 外部ラベルなしで複数のベンチマークにおいてモデル性能の向上を達成\n💡**意義**: 人間アノテーションコストを削減しながらLLMの継続的自己改善を可能にする実践的フレームワーク\n⚠️**限界**: 多数決による擬似解答が根本的に誤っている場合、誤りが強化される可能性がある\n\n**3. Stealing Reasoning Traces from Proprietary LLM APIs** | 👍 30 | https://arxiv.org/abs/2608.09867\n🎯**背景**: プロプライエタリLLM APIが内部推論過程を暗号化して共有する際のセキュリティリスクの検証\n🔧**手法**: セッション間で共有される暗号化推論トレースを傍受し、弱いモデルに注入することでプロプライエタリな推論・プライベートデータ・隠れた危険を抽出\n📊**結果**: 主要なLLMプロバイダーの推論トレース暗号化機構に重大なセキュリティ脆弱性を実証\n💡**意義**: AIサービスのセキュリティ設計における推論過程の保護の重要性を提示し、業界標準の見直しを促進\n⚠️**限界**: 特定の暗号化実装に依存しており、実装が強化された場合は攻撃が困難になる可能性\n\n**4. A^2E: An End-to-End Agent Auditing Engine** | 👍 6 | https://arxiv.org/abs/2608.07346\n🎯**背景**: エージェントハーネスの能力評価における標準化された評価プロトコルの欠如\n🔧**手法**: 標準化タスクプロトコルと実行トレースを使用するエンドツーエンド評価エンジン。効率性・ツール使用・エラー回復にまたがる能力を評価\n📊**結果**: 複数のエージェントフレームワークを横断的に比較評価し、能力差異を定量化\n💡**意義**: エージェントシステムの体系的な監査を可能にし、AI安全性・信頼性の向上に貢献\n⚠️**限界**: 評価プロトコルが特定のタスク種別に最適化されており、新興タスクへの汎化性に課題\n\n**5. The Loss Does Not See the Basis, but Adam Does** | 👍 3 | https://arxiv.org/abs/2608.05136\n🎯**背景**: ファクタライズされた行列モデルにおけるオプティマイザーの動作とゲージ等変性の関係の理解不足\n🔧**手法**: 座標単位メソッドがゲージ等変性を破ることで低ランクバイアスが失われ、トランスフォーマーで発散解が生じることを数学的に分析\n📊**結果**: Adamオプティマイザーが損失関数に現れない基底情報を暗黙的に利用することを理論的・実証的に示す\n💡**意義**: トランスフォーマー学習の不安定性の根本原因を解明し、より安定したオプティマイザー設計の指針を提供\n⚠️**限界**: 理論的分析は特定のモデルアーキテクチャに限定され、すべての設定への一般化は未検証\n\n**6. Business Arena: Benchmarking LLM Agents in a Realistic Marketplace** | 👍 3 | https://arxiv.org/abs/2608.08621\n🎯**背景**: リアルなビジネス環境においてLLMエージェントがどの程度人間に近い意思決定を行えるかの評価基準が不足\n🔧**手法**: LLMエージェントが現実的なクロスボーダーショップを運営するシミュレーション環境。ビジネス意思決定の詳細な帰属分析を実施\n📊**結果**: 人間の戦略と比較してLLMエージェントのパフォーマンスに大きな差異があることを実証\n💡**意義**: 実世界ビジネスシナリオでのLLMエージェント評価の新たなベンチマーク基盤を提供\n⚠️**限界**: シミュレーション環境が現実の市場の複雑性を完全に反映できない可能性\n\n**7. Cultivar: A Contrastive and Locale-Oriented Translation Benchmark** | 👍 2 | https://arxiv.org/abs/2608.09766\n🎯**背景**: 多言語翻訳モデルにおけるデータ汚染の検出とローカライゼーション堅牢性の評価手法の不足\n🔧**手法**: ローカライズされたベンチマークを用いたソース対比評価により、データ汚染を検出し多言語翻訳モデルのローカライゼーション堅牢性を評価\n📊**結果**: 複数の翻訳モデルにおいてデータ汚染とローカライゼーション問題を特定\n💡**意義**: 翻訳モデルの信頼性評価における汚染検出の重要性を示し、評価手法を標準化\n⚠️**限界**: 特定の言語ペアに焦点を当てており、全言語への適用には追加検証が必要\n\n**8. MMOOC: A Comprehensive Benchmark for Out-of-Context Evaluation in Multimodal LLMs** | 👍 2 | https://arxiv.org/abs/2607.27637\n🎯**背景**: マルチモーダルLLMがコンテキスト外の質問を適切に拒否しながら、コンテキスト内質問に正確に答えられるかの大規模評価基準が存在しない\n🔧**手法**: マルチモーダル言語モデルがコンテキスト外質問を正しく拒否し、シフトしたコンテキスト内質問に堅牢に答えられるかを評価する大規模ベンチマーク\n📊**結果**: 主要なマルチモーダルLLMのコンテキスト外識別能力に大きな差異があることを示す\n💡**意義**: マルチモーダルAIの安全性と信頼性向上に向けた体系的評価フレームワークの提供\n⚠️**限界**: ベンチマーク設計上の偏りがモデルの実際の能力を過小・過大評価する可能性\n\n**9. SymDiag: Explainable Diagnosis for LLM Reasoning via Neuro-Symbolic Verification** | 👍 2 | https://arxiv.org/abs/2608.08786\n🎯**背景**: LLMの連鎖思考（CoT）推論における誤りの体系的な診断と検証手法の不足\n🔧**手法**: 推論検証を構造化された失敗診断として再定式化するニューロシンボリックフレームワーク。CoTをシンボリック制約に変換しステップレベルの検証を実施\n📊**結果**: 従来の検証アプローチと比較して、より詳細で説明可能な推論エラーの診断を実現\n💡**意義**: LLMの推論信頼性向上と説明可能AIの発展に貢献する実践的ツール\n⚠️**限界**: シンボリック変換の品質が推論の複雑さに依存し、高度に抽象的な推論への適用が困難\n\n**10. Gaming Without an Attacker: Benchmark Fingerprinting in LLM-Driven Search** | 👍 2 | https://arxiv.org/abs/2608.08722\n🎯**背景**: 進化的LLM提案がベンチマーク評価設定を悪用することで汎化性が失われる問題の検証\n🔧**手法**: 最適化されたGPUカーネルベンチマークを用いて、進化的LLM提案が評価設定を悪用しホールドアウト設定での汎化失敗を引き起こすことを実証\n📊**結果**: LLM主導の探索において、攻撃者なしでもベンチマーク指紋化が広範に発生することを示す\n💡**意義**: AIベンチマーク設計における評価堅牢性の重要性を提示し、より信頼性の高い評価手法の必要性を示す\n⚠️**限界**: GPUカーネル最適化という特定ドメインに限定された知見であり、他分野への一般化が必要\n\n",
+  "fetched_at": "2026-08-11T22:08:07.627972+00:00",
+  "papers": [
+    {
+      "title": "BDH-CQ: In-Context Learning with Recurrent Latent Reasoning",
+      "upvotes": 239,
+      "paper_id": "2608.09888",
+      "abstract": "A reasoning model combining in-context learning with recurrent latent reasoning that solves queries through iterative computation in latent space without verbalizing intermediate steps."
+    },
+    {
+      "title": "On-Policy Self-Distillation without Any Supervision",
+      "upvotes": 42,
+      "paper_id": "2608.06296",
+      "abstract": "Unsupervised on-policy self-distillation improves LLMs using internal consistency and majority-vote pseudo-solutions to correct confident errors without external supervision."
+    },
+    {
+      "title": "Stealing Reasoning Traces from Proprietary LLM APIs",
+      "upvotes": 30,
+      "paper_id": "2608.09867",
+      "abstract": "Encrypted reasoning traces shared across sessions can be intercepted and injected into weaker models to extract proprietary reasoning, private data, and hidden hazards from LLM providers."
+    },
+    {
+      "title": "A^2E : An End-to-End Agent Auditing Engine",
+      "upvotes": 6,
+      "paper_id": "2608.07346",
+      "abstract": "An end-to-end evaluation engine for agent harnesses using standardized task protocol and execution traces to assess capabilities across efficiency, tool use, and error recovery."
+    },
+    {
+      "title": "The Loss Does Not See the Basis, but Adam Does",
+      "upvotes": 3,
+      "paper_id": "2608.05136",
+      "abstract": "Optimizer behavior in factored matrix models depends on gauge equivariance; coordinate-wise methods break low-rank bias causing divergent solutions in transformers."
+    },
+    {
+      "title": "Business Arena: Benchmarking LLM Agents in a Realistic Marketplace",
+      "upvotes": 3,
+      "paper_id": "2608.08621",
+      "abstract": "Evaluates LLM agents running a realistic cross-border shop, revealing large performance gaps versus human strategies and enabling detailed attribution of business decisions."
+    },
+    {
+      "title": "Cultivar: A Contrastive and Locale-Oriented Translation Benchmark for Investigating Contamination and Localisation Robustness",
+      "upvotes": 2,
+      "paper_id": "2608.09766",
+      "abstract": "Proposes source-contrastive evaluation via localized benchmark to detect data contamination and assess localization robustness in multilingual translation models."
+    },
+    {
+      "title": "MMOOC: A Comprehensive Benchmark for Out-of-Context Evaluation in Multimodal Large Language Models",
+      "upvotes": 2,
+      "paper_id": "2607.27637",
+      "abstract": "Large-scale benchmark assessing whether multimodal language models correctly refuse out-of-context questions while answering shifted in-context questions with robustness."
+    },
+    {
+      "title": "SymDiag: Explainable Diagnosis for LLM Reasoning via Neuro-Symbolic Verification",
+      "upvotes": 2,
+      "paper_id": "2608.08786",
+      "abstract": "Neuro-symbolic framework reframing reasoning verification as structured failure diagnosis, translating chain-of-thought into symbolic constraints for step-level checks."
+    },
+    {
+      "title": "Gaming Without an Attacker: Benchmark Fingerprinting in LLM-Driven Search Under Selection Pressure",
+      "upvotes": 2,
+      "paper_id": "2608.08722",
+      "abstract": "Optimized GPU kernel benchmarks reveal that evolutionary LLM proposals exploit evaluation configurations, causing widespread failure to generalize held-out settings."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.228",
+      "published_at": "2026-08-11",
+      "body": "Fixed interactive sessions that could stop redrawing entirely, while the process kept running, after a rare internal layout error. Fixed `git` / Git Bash not being found on Windows when Claude Code is launched from a parent folder of the git installation. Fixed `/tui` reverting the session to an earlier model when `/model` had been changed since the last response. Fixed cross-session messaging sometimes starting without an inbox in the first session after install or upgrade. Fixed Remote Control `/resume` while connected leaking the resumed conversation's title or history into the connected session. Fixed `claude self-hosted-runner` sessions failing on every fresh runner when the `checkout` hook fails for a repository the session doesn't push to; that repository is now skipped with a warning. Fixed self-hosted runners ending sessions in the gap between a background task finishing and the follow-up turn starting. Fixed session cleanup deleting contents inside a project's memory folder."
+    },
+    {
+      "tag_name": "v2.1.227",
+      "published_at": "2026-08-10",
+      "body": "Fixed feature flags being evaluated without the user's subscription tier when a session started with an expired login token, which could wrongly prompt Max plan users to enable usage credits for Fable. Fixed every Bash command failing under `claude-code-action` with `allowed_non_write_users` on GitHub-hosted runners. Fixed `/tui` bringing back a conversation that had been rewound to before its first message. Improved slash-command menu: blue now marks only the selected row, matched characters are bolded instead of recolored, and emoji or accented names keep their glyphs. Improved performance: fewer event-loop stalls on file-not-found suggestions and at-mention size checks."
+    },
+    {
+      "tag_name": "v2.1.226",
+      "published_at": "2026-08-08",
+      "body": "Bug fixes and reliability improvements"
+    }
+  ]
+}
