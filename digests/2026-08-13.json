@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-13",
+  "content": "# AI Daily Digest — 2026-08-13\n\n## 今日のハイライト\n- **ComBodied Agents (166 upvotes)**: デジタルと身体的AIを統合した人間中心エージェントの新パラダイム。個々の人間状態を長期追跡し同意ベースで介入する革新的アプローチで、AI×ヘルスケア・介護分野の次の波となりうる。\n- **Co-Evolution in Agentic Systems (107 upvotes)**: エージェントと環境が相互進化する自己進化AIシステムの包括的サーベイ。人間設計の限界を超える完全自律進化への道筋と現在地を体系化した必読論文。\n- **Claude Code v2.1.229リリース**: Windows安定性の大幅改善、MCP OAuth修正、IDE診断によるUIフリーズ解消など多数のバグ修正。セルフホストランナー向けのフック機能追加もあり開発者にとって重要なアップデート。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.229 (2025-08-12)\n\n**主要機能**\n- `claude remote-control --continue` コマンドを正式ドキュメント化。セッション再開が容易に\n- セルフホストランナー向けサーバー提供の Claude Code フック対応を追加\n- 長い思考停止中のゲートウェイストリーミング応答に SSE キープアライブ ping を追加\n- プラグインマーケットプレイスにローカルコマンド用の `command` ソースを追加\n- `ListAgents` が切断済み Remote Control セッションを `offline`、クラウドセッションを `cloud` とラベル表示\n\n**バグ修正**\n- 長いレスポンスがストリーミング中に部分消失する問題を修正\n- 拡張長パスを使用した Windows クラッシュを修正\n- attribution ヘッダー無効時の auto モード失敗を修正\n- MCP OAuth の 127.0.0.1 使用厳格認証サーバー問題を修正\n- スラッシュコマンド後の Remote Control スタックスピナー問題を修正\n- Claude Code Review ワークフローがレビューを投稿しない問題を修正\n- 数千の IDE 診断による数秒単位の UI 停止を修正\n\n**ユーザーへの影響**\nWindows ユーザーはクラッシュ修正の恩恵を受け、セルフホストランナー利用者は新しいフック機能が使えるようになります。UI の応答性が全般的に改善されています。\n\n---\n\n### v2.1.228 (2025-08-11)\n\n**主要機能**\n- Write ツールが既存ファイルの読み込みなしでの上書きを許可（新モデル向け）\n- スキル同期のセキュリティ強化：ローカルコマンドやMCPプロンプトをシャドウしなくなり、説明がサニタイズ・ラベル付けされ、`!` コマンドや `@` ファイル展開も無効化\n\n**バグ修正**\n- レアな内部レイアウトエラー後にセッションの再描画が完全停止する問題を修正\n- claude.ai の親フォルダから起動時に Git が見つからない Windows 問題を修正\n- `/model` 変更後に `/tui` が以前のモデルに戻ってしまう問題を修正\n- インストール・アップグレード直後のクロスセッションメッセージング問題を修正\n\n**ユーザーへの影響**\nセキュリティ面での改善が大きく、特に claude.ai から同期されるスキルの安全性が向上。Vertex AI ユーザーの認証情報処理も改善されています。\n\n---\n\n### v2.1.227 (2025-08-10)\n\n**主要機能**\n- スラッシュコマンドメニューの改善：選択行だけブルーハイライト、マッチ文字のボールド表示、絵文字・アクセント文字名に対応\n\n**バグ修正**\n- ログイントークン期限切れ時にサブスクリプション層が無視され Max プランユーザーに誤って使用クレジット要求が表示される問題を修正\n- `allowed_non_write_users` 使用時に `claude-code-action` 下で全 Bash コマンドが失敗する問題を修正\n- `/tui` が最初のメッセージ以前に巻き戻されたセッションを表示する問題を修正\n\n**ユーザーへの影響**\nMax プランユーザーへの誤課金プロンプト問題が解消。GitHub Actions での `claude-code-action` 利用が安定します。\n\n## 注目論文 TOP 10\n\n**1. ComBodied Agents: a New Paradigm of Human-Centric Agentic AI**\nupvotes: 166 | https://arxiv.org/abs/2608.10915\n🎯 背景: デジタルと身体的ツールを統合し、個々の人間の状態軌跡をモデル化する新しいエージェントパラダイムを提案。従来のエージェントAIは人間中心の視点が欠けていた。\n🔧 手法: イベントベースの知覚と介入ポリシーを組み合わせ、同意を意識した段階的サポートを提供するアーキテクチャを採用。\n📊 結果: 人間状態のモデリングにおいて既存手法より比例的かつプライバシー保護的なサポートが実現可能であることを示した。\n💡 意義: AIエージェントが長期的な人間の状態変化を追跡し、適切なタイミングで介入できる人間中心AIの新しい方向性を示す。\n⚠️ 限界: 実世界での評価が限定的で、異文化間での同意の解釈の違いへの対応が課題。\n\n**2. Co-Evolution in Agentic Systems: Toward Self-Directed Evolution Beyond Human Design**\nupvotes: 107 | https://arxiv.org/abs/2608.10299\n🎯 背景: エージェントと環境が相互に適応圧力をかけ合う自己進化システムの体系的なサーベイ。人間による設計の限界を超えることを目指す。\n🔧 手法: 三段階の進化段階（人間主導→半自律→完全自律）を定義し、各段階での自己進化メカニズムを分類・整理。\n📊 結果: 現在の最先端システムが第二段階（半自律）に位置し、完全自律進化には根本的な課題が残ることを明らかにした。\n💡 意義: マルチエージェント自己進化の研究を体系化し、次世代AIシステム設計のロードマップを提供する重要なサーベイ論文。\n⚠️ 限界: 自己進化システムの安全性・制御可能性についての議論が不十分で、倫理的懸念への対処が課題。\n\n**3. Articulated Object Reconstruction from Rest-State Observation**\nupvotes: 33 | https://arxiv.org/abs/2607.27749\n🎯 背景: 動きを観測せずに単一の閉じた構成から関節オブジェクトを再構成する手法の開発。ロボティクスや3D理解に重要な課題。\n🔧 手法: 視覚言語融合、拡散ベースの動き合成、幾何学的一貫性検証を組み合わせたパイプラインを採用。\n📊 結果: 実際の動きを観測することなく、多様な関節オブジェクト（ドア、引き出し、鋏など）の再構成に成功。\n💡 意義: 動的観測なしに関節構造を推定できることで、ロボットが静的シーンから操作計画を立てられるようになる。\n⚠️ 限界: 複雑な多関節構造や、視覚的に曖昧な関節部位では精度が低下する可能性がある。\n\n**4. AdvFD: Boosting Visual Generation via Adversarial Fréchet Distance Loss**\nupvotes: 17 | https://arxiv.org/abs/2608.11205\n🎯 背景: 画像生成の品質評価に使われるFréchet距離(FD)を損失関数として活用し、ポストトレーニングで生成品質を向上させる手法。\n🔧 手法: 静的FD損失に学習可能な敵対的特徴空間を追加し、ホワイトニングで最適化を安定化。異なるモデルスケールに対応。\n📊 結果: 標準的なFD損失ベースラインと比較して視覚的品質が有意に向上し、様々なモデルスケールで効果を確認。\n💡 意義: 既存の生成モデルをポストトレーニングで改善できる実用的なフレームワークで、広い適用範囲が期待される。\n⚠️ 限界: 追加の学習可能な特徴空間により訓練コストが増加し、ハイパーパラメータ調整が必要。\n\n**5. Ex-Omni-2D: Expressive Omni-Modal Dialogue Models with Native Visual Presence**\nupvotes: 9 | https://arxiv.org/abs/2608.10720\n🎯 背景: テキスト・音声・映像を統合したオムニモーダル対話モデルの開発。リアルタイムマルチモーダル応答生成が目標。\n🔧 手法: Visual Thought Plans（視覚思考計画）と蒸留ストリーミング映像生成を組み合わせ、マルチGPUシステムで実用的なリアルタイム性能を実現。\n📊 結果: テキスト・音声・映像の協調応答生成において既存手法を上回るリアルタイム性能を達成。\n💡 意義: 実用的なリアルタイムマルチモーダル対話システムへの道を開き、次世代AIアシスタントの基盤となりうる。\n⚠️ 限界: マルチGPU環境が必要で、単一デバイスでの展開には制約がある。映像品質と速度のトレードオフも存在。\n\n**6. Decoding-Level Taboo: A Diagnostic Stress Test for LLM Robustness**\nupvotes: 7 | https://arxiv.org/abs/2608.09900\n🎯 背景: LLMがオフノミナル（通常外）の生成パスをどう処理するかを診断するストレステスト手法の開発。ロバスト性の評価が目的。\n🔧 手法: 推論時にロジット空間で特定トークンを禁止し、モデルがどのような代替生成戦略を取るかを分析。\n📊 結果: ロバスト性がモデルスケールと instruction alignment に依存することを実証。大規模・高品質なアライメントモデルが優れた対応を示す。\n💡 意義: LLMの隠れた脆弱性を明らかにするデバッグ手法として実用的で、モデル開発・評価のツールとして有用。\n⚠️ 限界: 特定のトークン禁止設定への依存が大きく、実世界の攻撃シナリオとの対応が限定的。\n\n**7. Not Worth Another Token: Marginal Value Estimation for Efficient Deep Research Agents**\nupvotes: 6 | https://arxiv.org/abs/2608.08389\n🎯 背景: 長期研究エージェントにおけるトークン使用量とレイテンシの削減。処理継続の限界価値を推定する手法の開発。\n🔧 手法: パイプラインの異なる段階での枝刈り戦略を適用。早期枝刈りが最大の効率化をもたらすことを発見。\n📊 結果: トークン使用量とレイテンシの大幅削減を達成しながら、研究品質の有意な低下なしに運用可能であることを示した。\n💡 意義: AIエージェントの運用コスト削減に直接貢献し、深い研究タスクの実用的な展開を可能にする実践的な研究。\n⚠️ 限界: 価値推定モデルの精度が研究タスクの種類に依存し、汎化性能の保証が難しい。\n\n**8. SkillZip: Evaluation-Free Skill Compression for Self-Evolving Agents by Discovering Reusable Structure**\nupvotes: 6 | https://arxiv.org/abs/2608.11079\n🎯 背景: 自己進化エージェントのスキルベースが肥大化する問題に対処する評価不要のスキル圧縮手法の提案。\n🔧 手法: 繰り返しルールと手順を共有しながら、レアな例外を保持する最小忠実構造説明を発見するアルゴリズムを採用。\n📊 結果: スキルベースのサイズを大幅削減しながら、エージェントのパフォーマンスを維持または改善することを実験的に確認。\n💡 意義: 継続学習するエージェントのスケーラビリティ問題を解決し、長期運用での知識管理を実用化する。\n⚠️ 限界: 構造発見アルゴリズムの計算コストと、非常に複雑なスキル間の依存関係の扱いが課題。\n\n**9. UniMoMo: Expert Merging-Based MoE Acceleration for Large Recommendation Models**\nupvotes: 5 | https://arxiv.org/abs/2608.08627\n🎯 背景: 大規模推薦モデルのMixture-of-Experts（MoE）構造の計算効率化。インデックスサイズ削減が目標。\n🔧 手法: 機能的類似性によってエキスパートをグループ化し、層適応型保護を適用するポストトレーニング圧縮フレームワーク。\n📊 結果: 教師モデルに近い精度を維持しながら、インデックスサイズの大幅削減（詳細は論文参照）を達成。\n💡 意義: 産業規模の推薦システムの展開コスト削減に直接貢献し、大規模MoEモデルの実用化を促進。\n⚠️ 限界: 汎化性能が推薦ドメイン特有のデータ分布に依存し、他のタスクへの適用可能性は未検証。\n\n**10. InSight-doc: Agentic Visual Perception for Long-Document Understanding**\nupvotes: 5 | https://arxiv.org/abs/2608.10628\n🎯 背景: 長文書の視覚的理解における解像度とコストのトレードオフ。外部リトリーバーなしに適応的な視覚解像度を実現する手法。\n🔧 手法: 低解像度から開始し、推論時リソースとして高解像度ズームを選択的に適用するエージェント的知覚フレームワーク。\n📊 結果: 外部リトリーバーなしで長文書理解ベンチマークにおいて競合手法と同等以上の性能を実現。\n💡 意義: 文書AIの実用化における計算コスト問題を解決し、PDFや報告書の知的処理を効率化する。\n⚠️ 限界: ズーム戦略の最適化が文書タイプに依存し、非常に複雑なレイアウトでは精度が低下する可能性がある。\n\n",
+  "fetched_at": "2026-08-12T22:08:30.130360+00:00",
+  "papers": [
+    {
+      "title": "ComBodied Agents: a New Paradigm of Human-Centric Agentic AI",
+      "upvotes": 166,
+      "paper_id": "2608.10915",
+      "abstract": "Integrates digital and embodied tools to model individual human-state trajectories over time, providing proportionate, consent-aware support through event-based perception and intervention policies."
+    },
+    {
+      "title": "Co-Evolution in Agentic Systems: Toward Self-Directed Evolution Beyond Human Design",
+      "upvotes": 107,
+      "paper_id": "2608.10299",
+      "abstract": "Survey of multi-component self-evolution where agents and environments impose adaptive pressure on one another, progressively removing human constraints across three evolutionary stages."
+    },
+    {
+      "title": "Articulated Object Reconstruction from Rest-State Observation",
+      "upvotes": 33,
+      "paper_id": "2607.27749",
+      "abstract": "Reconstructs articulated objects from single closed configurations using vision-language fusion, diffusion-based motion synthesis, and geometric consistency validation without observed motion."
+    },
+    {
+      "title": "AdvFD: Boosting Visual Generation via Adversarial Fréchet Distance Loss",
+      "upvotes": 17,
+      "paper_id": "2608.11205",
+      "abstract": "Improves generator post-training by adding learnable adversarial feature spaces to static Fréchet losses, with whitening to stabilize optimization across different model scales."
+    },
+    {
+      "title": "Ex-Omni-2D: Expressive Omni-Modal Dialogue Models with Native Visual Presence",
+      "upvotes": 9,
+      "paper_id": "2608.10720",
+      "abstract": "Generates coordinated text, speech, and video responses via Visual Thought Plans and distilled streaming video generation, achieving practical real-time performance on multi-GPU systems."
+    },
+    {
+      "title": "Decoding-Level Taboo: A Diagnostic Stress Test for LLM Robustness",
+      "upvotes": 7,
+      "paper_id": "2608.09900",
+      "abstract": "Runtime logit-space stress test revealing how large language models handle off-nominal generation paths, showing robustness depends on scale and instruction alignment."
+    },
+    {
+      "title": "Not Worth Another Token: Marginal Value Estimation for Efficient Deep Research Agents",
+      "upvotes": 6,
+      "paper_id": "2608.08389",
+      "abstract": "Pruning strategies applied at different pipeline stages reduce token usage and latency in long-horizon research agents, with early pruning yielding greatest efficiency gains."
+    },
+    {
+      "title": "SkillZip: Evaluation-Free Skill Compression for Self-Evolving Agents by Discovering Reusable Structure",
+      "upvotes": 6,
+      "paper_id": "2608.11079",
+      "abstract": "Compresses self-evolving agent skills by finding minimal faithful structural explanations that share repeated rules and procedures while preserving rare exceptions."
+    },
+    {
+      "title": "UniMoMo: Expert Merging-Based MoE Acceleration for Large Recommendation Models",
+      "upvotes": 5,
+      "paper_id": "2608.08627",
+      "abstract": "Post-training compression framework that groups experts by functional similarity and applies layer-adaptive protection, achieving near-teacher accuracy with smaller indexes."
+    },
+    {
+      "title": "InSight-doc: Agentic Visual Perception for Long-Document Understanding",
+      "upvotes": 5,
+      "paper_id": "2608.10628",
+      "abstract": "Framework treating visual resolution as adaptive reasoning-time resource, starting low-resolution and selectively zooming into high-resolution regions without external retrievers."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.229",
+      "published_at": "2025-08-12",
+      "body": "Documented `claude remote-control --continue` for resuming sessions. Added server-supplied Claude Code hook support for self-hosted runners. Added SSE keepalive pings to gateway streaming responses during long thinking pauses. Added plugin marketplace `command` sources for local commands. `ListAgents` now marks disconnected Remote Control sessions as `offline` and labels cloud sessions as `cloud`. Fixed long responses partly disappearing while streaming. Fixed crashes on Windows with extended-length paths. Fixed auto mode failing with disabled attribution headers. Fixed MCP OAuth with strict authorization servers using 127.0.0.1. Fixed Remote Control clients showing stuck spinner after slash commands. Fixed Claude Code Review workflow not posting reviews. Fixed multi-second UI stalls with thousands of IDE diagnostics. Fixed file-watcher handle leaks and Windows scheduled-tasks watcher errors."
+    },
+    {
+      "tag_name": "v2.1.228",
+      "published_at": "2025-08-11",
+      "body": "Fixed interactive sessions that could stop redrawing entirely after rare internal layout errors. Fixed `git` / Git Bash not being found on Windows when Claude Code is launched from parent folder of git installation. Fixed `/tui` reverting session to earlier model when `/model` had been changed. Fixed cross-session messaging sometimes starting without inbox in first session after install or upgrade. Fixed Remote Control `/resume` while connected leaking conversation title or history into connected session. Hardened skills synced from claude.ai: no longer shadow local commands or MCP prompts, descriptions sanitized/labeled, bodies don't run `!` commands or expand `@` files. Improved cross-session messages display. Improved Vertex AI credential handling. Changed Write tool to allow newer models overwriting existing files without reading first."
+    },
+    {
+      "tag_name": "v2.1.227",
+      "published_at": "2025-08-10",
+      "body": "Fixed feature flags being evaluated without user's subscription tier when session started with expired login token, wrongly prompting Max plan users for usage credits. Fixed every Bash command failing under `claude-code-action` with `allowed_non_write_users` on GitHub-hosted runners. Fixed `/tui` bringing back conversation rewound to before first message. Improved slash-command menu: blue marks only selected row, matched characters bolded instead of recolored, emoji/accented names keep glyphs. Improved performance: fewer event-loop stalls on file-not-found suggestions and at-mention size checks."
+    }
+  ]
+}
