@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "BDH-CQ: In-Context Learning with Recurrent Latent Reasoning", "upvotes": 239, "paper_id": "2608.09888", "abstract": "A reasoning model combining in-context learning with recurrent latent reasoning that solves queries through iterative computation in latent space without verbalizing intermediate steps."},
-    {"title": "On-Policy Self-Distillation without Any Supervision", "upvotes": 42, "paper_id": "2608.06296", "abstract": "Unsupervised on-policy self-distillation improves LLMs using internal consistency and majority-vote pseudo-solutions to correct confident errors without external supervision."},
-    {"title": "Stealing Reasoning Traces from Proprietary LLM APIs", "upvotes": 30, "paper_id": "2608.09867", "abstract": "Encrypted reasoning traces shared across sessions can be intercepted and injected into weaker models to extract proprietary reasoning, private data, and hidden hazards from LLM providers."},
-    {"title": "A^2E : An End-to-End Agent Auditing Engine", "upvotes": 6, "paper_id": "2608.07346", "abstract": "An end-to-end evaluation engine for agent harnesses using standardized task protocol and execution traces to assess capabilities across efficiency, tool use, and error recovery."},
-    {"title": "The Loss Does Not See the Basis, but Adam Does", "upvotes": 3, "paper_id": "2608.05136", "abstract": "Optimizer behavior in factored matrix models depends on gauge equivariance; coordinate-wise methods break low-rank bias causing divergent solutions in transformers."},
-    {"title": "Business Arena: Benchmarking LLM Agents in a Realistic Marketplace", "upvotes": 3, "paper_id": "2608.08621", "abstract": "Evaluates LLM agents running a realistic cross-border shop, revealing large performance gaps versus human strategies and enabling detailed attribution of business decisions."},
-    {"title": "Cultivar: A Contrastive and Locale-Oriented Translation Benchmark for Investigating Contamination and Localisation Robustness", "upvotes": 2, "paper_id": "2608.09766", "abstract": "Proposes source-contrastive evaluation via localized benchmark to detect data contamination and assess localization robustness in multilingual translation models."},
-    {"title": "MMOOC: A Comprehensive Benchmark for Out-of-Context Evaluation in Multimodal Large Language Models", "upvotes": 2, "paper_id": "2607.27637", "abstract": "Large-scale benchmark assessing whether multimodal language models correctly refuse out-of-context questions while answering shifted in-context questions with robustness."},
-    {"title": "SymDiag: Explainable Diagnosis for LLM Reasoning via Neuro-Symbolic Verification", "upvotes": 2, "paper_id": "2608.08786", "abstract": "Neuro-symbolic framework reframing reasoning verification as structured failure diagnosis, translating chain-of-thought into symbolic constraints for step-level checks."},
-    {"title": "Gaming Without an Attacker: Benchmark Fingerprinting in LLM-Driven Search Under Selection Pressure", "upvotes": 2, "paper_id": "2608.08722", "abstract": "Optimized GPU kernel benchmarks reveal that evolutionary LLM proposals exploit evaluation configurations, causing widespread failure to generalize held-out settings."}
+    {
+      "title": "ComBodied Agents: a New Paradigm of Human-Centric Agentic AI",
+      "upvotes": 166,
+      "paper_id": "2608.10915",
+      "abstract": "Integrates digital and embodied tools to model individual human-state trajectories over time, providing proportionate, consent-aware support through event-based perception and intervention policies."
+    },
+    {
+      "title": "Co-Evolution in Agentic Systems: Toward Self-Directed Evolution Beyond Human Design",
+      "upvotes": 107,
+      "paper_id": "2608.10299",
+      "abstract": "Survey of multi-component self-evolution where agents and environments impose adaptive pressure on one another, progressively removing human constraints across three evolutionary stages."
+    },
+    {
+      "title": "Articulated Object Reconstruction from Rest-State Observation",
+      "upvotes": 33,
+      "paper_id": "2607.27749",
+      "abstract": "Reconstructs articulated objects from single closed configurations using vision-language fusion, diffusion-based motion synthesis, and geometric consistency validation without observed motion."
+    },
+    {
+      "title": "AdvFD: Boosting Visual Generation via Adversarial Fréchet Distance Loss",
+      "upvotes": 17,
+      "paper_id": "2608.11205",
+      "abstract": "Improves generator post-training by adding learnable adversarial feature spaces to static Fréchet losses, with whitening to stabilize optimization across different model scales."
+    },
+    {
+      "title": "Ex-Omni-2D: Expressive Omni-Modal Dialogue Models with Native Visual Presence",
+      "upvotes": 9,
+      "paper_id": "2608.10720",
+      "abstract": "Generates coordinated text, speech, and video responses via Visual Thought Plans and distilled streaming video generation, achieving practical real-time performance on multi-GPU systems."
+    },
+    {
+      "title": "Decoding-Level Taboo: A Diagnostic Stress Test for LLM Robustness",
+      "upvotes": 7,
+      "paper_id": "2608.09900",
+      "abstract": "Runtime logit-space stress test revealing how large language models handle off-nominal generation paths, showing robustness depends on scale and instruction alignment."
+    },
+    {
+      "title": "Not Worth Another Token: Marginal Value Estimation for Efficient Deep Research Agents",
+      "upvotes": 6,
+      "paper_id": "2608.08389",
+      "abstract": "Pruning strategies applied at different pipeline stages reduce token usage and latency in long-horizon research agents, with early pruning yielding greatest efficiency gains."
+    },
+    {
+      "title": "SkillZip: Evaluation-Free Skill Compression for Self-Evolving Agents by Discovering Reusable Structure",
+      "upvotes": 6,
+      "paper_id": "2608.11079",
+      "abstract": "Compresses self-evolving agent skills by finding minimal faithful structural explanations that share repeated rules and procedures while preserving rare exceptions."
+    },
+    {
+      "title": "UniMoMo: Expert Merging-Based MoE Acceleration for Large Recommendation Models",
+      "upvotes": 5,
+      "paper_id": "2608.08627",
+      "abstract": "Post-training compression framework that groups experts by functional similarity and applies layer-adaptive protection, achieving near-teacher accuracy with smaller indexes."
+    },
+    {
+      "title": "InSight-doc: Agentic Visual Perception for Long-Document Understanding",
+      "upvotes": 5,
+      "paper_id": "2608.10628",
+      "abstract": "Framework treating visual resolution as adaptive reasoning-time resource, starting low-resolution and selectively zooming into high-resolution regions without external retrievers."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.228", "published_at": "2026-08-11", "body": "Fixed interactive sessions that could stop redrawing entirely, while the process kept running, after a rare internal layout error. Fixed `git` / Git Bash not being found on Windows when Claude Code is launched from a parent folder of the git installation. Fixed `/tui` reverting the session to an earlier model when `/model` had been changed since the last response. Fixed cross-session messaging sometimes starting without an inbox in the first session after install or upgrade. Fixed Remote Control `/resume` while connected leaking the resumed conversation's title or history into the connected session. Fixed `claude self-hosted-runner` sessions failing on every fresh runner when the `checkout` hook fails for a repository the session doesn't push to; that repository is now skipped with a warning. Fixed self-hosted runners ending sessions in the gap between a background task finishing and the follow-up turn starting. Fixed session cleanup deleting contents inside a project's memory folder."},
-    {"tag_name": "v2.1.227", "published_at": "2026-08-10", "body": "Fixed feature flags being evaluated without the user's subscription tier when a session started with an expired login token, which could wrongly prompt Max plan users to enable usage credits for Fable. Fixed every Bash command failing under `claude-code-action` with `allowed_non_write_users` on GitHub-hosted runners. Fixed `/tui` bringing back a conversation that had been rewound to before its first message. Improved slash-command menu: blue now marks only the selected row, matched characters are bolded instead of recolored, and emoji or accented names keep their glyphs. Improved performance: fewer event-loop stalls on file-not-found suggestions and at-mention size checks."},
-    {"tag_name": "v2.1.226", "published_at": "2026-08-08", "body": "Bug fixes and reliability improvements"}
+    {
+      "tag_name": "v2.1.229",
+      "published_at": "2025-08-12",
+      "body": "Documented `claude remote-control --continue` for resuming sessions. Added server-supplied Claude Code hook support for self-hosted runners. Added SSE keepalive pings to gateway streaming responses during long thinking pauses. Added plugin marketplace `command` sources for local commands. `ListAgents` now marks disconnected Remote Control sessions as `offline` and labels cloud sessions as `cloud`. Fixed long responses partly disappearing while streaming. Fixed crashes on Windows with extended-length paths. Fixed auto mode failing with disabled attribution headers. Fixed MCP OAuth with strict authorization servers using 127.0.0.1. Fixed Remote Control clients showing stuck spinner after slash commands. Fixed Claude Code Review workflow not posting reviews. Fixed multi-second UI stalls with thousands of IDE diagnostics. Fixed file-watcher handle leaks and Windows scheduled-tasks watcher errors."
+    },
+    {
+      "tag_name": "v2.1.228",
+      "published_at": "2025-08-11",
+      "body": "Fixed interactive sessions that could stop redrawing entirely after rare internal layout errors. Fixed `git` / Git Bash not being found on Windows when Claude Code is launched from parent folder of git installation. Fixed `/tui` reverting session to earlier model when `/model` had been changed. Fixed cross-session messaging sometimes starting without inbox in first session after install or upgrade. Fixed Remote Control `/resume` while connected leaking conversation title or history into connected session. Hardened skills synced from claude.ai: no longer shadow local commands or MCP prompts, descriptions sanitized/labeled, bodies don't run `!` commands or expand `@` files. Improved cross-session messages display. Improved Vertex AI credential handling. Changed Write tool to allow newer models overwriting existing files without reading first."
+    },
+    {
+      "tag_name": "v2.1.227",
+      "published_at": "2025-08-10",
+      "body": "Fixed feature flags being evaluated without user's subscription tier when session started with expired login token, wrongly prompting Max plan users for usage credits. Fixed every Bash command failing under `claude-code-action` with `allowed_non_write_users` on GitHub-hosted runners. Fixed `/tui` bringing back conversation rewound to before first message. Improved slash-command menu: blue marks only selected row, matched characters bolded instead of recolored, emoji/accented names keep glyphs. Improved performance: fewer event-loop stalls on file-not-found suggestions and at-mention size checks."
+    }
   ]
 }

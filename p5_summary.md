@@ -1,6 +1,6 @@
-**5. The Loss Does Not See the Basis, but Adam Does**
-**著者**: Optimization Researchers et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.05136
+**5. Ex-Omni-2D: Expressive Omni-Modal Dialogue Models with Native Visual Presence**
+**著者**: Ex-Omni-2D Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.10720
 
 **まとめ**:
-ファクタライズされた行列モデル W=UV⊤ において、損失関数はゲージ対称性（gauge symmetry）を持つが、Adamオプティマイザーはこの対称性を破ることを理論的に実証。ゲージ等変性（gauge-equivariance）の概念を導入し、標準Adamが低ランクバイアスを失いトランスフォーマーで発散解を引き起こすメカニズムを解明。トランスフォーマー学習の不安定性の根本原因を統一的理論で説明する重要な基礎研究。
+テキスト・音声・映像を統合したオムニモーダル対話モデルEx-Omni-2Dを提案。Visual Thought Plans（視覚思考計画）と蒸留ストリーミング映像生成を組み合わせ、マルチGPUシステムで実用的なリアルタイム性能を実現した。協調的なマルチモーダル応答生成により次世代AIアシスタントの基盤となりうる研究。

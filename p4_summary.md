@@ -1,6 +1,6 @@
-**4. A^2E: An End-to-End Agent Auditing Engine**
-**著者**: A2E Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.07346
+**4. AdvFD: Boosting Visual Generation via Adversarial Fréchet Distance Loss**
+**著者**: AdvFD Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.11205
 
 **まとめ**:
-異なるエージェントハーネス間の能力を体系的に評価するエンドツーエンド評価エンジンA²Eを提案。新規エージェント・タスク・プロトコル（ATP）により異なるハーネスと迅速統合し、自動計測モニターが標準化された実行トレースを生成。正確性だけでなく実行効率・ツール利用・タスク計画・エラー回復を多次元評価し、「いかなるモデル・ハーネス組み合わせも全タスクで優位性を持たない」という重要な知見を提示。
+静的なFréchet距離(FD)損失に学習可能な敵対的特徴空間を追加するAdvFDを提案。生成器とは逆方向に特徴空間を更新する対抗的最適化により「フレシェハッキング(Fréchet hacking)」を防ぎ、実特徴ホワイトニング(real-feature whitening)で最適化を安定化。ImageNet評価でFD-r3スコアが最大41.4%改善され、ポストトレーニングでの視覚品質向上に有効であることを実証した。

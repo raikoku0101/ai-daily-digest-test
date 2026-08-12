@@ -1,6 +1,6 @@
-**1. BDH-CQ: In-Context Learning with Recurrent Latent Reasoning**
-**著者**: BDH Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.09888
+**1. ComBodied Agents: a New Paradigm of Human-Centric Agentic AI**
+**著者**: Merry et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.10915
 
 **まとめ**:
-インコンテキスト学習と再帰的潜在推論を組み合わせた推論システムBDH-CQを提案。中間ステップを言語化せずに潜在空間で反復計算することで、150Mパラメータという軽量構成でARC-AGI-1評価セット29.5% pass@2を達成。わずか$0.0007/タスクという低コストで既存システムを上回り、LLM推論の新たなパラダイムを示す。
+デジタルと身体的エージェントを統合した「ComBodied Agents」という新パラダイムを提案。個々の人間の状態軌跡を長期追跡し、同意・安全性・可逆性を制約としながら、イベントベース知覚と個人世界モデル(Personal World Model)によって比例的・人間中心的なサポートを実現する。タスク完了ではなく人間の自律性と能力向上を最終目標とする革新的フレームワーク。
