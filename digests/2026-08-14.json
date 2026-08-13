@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-14",
+  "content": "# AI Daily Digest — 2026-08-14\n\n## 今日のハイライト\n- **OpenART が AI エージェント安全評価に革命**: 10,000 以上の動的シナリオで 85% 攻撃成功率を記録。静的な安全評価の限界を突破し、実環境に近いレッドチーミングが可能に。エージェント開発者必見。\n- **Claude Code v2.1.229 — Remote Control と接続安定性が大幅強化**: SSE キープアライブで Vertex/Bedrock の切断問題を解消。プラグインの再起動不要適用など開発体験も向上。\n- **「弱いモデル」を活かす AI4AI ハーネス技術**: 強いモデルがランタイムに推論ハーネスを構築し、弱いモデルの性能をほぼ 2 倍に向上。推論コスト削減と性能維持を両立する新パラダイム。\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.231 (2026-08-13)\n**主要機能詳細**: MCP OAuth 認証フローの修正。\n\n**バグ修正**:\n- Slack など OAuth クライアントが事前登録済みの MCP サーバーで、redirect URI ミスマッチによりサインインが失敗していた問題を修正。\n\n**ユーザーへの影響**: Slack MCP などを利用しているユーザーは、今バージョンへアップデートすることでサインイン問題が解消されます。\n\n---\n\n### v2.1.229 (2026-08-12)\n**主要機能詳細**:\n- `claude remote-control --continue` コマンドのドキュメント追加（直近の Remote Control セッションを再開可能）\n- セルフホスト型ランナーセッションでサーバー提供の Claude Code フックをサポート（マネージド環境と同等の動作）\n- Vertex・Bedrock 上流への長時間思考中、SSE キープアライブ ping を追加（アイドルタイムアウト切断を防止）\n- プラグインマーケットプレイスの `command` ソース機能追加（再起動不要で適用）\n- `ListAgents` が切断中の Remote Control セッションを `offline`、クラウドセッションを `cloud` としてラベリング\n\n**バグ修正**:\n- ストリーミング中に長いレスポンスが途中で消えたり二重表示されたりする問題を修正。\n\n**ユーザーへの影響**: リモートセッション管理と接続安定性が大幅に改善。\n\n---\n\n### v2.1.228 (2026-08-11)\n**主要機能詳細**: バグ修正リリース。\n\n**バグ修正**:\n- 稀なレイアウトエラー後、プロセスは継続しているのに画面再描画が完全停止する問題を修正\n- Windows で git インストールの親フォルダから起動した際に git が見つからない問題を修正\n- `/tui` がモデル変更後にセッションを以前のモデルに戻してしまう問題を修正\n- クロスセッションメッセージングが inbox なしで起動することがある問題を修正\n- Remote Control の `/resume` が接続セッションへ会話履歴を漏洩する問題を修正\n\n**ユーザーへの影響**: Windows ユーザーや Remote Control を多用するユーザーに重要な安定性修正。\n\n## 注目論文 TOP 10\n\n**1. OpenART: Scaling Agent Red Teaming via Open-Ended Environment Evolution**\nupvotes: 159 | https://arxiv.org/abs/2608.00677\n🎯 **背景**: AI エージェントが永続的な環境で動作する際、状態変化により累積リスクが生じる。既存の安全評価は静的なシナリオに限られ、動的・進化型の攻撃に対して不十分。\n🔧 **手法**: 50 ドメインにわたる 10,000 以上のステートフルシナリオと 50 万以上のツールを提供。進化型攻撃アルゴリズムにより、エージェントの安全上の弱点を自動的に探索・拡張。\n📊 **結果**: 攻撃成功率 85% を達成。既存の安全評価ベンチマークと比較して、より多様かつ実際的な失敗ケースを発見。\n💡 **意義**: 大規模 AI エージェント安全評価の自動化・スケール化に貢献。エージェント開発者が実環境に近い条件で安全性を検証できる。\n⚠️ **限界**: オープンエンドな進化プロセスは計算コストが高く、全ドメインへの汎化には更なる検証が必要。\n\n**2. AI4AI at Test-Time: Strong-to-Weak Capability Transfer via Harnesses**\nupvotes: 95 | https://arxiv.org/abs/2608.12307\n🎯 **背景**: 強力なモデルの能力をパラメータ更新なしに弱いモデルへ転移する手法が求められている。蒸留や fine-tuning とは異なるアプローチが必要。\n🔧 **手法**: 強いモデルが推論時ハーネス（構造化コードとルーティングロジック）を構築し、弱いモデルの推論を補助。弱いモデルのアウトプットをハーネスが整形・補完。\n📊 **結果**: ターゲットモデルの性能をほぼ 2 倍に改善。パラメータ更新なしに達成。\n💡 **意義**: 小規模・低コストモデルを本番環境で実用的なレベルに引き上げる手法として重要。推論時の能力移転という新しいパラダイム。\n⚠️ **限界**: ハーネス構築自体に強いモデルの推論コストが発生。タスク種別によって効果に差がある可能性。\n\n**3. Mechanist: AI as a Scientific Instrument for Discovering the Mechanisms of Intelligence**\nupvotes: 73 | https://arxiv.org/abs/2608.12036\n🎯 **背景**: AI モデルがどのように知識や信念を内部表現するかを解明するメカニスティック解釈可能性研究は、手動では限界がある。\n🔧 **手法**: エージェントシステムが 1 万 3,000 本の解釈可能性論文と 4,300 万論文データベースを統合し、32 の基礎的手法を活用して自律的なメカニスティック発見を実行。\n📊 **結果**: AI 主導で新たな表現メカニズムを発見。人間研究者が数週間かかる探索を短時間で完了。\n💡 **意義**: 解釈可能性研究の民主化・加速化。AI が科学的手段として自己探索するメタ的な研究手法の確立。\n⚠️ **限界**: 発見内容の信頼性検証は依然として人間の専門知識が必要。自動発見のバイアスリスク。\n\n**4. SkillZip: Contract-Preserving Graph Compression for Scalable Agent Skill Libraries**\nupvotes: 72 | https://arxiv.org/abs/2608.05604\n🎯 **背景**: AI エージェントのスキルライブラリが 10 万以上に拡大すると、管理・検索・実行が困難になる。スキル間の依存関係を壊さずに圧縮する技術が必要。\n🔧 **手法**: 実行認識型の手続き的抽象化フレームワークにより、スキルをコントラクト保持グラフ単位に圧縮。依存関係グラフを解析し意味的に等価な単位に統合。\n📊 **結果**: 3.46 倍の圧縮率を達成しながら、99.2% の依存関係を保持。200 〜 10 万スキルのライブラリで検証。\n💡 **意義**: 大規模スキルライブラリを現実的に管理可能にする基盤技術。エージェントのスケーラビリティ向上に直結。\n⚠️ **限界**: 圧縮アルゴリズムの計算コスト、および動的に追加されるスキルへの対応が課題。\n\n**5. Can LLM Agents Stick to the Script? A Benchmark for Long-Horizon Consistency in Interactive Narratives**\nupvotes: 25 | https://arxiv.org/abs/2608.08160\n🎯 **背景**: インタラクティブなストーリーテリングにおいて、LLM エージェントが長期にわたって物語の一貫性を保てるかを評価するベンチマークが不足。\n🔧 **手法**: NCP-Bench は 100 環境にわたり、20 ターン以上の対話での事実一貫性・敵対的介入への耐性を評価。自動化された矛盾検出スコアリングを採用。\n📊 **結果**: 強力なモデルでも 20 ターン後の生存率は 42% のみ。敵対的介入下では事実競合率 40〜68%。\n💡 **意義**: LLM の長期一貫性の脆弱性を明示。ゲーム・教育・エンターテインメント分野での信頼性向上のための指針を提供。\n⚠️ **限界**: 評価環境が物語に特化しており、他ドメインへの汎化性は限定的。\n\n**6. Self-Geometry: GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models**\nupvotes: 12 | https://arxiv.org/abs/2608.10708\n🎯 **背景**: 3D ビジョン基盤モデルは推論時に幾何学的一貫性が欠如することが多い。GT なしでのテスト時適応が求められる。\n🔧 **手法**: 分離損失と角度隣接サンプリングによりマルチビューの幾何学的制約を明示的に適用するテスト時適応パイプライン。プラグアンドプレイで追加可能。\n📊 **結果**: 6 つのビジョン基盤モデルにおいてポーズ推定と幾何学推定を改善。GT なしで実現。\n💡 **意義**: 実環境でのラベルなし適応が可能になり、3D ビジョンの実用性が向上。\n⚠️ **限界**: テクスチャの少ないシーンでは精度低下の可能性。\n\n**7. Self-Evolving Embodied Agents via Skill-Harness Evolution**\nupvotes: 9 | https://arxiv.org/abs/2608.11350\n🎯 **背景**: 身体性エージェントが基盤モデルを凍結したまま新環境に適応するための自律的スキル進化手法が必要。\n🔧 **手法**: SHAPER フレームワークが環境ロールアウトを通じて再利用可能なスキルとコンテキストコードハーネスを進化させる。モデルパラメータ更新なしでのトレインフリー適応。\n📊 **結果**: パラメータ更新なしに身体性タスクで継続的な性能向上を達成。\n💡 **意義**: 身体性 AI の実用展開コストを大幅削減。継続的適応のための新しいアーキテクチャパターン。\n⚠️ **限界**: ハーネス進化の収束速度や複雑環境でのスケーラビリティに関するさらなる検証が必要。\n\n**8. Learning How the World Evolves: Extrapolative Video World Models via Latent Dynamics Reasoning**\nupvotes: 6 | https://arxiv.org/abs/2608.09926\n🎯 **背景**: 物理的に正確な動画生成は、既存のアプローチでは分布外データへの汎化が困難。\n🔧 **手法**: 潜在ダイナミクス推論が運動ダイナミクスを構造化空間で統合。潜在空間での外挿的予測を実現。\n📊 **結果**: 分布外誤差ギャップをベースラインより 20 分の 1 に削減。パラメータ数 26 分の 1 で 143 倍高速化。\n💡 **意義**: 少ないリソースで物理整合的な動画生成が可能に。自動運転・ロボティクス等への応用が期待。\n⚠️ **限界**: 複雑な物体間インタラクションや流体シミュレーションでの精度は未検証。\n\n**9. The Illusion of Visual Tool-Use: A Causal Audit of Thinking with Images**\nupvotes: 6 | https://arxiv.org/abs/2608.06270\n🎯 **背景**: マルチモーダル LLM がビジュアルツールを使っているように見えても、実際には画像情報が回答に影響していない可能性がある。\n🔧 **手法**: 因果分析フレームワークにより、観測が実際に回答に影響を与えているかを介入実験で検証。\n📊 **結果**: 多くのケースでビジュアルツール使用が見かけ上のものに過ぎないことを発見。集計精度は向上しているにもかかわらず。\n💡 **意義**: マルチモーダル AI の評価手法への根本的問い直し。見かけの性能向上と実際の理解の乖離を明示。\n⚠️ **限界**: 因果監査はモデルアーキテクチャへのアクセスを要求し、ブラックボックスモデルへの適用が困難。\n\n**10. Parameter Exploration for RLVR via Variational Learning**\nupvotes: 4 | https://arxiv.org/abs/2608.09805\n🎯 **背景**: LLM の強化学習（RLVR）において、ゼロアドバンテージグループや不正ロールアウトが性能を制限している。\n🔧 **手法**: 摂動パラメータ方策最適化が事後分布から多様な方策をサンプリング。変分学習により方策の多様性を確保。\n📊 **結果**: LLM 強化学習の性能向上を達成。ゼロアドバンテージグループと不正ロールアウトの削減を確認。\n💡 **意義**: RLVR の安定性と多様性を同時に改善する手法として有望。\n⚠️ **限界**: 変分学習の計算コストと、大規模モデルへのスケーリング時の安定性が要検証。\n\n",
+  "fetched_at": "2026-08-13T22:17:01.577010+00:00",
+  "papers": [
+    {
+      "title": "ComBodied Agents: a New Paradigm of Human-Centric Agentic AI",
+      "upvotes": 166,
+      "paper_id": "2608.10915",
+      "abstract": "Integrates digital and embodied tools to model individual human-state trajectories over time, providing proportionate, consent-aware support through event-based perception and intervention policies."
+    },
+    {
+      "title": "Co-Evolution in Agentic Systems: Toward Self-Directed Evolution Beyond Human Design",
+      "upvotes": 107,
+      "paper_id": "2608.10299",
+      "abstract": "Survey of multi-component self-evolution where agents and environments impose adaptive pressure on one another, progressively removing human constraints across three evolutionary stages."
+    },
+    {
+      "title": "Articulated Object Reconstruction from Rest-State Observation",
+      "upvotes": 33,
+      "paper_id": "2607.27749",
+      "abstract": "Reconstructs articulated objects from single closed configurations using vision-language fusion, diffusion-based motion synthesis, and geometric consistency validation without observed motion."
+    },
+    {
+      "title": "AdvFD: Boosting Visual Generation via Adversarial Fréchet Distance Loss",
+      "upvotes": 17,
+      "paper_id": "2608.11205",
+      "abstract": "Improves generator post-training by adding learnable adversarial feature spaces to static Fréchet losses, with whitening to stabilize optimization across different model scales."
+    },
+    {
+      "title": "Ex-Omni-2D: Expressive Omni-Modal Dialogue Models with Native Visual Presence",
+      "upvotes": 9,
+      "paper_id": "2608.10720",
+      "abstract": "Generates coordinated text, speech, and video responses via Visual Thought Plans and distilled streaming video generation, achieving practical real-time performance on multi-GPU systems."
+    },
+    {
+      "title": "Decoding-Level Taboo: A Diagnostic Stress Test for LLM Robustness",
+      "upvotes": 7,
+      "paper_id": "2608.09900",
+      "abstract": "Runtime logit-space stress test revealing how large language models handle off-nominal generation paths, showing robustness depends on scale and instruction alignment."
+    },
+    {
+      "title": "Not Worth Another Token: Marginal Value Estimation for Efficient Deep Research Agents",
+      "upvotes": 6,
+      "paper_id": "2608.08389",
+      "abstract": "Pruning strategies applied at different pipeline stages reduce token usage and latency in long-horizon research agents, with early pruning yielding greatest efficiency gains."
+    },
+    {
+      "title": "SkillZip: Evaluation-Free Skill Compression for Self-Evolving Agents by Discovering Reusable Structure",
+      "upvotes": 6,
+      "paper_id": "2608.11079",
+      "abstract": "Compresses self-evolving agent skills by finding minimal faithful structural explanations that share repeated rules and procedures while preserving rare exceptions."
+    },
+    {
+      "title": "UniMoMo: Expert Merging-Based MoE Acceleration for Large Recommendation Models",
+      "upvotes": 5,
+      "paper_id": "2608.08627",
+      "abstract": "Post-training compression framework that groups experts by functional similarity and applies layer-adaptive protection, achieving near-teacher accuracy with smaller indexes."
+    },
+    {
+      "title": "InSight-doc: Agentic Visual Perception for Long-Document Understanding",
+      "upvotes": 5,
+      "paper_id": "2608.10628",
+      "abstract": "Framework treating visual resolution as adaptive reasoning-time resource, starting low-resolution and selectively zooming into high-resolution regions without external retrievers."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.229",
+      "published_at": "2025-08-12",
+      "body": "Documented `claude remote-control --continue` for resuming sessions. Added server-supplied Claude Code hook support for self-hosted runners. Added SSE keepalive pings to gateway streaming responses during long thinking pauses. Added plugin marketplace `command` sources for local commands. `ListAgents` now marks disconnected Remote Control sessions as `offline` and labels cloud sessions as `cloud`. Fixed long responses partly disappearing while streaming. Fixed crashes on Windows with extended-length paths. Fixed auto mode failing with disabled attribution headers. Fixed MCP OAuth with strict authorization servers using 127.0.0.1. Fixed Remote Control clients showing stuck spinner after slash commands. Fixed Claude Code Review workflow not posting reviews. Fixed multi-second UI stalls with thousands of IDE diagnostics. Fixed file-watcher handle leaks and Windows scheduled-tasks watcher errors."
+    },
+    {
+      "tag_name": "v2.1.228",
+      "published_at": "2025-08-11",
+      "body": "Fixed interactive sessions that could stop redrawing entirely after rare internal layout errors. Fixed `git` / Git Bash not being found on Windows when Claude Code is launched from parent folder of git installation. Fixed `/tui` reverting session to earlier model when `/model` had been changed. Fixed cross-session messaging sometimes starting without inbox in first session after install or upgrade. Fixed Remote Control `/resume` while connected leaking conversation title or history into connected session. Hardened skills synced from claude.ai: no longer shadow local commands or MCP prompts, descriptions sanitized/labeled, bodies don't run `!` commands or expand `@` files. Improved cross-session messages display. Improved Vertex AI credential handling. Changed Write tool to allow newer models overwriting existing files without reading first."
+    },
+    {
+      "tag_name": "v2.1.227",
+      "published_at": "2025-08-10",
+      "body": "Fixed feature flags being evaluated without user's subscription tier when session started with expired login token, wrongly prompting Max plan users for usage credits. Fixed every Bash command failing under `claude-code-action` with `allowed_non_write_users` on GitHub-hosted runners. Fixed `/tui` bringing back conversation rewound to before first message. Improved slash-command menu: blue marks only selected row, matched characters bolded instead of recolored, emoji/accented names keep glyphs. Improved performance: fewer event-loop stalls on file-not-found suggestions and at-mention size checks."
+    }
+  ]
+}
