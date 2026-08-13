@@ -1,31 +1,39 @@
 {
-  "title": "Week 29 · July 13–17, 2026",
-  "subtitle": "Pull live data into published artifacts through MCP connectors, and use Claude Code with a screen reader in the new screen reader mode.",
+  "title": "Week 32 · August 3–7, 2026",
+  "subtitle": "Claude Code sessions message each other, self-hosted environments run cloud sessions on your infrastructure, and auto mode becomes the default permission mode.",
   "features": [
     {
-      "title": "Artifacts call your MCP connectors",
-      "pill": "web",
-      "lede": "A published artifact can now call MCP connectors each time someone views it, so a dashboard shows live data and can take actions on demand rather than a snapshot from the session that built it. Each call runs through the viewing account's own connections, and viewers approve access before the page's first connector call. This week also adds public sharing links, editor roles for shared editing on Team and Enterprise plans, and artifacts created from Claude Tag sessions.",
-      "link": "/en/artifacts#pull-live-data-with-mcp-connectors"
+      "title": "Cross-session messaging",
+      "pill": "v2.1.224",
+      "lede": "Your Claude Code sessions can now message each other. Claude discovers your other sessions with the ListAgents tool and sends with SendMessage, either when you ask it to or on its own, such as after a change in one session affects what another is working on. A message is text Claude writes for the other session, never your conversation history or files. Available on macOS and Linux. Requires v2.1.224 or later.",
+      "link": "/en/cross-session-messaging#message-another-session"
     },
     {
-      "title": "Screen reader mode",
+      "title": "Self-hosted environments",
+      "pill": "v2.1.224",
+      "lede": "Self-hosted environments run Claude Code cloud sessions on your organization's own infrastructure, in public beta on Team and Enterprise plans. Run `claude self-hosted-runner` on your machines or containers to turn them into runners. When someone picks your environment while starting a session from claude.ai, the mobile or desktop apps, or `claude --cloud`, that session runs inside your network, with access to your internal services. An Owner or admin turns on Allow self-hosted environments in admin settings first.",
+      "link": "/en/self-hosted-environments-quickstart#set-up-an-environment-and-runner"
+    },
+    {
+      "title": "Auto mode becomes the default",
       "pill": "CLI",
-      "lede": "Screen reader mode replaces the visual terminal interface with plain, linear text: instead of boxes, spinners, and in-place redraws, Claude Code prints labeled lines that a screen reader such as VoiceOver or NVDA reads in order, so you can approve permissions and review output end to end. Turn it on per session with a flag, per shell with the CLAUDE_AX_SCREEN_READER environment variable, or everywhere with the axScreenReader setting.",
-      "link": "/en/accessibility#turn-on-screen-reader-mode"
+      "lede": "Starting August 14, auto mode is the default permission mode for new sessions on Pro, Max, and Team plans. If you set a default mode yourself, it stays in place unless you accept the one-time switch prompt, and a default your organization manages doesn't change. You can still switch modes at any time. Already in effect on those plans: the classifier calls auto mode makes no longer count toward your usage limits.",
+      "link": "/en/permission-modes#eliminate-prompts-with-auto-mode"
     }
   ],
   "other_wins": [
-    "/fork now copies your conversation into a new background session with its own row in claude agents while you keep working; the in-session forked subagent it used to launch is now /subtask",
-    "Auto mode no longer needs the CLAUDE_CODE_ENABLE_AUTO_MODE opt-in on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry; administrators can turn it off with disableAutoMode",
-    "MCP tool calls that run longer than two minutes now move to the background automatically so the session stays usable; tune or disable the threshold with CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS",
-    "New claude auto-mode reset restores the default auto-mode configuration, and --yes skips the confirmation prompt",
-    "New corporate launcher support: CLAUDE_CODE_PROCESS_WRAPPER or the processWrapper setting runs the processes Claude Code starts from its own binary, such as the background service and agent view sessions, through a required wrapper executable",
-    "vimInsertModeRemaps setting maps two-key insert-mode sequences such as jj to Escape in vim mode",
-    "--forward-subagent-text and CLAUDE_CODE_FORWARD_SUBAGENT_TEXT include subagent text and thinking blocks in stream-json output",
-    "Session-wide caps stop runaway loops: WebSearch calls and subagent spawns each default to 200, tunable with CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION and CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION",
-    "\"Always allow\" permission rules save at the repository root, so approvals granted in a git worktree persist across sessions and worktrees",
-    "Amazon Bedrock, Google Cloud's Agent Platform, and Claude Platform on AWS now default to Claude Opus 4.8",
-    "The collapsed tool summary line shows a live elapsed-time counter, so long-running tool calls visibly tick instead of looking stuck"
+    "VS Code 拡張機能に Focus ビューが追加。ターン毎のツールアクティビティを折りたたみ可能な1行に隠す機能。コマンドメニューまたは Ctrl+Alt+F (Mac では Ctrl+Option+F) で切り替え可能。",
+    "サンドボックスの認証情報ファイルが Linux および WSL2 で mode: \"mask\" に対応。サンドボックス化されたコマンドがセンチネルコピーを読み取り、サンドボックスプロキシが外部送信時に実際の値に置換する。認証情報マスキングに extract、JWT 対応 decode、AWS SigV4 再署名オプションも追加。",
+    "マーケットプレイスが新しい archive ソースでプラグインを zip アーカイブとして配布可能に。オプションの SHA-256 ピンを付けて HTTPS でダウンロードでき、git や npm なしでインストール可能。",
+    "/review が /code-review のエイリアスになり、/code-review をエフォートレベルなしで実行すると前回指定したレベルが再利用される。",
+    "/fork でコピーしたセッションが、元のセッションのチェックアウトではなく専用のワークツリーでコードを変更するようになった。",
+    "/plugin からインストールしたプラグインが、安全な場合は現在のセッション内で即座にアクティブ化される。インストールサマリーに「Plugin is now active.」または /reload-plugins の実行を促すメッセージが表示される。",
+    "ワークツリー内でコードを変更したバックグラウンドセッションが終了前にコミット・プッシュするようになった。タスクが必要とする場合のみドラフト PR を作成し、CLAUDE.md の git 指示に従う。",
+    "セッションあたり 200 サブエージェント上限が撤廃。長時間実行セッションが新しいサブエージェントの作成を拒否しなくなった。同時実行数と深さの制限は引き続き適用される。",
+    "リポジトリのチェックイン済み設定から Remote Control 自動接続を有効化できなくなった。remoteControlAtStartup はユーザー設定またはマネージド設定で設定する必要がある。プロジェクト設定とローカル設定では無効化のみ可能。",
+    "ワークツリーの分離が強化され、ファイル編集だけでなくメインチェックアウトにアクセスする Bash コマンドと git リダイレクトもブロック。すべてのセッションタイプとサブエージェントに適用。",
+    "Bash コマンドが権限チェックの一部を隠せなくなり、タブや不可視 Unicode パディングによる承認ダイアログでのコマンド偽装も防止された。",
+    "PreToolUse 自動許可フックが、サマリーやコンパクションなど Claude Code の内部サイドタスクにおけるツール制限を回避できなくなった。",
+    "Ultraplan リサーチプレビューが削除。/ultraplan コマンドと ultraplan キーワードを含む。プランモードまたは Web 版 Claude Code を使用すること。"
   ]
 }
