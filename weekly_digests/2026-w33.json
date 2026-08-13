@@ -1,0 +1,44 @@
+{
+  "week": "2026-w33",
+  "content": "# 📅 Claude Code 週刊アップデート — Week 32 · August 3–7, 2026\n\n> Claude Code のセッションが相互にメッセージを送り合えるようになり、セルフホスト環境が自社インフラ上でクラウドセッションを実行できるようになりました。また、auto モードがデフォルトのパーミッションモードになります。\n\n## 🚀 主要機能 (3 件)\n\n### Cross-session messaging `v2.1.224`\nClaude Code のセッション同士がメッセージを送り合えるようになりました。Claude は `ListAgents` ツールで他のセッションを見つけ、`SendMessage` で送信します。ユーザーが指示した場合だけでなく、あるセッションの変更が別のセッションの作業に影響する場合など、Claude が自律的に送信することもあります。メッセージは Claude が他のセッション向けに書いたテキストであり、会話履歴やファイルは送信されません。macOS および Linux で利用可能。v2.1.224 以降が必要です。\n🔗 https://code.claude.com/en/cross-session-messaging#message-another-session\n\n### Self-hosted environments `v2.1.224`\nセルフホスト環境により、Team および Enterprise プランで自社インフラ上で Claude Code クラウドセッションを実行できます（パブリックベータ）。マシンやコンテナで `claude self-hosted-runner` を実行するとランナーになります。claude.ai、モバイル・デスクトップアプリ、または `claude --cloud` からセッションを開始する際にこの環境を選択すると、セッションは自社ネットワーク内で動作し、内部サービスにアクセスできます。まず、Owner または管理者が管理者設定で **Allow self-hosted environments** を有効にする必要があります。\n🔗 https://code.claude.com/en/self-hosted-environments-quickstart#set-up-an-environment-and-runner\n\n### Auto mode becomes the default `CLI`\n8 月 14 日より、Pro・Max・Team プランの新しいセッションでは auto モードがデフォルトのパーミッションモードになります。自分でデフォルトモードを設定している場合は、一度だけ表示される切り替えプロンプトを承認しない限り現在の設定が維持されます。組織が管理するデフォルトは変更されません。モードはいつでも切り替え可能です。これらのプランではすでに有効：auto モードが行う分類呼び出しが使用量制限にカウントされなくなりました。\n🔗 https://code.claude.com/en/permission-modes#eliminate-prompts-with-auto-mode\n\n## ✨ その他のアップデート\n\n- VS Code 拡張機能に Focus ビューが追加されました。ターンごとにツールの動作を1行にまとめて折りたたみ表示できます。コマンドメニューまたは Ctrl+Alt+F（Mac は Ctrl+Option+F）で切り替えられます。\n- サンドボックスの認証情報ファイルが Linux および WSL2 で `mode: \"mask\"` をサポートしました。サンドボックスコマンドはセンチネルコピーを読み取り、サンドボックスプロキシがエグレス時に実際の値に置換します。また `extract`、JWT 対応の `decode`、AWS SigV4 再署名オプションも追加されました。\n- マーケットプレイスが新しい `archive` ソースを使って ZIP アーカイブ形式でプラグインを配布できるようになりました。HTTPS 経由でダウンロードされ、オプションで SHA-256 ピンを設定可能です。git や npm なしでインストールできます。\n- `/review` が `/code-review` のエイリアスになりました。また `/code-review` を effort レベル未指定で呼び出すと、前回指定したレベルが再利用されます。\n- `/fork` でコピーしたセッションが、元のセッションのチェックアウトではなく専用のワークツリーでコード変更を行うようになりました。\n- `/plugin` からインストールしたプラグインが、安全な場合は現在のセッションですぐに有効になります。インストール概要に「Plugin is now active.」と表示されるか、`/reload-plugins` の実行が案内されます。\n- ワークツリーでコード変更を行ったバックグラウンドセッションが、終了前にコミットとプッシュを行うようになりました。ドラフト PR はタスクが必要とする場合のみ作成され、`CLAUDE.md` の git 指示に従います。\n- セッションあたり 200 サブエージェントの上限が撤廃されました。長時間実行のセッションでも新しいサブエージェントが拒否されなくなります。並行数と深さの制限は引き続き適用されます。\n- リポジトリのチェックイン済み設定から Remote Control の自動接続を有効にできなくなりました。`remoteControlAtStartup` はユーザー設定またはマネージド設定で指定してください。プロジェクトおよびローカル設定では無効化のみ可能です。\n- ワークツリーの分離が強化され、ファイル編集だけでなく Bash コマンドや git のリダイレクトも、すべてのセッションタイプおよびサブエージェントでメインチェックアウトへのアクセスがブロックされるようになりました。\n- Bash コマンドの一部を権限チェックから隠すことが不可能になりました。また、タブや不可視の Unicode パディングで承認ダイアログの表示を欺くこともできなくなりました。\n- PreToolUse の自動許可フックが、サマリーやコンパクションなど Claude Code 内部のサイドタスクでのツール制限を回避できなくなりました。\n- Ultraplan リサーチプレビューが削除されました。`/ultraplan` コマンドと `ultraplan` キーワードは廃止されました。代わりにプランモードまたは Web 版 Claude Code をご利用ください。\n\n📄 原文: https://code.claude.com/docs/en/whats-new/2026-w32\n",
+  "fetched_at": "2026-08-13T23:39:39.027742+00:00",
+  "raw": {
+    "title": "Week 32 · August 3–7, 2026",
+    "subtitle": "Claude Code sessions message each other, self-hosted environments run cloud sessions on your infrastructure, and auto mode becomes the default permission mode.",
+    "features": [
+      {
+        "title": "Cross-session messaging",
+        "pill": "v2.1.224",
+        "lede": "Your Claude Code sessions can now message each other. Claude discovers your other sessions with the ListAgents tool and sends with SendMessage, either when you ask it to or on its own, such as after a change in one session affects what another is working on. A message is text Claude writes for the other session, never your conversation history or files. Available on macOS and Linux. Requires v2.1.224 or later.",
+        "link": "/en/cross-session-messaging#message-another-session"
+      },
+      {
+        "title": "Self-hosted environments",
+        "pill": "v2.1.224",
+        "lede": "Self-hosted environments run Claude Code cloud sessions on your organization's own infrastructure, in public beta on Team and Enterprise plans. Run `claude self-hosted-runner` on your machines or containers to turn them into runners. When someone picks your environment while starting a session from claude.ai, the mobile or desktop apps, or `claude --cloud`, that session runs inside your network, with access to your internal services. An Owner or admin turns on Allow self-hosted environments in admin settings first.",
+        "link": "/en/self-hosted-environments-quickstart#set-up-an-environment-and-runner"
+      },
+      {
+        "title": "Auto mode becomes the default",
+        "pill": "CLI",
+        "lede": "Starting August 14, auto mode is the default permission mode for new sessions on Pro, Max, and Team plans. If you set a default mode yourself, it stays in place unless you accept the one-time switch prompt, and a default your organization manages doesn't change. You can still switch modes at any time. Already in effect on those plans: the classifier calls auto mode makes no longer count toward your usage limits.",
+        "link": "/en/permission-modes#eliminate-prompts-with-auto-mode"
+      }
+    ],
+    "other_wins": [
+      "VS Code 拡張機能に Focus ビューが追加されました。ターンごとにツールの動作を1行にまとめて折りたたみ表示できます。コマンドメニューまたは Ctrl+Alt+F（Mac は Ctrl+Option+F）で切り替えられます。",
+      "サンドボックスの認証情報ファイルが Linux および WSL2 で mode: \"mask\" をサポートしました。サンドボックスコマンドはセンチネルコピーを読み取り、サンドボックスプロキシがエグレス時に実際の値に置換します。また extract、JWT 対応の decode、AWS SigV4 再署名オプションも追加されました。",
+      "マーケットプレイスが新しい archive ソースを使って ZIP アーカイブ形式でプラグインを配布できるようになりました。HTTPS 経由でダウンロードされ、オプションで SHA-256 ピンを設定可能です。git や npm なしでインストールできます。",
+      "/review が /code-review のエイリアスになりました。また /code-review を effort レベル未指定で呼び出すと、前回指定したレベルが再利用されます。",
+      "/fork でコピーしたセッションが、元のセッションのチェックアウトではなく専用のワークツリーでコード変更を行うようになりました。",
+      "/plugin からインストールしたプラグインが、安全な場合は現在のセッションですぐに有効になります。インストール概要に「Plugin is now active.」と表示されるか、/reload-plugins の実行が案内されます。",
+      "ワークツリーでコード変更を行ったバックグラウンドセッションが、終了前にコミットとプッシュを行うようになりました。ドラフト PR はタスクが必要とする場合のみ作成され、CLAUDE.md の git 指示に従います。",
+      "セッションあたり 200 サブエージェントの上限が撤廃されました。長時間実行のセッションでも新しいサブエージェントが拒否されなくなります。並行数と深さの制限は引き続き適用されます。",
+      "リポジトリのチェックイン済み設定から Remote Control の自動接続を有効にできなくなりました。remoteControlAtStartup はユーザー設定またはマネージド設定で指定してください。プロジェクトおよびローカル設定では無効化のみ可能です。",
+      "ワークツリーの分離が強化され、ファイル編集だけでなく Bash コマンドや git のリダイレクトも、すべてのセッションタイプおよびサブエージェントでメインチェックアウトへのアクセスがブロックされるようになりました。",
+      "Bash コマンドの一部を権限チェックから隠すことが不可能になりました。また、タブや不可視の Unicode パディングで承認ダイアログの表示を欺くこともできなくなりました。",
+      "PreToolUse の自動許可フックが、サマリーやコンパクションなど Claude Code 内部のサイドタスクでのツール制限を回避できなくなりました。",
+      "Ultraplan リサーチプレビューが削除されました。/ultraplan コマンドと ultraplan キーワードは廃止されました。代わりにプランモードまたは Web 版 Claude Code をご利用ください。"
+    ]
+  }
+}
