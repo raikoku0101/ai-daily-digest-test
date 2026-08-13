@@ -1,6 +1,6 @@
-**2. Co-Evolution in Agentic Systems: Toward Self-Directed Evolution Beyond Human Design**
-**著者**: Survey Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.10299
+**2. AI4AI at Test-Time: Strong-to-Weak Capability Transfer via Harnesses**
+**著者**: AI4AI Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.12307
 
 **まとめ**:
-エージェントと環境が相互に適応圧力をかけ合う「共進化(co-evolution)」システムの包括的サーベイ論文。エージェント間共進化・エージェント環境間共進化・メタ共進化の三段階を定義し、人間設計の限界を超えた自己指向進化への道筋を体系化する。完全自律進化には安全性・統治の根本的課題が残るが、次世代AIシステムの設計指針として重要な貢献をもたらす。
+強力な「ビルダー」モデルが弱い「ターゲット」モデル向けに推論時ハーネス（スキャフォルド）を自動構築し、パラメータ更新なしで性能を向上させる手法を提案。ToMベンチマーク4種で平均 +0.275 の改善を達成し、最良ケースでは 0.912（+0.423）に到達。決定論的オフロードと認知負荷削減が効果の鍵で、小規模・低コストモデルの実用性を大幅に高める。

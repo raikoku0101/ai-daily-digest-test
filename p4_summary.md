@@ -1,6 +1,6 @@
-**4. AdvFD: Boosting Visual Generation via Adversarial Fréchet Distance Loss**
-**著者**: AdvFD Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.11205
+**4. SkillZip: Contract-Preserving Graph Compression for Scalable Agent Skill Libraries**
+**著者**: SkillZip Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.05604
 
 **まとめ**:
-静的なFréchet距離(FD)損失に学習可能な敵対的特徴空間を追加するAdvFDを提案。生成器とは逆方向に特徴空間を更新する対抗的最適化により「フレシェハッキング(Fréchet hacking)」を防ぎ、実特徴ホワイトニング(real-feature whitening)で最適化を安定化。ImageNet評価でFD-r3スコアが最大41.4%改善され、ポストトレーニングでの視覚品質向上に有効であることを実証した。
+AI エージェントのスキルライブラリが 10 万規模に拡大する際の管理・検索問題を解決するため、セクションレベルの契約保存グラフ圧縮フレームワーク「SkillZip」を提案。依存関係閉包と検証器到達可能性を保持したまま 3.46× 圧縮を実現し、依存関係保存率 99.2% を達成。コンテキスト予算内での効率的なスキル検索・実行が可能となり、大規模エージェントシステムのスケーラビリティ向上に貢献する。
