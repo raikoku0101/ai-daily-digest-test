@@ -1,6 +1,6 @@
-**3. Mechanist: AI as a Scientific Instrument for Discovering the Mechanisms of Intelligence**
-**著者**: Mechanist Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.12036
+**3. An AI4AI Framework for Visual Token Pruning (AutoPrune)**
+**著者**: AutoPrune Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.07193
 
 **まとめ**:
-AI モデルの知能メカニズムを自律的に発見する科学機器「Mechanist」を提案。1 万 3,000 本の解釈可能性論文と 4,300 万論文データベースを活用し、仮説生成・実験・検証のサイクルを自動化。潜在学習の危険な特性伝播という新規リスクを発見し、信念状態推論メカニズムの特定による推論時性能向上（最大 +15.3%）を実現。AI 解釈可能性研究の自律化・加速化を示した。
+LLMが自動的に視覚トークン剪定アルゴリズムを設計するフレームワーク「AutoPrune」を提案。131個の再利用可能な原子からなるドメイン固有言語（TPDSL）を通じてLLMが剪定ポリシーを反復設計し、94.4%のトークン削減下でも99.7%の性能を維持しFLOPsを9.9倍削減。訓練不要で3つのMLLMバックボーンに対応し、AI自身がAI効率化手法を設計する「AI4AI」アプローチの有効性を初めて実証。

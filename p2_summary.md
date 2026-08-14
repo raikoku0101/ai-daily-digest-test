@@ -1,6 +1,6 @@
-**2. AI4AI at Test-Time: Strong-to-Weak Capability Transfer via Harnesses**
-**著者**: AI4AI Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.12307
+**2. LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time**
+**著者**: LiveAnimate Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.11745
 
 **まとめ**:
-強力な「ビルダー」モデルが弱い「ターゲット」モデル向けに推論時ハーネス（スキャフォルド）を自動構築し、パラメータ更新なしで性能を向上させる手法を提案。ToMベンチマーク4種で平均 +0.275 の改善を達成し、最良ケースでは 0.912（+0.423）に到達。決定論的オフロードと認知負荷削減が効果の鍵で、小規模・低コストモデルの実用性を大幅に高める。
+14Bパラメータの動画拡散トランスフォーマー（DiT）を基盤に、リアルタイムストリーミングと安定した長形式アニメーション生成を同時に実現する初のシステム。2×H100 GPU上で約20FPSを達成し、3分間のベンチマークでも知覚品質とアイデンティティがほぼ一定。従来システムが2〜5時間要するところを約4分で処理完了し、ライブストリーミング・テレプレゼンス・仮想アバターへの実用的応用を開く。

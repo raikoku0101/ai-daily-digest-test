@@ -1,6 +1,6 @@
-**4. SkillZip: Contract-Preserving Graph Compression for Scalable Agent Skill Libraries**
-**著者**: SkillZip Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.05604
+**4. H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation in World Models**
+**著者**: H2R-Bench Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.13049
 
 **まとめ**:
-AI エージェントのスキルライブラリが 10 万規模に拡大する際の管理・検索問題を解決するため、セクションレベルの契約保存グラフ圧縮フレームワーク「SkillZip」を提案。依存関係閉包と検証器到達可能性を保持したまま 3.46× 圧縮を実現し、依存関係保存率 99.2% を達成。コンテキスト予算内での効率的なスキル検索・実行が可能となり、大規模エージェントシステムのスケーラビリティ向上に貢献する。
+人間の一人称視点操作動画をロボット操作動画に変換する「クロスエンボディメント転移」を専門的に評価するベンチマークH2R-Bench。120動画・240転移ケースを5次元（目標状態・行動・接触・エンボディメント正確性・映像品質）で評価。Seedance 2.0が最高性能（H2RCore: 77-84）を達成する一方、視覚品質とタスク転移能力の乖離（品質スコアとH2RCoreの相関ρ=0.14）という重要な発見を報告。現在のビデオ世界モデルがエンボディメント間隙を埋めるには未成熟であることを示す。

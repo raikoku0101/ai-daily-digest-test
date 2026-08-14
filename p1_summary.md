@@ -1,6 +1,6 @@
-**1. OpenART: Scaling Agent Red Teaming via Open-Ended Environment Evolution**
-**著者**: OpenART Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.00677
+**1. UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos**
+**著者**: UniSwap Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.11752
 
 **まとめ**:
-AI エージェントが永続的な環境で累積するリスクを評価するため、50 ドメインにわたる 10,000 以上のステートフルシナリオと 50 万以上のツールを備えたオープンエンド型アリーナ「OpenART」を提案。進化型マルコフハイパーグラフ攻撃（EMHA）により、静的評価では見落とされる脆弱性を Strict ASR 85% で検出。エージェント安全性評価のスケール化と自動化に重要な貢献をする。
+トーキングビデオの人物外観と音声を同時に置換する初のストリーミング統合フレームワーク。単一の音声映像拡散トランスフォーマーで視覚・音声アイデンティティを共同最適化し、従来手法比約100倍の速度（13.6 FPS）とリアルタイムストリーミングを実現。映画制作・コンテンツローカライゼーション・アクセシビリティ向上への応用が期待される一方、非合意メディア生成リスクへの対応も必要。
