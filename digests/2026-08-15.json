@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-15",
+  "content": "# AI Daily Digest — 2026-08-15\n\n## 今日のハイライト\n- **Claude Code v2.1.232 リリース**: サブエージェントフォークがデフォルト有効化。`@` メンションでセッション間通信が可能になり、マルチエージェントワークフローが大幅に強化された。GitLab サポートも追加。\n- **リアルタイム動画AI の新境地**: UniSwap（音声+映像の同時キャラクター置換）と LiveAnimate（14Bパラメータのリアルタイムアニメーション）が登場。拡散モデルのストリーミング処理が実用段階へ。\n- **AI の自己改善と安全性**: AutoPrune（LLMがLLMの効率化を設計、FLOPs 9.9倍削減）と CaRL（LLMが自分の能力限界を認識して推論中断）が、AI の自律的な能力・安全管理の進化を示す注目研究。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.232 (2025-08-13)\n\n**主要機能:**\n- **サブエージェントフォークがデフォルト有効化**: `subagent_type: \"fork\"` のサブエージェントが会話履歴とプロンプトキャッシュを完全継承。インタラクティブセッションでの非チームメートエージェントがバックグラウンド実行に変更。\n- **セッション間メンション機能**: プロンプトで `@` を入力すると他の Claude セッションを名前で指定でき、`SendMessage` で直接通信可能。\n- **一意なセッション名の保証**: 同名セッションが存在する場合、`name-word-word` 形式のバリアント名が自動付与。\n- **設定拡張**: `/config` に「Dialog expiry」「Messages from your other sessions」行を追加（クロスセッションの受信を accept/hold/refuse で制御）。\n- **GitLab サポート拡張**: プラグインマーケットプレイスで `gitlab.com` の bare URL を GitHub 同様にクローン可能。\n\n**セキュリティ改善:**\n- GitLab トークンファミリーのシークレットリダクションと routable トークンの完全リダクションを追加。\n- `glab` CLI 設定ストアに `gh` 同等のサンドボックス・認証情報保護を適用。\n\n**ユーザーへの影響:** セッション間の協調作業が大幅に簡素化。複数セッションを名前で参照・通信できるため、複雑なマルチエージェントワークフローの構築が容易になります。\n\n---\n\n### v2.1.231 (2025-08-13)\n\n**バグ修正:**\n- Slack など、事前登録済み OAuth クライアントを使用する MCP サーバーで、リダイレクト URI の不一致により MCP OAuth サインインが失敗する問題を修正。\n\n**ユーザーへの影響:** Slack MCP 連携などで認証エラーが発生していたユーザーは本バージョンへのアップデートで解消されます。\n\n---\n\n### v2.1.229 (2025-08-12)\n\n**主要機能:**\n- **Remote Control 再接続**: `claude remote-control --continue` コマンドで直近の Remote Control セッションを再開可能（ドキュメント追加）。\n- **セルフホストランナーでのフック対応**: サーバー供給の Claude Code フックをセルフホストランナーセッションでもサポート。\n- **ストリーミング安定性向上**: Vertex・Bedrock の上流アイドルタイムアウトを防ぐため、長い思考停止中にゲートウェイストリーミング応答へ SSE キープアライブピングを追加。\n- **プラグインマーケットプレイス強化**: `command` ソース対応（ローカルコマンドでプラグインディレクトリを出力、再起動不要で適用）。\n- **ListAgents 改善**: 切断済み Remote Control セッションを `offline` 表示、クラウドセッションを `cloud` とラベル表示。\n\n**バグ修正:**\n- 長いレスポンスがストリーミング中に一部消えてしまい、ターミナルで二重印刷される問題を修正。\n\n**ユーザーへの影響:** リモートセッションの管理・再接続が改善。長文生成時の表示不具合が解消されます。\n\n## 注目論文 TOP 10\n\n**1. UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos** | 👍 11 | https://arxiv.org/abs/2608.11752\n\n🎯**背景**: 動画内の人物を別の人物に置き換える「キャラクター置換」は、映像・音声の両方を協調して転換しながら、元のモーション・シーン・言語内容を保持するという難問。既存手法は音声と映像を個別に処理するため整合性に課題があった。\n\n🔧**手法**: 音声・映像を統合処理する単一の diffusion transformer（UniSwap）を構築。リアルタイムストリーミング処理に対応し、アイデンティティ転換を音声・映像の両ドメインで同時に行う。\n\n📊**結果**: 動画キャラクター置換における初のストリーミング対応フレームワークとして、従来の逐次処理手法を超えるリアルタイム性と整合性を実現。\n\n💡**意義**: 映像制作・エンタメ・教育コンテンツのローカライゼーションなど、動画内人物置換の産業応用を大幅に効率化する可能性。\n\n⚠️**限界**: 複雑な照明変化や極端な顔角度変化での整合性、倫理的悪用（ディープフェイク）リスクへの対処が課題。\n\n---\n\n**2. LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time** | 👍 10 | https://arxiv.org/abs/2608.11745\n\n🎯**背景**: ポーズ駆動型の人物アニメーション生成は、参照画像と動作ストリームから動画を合成する技術。拡散モデルベースのシステムは高品質だが、1クリップの生成に数分〜数時間かかるためリアルタイム用途に不向き。\n\n🔧**手法**: 140億パラメータ（14B）のビデオ Diffusion Transformer を基盤に、リアルタイムストリーミングと長時間安定生成を両立するアーキテクチャ（LiveAnimate）を設計。\n\n📊**結果**: ビリオンスケールモデルを使用しながらリアルタイムストリーミングを実現。長時間動画でも品質が安定する初の大規模モデルを達成。\n\n💡**意義**: ライブ配信・ゲーム・VR/AR でのリアルタイム人物アニメーションが実用レベルに到達。インタラクティブなアバター生成の応用範囲が大幅に拡大。\n\n⚠️**限界**: 14B パラメータの計算コストが高く、民生向け GPU では展開が困難。長時間生成での時間的整合性の限界も課題。\n\n---\n\n**3. An AI4AI Framework for Visual Token Pruning** | 👍 7 | https://arxiv.org/abs/2608.07193\n\n🎯**背景**: マルチモーダルモデル（LMM）は大量の視覚トークンを処理するため計算コストが高い。視覚トークン削減（プルーニング）はコスト削減に有効だが、効果的なポリシーの設計は専門知識を要する。\n\n🔧**手法**: AutoPrune は大規模言語モデル（LLM）がドメイン固有言語（DSL）を通じて視覚トークンプルーニングポリシーを自動設計するフレームワーク。人手設計なしに最適なプルーニング戦略を探索。\n\n📊**結果**: 視覚トークンの94.4%を削除しながら、フルトークン性能の99%を維持。FLOPs を9.9倍削減することに成功。\n\n💡**意義**: LLM が自身の効率化手法を設計するメタ的アプローチ（AI4AI）の有効性を示す。マルチモーダルモデルの推論コスト削減に向けた自動化の道を開く。\n\n⚠️**限界**: DSL の表現力に依存するため、設計空間の範囲に制限がある。特定タスクや未見のデータ分布への汎化性能の検証が必要。\n\n---\n\n**4. H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation in World Models** | 👍 6 | https://arxiv.org/abs/2608.13049\n\n🎯**背景**: 世界モデルを用いたロボット操作動画生成では、人間のデモンストレーション動画をロボットの操作動画に変換する「クロスエンボディメント変換」が重要課題。評価基準が整備されていない。\n\n🔧**手法**: H2R-Bench は、人間の一人称視点デモをロボット操作動画に変換する生成モデルを評価するベンチマーク。①ゴール状態達成、②行動イベント達成、③エンボディメント正確性、④視覚品質、⑤時間整合性の5次元で評価。\n\n📊**結果**: 複数の世界モデルを統一基準で評価し、各モデルの強み・弱みを明確化。クロスエンボディメント動画生成の課題を定量的に整理。\n\n💡**意義**: ロボット学習における模倣学習データの自動生成品質を標準評価できる基盤を提供。ロボティクス研究の再現性・比較研究を促進。\n\n⚠️**限界**: ベンチマーク自体の評価指標が自動化されており、実際のロボット制御への転用可能性との乖離が生じる可能性。\n\n---\n\n**5. Hybrid-Policy Self-Editing for Composable Unstructured Knowledge Editing** | 👍 3 | https://arxiv.org/abs/2608.11660\n\n🎯**背景**: LLM の知識編集（既存の誤情報を修正・新情報を追加）は、特に構造化されていない非構造知識での多段階推論（マルチホップ推論）において精度が低い。\n\n🔧**手法**: HPSE（Hybrid-Policy Self-Editing）は、欠損事実をモデルの推論経路に挿入したハイブリッドロールアウトから蒸留することで、外部監督なしで組み合わせ可能な多段階推論を実現。4つの LLM バックボーンと2つの知識編集器で検証。\n\n📊**結果**: 4種類の LLM バックボーンと2種類の知識編集器の組み合わせで一貫した性能向上を達成。プラグアンドプレイ型の改善として既存システムに組み込み可能。\n\n💡**意義**: LLM への知識注入後の推論品質を自動改善できるため、継続学習・知識更新の実用化に貢献。\n\n⚠️**限界**: ハイブリッドロールアウトの品質に依存するため、編集する知識の種類によって効果に差がある可能性。\n\n---\n\n**6. SKILLER: Language-Level Reinforcement Learning for Reusable Skill Extraction in Small Language Models** | 👍 3 | https://arxiv.org/abs/2608.10538\n\n🎯**背景**: 小規模言語モデル（SLM）は大規模モデルと比較してタスク特化のスキル獲得が難しく、再利用可能なスキルの自動抽出手法が求められていた。\n\n🔧**手法**: SKILLER は自然言語駆動の強化学習を用いて、強力なモデルをアクター兼クリティックとして活用し、SLM 向けのエグゼキューター特化スキルを自動生成する。\n\n📊**結果**: 9B モデルで4.3〜20.4ポイントの絶対精度向上を達成。クローズドソースモデルと同等の性能を実現。\n\n💡**意義**: 計算コストの低い小規模モデルでも高品質なスキルを獲得できるため、エッジデバイスや低コスト展開での実用化が進む可能性。\n\n⚠️**限界**: 強力なアクター・クリティックモデルが必要なため、スキル生成のコスト自体は高い。タスクの多様性への汎化が未検証。\n\n---\n\n**7. Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation** | 👍 3 | https://arxiv.org/abs/2608.13391\n\n🎯**背景**: 自己回帰型ビデオ生成モデルの知識蒸留において、教師モデルの因果的文脈と生徒モデルの生成文脈のミスマッチが品質低下の原因となっていた。\n\n🔧**手法**: CMD（Context-Matched Distillation）は、教師の監督と因果生成コンテキストを時間的情報境界・評価コンテキストで整合させ、少ステップ自己回帰ビデオモデルの蒸留を改善する。\n\n📊**結果**: コントロール遵守と長時間動画品質でベンチマーク最高性能を達成。\n\n💡**意義**: ビデオ生成の推論ステップ削減と品質維持を両立する蒸留手法として、動画生成モデルの効率化に寄与。\n\n⚠️**限界**: 教師モデルの因果構造の整合が複雑で、実装コストが高い。汎用的な動画タスクへの適用範囲の検証が必要。\n\n---\n\n**8. Knowing When to Quit: Diagnosing and Training LLMs to Abort Futile Reasoning** | 👍 2 | https://arxiv.org/abs/2607.29211\n\n🎯**背景**: LLM は自分の能力を超えた問題でも「もっともらしいが誤った推論」を延々と続けてしまう。このような無益な推論はトークンを浪費し、ハルシネーションのリスクも高い。\n\n🔧**手法**: CaRL（Capability-aware Reinforcement Learning）は、拒否インセンティブを組み込んだ強化学習で、能力の境界に達したタスクでは推論を中断する動作を学習させる。\n\n📊**結果**: 能力範囲外タスクでの「もっともらしいが誤った導出」を大幅削減しながら、通常タスクの性能を維持。\n\n💡**意義**: LLM の信頼性向上と計算効率化に直結。モデルが「分からない」と正直に答えることで、ユーザーの誤情報参照リスクを低減。\n\n⚠️**限界**: 能力境界の定義が難しく、過度な拒否が有用な回答を妨げる可能性。能力境界の動的変化（プロンプト・コンテキストによる変動）への対応が課題。\n\n---\n\n**9. Are You Sure You're Sure? On the Impact of Instruction Tuning on Confidence and Lexical Diversity** | 👍 1 | https://arxiv.org/abs/2608.13430\n\n🎯**背景**: 指示チューニング（instruction tuning）は LLM の応答品質を向上させる一方、モデルの自信度や表現の多様性にどう影響するかが不明確だった。\n\n🔧**手法**: QA タスクにおいて指示チューニング前後のモデル信頼度と根拠の語彙的多様性を比較分析。キャリブレーションや予測精度への影響も検証。\n\n📊**結果**: 指示チューニングは一貫して回答の信頼度を変化させ、根拠間の語彙的多様性を低下させる。ただし尤度ベースのキャリブレーションや予測精度は改善しない。\n\n💡**意義**: LLM の安全・信頼性研究に重要な示唆。指示チューニングで「もっともらしさ」は増すが「正確さ」は必ずしも向上しないことを示す。\n\n⚠️**限界**: QA タスクに限定した分析であり、他のタスクへの汎化性・因果関係の解明が今後の課題。\n\n---\n\n**10. From Inaudible Inputs to Model Failures: Low-Frequency Safety Risks in LALMs** | 👍 1 | https://arxiv.org/abs/2608.09158\n\n🎯**背景**: 音声言語モデル（LALM）は人間には聞こえない低周波音声を処理する際、安全上の脆弱性が生じることが懸念されていた。ブラックボックス設定での攻撃手法の研究が不足していた。\n\n🔧**手法**: ILL（Inaudible Low-frequency waveform Lifting）は人間に不可聴な低周波波形を使用したブラックボックスレッドチーミング手法。DRG 防御は分布変化を検知して再録音を要求する。\n\n📊**結果**: 攻撃後の平均精度が28.5%から46.1%に向上（クリーン再録音後）。DRG 防御により低周波攻撃への耐性が大幅改善。\n\n💡**意義**: 音声 AI システムのセキュリティ評価に新たな攻撃・防御フレームワークを提供。音声アシスタントやロボットの実用展開における安全性強化に貢献。\n\n⚠️**限界**: ブラックボックス設定に限定されており、ホワイトボックス攻撃への防御は別途検証が必要。実環境での雑音や距離変化への対応も未検証。\n\n",
+  "fetched_at": "2026-08-14T22:08:49.322519+00:00",
+  "papers": [
+    {
+      "title": "UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos",
+      "upvotes": 11,
+      "paper_id": "2608.11752",
+      "abstract": "Talking-video character replacement requires coordinated transfer of appearance and voice while preserving source motion, scene, and linguistic content. UniSwap presents the first framework for streaming joint audio-visual identity replacement in talking videos using a unified audio-visual diffusion transformer."
+    },
+    {
+      "title": "LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time",
+      "upvotes": 10,
+      "paper_id": "2608.11745",
+      "abstract": "Pose-driven human animation synthesizes video from a reference image and driving pose stream. Real-time generation is essential for interactive applications, yet diffusion-based systems require minutes to hours per clip. LiveAnimate combines real-time streaming with stable long-form generation at billion scale using a 14B-parameter video Diffusion Transformer."
+    },
+    {
+      "title": "An AI4AI Framework for Visual Token Pruning",
+      "upvotes": 7,
+      "paper_id": "2608.07193",
+      "abstract": "AutoPrune uses large language models to automatically design visual-token pruning policies for multimodal models via a domain-specific language. The framework achieves high efficiency by removing 94.4% of visual tokens while preserving 99% of full-token performance and reducing FLOPs by 9.9x."
+    },
+    {
+      "title": "H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation in World Models",
+      "upvotes": 6,
+      "paper_id": "2608.13049",
+      "abstract": "H2R-Bench evaluates cross-embodiment human-to-robot manipulation video generation, transforming egocentric human demonstrations into robot manipulation videos. The benchmark evaluates generated videos across five dimensions including goal-state completion, action-event completion, and embodiment correctness."
+    },
+    {
+      "title": "Hybrid-Policy Self-Editing for Composable Unstructured Knowledge Editing",
+      "upvotes": 3,
+      "paper_id": "2608.11660",
+      "abstract": "HPSE improves unstructured knowledge editing by distilling from hybrid rollouts that insert missing facts into the model's reasoning paths. This enables composable multi-hop reasoning without external supervision, establishing plug-and-play improvements across four LLM backbones and two knowledge editors."
+    },
+    {
+      "title": "SKILLER: Language-Level Reinforcement Learning for Reusable Skill Extraction in Small Language Models",
+      "upvotes": 3,
+      "paper_id": "2608.10538",
+      "abstract": "SKILLER automatically generates executor-specific skills for small models using natural-language-driven reinforcement learning. The framework employs a strong model as actor and critic, achieving absolute gains from 4.3 to 20.4 percentage points for the 9B model while matching closed-source performance."
+    },
+    {
+      "title": "Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation",
+      "upvotes": 3,
+      "paper_id": "2608.13391",
+      "abstract": "CMD aligns teacher supervision with causal generation context for few-step autoregressive video models. By matching temporal information boundaries and evaluation context, the framework improves control adherence and long-video quality, achieving state-of-the-art performance on benchmarks."
+    },
+    {
+      "title": "Knowing When to Quit: Diagnosing and Training LLMs to Abort Futile Reasoning",
+      "upvotes": 2,
+      "paper_id": "2607.29211",
+      "abstract": "CaRL uses reinforcement learning with refusal incentives to reduce futile reasoning in LLMs while preserving task performance. The approach aligns model behavior with capability boundaries, substantially reducing plausible-sounding but incorrect derivations on beyond-capability tasks."
+    },
+    {
+      "title": "Are You Sure You're Sure? On the Impact of Instruction Tuning on Confidence and Lexical Diversity",
+      "upvotes": 1,
+      "paper_id": "2608.13430",
+      "abstract": "This study examines how instruction tuning affects model confidence and rationale diversity in question-answering tasks. Findings show instruction tuning consistently alters answer confidence and reduces cross-rationale diversity without improving likelihood-based calibration or predictive accuracy."
+    },
+    {
+      "title": "From Inaudible Inputs to Model Failures: Low-Frequency Safety Risks in LALMs",
+      "upvotes": 1,
+      "paper_id": "2608.09158",
+      "abstract": "Researchers propose ILL, a black-box red-teaming method using inaudible low-frequency waveforms to expose audio-language model vulnerabilities. DRG defense detects distribution shifts and requests reacquisition, raising mean attacked accuracy from 28.5% to 46.1% after clean rerecording."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.232",
+      "published_at": "2025-08-13",
+      "body": "Subagent forking is now on by default: a `subagent_type: \"fork\"` subagent inherits the full conversation and prompt cache, and non-teammate agent spawns in interactive sessions now run in the background by default. Type `@` in the prompt to mention another Claude session by name; Claude then uses `SendMessage` to reach that session directly. `SendMessage` now delivers to a bare name that exactly matches one live session, instead of asking to confirm with a ref first. Interactive sessions on one machine now keep unique names: starting or renaming a session to a name another live session already uses gives it a `name-word-word` variant and tells you. Added `/config` rows for \"Dialog expiry\" and \"Messages from your other sessions\" (cross-session inbound accept/hold/refuse). Added secret redaction for GitLab token families and full redaction of routable tokens; the `glab` CLI config store gets the same sandbox and credential-path protection as `gh`. Added GitLab support to plugin marketplaces: bare `gitlab.com` repo URLs now clone like `github.com` URLs."
+    },
+    {
+      "tag_name": "v2.1.231",
+      "published_at": "2025-08-13",
+      "body": "Fixed MCP OAuth sign-in failing with a redirect URI mismatch for servers that use a pre-registered OAuth client, such as Slack"
+    },
+    {
+      "tag_name": "v2.1.229",
+      "published_at": "2025-08-12",
+      "body": "Documented `claude remote-control --continue` for resuming the most recent Remote Control session. Added server-supplied Claude Code hook support for self-hosted runner sessions, matching managed-environment behavior. Added SSE keepalive pings to gateway streaming responses during long thinking pauses, preventing idle-timeout disconnects on Vertex and Bedrock upstreams. Added plugin marketplace `command` sources: a local command (e.g. an IDE) prints the plugin directory, which is re-resolved each session and applied without a restart; `mode: \"link\"` uses it in place. `ListAgents` now marks disconnected Remote Control sessions as `offline` and labels your cloud sessions as `cloud`. Fixed long responses partly disappearing while streaming and being printed twice in the terminal."
+    }
+  ]
+}

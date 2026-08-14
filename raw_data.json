@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "ComBodied Agents: a New Paradigm of Human-Centric Agentic AI",
-      "upvotes": 166,
-      "paper_id": "2608.10915",
-      "abstract": "Integrates digital and embodied tools to model individual human-state trajectories over time, providing proportionate, consent-aware support through event-based perception and intervention policies."
+      "title": "UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos",
+      "upvotes": 11,
+      "paper_id": "2608.11752",
+      "abstract": "Talking-video character replacement requires coordinated transfer of appearance and voice while preserving source motion, scene, and linguistic content. UniSwap presents the first framework for streaming joint audio-visual identity replacement in talking videos using a unified audio-visual diffusion transformer."
     },
     {
-      "title": "Co-Evolution in Agentic Systems: Toward Self-Directed Evolution Beyond Human Design",
-      "upvotes": 107,
-      "paper_id": "2608.10299",
-      "abstract": "Survey of multi-component self-evolution where agents and environments impose adaptive pressure on one another, progressively removing human constraints across three evolutionary stages."
+      "title": "LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time",
+      "upvotes": 10,
+      "paper_id": "2608.11745",
+      "abstract": "Pose-driven human animation synthesizes video from a reference image and driving pose stream. Real-time generation is essential for interactive applications, yet diffusion-based systems require minutes to hours per clip. LiveAnimate combines real-time streaming with stable long-form generation at billion scale using a 14B-parameter video Diffusion Transformer."
     },
     {
-      "title": "Articulated Object Reconstruction from Rest-State Observation",
-      "upvotes": 33,
-      "paper_id": "2607.27749",
-      "abstract": "Reconstructs articulated objects from single closed configurations using vision-language fusion, diffusion-based motion synthesis, and geometric consistency validation without observed motion."
-    },
-    {
-      "title": "AdvFD: Boosting Visual Generation via Adversarial Fréchet Distance Loss",
-      "upvotes": 17,
-      "paper_id": "2608.11205",
-      "abstract": "Improves generator post-training by adding learnable adversarial feature spaces to static Fréchet losses, with whitening to stabilize optimization across different model scales."
-    },
-    {
-      "title": "Ex-Omni-2D: Expressive Omni-Modal Dialogue Models with Native Visual Presence",
-      "upvotes": 9,
-      "paper_id": "2608.10720",
-      "abstract": "Generates coordinated text, speech, and video responses via Visual Thought Plans and distilled streaming video generation, achieving practical real-time performance on multi-GPU systems."
-    },
-    {
-      "title": "Decoding-Level Taboo: A Diagnostic Stress Test for LLM Robustness",
+      "title": "An AI4AI Framework for Visual Token Pruning",
       "upvotes": 7,
-      "paper_id": "2608.09900",
-      "abstract": "Runtime logit-space stress test revealing how large language models handle off-nominal generation paths, showing robustness depends on scale and instruction alignment."
+      "paper_id": "2608.07193",
+      "abstract": "AutoPrune uses large language models to automatically design visual-token pruning policies for multimodal models via a domain-specific language. The framework achieves high efficiency by removing 94.4% of visual tokens while preserving 99% of full-token performance and reducing FLOPs by 9.9x."
     },
     {
-      "title": "Not Worth Another Token: Marginal Value Estimation for Efficient Deep Research Agents",
+      "title": "H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation in World Models",
       "upvotes": 6,
-      "paper_id": "2608.08389",
-      "abstract": "Pruning strategies applied at different pipeline stages reduce token usage and latency in long-horizon research agents, with early pruning yielding greatest efficiency gains."
+      "paper_id": "2608.13049",
+      "abstract": "H2R-Bench evaluates cross-embodiment human-to-robot manipulation video generation, transforming egocentric human demonstrations into robot manipulation videos. The benchmark evaluates generated videos across five dimensions including goal-state completion, action-event completion, and embodiment correctness."
     },
     {
-      "title": "SkillZip: Evaluation-Free Skill Compression for Self-Evolving Agents by Discovering Reusable Structure",
-      "upvotes": 6,
-      "paper_id": "2608.11079",
-      "abstract": "Compresses self-evolving agent skills by finding minimal faithful structural explanations that share repeated rules and procedures while preserving rare exceptions."
+      "title": "Hybrid-Policy Self-Editing for Composable Unstructured Knowledge Editing",
+      "upvotes": 3,
+      "paper_id": "2608.11660",
+      "abstract": "HPSE improves unstructured knowledge editing by distilling from hybrid rollouts that insert missing facts into the model's reasoning paths. This enables composable multi-hop reasoning without external supervision, establishing plug-and-play improvements across four LLM backbones and two knowledge editors."
     },
     {
-      "title": "UniMoMo: Expert Merging-Based MoE Acceleration for Large Recommendation Models",
-      "upvotes": 5,
-      "paper_id": "2608.08627",
-      "abstract": "Post-training compression framework that groups experts by functional similarity and applies layer-adaptive protection, achieving near-teacher accuracy with smaller indexes."
+      "title": "SKILLER: Language-Level Reinforcement Learning for Reusable Skill Extraction in Small Language Models",
+      "upvotes": 3,
+      "paper_id": "2608.10538",
+      "abstract": "SKILLER automatically generates executor-specific skills for small models using natural-language-driven reinforcement learning. The framework employs a strong model as actor and critic, achieving absolute gains from 4.3 to 20.4 percentage points for the 9B model while matching closed-source performance."
     },
     {
-      "title": "InSight-doc: Agentic Visual Perception for Long-Document Understanding",
-      "upvotes": 5,
-      "paper_id": "2608.10628",
-      "abstract": "Framework treating visual resolution as adaptive reasoning-time resource, starting low-resolution and selectively zooming into high-resolution regions without external retrievers."
+      "title": "Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation",
+      "upvotes": 3,
+      "paper_id": "2608.13391",
+      "abstract": "CMD aligns teacher supervision with causal generation context for few-step autoregressive video models. By matching temporal information boundaries and evaluation context, the framework improves control adherence and long-video quality, achieving state-of-the-art performance on benchmarks."
+    },
+    {
+      "title": "Knowing When to Quit: Diagnosing and Training LLMs to Abort Futile Reasoning",
+      "upvotes": 2,
+      "paper_id": "2607.29211",
+      "abstract": "CaRL uses reinforcement learning with refusal incentives to reduce futile reasoning in LLMs while preserving task performance. The approach aligns model behavior with capability boundaries, substantially reducing plausible-sounding but incorrect derivations on beyond-capability tasks."
+    },
+    {
+      "title": "Are You Sure You're Sure? On the Impact of Instruction Tuning on Confidence and Lexical Diversity",
+      "upvotes": 1,
+      "paper_id": "2608.13430",
+      "abstract": "This study examines how instruction tuning affects model confidence and rationale diversity in question-answering tasks. Findings show instruction tuning consistently alters answer confidence and reduces cross-rationale diversity without improving likelihood-based calibration or predictive accuracy."
+    },
+    {
+      "title": "From Inaudible Inputs to Model Failures: Low-Frequency Safety Risks in LALMs",
+      "upvotes": 1,
+      "paper_id": "2608.09158",
+      "abstract": "Researchers propose ILL, a black-box red-teaming method using inaudible low-frequency waveforms to expose audio-language model vulnerabilities. DRG defense detects distribution shifts and requests reacquisition, raising mean attacked accuracy from 28.5% to 46.1% after clean rerecording."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.232",
+      "published_at": "2025-08-13",
+      "body": "Subagent forking is now on by default: a `subagent_type: \"fork\"` subagent inherits the full conversation and prompt cache, and non-teammate agent spawns in interactive sessions now run in the background by default. Type `@` in the prompt to mention another Claude session by name; Claude then uses `SendMessage` to reach that session directly. `SendMessage` now delivers to a bare name that exactly matches one live session, instead of asking to confirm with a ref first. Interactive sessions on one machine now keep unique names: starting or renaming a session to a name another live session already uses gives it a `name-word-word` variant and tells you. Added `/config` rows for \"Dialog expiry\" and \"Messages from your other sessions\" (cross-session inbound accept/hold/refuse). Added secret redaction for GitLab token families and full redaction of routable tokens; the `glab` CLI config store gets the same sandbox and credential-path protection as `gh`. Added GitLab support to plugin marketplaces: bare `gitlab.com` repo URLs now clone like `github.com` URLs."
+    },
+    {
+      "tag_name": "v2.1.231",
+      "published_at": "2025-08-13",
+      "body": "Fixed MCP OAuth sign-in failing with a redirect URI mismatch for servers that use a pre-registered OAuth client, such as Slack"
+    },
+    {
       "tag_name": "v2.1.229",
       "published_at": "2025-08-12",
-      "body": "Documented `claude remote-control --continue` for resuming sessions. Added server-supplied Claude Code hook support for self-hosted runners. Added SSE keepalive pings to gateway streaming responses during long thinking pauses. Added plugin marketplace `command` sources for local commands. `ListAgents` now marks disconnected Remote Control sessions as `offline` and labels cloud sessions as `cloud`. Fixed long responses partly disappearing while streaming. Fixed crashes on Windows with extended-length paths. Fixed auto mode failing with disabled attribution headers. Fixed MCP OAuth with strict authorization servers using 127.0.0.1. Fixed Remote Control clients showing stuck spinner after slash commands. Fixed Claude Code Review workflow not posting reviews. Fixed multi-second UI stalls with thousands of IDE diagnostics. Fixed file-watcher handle leaks and Windows scheduled-tasks watcher errors."
-    },
-    {
-      "tag_name": "v2.1.228",
-      "published_at": "2025-08-11",
-      "body": "Fixed interactive sessions that could stop redrawing entirely after rare internal layout errors. Fixed `git` / Git Bash not being found on Windows when Claude Code is launched from parent folder of git installation. Fixed `/tui` reverting session to earlier model when `/model` had been changed. Fixed cross-session messaging sometimes starting without inbox in first session after install or upgrade. Fixed Remote Control `/resume` while connected leaking conversation title or history into connected session. Hardened skills synced from claude.ai: no longer shadow local commands or MCP prompts, descriptions sanitized/labeled, bodies don't run `!` commands or expand `@` files. Improved cross-session messages display. Improved Vertex AI credential handling. Changed Write tool to allow newer models overwriting existing files without reading first."
-    },
-    {
-      "tag_name": "v2.1.227",
-      "published_at": "2025-08-10",
-      "body": "Fixed feature flags being evaluated without user's subscription tier when session started with expired login token, wrongly prompting Max plan users for usage credits. Fixed every Bash command failing under `claude-code-action` with `allowed_non_write_users` on GitHub-hosted runners. Fixed `/tui` bringing back conversation rewound to before first message. Improved slash-command menu: blue marks only selected row, matched characters bolded instead of recolored, emoji/accented names keep glyphs. Improved performance: fewer event-loop stalls on file-not-found suggestions and at-mention size checks."
+      "body": "Documented `claude remote-control --continue` for resuming the most recent Remote Control session. Added server-supplied Claude Code hook support for self-hosted runner sessions, matching managed-environment behavior. Added SSE keepalive pings to gateway streaming responses during long thinking pauses, preventing idle-timeout disconnects on Vertex and Bedrock upstreams. Added plugin marketplace `command` sources: a local command (e.g. an IDE) prints the plugin directory, which is re-resolved each session and applied without a restart; `mode: \"link\"` uses it in place. `ListAgents` now marks disconnected Remote Control sessions as `offline` and labels your cloud sessions as `cloud`. Fixed long responses partly disappearing while streaming and being printed twice in the terminal."
     }
   ]
 }
