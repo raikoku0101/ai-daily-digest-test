@@ -1,19 +1,17 @@
-## 1. Introduction (はじめに)
+## 1. はじめに (Introduction)
+ポーズ駆動型人間アニメーションは参照画像とポーズシーケンスから対象者のビデオを合成するタスクで、ライブストリーミング・テレプレゼンス・バーチャルアバターへの応用が期待されている。従来のビデオ拡散モデル（Diffusion Transformer, DiT）は高品質だがリアルタイム生成不可。本研究は144億パラメータDiTでリアルタイムストリーミングと安定長時間生成を両立させる初のシステムを提案。
 
-本研究は、トーキングビデオにおける人物の外観と音声を同時に置換する初の統合的フレームワークを提示します。既存手法は視覚と音声を個別に処理するため、「音声と唇の動きの一貫性を強制することが難しい」という課題を抱えていました。UniSwapは単一の音声映像拡散トランスフォーマー（Audio-Visual Diffusion Transformer）内で、参照画像と参照音声から目標人物の外観と音色を転送しながら、源映像の動き・背景・言語内容を保持します。
+## 2. 関連研究 (Related Work)
+ビデオ拡散モデルはU-NetからDiTへ進化し、Stable Video DiffusionやWanなど144億パラメータスケールが登場。ポーズ駆動ではAnimateAnyone・MagicAnimateが基準だが全てオフライン処理。自己回帰的生成ではDiffusion Forcing・Self Forcingが訓練・推論ギャップを軽減している。
 
-## 2. Related Work (関連研究)
+## 3. 手法 (Method)
+3つの主要コンポーネントで構成。①Reference-Anchored Teacher-Forcing Adaptation: 事前学習済み双方向DiTを参照画像を常に可視化するRef Sinkと共にブロック因果的生成器に適応。②Block-wise Self-Forcing Distillation (BS-DMD): 50ステップから3ステップへ推論ステップを削減し、単一8×80GB GPUノードで訓練可能。③Pose-Retrieval Sink Attention (PR-Sink): Static Sink + Dynamic Sink（ポーズ類似度で選択）+ Rolling Windowの組み合わせで、メモリと遅延をストリーム長に非依存化。
 
-従来のビデオキャラクター置換手法（MoCha、Wan-Animateなど）は視覚的同一性（Visual Identity）のみを転送し、音声変換システム（Seed-VC、CosyVoiceなど）は音声のみを処理します。本研究は音声映像生成の最近の進展（LTX-2.3など）を活用し、「両方の同一性を単一モデル内で共同最適化することで、より優れた同期が実現可能」であることを示唆します。
+## 4. 実験 (Experiments)
+3分間ベンチマーク（24クリップペア）でASE・IQA・DINO-S・FID・V-MAEを計測。UniAnimate-DiT・SCAIL・Wan-Animate・EverAnimate・One-to-Allと比較。ポーズ繰り返し場面での外観維持を特に評価。
 
-## 3. Method (手法)
+## 5. 結果 (Results)
+LiveAnimateは初段30秒でIQA 4.047を達成し最終段でIQA 4.026と安定。比較手法は出現ドリフト（One-to-AllはIQA 3.402→1.786に低下）やちらつきを示した。2×H100 GPUで19.63 FPS（ブロック時間0.611秒）を実現。Ulysses配列並列化で単一GPUの12.41 FPSから1.58倍加速。
 
-本手法は3段階の進行的適応（Progressive Adaptation）から構成されます。第1段階では、源・参照・ノイズ付き目標潜在変数を統一されたトークン列に連結し、結合置換（Joint Swapping）を学習します。第2段階「条件付きストリーミング適応（Conditional Streaming Adaptation）」では、分離型ストリーミング条件付けマスク（Decoupled Streaming Conditioning Mask）により双方向モデルをブロック単位の因果生成器に変換します。第3段階は自己強制DMD（Self-Forcing DMD）で、推論ステップを30から3へ削減します。「特徴RoPE分解（Feature RoPE Decomposition）」により、キャッシュ位置を訓練範囲内に保持し、長形式推論を安定化させます。
-
-## 4. Experiments (実験)
-
-短期間（約10秒）と長期間（1分）のビデオベンチマークで評価されました。UniSwapは最高の音声映像同期スコア（Sync-C: 3.633）を達成し、同時に「従来手法の約100倍高速な処理（13.6 FPS）」を実現します。ユーザー研究では、外観同一性・唇同期・自然さで最高評価を獲得しました。
-
-## 5. Results & Conclusion (結果と結論)
-
-定量評価により、UniSwapは視覚品質と音声品質のトレードオフを示しつつ、統合的な音声映像置換（Audio-Visual Identity Swapping）における利点を実証します。1分間の長形式生成でも同一性漂流（Identity Drift）を防ぎ、安定した結果を維持しました。映画製作・地域化（Localization）・アクセシビリティへの応用が期待される一方、非合意メディア生成リスクへの対応が課題として指摘されています。
+## 6. 結論 (Conclusion)
+リアルタイムストリーミングと安定長時間生成を同時に実現する初の144億パラメータアニメーションシステム。今後は高解像度・複数人対応・大規模カメラ動作への拡張が課題。

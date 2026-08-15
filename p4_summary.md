@@ -1,6 +1,6 @@
-**4. H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation in World Models**
-**著者**: H2R-Bench Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.13049
+**4. Thought-Level Beam Search for Reasoning (Gambit)**
+**著者**: Gambit Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.08020
 
 **まとめ**:
-人間の一人称視点操作動画をロボット操作動画に変換する「クロスエンボディメント転移」を専門的に評価するベンチマークH2R-Bench。120動画・240転移ケースを5次元（目標状態・行動・接触・エンボディメント正確性・映像品質）で評価。Seedance 2.0が最高性能（H2RCore: 77-84）を達成する一方、視覚品質とタスク転移能力の乖離（品質スコアとH2RCoreの相関ρ=0.14）という重要な発見を報告。現在のビデオ世界モデルがエンボディメント間隙を埋めるには未成熟であることを示す。
+推論時のテスト時計算（Test-Time Compute）の「どこに割り当てるか」問題を解決する思考レベルビームサーチフレームワーク「Gambit」を提案。定期的なトーナメントで低スコア軌跡を切り捨て高スコア接頭辞から分岐させることで、AIME-25で+3.3%、HMMT-24で+6.7%の精度向上とHMMT-25で68.5%のトークン削減を同時達成。従来の並列サンプリング・削減型手法の両者を厳密に支配する。

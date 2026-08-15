@@ -1,6 +1,6 @@
-**5. Hybrid-Policy Self-Editing for Composable Unstructured Knowledge Editing (HPSE)**
-**著者**: HPSE Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.11660
+**5. AVA-Encoder: Towards Agent-Native Video Representation Learning**
+**著者**: AVA-Encoder Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.12313
 
 **まとめ**:
-LLMの非構造化知識編集（UKE）において、編集した知識を個別事実に分解し多段階推論に合成する「合成可能性（Composability）」を実現するフレームワークHPSE。ハイブリッドロールアウトで欠損事実をモデルの推論経路に挿入し、4種のLLMバックボーン×2編集手法×2ベンチマークで一貫した改善（分解+10.6%、合成+67.9%相対利得）を達成。外部監督なし・プラグアンドプレイで既存の知識編集システムに組み込み可能。
+映画をエージェントが推論・編集できる知識グラフ（Knowledge Graph, KG）に変換する「エージェント・ネイティブ表現」フレームワーク。階層的ビデオエンコーダと双ループ・テキスト勾配進化（外側ループ：政策学習、内側ループ：テスト時KG精緻化）で再構成スコア49.0%を達成し、最強ベースライン比+20.7ポイント向上。映画創作エージェントの能力底上げに向けた先駆け的手法。
