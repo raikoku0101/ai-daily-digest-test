@@ -1,6 +1,6 @@
-**5. AVA-Encoder: Towards Agent-Native Video Representation Learning**
-**著者**: AVA-Encoder Team et al. (2025)
-**arXiv**: https://arxiv.org/abs/2608.12313
+**5. Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation**
+**著者**: CMD Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.13391
 
 **まとめ**:
-映画をエージェントが推論・編集できる知識グラフ（Knowledge Graph, KG）に変換する「エージェント・ネイティブ表現」フレームワーク。階層的ビデオエンコーダと双ループ・テキスト勾配進化（外側ループ：政策学習、内側ループ：テスト時KG精緻化）で再構成スコア49.0%を達成し、最強ベースライン比+20.7ポイント向上。映画創作エージェントの能力底上げに向けた先駆け的手法。
+双方向教師が未来フレームを参照してしまう「文脈不一致問題」を解決する、自己回帰型ビデオ生成向け蒸留手法「Context-Matched Distillation (CMD)」を提案。因果教師によるPrefix Scoringとノイズ付与安定化により、ビデオ品質とオンライン制御精度を両立。VBench-I2Vで最先端性能を達成し、カメラ制御の回転誤差を既存手法比で大幅削減（1.37°）した。
