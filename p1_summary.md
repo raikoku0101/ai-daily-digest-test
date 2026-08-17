@@ -1,6 +1,6 @@
-**1. LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time**
-**著者**: LiveAnimate Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.11745
+**1. Self-Supervised Visual On-Policy Distillation (S2VOPD)**
+**著者**: S2VOPD Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.14144
 
 **まとめ**:
-単一参照画像とポーズストリームからリアルタイムで長時間人体アニメーション動画を生成する初のシステム。2段階学習（因果型自己回帰変換＋ステップ削減蒸留）とPose-Retrieval Sink Attentionにより、3分超の映像でも品質を安定維持しながら約19 FPSでの生成を実現した。ライブ配信・テレプレゼンス・バーチャルアバターへの即応用が期待される。
+外部ラベルや大型教師モデルなしに、非対称な拡張ビューを活用してオンポリシー蒸留を実現する新手法。教師は元画像を観察し学生は拡張ビューで学習することで非対称性を構築。Qwen3.5-4Bで70.7%→77.4%（+6.7pt）の大幅改善を達成し、235Bパラメータの大型モデルをも上回る。特権情報不要の自己改善型視覚AIの実現可能性を示す重要な成果。

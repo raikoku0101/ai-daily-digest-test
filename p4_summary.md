@@ -1,6 +1,6 @@
-**4. Thought-Level Beam Search for Reasoning (Gambit)**
-**著者**: Gambit Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.08020
+**4. DFM Mimir v1: Frontier Performance at 1B Parameters with Permissible Data Only**
+**著者**: DFM Research Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.13517
 
 **まとめ**:
-大規模推論モデル（LRM）のテスト時計算を「思考レベル」で効率的に配分するビームサーチ手法「Gambit」を提案。固定容量の活性軌跡プール上でΔトークンごとにトーナメントを実施し、高品質な推論接頭辞から即座に分岐させることで、並列サンプリング比68.5%のトークン削減と2倍超のスループット向上を達成しつつ、HMMT-24で+6.7%の精度向上を実現した。
+許可済みデータのみを使用して訓練した10億パラメータの階層的推論モデル（HRM）。161データセット・約70億トークンの許可済みコーパスを用い、8つのNVIDIA B200 GPUで約3週間訓練。英語では4Bクラスモデルと競合し、デンマーク語では最先端を達成。倫理的なデータソーシングでも最前線の性能が実現可能であることを実証した画期的成果。

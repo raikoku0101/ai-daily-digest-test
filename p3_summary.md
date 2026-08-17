@@ -1,6 +1,6 @@
-**3. An AI4AI Framework for Visual Token Pruning (AutoPrune)**
-**著者**: AutoPrune Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.07193
+**3. SimpleOPD: Tokenizer-Agnostic On-Policy Distillation for Long-Context Reasoning**
+**著者**: SimpleOPD Authors et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.14277
 
 **まとめ**:
-LLMを用いてマルチモーダル大規模言語モデル（MLLM）の視覚トークンプルーニング戦略を自動設計するAI4AIフレームワーク「AutoPrune」を提案。TPDSL（トークン刈り取り領域特化言語）で探索状態を制約付き残差修正として表現することで、LLMが有効なプルーニングポリシーを自動生成。視覚トークン94.4%削減下でも完全性能の99.9%を保持しFLOPsを9.9倍削減する訓練不要手法。
+異なるトークナイザーを持つ教師モデルから学生モデルへの長文脈推論能力転移を実現するオンポリシー蒸留（OPD）手法。共有テキスト空間でのトークン対応・終了トークンマスキング・学生参照KL正則化の3技術を組み合わせ。SU-01からの蒸留でIntern-S2-PreviewがProofBenchで21.7→44.5（+22.8pt）に大幅改善し、Gemini-2.5-Proを上回る。異アーキテクチャ間の推論能力転移に初めて体系的に取り組んだ研究。

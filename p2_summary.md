@@ -1,6 +1,6 @@
-**2. UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos**
-**著者**: UniSwap Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.11752
+**2. Apodex Discovery: Reality Benchmarks for Discoverative AI**
+**著者**: Apodex Research Team et al. (2025)
+**arXiv**: https://arxiv.org/abs/2608.11341
 
 **まとめ**:
-単一の拡散トランスフォーマー内で顔の外見と声を同時に置き換えるストリーミング対応フレームワーク。Swap-and-Reconstruct合成で対の学習データを自動生成し、3段階適応訓練とFeature-RoPE分解により長時間でも整合性を保ちながら13.6 FPSでのリアルタイム処理を実現。唇同期・アイデンティティ保持・音声品質の全指標で従来手法を上回った。
+未知の発見を遂行できるAIを評価する「Apodex Discovery」フレームワークを提案。16セクター423問の高価値実世界問題から選定した20問のベンチマーク（TRACES）を構築し、問題明確化・現実的環境・プロセス検証・修復ループの4要素を統合。AAVカプシド設計では最先端を7%上回り、HDS6スコアと成果スコアの相関+0.51を確認。単純な知識再現から「本当に価値ある発見」へのAI評価パラダイムシフトを提唱。
