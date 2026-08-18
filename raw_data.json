@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "Self-Supervised Visual On-Policy Distillation",
-      "upvotes": 145,
-      "id": "2608.14144",
-      "abstract": "Visual on-policy distillation achieves learning signals through asymmetric augmented views. The method improves Qwen3.5-4B from 70.7% to 77.4% across fine-grained perception benchmarks without privileged annotations or larger teachers."
+      "title": "StateM: Reaching 95.3% Raw Accuracy, or a $15 Frontier Run, on Terminal-Bench 2.1 via Harness Scaling",
+      "upvotes": 83,
+      "paper_id": "2608.15089",
+      "abstract": "Long-horizon agents can fail even when their underlying models can solve the constituent steps. We introduce StateM, an agent-native runtime that organizes execution around durable states, phase-local context, checked transitions, recoverable runbooks..."
     },
     {
-      "title": "Apodex Discovery: Reality Benchmarks and Environments for Evaluating and Building Discoverative Artificial Intelligence",
-      "upvotes": 23,
-      "id": "2608.11341",
-      "abstract": "A framework for verifiable AI investigations using a heavy-duty solver across real-world scientific tasks. The system integrates foundation models, tools, and control policies for extended stateful research with intermediate artifact verification."
+      "title": "Large Discovery Models: Empirically-grounded Model-Based Open-Ended Search",
+      "upvotes": 49,
+      "paper_id": "2608.15669",
+      "abstract": "Scientific discovery often involves optimising expensive-to-evaluate objectives over vast, structured, and open-ended hypothesis spaces, such as molecules, protein sequences, and computer programs. We introduce the Large Discovery Model..."
     },
     {
-      "title": "SimpleOPD: Simple Tokenizer-Agnostic On-Policy Distillation for Long-Context Reasoning",
+      "title": "Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization",
+      "upvotes": 44,
+      "paper_id": "2608.16072",
+      "abstract": "Reinforcement learning with group-relative advantages has become the de facto standard for post-training language model reasoners. We introduce SA-MRPO, which standardizes each reward objective independently and adaptively discounts its contribution..."
+    },
+    {
+      "title": "MOSS-VL Technical Report",
+      "upvotes": 38,
+      "paper_id": "2608.15045",
+      "abstract": "We present MOSS-VL, an open vision-language model family that treats real-time interaction -- perceiving while it speaks -- as a first-class capability. The language decoder attends to vision through gated cross-attention, enabling the model to see..."
+    },
+    {
+      "title": "Advancing Open and Reproducible Relational Learning: RelArena-α, TabPFN-Rel and RPI",
       "upvotes": 22,
-      "id": "2608.14277",
-      "abstract": "On-policy distillation transfers proof-reasoning from long-context teachers to short-context students by handling tokenizer differences and constraining length growth. Intern-S2-Preview improves by 21.2 points on ProofBench, reaching 55.2."
+      "paper_id": "2608.16319",
+      "abstract": "This release of Prior Labs in relational learning shows commitment to open science. We open-source RelArena-α, a unified framework for running and comparing baselines on RelBench v1 by standardizing data loading, evaluation protocols, tuning regimes..."
     },
     {
-      "title": "DFM Mimir v1: An Open HRM Delivering Frontier Performance at 1B Parameters Using Only Permissible Post-Training Data",
-      "upvotes": 21,
-      "id": "2608.13517",
-      "abstract": "A 1-billion-parameter Hierarchical Reasoning Model trained solely on permissible data achieves competitive English performance and state-of-the-art Danish results across 20 benchmarks, demonstrating ethical data sourcing viability."
+      "title": "How Do Agents Fail on AutoResearch: End-to-End Diagnostic Evaluation on 100 Real-World Frontier Research Tasks",
+      "upvotes": 22,
+      "paper_id": "2608.14905",
+      "abstract": "AI assists scientific research, but rapid advances in LLMs reshape the landscape. We introduce AutoResearchEval, featuring 100 tasks grounded in published frontier science across 7 domains and the full research lifecycle. Failure patterns reveal agents..."
     },
     {
-      "title": "Modular Cognitive Architecture Emerges in Large Language Models",
-      "upvotes": 11,
-      "id": "2608.13567",
-      "abstract": "Circuit analyses across 46 tasks reveal that LLMs develop modular architectures mirroring human brain specialization across language, formal reasoning, social reasoning, and physical reasoning domains."
+      "title": "GRNEdit: Efficient General Video Editing from a New Binary-Evidence Perspective in Generative Refinement Networks",
+      "upvotes": 13,
+      "paper_id": "2608.16328",
+      "abstract": "Instruction-based general video editing seeks to unify diverse editing operations. We introduce GRNEdit, a lightweight two-stage framework. GRN encodes visual semantics through combinations of bits. Editing semantics are recast as local retain-or-flip..."
     },
     {
-      "title": "PRM-as-a-Judge 1.5: A Toolkit for Robot Process Assessment",
-      "upvotes": 10,
-      "id": "2608.14284",
-      "abstract": "A toolkit enabling fine-grained robotic evaluation through dense progress curves and multiple metrics characterizing failure recovery, execution quality, and success-side performance beyond binary outcome measures."
+      "title": "TRACE-Bench: Decomposing and Diagnosing Multi-Reference Image Generation",
+      "upvotes": 9,
+      "paper_id": "2608.16765",
+      "abstract": "Existing benchmarks for multi-reference image generation remain organized around predefined task types, leading to fragmented coverage. We adopt a capability-oriented perspective, formalizing four operators: Anchor, Disentangle, Apply, and Compose."
     },
     {
-      "title": "Latent On-Policy Self-Distillation",
-      "upvotes": 10,
-      "id": "2608.13040",
-      "abstract": "An approach making privileged teaching context learnable end-to-end from experience. The method provides dense token-level supervision and demonstrates strong performance with less than 30% of rollout budget compared to alternatives."
+      "title": "Beyond Visual CoT: Internalized Visual Thinking for Proactive Video Reasoning",
+      "upvotes": 3,
+      "paper_id": "2608.15869",
+      "abstract": "Multimodal large language models increasingly use visual chain-of-thought to reason about spatial, temporal, and embodied environments. We introduce Internalized Visual Thinking (IVT), a post-training framework that jointly optimizes textual prediction..."
     },
     {
-      "title": "Second Thought: Reasoning in Parallel as LLM Agents Act and Observe",
-      "upvotes": 8,
-      "id": "2608.13667",
-      "abstract": "A training-free framework running auxiliary reasoning branches in parallel during agent action-observation waits, reducing sequential decoding by up to 43% and lowering turn counts without significant accuracy degradation."
-    },
-    {
-      "title": "Forecast Collapse in Time-Series Foundation Models",
-      "upvotes": 7,
-      "id": "2608.14106",
-      "abstract": "Identifies forecast collapse in equity return predictions due to low predictability and per-series objectives. The proposed CalibRank objective nearly triples cross-sectional correlation while maintaining amplitude calibration."
-    },
-    {
-      "title": "LittleLearner: Language Models Under Pedagogically Controlled Knowledge Exposure",
-      "upvotes": 6,
-      "id": "2608.13545",
-      "abstract": "A 5B-parameter model trained on an 88B-token elementary-grade corpus creates a controlled sandbox for studying knowledge acquisition with clear capability boundaries mapped to curriculum guidelines."
+      "title": "DumpsterCluster: From Dumpster Diving to Serving LLaMA-70B on $60 GPUs",
+      "upvotes": 2,
+      "paper_id": "2608.14614",
+      "abstract": "As AI datacenters retire functional GPUs, we investigate whether these retired accelerators can form a productive DumpsterCluster for modern LLM inference. We physically built a 128-GPU DumpsterCluster from second-hand components and ran it for one..."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.235",
+      "published_at": "2025-08-18",
+      "body": "Added an optional `spellcheck` setting that underlines misspelled words in the prompt input as you type, using your installed `aspell`, `hunspell`, or `ispell`. Fixed whole-prompt-cache invalidation when a language server disconnected or reconnected mid-session. Fixed nested markdown list items misaligning at depth 3+ and added a hanging indent to wrapped list items in the terminal UI. Fixed prompt input highlights (slash commands, keywords, mentions) appearing shifted by one or more characters in some multi-line prompts. Fixed Shift+Tab inside the permission prompt's comment field approving the edit and granting session-wide edit permission instead of closing the field."
+    },
+    {
       "tag_name": "v2.1.234",
       "published_at": "2025-08-17",
-      "body": "Added the optional `CLAUDE_CODE_PROJECT_DIR_NAME` environment variable: hosts that give each session its own config directory can choose a short name for the per-project transcript directory. Added the `selection:clear` keybinding action, so a key can be bound to clear an in-app text selection; also works in the agents view. Added a GitLab merge request badge to the footer and statusline: repos with a GitLab remote and an authenticated glab CLI show MR !N with draft/pending/green states. Claude Code now continues your session automatically when a claude.ai usage limit resets; turn it off in `/config` (\"Continue automatically at usage limit\"). Claude is now told to use your account email only to identify you, and not to send it to unrelated services unless you ask. Security: remote file reads, session restore, CLAUDE.md includes, workflow scripts and file uploads now reject Windows NT-namespace (`\\??\\`) paths, hardening the remaining pre-approval file accesses against the NTLM credential-leak vector."
+      "body": "Added the optional `CLAUDE_CODE_PROJECT_DIR_NAME` environment variable: hosts that give each session its own config directory can choose a short name for the per-project transcript directory. Added the `selection:clear` keybinding action, so a key can be bound to clear an in-app text selection; also works in the agents view. Added a GitLab merge request badge to the footer and statusline: repos with a GitLab remote and an authenticated glab CLI show MR !N with draft/pending/green states. Claude Code now continues your session automatically when a claude.ai usage limit resets; turn it off in `/config` (\"Continue automatically at usage limit\")."
     },
     {
       "tag_name": "v2.1.233",
       "published_at": "2025-08-14",
-      "body": "Added GitLab merge request URL support to the `--worktree` flag and the `claude agents` view (where MRs display as `!N`). Added an opt-in `forward_user_identity` apps gateway setting on Anthropic upstreams that sends the signed-in user's identity as headers, so a proxy behind the gateway can attribute spend per user. Added opt-in memory cgroup support for Bash tool commands on Linux (`CLAUDE_CODE_TOOL_MEMORY_LIMIT`) so a runaway build can't stall the session. Added `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` environment variable to configure the WebFetch session URL cache TTL (default unchanged: 15 minutes). Fixed cloud sessions occasionally being marked as lost when the environment shut down while Claude was waiting on a permission prompt. Fixed MCP v2 connections endlessly reopening the subscriptions/listen stream against servers that terminate long-held streams on a fixed timeout (e.g. serverless hosts)."
-    },
-    {
-      "tag_name": "v2.1.232",
-      "published_at": "2025-08-13",
-      "body": "Subagent forking is now on by default: a `subagent_type: \"fork\"` subagent inherits the full conversation and prompt cache, and non-teammate agent spawns in interactive sessions now run in the background by default. Type `@` in the prompt to mention another Claude session by name; Claude then uses `SendMessage` to reach that session directly. `SendMessage` now delivers to a bare name that exactly matches one live session, instead of asking to confirm with a ref first. Interactive sessions on one machine now keep unique names: starting or renaming a session to a name another live session already uses gives it a `name-word-word` variant and tells you. Added `/config` rows for \"Dialog expiry\" and \"Messages from your other sessions\" (cross-session inbound accept/hold/refuse). Added secret redaction for GitLab token families and full redaction of routable tokens; the `glab` CLI config store gets the same sandbox and credential-path protection as `gh`. Added GitLab support to plugin marketplaces: bare `gitlab.com` repo URLs now clone like `github.com` URLs."
+      "body": "Added GitLab merge request URL support to the `--worktree` flag and the `claude agents` view (where MRs display as `!N`). Added an opt-in `forward_user_identity` apps gateway setting on Anthropic upstreams that sends the signed-in user's identity as headers, so a proxy behind the gateway can attribute spend per user. Added opt-in memory cgroup support for Bash tool commands on Linux (`CLAUDE_CODE_TOOL_MEMORY_LIMIT`) so a runaway build can't stall the session. Added `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` environment variable to configure the WebFetch session URL cache TTL (default unchanged: 15 minutes)."
     }
   ]
 }
