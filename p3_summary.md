@@ -1,6 +1,6 @@
-**3. SimpleOPD: Tokenizer-Agnostic On-Policy Distillation for Long-Context Reasoning**
-**著者**: SimpleOPD Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2608.14277
+**3. Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization**
+**著者**: Yixuan Wang, Yifei Chen, Haichao Zhang et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.16072
 
 **まとめ**:
-異なるトークナイザーを持つ教師モデルから学生モデルへの長文脈推論能力転移を実現するオンポリシー蒸留（OPD）手法。共有テキスト空間でのトークン対応・終了トークンマスキング・学生参照KL正則化の3技術を組み合わせ。SU-01からの蒸留でIntern-S2-PreviewがProofBenchで21.7→44.5（+22.8pt）に大幅改善し、Gemini-2.5-Proを上回る。異アーキテクチャ間の推論能力転移に初めて体系的に取り組んだ研究。
+複数報酬目標を持つ言語モデルの強化学習では、固定重みの重み付き和で報酬を統合する既存手法では「すでに習熟した目標」に計算資源が無駄に使われる問題があった。SA-MRPOは各報酬目標を独立して標準化し、バッチレベルの飽和度（saturation）推定に基づき動的に貢献度を調整することで、未達成目標への集中的最適化を実現。AIME24で最大5%・AMC23で平均3.8%・コーディングで最大2.3%の性能向上を達成しながら、習熟済み目標のパフォーマンスは維持した。
