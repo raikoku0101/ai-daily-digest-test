@@ -1,6 +1,6 @@
-**1. Self-Supervised Visual On-Policy Distillation (S2VOPD)**
-**著者**: S2VOPD Authors et al. (2025)
-**arXiv**: https://arxiv.org/abs/2608.14144
+**1. StateM: Reaching 95.3% Raw Accuracy, or a $15 Frontier Run, on Terminal-Bench 2.1 via Harness Scaling**
+**著者**: Ziheng Qin, Yaxin Lu, Zhangyang Wang et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.15089
 
 **まとめ**:
-外部ラベルや大型教師モデルなしに、非対称な拡張ビューを活用してオンポリシー蒸留を実現する新手法。教師は元画像を観察し学生は拡張ビューで学習することで非対称性を構築。Qwen3.5-4Bで70.7%→77.4%（+6.7pt）の大幅改善を達成し、235Bパラメータの大型モデルをも上回る。特権情報不要の自己改善型視覚AIの実現可能性を示す重要な成果。
+長期実行エージェントは個別ステップの解決能力があっても状態追跡の喪失や手順の再実行忘却により失敗することが多い。StateMは耐久的状態・フェーズローカルコンテキスト・チェック済み遷移・回復可能なランブックを組み合わせたエージェント専用ランタイムで、モデル重みの変更なくシステム側の「ハーネススケーリング」でTerminal-Bench 2.1において95.3%の正解精度を達成。わずか$15のAPIコストでフロンティアレベルの性能を実現し、エージェント信頼性と経済効率を両立した。
