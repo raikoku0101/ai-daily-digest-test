@@ -1,6 +1,7 @@
-**5. Advancing Open and Reproducible Relational Learning: RelArena-α, TabPFN-Rel and RPI**
-**著者**: Adrian Hayler et al. (incl. Yann LeCun, Bernhard Schölkopf, Frank Hutter) (2026)
-**arXiv**: https://arxiv.org/abs/2608.16319
+**5. V-RAE: Rethinking Video Latent Spaces for Generation**
+**著者**: (HuggingFace Daily Papers, 2026)
+**arXiv**: https://arxiv.org/abs/2608.13556
+**upvotes**: 15
 
 **まとめ**:
-関係学習分野では多様なデータセットとタスクが出現しているが、手法を横断して比較する再現可能な標準方法が確立されていなかった。本研究は3つのオープンソースツールを提供：RelArena-α（標準化された評価フレームワーク）・TabPFN-Rel（関係データのフラット化により特殊アーキテクチャと競争力を示す）・RPI（モデル非依存の関係予測インターフェース）。Yann LeCunやBernhard Schölkopfを含む47名の著名研究者が参加し、オープンサイエンスによる関係学習の研究基盤強化を目指す。
+「良好な再構成が生成に適した潜在空間を保証しない」という重要な知見を実証した動画生成研究。凍結済みビジョン基盤モデル（VFM）表現を活用するビデオオートエンコーダー「V-RAE」を提案し、UCF101で117.86 gFVDを達成して既存最強手法を25ポイント上回る。収束速度も最大6倍高速化。再構成品質ではなく時間的補間一貫性（tFVD）が生成性能の真の指標であることも新たに示した。

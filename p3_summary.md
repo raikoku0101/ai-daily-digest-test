@@ -1,6 +1,7 @@
-**3. Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization**
-**著者**: Yixuan Wang, Yifei Chen, Haichao Zhang et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.16072
+**3. Agent Lightning v1.0: Towards Harnessed Agentic RL**
+**著者**: (HuggingFace Daily Papers, 2026)
+**arXiv**: https://arxiv.org/abs/2608.17528
+**upvotes**: 16
 
 **まとめ**:
-複数報酬目標を持つ言語モデルの強化学習では、固定重みの重み付き和で報酬を統合する既存手法では「すでに習熟した目標」に計算資源が無駄に使われる問題があった。SA-MRPOは各報酬目標を独立して標準化し、バッチレベルの飽和度（saturation）推定に基づき動的に貢献度を調整することで、未達成目標への集中的最適化を実現。AIME24で最大5%・AMC23で平均3.8%・コーディングで最大2.3%の性能向上を達成しながら、習熟済み目標のパフォーマンスは維持した。
+エージェントハーネス（agent harness）付きの強化学習（RL）訓練を可能にするフレームワーク「Agent Lightning v1.0」を提案。再トークン化・報酬計算・損失正規化・バックエンドスケジューリングの4課題を解決し、コーディングエージェントでSWE-benchスコアを41.8%から56.4%（+14.6%）に向上させることに成功。わずか6,000の訓練例でこの改善を実現した実用的なRL基盤として注目される。

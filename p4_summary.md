@@ -1,6 +1,7 @@
-**4. MOSS-VL Technical Report**
-**著者**: Pengyu Wang, Chenkun Tan, Shaojun Zhou et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.15045
+**4. DiSCO: Defending text-to-image generation through distribution-guided contrastive prompt optimization**
+**著者**: (HuggingFace Daily Papers, 2026)
+**arXiv**: https://arxiv.org/abs/2608.17067
+**upvotes**: 15
 
 **まとめ**:
-既存の視覚言語モデル（VLM）はオフライン処理を前提としており、「話しながら知覚する」リアルタイム対話能力を第一級機能として設計していない。MOSS-VLはゲート付きクロスアテンション（gated cross-attention）機構により言語デコーダが生成中に新規フレームを処理可能にし、合成インタラクションコーパスで発話タイミング制御を学習。4つのストリーミングベンチマークでオープンソース最高スコアを達成し、OmniMMI Proactive Alertingでは66.0 vs 37.5という大幅優位性を示しながら、時間遅延をQwen3-VL-8B比で2.8〜5.1倍短縮した。
+テキスト-画像生成モデルの有害コンテンツ生成（NSFW）に対するプロンプトレベルの防御手法「DiSCO」を提案。訓練不要・完全ブラックボックスで、CLIP埋め込み空間における対比スコアリングによりプロンプト接尾辞を最適化。未防御モデルのNudeNet ASR（攻撃成功率）を平均23.6%から2.4%に低減し、生成品質を維持したまま任意の既存防御と組み合わせ可能な実用的セキュリティ対策。

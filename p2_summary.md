@@ -1,6 +1,7 @@
-**2. Large Discovery Models: Empirically-grounded Model-Based Open-Ended Search**
-**著者**: Zhongwei Yu et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.15669
+**2. EDITBRIDGE: Towards Faithful and Efficient Ultra-High-Resolution Image Editing**
+**著者**: (HuggingFace Daily Papers, 2026)
+**arXiv**: https://arxiv.org/abs/2608.18063
+**upvotes**: 21
 
 **まとめ**:
-科学的発見では分子・タンパク質・コンピュータプログラムなど広大な仮説空間での高コスト評価が必要だが、LLMの尤度は分布外候補への信頼できる目的関数にならない。Large Discovery Model（LDM）は生成モデルとベイズ非パラメトリック報酬代理モデルを組み合わせ、不確実性認識値で候補生成を導く。神経ネットワーク訓練・抗体設計・分子最適化で検証BPB 2.4倍改善・結合エネルギー18.2%低下・分子多目的性能60%以上向上を達成し、汎用科学発見エンジンとしての可能性を示した。
+超高解像度（4K以上）画像編集の新フレームワーク「EditBridge」を提案。拡散橋（diffusion bridge）定式化で低解像度編集結果を高解像度出力に変換し、先験誘導ブロック疎注意（sparse attention）により計算複雑度をO(N²)からO(N·k²)に削減。2Kで従来比3.6〜8.4倍の高速化を達成しながら、情報発散やテクスチャ幻覚なく元画像の細部を高忠実度で保持することに成功した。
