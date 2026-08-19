@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "StateM: Reaching 95.3% Raw Accuracy, or a $15 Frontier Run, on Terminal-Bench 2.1 via Harness Scaling",
-      "upvotes": 83,
-      "paper_id": "2608.15089",
-      "abstract": "Long-horizon agents can fail even when their underlying models can solve the constituent steps. We introduce StateM, an agent-native runtime that organizes execution around durable states, phase-local context, checked transitions, recoverable runbooks..."
-    },
-    {
-      "title": "Large Discovery Models: Empirically-grounded Model-Based Open-Ended Search",
-      "upvotes": 49,
-      "paper_id": "2608.15669",
-      "abstract": "Scientific discovery often involves optimising expensive-to-evaluate objectives over vast, structured, and open-ended hypothesis spaces, such as molecules, protein sequences, and computer programs. We introduce the Large Discovery Model..."
-    },
-    {
-      "title": "Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization",
-      "upvotes": 44,
-      "paper_id": "2608.16072",
-      "abstract": "Reinforcement learning with group-relative advantages has become the de facto standard for post-training language model reasoners. We introduce SA-MRPO, which standardizes each reward objective independently and adaptively discounts its contribution..."
-    },
-    {
-      "title": "MOSS-VL Technical Report",
-      "upvotes": 38,
-      "paper_id": "2608.15045",
-      "abstract": "We present MOSS-VL, an open vision-language model family that treats real-time interaction -- perceiving while it speaks -- as a first-class capability. The language decoder attends to vision through gated cross-attention, enabling the model to see..."
-    },
-    {
-      "title": "Advancing Open and Reproducible Relational Learning: RelArena-α, TabPFN-Rel and RPI",
-      "upvotes": 22,
-      "paper_id": "2608.16319",
-      "abstract": "This release of Prior Labs in relational learning shows commitment to open science. We open-source RelArena-α, a unified framework for running and comparing baselines on RelBench v1 by standardizing data loading, evaluation protocols, tuning regimes..."
-    },
-    {
-      "title": "How Do Agents Fail on AutoResearch: End-to-End Diagnostic Evaluation on 100 Real-World Frontier Research Tasks",
-      "upvotes": 22,
-      "paper_id": "2608.14905",
-      "abstract": "AI assists scientific research, but rapid advances in LLMs reshape the landscape. We introduce AutoResearchEval, featuring 100 tasks grounded in published frontier science across 7 domains and the full research lifecycle. Failure patterns reveal agents..."
-    },
-    {
-      "title": "GRNEdit: Efficient General Video Editing from a New Binary-Evidence Perspective in Generative Refinement Networks",
-      "upvotes": 13,
-      "paper_id": "2608.16328",
-      "abstract": "Instruction-based general video editing seeks to unify diverse editing operations. We introduce GRNEdit, a lightweight two-stage framework. GRN encodes visual semantics through combinations of bits. Editing semantics are recast as local retain-or-flip..."
-    },
-    {
-      "title": "TRACE-Bench: Decomposing and Diagnosing Multi-Reference Image Generation",
-      "upvotes": 9,
-      "paper_id": "2608.16765",
-      "abstract": "Existing benchmarks for multi-reference image generation remain organized around predefined task types, leading to fragmented coverage. We adopt a capability-oriented perspective, formalizing four operators: Anchor, Disentangle, Apply, and Compose."
-    },
-    {
-      "title": "Beyond Visual CoT: Internalized Visual Thinking for Proactive Video Reasoning",
-      "upvotes": 3,
-      "paper_id": "2608.15869",
-      "abstract": "Multimodal large language models increasingly use visual chain-of-thought to reason about spatial, temporal, and embodied environments. We introduce Internalized Visual Thinking (IVT), a post-training framework that jointly optimizes textual prediction..."
-    },
-    {
-      "title": "DumpsterCluster: From Dumpster Diving to Serving LLaMA-70B on $60 GPUs",
-      "upvotes": 2,
-      "paper_id": "2608.14614",
-      "abstract": "As AI datacenters retire functional GPUs, we investigate whether these retired accelerators can form a productive DumpsterCluster for modern LLM inference. We physically built a 128-GPU DumpsterCluster from second-hand components and ran it for one..."
-    }
+    {"title": "Demystifying Agent Skills: Why They Work-Until They Don't", "upvotes": 118, "paper_id": "2608.14036", "abstract": "Skills enhance LLM agents primarily by stabilizing execution through procedural anchoring rather than injecting missing knowledge, though retrieval bottlenecks and brittle assumptions limit their effectiveness."},
+    {"title": "EDITBRIDGE: Towards Faithful and Efficient Ultra-High-Resolution Image Editing", "upvotes": 21, "paper_id": "2608.18063", "abstract": "EditBridge enables efficient ultra high-resolution image editing via a diffusion bridge that translates low-resolution edits to high-resolution outputs while preserving source details through sparse attention."},
+    {"title": "Agent Lightning v1.0: Towards Harnessed Agentic RL", "upvotes": 16, "paper_id": "2608.17528", "abstract": "Agent Lightning v1.0 enables reproducible reinforcement learning for arbitrary agent harnesses, substantially improving coding-agent performance with minimal data and compute."},
+    {"title": "DiSCO: Defending text-to-image generation through distribution-guided contrastive prompt optimization", "upvotes": 15, "paper_id": "2608.17067", "abstract": "DiSCO is a black-box, zero-shot prompt-level defense that uses distribution-guided suffix expansion and contrastive scoring to reduce harmful image generation without altering the model."},
+    {"title": "V-RAE: Rethinking Video Latent Spaces for Generation", "upvotes": 15, "paper_id": "2608.13556", "abstract": "V-RAE constructs semantically organized video latents from frozen vision representations to improve generation quality, convergence speed, and predictive modeling."},
+    {"title": "CoinVE-200K: A Large-Scale High-Quality Dataset for Compositional Instruction-Guided Video Editing", "upvotes": 13, "paper_id": "2608.17566", "abstract": "A new dataset, benchmark, and 22B model enable compositional instruction-guided video editing with multi-region attention and temporal coherence."},
+    {"title": "MoE-ViE: Mixture of Experts Vision Encoder for Efficient Image and Video Understanding", "upvotes": 10, "paper_id": "2608.17402", "abstract": "Mixture-of-Experts vision encoders with fine-grained topologies, auxiliary-loss-free balancing, and specialized kernels scale efficiently while outperforming larger dense models on image and video tasks."},
+    {"title": "HarnessRisk: A Lifecycle-Oriented Benchmark for Agent Harness Safety", "upvotes": 7, "paper_id": "2608.17597", "abstract": "HarnessRisk evaluates agent harness safety across six operational phases, revealing that configuration vulnerabilities and detection gaps allow high attack success despite preserved utility."},
+    {"title": "MathForm: Scaling Mathematical Autoformalization with Knowledge Retrieval and Verification-Guided Refinement", "upvotes": 6, "paper_id": "2608.14221", "abstract": "MathForm improves autoformalization by retrieving Mathlib knowledge and iteratively refining outputs with verification feedback, yielding a large verified dataset and a high-performing 8B model."},
+    {"title": "Cross-Model Memory Transfer via Target-Side Reader Adaptation", "upvotes": 4, "paper_id": "2608.17050", "abstract": "Cross-model reuse of frozen external memory tables depends primarily on aligning a lightweight target-side reader rather than the memory content alone, enabling reusable knowledge artifacts with optional adaptation."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.235",
-      "published_at": "2025-08-18",
-      "body": "Added an optional `spellcheck` setting that underlines misspelled words in the prompt input as you type, using your installed `aspell`, `hunspell`, or `ispell`. Fixed whole-prompt-cache invalidation when a language server disconnected or reconnected mid-session. Fixed nested markdown list items misaligning at depth 3+ and added a hanging indent to wrapped list items in the terminal UI. Fixed prompt input highlights (slash commands, keywords, mentions) appearing shifted by one or more characters in some multi-line prompts. Fixed Shift+Tab inside the permission prompt's comment field approving the edit and granting session-wide edit permission instead of closing the field."
-    },
-    {
-      "tag_name": "v2.1.234",
-      "published_at": "2025-08-17",
-      "body": "Added the optional `CLAUDE_CODE_PROJECT_DIR_NAME` environment variable: hosts that give each session its own config directory can choose a short name for the per-project transcript directory. Added the `selection:clear` keybinding action, so a key can be bound to clear an in-app text selection; also works in the agents view. Added a GitLab merge request badge to the footer and statusline: repos with a GitLab remote and an authenticated glab CLI show MR !N with draft/pending/green states. Claude Code now continues your session automatically when a claude.ai usage limit resets; turn it off in `/config` (\"Continue automatically at usage limit\")."
-    },
-    {
-      "tag_name": "v2.1.233",
-      "published_at": "2025-08-14",
-      "body": "Added GitLab merge request URL support to the `--worktree` flag and the `claude agents` view (where MRs display as `!N`). Added an opt-in `forward_user_identity` apps gateway setting on Anthropic upstreams that sends the signed-in user's identity as headers, so a proxy behind the gateway can attribute spend per user. Added opt-in memory cgroup support for Bash tool commands on Linux (`CLAUDE_CODE_TOOL_MEMORY_LIMIT`) so a runaway build can't stall the session. Added `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` environment variable to configure the WebFetch session URL cache TTL (default unchanged: 15 minutes)."
-    }
+    {"tag_name": "v2.1.236", "published_at": "2025-08-19", "body": "Added ANTHROPIC_DEFAULT_MODEL environment variable. Added notify_when_idle to cross-session SendMessage. Sandbox: on macOS, wildcard read-deny rules now take precedence inside allowed read regions."},
+    {"tag_name": "v2.1.235", "published_at": "2025-08-18", "body": "Added optional spellcheck setting. Fixed whole-prompt-cache invalidation when a language server disconnected. Fixed nested markdown list items misaligning. Fixed prompt input highlights appearing shifted."},
+    {"tag_name": "v2.1.234", "published_at": "2025-08-17", "body": "Added CLAUDE_CODE_PROJECT_DIR_NAME environment variable. Added selection:clear keybinding action. Added GitLab merge request badge to the footer and statusline."}
   ]
 }
