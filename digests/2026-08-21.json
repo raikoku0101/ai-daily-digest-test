@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-21",
+  "content": "# AI Daily Digest — 2026-08-21\n\n## 今日のハイライト\n- **SemComp-Bench (151 upvotes)**: 動画生成の「意味的タスク完遂」を評価する初のベンチマーク。「きれいな動画」より「正しく目標達成する動画」への評価パラダイムシフトで、実用的な動画 AI 評価の標準化に直結。\n- **Zetta ζ ロボット自己進化 (129 upvotes)**: 閉ループで runtime critic と回復スキルをオンライン更新し LIBERO-Pro 90.8%・RoboCasa 93.6% と SOTA 達成。人間の介入なしで実世界学習するロボット AI の実用化に大きな前進。\n- **Claude Code v2.1.237/238**: readline キーバインドの追加、Concise 出力スタイル、LLM ゲートウェイのキャッシュ修正、`headersHelper` プラグイン認証など実用改善が連日リリース。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.238 (2025-08-20)\n**主要機能**:\n- `keybindingFlavor` 設定追加: `\"readline\"` に設定すると、Bash のように Ctrl+W で前の空白まで削除可能（デフォルト `\"classic\"` は変更なし）\n- プラグインマーケットプレイス向け `headersHelper` 対応: URL マーケットプレイスやカタログエントリで HTTP ヘッダー（例: 短命トークン）を生成するコマンドを実行可能。インストール・更新時に `[y/N]` 確認プロンプト（`-y` で自動承認）\n- `claude self-hosted-runner --defer-shutdown-max-min <分>` 追加: SIGTERM 受信時に接続中セッションをサービス継続し、指定分数後に終了\n\n**ユーザーへの影響**: キーバインドを Bash スタイルにカスタマイズ可能になり、セルフホスト環境でのグレースフルシャットダウンが改善。\n\n---\n\n### v2.1.237 (2025-08-20)\n**主要機能**:\n- LLM ゲートウェイやカスタムベース URL を使用したセッションのプロンプトキャッシュのバグ修正\n- 組み込み「Concise（簡潔）」出力スタイル追加: Claude が結果から始め、前置きや説明を省く。`/config` の「Output style」で選択可能\n\n**ユーザーへの影響**: プロキシ経由利用時のキャッシュ効率改善と、より簡潔な応答スタイルの選択肢が追加。\n\n---\n\n### v2.1.236 (2025-08-19)\n**主要機能**:\n- `ANTHROPIC_DEFAULT_MODEL` 環境変数追加: 新規セッションの開始モデルを設定（`/model` での選択は引き続き優先）\n- クロスセッション `SendMessage` に `notify_when_idle` 追加: 別の Claude Code セッションがアイドルになったタイミングで通知（macOS・Linux、ワンショット・ポーリングなし）\n- macOS サンドボックス改善: ワイルドカード読み取り拒否ルール（例: `**/.env`）が許可リージョン内で優先され、ファイルのリネームでも回避不可に\n\n**ユーザーへの影響**: 環境変数によるデフォルトモデル管理が可能になり、セキュリティサンドボックスが強化。\n\n## 注目論文 TOP 10\n\n**1. SemComp-Bench: Benchmarking Semantic Task Completion in Video Generation**\nupvotes: 151 | https://arxiv.org/abs/2608.17426\n🎯**背景**: 動画生成モデルの評価は「見た目の品質」に偏りがちで、実際にタスクが達成されたかという意味的完遂の評価が欠如していた。\n🔧**手法**: 6 ドメイン（料理・工具作業など）をカバーする SemComp-Data を構築し、VLM ベースの評価プロトコル SemComp-Bench を設計。生成動画の結果達成度と意味的接地を自動評価。\n📊**結果**: 既存の動画生成モデルが意味的タスク完遂において大幅な改善余地があることを定量的に示した。\n💡**意義**: 「きれいな動画を生成する」から「正しく目標を達成する動画を生成する」への評価パラダイムシフトを促す重要なベンチマーク。\n⚠️**限界**: 6 ドメインへの限定とアノテーションコストが課題。VLM 評価者自体のバイアスも残存。\n\n**2. Zetta ζ: An Efficient Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence**\nupvotes: 129 | https://arxiv.org/abs/2608.16590\n🎯**背景**: ロボット操作における従来のオフライン学習は、実環境での予期せぬ失敗への対応が困難で、人間による介入が頻繁に必要だった。\n🔧**手法**: 閉ループ型の具現化ハーネスで、実行時批評家（runtime critics）と回復スキル（recovery skills）をオンラインで自律進化。失敗を検出してその場でポリシーを更新。\n📊**結果**: LIBERO-Pro で 90.8%、RoboCasa で 93.6% の成功率を達成し、両ベンチマークで SOTA を更新。\n💡**意義**: 人間の介入を最小化しながら実世界で継続的に自己改善するロボット AI の実用的フレームワークとして注目。\n⚠️**限界**: 実際の物理ロボットでの汎用性検証と、回復スキルの過学習リスクが残る。\n\n**3. OmniScientist: An Omni-Modal Omni-Discipline AI Scientist**\nupvotes: 83 | https://arxiv.org/abs/2608.13558\n🎯**背景**: AI を科学研究に活用する試みは単一モダリティや特定分野に限定されており、複数モダリティを統合したエンドツーエンドの研究 AI は存在しなかった。\n🔧**手法**: 画像・信号・音声・動画・3D 構造などの異種生データから直接研究を実施するオムニモーダル AI 科学者。仮説立案→実験設計→結果解析→論文執筆の全フローを統合。\n📊**結果**: 複数の学術分野にわたる研究タスクで、既存の専門特化モデルに匹敵する性能を示した。\n💡**意義**: 科学的発見のプロセス全体を AI が担う新時代の到来を示し、研究加速の可能性を大きく広げる。\n⚠️**限界**: 独創的な仮説生成の質と、安全性・倫理的研究制約への対応が今後の課題。\n\n**4. Co-RL: Unsupervised Reasoning Emerges from Diverse Cohort in Multi-agent RL**\nupvotes: 82 | https://arxiv.org/abs/2608.17253\n🎯**背景**: LLM の推論能力向上には通常グラウンドトゥルースラベルが必要で、ラベルなしデータからの自律的な能力向上は困難だった。\n🔧**手法**: 分離されたモデルのコホートが相互に報酬を提供し合う協調型マルチエージェント強化学習。グラウンドトゥルースを使わず、ピアからの評価のみで学習。\n📊**結果**: LLM ベンチマークで 3.0-8.6%、VLM で 2.3-7.2% の性能向上を達成。ラベルなしで SOTA に近い性能。\n💡**意義**: ラベル付きデータの希少な分野でも LLM を継続改善できる枠組みとして、教育・医療・法律などへの応用が期待。\n⚠️**限界**: コホートの多様性設計がパフォーマンスに大きく影響し、最適設定の探索コストが高い。\n\n**5. Training Chemical Plausibility-Aware Large Language Models for Single-Step Retrosynthesis**\nupvotes: 29 | https://arxiv.org/abs/2608.18940\n🎯**背景**: 逆合成（目標分子から出発原料を予測）は創薬研究の核心だが、既存 LLM は化学的妥当性を考慮した多様な反応経路の予測が不十分だった。\n🔧**手法**: Top-K プロンプティングパラダイムで多様な反応候補を生成し、4560 万件の検証済み反応で訓練した C3LM（化学的妥当性認識 LLM）を構築。\n📊**結果**: OOD ベンチマーク URSA-expert-2026 で SOTA を達成し、既存手法を上回る予測精度を実現。\n💡**意義**: AI 支援創薬の実用化に向けた重要なステップ。化学的制約を深く理解した LLM が現実の合成計画立案に使えることを実証。\n⚠️**限界**: 訓練データのバイアスと、複数ステップの全合成経路への拡張が今後の課題。\n\n**6. Training Leaves Traces: Centered Residual Signatures for Language Model Lineage Verification**\nupvotes: 16 | https://arxiv.org/abs/2608.14929\n🎯**背景**: ファインチューニングされたモデルが特定のベースモデルの派生かどうかを確認する手段が乏しく、モデルの出所検証や知財保護に課題があった。\n🔧**手法**: データ不要のホワイトボックス手法で、重み空間の中心化残差シグネチャを通じてモデルの祖先関係を検出。追加学習なしで動作する軽量アルゴリズム。\n📊**結果**: AUROC=1.0（完全識別）でファインチューニング派生モデルと独立モデルを分離し、ベースライン比 76 倍高速。\n💡**意義**: オープンソース LLM エコシステムにおける出所追跡と知財保護の実用的ツールとして、AI ガバナンスへの貢献が大きい。\n⚠️**限界**: ホワイトボックス前提のため公開モデルのみ適用可能。大規模量子化・蒸留への耐性は未検証。\n\n**7. Decision-Metric Alignment in Latent World Models: Diagnostics and Action-Conditioned Objectives for MPC Planning**\nupvotes: 15 | https://arxiv.org/abs/2608.18746\n🎯**背景**: JEPA スタイルの潜在世界モデルを MPC（モデル予測制御）計画に使う際、潜在空間の距離が実コストを正しく反映するかが不明で、計画品質の保証が困難だった。\n🔧**手法**: 潜在距離が実コストランキングを保持するかを診断するフレームワークを設計し、アクション条件付き目的関数を持つ DA-LeWM を提案。ユークリッドコスト MPC 向けに幾何構造を最適化。\n📊**結果**: DA-LeWM が標準 JEPA モデルより優れた潜在空間幾何を実現し、MPC 計画精度が改善。\n💡**意義**: 世界モデルベースの強化学習における計画精度向上の理論的基盤を提供し、ロボティクスや自律走行への応用を後押し。\n⚠️**限界**: 評価環境がシミュレーションに限定され、実世界での検証が必要。\n\n**8. The More Popular, The Harder to Forget: Adaptive Popularity for LLM Unlearning**\nupvotes: 13 | https://arxiv.org/abs/2608.14229\n🎯**背景**: GDPR 等の規制対応でLLMから特定情報を「忘却」させる必要があるが、人気の高い情報（よく登場するため深く記憶）ほど完全削除が困難だった。\n🔧**手法**: AdaPop 法でトークン信頼度と人気度依存の指数を組み合わせた忘却アルゴリズムを構築。情報の出現頻度に応じて忘却強度を適応的に調整。\n📊**結果**: 言い換えクエリでの忘却コンテンツ漏洩を約5倍、敵対的言い換えでも約1.6倍削減。\n💡**意義**: プライバシー保護・著作権対応のための LLM 忘却を実用化に近づける重要な手法。規制遵守コストの削減につながる。\n⚠️**限界**: 人気度の定義と測定方法、及び忘却後のモデル性能への影響評価が課題。\n\n**9. Scaling Creative Writing Beyond Story-Centric Data with Attribute-Guided Genre Expansion**\nupvotes: 13 | https://arxiv.org/abs/2608.13947\n🎯**背景**: LLM の創作文章生成は小説・物語中心のデータで訓練されており、詩・脚本・ビジネス文書など多様なジャンルへの汎化が不十分だった。\n🔧**手法**: ジャンル属性を活用して13の創作フォーマット全体で構造的慣例を強制するフレームワーク。50,000 件のサンプルコーパスを構築し、属性ガイド付きで多様なジャンルに展開。\n📊**結果**: 未見の創作文章ベンチマーク（OOD）で性能向上を実証。特に構造的制約が厳密なジャンルで顕著な改善。\n💡**意義**: AI を使った多様な創作タスク（広告コピー・歌詞・詩・学術論文等）の品質向上に向けた実践的アプローチ。\n⚠️**限界**: 日本語等の非英語ジャンルへの適用性と、創作の「個性」の評価指標確立が今後の課題。\n\n**10. SoftVTBench: A Deformation-Aware Visuo-Tactile Dataset and Benchmark for Deformable-Object Manipulation**\nupvotes: 12 | https://arxiv.org/abs/2608.18701\n🎯**背景**: 柔らかい物体（布・食材・生体組織など）の操作は視覚情報だけでは困難で、変形状態を考慮した触覚フィードバックの統合評価基盤が存在しなかった。\n🔧**手法**: 20Hz で同期された 4,000 件の専門家デモンストレーションと有限要素法（FEM）状態を含む視触覚データセットを構築。変形認識成功率（DSR）という新評価指標を導入。\n📊**結果**: 既存ポリシーが変形を考慮した評価では大幅に性能低下することを DSR により明確化。インタラクション品質のギャップを可視化。\n💡**意義**: 手術ロボット・食品加工・衣服折り畳みなど実用ロボットに直結するベンチマークとして、触覚 AI 研究の加速が期待。\n⚠️**限界**: シミュレーション FEM 状態と実世界の乖離、およびデータ収集コストの高さが課題。\n\n",
+  "fetched_at": "2026-08-20T22:07:18.368067+00:00",
+  "papers": [
+    {
+      "title": "SemComp-Bench: Benchmarking Semantic Task Completion in Video Generation",
+      "upvotes": 151,
+      "paper_id": "2608.17426",
+      "abstract": "Semantic Task Completion Video Generation evaluates outcome achievement and semantic grounding. The work introduces SemComp-Data covering six domains and SemComp-Bench, a VLM-based evaluation protocol."
+    },
+    {
+      "title": "Zetta ζ: An Efficient Closed-Loop Embodied Harness for Self-Evolving Physical Intelligence",
+      "upvotes": 129,
+      "paper_id": "2608.16590",
+      "abstract": "A closed-loop embodied harness that evolves runtime critics and recovery skills online, achieving state-of-the-art success on robot benchmarks LIBERO-Pro (90.8%) and RoboCasa (93.6%)."
+    },
+    {
+      "title": "OmniScientist: An Omni-Modal Omni-Discipline AI Scientist",
+      "upvotes": 83,
+      "paper_id": "2608.13558",
+      "abstract": "An end-to-end AI scientist conducting multidisciplinary research from heterogeneous raw evidence including images, signals, audio, video, and 3D structures, completing full research workflows."
+    },
+    {
+      "title": "Co-RL: Unsupervised Reasoning Emerges from Diverse Cohort in Multi-agent RL",
+      "upvotes": 82,
+      "paper_id": "2608.17253",
+      "abstract": "Cooperative multi-agent reinforcement learning framework where decoupled models derive rewards from peers. Achieves 3.0-8.6% gains across LLM benchmarks and 2.3-7.2% for VLMs without ground-truth labels."
+    },
+    {
+      "title": "Training Chemical Plausibility-Aware Large Language Models for Single-Step Retrosynthesis",
+      "upvotes": 29,
+      "paper_id": "2608.18940",
+      "abstract": "Top-K prompting paradigm for diverse reaction prediction. Trains C3LM on 45.6 million verified reactions achieving state-of-the-art on OOD URSA-expert-2026 benchmark."
+    },
+    {
+      "title": "Training Leaves Traces: Centered Residual Signatures for Language Model Lineage Verification",
+      "upvotes": 16,
+      "paper_id": "2608.14929",
+      "abstract": "Data-free white-box method detecting model ancestry through weight-space signatures. Achieves AUROC=1.0 separating fine-tuned descendants from independent models, running 76x faster than baselines."
+    },
+    {
+      "title": "Decision-Metric Alignment in Latent World Models: Diagnostics and Action-Conditioned Objectives for MPC Planning",
+      "upvotes": 15,
+      "paper_id": "2608.18746",
+      "abstract": "Analyzes whether latent distance preserves real-cost rankings in JEPA-style models. Proposes DA-LeWM with action-conditioned objectives improving geometry for Euclidean-cost MPC planning."
+    },
+    {
+      "title": "The More Popular, The Harder to Forget: Adaptive Popularity for LLM Unlearning",
+      "upvotes": 13,
+      "paper_id": "2608.14229",
+      "abstract": "AdaPop method combines token confidence with popularity-dependent exponents for LLM unlearning. Reduces forgotten content leakage ~5x under paraphrased queries and ~1.6x under adversarial reformulations."
+    },
+    {
+      "title": "Scaling Creative Writing Beyond Story-Centric Data with Attribute-Guided Genre Expansion",
+      "upvotes": 13,
+      "paper_id": "2608.13947",
+      "abstract": "Framework leveraging genre attributes enforces structural conventions across 13 creative formats. Constructs 50K-example corpus and demonstrates improved performance on out-of-distribution writing benchmarks."
+    },
+    {
+      "title": "SoftVTBench: A Deformation-Aware Visuo-Tactile Dataset and Benchmark for Deformable-Object Manipulation",
+      "upvotes": 12,
+      "paper_id": "2608.18701",
+      "abstract": "Visuo-tactile dataset with 4,000 expert demonstrations synchronized at 20 Hz with FEM states. Introduces Deformation-aware Success Rate metric revealing interaction quality gaps in existing policies."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.238",
+      "published_at": "2025-08-20",
+      "body": "Added a `keybindingFlavor` setting: set it to `\"readline\"` to make Ctrl+W in the prompt delete back to the previous whitespace, as in Bash; the default (`\"classic\"`) is unchanged. Plugin marketplaces: `headersHelper` on a url marketplace or a catalog entry runs a command that mints HTTP headers (e.g. a short-lived token) for catalog and same-origin archive fetches. A catalog entry's `headersHelper` runs only when you install or update that plugin, after its command is shown; `claude plugin install/update` ask `[y/N]` (or pass `-y`). Added `claude self-hosted-runner --defer-shutdown-max-min <minutes>`: on SIGTERM, keep serving attached sessions, park what is left after that many minutes, then exit."
+    },
+    {
+      "tag_name": "v2.1.237",
+      "published_at": "2025-08-20",
+      "body": "Fixed prompt caching for sessions using an LLM gateway or custom base URL. Added a built-in \"Concise\" output style: Claude leads with results and skips preamble and narration, while doing the work just as thoroughly. Select it under Output style in /config."
+    },
+    {
+      "tag_name": "v2.1.236",
+      "published_at": "2025-08-19",
+      "body": "Added `ANTHROPIC_DEFAULT_MODEL` environment variable: sets the model new sessions start on, while a `/model` pick still overrides it and persists across restarts (unlike `ANTHROPIC_MODEL`). Added `notify_when_idle` to cross-session `SendMessage`: ask another Claude Code session on this machine to send one notice when it next goes idle — opt-in, one-shot, no polling (macOS and Linux). Sandbox: on macOS, wildcard read-deny rules (e.g. `**/.env`) now take precedence inside allowed read regions, cover matched directories' contents, and can't be bypassed by renaming the denied file."
+    }
+  ]
+}
