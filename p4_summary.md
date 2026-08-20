@@ -1,7 +1,6 @@
-**4. DiSCO: Defending text-to-image generation through distribution-guided contrastive prompt optimization**
-**著者**: (HuggingFace Daily Papers, 2026)
-**arXiv**: https://arxiv.org/abs/2608.17067
-**upvotes**: 15
+**4. Co-RL: Unsupervised Reasoning Emerges from Diverse Cohort in Multi-agent RL**
+**著者**: Co-RL Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.17253
 
 **まとめ**:
-テキスト-画像生成モデルの有害コンテンツ生成（NSFW）に対するプロンプトレベルの防御手法「DiSCO」を提案。訓練不要・完全ブラックボックスで、CLIP埋め込み空間における対比スコアリングによりプロンプト接尾辞を最適化。未防御モデルのNudeNet ASR（攻撃成功率）を平均23.6%から2.4%に低減し、生成品質を維持したまま任意の既存防御と組み合わせ可能な実用的セキュリティ対策。
+グラウンドトゥルースラベルなしで複数モデルが相互に報酬を与え合う協調型マルチエージェント強化学習(Co-RL)を提案。N個の独立エージェントが同じ未ラベルプロンプトに回答し、ピアの多数決との一致度で報酬を決定する。異なるモデル族（Qwen、Llamaなど）の組み合わせによる誤りの非相関性が鍵で、LLMで3.0〜8.6%、VLMで2.3〜7.2%の性能向上を達成。理論的にも「初期確率の和>1なら両エージェントが正答収束」を証明した。

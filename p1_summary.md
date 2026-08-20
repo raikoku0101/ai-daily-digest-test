@@ -1,7 +1,6 @@
-**1. Demystifying Agent Skills: Why They Work-Until They Don't**
-**著者**: (HuggingFace Daily Papers, 2026)
-**arXiv**: https://arxiv.org/abs/2608.14036
-**upvotes**: 118
+**1. SemComp-Bench: Benchmarking Semantic Task Completion in Video Generation**
+**著者**: SemComp-Bench Authors et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.17426
 
 **まとめ**:
-LLMエージェントのスキルが「なぜ・いつ・どこで」機能するかを初めて体系的に解明した研究。スキルの効果の65.7%は知識注入ではなく「手続き的アンカリング」（実行安定化）によるものであることを実証。一方で検索ボトルネックや文脈誤判定による失敗も明確化し、エージェント設計の根本的見直しを促す重要な指針を提供する。
+動画生成モデルが「参照画像との意味的接地を保ちながら指示されたタスクを完遂できるか」を評価するSemComp-Benchを提案。6ドメイン・1,273件のSemComp-Dataを構築し、VLMベースで結果達成度と生成信頼性を二軸評価。最高OAスコアは37.8%にとどまり、現行モデルの大きな改善余地を示した。Image-to-VideoがText-to-Videoを大幅に上回り、タスク完了能力と視覚品質は独立した能力であることも明らかにした。

@@ -1,7 +1,6 @@
-**3. Agent Lightning v1.0: Towards Harnessed Agentic RL**
-**著者**: (HuggingFace Daily Papers, 2026)
-**arXiv**: https://arxiv.org/abs/2608.17528
-**upvotes**: 16
+**3. OmniScientist: An Omni-Modal Omni-Discipline AI Scientist**
+**著者**: OmniScientist Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.13558
 
 **まとめ**:
-エージェントハーネス（agent harness）付きの強化学習（RL）訓練を可能にするフレームワーク「Agent Lightning v1.0」を提案。再トークン化・報酬計算・損失正規化・バックエンドスケジューリングの4課題を解決し、コーディングエージェントでSWE-benchスコアを41.8%から56.4%（+14.6%）に向上させることに成功。わずか6,000の訓練例でこの改善を実現した実用的なRL基盤として注目される。
+生のマルチモーダル観測データ（画像・信号・音声・動画・3D構造）から直接科学的発見を行うエンドツーエンドAI科学者。知覚層と着想・実験・執筆の3エージェントが決定論的パイプラインで動作し、5学問領域36ケースで完全な論文生成を実証。Claude Sonnet 5バックボーンで平均6.3/10のスコアを達成し、テキスト限定ベースラインを85%のhead-to-head判定で上回った。コード実装検証とprovenance追跡により統計的・事実的厳密性も保証する。

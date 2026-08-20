@@ -1,7 +1,6 @@
-**5. V-RAE: Rethinking Video Latent Spaces for Generation**
-**著者**: (HuggingFace Daily Papers, 2026)
-**arXiv**: https://arxiv.org/abs/2608.13556
-**upvotes**: 15
+**5. Training Chemical Plausibility-Aware Large Language Models for Single-Step Retrosynthesis**
+**著者**: C3LM Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.18940
 
 **まとめ**:
-「良好な再構成が生成に適した潜在空間を保証しない」という重要な知見を実証した動画生成研究。凍結済みビジョン基盤モデル（VFM）表現を活用するビデオオートエンコーダー「V-RAE」を提案し、UCF101で117.86 gFVDを達成して既存最強手法を25ポイント上回る。収束速度も最大6倍高速化。再構成品質ではなく時間的補間一貫性（tFVD）が生成性能の真の指標であることも新たに示した。
+逆合成（目標分子から出発原料を予測するCASP中核タスク）の本質的な一対多性を捉えるため、Top-KKプロンプティングパラダイムを提案。CREED-CCV-2+USPTO-XLによる4560万件の検証済み反応でC3LM（化学制約整合言語モデル）を訓練。Top-KKへの移行だけで多様性指標Av.PT-Top-10が2.5倍以上改善し、OODベンチマークURSA-expert-2026で従来型逆合成モデル（LocalRetro・MHNreact）を上回るSOTAを達成。創薬AIの実用化に向けた重要な前進。
