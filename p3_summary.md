@@ -1,6 +1,6 @@
-**3. An AI4AI Framework for Visual Token Pruning (AutoPrune)**
-**著者**: AutoPrune Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.07193
+**3. Repo0: Design-Driven Zero-to-All Code Generation**
+**著者**: Repo0 Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.19854
 
 **まとめ**:
-LLMが自動的に視覚トークン剪定アルゴリズムを設計するフレームワーク「AutoPrune」を提案。131個の再利用可能な原子からなるドメイン固有言語（TPDSL）を通じてLLMが剪定ポリシーを反復設計し、94.4%のトークン削減下でも99.7%の性能を維持しFLOPsを9.9倍削減。訓練不要で3つのMLLMバックボーンに対応し、AI自身がAI効率化手法を設計する「AI4AI」アプローチの有効性を初めて実証。
+ゼロから完全なソフトウェアプロジェクトを設計駆動で生成するフレームワーク「Repo0」を提案。Dual-DAGアーキテクチャ状態を用いた連続構造進化により、モジュール性を維持しながらリポジトリ全体を段階的に構築。最強ベースライン(RPG)比で機能カバレッジ+20ポイント、パス率+30ポイントを実現し、実世界6プロジェクトでの有効性を実証した。

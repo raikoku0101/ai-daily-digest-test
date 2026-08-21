@@ -1,6 +1,6 @@
-**1. UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos**
-**著者**: UniSwap Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.11752
+**1. SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?**
+**著者**: SWE-bench Science Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.19799
 
 **まとめ**:
-トーキングビデオの人物外観と音声を同時に置換する初のストリーミング統合フレームワーク。単一の音声映像拡散トランスフォーマーで視覚・音声アイデンティティを共同最適化し、従来手法比約100倍の速度（13.6 FPS）とリアルタイムストリーミングを実現。映画制作・コンテンツローカライゼーション・アクセシビリティ向上への応用が期待される一方、非合意メディア生成リスクへの対応も必要。
+科学ソフトウェア工学に特化した初のベンチマーク「SWE-bench Science」を構築。20の科学ドメインにわたる119タスクで最高性能エージェントでもpass@1が50%未満と判明。科学的知識の欠如・表面的修正・汎化失敗という4つの再現的な失敗メカニズムを特定し、AIコーディングエージェントの科学分野における根本的な限界を初めて体系的に示した。

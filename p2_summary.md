@@ -1,6 +1,6 @@
-**2. LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time**
-**著者**: LiveAnimate Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.11745
+**2. SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback**
+**著者**: SkillEvo Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.13120
 
 **まとめ**:
-14Bパラメータの動画拡散トランスフォーマー（DiT）を基盤に、リアルタイムストリーミングと安定した長形式アニメーション生成を同時に実現する初のシステム。2×H100 GPU上で約20FPSを達成し、3分間のベンチマークでも知覚品質とアイデンティティがほぼ一定。従来システムが2〜5時間要するところを約4分で処理完了し、ライブストリーミング・テレプレゼンス・仮想アバターへの実用的応用を開く。
+LLMエージェントスキルの継続的進化を実現するフレームワーク「SkillEvo」を提案。マルチターンユーザーシミュレーションとアクティブなガバナンスレイヤーを組み合わせ、信頼性の高い進化勾配を持続的に供給。自己反省ベースの手法より23ポイント、単一ターンQA駆動より15ポイント高い性能を、6カテゴリ・9本番スキルの評価で達成した。

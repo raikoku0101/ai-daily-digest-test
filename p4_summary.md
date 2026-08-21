@@ -1,6 +1,6 @@
-**4. H2R-Bench: Benchmarking Human-to-Robot Manipulation Video Generation in World Models**
-**著者**: H2R-Bench Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.13049
+**4. FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving**
+**著者**: FlashPrefill V2 Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.19758
 
 **まとめ**:
-人間の一人称視点操作動画をロボット操作動画に変換する「クロスエンボディメント転移」を専門的に評価するベンチマークH2R-Bench。120動画・240転移ケースを5次元（目標状態・行動・接触・エンボディメント正確性・映像品質）で評価。Seedance 2.0が最高性能（H2RCore: 77-84）を達成する一方、視覚品質とタスク転移能力の乖離（品質スコアとH2RCoreの相関ρ=0.14）という重要な発見を報告。現在のビデオ世界モデルがエンボディメント間隙を埋めるには未成熟であることを示す。
+長コンテキストLLMのプリフィル注意計算を劇的に高速化するブロックスパース実装「FlashPrefill V2」を提案。平均補正項・GPU最適化・フレームワーク統合の3改善により、128KトークンコンテキストでFlashAttention-2比最大47.26倍の高速化を実証。SGLangなど現代的推論フレームワークへのネイティブ統合も実現した実用的突破口。
