@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-19",
+  "content": "# AI Daily Digest — 2026-08-19\n\n## 今日のハイライト\n- **StateM が Terminal-Bench 2.1 で95.3%達成**: わずか$15のコストでフロンティアレベルのエージェント性能を実現。ランタイム構造の改善がモデル改善と同等以上の効果をもたらすことを示した画期的な研究。\n- **Claude Code v2.1.235 リリース（本日）**: スペルチェック機能追加とUI表示バグの複数修正。特に権限プロンプトの深刻なセキュリティバグ（Shift+Tabで誤って権限付与）が修正された。\n- **廃棄GPUで LLaMA-70B 稼働（DumpsterCluster）**: $60相当の中古GPUで128台クラスターを構築し、本格的なLLM推論を実証。AI民主化とサステナビリティの観点から重要な実験的成果。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.235 (2025-08-18) — 最新リリース\n\n**主要機能:**\n- **スペルチェック機能追加**: プロンプト入力時にリアルタイムでスペルミスをアンダーライン表示（`aspell`/`hunspell`/`ispell` を使用。`/config` でオプション設定可能）\n\n**バグ修正:**\n- 言語サーバーが切断・再接続した際のプロンプト全体のキャッシュ無効化バグを修正\n- ターミナルUIで深さ3以上のネストされたmarkdownリストのインデントずれ修正、折り返し行のハンギングインデント追加\n- マルチラインプロンプトでスラッシュコマンド・キーワード・メンションのハイライトが1文字以上ずれる問題を修正\n- 権限プロンプトのコメント欄でShift+Tabが編集を承認してセッション全体の編集権限を付与してしまうバグを修正\n\n**ユーザーへの影響:** スペルチェック機能はオプトイン形式のため、既存のワークフローへの影響なし。UIの表示バグ修正により、複雑なプロンプト作業の体験が向上。\n\n---\n\n### v2.1.234 (2025-08-17)\n\n**主要機能:**\n- **`CLAUDE_CODE_PROJECT_DIR_NAME` 環境変数追加**: 各セッションに独自の設定ディレクトリを持つホストが、プロジェクトごとのトランスクリプトディレクトリの短縮名を設定可能\n- **`selection:clear` キーバインドアクション追加**: アプリ内テキスト選択解除のキーバインド設定が可能に（エージェントビューでも動作）\n- **GitLabマージリクエストバッジ対応**: GitLabリモートと認証済み`glab` CLIを持つリポジトリで、フッターとステータスラインに `MR !N`（ドラフト/保留/グリーン状態）を表示\n- **claude.ai利用制限リセット時の自動継続**: 利用制限リセット後にセッションを自動的に継続（`/config`でオフ設定可能: \"Continue automatically at usage limit\"）\n\n**ユーザーへの影響:** GitLabユーザーはMR状態をClaude Code内で直接確認可能。利用制限の自動継続で長時間作業の中断を防止。\n\n---\n\n### v2.1.233 (2025-08-14)\n\n**主要機能:**\n- **GitLabマージリクエストURL対応**: `--worktree` フラグと `claude agents` ビューでGitLab MRのURLをサポート（`!N` 形式で表示）\n- **`forward_user_identity` ゲートウェイ設定追加**: AnthropicアップストリームでサインインユーザーのIDをヘッダーとして送信。ゲートウェイ背後のプロキシがユーザーごとの利用量を把握可能\n- **Bashツールコマンドのメモリcgroupサポート（Linux）**: `CLAUDE_CODE_TOOL_MEMORY_LIMIT` でBashコマンドのメモリ制限設定可能。暴走したビルドがセッションを停止させるのを防止\n- **`CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` 環境変数追加**: WebFetchセッションURLキャッシュのTTL設定（デフォルト: 15分）\n\n**ユーザーへの影響:** GitLabユーザーのワークフロー統合が改善。Linuxユーザーはリソース制限でシステムの安定性を確保可能。\n\n## 注目論文 TOP 10\n\n**1. StateM: Reaching 95.3% Raw Accuracy, or a $15 Frontier Run, on Terminal-Bench 2.1 via Harness Scaling** | ⬆️ 83 upvotes | https://arxiv.org/abs/2608.15089\n🎯 **背景**: 長期タスクエージェントは構成要素の各ステップを解決できる能力があっても、全体として失敗することが多い。\n🔧 **手法**: StateM（ステートマシン型ランタイム）を導入。耐久的な状態・フェーズローカルコンテキスト・チェック済み遷移・回復可能なランブックを中心に実行を組織化。\n📊 **結果**: Terminal-Bench 2.1で95.3%の正解精度を達成。わずか$15のコストでフロンティアレベルの性能を実現。\n💡 **意義**: エージェントの失敗原因をモデル性能ではなくランタイム構造に帰属させ、ハーネスのスケーリングによる改善パスを示した。\n⚠️ **限界**: Terminal-Bench特化評価であり、他の長期タスクベンチマークへの汎化性は未検証。\n\n**2. Large Discovery Models: Empirically-grounded Model-Based Open-Ended Search** | ⬆️ 49 upvotes | https://arxiv.org/abs/2608.15669\n🎯 **背景**: 科学的発見は分子・タンパク質配列・コンピュータプログラムなど広大で構造的・オープンエンドな仮説空間で高コスト評価目標を最適化することを伴う。\n🔧 **手法**: Large Discovery Model（LDM）を導入。モデルベースのオープンエンド探索を経験的根拠に基づいてスケールアップ。\n📊 **結果**: 複数の科学的発見タスクで既存手法を上回る性能を示し、探索効率を大幅に改善。\n💡 **意義**: LLMを科学的探索エンジンとして活用する新パラダイムを提示。分子設計や材料発見への応用が期待される。\n⚠️ **限界**: 計算コストが高く、特定ドメインへの適用に専門知識が必要。\n\n**3. Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization** | ⬆️ 44 upvotes | https://arxiv.org/abs/2608.16072\n🎯 **背景**: グループ相対アドバンテージを用いた強化学習が言語モデルの事後学習における標準手法となっているが、複数報酬の扱いに課題がある。\n🔧 **手法**: SA-MRPO（Saturation Aware Multi-Reward Policy Optimization）を提案。各報酬目標を独立に標準化し、飽和度に応じてその貢献をアダプティブに割引。\n📊 **結果**: 複数の推論ベンチマークで従来のMRPOを一貫して上回り、特に難易度の高いタスクで顕著な改善。\n💡 **意義**: 学習済み能力ではなく未習得部分に焦点を当てる学習効率の根本的改善アプローチ。\n⚠️ **限界**: 飽和度推定の精度が報酬設計に依存し、不適切な報酬設定では逆効果になる可能性。\n\n**4. MOSS-VL Technical Report** | ⬆️ 38 upvotes | https://arxiv.org/abs/2608.15045\n🎯 **背景**: 既存の視覚言語モデルはリアルタイム相互作用（発話しながら知覚する）を主要能力として扱っていない。\n🔧 **手法**: ゲート付きクロスアテンション機構により言語デコーダーが視覚に注目。リアルタイム相互作用をファーストクラス機能として設計したオープンVLMファミリーMOSS-VLを提案。\n📊 **結果**: 複数のマルチモーダルベンチマークで競合するオープンモデルと同等以上の性能を達成しつつ、リアルタイム対話能力を実現。\n💡 **意義**: オープンソースVLMの実用的な対話能力を大幅に向上させ、産業応用のアクセシビリティを高める。\n⚠️ **限界**: リアルタイム処理の計算コストが高く、エッジデバイスへの展開は困難。\n\n**5. Advancing Open and Reproducible Relational Learning: RelArena-α, TabPFN-Rel and RPI** | ⬆️ 22 upvotes | https://arxiv.org/abs/2608.16319\n🎯 **背景**: 関係学習の研究は再現性と公正な比較が困難で、標準化された評価フレームワークが不足している。\n🔧 **手法**: RelArena-α（統一評価フレームワーク）を公開。RelBench v1のベースラインを標準化されたデータロード・評価プロトコル・チューニング体制で実行・比較。TabPFN-RelとRPIも合わせて公開。\n📊 **結果**: 複数の関係学習タスクで既存手法と比較可能な標準化されたベースラインを確立。\n💡 **意義**: オープンサイエンスの促進により、関係学習コミュニティの研究加速と再現性の向上が期待される。\n⚠️ **限界**: RelBench v1に限定されており、他のリレーショナルデータセットへの適用には追加作業が必要。\n\n**6. How Do Agents Fail on AutoResearch: End-to-End Diagnostic Evaluation on 100 Real-World Frontier Research Tasks** | ⬆️ 22 upvotes | https://arxiv.org/abs/2608.14905\n🎯 **背景**: AIは科学研究を支援しているが、LLMの急速な進歩が研究状況を大きく変化させており、エージェントの失敗パターンの体系的分析が不足している。\n🔧 **手法**: AutoResearchEvalを構築。7分野の最先端科学から抽出した100タスク（研究ライフサイクル全体をカバー）でエージェントを評価。失敗パターンをエンドツーエンドで診断。\n📊 **結果**: エージェントが特定の失敗パターンを持つことを特定。特に仮説生成・実験設計・結果解釈の段階で一貫した弱点を発見。\n💡 **意義**: エージェントの科学研究支援能力の限界を明確化し、改善すべき具体的方向性を提示。\n⚠️ **限界**: 100タスクという規模は限定的で、特定分野（7分野）のみを対象としている。\n\n**7. GRNEdit: Efficient General Video Editing from a New Binary-Evidence Perspective in Generative Refinement Networks** | ⬆️ 13 upvotes | https://arxiv.org/abs/2608.16328\n🎯 **背景**: 指示ベースの汎用動画編集は多様な編集操作の統一が課題。既存手法は計算コストが高い。\n🔧 **手法**: GRNEdit（軽量2段階フレームワーク）を提案。GRNがビット組み合わせにより視覚セマンティクスをエンコード。編集セマンティクスをローカルな「保持or反転」決定として再定式化。\n📊 **結果**: 既存の動画編集手法と比較して計算効率を大幅に改善しながら、編集品質を維持または向上。\n💡 **意義**: バイナリ証拠という新視点で動画編集を再定式化し、効率的で実用的なシステムへの道を開く。\n⚠️ **限界**: 二値的アプローチが複雑な部分的編集や細粒度の制御には対応困難な場合がある。\n\n**8. TRACE-Bench: Decomposing and Diagnosing Multi-Reference Image Generation** | ⬆️ 9 upvotes | https://arxiv.org/abs/2608.16765\n🎯 **背景**: 既存のマルチリファレンス画像生成ベンチマークは事前定義されたタスクタイプで整理されており、カバレッジが断片的。\n🔧 **手法**: 能力指向の視点を採用し、4つの演算子（Anchor・Disentangle・Apply・Compose）を形式化。この演算子の組み合わせで任意のマルチリファレンス生成タスクを表現。\n📊 **結果**: 既存モデルの詳細な能力プロファイリングが可能になり、特定の能力における弱点を明確に特定。\n💡 **意義**: タスクタイプ横断的な能力評価フレームワークにより、より体系的なモデル開発が促進される。\n⚠️ **限界**: 4演算子の形式化が全ての生成シナリオをカバーできるかは未検証。\n\n**9. Beyond Visual CoT: Internalized Visual Thinking for Proactive Video Reasoning** | ⬆️ 3 upvotes | https://arxiv.org/abs/2608.15869\n🎯 **背景**: マルチモーダルLLMは空間・時間・具体的環境について推論するために視覚的思考連鎖(Visual CoT)を使用するが、外部化された推論に依存している。\n🔧 **手法**: IVT（Internalized Visual Thinking）を提案。テキスト予測と視覚的帰還を同時最適化する事後学習フレームワーク。\n📊 **結果**: 複数のビデオ推論ベンチマークで視覚的CoTを上回る性能を達成。プロアクティブな推論が可能に。\n💡 **意義**: 外部的な視覚的思考連鎖に頼らず、モデル内部に視覚的推論を内在化する新アプローチ。\n⚠️ **限界**: 内在化された推論は解釈しにくく、エラー診断が困難になる可能性がある。\n\n**10. DumpsterCluster: From Dumpster Diving to Serving LLaMA-70B on $60 GPUs** | ⬆️ 2 upvotes | https://arxiv.org/abs/2608.14614\n🎯 **背景**: AIデータセンターが稼働中のGPUを廃棄するにあたり、これらの廃棄GPUが現代のLLM推論に活用できるかを調査。\n🔧 **手法**: 中古部品から128台のGPUで構成するDumpsterClusterを物理的に構築。実際に1ヶ月以上稼働させてLLaMA-70B推論をテスト。\n📊 **結果**: $60相当のGPUでLLaMA-70Bの実用的な推論が可能であることを実証。128-GPUクラスターを安定稼働。\n💡 **意義**: AI民主化の観点から廃棄GPUの再利用可能性を示し、低コストLLM推論インフラの可能性を開く。\n⚠️ **限界**: 廃棄GPUの信頼性・可用性・エネルギー効率は商用GPUと比較して劣る。スケールアップの実用性は未検証。\n\n",
+  "fetched_at": "2026-08-18T22:08:29.710644+00:00",
+  "papers": [
+    {
+      "title": "StateM: Reaching 95.3% Raw Accuracy, or a $15 Frontier Run, on Terminal-Bench 2.1 via Harness Scaling",
+      "upvotes": 83,
+      "paper_id": "2608.15089",
+      "abstract": "Long-horizon agents can fail even when their underlying models can solve the constituent steps. We introduce StateM, an agent-native runtime that organizes execution around durable states, phase-local context, checked transitions, recoverable runbooks..."
+    },
+    {
+      "title": "Large Discovery Models: Empirically-grounded Model-Based Open-Ended Search",
+      "upvotes": 49,
+      "paper_id": "2608.15669",
+      "abstract": "Scientific discovery often involves optimising expensive-to-evaluate objectives over vast, structured, and open-ended hypothesis spaces, such as molecules, protein sequences, and computer programs. We introduce the Large Discovery Model..."
+    },
+    {
+      "title": "Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization",
+      "upvotes": 44,
+      "paper_id": "2608.16072",
+      "abstract": "Reinforcement learning with group-relative advantages has become the de facto standard for post-training language model reasoners. We introduce SA-MRPO, which standardizes each reward objective independently and adaptively discounts its contribution..."
+    },
+    {
+      "title": "MOSS-VL Technical Report",
+      "upvotes": 38,
+      "paper_id": "2608.15045",
+      "abstract": "We present MOSS-VL, an open vision-language model family that treats real-time interaction -- perceiving while it speaks -- as a first-class capability. The language decoder attends to vision through gated cross-attention, enabling the model to see..."
+    },
+    {
+      "title": "Advancing Open and Reproducible Relational Learning: RelArena-α, TabPFN-Rel and RPI",
+      "upvotes": 22,
+      "paper_id": "2608.16319",
+      "abstract": "This release of Prior Labs in relational learning shows commitment to open science. We open-source RelArena-α, a unified framework for running and comparing baselines on RelBench v1 by standardizing data loading, evaluation protocols, tuning regimes..."
+    },
+    {
+      "title": "How Do Agents Fail on AutoResearch: End-to-End Diagnostic Evaluation on 100 Real-World Frontier Research Tasks",
+      "upvotes": 22,
+      "paper_id": "2608.14905",
+      "abstract": "AI assists scientific research, but rapid advances in LLMs reshape the landscape. We introduce AutoResearchEval, featuring 100 tasks grounded in published frontier science across 7 domains and the full research lifecycle. Failure patterns reveal agents..."
+    },
+    {
+      "title": "GRNEdit: Efficient General Video Editing from a New Binary-Evidence Perspective in Generative Refinement Networks",
+      "upvotes": 13,
+      "paper_id": "2608.16328",
+      "abstract": "Instruction-based general video editing seeks to unify diverse editing operations. We introduce GRNEdit, a lightweight two-stage framework. GRN encodes visual semantics through combinations of bits. Editing semantics are recast as local retain-or-flip..."
+    },
+    {
+      "title": "TRACE-Bench: Decomposing and Diagnosing Multi-Reference Image Generation",
+      "upvotes": 9,
+      "paper_id": "2608.16765",
+      "abstract": "Existing benchmarks for multi-reference image generation remain organized around predefined task types, leading to fragmented coverage. We adopt a capability-oriented perspective, formalizing four operators: Anchor, Disentangle, Apply, and Compose."
+    },
+    {
+      "title": "Beyond Visual CoT: Internalized Visual Thinking for Proactive Video Reasoning",
+      "upvotes": 3,
+      "paper_id": "2608.15869",
+      "abstract": "Multimodal large language models increasingly use visual chain-of-thought to reason about spatial, temporal, and embodied environments. We introduce Internalized Visual Thinking (IVT), a post-training framework that jointly optimizes textual prediction..."
+    },
+    {
+      "title": "DumpsterCluster: From Dumpster Diving to Serving LLaMA-70B on $60 GPUs",
+      "upvotes": 2,
+      "paper_id": "2608.14614",
+      "abstract": "As AI datacenters retire functional GPUs, we investigate whether these retired accelerators can form a productive DumpsterCluster for modern LLM inference. We physically built a 128-GPU DumpsterCluster from second-hand components and ran it for one..."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.235",
+      "published_at": "2025-08-18",
+      "body": "Added an optional `spellcheck` setting that underlines misspelled words in the prompt input as you type, using your installed `aspell`, `hunspell`, or `ispell`. Fixed whole-prompt-cache invalidation when a language server disconnected or reconnected mid-session. Fixed nested markdown list items misaligning at depth 3+ and added a hanging indent to wrapped list items in the terminal UI. Fixed prompt input highlights (slash commands, keywords, mentions) appearing shifted by one or more characters in some multi-line prompts. Fixed Shift+Tab inside the permission prompt's comment field approving the edit and granting session-wide edit permission instead of closing the field."
+    },
+    {
+      "tag_name": "v2.1.234",
+      "published_at": "2025-08-17",
+      "body": "Added the optional `CLAUDE_CODE_PROJECT_DIR_NAME` environment variable: hosts that give each session its own config directory can choose a short name for the per-project transcript directory. Added the `selection:clear` keybinding action, so a key can be bound to clear an in-app text selection; also works in the agents view. Added a GitLab merge request badge to the footer and statusline: repos with a GitLab remote and an authenticated glab CLI show MR !N with draft/pending/green states. Claude Code now continues your session automatically when a claude.ai usage limit resets; turn it off in `/config` (\"Continue automatically at usage limit\")."
+    },
+    {
+      "tag_name": "v2.1.233",
+      "published_at": "2025-08-14",
+      "body": "Added GitLab merge request URL support to the `--worktree` flag and the `claude agents` view (where MRs display as `!N`). Added an opt-in `forward_user_identity` apps gateway setting on Anthropic upstreams that sends the signed-in user's identity as headers, so a proxy behind the gateway can attribute spend per user. Added opt-in memory cgroup support for Bash tool commands on Linux (`CLAUDE_CODE_TOOL_MEMORY_LIMIT`) so a runaway build can't stall the session. Added `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` environment variable to configure the WebFetch session URL cache TTL (default unchanged: 15 minutes)."
+    }
+  ]
+}

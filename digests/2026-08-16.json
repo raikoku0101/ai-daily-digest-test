@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-16",
+  "content": "# AI Daily Digest — 2026-08-16\n\n## 今日のハイライト\n- **Claude Code v2.1.233 リリース**: GitLab MR サポート強化と Linux での memory cgroup 対応が追加。クラウドセッションの安定性バグも修正され、実運用環境での信頼性が向上。\n- **リアルタイム人物アニメーション (LiveAnimate / UniSwap) が同着1位**: 単一画像からのリアルタイム人物アニメーション生成と音声映像統合スワッピングの2論文がそれぞれ12 upvote を獲得。インタラクティブコンテンツ制作に直結する実用的な技術進歩。\n- **小型 LLM のエージェント化と効率化が加速**: AI4AI フレームワーク、SKILLER、Maglev など、大型モデルへの依存を減らしつつ推論効率と能力を高める研究が複数登場し、エッジ展開と民主化の流れが鮮明。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.233 (2025-08-14)\n**主要機能**:\n- GitLab MR URL サポートが `--worktree` フラグと `claude agents` ビューに追加（MR は `!N` 形式で表示）\n- `forward_user_identity` オプション設定：Anthropic upstream でサインイン済みユーザーのアイデンティティをヘッダーとして送信可能に\n- Linux での Bash ツールコマンドに memory cgroup サポートを追加（`CLAUDE_CODE_TOOL_MEMORY_LIMIT`）— 暴走ビルドがセッションを止めるのを防止\n- `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` 環境変数で WebFetch のキャッシュ TTL を設定可能に\n\n**バグ修正**:\n- Claude がパーミッションプロンプト待機中に環境がシャットダウンすると、クラウドセッションが「lost」とマークされる問題を修正\n\n**ユーザーへの影響**: GitLab ユーザーは MR を直接 worktree から参照可能に。Linux 環境での安定性向上。\n\n---\n\n### v2.1.232 (2025-08-13)\n**主要機能**:\n- サブエージェントのフォーキングがデフォルト有効に：`subagent_type: \"fork\"` で会話履歴とプロンプトキャッシュを継承\n- プロンプトで `@` を入力して他の Claude セッションを名前でメンション可能\n- `SendMessage` が同名のライブセッションに直接配信\n- セッション名の一意性管理：重複名には `name-word-word` 形式のバリアントを自動付与\n- `/config` に「Dialog expiry」と「他セッションからのメッセージ」設定行を追加\n- GitLab トークンファミリーとルーティング可能なトークンのシークレット自動リダクション機能を追加\n\n**ユーザーへの影響**: マルチエージェント協調作業が大幅に強化。セキュリティも向上。\n\n---\n\n### v2.1.231 (2025-08-13)\n**バグ修正（クリティカル）**:\n- Slack など、事前登録済み OAuth クライアントを使用する MCP サーバーで MCP OAuth サインインが redirect URI ミスマッチで失敗する問題を修正\n\n**ユーザーへの影響**: Slack MCP など OAuth 認証を使う MCP サーバーが正常に動作するように。\n\n## 注目論文 TOP 10\n\n**1. LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time** | 👍 12 | https://arxiv.org/abs/2608.11745\n🎯 **背景**: ライブ配信・テレプレゼンス・バーチャルアバター向けリアルタイム人物アニメーション生成が求められている。拡散モデルベースの既存手法は数分〜数時間かかり実用不可。\n🔧 **手法**: 単一参照画像とドライビングポーズストリームから安定したリアルタイム動画を合成。ストリーミング対応の長尺動画生成パイプラインを構築。\n📊 **結果**: リアルタイム（低遅延）での安定した人物アニメーション生成を実現し、長尺動画でも品質劣化なし。\n💡 **意義**: インタラクティブなアバターや生配信での即時アニメーション合成を実用化する重要な一歩。\n⚠️ **限界**: 複雑なシーン変化や極端なポーズへの対応は課題として残る可能性がある。\n\n**2. UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos** | 👍 12 | https://arxiv.org/abs/2608.11752\n🎯 **背景**: 話者動画のキャラクター置換は、外見と声を同時に移植しながら元の動き・シーン・言語内容・音声映像タイミングを保持する必要がある。\n🔧 **手法**: 音声と映像の両モダリティを統合した初のフレームワーク「UniSwap」を提案。別々に最適化するのではなく、音声-映像の一貫性を同時に強制する設計。\n📊 **結果**: 音声と映像のアイデンティティスワップを同期させ、既存手法より高い一貫性を達成。\n💡 **意義**: 映像コンテンツ制作やバーチャルプレゼンスでの活用が期待される初の統合型ストリーミング手法。\n⚠️ **限界**: 倫理的懸念（ディープフェイク悪用リスク）への対応が今後の課題。\n\n**3. An AI4AI Framework for Visual Token Pruning** | 👍 7 | https://arxiv.org/abs/2608.07193\n🎯 **背景**: マルチモーダル大規模言語モデル（MLLM）のビジュアルトークンプルーニングは推論コストを大幅削減できるが、固定のヒューリスティックや専門家試行錯誤に依存している。\n🔧 **手法**: AI を使って AI のプルーニング設計を最適化する「AI4AI」フレームワークを提案。プルーニング目的・バジェット・アーキテクチャの多様化に対応する自動設計空間探索。\n📊 **結果**: 手動設計より効率的なプルーニング戦略を自動発見し、推論コストを削減。\n💡 **意義**: MLLM の実用展開における推論効率化の自動化を実現する汎用的アプローチ。\n⚠️ **限界**: AI4AI フレームワーク自体の探索コストが高い場合があり、小規模環境での適用に課題。\n\n**4. Thought-Level Beam Search for Reasoning** | 👍 6 | https://arxiv.org/abs/2608.08020\n🎯 **背景**: 大規模推論モデル（LRM）でのテスト時計算スケーリングは性能向上の主要因だが、極端な非効率性が課題。「どこに計算を割り当てるか」が鍵となっている。\n🔧 **手法**: テスト時推論を部分軌跡上の制約付き計算割り当て問題として形式化。思考レベルでのビームサーチを導入し、最適な推論経路を探索。\n📊 **結果**: 計算効率を改善しながら推論精度を維持または向上。\n💡 **意義**: 推論モデルの計算資源を「どこに」使うかという本質的問題に取り組む理論的貢献。\n⚠️ **限界**: ビームサーチのビーム幅と計算コストのトレードオフの最適化が依然として課題。\n\n**5. AVA-Encoder: Towards Agent-Native Video Representation Learning** | 👍 6 | https://arxiv.org/abs/2608.12313\n🎯 **背景**: クリエイティブエージェントは高品質な人間映画から学習する手段が不足しており、シネマグレードの動画生成能力が制限されている。\n🔧 **手法**: エージェントのための動画表現学習フレームワーク「AVA-Encoder」を提案。映画コンテンツに忠実で、エージェントの推論・操作に直接利用可能な構造化動画表現を構築。\n📊 **結果**: エージェントが映画品質の動画表現を学習し、シネマグレードの生成タスクに活用可能。\n💡 **意義**: 動画生成エージェントが人間の映画から学習する道を開く、エージェント指向表現学習の先駆け的研究。\n⚠️ **限界**: 大量の高品質映画データへのアクセスが必要であり、データ収集コストが高い。\n\n**6. Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation** | 👍 5 | https://arxiv.org/abs/2608.13391\n🎯 **背景**: インタラクティブな自己回帰動画生成には低レイテンシと精密なオンライン制御が求められる。少ステップ蒸留は生成を加速するが、因果制約（過去と制御のみに依存）との両立が難しい。\n🔧 **手法**: 教師モデルの因果性をコンテキストマッチング蒸留で生徒モデルに伝達。自己回帰生成の因果制約を守りながら少ステップ蒸留を実現。\n📊 **結果**: 因果制約を満たしながら高速な動画生成蒸留を達成。\n💡 **意義**: リアルタイム動画生成における品質と速度の両立を可能にする実用的手法。\n⚠️ **限界**: 複雑なシーンや長尺動画では教師モデルとのコンテキストマッチングが困難になる場合がある。\n\n**7. Maglev: Sliding Recurrent Memory** | 👍 5 | https://arxiv.org/abs/2608.02870\n🎯 **背景**: Transformer の長期記憶問題に対し、固定サイズメモリで効率的に対応する再帰型アーキテクチャが求められている。\n🔧 **手法**: スライディングウィンドウアテンションを一般化した固定サイズメモリを持つ再帰型 Transformer「Maglev」を提案。訓練時は並列処理可能、推論時は再帰的に動作。\n📊 **結果**: フルアテンションとスライディングウィンドウアテンションの交互使用で強力な性能を達成。\n💡 **意義**: 計算効率と長文理解能力を両立する新しいシーケンスモデリングのアプローチ。\n⚠️ **限界**: 固定サイズメモリの容量制限により、非常に長い文脈では情報損失が起きる可能性がある。\n\n**8. SKILLER: Language-Level Reinforcement Learning for Reusable Skill Extraction in Small Language Models** | 👍 5 | https://arxiv.org/abs/2608.10538\n🎯 **背景**: エージェントスキルは手続的知識をパッケージ化した標準形式だが、強力なクローズドソースモデルは推論コストが高く、小型言語モデルでのスキル抽出が困難。\n🔧 **手法**: 言語レベルの強化学習（RL）で小型言語モデルから再利用可能なスキルを抽出する「SKILLER」フレームワークを提案。\n📊 **結果**: 小型モデルでも高品質で再利用可能なスキルを抽出し、エージェントシステムに適用可能。\n💡 **意義**: 高コストな大型モデルへの依存を減らし、オープンソース・小型モデルでのエージェント能力構築を民主化。\n⚠️ **限界**: 複雑なドメインや抽象的スキルの抽出では大型モデルとの差が残る可能性がある。\n\n**9. Hybrid-Policy Self-Editing for Composable Unstructured Knowledge Editing** | 👍 4 | https://arxiv.org/abs/2608.11660\n🎯 **背景**: LLM は静的コーパスで訓練されるため知識が陳腐化する。ナレッジエディティング（KE）で特定知識を更新するが、非構造化知識への対応が課題。\n🔧 **手法**: ハイブリッドポリシーによる自己編集アプローチを提案。構造化・非構造化知識の両方に対応する合成可能な知識編集を実現。\n📊 **結果**: 無関係な知識を変えずに特定知識を正確に更新し、非構造化知識編集でも高い精度を達成。\n💡 **意義**: 実世界の動的情報更新に対応するための実用的な LLM 知識管理手法。\n⚠️ **限界**: 大規模で複雑に絡み合った知識グラフでは競合する編集の整合性維持が困難。\n\n**10. Are You Sure You're Sure? On the Impact of Instruction Tuning on Confidence and Lexical Diversity** | 👍 3 | https://arxiv.org/abs/2608.13430\n🎯 **背景**: 指示チューニング済み LLM は各種タスクで高性能を発揮するが、過剰な自信（オーバーコンフィデンス）を示すことが近年指摘されている。\n🔧 **手法**: QA タスクでの言語化された信頼度と語彙多様性を分析。指示チューニングが根拠の一貫性と信頼度表現にどう影響するかを調査。\n📊 **結果**: 指示チューニングにより過剰な言語化自信が増す一方、語彙多様性は変化することを確認。\n💡 **意義**: AI 信頼性・キャリブレーション研究に実証的な知見を提供し、安全な AI 展開の指針となる。\n⚠️ **限界**: 特定の QA ベンチマーク上の分析であり、他のタスクや領域への一般化には追加検証が必要。\n\n",
+  "fetched_at": "2026-08-15T22:08:14.589371+00:00",
+  "papers": [
+    {
+      "title": "LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time",
+      "upvotes": 12,
+      "paper_id": "2608.11745",
+      "abstract": "Pose-driven human animation synthesizes a video of a target person from a single reference image and a driving pose stream. Real-time generation is essential for interactive applications such as live streaming, telepresence, and virtual avatars, yet diffusion-based systems require minutes to hours per"
+    },
+    {
+      "title": "UniSwap: Streaming Audio-Visual Identity Swapping for Talking Videos",
+      "upvotes": 12,
+      "paper_id": "2608.11752",
+      "abstract": "Talking-video character replacement requires coordinated transfer of appearance and voice while preserving the source motion, scene, linguistic content, and audio-video timing. Existing methods use separately optimized models for the two modalities, making audio-visual consistency difficult to enforce. We present UniSwap, the first framework"
+    },
+    {
+      "title": "An AI4AI Framework for Visual Token Pruning",
+      "upvotes": 7,
+      "paper_id": "2608.07193",
+      "abstract": "Visual-token pruning can substantially reduce the inference cost of multimodal large language models (MLLMs), yet existing methods largely rely on fixed, handcrafted heuristics and costly expert trial and error. As pruning objectives, budgets, and model architectures diversify, manually navigating the expanding design space becomes"
+    },
+    {
+      "title": "Thought-Level Beam Search for Reasoning",
+      "upvotes": 6,
+      "paper_id": "2608.08020",
+      "abstract": "Test-time compute scaling is a primary driver of performance in large reasoning models (LRMs), but extreme inefficiency bounds current approaches, shifting the critical question from how much compute to spend, to where to allocate it. We formalize test-time reasoning as a constrained compute allocation problem over partial trajectories."
+    },
+    {
+      "title": "AVA-Encoder: Towards Agent-Native Video Representation Learning",
+      "upvotes": 6,
+      "paper_id": "2608.12313",
+      "abstract": "Creative agents still lack an effective way to learn from high-quality human films, limiting their ability to produce cinematic-grade videos. A key challenge is the absence of a structured video representation that is both faithful to film content and directly usable for agentic reasoning and manipulation. To address the challenge, we propose the"
+    },
+    {
+      "title": "Context-Matched Distillation: Teacher Causality for Autoregressive Video Distillation",
+      "upvotes": 5,
+      "paper_id": "2608.13391",
+      "abstract": "Interactive autoregressive video generation demands both low-latency rollouts and precise online control. Few-step distillation accelerates generation by reducing denoising steps, while online control imposes a causal constraint: frames and blocks should depend on history and controls available during generation. Existing video distribution matching distillation"
+    },
+    {
+      "title": "Maglev: Sliding Recurrent Memory",
+      "upvotes": 5,
+      "paper_id": "2608.02870",
+      "abstract": "We introduce, a recurrent Transformer architecture with fixed-size memory that generalizes sliding-window attention while remaining parallelizable during training. consists of two coupled models: a prefiller Q, which leverages full attentionIn practice, we use interleaved full and sliding-window attention for Q, as this yields stronger performance."
+    },
+    {
+      "title": "SKILLER: Language-Level Reinforcement Learning for Reusable Skill Extraction in Small Language Models",
+      "upvotes": 5,
+      "paper_id": "2608.10538",
+      "abstract": "Agent skills represent a standardized format for packaging procedural knowledge and domain expertise, serving within agent harness systems as an essential mechanism to continually constrain a language model's behavior space for repeatable, high-quality task execution. However, because strong closed-source models entail high inference costs, current"
+    },
+    {
+      "title": "Hybrid-Policy Self-Editing for Composable Unstructured Knowledge Editing",
+      "upvotes": 4,
+      "paper_id": "2608.11660",
+      "abstract": "Large language models (LLMs) achieve remarkable performance across natural language tasks, yet they are trained on static corpora and their knowledge quickly becomes outdated in a fast-changing world. This motivates knowledge editing (KE), which updates specific knowledge in an LLM without changing unrelated others. Recent works move from structured knowledge"
+    },
+    {
+      "title": "Are You Sure You're Sure? On the Impact of Instruction Tuning on Confidence and Lexical Diversity",
+      "upvotes": 3,
+      "paper_id": "2608.13430",
+      "abstract": "Instruction-tuned language models achieve strong performance across a range of generation tasks, but have also recently been shown to exhibit verbalized overconfidence. In question answering, verbalized model overconfidence may be associated with the consistency of the generated supporting rationales. In this paper, we study whether corresponding changes in"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.233",
+      "published_at": "2025-08-14",
+      "body": "Added GitLab merge request URL support to the `--worktree` flag and the `claude agents` view (where MRs display as `!N`). Added an opt-in `forward_user_identity` apps gateway setting on Anthropic upstreams that sends the signed-in user's identity as headers. Added opt-in memory cgroup support for Bash tool commands on Linux (`CLAUDE_CODE_TOOL_MEMORY_LIMIT`) so a runaway build can't stall the session. Added `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` environment variable to configure the WebFetch session URL cache TTL (default unchanged: 15 minutes). Fixed cloud sessions occasionally being marked as lost when the environment shut down while Claude was waiting on a permission prompt."
+    },
+    {
+      "tag_name": "v2.1.232",
+      "published_at": "2025-08-13",
+      "body": "Subagent forking is now on by default: a `subagent_type: \"fork\"` subagent inherits the full conversation and prompt cache. Type `@` in the prompt to mention another Claude session by name. `SendMessage` now delivers to a bare name that exactly matches one live session. Interactive sessions on one machine now keep unique names: starting or renaming a session to a name another live session already uses gives it a `name-word-word` variant. Added `/config` rows for \"Dialog expiry\" and \"Messages from your other sessions\" (cross-session inbound accept/hold/refuse). Added secret redaction for GitLab token families and full redaction of routable tokens."
+    },
+    {
+      "tag_name": "v2.1.231",
+      "published_at": "2025-08-13",
+      "body": "Fixed MCP OAuth sign-in failing with a redirect URI mismatch for servers that use a pre-registered OAuth client, such as Slack. This was a critical bug fix release addressing authentication issues with certain MCP (Model Context Protocol) servers that employ pre-registered OAuth clients for secure authentication."
+    }
+  ]
+}
