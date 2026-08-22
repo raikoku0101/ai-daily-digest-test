@@ -1,15 +1,8 @@
-## 1. Introduction (はじめに)
+## 1. はじめに（Introduction）
+大規模言語モデルの長文脈処理は重要な機能だが、アテンション機構の二次計算量（quadratic complexity）がプリフィル（prefilling）段階でボトルネックとなっている。FlashPrefill V2は先行研究FlashPrefillをプロトタイプから本番環境へ実用化することを目指す。ブロックスパースアテンション（block-sparse attention）により重要なアテンションパターンのみを計算し、計算量を削減する。
 
-大規模言語モデルの長文脈処理能力は重要だが、注意機構（Attention）の二次計算量（O(n²)）がボトルネックとなっています。本研究は、前作FlashPrefillをプロトタイプから実用的なシステムへ進化させた「FlashPrefill V2」を提案しています。特に長い文脈長（128K トークン）での計算効率化を目標としており、先行研究のパターン検出と動的閾値処理の改善を中心としています。
+## 2. 手法（Method）
+FlashPrefill V2は3つの主要改良を導入。①**平均補正項（mean correction term）**の追加で極度の疎性（sparsity）下でも近似誤差を抑制。②**PackGQA**メモリアクセス、**ワープ特殊化（warp specialization）**、**ピンポンパイプライニング（pingpong pipelining）**を備えた疎行列アテンション演算子を再設計しFlashAttention-3/4と整合。③ページング化KVキャッシュ（paged KV cache）と連続バッチ処理（continuous batching）を標準サポートし、SGLang等の推論フレームワークへの統合を実現。
 
-## 2. Method (手法)
-
-FlashPrefill V2は三つの主要改善を導入しています。第一に、平均補正項（Mean Correction Term）を加えることで近似誤差を抑制し、極端な疎性水準でも性能低下を最小化します。第二に、PackGQAメモリアクセス、ワープ特化（Warp Specialization）、ping-pongパイプライン化により、FlashAttention-3/4との互換性を実現。第三に、ページ化KVキャッシュ（Paged KV Cache）と連続バッチ処理（Continuous Batching）をネイティブサポートし、SGLangなど現代的推論フレームワークへの統合を可能にしています。
-
-## 3. Experiments & Results (実験と結果)
-
-NVIDIA H20 GPUにおける評価では、FP8精度で「128K文脈長においてFlashAttention-2比で最大47.26倍の高速化」を達成しました。BF16精度でも27.19倍、FA3/4ベースラインと比較してもFP8で30.49倍の高速化を実現しており、実用的な量子化要件を満たしながら高性能を保持しています。
-
-## 4. Conclusion (結論)
-
-FlashPrefill V2は長コンテキストLLMサービングの実用的ボトルネックを解消します。プリフィル段階の大幅な高速化により、RAGシステムや長文書処理のコストが劇的に削減され、商用長コンテキストサービスの経済的実現可能性を高めます。オープンソースとして公開されており、即座の実用展開が可能です。
+## 3. 実験と結果（Experiments & Results）
+NVIDIA H20 GPU上で評価。128K文脈長においてFlashAttention-2比で**FP8精度で47.26倍、BF16精度で27.19倍のスピードアップ**を達成。FP8精度ではFlashAttention-3/4準拠の密行列ベースラインに対しても30.49倍のスピードアップを実現し、量子化要件を満たしながら実用的な性能を提供する。
