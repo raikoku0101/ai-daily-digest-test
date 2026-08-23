@@ -1,0 +1,81 @@
+{
+  "papers": [
+    {
+      "title": "SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?",
+      "upvotes": 61,
+      "paper_id": "2608.19799",
+      "abstract": "Repository-level benchmark for scientific software engineering with 119 tasks across 20 domains. Evaluates coding agents' ability to repair scientific code, identifying failure mechanisms including knowledge deficits and poor generalization."
+    },
+    {
+      "title": "SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback",
+      "upvotes": 30,
+      "paper_id": "2608.13120",
+      "abstract": "Framework enabling sustained skill evolution through multi-turn user simulation feedback and active governance. Demonstrates superior performance over self-reflection methods by 23 points across nine production skills."
+    },
+    {
+      "title": "Repo0: Design-Driven Zero-to-All Code Generation",
+      "upvotes": 17,
+      "paper_id": "2608.19854",
+      "abstract": "Continuous structural evolution framework using Dual-DAG for zero-to-all code generation from natural language. Improves functionality coverage by up to 20 points compared to repository-planning baselines."
+    },
+    {
+      "title": "FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving",
+      "upvotes": 16,
+      "paper_id": "2608.19758",
+      "abstract": "Optimized sparse attention operator for long-context serving with mean correction, warp specialization, and paged KV cache support. Delivers up to 47.26x speedups over FlashAttention-2 at 128K context."
+    },
+    {
+      "title": "τ_0-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation",
+      "upvotes": 13,
+      "paper_id": "2608.16885",
+      "abstract": "Hierarchical vision-language-action model for long-horizon robot manipulation trained on 40,115 hours of data. Uses world-model-guided test-time search to improve subtask generation and closed-loop task success."
+    },
+    {
+      "title": "Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See",
+      "upvotes": 13,
+      "paper_id": "2608.17744",
+      "abstract": "Studies fine-tuning frontier mixture-of-experts models to reason in low-resource languages. Shows SFT shifts reasoning to target language while RL fixes formatting defects without harming overall capability."
+    },
+    {
+      "title": "The Embedder's Dilemma: LLMs Are Better, but at What Cost?",
+      "upvotes": 11,
+      "paper_id": "2608.12875",
+      "abstract": "Cost-aware comparison of LLMs and embedding models across 37 tasks. Shows LLMs cost up to 1,431x more while achieving only 0.4 point performance gain, supporting task-specific division of labor."
+    },
+    {
+      "title": "Hierarchical Self-Improvement: A Framework for Task-Specific Evolvable Agent Harnesses",
+      "upvotes": 11,
+      "paper_id": "2608.08466",
+      "abstract": "Framework enabling task-specific harness evolution for frozen LLM agents. Demonstrates consistent gains on moderate tasks while bounded by feedback quality and backbone model limitations."
+    },
+    {
+      "title": "Towards Quantifying Benchmark Optimization in ASR Models",
+      "upvotes": 10,
+      "paper_id": "2608.19936",
+      "abstract": "Methodology quantifying benchmark optimization in speech recognition using behavioral probes. Reveals highest-scoring models reproduce benchmark transcripts despite contradictory audio via narrow acoustic cues."
+    },
+    {
+      "title": "FlowEvo: Self-Evolving Agents through the Co-Evolution of Workflows and Executable Skills",
+      "upvotes": 2,
+      "paper_id": "2607.21596",
+      "abstract": "Training-free framework where workflows and skills co-evolve at inference time. Achieves highest accuracy on ALFWorld, HumanEval, MBPP, GSM8K benchmarks using GPT-4o-mini with one-third token usage."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.241",
+      "published_at": "2024-08-23",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.240",
+      "published_at": "2024-08-22",
+      "body": "Bug fixes and reliability improvements"
+    },
+    {
+      "tag_name": "v2.1.239",
+      "published_at": "2024-08-21",
+      "body": "Cost estimates (`/cost`, status line, `--max-budget-usd`) now include the 1.1× US-only-inference premium for data-residency workspaces. Added the one-time fullscreen renderer offer on Bedrock, Vertex, Foundry and other previously excluded setups; new installs there now start in fullscreen. Added `/claude-api upgrade` to migrate Python projects from `anthropic` 0.x to 1.x. Cloud sessions: plugins synced from claude.ai now show as `name@synced`. Alpine/musl builds: native image paste, clipboard, and audio-capture add-ons now load. Fixed Bedrock streaming behind proxies, Claude Code hanging at startup with SSO, and numerous other issues including permission prompts, MCP connections, session resumption, and UI rendering bugs."
+    }
+  ]
+}
