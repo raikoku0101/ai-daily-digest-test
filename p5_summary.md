@@ -1,6 +1,6 @@
-**5. Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See**
-**著者**: Low-Resource Language Research Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.17744
+**5. τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation**
+**著者**: τ₀-VLA Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.16885
 
 **まとめ**:
-低リソース言語（ギリシャ語）でのLLM推論制御を研究。基盤モデルはギリシャ語の質問に英語で推論するため監査不能な問題があり、SFTで98%をターゲット言語推論に改善し、RLで形式スキップ（24%→2.5%）・推論チャネル流出（3.5%→0.0%）を解決。精度ベンチマークには現れないが、SFTとRLが相補的な役割を持つことを「6つの行動次元」評価で実証した。
+長時間ロボット操作のための階層型VLA（Vision-Language-Action）基盤モデル「τ₀-VLA」を提案。世界モデル誘導のテスト時計算でサブタスク生成を計算スケーラブルな推論問題として定式化し、40,115時間の実世界データで訓練。閉ループ制御での長期操作成功率を大幅に向上させた。
