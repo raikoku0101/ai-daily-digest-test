@@ -1,6 +1,6 @@
-**5. τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation**
-**著者**: τ₀-VLA Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.16885
+**5. Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See**
+**著者**: 低リソース言語推論研究チーム (2026)
+**arXiv**: https://arxiv.org/abs/2608.17744
 
 **まとめ**:
-長時間ロボット操作のための階層型VLA（Vision-Language-Action）基盤モデル「τ₀-VLA」を提案。世界モデル誘導のテスト時計算でサブタスク生成を計算スケーラブルな推論問題として定式化し、40,115時間の実世界データで訓練。閉ループ制御での長期操作成功率を大幅に向上させた。
+フロンティア LLM をギリシャ語（低リソース言語）でファインチューニングした結果、SFT は推論を目標言語にシフトさせるが書式欠陥が残存し、RL（検証可能報酬）が形式スキップを 25% → 2.5% に改善することを発見。精度指標では見えない推論プロセスの変化を 6 次元フレームワークで定量化し、低リソース言語対応の実践的手法を提示。
