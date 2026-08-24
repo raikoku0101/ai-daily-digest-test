@@ -1,6 +1,6 @@
 **1. SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?**
-**著者**: SWE-bench Science Team et al. (2026)
+**著者**: SWE-bench Science チーム (2026)
 **arXiv**: https://arxiv.org/abs/2608.19799
 
 **まとめ**:
-科学ソフトウェアエンジニアリング向けベンチマーク「SWE-bench Science」を構築。20分野98リポジトリの119タスクで最高エージェントもpass@1が50%以下にとどまり、科学知識欠如・表面的修復・一般化失敗の4つの失敗機序を特定。AIの科学分野応用における根本的課題を実証した。
+科学ソフトウェア工学専用の評価ベンチマーク SWE-bench Science を提案。20 分野 119 タスクで最先端コーディングエージェントを評価した結果、Claude Code with Opus-5 でも pass@1 が 50% 未満に留まり、科学的知識不足・表面的修復・汎化失敗という固有の弱点を持つことを実証。AI 科学研究ツール開発の重要指針を提供する。
