@@ -1,6 +1,6 @@
-**3. Repo0: Design-Driven Zero-to-All Code Generation**
-**著者**: Repo0 チーム (2026)
-**arXiv**: https://arxiv.org/abs/2608.19854
+**3. Beyond the Stability-Exploration Dilemma: Environmental Regularization for LLM Policy Optimization**
+**著者**: ERPO Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.23311
 
 **まとめ**:
-自然言語要件から完全なソフトウェアプロジェクトをゼロから生成する Repo0 を提案。Dual-DAG アーキテクチャ状態で設計と実装の整合性を保ちながら継続的に構造を進化させ、テスト駆動開発でコードを生成。最強ベースライン比で機能カバレッジ最大 20 ポイント、パス率最大 30 ポイント改善を達成。
+LLM強化学習における訓練安定性と探索のジレンマを根本から解決する新手法 ERPO を提案。従来のアクション側KL正則化ではなく、入力側（クエリ）の分布ドリフトを制御するQuery-KL正則化とクエリ重み付けにより、応答探索能力を保ちながら安定性を確保。GRPO比でAvg@32において平均6.2%改善、報酬ハッキングを51%削減した。

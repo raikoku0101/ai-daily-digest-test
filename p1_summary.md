@@ -1,6 +1,6 @@
-**1. SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?**
-**著者**: SWE-bench Science チーム (2026)
-**arXiv**: https://arxiv.org/abs/2608.19799
+**1. EchoWM: Open and Enterable Omnimodal World Models**
+**著者**: EchoWM Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.23189
 
 **まとめ**:
-科学ソフトウェア工学専用の評価ベンチマーク SWE-bench Science を提案。20 分野 119 タスクで最先端コーディングエージェントを評価した結果、Claude Code with Opus-5 でも pass@1 が 50% 未満に留まり、科学的知識不足・表面的修復・汎化失敗という固有の弱点を持つことを実証。AI 科学研究ツール開発の重要指針を提供する。
+ユーザーの6自由度ナビゲーション入力に応じて720p映像・環境音・音楽・音声を同期生成するオムニモーダル世界モデル。「camera intent」という統一インターフェースにより一人称・三人称シーンを横断した没入型インタラクティブ体験を実現。WBench Navigationで第1位（平均81.7点）を達成し、VRやゲーム開発への実用応用が期待される。

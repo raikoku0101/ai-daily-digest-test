@@ -1,6 +1,6 @@
-**4. FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving**
-**著者**: FlashPrefill V2 チーム (2026)
-**arXiv**: https://arxiv.org/abs/2608.19758
+**4. AutoResearch: Insight In, Hallucination Out**
+**著者**: AutoResearch Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.17906
 
 **まとめ**:
-長文脈 LLM のプリフィル段階を Block-Sparse Attention で高速化する本番対応実装 FlashPrefill V2 を提案。平均補正項による精度維持、ワープ特化・ピンポンパイプライニングによる GPU 最適化、SGLang 等への統合で 128K コンテキストにて FlashAttention-2 比 47.26x の高速化を達成。長文脈 LLM サービングの実運用に直接活用可能。
+自律研究システムにおけるハルシネーション問題を「Insight In, Hallucination Out」原則で解決する2段階アーキテクチャを提案。アイデア生成段階では複数モデルの独立生成と相互レビューで技術的根拠を確保し、アイデア実行段階では証拠なき主張を排除する独立評価機構を組み込む。258候補アイデアから14の実験的に検証されたアイデアを産出し、AI Scientistや Agent Laboratory と比較して確認済み問題イベント数を大幅削減した。

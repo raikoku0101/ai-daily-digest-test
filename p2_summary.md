@@ -1,6 +1,6 @@
-**2. SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback**
-**著者**: SkillEvo チーム (2026)
-**arXiv**: https://arxiv.org/abs/2608.13120
+**2. Towards a Densing Law for User Representation Learning at Billion-Scale Capacity**
+**著者**: Alipay Research Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.23392
 
 **まとめ**:
-LLM スキルの継続的進化における「信頼できるフィードバックグラジェントの維持」という課題を解決するフレームワーク SkillEvo を提案。多ターンユーザーシミュレーションによる欠陥露出とガバナンス層による品質管理を組み合わせ、自己反省ベースの進化を 23 ポイント上回る性能を達成。プロダクション LLM の継続的改善サイクルを実現する実用的手法。
+数億ユーザー規模の実験で「生行動データのスケーリング壁」を発見。データ量やモデルサイズを増やしても閾値超過後は性能向上が鈍化するという重要な知見を提示。根本原因は情報密度の低さであり、RQ-VAEベースのトークン化と適応型可変長トークン化手法ALGNにより容量63%削減しながら精度向上を実現した。
