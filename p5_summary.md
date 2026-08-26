@@ -1,6 +1,6 @@
-**5. Quantization-Aware Healing: A Practical Recipe for Recovering Compressed, 4-Bit LLMs**
-**著者**: GPT-OSS Research Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.20953
+**5. CyberFactory: Scaling Cyber Security Capabilities with Instances from the Wild**
+**著者**: CyberFactory Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.23181
 
 **まとめ**:
-構造的圧縮後にMXFP4量子化されたLLMを、従来のQATより約7倍高速に回復する新手法 QAH（Quantization-Aware Healing）を提案。圧縮後チェックポイントではなく元の非圧縮モデルから直接蒸留することで、学生モデルの精度天井を打破。60Bモデルが9ベンチマーク中7つでbfloat16版に匹敵し、LiveCodeBenchでは120B教師と同等の性能66.5点を達成した。
+実世界の CVE (Common Vulnerabilities and Exposures) 成果物を検証可能な教師データに変換し、オープンウェイト LLM のサイバーセキュリティ能力をスケーリングするパイプライン CyberFactory を提案。PoC 生成・脆弱性パッチ・セキュリティ QA を統合し、開発した OpenAegis は CyberGym ベンチマークで 58.1% Pass@1 を達成し Qwen 3.5 基盤から 28.5 ポイント改善。スキルの内部化により推論時スキル不要で高性能を発揮。

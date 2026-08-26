@@ -1,6 +1,6 @@
-**1. EchoWM: Open and Enterable Omnimodal World Models**
-**著者**: EchoWM Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.23189
+**1. GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture**
+**著者**: GigaBrain Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.15875
 
 **まとめ**:
-ユーザーの6自由度ナビゲーション入力に応じて720p映像・環境音・音楽・音声を同期生成するオムニモーダル世界モデル。「camera intent」という統一インターフェースにより一人称・三人称シーンを横断した没入型インタラクティブ体験を実現。WBench Navigationで第1位（平均81.7点）を達成し、VRやゲーム開発への実用応用が期待される。
+VLA（Vision-Language-Action）モデルの能力を飛躍的に拡張する基盤モデル。理解・計画（System 2）、行動・制御（System 1）、予測・評価（System 3）の三層アーキテクチャを採用し、3万7千時間超の異種ロボティクスデータで一段階学習を実現。スケーリングによる創発的能力の出現を初めて体系的に実証した画期的研究。

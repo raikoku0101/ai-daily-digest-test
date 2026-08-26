@@ -1,6 +1,6 @@
-**2. Towards a Densing Law for User Representation Learning at Billion-Scale Capacity**
-**著者**: Alipay Research Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.23392
+**2. Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs (OraRL)**
+**著者**: OraRL Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.20492
 
 **まとめ**:
-数億ユーザー規模の実験で「生行動データのスケーリング壁」を発見。データ量やモデルサイズを増やしても閾値超過後は性能向上が鈍化するという重要な知見を提示。根本原因は情報密度の低さであり、RQ-VAEベースのトークン化と適応型可変長トークン化手法ALGNにより容量63%削減しながら精度向上を実現した。
+動画 MLLM の強化学習において、アノテーションを採点基準だけでなく「オラクルロールアウト」として直接最適化に活用する新手法 OraRL を提案。分離型優位性推定器（Decoupled Advantage Estimator）と符号均衡刈込により「優位性反転」問題を解決し、訓練コストを 50% 削減しながら全 7 タスク群で SOTA を達成。推論遅延も 4,780ms → 130ms に圧縮。
