@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "EchoWM: Open and Enterable Omnimodal World Models", "upvotes": 64, "paper_id": "2608.23189", "abstract": "Omnimodal world model generating synchronized 720p video, environmental sound, music and speech while following continuous 6-DoF navigation trajectories across first- and third-person views."},
-    {"title": "Towards a Densing Law for User Representation Learning at Billion-Scale Capacity", "upvotes": 21, "paper_id": "2608.23392", "abstract": "Proposes scaling law linking data size to tokenization capacity for user behavior modeling, introducing adaptive tokenization method ALGN to improve efficiency in billion-scale scenarios."},
-    {"title": "Beyond the Stability-Exploration Dilemma: Environmental Regularization for LLM Policy Optimization", "upvotes": 15, "paper_id": "2608.23311", "abstract": "ERPO replaces action-side policy regularization with input-side query distribution control to stabilize reinforcement learning for language models while preserving response exploration."},
-    {"title": "AutoResearch: Insight In, Hallucination Out", "upvotes": 9, "paper_id": "2608.17906", "abstract": "Two-stage autonomous system grounding research ideas through integrated generation and evidence-based execution to improve experimental reliability and measurable outcomes."},
-    {"title": "Quantization-Aware Healing: A Practical Recipe for Recovering Compressed, 4-Bit LLMs", "upvotes": 9, "paper_id": "2608.20953", "abstract": "Quantization-aware healing recovers compressed 4-bit language models faster and more stably than QAT by distilling directly from original uncompressed models."},
-    {"title": "One Success Isn't Reliability: Thinkingbox, a Sandbox and Benchmark for Agents in Stateful Business Workflows", "upvotes": 9, "paper_id": "2608.19741", "abstract": "Sandbox and benchmark with 507 policy-conditioned workflows for evaluating agent reliability in stateful business tasks, revealing gap between occasional success and consistent completion."},
-    {"title": "LongWoF-Bench: Evaluating EvoMap Genes for Verifiable Long-Workflow Tasks", "upvotes": 6, "paper_id": "2608.23200", "abstract": "EvoMap externalizes verified execution experience into reusable structured Gene, improving long-workflow task completion and reducing token costs across diverse models."},
-    {"title": "Industrial-Instruction: An End-to-End Framework for Building Instruction-Tuning and Benchmark Datasets from Industrial Technical Reports", "upvotes": 5, "paper_id": "2608.22817", "abstract": "End-to-end pipeline creating instruction-tuning datasets from industrial technical reports, with 13.6k QA pairs enabling fine-tuning improvements from 28.5% to 42.0% accuracy."},
-    {"title": "The Laws of Context Allocation: Causal Measurement and Closed-Loop Orchestration in Generative Search", "upvotes": 4, "paper_id": "2608.23252", "abstract": "Causal measurement probe and iterative submodular scheduling overcome evidence-utilization and context-allocation bottlenecks in retrieval-augmented generation portfolio synthesis."},
-    {"title": "Hybrid Quantum-inspired Kolmogorov-Arnold Networks for Privacy-Aware Federated Biosignal Learning", "upvotes": 3, "paper_id": "2608.13914", "abstract": "Quantum-inspired Kolmogorov-Arnold network improves federated ECG classification accuracy with 37.35% fewer parameters and 24.89% lower communication costs than MLP."}
+    {
+      "title": "GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture",
+      "upvotes": 90,
+      "paper_id": "2608.15875",
+      "abstract": "Vision-language-action (VLA) models demonstrate strong complex and long-horizon task completion in structured settings. GigaBrain-0.7 unifies understanding, prediction, and action through a three-system architecture, scales pretraining to over 37,000 hours of heterogeneous embodied data."
+    },
+    {
+      "title": "Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs",
+      "upvotes": 88,
+      "paper_id": "2608.20492",
+      "abstract": "Multimodal large language models (MLLMs) have become prevalent for unified video perception. Post-training on large multi-task datasets remains challenging, as existing reinforcement learning methods sample on-policy groups with few high-quality rollouts even with costly chain-of-thought generation."
+    },
+    {
+      "title": "WeMM-Embedding: WeChat Multi-Modal Embedding Technical Report",
+      "upvotes": 54,
+      "paper_id": "2608.24053",
+      "abstract": "Universal multimodal embeddings enable heterogeneous content representation in a shared space for applications such as retrieval, recommendation, classification, and agentic systems. WeMM-Embedding supports text, images, videos, visual documents, and interleaved multimodal inputs."
+    },
+    {
+      "title": "SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation",
+      "upvotes": 36,
+      "paper_id": "2608.21500",
+      "abstract": "Prompt injection threatens AI agents. Defenders train secure LLMs, but these suffer near 100% attack success rates against adaptive prompt injections. SecOPD provides token-level feedback to guide defensive fine-tuning, achieving significantly lower attack success rates."
+    },
+    {
+      "title": "CyberFactory: Scaling Cyber Security Capabilities with Instances from the Wild",
+      "upvotes": 28,
+      "paper_id": "2608.23181",
+      "abstract": "Large language models advance in coding capabilities with potential for cybersecurity applications. CyberFactory connects data construction, trajectory synthesis, and model training across proof-of-concept generation, vulnerability patching, and cybersecurity question answering."
+    },
+    {
+      "title": "Game2World Engine: Unlocking In-the-Wild Gameplay Videos for World Model Training",
+      "upvotes": 8,
+      "paper_id": "2608.24680",
+      "abstract": "Video games provide scalable training data for video world models. Raw gameplay footage entangles the game world with screen-space interfaces. G2WEngine automatically extracts reusable UI assets and synthesizes temporally coherent UI overlays on clean footage."
+    },
+    {
+      "title": "From Seeing to Acting: Smart Glasses as First-Person Intelligence Platforms",
+      "upvotes": 8,
+      "paper_id": "2608.24877",
+      "abstract": "Smart glasses evolve from capture and display accessories into first-person intelligence platforms connecting human perception, persistent context, and digital or physical action. They must operate under tight energy, thermal, privacy, and feedback constraints."
+    },
+    {
+      "title": "AgentRoom: Concurrent Multi-Agent Coding in a CRDT-Backed Shared Workspace",
+      "upvotes": 4,
+      "paper_id": "2608.23740",
+      "abstract": "Concurrent multi-agent coding promises division of labor across modules and robustness through redundancy. AgentRoom is a realtime collaborative editing protocol for concurrent coding agents using Conflict-free Replicated Data Types (CRDTs) on a shared filesystem."
+    },
+    {
+      "title": "Automata from Agent Traces: Failure and Next-Step Prediction",
+      "upvotes": 4,
+      "paper_id": "2608.23670",
+      "abstract": "LLM-based agents execute multi-step tasks, but their behavioral structure remains opaque. This work collapses entire trace corpora into single, compact finite-state machines serving as structural substrates for otherwise unpredictable LLM agent behavior."
+    },
+    {
+      "title": "DREAM Technical Report",
+      "upvotes": 4,
+      "paper_id": "2608.09408",
+      "abstract": "Industrial recommender systems use cascaded retrieval, ranking, and re-ranking pipelines. DREAM adds a perception-aware, orchestrable, and auditable policy layer atop existing pipelines without replacing them through an Intent Engine and Meta Engine."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.245", "published_at": "2025-08-25", "body": "Fixed a crash on startup on Linux distributions that ship glibc 2.44 (for example Arch Linux, CachyOS and Fedora Rawhide)"},
-    {"tag_name": "v2.1.241", "published_at": "2025-08-23", "body": "Bug fixes and reliability improvements"},
-    {"tag_name": "v2.1.240", "published_at": "2025-08-22", "body": "Bug fixes and reliability improvements"}
+    {
+      "tag_name": "v2.1.246",
+      "published_at": "2024-08-25",
+      "body": "Added a startup warning for Bash allow rules with a wildcard before the subcommand (e.g. `Bash(git * main)`), since they also match options inserted before the subcommand. Added an Auto mode tab to `/permissions` for viewing and editing auto mode classifier rules. Added the turn's completion time to the end-of-turn duration line, e.g. `✻ Sautéed for 23s · done 6:05 PM`. Fixed fullscreen mode showing a blank transcript after resizing the terminal and jumping to the bottom until the next keypress. Fixed a severe transcript slowdown when a diff contained a very long single line (e.g. a base64 string); such lines now render truncated with a marker. Fixed erratic fullscreen scrolling when positioned at an earlier message, including jump-to-bottom getting stuck mid-transcript."
+    },
+    {
+      "tag_name": "v2.1.245",
+      "published_at": "2024-08-25",
+      "body": "Fixed a crash on startup on Linux distributions that ship glibc 2.44 (for example Arch Linux, CachyOS and Fedora Rawhide)"
+    },
+    {
+      "tag_name": "v2.1.241",
+      "published_at": "2024-08-23",
+      "body": "Bug fixes and reliability improvements"
+    }
   ]
 }
