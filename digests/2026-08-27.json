@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-27",
+  "content": "# AI Daily Digest — 2026-08-27\n\n## 今日のハイライト\n- **GigaBrain-0.7 が身体化AIを革新 (90 upvotes)**: 三システムアーキテクチャで理解・予測・行動を統合、3.7万時間超のデータで訓練。ロボティクスと LLM の融合における重要なマイルストーン。\n- **Claude Code v2.1.246 リリース**: Auto モードタブの追加でパーミッション管理が刷新。base64等の長行による描画遅延も修正され、日常的なコーディングワークフローが向上。\n- **SecOPD がプロンプトインジェクション対策で躍進 (36 upvotes)**: 適応型攻撃に対してほぼ100%だった攻撃成功率をオンポリシー蒸留で大幅低減。AI エージェントのセキュリティ実用化に向けた突破口。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.246（2024-08-25）\n\n**主要機能**:\n- **Auto モードタブ追加** (`/permissions`): 自動モード分類ルールの閲覧・編集が可能な新タブが追加。パーミッション管理が大幅に向上。\n- **ターン完了時刻表示**: エンドオブターン行に完了時刻が表示されるように（例: `✻ Sautéed for 23s · done 6:05 PM`）。ワークフローの時間管理が容易に。\n- **Bash ワイルドカード警告**: `Bash(git * main)` のようなサブコマンド前ワイルドカードを含む許可ルールに起動時警告を追加。セキュリティ意識向上。\n\n**バグ修正**:\n- フルスクリーンモードでターミナルリサイズ後に空白トランスクリプトが表示される問題を修正。\n- base64 文字列など極端に長い1行を含む diff でのトランスクリプト描画の著しい遅延を修正（長行は切り捨て表示に）。\n- 以前のメッセージ位置にいる際のフルスクリーン不規則スクロール・最下部へのジャンプが途中で止まる問題を修正。\n\n**ユーザーへの影響**: パーミッション管理UIが刷新され、セキュリティルールの管理が直感的に。base64等の長文を扱う作業での応答性が向上。\n\n---\n\n### v2.1.245（2024-08-25）\n\n**バグ修正**:\n- glibc 2.44 を搭載した Linux ディストリビューション（Arch Linux、CachyOS、Fedora Rawhide 等）での起動クラッシュを修正。\n\n**ユーザーへの影響**: 最新の Linux ディストリビューションユーザーは安定して Claude Code を使用可能に。\n\n---\n\n### v2.1.241（2024-08-23）\n\n- バグ修正と信頼性向上。\n\n\n## 注目論文 TOP 10\n\n**1. GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture** | 90 upvotes | https://arxiv.org/abs/2608.15875\n🎯**背景**: VLA (Vision-Language-Action) モデルは構造化された環境での複雑・長期タスク遂行に強みを持つが、異種データの統合的スケーリングに課題があった。\n🔧**手法**: 理解・予測・行動を統合する三システムアーキテクチャを採用。3万7千時間超の多様な身体化データで事前学習をスケール。\n📊**結果**: 身体化AIにおける創発的能力を達成し、未見の複雑タスクにも汎化する能力を実証。\n💡**意義**: ロボティクスと AI エージェントの融合に向けた基盤モデルの新たな可能性を示す。\n⚠️**限界**: 実世界への物理的展開とリアルタイム性能については更なる検証が必要。\n\n**2. Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs** | 88 upvotes | https://arxiv.org/abs/2608.20492\n🎯**背景**: 動画 MLLM のポストトレーニングにおいて、既存の RL 手法はオンポリシーで高品質なロールアウトが少なく、CoT 生成でもコストが高い。\n🔧**手法**: アノテーションそのものをロールアウトとして活用する新手法により、大規模マルチタスクデータセットでの効率的な強化学習を実現。\n📊**結果**: 従来手法と比較してスケーラビリティと学習効率の両面で大幅な改善を達成。\n💡**意義**: 動画理解 AI の訓練コストを大幅削減しつつ性能向上を実現できる実用的アプローチ。\n⚠️**限界**: アノテーション品質への依存度が高く、ノイズの多いデータでの性能低下が懸念される。\n\n**3. WeMM-Embedding: WeChat Multi-Modal Embedding Technical Report** | 54 upvotes | https://arxiv.org/abs/2608.24053\n🎯**背景**: テキスト・画像・動画・視覚的文書・インターリーブマルチモーダル入力を統一的に扱える汎用埋め込みモデルの実用的需要が高まっている。\n🔧**手法**: WeChat の大規模実世界データを活用し、異種コンテンツを共有埋め込み空間で表現するマルチモーダル埋め込みモデルを構築。\n📊**結果**: 検索・推薦・分類・エージェントシステムなど多様なアプリケーションで有効性を実証。\n💡**意義**: 実世界規模のマルチモーダルデータを活用した産業応用可能な埋め込み技術の具体例。\n⚠️**限界**: WeChat のプラットフォーム固有データへの依存があり、他ドメインへの汎化性は要検証。\n\n**4. SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation** | 36 upvotes | https://arxiv.org/abs/2608.21500\n🎯**背景**: AI エージェントへのプロンプトインジェクション攻撃は深刻な脅威であり、適応型攻撃に対して既存の防御手法はほぼ100%の攻撃成功率を許してしまう。\n🔧**手法**: オンポリシー蒸留 (On-Policy Distillation) によりトークンレベルのフィードバックを防御的ファインチューニングに活用し、適応型攻撃への耐性を強化。\n📊**結果**: 適応型プロンプトインジェクションの攻撃成功率を大幅に低減することに成功。\n💡**意義**: LLM エージェントのセキュリティ強化における実用的かつ有効なアプローチを提示。\n⚠️**限界**: 新たな攻撃パターンへの継続的な対応が必要であり、完全な防御の実現には至っていない。\n\n**5. CyberFactory: Scaling Cyber Security Capabilities with Instances from the Wild** | 28 upvotes | https://arxiv.org/abs/2608.23181\n🎯**背景**: LLM はコーディング能力の向上によりサイバーセキュリティ分野への応用が期待されているが、実世界の脆弱性データを活用した訓練パイプラインが不足。\n🔧**手法**: 野生のインスタンス (in-the-wild) を活用し、PoC 生成・脆弱性パッチ適用・サイバーセキュリティ Q&A にわたるデータ構築・軌跡合成・モデル訓練を統合。\n📊**結果**: 複数のサイバーセキュリティタスクにおいて LLM の能力を実証的にスケール。\n💡**意義**: 実世界のセキュリティデータを活用した AI 訓練フレームワークとして防御・攻撃研究の両面で有用。\n⚠️**限界**: 実世界の脆弱性データ利用に関する倫理的・法的リスクの管理が課題。\n\n**6. Game2World Engine: Unlocking In-the-Wild Gameplay Videos for World Model Training** | 8 upvotes | https://arxiv.org/abs/2608.24680\n🎯**背景**: ビデオゲームは動画ワールドモデルの訓練データとして有望だが、生のゲームプレイ映像には UI やオーバーレイが混入し、クリーンなシーンの学習を妨げる。\n🔧**手法**: G2WEngine が UI アセットを自動抽出し、クリーン映像に時間的に一貫した UI オーバーレイを合成することで高品質な訓練データを生成。\n📊**結果**: ゲームプレイ動画から実用的なワールドモデル訓練データを自動生成するパイプラインを実証。\n💡**意義**: 大量に存在する既存のゲームプレイ動画を活用し、ワールドモデル訓練データのスケーリングコストを削減。\n⚠️**限界**: UI 認識精度とゲームジャンルへの依存性があり、全てのゲームタイトルへの汎化が課題。\n\n**7. From Seeing to Acting: Smart Glasses as First-Person Intelligence Platforms** | 8 upvotes | https://arxiv.org/abs/2608.24877\n🎯**背景**: スマートグラスはキャプチャ・表示デバイスから、人間の知覚・文脈・行動を接続する一人称インテリジェンスプラットフォームへと進化しつつある。\n🔧**手法**: エネルギー・熱・プライバシー・フィードバックの制約下での動作を前提に、スマートグラス向けの AI アーキテクチャとシステム設計を考察・提案。\n📊**結果**: 一人称視点の AI の課題と可能性を体系的に整理し、設計原則を提示。\n💡**意義**: ウェアラブル AI の次世代プラットフォームとして、拡張現実と AI エージェントの融合を展望。\n⚠️**限界**: プライバシー懸念と常時収集される個人データの扱いについて社会的・倫理的課題が残る。\n\n**8. AgentRoom: Concurrent Multi-Agent Coding in a CRDT-Backed Shared Workspace** | 4 upvotes | https://arxiv.org/abs/2608.23740\n🎯**背景**: 複数 AI エージェントの並行コーディングは分業と冗長性をもたらすが、共有ファイルシステムでの競合が実用化の障壁となっていた。\n🔧**手法**: CRDT (Conflict-free Replicated Data Type) を共有ファイルシステムに適用したリアルタイム協調編集プロトコル AgentRoom を設計。\n📊**結果**: 複数コーディングエージェントが競合なく同一ワークスペースで並行作業可能であることを実証。\n💡**意義**: マルチエージェントソフトウェア開発の実用化に向けた基盤技術として重要な一歩。\n⚠️**限界**: CRDT の複雑性とエージェント間の意図衝突（機能単位ではなく論理的な矛盾）の解決は未解決。\n\n**9. Automata from Agent Traces: Failure and Next-Step Prediction** | 4 upvotes | https://arxiv.org/abs/2608.23670\n🎯**背景**: LLM ベースのエージェントはマルチステップタスクを実行するが、その行動構造は不透明で予測・分析が困難だった。\n🔧**手法**: エージェントのトレースコーパス全体を単一のコンパクトな有限状態機械 (FSM) に圧縮し、行動予測の構造的基盤として活用。\n📊**結果**: 予測不可能な LLM エージェント行動のパターンを FSM で捉え、失敗予測と次ステップ予測を実現。\n💡**意義**: エージェントの解釈可能性とデバッグ能力の向上に向けた理論的アプローチ。\n⚠️**限界**: FSM の表現能力には限界があり、高度に動的なエージェント行動の全容を捉えきれない可能性。\n\n**10. DREAM Technical Report** | 4 upvotes | https://arxiv.org/abs/2608.09408\n🎯**背景**: 産業用推薦システムは検索・ランキング・再ランキングのカスケードパイプラインを使用しており、既存システムの置き換えなしに高度化したい需要がある。\n🔧**手法**: Intent Engine と Meta Engine からなるポリシー層を既存パイプラインの上位に追加し、知覚認識・オーケストラブル・監査可能な推薦制御を実現。\n📊**結果**: 既存インフラを維持しつつ、推薦品質と説明可能性を向上させることを実証。\n💡**意義**: 大規模産業推薦システムの段階的な AI 高度化に向けた実用的フレームワーク。\n⚠️**限界**: 追加ポリシー層のレイテンシーへの影響と、既存パイプラインとの緊密な結合による柔軟性の制限。\n\n",
+  "fetched_at": "2026-08-26T22:07:27.612664+00:00",
+  "papers": [
+    {
+      "title": "GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture",
+      "upvotes": 90,
+      "paper_id": "2608.15875",
+      "abstract": "Vision-language-action (VLA) models demonstrate strong complex and long-horizon task completion in structured settings. GigaBrain-0.7 unifies understanding, prediction, and action through a three-system architecture, scales pretraining to over 37,000 hours of heterogeneous embodied data."
+    },
+    {
+      "title": "Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs",
+      "upvotes": 88,
+      "paper_id": "2608.20492",
+      "abstract": "Multimodal large language models (MLLMs) have become prevalent for unified video perception. Post-training on large multi-task datasets remains challenging, as existing reinforcement learning methods sample on-policy groups with few high-quality rollouts even with costly chain-of-thought generation."
+    },
+    {
+      "title": "WeMM-Embedding: WeChat Multi-Modal Embedding Technical Report",
+      "upvotes": 54,
+      "paper_id": "2608.24053",
+      "abstract": "Universal multimodal embeddings enable heterogeneous content representation in a shared space for applications such as retrieval, recommendation, classification, and agentic systems. WeMM-Embedding supports text, images, videos, visual documents, and interleaved multimodal inputs."
+    },
+    {
+      "title": "SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation",
+      "upvotes": 36,
+      "paper_id": "2608.21500",
+      "abstract": "Prompt injection threatens AI agents. Defenders train secure LLMs, but these suffer near 100% attack success rates against adaptive prompt injections. SecOPD provides token-level feedback to guide defensive fine-tuning, achieving significantly lower attack success rates."
+    },
+    {
+      "title": "CyberFactory: Scaling Cyber Security Capabilities with Instances from the Wild",
+      "upvotes": 28,
+      "paper_id": "2608.23181",
+      "abstract": "Large language models advance in coding capabilities with potential for cybersecurity applications. CyberFactory connects data construction, trajectory synthesis, and model training across proof-of-concept generation, vulnerability patching, and cybersecurity question answering."
+    },
+    {
+      "title": "Game2World Engine: Unlocking In-the-Wild Gameplay Videos for World Model Training",
+      "upvotes": 8,
+      "paper_id": "2608.24680",
+      "abstract": "Video games provide scalable training data for video world models. Raw gameplay footage entangles the game world with screen-space interfaces. G2WEngine automatically extracts reusable UI assets and synthesizes temporally coherent UI overlays on clean footage."
+    },
+    {
+      "title": "From Seeing to Acting: Smart Glasses as First-Person Intelligence Platforms",
+      "upvotes": 8,
+      "paper_id": "2608.24877",
+      "abstract": "Smart glasses evolve from capture and display accessories into first-person intelligence platforms connecting human perception, persistent context, and digital or physical action. They must operate under tight energy, thermal, privacy, and feedback constraints."
+    },
+    {
+      "title": "AgentRoom: Concurrent Multi-Agent Coding in a CRDT-Backed Shared Workspace",
+      "upvotes": 4,
+      "paper_id": "2608.23740",
+      "abstract": "Concurrent multi-agent coding promises division of labor across modules and robustness through redundancy. AgentRoom is a realtime collaborative editing protocol for concurrent coding agents using Conflict-free Replicated Data Types (CRDTs) on a shared filesystem."
+    },
+    {
+      "title": "Automata from Agent Traces: Failure and Next-Step Prediction",
+      "upvotes": 4,
+      "paper_id": "2608.23670",
+      "abstract": "LLM-based agents execute multi-step tasks, but their behavioral structure remains opaque. This work collapses entire trace corpora into single, compact finite-state machines serving as structural substrates for otherwise unpredictable LLM agent behavior."
+    },
+    {
+      "title": "DREAM Technical Report",
+      "upvotes": 4,
+      "paper_id": "2608.09408",
+      "abstract": "Industrial recommender systems use cascaded retrieval, ranking, and re-ranking pipelines. DREAM adds a perception-aware, orchestrable, and auditable policy layer atop existing pipelines without replacing them through an Intent Engine and Meta Engine."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.246",
+      "published_at": "2024-08-25",
+      "body": "Added a startup warning for Bash allow rules with a wildcard before the subcommand (e.g. `Bash(git * main)`), since they also match options inserted before the subcommand. Added an Auto mode tab to `/permissions` for viewing and editing auto mode classifier rules. Added the turn's completion time to the end-of-turn duration line, e.g. `✻ Sautéed for 23s · done 6:05 PM`. Fixed fullscreen mode showing a blank transcript after resizing the terminal and jumping to the bottom until the next keypress. Fixed a severe transcript slowdown when a diff contained a very long single line (e.g. a base64 string); such lines now render truncated with a marker. Fixed erratic fullscreen scrolling when positioned at an earlier message, including jump-to-bottom getting stuck mid-transcript."
+    },
+    {
+      "tag_name": "v2.1.245",
+      "published_at": "2024-08-25",
+      "body": "Fixed a crash on startup on Linux distributions that ship glibc 2.44 (for example Arch Linux, CachyOS and Fedora Rawhide)"
+    },
+    {
+      "tag_name": "v2.1.241",
+      "published_at": "2024-08-23",
+      "body": "Bug fixes and reliability improvements"
+    }
+  ]
+}
