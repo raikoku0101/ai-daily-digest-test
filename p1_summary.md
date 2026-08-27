@@ -1,6 +1,6 @@
-**1. GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture**
-**著者**: GigaBrain Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.15875
+**1. VoiceMem: Streaming Dual-Brain Memory for Real-Time Interaction**
+**著者**: VoiceMem Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.26005
 
 **まとめ**:
-VLA（Vision-Language-Action）モデルの能力を飛躍的に拡張する基盤モデル。理解・計画（System 2）、行動・制御（System 1）、予測・評価（System 3）の三層アーキテクチャを採用し、3万7千時間超の異種ロボティクスデータで一段階学習を実現。スケーリングによる創発的能力の出現を初めて体系的に実証した画期的研究。
+リアルタイム音声AIにおける記憶の欠如という根本課題を解決するため、情報処理（左脳）と感情・ペルソナ処理（右脳）を統合したデュアルブレインアーキテクチャVoiceMemを提案。従来の2〜3秒の検索遅延を134msに短縮し、VAD（音声活動検知）の沈黙時間内に検索を完了。LoCoMoで76.39点（Mem0比+24.12点）を達成し、音声会話AIのパーソナライゼーションに実用的な突破口を開いた。
