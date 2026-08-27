@@ -1,6 +1,6 @@
-**2. Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs (OraRL)**
-**著者**: OraRL Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.20492
+**2. Is Next-Chunk Reasoning RL Really Better than SFT? Revisiting Training Strategies under no-CoT Data**
+**著者**: Research Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.23256
 
 **まとめ**:
-動画 MLLM の強化学習において、アノテーションを採点基準だけでなく「オラクルロールアウト」として直接最適化に活用する新手法 OraRL を提案。分離型優位性推定器（Decoupled Advantage Estimator）と符号均衡刈込により「優位性反転」問題を解決し、訓練コストを 50% 削減しながら全 7 タスク群で SOTA を達成。推論遅延も 4,780ms → 130ms に圧縮。
+CoT（Chain-of-Thought）データなしの条件下でのLLM後学習において、強化学習（RL）ベースのNext-Chunk Reasoningよりも、Mixed SFT（混合教師あり微調整）の方が効率性・最終精度の両面で優れることを実証。RLVR後の最終性能でMixed SFTが61.1%（最高）を達成し、次チャンク推論RLは60倍以上の計算コストにもかかわらず及ばなかった。SFT段階のデータ構成最適化が、追加のRL段階より有効という実務的示唆を提供。
