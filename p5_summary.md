@@ -1,6 +1,6 @@
-**5. CyberFactory: Scaling Cyber Security Capabilities with Instances from the Wild**
-**著者**: CyberFactory Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.23181
+**5. SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?**
+**著者**: SWE Refactor Bench Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.23564
 
 **まとめ**:
-実世界の CVE (Common Vulnerabilities and Exposures) 成果物を検証可能な教師データに変換し、オープンウェイト LLM のサイバーセキュリティ能力をスケーリングするパイプライン CyberFactory を提案。PoC 生成・脆弱性パッチ・セキュリティ QA を統合し、開発した OpenAegis は CyberGym ベンチマークで 58.1% Pass@1 を達成し Qwen 3.5 基盤から 28.5 ポイント改善。スキルの内部化により推論時スキル不要で高性能を発揮。
+コーディングエージェントがリポジトリ全体の技術スタック移行を自律的に完了できるかを評価する包括的ベンチマーク。移行監査・130,118個の固定動作チェック・エージェント検証の三段階プロトコルで評価し、520回中わずか28回（5.4%）のみが全段階を通過。最高性能のClaude Opus 5でも47.0/100点に留まり、現在のAIコーディングエージェントの長期的・全体的移行能力の根本的限界を数値で示した。
