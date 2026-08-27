@@ -1,0 +1,44 @@
+{
+  "week": "2026-w35",
+  "content": "# 📅 Claude Code 週刊アップデート — Week 34 · August 17–21, 2026\n\n> /design スキルで編集可能な UI アートボードを下書きし、Concise 出力スタイルを設定、スマートフォンからマシンの Claude Code セッションを開始できるようになりました。\n\n## 🚀 主要機能 (3 件)\n\n### /design `research preview`\n/design スキルが、アーティファクトを基盤として Claude Design のアートボードワークフローを CLI および Claude Code Desktop に導入します。簡単な説明を入力するだけで、Claude が編集可能なアートボードのキャンバスを公開します。気に入ったものを選んで調整し、Claude に実装を依頼できます。Pro・Max・Team・Enterprise プランで利用可能。v2.1.233 以降が必要です。\n🔗 https://code.claude.com/en/artifacts#availability\n\n### Concise output style `v2.1.237`\nConcise は新しい組み込み出力スタイルです。Claude は結果を先に示し、前置きや説明の羅列を省きながらも、Default スタイルと同じ丁寧さで作業を行います。詳しい説明を求めれば完全な回答が得られます。エラーレポート、セキュリティ警告、破壊的な操作の確認はこれまで通り完全な内容を保持します。\n🔗 https://code.claude.com/en/output-styles#built-in-output-styles\n\n### Start a session on your machine from your phone `mobile`\n`claude remote-control` を実行しているマシンが、Claude アプリの「Code」タブの上部にデバイスカードとして表示されるようになりました。Remote Control も research preview から正式リリースされました。\n🔗 https://code.claude.com/en/remote-control#start-a-remote-control-session\n\n## ✨ その他のアップデート\n\n- claude.ai の使用量制限がリセットされると、Claude Code が自動的にセッションを再開するようになりました。`/config` の「使用量制限到達時に自動継続」からオフにできます\n- オプションの `spellcheck` 設定を有効にすると、インストール済みの `aspell`・`hunspell`・`ispell` を使って、入力中のプロンプトでスペルミスに下線が引かれるようになりました\n- `glab auth login` で `glab` CLI 認証済みの場合、GitLab マージリクエストが開いているブランチのフッターに `MR !N` バッジが表示され、ドラフト・オープン・マージ可能の状態が色で示されます\n- スマートフォンや claude.ai/code から努力レベルを変更すると、マシン上のセッションに即座に反映されます。Desktop や VS Code がホストする Remote Control セッションも、接続デバイスに現在の権限モードを表示するようになりました\n- Claude が作業中に `/permissions` を開いたり `/add-dir <パス>` を実行したりできるようになりました。権限ルールの変更は現在のターンの残りに即時適用されます\n- `/goal` をバックグラウンドタスクが待機させている場合、Claude は無期限に待つのではなく、30 分後にチェックインし、セッションがアイドル状態の間は間隔を延ばしながらチェックを続けます。`CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0` でオプトアウト可能\n- 自分のプロンプトがトランスクリプトでマークダウンとして表示されるようになりました。コードブロックのシンタックスハイライト、インラインコード、リストなど、Claude の返答と同様に表示されます\n- 新しい `ANTHROPIC_DEFAULT_MODEL` 環境変数で、新しいセッションが開始するモデルを設定できます。`/model` で選んだモデルは引き続き優先され、再起動後も保持されます\n- `SendMessage` の `notify_when_idle` 入力を使うと、同じマシン上の別の Claude Code セッションがアイドル状態になった時に通知を受け取れます\n- `keybindingFlavor` を `\"readline\"` に設定すると、プロンプトでの `Ctrl+W` が `/` などの句読点で止まらず、Bash と同様に前の空白まで削除するようになります\n- ネイティブ Windows でも、Claude Code セッション同士が `SendMessage` でメッセージを送り合ったり、`ListAgents` でお互いを見つけたりできるようになりました（macOS・Linux と同様）\n- セルフホストランナーが `--defer-shutdown-max-min` を受け入れるようになり、SIGTERM 後も指定した分数の間、アタッチ中のセッションへのサービスを継続できます\n- セルフホストランナーが `--proxy-authorization-command` または `--proxy-authorization-file` を受け入れるようになり、認証が必要な egress プロキシに新しい `Proxy-Authorization` ヘッダーを提供できます\n\n📄 原文: https://code.claude.com/docs/en/whats-new/2026-w34\n",
+  "fetched_at": "2026-08-27T23:40:19.003641+00:00",
+  "raw": {
+    "title": "Week 34 · August 17–21, 2026",
+    "subtitle": "Draft editable UI artboards with the /design skill, set the Concise output style, and start a Claude Code session on your machine from your phone.",
+    "features": [
+      {
+        "title": "/design",
+        "pill": "research preview",
+        "lede": "The /design skill brings Claude Design's artboard workflow into the CLI and Claude Code Desktop, built on artifacts. Run it with a brief and Claude publishes a canvas of editable artboards for your UI. Pick one, tweak it, then have Claude implement it. Available on Pro, Max, Team, and Enterprise. Requires v2.1.233 or later.",
+        "link": "/en/artifacts#availability"
+      },
+      {
+        "title": "Concise output style",
+        "pill": "v2.1.237",
+        "lede": "Concise is a new built-in output style. Claude leads with the result and skips preamble and narration, while doing the work as thoroughly as in the Default style. When you ask for an explanation or more detail, Claude answers in full. Error reports, security warnings, and confirmations for destructive actions keep their complete content.",
+        "link": "/en/output-styles#built-in-output-styles"
+      },
+      {
+        "title": "Start a session on your machine from your phone",
+        "pill": "mobile",
+        "lede": "Any machine running claude remote-control now shows up as a device card at the top of the Code tab in the Claude app. Remote Control is also out of research preview.",
+        "link": "/en/remote-control#start-a-remote-control-session"
+      }
+    ],
+    "other_wins": [
+      "Claude Code now continues your session automatically when a claude.ai usage limit resets; turn it off from the Continue automatically at usage limit row in /config",
+      "The optional spellcheck setting underlines misspelled words in the prompt input as you type, using your installed aspell, hunspell, or ispell",
+      "On a branch with an open GitLab merge request, with the glab CLI authenticated through glab auth login, the footer shows an MR !N badge colored by whether the merge request is a draft, open, or mergeable",
+      "Change the effort level from your phone or claude.ai/code and it applies to the session on your machine; Remote Control sessions hosted by Desktop or VS Code also show connected devices the session's current permission mode",
+      "You can open /permissions or run /add-dir <path> while Claude is working; permission rule changes apply to the rest of the current turn",
+      "When background tasks keep a /goal waiting, Claude checks in on them after 30 minutes instead of waiting indefinitely and keeps checking in, at longer intervals while the session sits idle; set CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0 to opt out",
+      "Your own prompts now render markdown in the transcript, with highlighted code blocks, inline code, and lists, the same way replies do",
+      "The new ANTHROPIC_DEFAULT_MODEL environment variable sets the model new sessions start on; a /model pick still overrides it and persists across restarts",
+      "With the notify_when_idle input on SendMessage, Claude can ask another Claude Code session on the same machine to send one notice when it next goes idle",
+      "Set keybindingFlavor to \"readline\" to make Ctrl+W in the prompt delete back to the previous whitespace, as Bash does, instead of stopping at punctuation such as /",
+      "On native Windows, your Claude Code sessions can now message each other with SendMessage and find each other with ListAgents, as on macOS and Linux",
+      "Self-hosted runners accept --defer-shutdown-max-min, which keeps serving attached sessions for a set number of minutes after SIGTERM",
+      "Self-hosted runners accept --proxy-authorization-command or --proxy-authorization-file to supply a fresh Proxy-Authorization header for egress proxies that require one"
+    ]
+  }
+}
