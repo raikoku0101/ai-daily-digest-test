@@ -1,6 +1,6 @@
-**4. SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation**
-**著者**: SecOPD Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.21500
+**4. Video-IFBench: Evaluating Instruction Following of Multimodal LLMs in Video Understanding Scenarios**
+**著者**: Video-IFBench Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.25529
 
 **まとめ**:
-AIエージェントへの適応型プロンプトインジェクション攻撃を、オンポリシー蒸留（On-Policy Distillation）によるトークンレベルフィードバックで緩和する新手法 SecOPD を提案。既存防御の攻撃成功率 94% を Qwen3.6-27B で 9.0% まで削減しつつ、AlpacaEval2 で 80.1% の有用性を維持。限られた訓練データでも堅牢なセキュリティ向上が可能であることを実証。
+マルチモーダルLLM（MLLM）のビデオ理解における「指示遵守能力」を体系的に評価する新ベンチマークVideo-IFBenchを提案。32種類のタスクタイプ・39個の制約カテゴリ（セマンティック22個+フォーマット17個）・4種類の命令テンプレート（Single/Multi/Selection/Nested）で構成。最高性能のGemini-3-Proでも厳格指標TISRは54.5%に留まり、「高いビデオ理解能力≠確実な命令遵守」という重要な知見を示す。
