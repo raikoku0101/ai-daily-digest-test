@@ -1,6 +1,6 @@
-**4. FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving**
-**著者**: FlashPrefill V2 Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.19758
+**4. SecOPD: Mitigating Adaptive Prompt Injections by On-Policy Distillation**
+**著者**: SecOPD Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.21500
 
 **まとめ**:
-LLMの長文脈プリフィル計算のボトルネックを解決するブロックスパースアテンション手法のV2。平均補正項の追加・疎行列アテンション演算子の再設計・SGLang等推論フレームワーク統合を実現。NVIDIA H20で128K文脈長においてFlashAttention-2比FP8で47.26倍、BF16で27.19倍のスピードアップを達成し、実用的な長文脈サービングを大幅に改善する。
+AIエージェントへの適応型プロンプトインジェクション攻撃を、オンポリシー蒸留（On-Policy Distillation）によるトークンレベルフィードバックで緩和する新手法 SecOPD を提案。既存防御の攻撃成功率 94% を Qwen3.6-27B で 9.0% まで削減しつつ、AlpacaEval2 で 80.1% の有用性を維持。限られた訓練データでも堅牢なセキュリティ向上が可能であることを実証。

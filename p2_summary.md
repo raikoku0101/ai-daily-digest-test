@@ -1,6 +1,6 @@
-**2. SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback**
-**著者**: SkillEvo Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.13120
+**2. Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs (OraRL)**
+**著者**: OraRL Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.20492
 
 **まとめ**:
-AIエージェントのスキルは手作業か単一LLM生成で作られ、実際の失敗から学ぶループがなかった問題を解決するフレームワーク。マルチターンユーザシミュレーションで継続的フィードバックを生成し、独立ガバナンス層が品質劣化を防ぐ。自己反省ベース手法比+23.0pt、単一ターンQA駆動手法比+15.4ptを達成し、持続的スキル自己進化の有効性を実証した。
+動画 MLLM の強化学習において、アノテーションを採点基準だけでなく「オラクルロールアウト」として直接最適化に活用する新手法 OraRL を提案。分離型優位性推定器（Decoupled Advantage Estimator）と符号均衡刈込により「優位性反転」問題を解決し、訓練コストを 50% 削減しながら全 7 タスク群で SOTA を達成。推論遅延も 4,780ms → 130ms に圧縮。

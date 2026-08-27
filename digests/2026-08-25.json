@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-25",
+  "content": "# AI Daily Digest — 2026-08-25\n\n## 今日のハイライト\n- **SWE-bench Science が科学ソフトウェアエンジニアリング評価を刷新 (51 upvotes)**: 20分野119タスクの実世界ベンチマークで、汎用コーディングエージェントが科学的知識不足・表面的修正・汎化失敗という固有の弱点を持つことを実証。AI科学研究ツールの設計指針に直結する重要知見。\n- **Claude Code v2.1.239 が企業向け機能を大幅強化**: データレジデンシーコスト精算の正確化、/claude-api upgrade による SDK 移行支援、Alpine/musl 環境対応、プラグイン管理改善など実務インパクトの高い機能が集中。v2.1.238 では長時間セッションのメモリリーク修正も。\n- **FlashPrefill V2 が長文脈 LLM 推論を 47 倍高速化**: 128K トークン文脈で FlashAttention-2 比 47.26x のスピードアップ。本番環境対応の Block-Sparse Attention 実装として即戦力。\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.239 (2025-08-21)\n**主要機能**:\n- **コスト見積もり改善**: `/cost`、ステータスライン、`--max-budget-usd` でデータレジデンシーワークスペース向け US 専用推論プレミアム（1.1×）を反映\n- **フルスクリーンレンダラー**: Bedrock/Vertex/Foundry 等でも初回フルスクリーンオファーを追加\n- **`/claude-api upgrade`**: Python プロジェクトを `anthropic` 0.x → 1.x へ移行支援（タイムアウト API の変更等）\n- **クラウドセッション プラグイン管理**: claude.ai 同期プラグインが `name@synced` として識別・管理可能に\n- **Alpine/musl 対応**: ネイティブ画像ペースト・クリップボード・音声キャプチャのアドオンが musl バイナリで動作\n\n**バグ修正**: Bedrock でのプロキシ経由ストリーミング（Content-Type ヘッダー剥奪時）修正、SSO プロファイル使用時の起動ハング修正、JetBrains IDE での Edit/Write 一時停止問題を修正。\n\n**ユーザーへの影響**: コスト見積もりの精度向上（データレジデンシーユーザーは表示額が若干増加）。Python SDK ユーザーはアップグレードパスが簡略化。\n\n---\n\n### v2.1.238 (2025-08-20)\n**主要機能**:\n- **`keybindingFlavor: \"readline\"` 設定**: Ctrl+W で Bash 同様に前の空白まで削除する動作を選択可能\n- **プラグインマーケットプレイスの `headersHelper`**: URL マーケットまたはカタログエントリ上で HTTP ヘッダーを動的に生成するコマンドを設定可能\n- **`claude self-hosted-runner --defer-shutdown-max-min <分>`**: シャットダウン猶予時間を設定\n\n**バグ修正**: 長時間インタラクティブセッションでのサブエージェントツール結果によるメモリ増大を修正（表示ウィンドウ外のデータを解放）。カスタム・プロジェクト・プラグイン出力スタイルがセッション中にデフォルトに戻る問題を修正。\n\n**ユーザーへの影響**: 長時間セッションの安定性が向上。Readline ユーザーはキーバインドをカスタマイズ可能に。\n\n---\n\n### v2.1.237 (2025-08-20)\n**主要機能**:\n- **LLM ゲートウェイ・カスタムベース URL でのプロンプトキャッシュ修正**\n- **「Concise」出力スタイル追加**: /config の Output style から選択可能。結果を先頭に提示し、前置き・ナレーションをスキップ（作業品質は維持）\n\n**ユーザーへの影響**: カスタム API エンドポイント経由でのキャッシュコスト削減が有効に。簡潔な出力を好むユーザーに新選択肢。\n\n---\n\n## 注目論文 TOP 10\n\n**1. SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?** | 51 upvotes | https://arxiv.org/abs/2608.19799\n🎯**背景**: 既存の SWE-bench は汎用ソフトウェアエンジニアリングタスクを対象とし、科学ソフトウェアの特殊性（科学的正確性、ドメイン知識要求）を考慮していない。\n🔧**手法**: 生物学・物理学・気候科学等 20 分野の実世界科学ソフトウェアリポジトリから 119 タスクを収集。コーディングエージェントの失敗メカニズムを科学的知識欠如・表面的修正・汎化失敗の 3 カテゴリで分析。\n📊**結果**: 最先端コーディングエージェントも科学固有タスクで大幅に性能低下。失敗の主因は汎用コーディング能力ではなく科学的文脈理解の欠如。\n💡**意義**: 科学ソフトウェアエンジニアリング向け AI 評価の標準ベンチマークを提供。AI 科学研究ツール開発の優先課題を特定。\n⚠️**限界**: 119 タスクのサンプルサイズは限定的。一部の科学分野（特に計算集約型）はカバレッジが低い可能性。\n\n**2. SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback** | 22 upvotes | https://arxiv.org/abs/2608.13120\n🎯**背景**: LLM のスキル進化において、単一ターンのフィードバックは表面的改善に留まり、実際の多ターンインタラクションの質を反映しない。\n🔧**手法**: マルチターンユーザーシミュレーションと品質ガバナンスレイヤーを組み合わせ、信頼性の高いフィードバックグラジェントを継続的に生成するフレームワーク。自己反省手法と比較。\n📊**結果**: 本番スキルにわたる評価で自己反省手法を 23 ポイント上回る。継続的なスキル進化を実現。\n💡**意義**: LLM の継続的なスキル改善に実用的なフレームワークを提供。プロダクション環境での AI 品質改善サイクルを加速。\n⚠️**限界**: ユーザーシミュレーションの品質が全体性能のボトルネックになりうる。特定スキル種別への適用可能性の詳細が未公開。\n\n**3. Repo0: Design-Driven Zero-to-All Code Generation** | 10 upvotes | https://arxiv.org/abs/2608.19854\n🎯**背景**: LLM によるコード生成はファイル単位やスニペット生成が中心で、完全なソフトウェアプロジェクトをゼロから構築する能力は限定的。\n🔧**手法**: Dual-DAG アーキテクチャ状態（設計 DAG + 実装 DAG）を活用した連続的構造進化フレームワーク。設計主導でソフトウェア全体を反復的に生成・改善。\n📊**結果**: リポジトリ計画ベースラインと比較して機能カバレッジを最大 20 ポイント改善。完全プロジェクト生成の質を向上。\n💡**意義**: AI によるソフトウェアエンジニアリングの範囲を「スニペット」から「完全プロジェクト」へ拡張。設計ファーストアプローチの有効性を実証。\n⚠️**限界**: 特定のプロジェクト種別や規模での評価に限定。大規模・複雑プロジェクトへのスケーラビリティは未検証。\n\n**4. FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving** | 9 upvotes | https://arxiv.org/abs/2608.19758\n🎯**背景**: 長文脈 LLM（128K+ トークン）のプリフィル段階は計算コストが膨大。FlashAttention-2 は密な計算が必要で、疎な注意パターンを活用できていない。\n🔧**手法**: ブロックスパース Prefill Attention を本番対応実装。平均補正項による精度維持、GPU 最適化、主要フレームワークとの統合。\n📊**結果**: FlashAttention-2 比で 128K コンテキストにて 47.26x の高速化を達成。精度を維持しながら実用的な速度を実現。\n💡**意義**: 長文脈 LLM の推論コストを大幅削減できる即戦力実装。エンタープライズ LLM サービングの実運用に直接活用可能。\n⚠️**限界**: スパース性の有効性はモデルの注意パターンに依存。密な注意が必要なタスクでは利点が限定的。\n\n**5. Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See** | 7 upvotes | https://arxiv.org/abs/2608.17744\n🎯**背景**: フロンティア LLM の推論は主に高リソース言語（英語等）で行われ、低リソース言語での推論品質は不明確。\n🔧**手法**: ギリシャ語（低リソース言語）でのファインチューニング実験。SFT と検証可能報酬付き RL の効果を分離して分析。精度指標では見えない推論プロセスの変化を追跡。\n📊**結果**: SFT は推論を目標言語にシフトさせるが、RL は書式欠陥を修正。精度変化は最小限でも推論プロセスは大きく変化することを発見。\n💡**意義**: 低リソース言語での LLM 推論改善の具体的手法を提示。精度のみでは捉えられない fine-tuning 効果を可視化。\n⚠️**限界**: 単一言語（ギリシャ語）での実験。他の低リソース言語への汎化性と、計算コストの詳細が未報告。\n\n**6. Towards Quantifying Benchmark Optimization in ASR Models** | 4 upvotes | https://arxiv.org/abs/2608.19936\n🎯**背景**: 高性能な音声認識モデルがベンチマークスコアを人工的に押し上げる「ベンチマーク最適化」問題の存在が疑われるが、定量化手法がなかった。\n🔧**手法**: モデルが矛盾する音声内容にもかかわらずベンチマークの書き起こしを再現するかを測定する方法論を開発。ベンチマーク条件付き行動を検出。\n📊**結果**: 高性能モデルが矛盾した音声でもベンチマーク書き起こしを再現することを実証。スコアは実世界の書き起こし改善なしに水増しされている。\n💡**意義**: ASR ベンチマークの信頼性問題を定量化。より頑健な評価手法の必要性を示す。\n⚠️**限界**: 特定のベンチマーク・モデルセットでの調査。全モデルファミリーへの一般化には追加検証が必要。\n\n**7. Inject, Align, Recover: Staged Post-Training for Retrieval-Free Document Knowledge Internalization** | 4 upvotes | https://arxiv.org/abs/2608.20281\n🎯**背景**: RAG（検索拡張生成）はドキュメント知識へのアクセスに検索システムを必要とし、レイテンシとインフラコストが高い。知識をモデルのパラメータに内在化する手法が必要。\n🔧**手法**: Inject（知識注入）→ Align（整合化）→ Recover（一般能力回復）の 3 段階ポストトレーニングフレームワーク。ドキュメントコーパスをパラメトリック知識に変換。\n📊**結果**: ドメイン精度で 3.6 ポイント向上を達成しながら、複数モデルファミリーで一般能力を回復。検索なしで QA を実現。\n💡**意義**: 特定ドメイン知識の内在化に実用的なフレームワーク。オフライン環境や低レイテンシ要件での LLM 活用を促進。\n⚠️**限界**: 知識更新時の再トレーニングコストが課題。動的に変化するドキュメントコーパスへの適用が困難。\n\n**8. Chain-of-Experience for Continual LLM Improvement** | 3 upvotes | https://arxiv.org/abs/2608.18027\n🎯**背景**: テスト時の LLM 改善は主にプロンプト工夫に限られ、反復的フィードバックループによる継続的学習の可能性が未探索。\n🔧**手法**: 自己フィードバックと環境フィードバック信号を使った反復フィードバックループによるテスト時学習。Chain-of-Experience として経験を蓄積・活用。\n📊**結果**: ゼロショットベースラインに対して 5.6% の性能向上と 19% のコスト削減を達成。\n💡**意義**: 追加学習なしでのテスト時改善フレームワーク。経験の蓄積が継続的な性能向上につながる可能性を示す。\n⚠️**限界**: 特定タスクタイプでの評価に限定。フィードバックループの収束条件や長期安定性が未詳。\n\n**9. τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation** | 2 upvotes | https://arxiv.org/abs/2608.16885\n🎯**背景**: 長期的な操作タスク（long-horizon manipulation）においてロボット基盤モデルは計画能力が不足し、多様な身体構成への汎化が困難。\n🔧**手法**: World Model ガイド型テスト時探索を使ったサブタスク生成の階層型ビジョン-言語-行動モデル。40,115 時間の実世界マルチ身体データで訓練。\n📊**結果**: 長期操作タスクで高い成功率を達成。ワールドモデルによるガイドが計画品質を大幅改善。\n💡**意義**: 大規模実世界データと階層的計画を組み合わせたロボット基盤モデルの実用化に向けた重要ステップ。\n⚠️**限界**: 特定のロボットプラットフォームと操作タスクに限定。未知環境への適応性と安全性の詳細が未公開。\n\n**10. QuoteBench: How Matched Scores Can Hide Command-Path Failures** | 2 upvotes | https://arxiv.org/abs/2608.13547\n🎯**背景**: LLM コーディングエージェントのコマンド実行において、クォーティングや境界解析エラーが実行失敗を引き起こすが、一致スコア指標では検出できない。\n🔧**手法**: LLM コーディングエージェントの実行境界解析エラーを測定するベンチマーク QuoteBench を構築。一致スコアが隠す実質的な障害を可視化。\n📊**結果**: 一致スコアが高くても実際の実行パス失敗が多数存在することを発見。境界開示により性能が 30-61% 回復。\n💡**意義**: コーディングエージェント評価の盲点を特定。より信頼性の高い評価指標設計の必要性を示す。\n⚠️**限界**: コマンド実行という特定のサブタスクに限定。他のエージェント行動タイプへの一般化は未検証。\n",
+  "fetched_at": "2026-08-24T22:12:33.845741+00:00",
+  "papers": [
+    {
+      "title": "SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?",
+      "upvotes": 51,
+      "paper_id": "2608.19799",
+      "abstract": "Repository-level benchmark for scientific software engineering with 119 tasks across 20 domains, revealing failure mechanisms in coding agents including deficits in scientific knowledge, surface-level repairs, and generalization failures."
+    },
+    {
+      "title": "SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback",
+      "upvotes": 22,
+      "paper_id": "2608.13120",
+      "abstract": "Framework leveraging multi-turn user simulation and governance layers to sustain skill evolution through trustworthy feedback gradients, surpassing self-reflection methods by 23 points across production skills."
+    },
+    {
+      "title": "Repo0: Design-Driven Zero-to-All Code Generation",
+      "upvotes": 10,
+      "paper_id": "2608.19854",
+      "abstract": "Continuous structural evolution framework using Dual-DAG architectural state for generating complete software projects, improving functionality coverage by up to 20 points over repository-planning baselines."
+    },
+    {
+      "title": "FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving",
+      "upvotes": 9,
+      "paper_id": "2608.19758",
+      "abstract": "Production-ready sparse attention implementation achieving 47.26x speedups over FlashAttention-2 at 128K context with mean correction term, GPU optimization, and framework integration for practical deployment."
+    },
+    {
+      "title": "Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See",
+      "upvotes": 7,
+      "paper_id": "2608.17744",
+      "abstract": "Investigation of fine-tuning frontier models to reason in Greek reveals SFT shifts reasoning into target language while RL with verifiable rewards fixes formatting defects, with minimal accuracy changes."
+    },
+    {
+      "title": "Towards Quantifying Benchmark Optimization in ASR Models",
+      "upvotes": 4,
+      "paper_id": "2608.19936",
+      "abstract": "Methodology revealing that high-performing speech models reproduce benchmark transcripts despite contradictory audio, demonstrating benchmark-conditioned behaviors inflate scores without improving real-world transcription."
+    },
+    {
+      "title": "Inject, Align, Recover: Staged Post-Training for Retrieval-Free Document Knowledge Internalization",
+      "upvotes": 4,
+      "paper_id": "2608.20281",
+      "abstract": "Three-stage framework converting document corpora into parametric knowledge for retrieval-free QA, achieving 3.6 point domain accuracy gains while recovering general capabilities across model families."
+    },
+    {
+      "title": "Chain-of-Experience for Continual LLM Improvement",
+      "upvotes": 3,
+      "paper_id": "2608.18027",
+      "abstract": "Study of test-time learning through iterative feedback loops showing consistent improvements over zero-shot baselines with 5.6% gains and 19% cost reduction using self and environmental feedback signals."
+    },
+    {
+      "title": "τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation",
+      "upvotes": 2,
+      "paper_id": "2608.16885",
+      "abstract": "Hierarchical vision-language-action model using world-model-guided search for subtask generation in long-horizon manipulation, trained on 40,115 hours of real-world data across multiple embodiments."
+    },
+    {
+      "title": "QuoteBench: How Matched Scores Can Hide Command-Path Failures",
+      "upvotes": 2,
+      "paper_id": "2608.13547",
+      "abstract": "Benchmark measuring execution boundary parsing errors in LLM coding agents, revealing matched scores hide substantial damages and revealing boundary disclosure recovers 30-61% performance."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.239",
+      "published_at": "2025-08-21",
+      "body": "Cost estimates now include the 1.1x US-only-inference premium for data-residency workspaces. Added the one-time fullscreen renderer offer on Bedrock, Vertex, Foundry and other previously excluded setups. Added `/claude-api upgrade` to migrate Python projects from `anthropic` 0.x to 1.x. Cloud sessions: plugins synced from claude.ai now show as `name@synced`. Alpine/musl builds: native image paste, clipboard, and audio-capture add-ons now load. Fixed Bedrock streaming behind proxies that strip the response Content-Type header. Fixed Claude Code hanging at startup behind an HTTPS proxy when using Bedrock with an SSO profile. Fixed Edit and Write calls pausing in JetBrains IDE terminals."
+    },
+    {
+      "tag_name": "v2.1.238",
+      "published_at": "2025-08-20",
+      "body": "Added a `keybindingFlavor` setting: set it to `readline` to make Ctrl+W in the prompt delete back to the previous whitespace, as in Bash. Plugin marketplaces: `headersHelper` on a url marketplace or a catalog entry runs a command that mints HTTP headers. Added `claude self-hosted-runner --defer-shutdown-max-min <minutes>`. Fixed unbounded memory growth in long interactive sessions: subagent tool results are now released once they leave the recent display window. Fixed custom, project, and plugin output styles drifting back to the default voice mid-session."
+    },
+    {
+      "tag_name": "v2.1.237",
+      "published_at": "2025-08-20",
+      "body": "Fixed prompt caching for sessions using an LLM gateway or custom base URL. Added a built-in \"Concise\" output style: Claude leads with results and skips preamble and narration, while doing the work just as thoroughly. Select it under Output style in /config."
+    }
+  ]
+}

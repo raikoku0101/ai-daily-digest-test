@@ -1,6 +1,6 @@
-**5. Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See**
-**著者**: Low-Resource Language Research Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.17744
+**5. CyberFactory: Scaling Cyber Security Capabilities with Instances from the Wild**
+**著者**: CyberFactory Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.23181
 
 **まとめ**:
-低リソース言語（ギリシャ語）でのLLM推論制御を研究。基盤モデルはギリシャ語の質問に英語で推論するため監査不能な問題があり、SFTで98%をターゲット言語推論に改善し、RLで形式スキップ（24%→2.5%）・推論チャネル流出（3.5%→0.0%）を解決。精度ベンチマークには現れないが、SFTとRLが相補的な役割を持つことを「6つの行動次元」評価で実証した。
+実世界の CVE (Common Vulnerabilities and Exposures) 成果物を検証可能な教師データに変換し、オープンウェイト LLM のサイバーセキュリティ能力をスケーリングするパイプライン CyberFactory を提案。PoC 生成・脆弱性パッチ・セキュリティ QA を統合し、開発した OpenAegis は CyberGym ベンチマークで 58.1% Pass@1 を達成し Qwen 3.5 基盤から 28.5 ポイント改善。スキルの内部化により推論時スキル不要で高性能を発揮。
