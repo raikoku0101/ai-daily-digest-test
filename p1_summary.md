@@ -1,6 +1,6 @@
-**1. VoiceMem: Streaming Dual-Brain Memory for Real-Time Interaction**
-**著者**: VoiceMem Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.26005
+**1. Agentic Game Development as a Verifiable Trajectory Data Engine for Scaling World Models**
+**著者**: Anonymous et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.25518
 
 **まとめ**:
-リアルタイム音声AIにおける記憶の欠如という根本課題を解決するため、情報処理（左脳）と感情・ペルソナ処理（右脳）を統合したデュアルブレインアーキテクチャVoiceMemを提案。従来の2〜3秒の検索遅延を134msに短縮し、VAD（音声活動検知）の沈黙時間内に検索を完了。LoCoMoで76.39点（Mem0比+24.12点）を達成し、音声会話AIのパーソナライゼーションに実用的な突破口を開いた。
+世界モデルのスケーリングを「より多くの動画データ」という非効率な戦略ではなく、ゲーム開発エージェントによる「検証可能なトラジェクトリデータエンジン」として再定義した研究。エンジン自動検証と人間判断を組み合わせたRLHEV（Reinforcement Learning with Human-Engine Verification）フレームワークにより、グラウンデッドな報酬信号を持つ高品質データを自動生成する。UnitySceneBenchでの実験でスケーリング則に従う性能向上が確認され、クロスエンジン汎化（Unity→Unreal/Godot）でも正の転移が得られた。

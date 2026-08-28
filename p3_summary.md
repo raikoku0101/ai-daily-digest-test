@@ -1,6 +1,6 @@
-**3. Long-Horizon Audio-Visual Generation for Persistent Stories and Interactive Worlds**
-**著者**: JoyAI Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.23383
+**3. UrbanGround: From Local Perception to Spatial Agency in a Real-Scale City**
+**著者**: Anonymous et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.27456
 
 **まとめ**:
-長時間ビデオ・音声生成における根本課題（キャラクター同一性の喪失、カメラ制御の欠如、累積誤差）を解決するJoyAI-Echo-1.5を提案。クロスショット記憶機構・キャリブレーション済み6-DoFカメラ制御・ロールアウト対応訓練（SGF: Self-Gradient Forcing）を統合し、WBenchで平均81.7点（1位）を達成。複数ショットにわたるキャラクター外観・音声アイデンティティの維持と、映画制作・ゲーム向けのインタラクティブ世界生成を実現した。
+MLLMエージェントが局所的な都市知覚から信頼できる行動へ転換できるかを、香港の3D地理空間データを基盤とするUnityシミュレーション環境UrbanGroundで評価した研究。視覚認識では63-93%の高精度を示すが、方向理解は23-58%に低下し、長距離ナビゲーションではほぼ全モデルがゼロ近い成功率となった。現行MLLMが都市規模の持続的行動に失敗するという重要な能力ギャップを実証した。

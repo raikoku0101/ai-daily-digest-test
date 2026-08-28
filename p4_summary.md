@@ -1,6 +1,6 @@
-**4. Video-IFBench: Evaluating Instruction Following of Multimodal LLMs in Video Understanding Scenarios**
-**著者**: Video-IFBench Team et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.25529
+**4. TTPO: Test-Time Policy Optimization**
+**著者**: Anonymous et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.27448
 
 **まとめ**:
-マルチモーダルLLM（MLLM）のビデオ理解における「指示遵守能力」を体系的に評価する新ベンチマークVideo-IFBenchを提案。32種類のタスクタイプ・39個の制約カテゴリ（セマンティック22個+フォーマット17個）・4種類の命令テンプレート（Single/Multi/Selection/Nested）で構成。最高性能のGemini-3-Proでも厳格指標TISRは54.5%に留まり、「高いビデオ理解能力≠確実な命令遵守」という重要な知見を示す。
+正解ラベルなしのテスト時訓練（TTT）でLLMの数学推論を改善するTTPO（Test-Time Policy Optimization）を提案。多数決疑似ラベルを活用しながらその不正確さに耐性を持つ非対称目的関数（正サンプルにはOPSDで密な監督、負サンプルにはGrouped RLで選択的ペナルティ）を設計。Qwen3シリーズで評価し、完全TTT設定で1.7Bが+7.2点（TTRL比+5.4点）を達成、正解ラベルを使うOPSDと同等以上の性能をラベルなしで実現した。
