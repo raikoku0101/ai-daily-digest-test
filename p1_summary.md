@@ -1,6 +1,6 @@
-**1. SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?**
-**著者**: SWE-bench Science Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.19799
+**1. VoiceMem: Streaming Dual-Brain Memory for Real-Time Interaction**
+**著者**: VoiceMem Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.26005
 
 **まとめ**:
-科学ソフトウェアの障害が研究結論の根拠を損なうリスクを踏まえ、20科学分野・98リポジトリ・119タスクからなる評価ベンチマーク「SWE-bench Science」を構築。最先端エージェント（Claude Code + Opus-5 max）でさえpass@1が50%未満という結果から、科学的知識・抽象化の不足が根本的課題であることを示した。汎用コーディング能力だけでは科学ソフトウェアの信頼性確保に不十分であることを実証した点で、AI科学研究適用における重要な警鐘となる。
+リアルタイム音声AIにおける記憶の欠如という根本課題を解決するため、情報処理（左脳）と感情・ペルソナ処理（右脳）を統合したデュアルブレインアーキテクチャVoiceMemを提案。従来の2〜3秒の検索遅延を134msに短縮し、VAD（音声活動検知）の沈黙時間内に検索を完了。LoCoMoで76.39点（Mem0比+24.12点）を達成し、音声会話AIのパーソナライゼーションに実用的な突破口を開いた。

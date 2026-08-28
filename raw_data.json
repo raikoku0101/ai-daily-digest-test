@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?",
-      "upvotes": 51,
-      "paper_id": "2608.19799",
-      "abstract": "Repository-level benchmark for scientific software engineering with 119 tasks across 20 domains, revealing failure mechanisms in coding agents including deficits in scientific knowledge, surface-level repairs, and generalization failures."
+      "title": "VoiceMem: Streaming Dual-Brain Memory for Real-Time Interaction",
+      "upvotes": 149,
+      "paper_id": "2608.26005",
+      "abstract": "Conversational systems lack streaming, accurate memory. VoiceMem introduces a dual-brain architecture with informational and emotional components, achieving superior retrieval accuracy and real-time performance for personalized speech interactions."
     },
     {
-      "title": "SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback",
-      "upvotes": 22,
-      "paper_id": "2608.13120",
-      "abstract": "Framework leveraging multi-turn user simulation and governance layers to sustain skill evolution through trustworthy feedback gradients, surpassing self-reflection methods by 23 points across production skills."
+      "title": "Is Next-Chunk Reasoning RL Really Better than SFT? Revisiting Training Strategies under no-CoT Data",
+      "upvotes": 19,
+      "paper_id": "2608.23256",
+      "abstract": "Mixed supervised fine-tuning on combined reasoning corpora outperforms next-chunk reinforcement learning in efficiency and final accuracy across mathematical and out-of-domain reasoning tasks."
     },
     {
-      "title": "Repo0: Design-Driven Zero-to-All Code Generation",
-      "upvotes": 10,
-      "paper_id": "2608.19854",
-      "abstract": "Continuous structural evolution framework using Dual-DAG architectural state for generating complete software projects, improving functionality coverage by up to 20 points over repository-planning baselines."
+      "title": "Long-Horizon Audio-Visual Generation for Persistent Stories and Interactive Worlds",
+      "upvotes": 19,
+      "paper_id": "2608.23383",
+      "abstract": "JoyAI-Echo-1.5 unifies long-form video and interactive world generation through cross-shot memory, geometry-aware camera control, and rollout-aware training to maintain identity and coherence."
     },
     {
-      "title": "FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving",
-      "upvotes": 9,
-      "paper_id": "2608.19758",
-      "abstract": "Production-ready sparse attention implementation achieving 47.26x speedups over FlashAttention-2 at 128K context with mean correction term, GPU optimization, and framework integration for practical deployment."
+      "title": "Video-IFBench: Evaluating Instruction Following of Multimodal LLMs in Video Understanding Scenarios",
+      "upvotes": 15,
+      "paper_id": "2608.25529",
+      "abstract": "A benchmark evaluates how well multimodal language models follow diverse video-based instructions with visual, audio, and structural constraints across 32 task types."
     },
     {
-      "title": "Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See",
-      "upvotes": 7,
-      "paper_id": "2608.17744",
-      "abstract": "Investigation of fine-tuning frontier models to reason in Greek reveals SFT shifts reasoning into target language while RL with verifiable rewards fixes formatting defects, with minimal accuracy changes."
+      "title": "SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?",
+      "upvotes": 13,
+      "paper_id": "2608.23564",
+      "abstract": "A benchmark for evaluating autonomous software migration reveals that current models rarely complete migrations correctly, achieving only 5.4% success rate across 520 runs."
     },
     {
-      "title": "Towards Quantifying Benchmark Optimization in ASR Models",
+      "title": "The Handoff Tax: Continuing Non-Native Trajectories in LLM Agents",
+      "upvotes": 12,
+      "paper_id": "2608.24358",
+      "abstract": "Switching between language models during task execution incurs significant quality and cost penalties, with escalation recovering less than half the capability gap."
+    },
+    {
+      "title": "Rubrics as Visual-Repair Context for Self-Evolving UI-to-Code Generation",
+      "upvotes": 12,
+      "paper_id": "2608.24138",
+      "abstract": "RubSE improves UI-to-code generation stability by using rubric-guided self-evolution to prevent visual repair coupling and trajectory collapse in refinement processes."
+    },
+    {
+      "title": "Gated Recurrent Transformers: Expressive Depth through Recurrent Modulation",
+      "upvotes": 6,
+      "paper_id": "2608.15062",
+      "abstract": "Gated recurrent transformers reuse a shared core across depth with adaptive gates, achieving comparable quality to deeper models with 63% fewer parameters and lower memory."
+    },
+    {
+      "title": "Pushing the Limits of High-Resolution Weather Forecasting through Data Scaling",
       "upvotes": 4,
-      "paper_id": "2608.19936",
-      "abstract": "Methodology revealing that high-performing speech models reproduce benchmark transcripts despite contradictory audio, demonstrating benchmark-conditioned behaviors inflate scores without improving real-world transcription."
+      "paper_id": "2608.14652",
+      "abstract": "BaguanHR improves high-resolution weather forecasting by using variable-wise super-resolution to synthesize training data, demonstrating strong power-law scaling benefits."
     },
     {
-      "title": "Inject, Align, Recover: Staged Post-Training for Retrieval-Free Document Knowledge Internalization",
-      "upvotes": 4,
-      "paper_id": "2608.20281",
-      "abstract": "Three-stage framework converting document corpora into parametric knowledge for retrieval-free QA, achieving 3.6 point domain accuracy gains while recovering general capabilities across model families."
-    },
-    {
-      "title": "Chain-of-Experience for Continual LLM Improvement",
+      "title": "Skill Issue: Are Skills Language-Invariant in LLMs?",
       "upvotes": 3,
-      "paper_id": "2608.18027",
-      "abstract": "Study of test-time learning through iterative feedback loops showing consistent improvements over zero-shot baselines with 5.6% gains and 19% cost reduction using self and environmental feedback signals."
-    },
-    {
-      "title": "τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation",
-      "upvotes": 2,
-      "paper_id": "2608.16885",
-      "abstract": "Hierarchical vision-language-action model using world-model-guided search for subtask generation in long-horizon manipulation, trained on 40,115 hours of real-world data across multiple embodiments."
-    },
-    {
-      "title": "QuoteBench: How Matched Scores Can Hide Command-Path Failures",
-      "upvotes": 2,
-      "paper_id": "2608.13547",
-      "abstract": "Benchmark measuring execution boundary parsing errors in LLM coding agents, revealing matched scores hide substantial damages and revealing boundary disclosure recovers 30-61% performance."
+      "paper_id": "2608.25832",
+      "abstract": "Multilingual self-play reveals significant cross-lingual skill inconsistencies in reasoning and strategy, partly recoverable by altering intermediate reasoning language."
     }
   ],
   "cc_updates": [
     {
-      "tag_name": "v2.1.239",
-      "published_at": "2025-08-21",
-      "body": "Cost estimates now include the 1.1x US-only-inference premium for data-residency workspaces. Added the one-time fullscreen renderer offer on Bedrock, Vertex, Foundry and other previously excluded setups. Added `/claude-api upgrade` to migrate Python projects from `anthropic` 0.x to 1.x. Cloud sessions: plugins synced from claude.ai now show as `name@synced`. Alpine/musl builds: native image paste, clipboard, and audio-capture add-ons now load. Fixed Bedrock streaming behind proxies that strip the response Content-Type header. Fixed Claude Code hanging at startup behind an HTTPS proxy when using Bedrock with an SSO profile. Fixed Edit and Write calls pausing in JetBrains IDE terminals."
+      "tag_name": "v2.1.247",
+      "published_at": "2025-08-26",
+      "body": "Added the `SendFeedback` tool: when something goes wrong in a session, Claude can draft a feedback report for you to review and send from `/feedback` (turn off with the `feedbackDrafts` setting). Added `{id, text, cooldownSessions, priority}` entries, `tipsFile`, and `label` to `spinnerTipsOverride`, so organizations can rotate their own tips alongside the built-in ones. Added a tip on Bash permission prompts pointing to auto mode, with a one-keystroke \"Yes, and switch to auto mode\" option. Added `/claude-api cost-optimize` to profile an existing project's Claude API spend and work through cost levers (caching, token hygiene, batch, effort, model choice) one measured change at a time."
     },
     {
-      "tag_name": "v2.1.238",
-      "published_at": "2025-08-20",
-      "body": "Added a `keybindingFlavor` setting: set it to `readline` to make Ctrl+W in the prompt delete back to the previous whitespace, as in Bash. Plugin marketplaces: `headersHelper` on a url marketplace or a catalog entry runs a command that mints HTTP headers. Added `claude self-hosted-runner --defer-shutdown-max-min <minutes>`. Fixed unbounded memory growth in long interactive sessions: subagent tool results are now released once they leave the recent display window. Fixed custom, project, and plugin output styles drifting back to the default voice mid-session."
+      "tag_name": "v2.1.246",
+      "published_at": "2025-08-25",
+      "body": "Added a startup warning for Bash allow rules with a wildcard before the subcommand (e.g. `Bash(git * main)`), since they also match options inserted before the subcommand. Added an Auto mode tab to `/permissions` for viewing and editing auto mode classifier rules. Added the turn's completion time to the end-of-turn duration line, e.g. `✻ Sautéed for 23s · done 6:05 PM`. Fixed fullscreen mode showing a blank transcript after resizing the terminal and jumping to the bottom until the next keypress. Fixed a severe transcript slowdown when a diff contained a very long single line (e.g. a base64 string); such lines now render truncated with a marker."
     },
     {
-      "tag_name": "v2.1.237",
-      "published_at": "2025-08-20",
-      "body": "Fixed prompt caching for sessions using an LLM gateway or custom base URL. Added a built-in \"Concise\" output style: Claude leads with results and skips preamble and narration, while doing the work just as thoroughly. Select it under Output style in /config."
+      "tag_name": "v2.1.245",
+      "published_at": "2025-08-25",
+      "body": "Fixed a crash on startup on Linux distributions that ship glibc 2.44 (for example Arch Linux, CachyOS and Fedora Rawhide)"
     }
   ]
 }

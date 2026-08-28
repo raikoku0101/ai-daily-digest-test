@@ -1,44 +1,44 @@
 {
   "week": "2026-w34",
-  "content": "# 📅 Claude Code 週刊アップデート — Week 32 · August 3–7, 2026\n\n> Claude Code セッション同士がメッセージを送り合えるようになり、セルフホスト環境が組織のインフラ上でクラウドセッションを実行でき、auto mode がデフォルトの権限モードになります。\n\n## 🚀 主要機能 (3 件)\n\n### Cross-session messaging `v2.1.224`\nClaude Code のセッション同士がメッセージを送り合えるようになりました。Claude は `ListAgents` ツールで他のセッションを検出し、`SendMessage` で送信します。あなたが依頼した場合だけでなく、あるセッションでの変更が別のセッションの作業に影響する場合などにも自動的に送信します。メッセージは Claude が他のセッション向けに書いたテキストであり、会話履歴やファイルは共有されません。macOS と Linux で利用可能。v2.1.224 以降が必要です。\n🔗 https://code.claude.com/docs/en/cross-session-messaging#message-another-session\n\n### Self-hosted environments `v2.1.224`\nセルフホスト環境では、Claude Code クラウドセッションを組織独自のインフラ上で実行できます。Team および Enterprise プランでパブリックベータとして提供中。`claude self-hosted-runner` をマシンやコンテナで実行することでランナーとして登録できます。ユーザーが claude.ai、モバイル/デスクトップアプリ、または `claude --cloud` からセッションを開始する際にあなたの環境を選択すると、そのセッションは組織のネットワーク内部で動作し、内部サービスにアクセスできます。まず管理者設定で **Allow self-hosted environments** を有効化する必要があります。\n🔗 https://code.claude.com/docs/en/self-hosted-environments-quickstart#set-up-an-environment-and-runner\n\n### Auto mode becomes the default `CLI`\n8月14日より、Pro・Max・Team プランの新規セッションでは auto mode がデフォルトの権限モードになります。自分でデフォルトモードを設定している場合は、一度切り替えプロンプトを承認しない限りそのままです。組織が管理するデフォルト設定も変更されません。モードはいつでも切り替えできます。これらのプランではすでに、auto mode が行う分類器の呼び出しが使用量制限にカウントされなくなっています。\n🔗 https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode\n\n## ✨ その他のアップデート\n\n- VS Code 拡張機能に **Focus ビュー** が追加されました。ターンごとにツールのアクティビティを 1 行の折りたたみ行の後ろに隠せます。コマンドメニューまたは `Ctrl+Alt+F`（Mac では `Ctrl+Option+F`）で切り替え可能です。\n- サンドボックスの認証情報ファイルが Linux および WSL2 で `mode: \"mask\"` に対応。サンドボックス内のコマンドはダミーのコピーを読む一方、サンドボックスプロキシが egress 時に実際の値に置き換えます。`extract`、JWT 対応 `decode`、AWS SigV4 再署名オプションも追加されました。\n- マーケットプレイスが新しい `archive` ソースを使ってプラグインを zip アーカイブとして配布できるようになりました。オプションの SHA-256 ピンを使って HTTPS 経由でダウンロードするため、git や npm なしでインストールできます。\n- `/review` が `/code-review` のエイリアスになりました。また `/code-review` を effort レベルなしで実行すると前回使ったレベルを再利用します。\n- `/fork` でコピーしたセッションが、元のセッションのチェックアウトではなく専用の worktree でコード変更を行うようになりました。\n- `/plugin` からインストールしたプラグインは、安全な場合に現在のセッションで即座に有効化されます。インストールサマリーに「Plugin is now active.」またはリロードが必要な場合は `/reload-plugins` を実行するよう表示されます。\n- worktree でコードを変更したバックグラウンドセッションが、タスクに必要な場合のみコミット・プッシュしてドラフト PR を開くようになりました。また `CLAUDE.md` の git 指示に従って動作します。\n- 1 セッションあたり 200 サブエージェントの上限が撤廃されました。長時間実行セッションでも新しいサブエージェントが拒否されなくなります（同時実行数と深さの制限は引き続き適用）。\n- リポジトリのチェックイン設定から Remote Control の自動接続を有効化できなくなりました。ユーザーまたは管理設定で `remoteControlAtStartup` を設定する必要があります（プロジェクト/ローカル設定での無効化は引き続き可能）。\n- Worktree の隔離が強化され、ファイル編集だけでなく、メインチェックアウトへ到達する Bash コマンドや git リダイレクトもブロックされます。セッションのサブエージェントにも適用されます。\n- Bash コマンドが権限チェックの一部を隠せなくなりました。また、タブや不可視の Unicode パディングを使って承認ダイアログでコマンドの一部を隠すことも不可能になりました。\n- PreToolUse 自動許可フックが、要約やコンパクションなどの Claude Code 内部サイドタスクでのツール制限を回避できなくなりました。\n- Ultraplan リサーチプレビューが削除されました（`/ultraplan` コマンドおよび `ultraplan` キーワードも削除）。代わりにプランモードまたは Claude Code on the web をご利用ください。\n\n📄 原文: https://code.claude.com/docs/en/whats-new/2026-w32\n",
-  "fetched_at": "2026-08-20T23:39:58.122315+00:00",
+  "content": "# 📅 Claude Code 週刊アップデート — Week 34 · August 17–21, 2026\n\n> /design スキルで編集可能な UI アートボードを下書きし、Concise（簡潔）出力スタイルを設定。スマートフォンからマシン上の Claude Code セッションを開始できるようになりました。\n\n## 🚀 主要機能 (3 件)\n\n### /design `research preview`\n/design スキルにより、Claude Design のアートボードワークフローが CLI と Claude Code Desktop に導入されました。アーティファクト基盤で構築されており、簡単な説明を入力するだけで Claude が編集可能なアートボードのキャンバスを公開します。好みのアートボードを選んで調整し、そのまま Claude に実装させることができます。Pro・Max・Team・Enterprise プランで利用可能。v2.1.233 以降が必要です。\n🔗 https://code.claude.com/en/artifacts#availability\n\n### Concise output style `v2.1.237`\nConcise（簡潔）は新しい組み込み出力スタイルです。Claude は前置きや状況説明を省いて結果を先に提示しますが、作業自体はデフォルトスタイルと同じ精度で行います。説明や詳細を求めると、フルで回答します。エラーレポート・セキュリティ警告・破壊的操作の確認には、引き続き完全な内容が表示されます。\n🔗 https://code.claude.com/en/output-styles#built-in-output-styles\n\n### スマートフォンからマシン上のセッションを開始 `mobile`\n`claude remote-control` を実行中のマシンが、Claude アプリの「Code」タブ最上部にデバイスカードとして表示されるようになりました。Remote Control はリサーチプレビューから正式リリースされました。\n🔗 https://code.claude.com/en/remote-control#start-a-remote-control-session\n\n## ✨ その他のアップデート\n\n- claude.ai の使用量制限がリセットされると、Claude Code がセッションを自動的に再開するようになりました。`/config` の「使用量制限時に自動継続」行からオフにできます。\n- オプションの `spellcheck` 設定を有効にすると、インストール済みの `aspell`・`hunspell`・`ispell` を使ってプロンプト入力中にスペルミスに下線が表示されます。\n- `glab auth login` で認証済みの `glab` CLI がある場合、オープン中の GitLab マージリクエストのブランチではフッターに `MR !N` バッジが表示され、ドラフト・オープン・マージ可能の状態に応じて色が変わります。\n- スマートフォンや claude.ai/code からエフォートレベルを変更すると、マシン上のセッションに即時反映されます。Desktop や VS Code がホストする Remote Control セッションも、接続デバイスに現在の権限モードを表示するようになりました。\n- Claude が作業中でも `/permissions` を開いたり `/add-dir <パス>` を実行したりできるようになりました。権限ルールの変更は現在のターンの残り部分に適用されます。\n- バックグラウンドタスクが `/goal` を待機させている場合、Claude は無期限に待つのではなく 30 分後にチェックインし、セッションがアイドル状態になると間隔を延ばしながらチェックインを継続します。`CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0` でオプトアウト可能です。\n- 自分のプロンプトがトランスクリプトでマークダウンレンダリングされるようになりました。コードブロックのハイライト・インラインコード・リストがレスポンスと同様に表示されます。\n- 新しい環境変数 `ANTHROPIC_DEFAULT_MODEL` で新規セッションの開始モデルを設定できます。`/model` で選択したモデルは引き続き優先され、再起動後も維持されます。\n- `SendMessage` の `notify_when_idle` 入力を使って、同じマシン上の別の Claude Code セッションがアイドル状態になったときに通知を受け取れるようになりました。\n- `keybindingFlavor` を `\"readline\"` に設定すると、プロンプト入力での `Ctrl+W` が `/` などの句読点ではなく前の空白まで削除するようになります（Bash と同じ動作）。\n- Windows ネイティブ環境でも、macOS・Linux と同様に `SendMessage` でセッション間メッセージ送信、`ListAgents` でセッション検索ができるようになりました。\n- セルフホスト型ランナーが `--defer-shutdown-max-min` を受け付けるようになり、SIGTERM 後も指定した分数の間アタッチ中のセッションにサービスを継続できます。\n- セルフホスト型ランナーが `--proxy-authorization-command` または `--proxy-authorization-file` を受け付けるようになり、認証を必要とするエグレスプロキシ向けに新鮮な `Proxy-Authorization` ヘッダーを供給できます。\n\n📄 原文: https://code.claude.com/docs/en/whats-new/2026-w34\n",
+  "fetched_at": "2026-08-27T23:15:41.795723+00:00",
   "raw": {
-    "title": "Week 32 · August 3–7, 2026",
-    "subtitle": "Claude Code sessions message each other, self-hosted environments run cloud sessions on your infrastructure, and auto mode becomes the default permission mode.",
+    "title": "Week 34 · August 17–21, 2026",
+    "subtitle": "Draft editable UI artboards with the /design skill, set the Concise output style, and start a Claude Code session on your machine from your phone.",
     "features": [
       {
-        "title": "Cross-session messaging",
-        "pill": "v2.1.224",
-        "lede": "Your Claude Code sessions can now message each other. Claude discovers your other sessions with the ListAgents tool and sends with SendMessage, either when you ask it to or on its own, such as after a change in one session affects what another is working on. A message is text Claude writes for the other session, never your conversation history or files. Available on macOS and Linux. Requires v2.1.224 or later.",
-        "link": "/en/cross-session-messaging#message-another-session"
+        "title": "/design",
+        "pill": "research preview",
+        "lede": "The /design skill brings Claude Design's artboard workflow into the CLI and Claude Code Desktop, built on artifacts. Run it with a brief and Claude publishes a canvas of editable artboards for your UI. Pick one, tweak it, then have Claude implement it. Available on Pro, Max, Team, and Enterprise. Requires v2.1.233 or later.",
+        "link": "/en/artifacts#availability"
       },
       {
-        "title": "Self-hosted environments",
-        "pill": "v2.1.224",
-        "lede": "Self-hosted environments run Claude Code cloud sessions on your organization's own infrastructure, in public beta on Team and Enterprise plans. Run claude self-hosted-runner on your machines or containers to turn them into runners. When someone picks your environment while starting a session from claude.ai, the mobile or desktop apps, or claude --cloud, that session runs inside your network, with access to your internal services. An Owner or admin turns on Allow self-hosted environments in admin settings first.",
-        "link": "/en/self-hosted-environments-quickstart#set-up-an-environment-and-runner"
+        "title": "Concise output style",
+        "pill": "v2.1.237",
+        "lede": "Concise is a new built-in output style. Claude leads with the result and skips preamble and narration, while doing the work as thoroughly as in the Default style. When you ask for an explanation or more detail, Claude answers in full. Error reports, security warnings, and confirmations for destructive actions keep their complete content.",
+        "link": "/en/output-styles#built-in-output-styles"
       },
       {
-        "title": "Auto mode becomes the default",
-        "pill": "CLI",
-        "lede": "Starting August 14, auto mode is the default permission mode for new sessions on Pro, Max, and Team plans. If you set a default mode yourself, it stays in place unless you accept the one-time switch prompt, and a default your organization manages doesn't change. You can still switch modes at any time. Already in effect on those plans: the classifier calls auto mode makes no longer count toward your usage limits.",
-        "link": "/en/permission-modes#eliminate-prompts-with-auto-mode"
+        "title": "Start a session on your machine from your phone",
+        "pill": "mobile",
+        "lede": "Any machine running claude remote-control now shows up as a device card at the top of the Code tab in the Claude app. Remote Control is also out of research preview.",
+        "link": "/en/remote-control#start-a-remote-control-session"
       }
     ],
     "other_wins": [
-      "The VS Code extension gets Focus view, which hides tool activity behind one expandable row per turn; toggle it from the command menu or with Ctrl+Alt+F (Ctrl+Option+F on Mac)",
-      "Sandbox credential files accept mode: \"mask\" on Linux and WSL2, so sandboxed commands read a sentinel copy while the sandbox proxy substitutes the real value on egress; credential masking also gains extract, JWT-aware decode, and AWS SigV4 re-signing options",
-      "Marketplaces can distribute a plugin as a zip archive with the new archive source, downloaded over HTTPS with an optional SHA-256 pin, so installs work without git or npm",
-      "/review is now an alias of /code-review, and /code-review with no effort level reuses the level you typed last",
-      "A session you copy with /fork now makes its code changes in a worktree of its own instead of the original session's checkout",
-      "Plugins you install from /plugin activate in the current session when it's safe to do so; the install summary reports Plugin is now active. or tells you to run /reload-plugins",
-      "Background sessions that changed code in a worktree now commit and push before finishing, open a draft pull request only when the task calls for one, and follow the git instructions in your CLAUDE.md",
-      "The 200-subagent-per-session cap is removed, so long-running sessions no longer refuse new subagents; the concurrency and depth limits still apply",
-      "A repository's checked-in settings can no longer turn on Remote Control auto-connect; set remoteControlAtStartup in your user or managed settings instead, and project and local settings can only turn it off",
-      "Worktree isolation now blocks not only file edits but also Bash commands and git redirects that reach the main checkout, in every session type and in the session's subagents",
-      "A Bash command can no longer hide part of itself from permission checks, and tab or invisible-Unicode padding no longer hides part of a command from the approval dialog",
-      "PreToolUse auto-allow hooks no longer bypass tool restrictions in Claude Code's internal side tasks such as summaries and compaction",
-      "The Ultraplan research preview is removed, including the /ultraplan command and the ultraplan keyword; use plan mode or Claude Code on the web instead"
+      "Claude Code now continues your session automatically when a claude.ai usage limit resets; turn it off from the Continue automatically at usage limit row in /config",
+      "The optional spellcheck setting underlines misspelled words in the prompt input as you type, using your installed aspell, hunspell, or ispell",
+      "On a branch with an open GitLab merge request, with the glab CLI authenticated through glab auth login, the footer shows an MR !N badge colored by whether the merge request is a draft, open, or mergeable",
+      "Change the effort level from your phone or claude.ai/code and it applies to the session on your machine; Remote Control sessions hosted by Desktop or VS Code also show connected devices the session's current permission mode",
+      "You can open /permissions or run /add-dir <path> while Claude is working; permission rule changes apply to the rest of the current turn",
+      "When background tasks keep a /goal waiting, Claude checks in on them after 30 minutes instead of waiting indefinitely and keeps checking in, at longer intervals while the session sits idle; set CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0 to opt out",
+      "Your own prompts now render markdown in the transcript, with highlighted code blocks, inline code, and lists, the same way replies do",
+      "The new ANTHROPIC_DEFAULT_MODEL environment variable sets the model new sessions start on; a /model pick still overrides it and persists across restarts",
+      "With the notify_when_idle input on SendMessage, Claude can ask another Claude Code session on the same machine to send one notice when it next goes idle",
+      "Set keybindingFlavor to \"readline\" to make Ctrl+W in the prompt delete back to the previous whitespace, as Bash does, instead of stopping at punctuation such as /",
+      "On native Windows, your Claude Code sessions can now message each other with SendMessage and find each other with ListAgents, as on macOS and Linux",
+      "Self-hosted runners accept --defer-shutdown-max-min, which keeps serving attached sessions for a set number of minutes after SIGTERM",
+      "Self-hosted runners accept --proxy-authorization-command or --proxy-authorization-file to supply a fresh Proxy-Authorization header for egress proxies that require one"
     ]
   }
 }

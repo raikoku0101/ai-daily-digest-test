@@ -1,6 +1,6 @@
-**5. Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See**
-**著者**: Low-Resource Language Research Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.17744
+**5. SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?**
+**著者**: SWE Refactor Bench Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.23564
 
 **まとめ**:
-低リソース言語（ギリシャ語）でのLLM推論制御を研究。基盤モデルはギリシャ語の質問に英語で推論するため監査不能な問題があり、SFTで98%をターゲット言語推論に改善し、RLで形式スキップ（24%→2.5%）・推論チャネル流出（3.5%→0.0%）を解決。精度ベンチマークには現れないが、SFTとRLが相補的な役割を持つことを「6つの行動次元」評価で実証した。
+コーディングエージェントがリポジトリ全体の技術スタック移行を自律的に完了できるかを評価する包括的ベンチマーク。移行監査・130,118個の固定動作チェック・エージェント検証の三段階プロトコルで評価し、520回中わずか28回（5.4%）のみが全段階を通過。最高性能のClaude Opus 5でも47.0/100点に留まり、現在のAIコーディングエージェントの長期的・全体的移行能力の根本的限界を数値で示した。

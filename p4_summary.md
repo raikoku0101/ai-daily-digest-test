@@ -1,6 +1,6 @@
-**4. FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving**
-**著者**: FlashPrefill V2 Authors et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.19758
+**4. Video-IFBench: Evaluating Instruction Following of Multimodal LLMs in Video Understanding Scenarios**
+**著者**: Video-IFBench Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2608.25529
 
 **まとめ**:
-LLMの長文脈プリフィル計算のボトルネックを解決するブロックスパースアテンション手法のV2。平均補正項の追加・疎行列アテンション演算子の再設計・SGLang等推論フレームワーク統合を実現。NVIDIA H20で128K文脈長においてFlashAttention-2比FP8で47.26倍、BF16で27.19倍のスピードアップを達成し、実用的な長文脈サービングを大幅に改善する。
+マルチモーダルLLM（MLLM）のビデオ理解における「指示遵守能力」を体系的に評価する新ベンチマークVideo-IFBenchを提案。32種類のタスクタイプ・39個の制約カテゴリ（セマンティック22個+フォーマット17個）・4種類の命令テンプレート（Single/Multi/Selection/Nested）で構成。最高性能のGemini-3-Proでも厳格指標TISRは54.5%に留まり、「高いビデオ理解能力≠確実な命令遵守」という重要な知見を示す。
