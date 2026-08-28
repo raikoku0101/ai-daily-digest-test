@@ -1,0 +1,84 @@
+{
+  "date": "2026-08-29",
+  "content": "# AI Daily Digest — 2026-08-29\n\n## 今日のハイライト\n- **ゲーム×世界モデル研究が急増**: 上位10論文中4本がゲーム環境を活用した世界モデル・エージェント研究。ゲームが「検証可能な世界モデル訓練基盤」として認識されつつあり、1位論文(118 upvotes)が示す通り、ゲーム生成データが次世代AIの核心インフラになりつつある。\n- **Claude Code v2.1.251がリリース**: PreModelSwitch/PostModelSwitchフックの追加でワークフロー自動化が強化。Opus 5の安定性問題も修正され、エンタープライズ運用の信頼性が大幅向上。\n- **エージェントの自己改善がリアルタイム化**: TTPO（テスト時ポリシー最適化）とPILOT（実行中自己改善）の2論文が示す通り、エージェントが推論・実行中にリアルタイムで自己最適化するパラダイムが急速に進展している。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.251（2025-08-28）\n**主要新機能**:\n- `PreModelSwitch` / `PostModelSwitch` フックイベントを追加 — モデル切替前後に任意シェルコマンドを実行可能に\n- フォアグラウンドサブエージェントのツール呼び出しを Remote Control クライアントへライブストリーミング\n- `/usage` に支出上限バーを追加、`/cost` にプロンプトキャッシュ行を追加\n\n**バグ修正**:\n- シンボリックリンクをたどるファイルツールの修正\n- プラグインディレクトリ外を参照するプラグインコマンドの修正\n- Workflow ツールが許可外の場所を読む問題の修正\n- 空テキストエラーでセッションが止まる問題の修正\n- Opus 5 リクエストがエフォート設定で失敗する問題の修正\n\n**ユーザーへの影響**: フック機能が強化され、コスト可視化が向上。Opus 5 利用者の信頼性が改善。\n\n---\n\n### v2.1.250（2025-08-28）\n**主要改善**: バグ修正と信頼性向上。安定性のためのマイナーリリース。\n\n---\n\n### v2.1.248（2025-08-27）\n**主要新機能**:\n- `--restricted` フラグを追加 — 組み込みツールを除去しファイルアクセスを制限するセキュリティモード\n- `experimental.cacheTtl` エージェント設定でプロンプトキャッシュ TTL を調整可能に\n- セルフホストランナーのクライアントラベルオーバーライド機能\n\n**バグ修正**:\n- 長いセッションでのプロンプトキャッシュミス修正\n- 30日後に Claude Desktop セッションがクリーンアップされない問題の修正\n- Bedrock/Vertex/Foundry セッション間のクロスセッションメッセージング修正\n\n**ユーザーへの影響**: エンタープライズ向けセキュリティが強化。キャッシュ効率が改善され API コストが削減される見込み。\n\n## 注目論文 TOP 10\n\n**1. Agentic Game Development as a Verifiable Trajectory Data Engine for Scaling World Models** | 118 upvotes | https://arxiv.org/abs/2608.25518\n🎯**背景**: 世界モデルのスケーリングは動画データ増量・計算増加という非効率な戦略に依存している。\n🔧**手法**: ゲーム開発エージェントを使い、検証可能なトラジェクトリデータを自動生成する再帰的データエンジンを構築。グラウンデッド報酬信号を持つ高品質データを生成する。\n📊**結果**: 生成されたデータで訓練した世界モデルが従来のクロールデータ比較で性能向上を示した。\n💡**意義**: データエンジンとしてのゲーム開発という新発想で、世界モデルのスケーリング効率を根本から変える可能性がある。\n⚠️**限界**: ゲーム環境に特化しており、実世界の複雑な物理現象への汎化は未検証。\n\n**2. PAWBench: How Far Are We from Probabilistically Aligned World Modeling?** | 73 upvotes | https://arxiv.org/abs/2608.27345\n🎯**背景**: 動画生成モデルが「世界モデル」と称されるが、物理プロセスは複数の妥当な結果を持つため、単一軌跡生成では不十分。\n🔧**手法**: 確率的に整合した世界モデルを評価するためのベンチマーク PAWBench を構築。可能な行動の分布を再現できるかを測定。\n📊**結果**: 現行の最先端動画生成モデルが確率的整合性において大幅に不足していることを定量的に示した。\n💡**意義**: 世界モデルの評価軸として「確率分布の整合性」という新指標を提示し、分野の進歩方向を明示。\n⚠️**限界**: ベンチマーク構築に用いるグラウンドトゥルース分布の収集コストが高い。\n\n**3. UrbanGround: From Local Perception to Spatial Agency in a Real-Scale City** | 69 upvotes | https://arxiv.org/abs/2608.27456\n🎯**背景**: MLLMは街路ビューを解釈できるが、エージェントが移動し始めると局所的な視覚証拠が行動につながるかが未解明。\n🔧**手法**: 実スケール都市環境でMLLMエージェントの都市知覚から行動決定までの能力を体系的に評価するフレームワークを構築。\n📊**結果**: 現行MLLMは局所視覚認識には強いが、長距離空間推論や動的行動計画に深刻な限界があることが判明。\n💡**意義**: 自律走行・都市ロボティクス分野での現実的な能力ギャップを明示し、次世代エージェント研究の方向性を示す。\n⚠️**限界**: 特定都市環境でのテストに限られており、異なる都市設計への転移学習は未検証。\n\n**4. TTPO: Test-Time Policy Optimization** | 62 upvotes | https://arxiv.org/abs/2608.27448\n🎯**背景**: RLや自己蒸留などの事後訓練手法は数学的推論を向上させるが、正解ラベルへの依存がテスト時訓練を阻む。\n🔧**手法**: 正解ラベル不要のテスト時ポリシー最適化(TTPO)を提案。推論時に生成されたサンプルの自己整合性を利用して動的にポリシーを更新。\n📊**結果**: 数学推論ベンチマークで従来のテスト時計算手法を超え、少数サンプルでの適応能力が向上。\n💡**意義**: ラベルなしでテスト時に自己改善できる仕組みは、分布外データへの汎化を根本的に変える可能性がある。\n⚠️**限界**: 計算コストが高く、リアルタイム推論への適用には最適化が必要。\n\n**5. Training Agents to Evolve with Their Harness: TaoLive Digital Avatar Agent Technical Report** | 43 upvotes | https://arxiv.org/abs/2608.15763\n🎯**背景**: AIデジタルアバターは商品質問回答・視聴者エンゲージ・マーケティング戦略実行を低レイテンシで求められる。\n🔧**手法**: ハーネス（実行環境）の変化に追随して自動的に進化するエージェント訓練手法を開発。継続的なハーネス適応ループを実装。\n📊**結果**: TaoLiveプラットフォームでの実運用で、戦略更新頻度と応答精度の両立を達成。\n💡**意義**: エージェントがインフラ変化に自律適応できる枠組みは、商用AIアバター普及の重要な技術基盤となる。\n⚠️**限界**: 特定プラットフォーム(Taobao Live)向けに特化しており、他ECプラットフォームへの汎化には追加工夫が必要。\n\n**6. GameWAM: A World Action Model for Video Games** | 37 upvotes | https://arxiv.org/abs/2608.26200\n🎯**背景**: 現代ビデオゲームは一人称知覚・急激な視覚変化・持続的世界状態・多様なネイティブコントロールを組み合わせるが、既存エージェントは世界ダイナミクスモデルを欠く。\n🔧**手法**: 視覚・行動・状態を統合的にモデリングするWorld Action Model(WAM)を提案。ゲームの動的状態を明示的に表現しながら行動を決定する。\n📊**結果**: 複数の主要タイトルで従来の視覚→行動直接マッピング手法を上回る性能を達成。\n💡**意義**: ゲームAIに「世界の理解」を組み込む設計思想は、汎用ゲームエージェントの発展に重要な一歩。\n⚠️**限界**: 評価ゲームが限定的で、オープンワールド系の複雑なゲームへの適用は未検証。\n\n**7. PILOT in the Loop: Live Self-Improvement for Long-Horizon Agents** | 25 upvotes | https://arxiv.org/abs/2608.26530\n🎯**背景**: 長期タスクエージェントは実行中に経験を積むが、既存の自己改善手法は実行完了後にしか処理できず、進行中のランを修正できない。\n🔧**手法**: PILOT(Progressive In-Loop Optimization of Trajectories)を提案。実行中にリアルタイムで経験を分析し、現在のランを動的に改善する。\n📊**結果**: 長期タスクベンチマークでオフライン改善手法と比較して、リアルタイム適応による成功率向上を実証。\n💡**意義**: 「実行しながら学ぶ」パラダイムは、長期エージェントタスクの信頼性を大幅に向上させる可能性がある。\n⚠️**限界**: リアルタイム最適化の計算オーバーヘッドが大きく、レイテンシ制約が厳しいタスクでは適用困難。\n\n**8. Zero-WAM: In-Context World-Action Modeling from Human Videos for Open-Ended Task Generalization** | 16 upvotes | https://arxiv.org/abs/2608.26103\n🎯**背景**: ロボット学習における未訓練タスクへのゼロショット汎化は依然として中心的課題。LLMではコンテキスト指定で新タスクが可能だが、ロボットポリシーは難しい。\n🔧**手法**: 人間の動画からIn-Context World-Action Modelingを学習するZero-WAMを提案。コンテキスト内の動作デモから直接行動推論する。\n📊**結果**: 訓練時未見のタスクへの汎化能力が従来手法より大幅に改善。ロボット操作の汎化ベンチマークで最高性能を達成。\n💡**意義**: 人間動画という豊富なデータソースからのIn-Context学習は、ロボット汎化の実用化を加速する可能性がある。\n⚠️**限界**: 高品質な人間デモ動画への依存度が高く、特定タスクドメインでの動画収集コストが課題。\n\n**9. Procedura: Agentic 3D Modeling with Procedural Control** | 7 upvotes | https://arxiv.org/abs/2608.26238\n🎯**背景**: 単一画像からの3D生成は進歩しているが、密メッシュはシャープなエッジを持てず、パーツ分解もユーザー編集パラメータも持たない。\n🔧**手法**: プロシージャル制御を持つエージェント型3Dモデリングシステム Procedura を提案。パーツ分解と編集可能パラメータを持つ手続き的3D表現を自動生成。\n📊**結果**: 機械加工品・家具などエッジのシャープな物体で、従来の密メッシュ生成より高品質かつ編集可能な3Dモデルを生成。\n💡**意義**: 3D生成モデルに「編集可能性」を持たせる設計思想は、プロダクトデザインや製造業への応用を大きく広げる。\n⚠️**限界**: プロシージャル表現が得意とする人工物に強く、有機的形状（植物・人体等）への適用は限定的。\n\n**10. CaRGo-T: Causal Reasoning Graph-of-Thought improves Multimodal Humor Comprehension** | 6 upvotes | https://arxiv.org/abs/2608.23172\n🎯**背景**: VLMは多様なマルチモーダルタスクで高性能を示すが、エンティティ間の微妙な相互作用に依存するユーモア理解は依然困難。\n🔧**手法**: 因果推論グラフとGraph-of-Thoughtを組み合わせたCaRGo-Tを提案。ユーモアのメカニズムをグラフ上の因果関係として明示的にモデリング。\n📊**結果**: マルチモーダルユーモア理解ベンチマークで既存VLMを上回り、因果推論の有効性を実証。\n💡**意義**: 「ユーモアを理解するには因果関係の把握が必要」という知見は、常識推論全般への応用が期待される。\n⚠️**限界**: ユーモアは文化・言語に強く依存するため、英語以外の言語への転移学習は未検証。\n\n",
+  "fetched_at": "2026-08-28T22:06:04.236906+00:00",
+  "papers": [
+    {
+      "title": "SWE-bench Science: Can Coding Agents Resolve Engineering Tasks in Science?",
+      "upvotes": 51,
+      "paper_id": "2608.19799",
+      "abstract": "Repository-level benchmark for scientific software engineering with 119 tasks across 20 domains, revealing failure mechanisms in coding agents including deficits in scientific knowledge, surface-level repairs, and generalization failures."
+    },
+    {
+      "title": "SkillEvo: Self-Renewing Evolution Gradients from Multi-Turn Interaction Feedback",
+      "upvotes": 22,
+      "paper_id": "2608.13120",
+      "abstract": "Framework leveraging multi-turn user simulation and governance layers to sustain skill evolution through trustworthy feedback gradients, surpassing self-reflection methods by 23 points across production skills."
+    },
+    {
+      "title": "Repo0: Design-Driven Zero-to-All Code Generation",
+      "upvotes": 10,
+      "paper_id": "2608.19854",
+      "abstract": "Continuous structural evolution framework using Dual-DAG architectural state for generating complete software projects, improving functionality coverage by up to 20 points over repository-planning baselines."
+    },
+    {
+      "title": "FlashPrefill V2: Block-Sparse Prefill Attention for Long-Context LLM Serving",
+      "upvotes": 9,
+      "paper_id": "2608.19758",
+      "abstract": "Production-ready sparse attention implementation achieving 47.26x speedups over FlashAttention-2 at 128K context with mean correction term, GPU optimization, and framework integration for practical deployment."
+    },
+    {
+      "title": "Thinking in a Low-Resource Language: What SFT Builds, What RL Fixes, What Accuracy Cannot See",
+      "upvotes": 7,
+      "paper_id": "2608.17744",
+      "abstract": "Investigation of fine-tuning frontier models to reason in Greek reveals SFT shifts reasoning into target language while RL with verifiable rewards fixes formatting defects, with minimal accuracy changes."
+    },
+    {
+      "title": "Towards Quantifying Benchmark Optimization in ASR Models",
+      "upvotes": 4,
+      "paper_id": "2608.19936",
+      "abstract": "Methodology revealing that high-performing speech models reproduce benchmark transcripts despite contradictory audio, demonstrating benchmark-conditioned behaviors inflate scores without improving real-world transcription."
+    },
+    {
+      "title": "Inject, Align, Recover: Staged Post-Training for Retrieval-Free Document Knowledge Internalization",
+      "upvotes": 4,
+      "paper_id": "2608.20281",
+      "abstract": "Three-stage framework converting document corpora into parametric knowledge for retrieval-free QA, achieving 3.6 point domain accuracy gains while recovering general capabilities across model families."
+    },
+    {
+      "title": "Chain-of-Experience for Continual LLM Improvement",
+      "upvotes": 3,
+      "paper_id": "2608.18027",
+      "abstract": "Study of test-time learning through iterative feedback loops showing consistent improvements over zero-shot baselines with 5.6% gains and 19% cost reduction using self and environmental feedback signals."
+    },
+    {
+      "title": "τ₀-VLA: a Hierarchical Robot Foundation Model with World-Model-Guided Test-Time Computation",
+      "upvotes": 2,
+      "paper_id": "2608.16885",
+      "abstract": "Hierarchical vision-language-action model using world-model-guided search for subtask generation in long-horizon manipulation, trained on 40,115 hours of real-world data across multiple embodiments."
+    },
+    {
+      "title": "QuoteBench: How Matched Scores Can Hide Command-Path Failures",
+      "upvotes": 2,
+      "paper_id": "2608.13547",
+      "abstract": "Benchmark measuring execution boundary parsing errors in LLM coding agents, revealing matched scores hide substantial damages and revealing boundary disclosure recovers 30-61% performance."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.239",
+      "published_at": "2025-08-21",
+      "body": "Cost estimates now include the 1.1x US-only-inference premium for data-residency workspaces. Added the one-time fullscreen renderer offer on Bedrock, Vertex, Foundry and other previously excluded setups. Added `/claude-api upgrade` to migrate Python projects from `anthropic` 0.x to 1.x. Cloud sessions: plugins synced from claude.ai now show as `name@synced`. Alpine/musl builds: native image paste, clipboard, and audio-capture add-ons now load. Fixed Bedrock streaming behind proxies that strip the response Content-Type header. Fixed Claude Code hanging at startup behind an HTTPS proxy when using Bedrock with an SSO profile. Fixed Edit and Write calls pausing in JetBrains IDE terminals."
+    },
+    {
+      "tag_name": "v2.1.238",
+      "published_at": "2025-08-20",
+      "body": "Added a `keybindingFlavor` setting: set it to `readline` to make Ctrl+W in the prompt delete back to the previous whitespace, as in Bash. Plugin marketplaces: `headersHelper` on a url marketplace or a catalog entry runs a command that mints HTTP headers. Added `claude self-hosted-runner --defer-shutdown-max-min <minutes>`. Fixed unbounded memory growth in long interactive sessions: subagent tool results are now released once they leave the recent display window. Fixed custom, project, and plugin output styles drifting back to the default voice mid-session."
+    },
+    {
+      "tag_name": "v2.1.237",
+      "published_at": "2025-08-20",
+      "body": "Fixed prompt caching for sessions using an LLM gateway or custom base URL. Added a built-in \"Concise\" output style: Claude leads with results and skips preamble and narration, while doing the work just as thoroughly. Select it under Output style in /config."
+    }
+  ]
+}
