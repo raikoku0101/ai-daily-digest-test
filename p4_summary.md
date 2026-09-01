@@ -1,6 +1,6 @@
-**4. TTPO: Test-Time Policy Optimization**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.27448
+**4. Super Library Agent: Joint Generation and Maintenance of Multiple Applications Beyond the Single Codebase**
+**著者**: Super Library Agent Team (2026)
+**arXiv**: https://arxiv.org/abs/2608.29310
 
 **まとめ**:
-正解ラベルなしのテスト時訓練（TTT）でLLMの数学推論を改善するTTPO（Test-Time Policy Optimization）を提案。多数決疑似ラベルを活用しながらその不正確さに耐性を持つ非対称目的関数（正サンプルにはOPSDで密な監督、負サンプルにはGrouped RLで選択的ペナルティ）を設計。Qwen3シリーズで評価し、完全TTT設定で1.7Bが+7.2点（TTRL比+5.4点）を達成、正解ラベルを使うOPSDと同等以上の性能をラベルなしで実現した。
+LLMコーディングエージェントが複数の関連アプリケーションを生成・保守する際の「共有ライブラリ維持」問題（Super Library Agent問題）を新たに定義。候補ガイド付き抽出（AST境界識別・自然言語要約マッチング）と文脈認識マイグレーション戦略により、WebGen-BenchとPaperBenchでトークン長6.7%削減・冗長性38%削減・構造的侵食4.4%低減を達成。複数コードベースにまたがる持続可能なLLMコーディングの基礎を確立する。

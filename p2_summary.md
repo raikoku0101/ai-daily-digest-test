@@ -1,6 +1,6 @@
-**2. PAWBench: How Far Are We from Probabilistically Aligned World Modeling?**
-**著者**: Anonymous et al. (2026)
-**arXiv**: https://arxiv.org/abs/2608.27345
+**2. LightNav-0: Eliciting VLM Spatial Intelligence for Generalist Embodied Navigation**
+**著者**: LightNav-0 Team (2026)
+**arXiv**: https://arxiv.org/abs/2608.30935
 
 **まとめ**:
-ビデオ生成モデルが「世界モデル」として機能するには、単一のもっともらしい未来を生成するだけでなく、可能な未来の確率分布を正しく再現する必要があるという問題設定。PAWBench（50シナリオ、8物理メカニズムグループ）を構築し、11の最新ビデオ生成モデルを評価した結果、確率質量の正確なマッチング・有効未来の広範カバレッジ・シーン間の信頼性を同時に達成するモデルは存在しないことが判明。世界モデル評価の新しいパラダイムを提示した重要な研究。
+事前学習済みVLM（Qwen3-VL-4B-Instruct）の空間的知能を活用し、タスク・環境・ロボット体型に依存しない汎用embodied navigationモデル「LightNav-0」を提案。Dual-Channel Pointing（実行可能な方向と目標位置の2チャネル指示）と残差ベクトル量子化（RVQ）アクショントークナイザーを組み合わせ、指示追従・物体ナビゲーション・視覚追跡を単一モデルで実現。10のシミュレーション評価設定で先行手法を上回る成果を達成し、実世界でもゼロショット転移を実証。
