@@ -1,117 +1,61 @@
-# AI Daily Digest — 2026-08-29
+# AI Daily Digest — 2026-09-02
 
 ## 今日のハイライト
-- **ゲーム×世界モデル研究が急増**: 上位10論文中4本がゲーム環境を活用した世界モデル・エージェント研究。ゲームが「検証可能な世界モデル訓練基盤」として認識されつつあり、1位論文(118 upvotes)が示す通り、ゲーム生成データが次世代AIの核心インフラになりつつある。
-- **Claude Code v2.1.251がリリース**: PreModelSwitch/PostModelSwitchフックの追加でワークフロー自動化が強化。Opus 5の安定性問題も修正され、エンタープライズ運用の信頼性が大幅向上。
-- **エージェントの自己改善がリアルタイム化**: TTPO（テスト時ポリシー最適化）とPILOT（実行中自己改善）の2論文が示す通り、エージェントが推論・実行中にリアルタイムで自己最適化するパラダイムが急速に進展している。
+- **DreamX-Creator**: 7Bモデルで音声・映像を2K解像度で同時生成する革新的システムが86 upvotesを獲得。マルチモーダル生成AIの新地平を開く。
+- **Claude Code v2.1.257**: Claude Fable 5.1（1Mコンテキスト）がデフォルトFableモデルに昇格。タイムゾーン設定やオートモードの脱獄防止ルールも追加。
+- **LLMパーソナライゼーションの隠れたコスト**: パーソナライズがバランスより満足度最適化に傾く問題を実証。AI倫理・安全性研究の重要知見。
 
 
-## Claude Code / Anthropic アップデート
+## Claude Code アップデート
 
-### v2.1.251（2025-08-28）
-**主要新機能**:
-- `PreModelSwitch` / `PostModelSwitch` フックイベントを追加 — モデル切替前後に任意シェルコマンドを実行可能に
-- フォアグラウンドサブエージェントのツール呼び出しを Remote Control クライアントへライブストリーミング
-- `/usage` に支出上限バーを追加、`/cost` にプロンプトキャッシュ行を追加
+**v2.1.258** (2025-09-01)
+Fixed Claude Code failing to launch on macOS 12 (Monterey), a regression from 2.1.255. Fixed remote and scheduled sessions failing with "user messages must have non-empty content" after a re-sent permission approval could not be applied.
 
-**バグ修正**:
-- シンボリックリンクをたどるファイルツールの修正
-- プラグインディレクトリ外を参照するプラグインコマンドの修正
-- Workflow ツールが許可外の場所を読む問題の修正
-- 空テキストエラーでセッションが止まる問題の修正
-- Opus 5 リクエストがエフォート設定で失敗する問題の修正
+**v2.1.257** (2025-09-01)
+Added Claude Fable 5.1 (`claude-fable-5-1`) as the new default Fable model — 1M context, $10/$50 per Mtok with $0.25/Mtok cache reads. Added "Time format" (`timeFormat`) and `timeZone` settings: 12-hour, 24-hour, 24-hour UTC, or strftime pattern for timestamps. Added Containment Escape rule to auto mode.
 
-**ユーザーへの影響**: フック機能が強化され、コスト可視化が向上。Opus 5 利用者の信頼性が改善。
-
----
-
-### v2.1.250（2025-08-28）
-**主要改善**: バグ修正と信頼性向上。安定性のためのマイナーリリース。
-
----
-
-### v2.1.248（2025-08-27）
-**主要新機能**:
-- `--restricted` フラグを追加 — 組み込みツールを除去しファイルアクセスを制限するセキュリティモード
-- `experimental.cacheTtl` エージェント設定でプロンプトキャッシュ TTL を調整可能に
-- セルフホストランナーのクライアントラベルオーバーライド機能
-
-**バグ修正**:
-- 長いセッションでのプロンプトキャッシュミス修正
-- 30日後に Claude Desktop セッションがクリーンアップされない問題の修正
-- Bedrock/Vertex/Foundry セッション間のクロスセッションメッセージング修正
-
-**ユーザーへの影響**: エンタープライズ向けセキュリティが強化。キャッシュ効率が改善され API コストが削減される見込み。
+**v2.1.252** (2025-08-31)
+Fixed Bash commands failing with "task output swap refused (tasks dir moved or linked)" on some Macs. Fixed "always allow" not saving in projects without `.claude/settings.local.json`. Fixed Remote Control sessions stalling after a tool finished when connection to claude.ai was degraded.
 
 ## 注目論文 TOP 10
 
-**1. Agentic Game Development as a Verifiable Trajectory Data Engine for Scaling World Models** | 118 upvotes | https://arxiv.org/abs/2608.25518
-🎯**背景**: 世界モデルのスケーリングは動画データ増量・計算増加という非効率な戦略に依存している。
-🔧**手法**: ゲーム開発エージェントを使い、検証可能なトラジェクトリデータを自動生成する再帰的データエンジンを構築。グラウンデッド報酬信号を持つ高品質データを生成する。
-📊**結果**: 生成されたデータで訓練した世界モデルが従来のクロールデータ比較で性能向上を示した。
-💡**意義**: データエンジンとしてのゲーム開発という新発想で、世界モデルのスケーリング効率を根本から変える可能性がある。
-⚠️**限界**: ゲーム環境に特化しており、実世界の複雑な物理現象への汎化は未検証。
+**1. DreamX-Creator: Democratizing Native Audio-Video Generation at 2K Resolution**
+👍 86 upvotes | [arXiv:2608.31106](https://arxiv.org/abs/2608.31106)
+音声と映像を別々に生成せず、同時に生成する7Bパラメータのコンパクトな統合システム「DreamX-Creator 1.0」を提案。2K解像度でのネイティブ音声・映像同時生成を実現し、より自然な動画生成を民主化する。
 
-**2. PAWBench: How Far Are We from Probabilistically Aligned World Modeling?** | 73 upvotes | https://arxiv.org/abs/2608.27345
-🎯**背景**: 動画生成モデルが「世界モデル」と称されるが、物理プロセスは複数の妥当な結果を持つため、単一軌跡生成では不十分。
-🔧**手法**: 確率的に整合した世界モデルを評価するためのベンチマーク PAWBench を構築。可能な行動の分布を再現できるかを測定。
-📊**結果**: 現行の最先端動画生成モデルが確率的整合性において大幅に不足していることを定量的に示した。
-💡**意義**: 世界モデルの評価軸として「確率分布の整合性」という新指標を提示し、分野の進歩方向を明示。
-⚠️**限界**: ベンチマーク構築に用いるグラウンドトゥルース分布の収集コストが高い。
+**2. LightNav-0: Eliciting VLM Spatial Intelligence for Generalist Embodied Navigation**
+👍 24 upvotes | [arXiv:2608.30935](https://arxiv.org/abs/2608.30935)
+VLM（視覚言語モデル）が持つ空間的先験知識を活用し、様々なタスク・環境・ロボット形態に対応できる汎用的な体現型ナビゲーションエージェントを実現する手法を提案。
 
-**3. UrbanGround: From Local Perception to Spatial Agency in a Real-Scale City** | 69 upvotes | https://arxiv.org/abs/2608.27456
-🎯**背景**: MLLMは街路ビューを解釈できるが、エージェントが移動し始めると局所的な視覚証拠が行動につながるかが未解明。
-🔧**手法**: 実スケール都市環境でMLLMエージェントの都市知覚から行動決定までの能力を体系的に評価するフレームワークを構築。
-📊**結果**: 現行MLLMは局所視覚認識には強いが、長距離空間推論や動的行動計画に深刻な限界があることが判明。
-💡**意義**: 自律走行・都市ロボティクス分野での現実的な能力ギャップを明示し、次世代エージェント研究の方向性を示す。
-⚠️**限界**: 特定都市環境でのテストに限られており、異なる都市設計への転移学習は未検証。
+**3. Evaluating the Hidden Costs of Personalization in Large Language Models**
+👍 24 upvotes | [arXiv:2608.28833](https://arxiv.org/abs/2608.28833)
+LLMのパーソナライゼーション機能がバランスの取れた情報提供よりもユーザー満足度の最適化にシフトしているという「隠れたコスト」を評価・分析。個人化の副作用を明らかにする。
 
-**4. TTPO: Test-Time Policy Optimization** | 62 upvotes | https://arxiv.org/abs/2608.27448
-🎯**背景**: RLや自己蒸留などの事後訓練手法は数学的推論を向上させるが、正解ラベルへの依存がテスト時訓練を阻む。
-🔧**手法**: 正解ラベル不要のテスト時ポリシー最適化(TTPO)を提案。推論時に生成されたサンプルの自己整合性を利用して動的にポリシーを更新。
-📊**結果**: 数学推論ベンチマークで従来のテスト時計算手法を超え、少数サンプルでの適応能力が向上。
-💡**意義**: ラベルなしでテスト時に自己改善できる仕組みは、分布外データへの汎化を根本的に変える可能性がある。
-⚠️**限界**: 計算コストが高く、リアルタイム推論への適用には最適化が必要。
+**4. Super Library Agent: Joint Generation and Maintenance of Multiple Applications Beyond the Single Codebase**
+👍 23 upvotes | [arXiv:2608.29310](https://arxiv.org/abs/2608.29310)
+LLMコーディングエージェントを用いて、共通ロジックを持つ複数の関連アプリケーションを単一コードベースを超えて同時生成・保守するフレームワークを提案。組織のアプリポートフォリオ管理を革新。
 
-**5. Training Agents to Evolve with Their Harness: TaoLive Digital Avatar Agent Technical Report** | 43 upvotes | https://arxiv.org/abs/2608.15763
-🎯**背景**: AIデジタルアバターは商品質問回答・視聴者エンゲージ・マーケティング戦略実行を低レイテンシで求められる。
-🔧**手法**: ハーネス（実行環境）の変化に追随して自動的に進化するエージェント訓練手法を開発。継続的なハーネス適応ループを実装。
-📊**結果**: TaoLiveプラットフォームでの実運用で、戦略更新頻度と応答精度の両立を達成。
-💡**意義**: エージェントがインフラ変化に自律適応できる枠組みは、商用AIアバター普及の重要な技術基盤となる。
-⚠️**限界**: 特定プラットフォーム(Taobao Live)向けに特化しており、他ECプラットフォームへの汎化には追加工夫が必要。
+**5. Chain-of-Thought Faithfulness of Reasoning Models Varies with Where and How Preference Cues Are Delivered**
+👍 9 upvotes | [arXiv:2608.29464](https://arxiv.org/abs/2608.29464)
+CoT（Chain-of-Thought）モニタリングの前提となる「推論トレースが答えに影響する情報を忠実に記録している」という仮定を検証。バイアスの置き場所や提示方法によってCoTの忠実性が変わることを示す。
 
-**6. GameWAM: A World Action Model for Video Games** | 37 upvotes | https://arxiv.org/abs/2608.26200
-🎯**背景**: 現代ビデオゲームは一人称知覚・急激な視覚変化・持続的世界状態・多様なネイティブコントロールを組み合わせるが、既存エージェントは世界ダイナミクスモデルを欠く。
-🔧**手法**: 視覚・行動・状態を統合的にモデリングするWorld Action Model(WAM)を提案。ゲームの動的状態を明示的に表現しながら行動を決定する。
-📊**結果**: 複数の主要タイトルで従来の視覚→行動直接マッピング手法を上回る性能を達成。
-💡**意義**: ゲームAIに「世界の理解」を組み込む設計思想は、汎用ゲームエージェントの発展に重要な一歩。
-⚠️**限界**: 評価ゲームが限定的で、オープンワールド系の複雑なゲームへの適用は未検証。
+**6. Keep-or-Drop? Adaptive Tokenizer for Compact Video Representation**
+👍 9 upvotes | [arXiv:2608.24293](https://arxiv.org/abs/2608.24293)
+潜在拡散モデルにおける動画表現の効率化を目的に、保持すべきトークンと削除すべきトークンを適応的に選択するアダプティブトークナイザーを提案。品質を損なわずに計算効率を向上。
 
-**7. PILOT in the Loop: Live Self-Improvement for Long-Horizon Agents** | 25 upvotes | https://arxiv.org/abs/2608.26530
-🎯**背景**: 長期タスクエージェントは実行中に経験を積むが、既存の自己改善手法は実行完了後にしか処理できず、進行中のランを修正できない。
-🔧**手法**: PILOT(Progressive In-Loop Optimization of Trajectories)を提案。実行中にリアルタイムで経験を分析し、現在のランを動的に改善する。
-📊**結果**: 長期タスクベンチマークでオフライン改善手法と比較して、リアルタイム適応による成功率向上を実証。
-💡**意義**: 「実行しながら学ぶ」パラダイムは、長期エージェントタスクの信頼性を大幅に向上させる可能性がある。
-⚠️**限界**: リアルタイム最適化の計算オーバーヘッドが大きく、レイテンシ制約が厳しいタスクでは適用困難。
+**7. WebWorld: The Browser as a World Model for Self-Improving Web Code**
+👍 5 upvotes | [arXiv:2608.30530](https://arxiv.org/abs/2608.30530)
+VLMによるウェブコードの自己改善において、提案モデルが評価者も兼ねるという構造的欠陥を指摘。ブラウザ自体をワールドモデルとして活用することで、より客観的な修正判断を実現する手法を提案。
 
-**8. Zero-WAM: In-Context World-Action Modeling from Human Videos for Open-Ended Task Generalization** | 16 upvotes | https://arxiv.org/abs/2608.26103
-🎯**背景**: ロボット学習における未訓練タスクへのゼロショット汎化は依然として中心的課題。LLMではコンテキスト指定で新タスクが可能だが、ロボットポリシーは難しい。
-🔧**手法**: 人間の動画からIn-Context World-Action Modelingを学習するZero-WAMを提案。コンテキスト内の動作デモから直接行動推論する。
-📊**結果**: 訓練時未見のタスクへの汎化能力が従来手法より大幅に改善。ロボット操作の汎化ベンチマークで最高性能を達成。
-💡**意義**: 人間動画という豊富なデータソースからのIn-Context学習は、ロボット汎化の実用化を加速する可能性がある。
-⚠️**限界**: 高品質な人間デモ動画への依存度が高く、特定タスクドメインでの動画収集コストが課題。
+**8. ContextBias: Controlled Evaluation of Bias Persistence Under Context Shift in Text-to-Image Models**
+👍 4 upvotes | [arXiv:2608.29847](https://arxiv.org/abs/2608.29847)
+テキストから画像を生成するモデルが職業と視覚的属性の間で学習するステレオタイプ的バイアスを、文脈変化のもとで制御された評価フレームワークにより定量化する研究。
 
-**9. Procedura: Agentic 3D Modeling with Procedural Control** | 7 upvotes | https://arxiv.org/abs/2608.26238
-🎯**背景**: 単一画像からの3D生成は進歩しているが、密メッシュはシャープなエッジを持てず、パーツ分解もユーザー編集パラメータも持たない。
-🔧**手法**: プロシージャル制御を持つエージェント型3Dモデリングシステム Procedura を提案。パーツ分解と編集可能パラメータを持つ手続き的3D表現を自動生成。
-📊**結果**: 機械加工品・家具などエッジのシャープな物体で、従来の密メッシュ生成より高品質かつ編集可能な3Dモデルを生成。
-💡**意義**: 3D生成モデルに「編集可能性」を持たせる設計思想は、プロダクトデザインや製造業への応用を大きく広げる。
-⚠️**限界**: プロシージャル表現が得意とする人工物に強く、有機的形状（植物・人体等）への適用は限定的。
+**9. SafeAtlas-VL: Beyond Binary Multimodal Safety with Large-Scale Data and Guard Models**
+👍 4 upvotes | [arXiv:2608.29098](https://arxiv.org/abs/2608.29098)
+マルチモーダルの安全性評価を二値判定（安全/危険）を超えた多次元評価へと拡張。視覚コンテンツ・ユーザー意図・アシスタント行動から生じるリスクを区別する大規模データセットとガードモデルを提案。
 
-**10. CaRGo-T: Causal Reasoning Graph-of-Thought improves Multimodal Humor Comprehension** | 6 upvotes | https://arxiv.org/abs/2608.23172
-🎯**背景**: VLMは多様なマルチモーダルタスクで高性能を示すが、エンティティ間の微妙な相互作用に依存するユーモア理解は依然困難。
-🔧**手法**: 因果推論グラフとGraph-of-Thoughtを組み合わせたCaRGo-Tを提案。ユーモアのメカニズムをグラフ上の因果関係として明示的にモデリング。
-📊**結果**: マルチモーダルユーモア理解ベンチマークで既存VLMを上回り、因果推論の有効性を実証。
-💡**意義**: 「ユーモアを理解するには因果関係の把握が必要」という知見は、常識推論全般への応用が期待される。
-⚠️**限界**: ユーモアは文化・言語に強く依存するため、英語以外の言語への転移学習は未検証。
+**10. CoVA-SFT: A Large-Scale Dataset for Chain of Visual Abstractions**
+👍 3 upvotes | [arXiv:2608.28958](https://arxiv.org/abs/2608.28958)
+視覚的問題をテキストに直列化するCoTの限界を超えるため、視覚的抽象化のチェーン（CoVA）を段階的に学習するための大規模SFTデータセットを構築。マルチモーダル推論の新たな基盤を提供。
 
