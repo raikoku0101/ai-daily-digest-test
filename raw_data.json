@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "VoiceMem: Streaming Dual-Brain Memory for Real-Time Interaction",
-      "upvotes": 149,
-      "paper_id": "2608.26005",
-      "abstract": "Conversational systems lack streaming, accurate memory. VoiceMem introduces a dual-brain architecture with informational and emotional components, achieving superior retrieval accuracy and real-time performance for personalized speech interactions."
-    },
-    {
-      "title": "Is Next-Chunk Reasoning RL Really Better than SFT? Revisiting Training Strategies under no-CoT Data",
-      "upvotes": 19,
-      "paper_id": "2608.23256",
-      "abstract": "Mixed supervised fine-tuning on combined reasoning corpora outperforms next-chunk reinforcement learning in efficiency and final accuracy across mathematical and out-of-domain reasoning tasks."
-    },
-    {
-      "title": "Long-Horizon Audio-Visual Generation for Persistent Stories and Interactive Worlds",
-      "upvotes": 19,
-      "paper_id": "2608.23383",
-      "abstract": "JoyAI-Echo-1.5 unifies long-form video and interactive world generation through cross-shot memory, geometry-aware camera control, and rollout-aware training to maintain identity and coherence."
-    },
-    {
-      "title": "Video-IFBench: Evaluating Instruction Following of Multimodal LLMs in Video Understanding Scenarios",
-      "upvotes": 15,
-      "paper_id": "2608.25529",
-      "abstract": "A benchmark evaluates how well multimodal language models follow diverse video-based instructions with visual, audio, and structural constraints across 32 task types."
-    },
-    {
-      "title": "SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?",
-      "upvotes": 13,
-      "paper_id": "2608.23564",
-      "abstract": "A benchmark for evaluating autonomous software migration reveals that current models rarely complete migrations correctly, achieving only 5.4% success rate across 520 runs."
-    },
-    {
-      "title": "The Handoff Tax: Continuing Non-Native Trajectories in LLM Agents",
-      "upvotes": 12,
-      "paper_id": "2608.24358",
-      "abstract": "Switching between language models during task execution incurs significant quality and cost penalties, with escalation recovering less than half the capability gap."
-    },
-    {
-      "title": "Rubrics as Visual-Repair Context for Self-Evolving UI-to-Code Generation",
-      "upvotes": 12,
-      "paper_id": "2608.24138",
-      "abstract": "RubSE improves UI-to-code generation stability by using rubric-guided self-evolution to prevent visual repair coupling and trajectory collapse in refinement processes."
-    },
-    {
-      "title": "Gated Recurrent Transformers: Expressive Depth through Recurrent Modulation",
-      "upvotes": 6,
-      "paper_id": "2608.15062",
-      "abstract": "Gated recurrent transformers reuse a shared core across depth with adaptive gates, achieving comparable quality to deeper models with 63% fewer parameters and lower memory."
-    },
-    {
-      "title": "Pushing the Limits of High-Resolution Weather Forecasting through Data Scaling",
-      "upvotes": 4,
-      "paper_id": "2608.14652",
-      "abstract": "BaguanHR improves high-resolution weather forecasting by using variable-wise super-resolution to synthesize training data, demonstrating strong power-law scaling benefits."
-    },
-    {
-      "title": "Skill Issue: Are Skills Language-Invariant in LLMs?",
-      "upvotes": 3,
-      "paper_id": "2608.25832",
-      "abstract": "Multilingual self-play reveals significant cross-lingual skill inconsistencies in reasoning and strategy, partly recoverable by altering intermediate reasoning language."
-    }
+    {"title": "DreamX-Creator: Democratizing Native Audio-Video Generation at 2K Resolution", "upvotes": 86, "paper_id": "2608.31106", "abstract": "Recent video generators often omit audio or synthesize it in a separate stage, limiting reciprocal modeling of visual dynamics and acoustic events. We present DreamX-Creator 1.0, a compact native joint audio-video generation system centered on a 7B generator."},
+    {"title": "LightNav-0: Eliciting VLM Spatial Intelligence for Generalist Embodied Navigation", "upvotes": 24, "paper_id": "2608.30935", "abstract": "Embodied navigation requires agents to translate heterogeneous goals and visual observations into actions across tasks, environments, and robot embodiments. Modern vision-language models (VLMs) already encode spatial priors for visual grounding, spatial reasoning, and pointing."},
+    {"title": "Evaluating the Hidden Costs of Personalization in Large Language Models", "upvotes": 24, "paper_id": "2608.28833", "abstract": "While Large language models (LLMs) incorporate user personalization signals to improve usability and helpfulness, they increasingly shift from providing balanced, informative responses toward optimizing for user satisfaction when conditioned on personal context."},
+    {"title": "Super Library Agent: Joint Generation and Maintenance of Multiple Applications Beyond the Single Codebase", "upvotes": 23, "paper_id": "2608.29310", "abstract": "Organizations often develop and maintain portfolios of related applications: independently deployable codebases that share substantial domain logic, interface patterns, or operational conventions. As LLM coding agents are increasingly used to generate and maintain such software."},
+    {"title": "Chain-of-Thought Faithfulness of Reasoning Models Varies with Where and How Preference Cues Are Delivered", "upvotes": 9, "paper_id": "2608.29464", "abstract": "Chain-of-thought (CoT) monitoring assumes that reasoning traces faithfully record the information that shapes a model's answer. Existing faithfulness tests often place explicit bias cues in the user message, while agents may encounter preferences through tool returns or raw artifacts."},
+    {"title": "Keep-or-Drop? Adaptive Tokenizer for Compact Video Representation", "upvotes": 9, "paper_id": "2608.24293", "abstract": "Latent diffusion models have emerged as a dominant framework for high-fidelity image and video synthesis, operating in compact latent spaces with variational autoencoders (VAEs) to enhance computational efficiency without compromising visual quality."},
+    {"title": "WebWorld: The Browser as a World Model for Self-Improving Web Code", "upvotes": 5, "paper_id": "2608.30530", "abstract": "VLM-driven self-improvement of web code has a structural flaw: the model that proposes the repair is the model that judges it, and visual plausibility under that judge is a poor proxy for whether the page actually works."},
+    {"title": "ContextBias: Controlled Evaluation of Bias Persistence Under Context Shift in Text-to-Image Models", "upvotes": 4, "paper_id": "2608.29847", "abstract": "Text-to-image models learn associations between concepts - in the case of this paper, people's professions, which we refer to as roles - and visual attributes. These associations can underpin many observed forms of stereotypical bias."},
+    {"title": "SafeAtlas-VL: Beyond Binary Multimodal Safety with Large-Scale Data and Guard Models", "upvotes": 4, "paper_id": "2608.29098", "abstract": "Multimodal safety moderation requires distinguishing risks arising from visual content, user intent, and assistant behavior. Existing safeguards, however, are typically trained for a single judgment target and reduce safety assessment to a binary decision."},
+    {"title": "CoVA-SFT: A Large-Scale Dataset for Chain of Visual Abstractions", "upvotes": 3, "paper_id": "2608.28958", "abstract": "Chain-of-thought (CoT) reasoning has dramatically improved large language models (LLMs) by allowing them to decompose problems into intermediate steps. While CoT is widely effective for linguistic tasks, text-only CoT forces models to serialize visual problems into awkward prose."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.247",
-      "published_at": "2025-08-26",
-      "body": "Added the `SendFeedback` tool: when something goes wrong in a session, Claude can draft a feedback report for you to review and send from `/feedback` (turn off with the `feedbackDrafts` setting). Added `{id, text, cooldownSessions, priority}` entries, `tipsFile`, and `label` to `spinnerTipsOverride`, so organizations can rotate their own tips alongside the built-in ones. Added a tip on Bash permission prompts pointing to auto mode, with a one-keystroke \"Yes, and switch to auto mode\" option. Added `/claude-api cost-optimize` to profile an existing project's Claude API spend and work through cost levers (caching, token hygiene, batch, effort, model choice) one measured change at a time."
-    },
-    {
-      "tag_name": "v2.1.246",
-      "published_at": "2025-08-25",
-      "body": "Added a startup warning for Bash allow rules with a wildcard before the subcommand (e.g. `Bash(git * main)`), since they also match options inserted before the subcommand. Added an Auto mode tab to `/permissions` for viewing and editing auto mode classifier rules. Added the turn's completion time to the end-of-turn duration line, e.g. `✻ Sautéed for 23s · done 6:05 PM`. Fixed fullscreen mode showing a blank transcript after resizing the terminal and jumping to the bottom until the next keypress. Fixed a severe transcript slowdown when a diff contained a very long single line (e.g. a base64 string); such lines now render truncated with a marker."
-    },
-    {
-      "tag_name": "v2.1.245",
-      "published_at": "2025-08-25",
-      "body": "Fixed a crash on startup on Linux distributions that ship glibc 2.44 (for example Arch Linux, CachyOS and Fedora Rawhide)"
-    }
+    {"tag_name": "v2.1.258", "published_at": "2025-09-01", "body": "Fixed Claude Code failing to launch on macOS 12 (Monterey), a regression introduced in 2.1.255. Fixed remote and scheduled sessions failing with \"user messages must have non-empty content\" after a re-sent permission approval could not be applied."},
+    {"tag_name": "v2.1.257", "published_at": "2025-09-01", "body": "Added Claude Fable 5.1 (`claude-fable-5-1`), now the default Fable model — 1M context, $10/$50 per Mtok with $0.25/Mtok cache reads. Added \"Time format\" (`timeFormat`) and `timeZone` settings: 12-hour, 24-hour, 24-hour UTC, or a strftime pattern for the turn-end clock and transcript-view timestamps. Added a Containment Escape rule to auto mode..."},
+    {"tag_name": "v2.1.252", "published_at": "2025-08-31", "body": "Fixed Bash commands failing with \"task output swap refused (tasks dir moved or linked)\" on some Macs. Fixed \"always allow\" not saving in a project that has no .claude/settings.local.json yet. Fixed Remote Control sessions hosted by Claude Desktop or VS Code stalling for minutes after a tool finished when the connection to claude.ai was degraded."}
   ]
 }
