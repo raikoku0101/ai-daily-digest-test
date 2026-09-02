@@ -1,0 +1,84 @@
+{
+  "date": "2026-09-03",
+  "content": "# AI Daily Digest — 2026-09-03\n\n## 今日のハイライト\n- **Qwen-Drive-1.0 (337 upvotes)**: 自動運転向けVLM登場。3D認識・QA・運動計画を統合し、業界標準ベンチマークをリード。\n- **Claude Code v2.1.259**: 組織向け `managedMcpServers`、ヘッドレス `--permission-prompts none`、GitLab MR表示など多数の企業向け機能を追加。\n- **UI-Venus-2 & ZimaBlue**: GUIエージェントとロボット操作向け世界モデルの実用化研究が相次いで公開。\n\n\n## Claude Code アップデート\n\n**v2.1.259** (2024-09-02)\n- `managedMcpServers` 設定追加：組織が全ユーザーに HTTP/SSE MCP サーバーを提供可能に\n- `--permission-prompts none` オプション追加：無人ヘッドレスホスト向けに自動拒否モード\n- GitLab MR コマンド (`glab mr create/merge` 等) のサマリー表示対応\n- `claude plugin validate --json` で機械可読な検証レポート出力\n- 複数セッション同時実行時の `~/.claude.json` 上書き競合バグを修正\n\n**v2.1.258** (2024-09-01)\n- macOS 12 (Monterey) で起動できないリグレッションを修正 (v2.1.255 で混入)\n- リモート・スケジュールセッションで「non-empty content」エラーになるバグを修正\n\n**v2.1.257** (2024-09-01)\n- Claude Fable 5.1 (`claude-fable-5-1`) 追加・デフォルト化：1M コンテキスト、$10/$50/Mtok\n- 時刻フォーマット設定 (`timeFormat`/`timeZone`) 追加\n- Auto モードに Containment Escape ルール追加：クラウドメタデータ取得等を自動承認しない\n- `CLAUDE_CODE_SUBAGENT_MODEL_FORCE` 環境変数追加：全サブエージェントのモデル強制指定\n\n## 注目論文 TOP 10\n\n**1. Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving**\n👍 337 upvotes | arXiv: https://arxiv.org/abs/2609.00111\n自動運転向けの視覚言語基盤モデル。3D認識・視覚Q&A・運動計画を共有表現で統合した統一フレームワークを提案。大規模マルチモーダル学習により、複雑な交通シナリオでの判断力を大幅に向上させる。\n\n**2. SMELT: Scaling Laws for Compute-Matched MoE Looped Transformers**\n👍 70 upvotes | arXiv: https://arxiv.org/abs/2609.01343\nMixture-of-Experts（MoE）にLooped Transformerを組み合わせたアーキテクチャの研究。トークンあたりの計算量・パラメータ数・キャッシュを揃えた条件下で、4種類のモデルサイズにわたってスケーリング則を導出。訓練効率と下流性能を両立する設計指針を提供する。\n\n**3. UI-Venus-2 Technical Report**\n👍 54 upvotes | arXiv: https://arxiv.org/abs/2609.00028\nモバイル・Web・デスクトップ環境を横断する汎用マルチモーダルGUIエージェント。統一的なクローズドループ推論-行動フレームワークと環境カバレッジ拡大・堅牢な検証機構を実装。複雑なUI操作タスクでの汎化性能を大幅に改善した。\n\n**4. ZimaBlue: Evolving Generalizable World Action Models through Scalable Video Pre-training**\n👍 39 upvotes | arXiv: https://arxiv.org/abs/2609.00188\n大規模一人称視点映像からの世界行動モデル学習フレームワーク。3段階カリキュラムとslow-fastアーキテクチャを採用し、ロボット操作タスクへの汎化能力を持つ世界モデルを構築。実環境での多様な操作を可能にする。\n\n**5. From Production Traffic to Post-Training: Building a Self-Hosted LLM That Covers the Corporate Request Mix**\n👍 31 upvotes | arXiv: https://arxiv.org/abs/2609.01572\n本番トラフィックから収集した社内リクエスト分布を使い、GRPO専門家モデルをSLERPでマージして自社ホスト型LLMを構築。指示追従・関数呼び出し・内部タスクで、より大型のベースラインを低コストで上回ることを実証。\n\n**6. Safin-1: Safety from Within through Memory-Native State Evolution**\n👍 19 upvotes | arXiv: https://arxiv.org/abs/2609.00092\n安全性をモデルの内部状態として埋め込むメモリルーティングアーキテクチャ。Memory-Anchor Routing（MAR）とContext History全体の状態進化を組み合わせ、テスト時適応をサポート。外部フィルターに頼らず、モデル内部から安全性を担保する新アプローチ。\n\n**7. AgentJudgeBench: A Multi-Difficulty Benchmark for Evaluating LLM Judges on Agentic Tool-Calling**\n👍 16 upvotes | arXiv: https://arxiv.org/abs/2608.26623\nエージェント的ツール呼び出しにおけるLLM-as-a-judgeの信頼性を系統的に研究する初のベンチマーク。DAGワークフロー上で3,808インスタンスを使用し、構造的な上限（ceiling limits）を明らかにした。難易度別の評価で審判LLMの限界を定量化する。\n\n**8. DiagEvo: Diagnosis-Guided Self-Evolution via Hierarchical Error Memory**\n👍 14 upvotes | arXiv: https://arxiv.org/abs/2609.00768\n言語モデルの自己進化を改善する手法。モデルの内部失敗履歴から階層的なエラー原因メモリを構築し、ダブル信頼度フィルタリングで訓練方向を導出。自己改善ループの質と効率を大幅に向上させる診断誘導型アプローチ。\n\n**9. Agents in the Large: Perception-Centered Architecture for Persistent Agents**\n👍 7 upvotes | arXiv: https://arxiv.org/abs/2608.30478\n持続的な言語エージェント向けの知覚中心アーキテクチャ。エピソードタスク・コンテキスト・環境変化からのシグナルを知覚することで、サービス手順を継続的に適応・進化させる。長期運用シナリオでの堅牢性を重視した設計。\n\n**10. Learning Where Outcomes Change: Credit-Addressable Reasoning for Multimodal Geometry**\n👍 3 upvotes | arXiv: https://arxiv.org/abs/2608.30457\n実行可能なコードトレースと局所的な強化学習を用いた信用割り当て可能な推論手法。構造化イベントとの信用割り当てを整合させることで、マルチモーダル幾何推論を改善。空間的な問題解決での精度向上に貢献する。\n\n",
+  "fetched_at": "2026-09-02T22:39:29.280057+00:00",
+  "papers": [
+    {
+      "title": "Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving",
+      "upvotes": 337,
+      "paper_id": "2609.00111",
+      "abstract": "A vision-language foundation model for autonomous driving that integrates 3D perception, visual question answering, and motion planning within a unified framework using shared representations."
+    },
+    {
+      "title": "SMELT: Scaling Laws for Compute-Matched MoE Looped Transformers",
+      "upvotes": 70,
+      "paper_id": "2609.01343",
+      "abstract": "Looped Transformers on Mixture-of-Experts models improve training efficiency and downstream performance while matching per-token compute, parameters, and cache budgets across four model sizes."
+    },
+    {
+      "title": "UI-Venus-2 Technical Report",
+      "upvotes": 54,
+      "paper_id": "2609.00028",
+      "abstract": "A general-purpose multimodal GUI agent operating across mobile, web, and desktop environments through unified closed-loop reasoning-action with expanded environment coverage and robust verification."
+    },
+    {
+      "title": "ZimaBlue: Evolving Generalizable World Action Models through Scalable Video Pre-training",
+      "upvotes": 39,
+      "paper_id": "2609.00188",
+      "abstract": "A scalable framework for learning generalizable world action models from large-scale egocentric video via three-stage curriculum and slow-fast architecture for robotic manipulation."
+    },
+    {
+      "title": "From Production Traffic to Post-Training: Building a Self-Hosted LLM That Covers the Corporate Request Mix",
+      "upvotes": 31,
+      "paper_id": "2609.01572",
+      "abstract": "A smaller self-hosted LLM trained with separate GRPO experts merged via SLERP outperforms much larger baselines on instruction following, function-calling, and internal tasks at lower cost."
+    },
+    {
+      "title": "Safin-1: Safety from Within through Memory-Native State Evolution",
+      "upvotes": 19,
+      "paper_id": "2609.00092",
+      "abstract": "A memory-routing architecture embedding safety as an internal, evolving model state through Memory-Anchor Routing across Context History supporting test-time adaptation."
+    },
+    {
+      "title": "AgentJudgeBench: A Multi-Difficulty Benchmark for Evaluating LLM Judges on Agentic Tool-Calling",
+      "upvotes": 16,
+      "paper_id": "2608.26623",
+      "abstract": "First benchmark systematically studying LLM-as-a-judge reliability for agentic tool-calling over workflow DAGs with 3,808 instances revealing structural ceiling limits."
+    },
+    {
+      "title": "DiagEvo: Diagnosis-Guided Self-Evolution via Hierarchical Error Memory",
+      "upvotes": 14,
+      "paper_id": "2609.00768",
+      "abstract": "Improves language-model self-evolution by deriving training direction from internal failure history via hierarchical error-cause memory and double-confidence filtering."
+    },
+    {
+      "title": "Agents in the Large: Perception-Centered Architecture for Persistent Agents",
+      "upvotes": 7,
+      "paper_id": "2608.30478",
+      "abstract": "Perception-centered architecture for persistent language agents that continually adapt service procedures by perceiving signals from episodic tasks, context, and environmental changes."
+    },
+    {
+      "title": "Learning Where Outcomes Change: Credit-Addressable Reasoning for Multimodal Geometry",
+      "upvotes": 3,
+      "paper_id": "2608.30457",
+      "abstract": "Credit-addressable reasoning via executable code traces and localized reinforcement learning improves multimodal geometry reasoning by aligning credit assignment with structured events."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.259",
+      "published_at": "2024-09-02",
+      "body": "Added managedMcpServers managed setting: organizations can provide HTTP/SSE MCP servers to every user. Added --permission-prompts none for unattended headless hosts. Added GitLab MR recognition. Added --json to claude plugin validate. Fixed concurrent sessions reverting each other."
+    },
+    {
+      "tag_name": "v2.1.258",
+      "published_at": "2024-09-01",
+      "body": "Fixed Claude Code failing to launch on macOS 12 (Monterey). Fixed remote sessions failing."
+    },
+    {
+      "tag_name": "v2.1.257",
+      "published_at": "2024-09-01",
+      "body": "Added Claude Fable 5.1, Time format settings, Containment Escape rule, CLAUDE_CODE_SUBAGENT_MODEL_FORCE."
+    }
+  ]
+}
