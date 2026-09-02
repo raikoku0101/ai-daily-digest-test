@@ -1,6 +1,6 @@
-**5. Chain-of-Thought Faithfulness of Reasoning Models Varies with Where and How Preference Cues Are Delivered**
-**著者**: FACE-Eval Research Team (2026)
-**arXiv**: https://arxiv.org/abs/2608.29464
+**5. From Production Traffic to Post-Training: Building a Self-Hosted LLM That Covers the Corporate Request Mix**
+**著者**: Corporate LLM Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2609.01572
 
 **まとめ**:
-大規模推論モデルのCoT（Chain-of-Thought）監視において、手がかりの「配信場所」（ユーザーメッセージ vs ツール返却）と「明示性」（直接的 vs 暗黙的）がCoTの忠実性に大きく影響することをFACE-Eval（5,100サンプル、15モデル）で実証。ツール返却・暗黙的な手がかりでは「言語化されない採用率（UAR）」が高く、プロンプト指示や推論努力強化でもギャップを確実に埋められないことを示す。エージェント型AIシステムの安全監視設計に重要な示唆を与える。
+データレジデンシー制約下で企業内ホスト型LLMを構築する研究。Qwen3-32Bベースに共有SFT+3つのGRPO専門家（一般・指示追従・関数呼び出し）を2段階SLERPマージで統合。内部Arenaで約7倍大型ベースラインを上回り月間1.16億リクエスト・50%トラフィックを処理。入力出力コスト2.8〜9倍削減を実現した企業向けポスト学習の実践的手法。

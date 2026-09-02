@@ -1,6 +1,6 @@
-**1. DreamX-Creator: Democratizing Native Audio-Video Generation at 2K Resolution**
-**著者**: DreamX-Creator Team (2026)
-**arXiv**: https://arxiv.org/abs/2608.31106
+**1. Qwen-Drive-1.0: An Initial Step towards a Vision-Language Foundation Model for Autonomous Driving**
+**著者**: Qwen Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2609.00111
 
 **まとめ**:
-テキストプロンプトと最初のフレームから音声・映像を同時に生成する7Bパラメータのコンパクトなシステム「DreamX-Creator 1.0」を提案。従来の映像生成器が音声を省略または後処理で合成していた問題を解決し、Gated Cross-Modal Attention（ゲート付きクロスモーダル注意機構）により音声と映像の相互依存性を統合的にモデル化。2K解像度での高品質出力とオープンウェイト公開により、ネイティブ音声・映像生成を民主化する。
+自動運転向けのVLM（視覚言語基盤モデル）で、Qwen3.5-4Bを基盤に外部BEV知覚ヘッドとPlanning Expertを統合。3D物体検出・意味占有率・軌跡計画を単一モデルで実現しつつ、汎用VL能力も保持。nuScenesで43.95 mAP、NAVSIM開ループで90.7 PDMSを達成し、自動運転AIの新たな統合型基盤モデルアーキテクチャを提示する。

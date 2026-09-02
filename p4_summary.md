@@ -1,6 +1,6 @@
-**4. Super Library Agent: Joint Generation and Maintenance of Multiple Applications Beyond the Single Codebase**
-**著者**: Super Library Agent Team (2026)
-**arXiv**: https://arxiv.org/abs/2608.29310
+**4. ZimaBlue: Evolving Generalizable World Action Models through Scalable Video Pre-training**
+**著者**: ZimaBlue Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2609.00188
 
 **まとめ**:
-LLMコーディングエージェントが複数の関連アプリケーションを生成・保守する際の「共有ライブラリ維持」問題（Super Library Agent問題）を新たに定義。候補ガイド付き抽出（AST境界識別・自然言語要約マッチング）と文脈認識マイグレーション戦略により、WebGen-BenchとPaperBenchでトークン長6.7%削減・冗長性38%削減・構造的侵食4.4%低減を達成。複数コードベースにまたがる持続可能なLLMコーディングの基礎を確立する。
+行動ラベル無しの120,000時間超の一人称視点動画を活用してロボット操作の世界行動モデル（WAM）を学習するフレームワーク。3段階訓練（ビデオ事前学習→多エンボディメント中間訓練→目標ドメイン特化）とSlow-Fast（5B+0.5B）デュアルシステムで、ゼロショット成功率36.1%→77.8%を達成。RoboTwin 2.0では94.5%で全WAM比較中最高性能。

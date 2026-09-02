@@ -1,6 +1,6 @@
-**2. LightNav-0: Eliciting VLM Spatial Intelligence for Generalist Embodied Navigation**
-**著者**: LightNav-0 Team (2026)
-**arXiv**: https://arxiv.org/abs/2608.30935
+**2. SMELT: Scaling Laws for Compute-Matched MoE Looped Transformers**
+**著者**: SMELT Team et al. (2026)
+**arXiv**: https://arxiv.org/abs/2609.01343
 
 **まとめ**:
-事前学習済みVLM（Qwen3-VL-4B-Instruct）の空間的知能を活用し、タスク・環境・ロボット体型に依存しない汎用embodied navigationモデル「LightNav-0」を提案。Dual-Channel Pointing（実行可能な方向と目標位置の2チャネル指示）と残差ベクトル量子化（RVQ）アクショントークナイザーを組み合わせ、指示追従・物体ナビゲーション・視覚追跡を単一モデルで実現。10のシミュレーション評価設定で先行手法を上回る成果を達成し、実世界でもゼロショット転移を実証。
+トークンあたりFLOPs・パラメータ数・KVキャッシュを厳密に一致させた条件下でのMoE Looped Transformerのスケーリング則研究。中間50%層を2回ループするSMELTレシピにより、計算最適境界（10²¹ FLOPs）で14.7%の訓練FLOPS削減を達成。下流タスクでも一貫した性能向上を示し、コードドメインで最大20.4%の利益を実証した。
