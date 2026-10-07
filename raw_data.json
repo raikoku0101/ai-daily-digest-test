@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "DreamX-Creator: Democratizing Native Audio-Video Generation at 2K Resolution", "upvotes": 86, "paper_id": "2608.31106", "abstract": "Recent video generators often omit audio or synthesize it in a separate stage, limiting reciprocal modeling of visual dynamics and acoustic events. We present DreamX-Creator 1.0, a compact native joint audio-video generation system centered on a 7B generator."},
-    {"title": "LightNav-0: Eliciting VLM Spatial Intelligence for Generalist Embodied Navigation", "upvotes": 24, "paper_id": "2608.30935", "abstract": "Embodied navigation requires agents to translate heterogeneous goals and visual observations into actions across tasks, environments, and robot embodiments. Modern vision-language models (VLMs) already encode spatial priors for visual grounding, spatial reasoning, and pointing."},
-    {"title": "Evaluating the Hidden Costs of Personalization in Large Language Models", "upvotes": 24, "paper_id": "2608.28833", "abstract": "While Large language models (LLMs) incorporate user personalization signals to improve usability and helpfulness, they increasingly shift from providing balanced, informative responses toward optimizing for user satisfaction when conditioned on personal context."},
-    {"title": "Super Library Agent: Joint Generation and Maintenance of Multiple Applications Beyond the Single Codebase", "upvotes": 23, "paper_id": "2608.29310", "abstract": "Organizations often develop and maintain portfolios of related applications: independently deployable codebases that share substantial domain logic, interface patterns, or operational conventions. As LLM coding agents are increasingly used to generate and maintain such software."},
-    {"title": "Chain-of-Thought Faithfulness of Reasoning Models Varies with Where and How Preference Cues Are Delivered", "upvotes": 9, "paper_id": "2608.29464", "abstract": "Chain-of-thought (CoT) monitoring assumes that reasoning traces faithfully record the information that shapes a model's answer. Existing faithfulness tests often place explicit bias cues in the user message, while agents may encounter preferences through tool returns or raw artifacts."},
-    {"title": "Keep-or-Drop? Adaptive Tokenizer for Compact Video Representation", "upvotes": 9, "paper_id": "2608.24293", "abstract": "Latent diffusion models have emerged as a dominant framework for high-fidelity image and video synthesis, operating in compact latent spaces with variational autoencoders (VAEs) to enhance computational efficiency without compromising visual quality."},
-    {"title": "WebWorld: The Browser as a World Model for Self-Improving Web Code", "upvotes": 5, "paper_id": "2608.30530", "abstract": "VLM-driven self-improvement of web code has a structural flaw: the model that proposes the repair is the model that judges it, and visual plausibility under that judge is a poor proxy for whether the page actually works."},
-    {"title": "ContextBias: Controlled Evaluation of Bias Persistence Under Context Shift in Text-to-Image Models", "upvotes": 4, "paper_id": "2608.29847", "abstract": "Text-to-image models learn associations between concepts - in the case of this paper, people's professions, which we refer to as roles - and visual attributes. These associations can underpin many observed forms of stereotypical bias."},
-    {"title": "SafeAtlas-VL: Beyond Binary Multimodal Safety with Large-Scale Data and Guard Models", "upvotes": 4, "paper_id": "2608.29098", "abstract": "Multimodal safety moderation requires distinguishing risks arising from visual content, user intent, and assistant behavior. Existing safeguards, however, are typically trained for a single judgment target and reduce safety assessment to a binary decision."},
-    {"title": "CoVA-SFT: A Large-Scale Dataset for Chain of Visual Abstractions", "upvotes": 3, "paper_id": "2608.28958", "abstract": "Chain-of-thought (CoT) reasoning has dramatically improved large language models (LLMs) by allowing them to decompose problems into intermediate steps. While CoT is widely effective for linguistic tasks, text-only CoT forces models to serialize visual problems into awkward prose."}
+    {
+      "title": "Rethinking Cross-Tokenizer On-Policy Distillation: From Alignment Coverage to Supervision Reliability",
+      "upvotes": 153,
+      "id": "2610.08448",
+      "abstract": "On-Policy Distillation (OPD) trains a student on its own generations using teacher feedback. With different tokenizers, comparing teacher and student predictions requires alignment at both sequence an"
+    },
+    {
+      "title": "DuoMatching: Joint-Marginal Distribution Matching for Few-Step Video Generation",
+      "upvotes": 68,
+      "id": "2610.03543",
+      "abstract": "Streaming video generation has benefited from distribution matching distillation (DMD), which matches the joint distribution of video frames to a video teacher's approximation of the real video distri"
+    },
+    {
+      "title": "TRACE: Rollout-Guided Quantization-Aware Training for FP4 Reinforcement Learning of MoE Language Models",
+      "upvotes": 65,
+      "id": "2610.07767",
+      "abstract": "Reinforcement learning (RL) for post-training large language models (LLMs) incurs substantial computation and memory overhead during rollout generation, which motivates low-precision rollout for effic"
+    },
+    {
+      "title": "EVISKILL: Grounding Skill Evolution in Replayable Evidence",
+      "upvotes": 36,
+      "id": "2610.05030",
+      "abstract": "Continual skill evolution enables LLM agents to accumulate and refine reusable procedural knowledge from interaction experience without updating model parameters. Its effectiveness depends on determin"
+    },
+    {
+      "title": "From Evidence to Action: How Tool-Using Agents Fail",
+      "upvotes": 34,
+      "id": "2610.07753",
+      "abstract": "Tool-using agents make consequential changes to external state, yet correct outcomes do not guarantee that their actions were supported by evidence established beforehand. We study where this evidence"
+    },
+    {
+      "title": "AutoSciBench: Autonomous Benchmark Generation for Evaluating Scientific Agents",
+      "upvotes": 26,
+      "id": "2610.05140",
+      "abstract": "As agents rapidly evolve, existing benchmarks can become saturated, limiting their ability to distinguish capabilities and reveal remaining failure modes. Particularly in scientific domains, construct"
+    },
+    {
+      "title": "Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing",
+      "upvotes": 24,
+      "id": "2609.37334",
+      "abstract": "Vision-language-action (VLA) policies often fail when a robot's executed motion deviates from their commanded action. Such execution errors arise from the robot's mechanics and operating conditions, s"
+    },
+    {
+      "title": "HuatuoGPT-3: RL-Only Domain Adaptation from Base Models",
+      "upvotes": 21,
+      "id": "2610.05966",
+      "abstract": "Domain adaptation aims to turn a general-purpose large language model (LLM) into an expert for a target domain. While the dominant SFT+RL pipeline offers a convenient cold start, it may reduce explora"
+    },
+    {
+      "title": "World Action Learning via Interaction-Centric Spectral Latent Guidance",
+      "upvotes": 16,
+      "id": "2610.03607",
+      "abstract": "Learning general-purpose robot policies requires large-scale real-world interaction data, yet collecting robot demonstrations remains expensive and difficult to scale. Egocentric videos offer abundant"
+    },
+    {
+      "title": "UNREAL: Unifying Retrieval and Long-Context with a Single Model",
+      "upvotes": 15,
+      "id": "2610.08463",
+      "abstract": "Long-context inference and Retrieval-Augmented Generation (RAG) handle evidence selection at vastly different scales, from a single long prompt to an entire corpus. We ask whether a single model-inter"
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.258", "published_at": "2025-09-01", "body": "Fixed Claude Code failing to launch on macOS 12 (Monterey), a regression introduced in 2.1.255. Fixed remote and scheduled sessions failing with \"user messages must have non-empty content\" after a re-sent permission approval could not be applied."},
-    {"tag_name": "v2.1.257", "published_at": "2025-09-01", "body": "Added Claude Fable 5.1 (`claude-fable-5-1`), now the default Fable model — 1M context, $10/$50 per Mtok with $0.25/Mtok cache reads. Added \"Time format\" (`timeFormat`) and `timeZone` settings: 12-hour, 24-hour, 24-hour UTC, or a strftime pattern for the turn-end clock and transcript-view timestamps. Added a Containment Escape rule to auto mode..."},
-    {"tag_name": "v2.1.252", "published_at": "2025-08-31", "body": "Fixed Bash commands failing with \"task output swap refused (tasks dir moved or linked)\" on some Macs. Fixed \"always allow\" not saving in a project that has no .claude/settings.local.json yet. Fixed Remote Control sessions hosted by Claude Desktop or VS Code stalling for minutes after a tool finished when the connection to claude.ai was degraded."}
+    {
+      "tag_name": "v2.1.293",
+      "published_at": "2026-10-07",
+      "body": "What's changed\n* Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100K)\n* Added `agentType` to the `subagentStatusLine` payload, so scripts can tell custom subagent types apart\n* Added `isDeferred` to `$.tool.register` for mods: `false` lists the tool's schema in the prompt from the start instead of behind tool search\n* Fixed Claude sometimes treating its own last actions before a context compaction as done after it"
+    },
+    {
+      "tag_name": "v2.1.292",
+      "published_at": "2026-10-06",
+      "body": "What's changed\n* Added `--marketplace <source>` to `claude plugin install`: adds the marketplace if needed, under the same policy checks as `claude plugin marketplace add`, then installs the plugin from it\n* Added an `effort` parameter to the Agent tool, so Claude runs a sub-agent at the effort level you ask for\n* Added `CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS` environment variable to set a longer base delay for the backoff when retrying an overloaded (529) request"
+    },
+    {
+      "tag_name": "v2.1.291",
+      "published_at": "2026-10-06",
+      "body": "What's changed\n* Fixed a regression in 2.1.290 where cloud sessions could drop answers to permission prompts\n* Fixed a regression in 2.1.288 where the last messages of a session could be lost when quitting"
+    }
   ]
 }
