@@ -7,22 +7,16 @@
       "abstract": "On-Policy Distillation (OPD) trains a student on its own generations using teacher feedback. With different tokenizers, comparing teacher and student predictions requires alignment at both sequence an"
     },
     {
-      "title": "DuoMatching: Joint-Marginal Distribution Matching for Few-Step Video Generation",
-      "upvotes": 68,
-      "id": "2610.03543",
-      "abstract": "Streaming video generation has benefited from distribution matching distillation (DMD), which matches the joint distribution of video frames to a video teacher's approximation of the real video distri"
-    },
-    {
       "title": "TRACE: Rollout-Guided Quantization-Aware Training for FP4 Reinforcement Learning of MoE Language Models",
-      "upvotes": 65,
+      "upvotes": 70,
       "id": "2610.07767",
       "abstract": "Reinforcement learning (RL) for post-training large language models (LLMs) incurs substantial computation and memory overhead during rollout generation, which motivates low-precision rollout for effic"
     },
     {
-      "title": "EVISKILL: Grounding Skill Evolution in Replayable Evidence",
-      "upvotes": 36,
-      "id": "2610.05030",
-      "abstract": "Continual skill evolution enables LLM agents to accumulate and refine reusable procedural knowledge from interaction experience without updating model parameters. Its effectiveness depends on determin"
+      "title": "CheckerBench: Can Long-Horizon Agents Synthesize Static-Analysis Checkers?",
+      "upvotes": 52,
+      "id": "2610.07557",
+      "abstract": "Static-analysis checker synthesis requires agents to interpret a defect specification, inspect a repository, implement analyzer-specific logic, and refine the checker through repeated compilation and "
     },
     {
       "title": "From Evidence to Action: How Tool-Using Agents Fail",
@@ -31,16 +25,16 @@
       "abstract": "Tool-using agents make consequential changes to external state, yet correct outcomes do not guarantee that their actions were supported by evidence established beforehand. We study where this evidence"
     },
     {
-      "title": "AutoSciBench: Autonomous Benchmark Generation for Evaluating Scientific Agents",
-      "upvotes": 26,
-      "id": "2610.05140",
-      "abstract": "As agents rapidly evolve, existing benchmarks can become saturated, limiting their ability to distinguish capabilities and reveal remaining failure modes. Particularly in scientific domains, construct"
-    },
-    {
       "title": "Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing",
       "upvotes": 24,
       "id": "2609.37334",
       "abstract": "Vision-language-action (VLA) policies often fail when a robot's executed motion deviates from their commanded action. Such execution errors arise from the robot's mechanics and operating conditions, s"
+    },
+    {
+      "title": "World Action Learning via Interaction-Centric Spectral Latent Guidance",
+      "upvotes": 24,
+      "id": "2610.03607",
+      "abstract": "Learning general-purpose robot policies requires large-scale real-world interaction data, yet collecting robot demonstrations remains expensive and difficult to scale. Egocentric videos offer abundant"
     },
     {
       "title": "HuatuoGPT-3: RL-Only Domain Adaptation from Base Models",
@@ -49,28 +43,34 @@
       "abstract": "Domain adaptation aims to turn a general-purpose large language model (LLM) into an expert for a target domain. While the dominant SFT+RL pipeline offers a convenient cold start, it may reduce explora"
     },
     {
-      "title": "World Action Learning via Interaction-Centric Spectral Latent Guidance",
-      "upvotes": 16,
-      "id": "2610.03607",
-      "abstract": "Learning general-purpose robot policies requires large-scale real-world interaction data, yet collecting robot demonstrations remains expensive and difficult to scale. Egocentric videos offer abundant"
-    },
-    {
       "title": "UNREAL: Unifying Retrieval and Long-Context with a Single Model",
-      "upvotes": 15,
+      "upvotes": 19,
       "id": "2610.08463",
       "abstract": "Long-context inference and Retrieval-Augmented Generation (RAG) handle evidence selection at vastly different scales, from a single long prompt to an entire corpus. We ask whether a single model-inter"
+    },
+    {
+      "title": "AGO AI Quality Gate: Evidence-First Release Decisions for Retrieval-Augmented Generation",
+      "upvotes": 16,
+      "id": "2610.01218",
+      "abstract": "Enterprises adopting retrieval-augmented generation (RAG) face a recurring operational decision: promote, revise, or block a system version. The evidence is incomplete and the metrics come from fallib"
+    },
+    {
+      "title": "MiniCorp: The Last Mile of the AI Agent Firm",
+      "upvotes": 15,
+      "id": "2610.05912",
+      "abstract": "The last mile toward enterprise AGI is a company that runs itself. Training and adapting such agents require longitudinal enterprise data, which remain scarce, costly to acquire, and often restricted "
     }
   ],
   "cc_updates": [
     {
       "tag_name": "v2.1.293",
       "published_at": "2026-10-07",
-      "body": "What's changed\n* Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100K)\n* Added `agentType` to the `subagentStatusLine` payload, so scripts can tell custom subagent types apart\n* Added `isDeferred` to `$.tool.register` for mods: `false` lists the tool's schema in the prompt from the start instead of behind tool search\n* Fixed Claude sometimes treating its own last actions before a context compaction as done after it"
+      "body": "What's changed\n* Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok\n* Added `agentType` to the `subagentStatusLine` payload\n* Added `isDeferred` to `$.tool.register` for mods\n* Fixed Claude sometimes treating its own last actions before a context compaction as done after it"
     },
     {
       "tag_name": "v2.1.292",
       "published_at": "2026-10-06",
-      "body": "What's changed\n* Added `--marketplace <source>` to `claude plugin install`: adds the marketplace if needed, under the same policy checks as `claude plugin marketplace add`, then installs the plugin from it\n* Added an `effort` parameter to the Agent tool, so Claude runs a sub-agent at the effort level you ask for\n* Added `CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS` environment variable to set a longer base delay for the backoff when retrying an overloaded (529) request"
+      "body": "What's changed\n* Added `--marketplace <source>` to `claude plugin install`\n* Added an `effort` parameter to the Agent tool\n* Added `CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS` environment variable"
     },
     {
       "tag_name": "v2.1.291",
