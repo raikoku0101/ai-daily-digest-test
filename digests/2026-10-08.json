@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-08",
+  "content": "# AI Daily Digest — 2026-10-08\n\n## 今日のハイライト\n- **Claude Code v2.1.293 リリース — Haiku 5.5 登場**: Anthropic API のデフォルト Haiku モデルが刷新。1M コンテキスト対応で、軽量エージェントのコスト効率と性能が大幅向上。\n- **クロストークナイザー蒸留の新地平 (153 upvotes)**: 異なるアーキテクチャ間の知識移転を最適化する手法が最多票獲得。モデル圧縮・蒸留研究に大きな影響を与える可能性。\n- **エージェントの信頼性課題が浮上**: ツール使用エージェントの失敗分析(#4)や長期静的解析エージェント評価(#3, CheckerBench)など、エージェント信頼性・安全性に関する研究が集中。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.293 (2026-10-07) — 最新リリース\n**主要機能:**\n- **Claude Haiku 5.5 追加**: `claude-haiku-5-5` が Anthropic API の新しいデフォルト Haiku モデルに。1M コンテキスト対応、$0.10/$0.50 per Mtok（100K超のプロンプトは $0.50/$2.50）\n- `subagentStatusLine` ペイロードに `agentType` フィールドを追加。カスタムサブエージェントタイプを識別可能に\n- `$.tool.register` の `isDeferred` オプション追加。`false` でツールスキーマをプロンプトに最初から展開\n\n**バグ修正:**\n- コンテキスト圧縮後に Claude が圧縮直前の操作を「完了済み」として誤認識する問題を修正\n\n**ユーザーへの影響:** Haiku 5.5 採用で軽量エージェントのコスト効率と性能が向上。サブエージェント管理も改善。\n\n---\n\n### v2.1.292 (2026-10-06)\n**主要機能:**\n- `claude plugin install --marketplace <source>` オプション追加。マーケットプレイス追加とプラグインインストールを一括実行\n- Agent ツールに `effort` パラメータ追加。サブエージェントのエフォートレベル指定が可能に\n- `CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS` 環境変数追加。過負荷(529)リトライのベース遅延をカスタマイズ可能\n\n**ユーザーへの影響:** プラグイン管理の簡素化、過負荷状況でのリトライ動作の細かな制御が可能に。\n\n---\n\n### v2.1.291 (2026-10-06)\n**バグ修正:**\n- v2.1.290 リグレッション修正: クラウドセッションで権限プロンプトへの回答が失われる問題\n- v2.1.288 リグレッション修正: セッション終了時に最後のメッセージが失われる問題\n\n## 注目論文 TOP 10\n\n1. **Rethinking Cross-Tokenizer On-Policy Distillation** | 👍 153 | https://arxiv.org/abs/2610.08448\n   - 🎯 **背景**: 異なるトークナイザーを持つ教師・生徒モデル間のオンポリシー蒸留における整合問題\n   - 🔧 **手法**: シーケンス・トークン両レベルでアライメントカバレッジと監督信頼性を最適化\n   - 📊 **結果**: 既存クロストークナイザー蒸留手法を上回る性能、特に長文生成タスクで顕著\n   - 💡 **意義**: 異なるアーキテクチャ間の知識移転を効率化し、モデル圧縮の実用性を向上\n   - ⚠️ **限界**: 特定トークナイザーペアでの評価に限定\n\n2. **TRACE: Rollout-Guided Quantization-Aware Training for FP4 RL of MoE LLMs** | 👍 70 | https://arxiv.org/abs/2610.07767\n   - 🎯 **背景**: 大規模MoE言語モデルのRLポストトレーニングにおける膨大な計算・メモリオーバーヘッド\n   - 🔧 **手法**: FP4精度でのロールアウト生成を活用した量子化対応学習フレームワーク\n   - 📊 **結果**: メモリ使用量を大幅削減しながらRL性能を維持、スループット向上\n   - 💡 **意義**: 大規模MoEモデルのRL学習を民主化し、研究アクセスを拡大\n   - ⚠️ **限界**: FP4特有の数値誤差が一部タスクの性能に影響する可能性\n\n3. **CheckerBench: Can Long-Horizon Agents Synthesize Static-Analysis Checkers?** | 👍 52 | https://arxiv.org/abs/2610.07557\n   - 🎯 **背景**: 静的解析チェッカーの合成は仕様解釈・リポジトリ検査・実装・フィードバック反復が必要な長期タスク\n   - 🔧 **手法**: 長期エージェントが静的解析チェッカーを合成できるか評価するベンチマーク構築\n   - 📊 **結果**: 既存コーディングエージェントがパッチ生成等より高難易度の長期推論を要する問題を定量化\n   - 💡 **意義**: 実世界のソフトウェアセキュリティ・品質保証自動化に向けた研究の方向性を示す\n   - ⚠️ **限界**: 特定の静的解析フレームワークに依存、汎用性の確認が必要\n\n4. **From Evidence to Action: How Tool-Using Agents Fail** | 👍 34 | https://arxiv.org/abs/2610.07753\n   - 🎯 **背景**: ツール使用エージェントが外部状態を変更する際の行動根拠（エビデンス）の追跡可能性\n   - 🔧 **手法**: エビデンスから行動への推論連鎖を体系的に分析するフレームワーク\n   - 📊 **結果**: エビデンス不足が主要な失敗要因と特定、単一行動から複数行動へのスケールで急増\n   - 💡 **意義**: 安全で信頼性の高いエージェント設計のための実践的ガイドラインを提供\n   - ⚠️ **限界**: 特定のタスクセットに限定、より広範な評価が必要\n\n5. **Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing** | 👍 24 | https://arxiv.org/abs/2609.37334\n   - 🎯 **背景**: ロボットの実行誤差（摩耗・ペイロード変化）によりVLAポリシーが失敗するメカニズム\n   - 🔧 **手法**: デプロイ時の自己補償適応とストレステストによるVLAの頑健性向上\n   - 📊 **結果**: 実行誤差に対してより頑健なVLAポリシーを実現、実ロボット環境での成功率を改善\n   - 💡 **意義**: 実世界ロボット展開における信頼性向上のための実践的アプローチを提供\n   - ⚠️ **限界**: 特定のロボットプラットフォームと動作条件での評価に限定\n\n6. **World Action Learning via Interaction-Centric Spectral Latent Guidance** | 👍 24 | https://arxiv.org/abs/2610.03607\n   - 🎯 **背景**: 汎用ロボットポリシー学習に必要な大規模実世界データ収集の困難さ\n   - 🔧 **手法**: エゴセントリック動画から相互作用中心のスペクトル潜在表現を学習\n   - 📊 **結果**: 少量ロボットデモから高品質ポリシーを学習、動画データの有効活用を実現\n   - 💡 **意義**: 高価なロボットデモなしに豊富な動画データからロボット学習を可能に\n   - ⚠️ **限界**: 特定インタラクション種別への依存、複雑な操作への適用に課題\n\n7. **HuatuoGPT-3: RL-Only Domain Adaptation from Base Models** | 👍 21 | https://arxiv.org/abs/2610.05966\n   - 🎯 **背景**: SFT+RLパイプラインを排した医療分野特化LLMの効率的構築手法の探索\n   - 🔧 **手法**: ベースモデルから直接RLのみで医療ドメイン適応を実現\n   - 📊 **結果**: SFT段階なしでSFT+RL同等以上の医療QA性能を達成\n   - 💡 **意義**: SFT依存を排除することでドメイン適応の探索能力と効率を向上\n   - ⚠️ **限界**: 医療分野特化の評価、他ドメインへの汎化は未検証\n\n8. **UNREAL: Unifying Retrieval and Long-Context with a Single Model** | 👍 19 | https://arxiv.org/abs/2610.08463\n   - 🎯 **背景**: 長文推論とRAGを別々のシステムで扱う非効率性、統一モデルの可能性\n   - 🔧 **手法**: 単一モデルで長文コンテキスト推論とコーパス規模検索の両方を処理する統合アーキテクチャ\n   - 📊 **結果**: 特化モデルに匹敵する性能を単一モデルで達成、メモリ・計算効率を改善\n   - 💡 **意義**: LLMシステムの複雑さを削減し、展開コストを大幅に低減\n   - ⚠️ **限界**: 極端に大規模なコーパスでの検索精度と超長文処理のトレードオフが残存\n\n9. **AGO AI Quality Gate: Evidence-First Release Decisions for RAG** | 👍 16 | https://arxiv.org/abs/2610.01218\n   - 🎯 **背景**: RAG採用企業がシステムバージョンの昇格・修正・ブロック判断を下す際のエビデンス不足問題\n   - 🔧 **手法**: エビデンスファーストのRAGリリース品質ゲートフレームワーク、LLMジャッジの信頼性も考慮\n   - 📊 **結果**: 企業展開における誤ったリリース判断を削減、実際の運用環境で検証\n   - 💡 **意義**: 企業RAGシステムのリリースサイクルに信頼性と説明責任をもたらす\n   - ⚠️ **限界**: 特定のRAGアーキテクチャと評価指標への依存\n\n10. **MiniCorp: The Last Mile of the AI Agent Firm** | 👍 15 | https://arxiv.org/abs/2610.05912\n    - 🎯 **背景**: 企業AGIへの最後の1マイルとして、自律的に運営される企業エージェントの実現\n    - 🔧 **手法**: 実際の企業データを活用してエージェント企業のプロセスを模倣・学習するフレームワーク\n    - 📊 **結果**: プライバシー制約のある縦断的企業データからエージェントを効果的に訓練\n    - 💡 **意義**: エンタープライズAGIに向けた実用的なアプローチを提示\n    - ⚠️ **限界**: 実際の企業環境での長期評価が未実施\n\n",
+  "fetched_at": "2026-10-07T22:08:37.635996+00:00",
+  "papers": [
+    {
+      "title": "Rethinking Cross-Tokenizer On-Policy Distillation: From Alignment Coverage to Supervision Reliability",
+      "upvotes": 153,
+      "id": "2610.08448",
+      "abstract": "On-Policy Distillation (OPD) trains a student on its own generations using teacher feedback. With different tokenizers, comparing teacher and student predictions requires alignment at both sequence an"
+    },
+    {
+      "title": "TRACE: Rollout-Guided Quantization-Aware Training for FP4 Reinforcement Learning of MoE Language Models",
+      "upvotes": 70,
+      "id": "2610.07767",
+      "abstract": "Reinforcement learning (RL) for post-training large language models (LLMs) incurs substantial computation and memory overhead during rollout generation, which motivates low-precision rollout for effic"
+    },
+    {
+      "title": "CheckerBench: Can Long-Horizon Agents Synthesize Static-Analysis Checkers?",
+      "upvotes": 52,
+      "id": "2610.07557",
+      "abstract": "Static-analysis checker synthesis requires agents to interpret a defect specification, inspect a repository, implement analyzer-specific logic, and refine the checker through repeated compilation and "
+    },
+    {
+      "title": "From Evidence to Action: How Tool-Using Agents Fail",
+      "upvotes": 34,
+      "id": "2610.07753",
+      "abstract": "Tool-using agents make consequential changes to external state, yet correct outcomes do not guarantee that their actions were supported by evidence established beforehand. We study where this evidence"
+    },
+    {
+      "title": "Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing",
+      "upvotes": 24,
+      "id": "2609.37334",
+      "abstract": "Vision-language-action (VLA) policies often fail when a robot's executed motion deviates from their commanded action. Such execution errors arise from the robot's mechanics and operating conditions, s"
+    },
+    {
+      "title": "World Action Learning via Interaction-Centric Spectral Latent Guidance",
+      "upvotes": 24,
+      "id": "2610.03607",
+      "abstract": "Learning general-purpose robot policies requires large-scale real-world interaction data, yet collecting robot demonstrations remains expensive and difficult to scale. Egocentric videos offer abundant"
+    },
+    {
+      "title": "HuatuoGPT-3: RL-Only Domain Adaptation from Base Models",
+      "upvotes": 21,
+      "id": "2610.05966",
+      "abstract": "Domain adaptation aims to turn a general-purpose large language model (LLM) into an expert for a target domain. While the dominant SFT+RL pipeline offers a convenient cold start, it may reduce explora"
+    },
+    {
+      "title": "UNREAL: Unifying Retrieval and Long-Context with a Single Model",
+      "upvotes": 19,
+      "id": "2610.08463",
+      "abstract": "Long-context inference and Retrieval-Augmented Generation (RAG) handle evidence selection at vastly different scales, from a single long prompt to an entire corpus. We ask whether a single model-inter"
+    },
+    {
+      "title": "AGO AI Quality Gate: Evidence-First Release Decisions for Retrieval-Augmented Generation",
+      "upvotes": 16,
+      "id": "2610.01218",
+      "abstract": "Enterprises adopting retrieval-augmented generation (RAG) face a recurring operational decision: promote, revise, or block a system version. The evidence is incomplete and the metrics come from fallib"
+    },
+    {
+      "title": "MiniCorp: The Last Mile of the AI Agent Firm",
+      "upvotes": 15,
+      "id": "2610.05912",
+      "abstract": "The last mile toward enterprise AGI is a company that runs itself. Training and adapting such agents require longitudinal enterprise data, which remain scarce, costly to acquire, and often restricted "
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.293",
+      "published_at": "2026-10-07",
+      "body": "What's changed\n* Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok\n* Added `agentType` to the `subagentStatusLine` payload\n* Added `isDeferred` to `$.tool.register` for mods\n* Fixed Claude sometimes treating its own last actions before a context compaction as done after it"
+    },
+    {
+      "tag_name": "v2.1.292",
+      "published_at": "2026-10-06",
+      "body": "What's changed\n* Added `--marketplace <source>` to `claude plugin install`\n* Added an `effort` parameter to the Agent tool\n* Added `CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS` environment variable"
+    },
+    {
+      "tag_name": "v2.1.291",
+      "published_at": "2026-10-06",
+      "body": "What's changed\n* Fixed a regression in 2.1.290 where cloud sessions could drop answers to permission prompts\n* Fixed a regression in 2.1.288 where the last messages of a session could be lost when quitting"
+    }
+  ]
+}
