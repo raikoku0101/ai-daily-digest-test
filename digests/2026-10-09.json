@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-09",
+  "content": "# AI Daily Digest — 2026-10-09\n\n## 今日のハイライト\n- **Claude Code v2.1.295: フック信頼性が大幅向上**: `onFailure: \"block\"` により失敗したフックが安全にアクションをブロック可能に。プロダクション環境での安全性確保に直結する重要アップデート。\n- **Claude Haiku 5.5 が正式リリース**: 1Mコンテキスト対応・$0.10/$0.50 per Mtokの低コストモデルが Anthropic API のデフォルトに。大規模エージェント構築のコスト削減に大きく貢献。\n- **NAMVIS: 拡散モデル不要のマルチビュー合成が3倍高速化**: 幾何条件付き自己回帰モデルで従来の拡散モデルを性能・速度ともに超えた。3D生成AIの実用化加速が期待される。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.295 (2026-10-08)\n\n**主要機能**\n- `onFailure: \"block\"` フックオプション追加: 起動失敗・タイムアウト・予期しない終了コードの際にアクションをブロック可能に\n- Program Status Protocol (OSC 7501) サポート: 対応ターミナルが Claude Code の状態（作業中・待機中・完了）を表示できるように\n- `/copy` ピッカーで引用テキストも選択可能になり、`>` マーカーなしでコピー可能に\n- プラグインコマンド (`install`, `enable`, `disable`, `marketplace add`) で設定ファイルが読み込まれない場合に警告を表示\n\n**ユーザーへの影響**: フックの信頼性が向上し、ターミナルとの統合が強化されました。\n\n---\n\n### v2.1.294 (2026-10-08)\n\n**バグ修正**\n- 指示文形式 (`\"Block commands that...\"`) で書かれた `prompt`/`agent` フックがブロックすべき動作を許可していた問題を修正\n- Stop/SubagentStop での指示文形式 `prompt` フックの判定改善: Claude が早期停止しにくくなった\n\n**ユーザーへの影響**: フックをナチュラルランゲージで記述しているユーザーの安全性が向上します。\n\n---\n\n### v2.1.293 (2026-10-07)\n\n**主要機能**\n- Claude Haiku 5.5 (`claude-haiku-5-5`) を追加: Anthropic API のデフォルト Haiku モデル。1M コンテキスト、$0.10/$0.50 per Mtok\n- `subagentStatusLine` ペイロードに `agentType` 追加: カスタムサブエージェントの種別判別が可能に\n- `$.tool.register` に `isDeferred` オプション追加: `false` でツールスキーマをプロンプト先頭から展開\n\n**バグ修正**\n- コンテキスト圧縮前の最終アクションを完了済みとして扱い、取り消し・再実行する問題を修正\n- メモリリークを修正\n\n**ユーザーへの影響**: より高速・低コストな Haiku 5.5 が利用可能になり、マルチエージェント開発の柔軟性も向上します。\n\n## 注目論文 TOP 10\n\n1. **NAMVIS: Next-Scale Autoregressive Multi-View Image Synthesis** | 19 upvotes | https://arxiv.org/abs/2610.04722\n   - 🎯背景: スパースビュー3D合成では拡散モデルが主流だが、推論速度と品質のバランスが課題\n   - 🔧手法: 幾何条件付き次スケール自己回帰モデルによる拡散モデル不要のマルチビュー合成\n   - 📊結果: PSNR・SSIM・LPIPSで拡散ベースラインを上回り、推論速度は3倍以上\n   - 💡意義: 拡散モデルなしで高品質マルチビュー合成が可能なことを示した先駆的研究\n   - ⚠️限界: スパースビュー入力に特化しており、密なビュー条件での性能は未検証\n\n2. **Q-Learning with Scalar Adjoint Matching** | 15 upvotes | https://arxiv.org/abs/2610.10437\n   - 🎯背景: フローポリシーのファインチューニングにはオフポリシーQ学習が有望だが、勾配計算コストが高い\n   - 🔧手法: ヤコビアン積不要のスカラー随伴による閉形式Q学習 + 価値ペナルティ\n   - 📊結果: OGBenchおよび実機バイマニュアルロボットでの検証で有効性を確認\n   - 💡意義: 計算効率と実ロボット適用可能性を同時に実現するフローポリシー最適化の新手法\n   - ⚠️限界: 実験環境が限定的で、より複雑なタスクへのスケーラビリティは不明\n\n3. **MIMESIS: Learning User Simulators as Training Environments for Interactive Agents** | 10 upvotes | https://arxiv.org/abs/2610.09484\n   - 🎯背景: 対話エージェントのRL学習には人間との多ターンインタラクションが必要で、コスト高\n   - 🔧手法: 推論監督と現実的行動パターンで訓練したユーザーシミュレーターによる多ターンRL + coached自己蒸留\n   - 📊結果: 人間との対話データから効率的にエージェント学習が可能\n   - 💡意義: ユーザーシミュレーターをトレーニング環境として活用するパラダイムの確立\n   - ⚠️限界: シミュレーターの忠実度が実際のユーザー多様性を完全には捉えられない可能性\n\n4. **A self-learning scientific agent for X-ray diffraction** | 9 upvotes | https://arxiv.org/abs/2610.07862\n   - 🎯背景: 粉末X線回折解析は専門知識が必要で、AIによる自動化が期待されている\n   - 🔧手法: 分析経験を検証済み実行スキルに変換するエージェント（LMの再学習不要）\n   - 📊結果: 相識別ベンチマークで最高性能を達成\n   - 💡意義: LMの再学習なしに科学的スキルを自律獲得できるエージェントアーキテクチャ\n   - ⚠️限界: X線回折に特化しており、他の科学分野への汎化には追加検証が必要\n\n5. **Iris-3B: Going Beyond the Latent with Pixel-Space Diffusion Training** | 7 upvotes | https://arxiv.org/abs/2610.09450\n   - 🎯背景: 潜在空間拡散モデルが主流の中、ピクセル空間での生成モデルの優位性を検証\n   - 🔧手法: 30億パラメータのピクセル空間テキスト→画像トランスフォーマー（深度推定・超解像にも適用）\n   - 📊結果: 潜在モデルに対するピクセル空間生成事前分布の明確な優位性は見られなかった\n   - 💡意義: ピクセル空間アプローチの限界を明示し、今後の研究方向性を示す\n   - ⚠️限界: 3Bパラメータ規模のため、より大規模モデルでの比較は未実施\n\n6. **Composing What Each Teacher Learned: Multi-Teacher On-Policy Distillation through Teacher-Relative Shifts** | 7 upvotes | https://arxiv.org/abs/2610.10460\n   - 🎯背景: 複数教師からの知識蒸留では各教師の貢献を適切に分離することが困難\n   - 🔧手法: Δ-MOPD: 教師のエンドポイントポリシーでなく、ベースモデルに対するロジットシフトを転送\n   - 📊結果: 複合・ルーティング両設定でマルチ教師オンポリシー蒸留の性能が向上\n   - 💡意義: 各教師が学んだ差分を明示的に合成することで知識転送効率を改善\n   - ⚠️限界: ベースモデルの品質に依存するため、弱いベースモデルでの効果は限定的な可能性\n\n7. **Inherit-MAS: Test-Time Evolution of Multi-Agent Systems through Workflow and Execution Inheritance** | 4 upvotes | https://arxiv.org/abs/2610.02396\n   - 🎯背景: LLMマルチエージェントシステムのワークフロー設計はテスト時に最適化困難\n   - 🔧手法: ワークフロー構造の継承と一致する実行結果の再利用によるテスト時進化\n   - 📊結果: ベンチマークスコア向上とトークン使用量削減を同時達成\n   - 💡意義: テスト時計算効率とシステム性能改善を両立するマルチエージェント最適化手法\n   - ⚠️限界: 継承の有効性はタスク間の類似性に依存し、多様なタスクセットでは効果減少の可能性\n\n8. **CoDance: Learning Reactive and Compliant Human-Humanoid Interaction from Video** | 2 upvotes | https://arxiv.org/abs/2610.05324\n   - 🎯背景: 人間とヒューマノイドの協調ダンスは反応性と柔軟性が要求される複雑な課題\n   - 🔧手法: 単一ビデオからのマルチリンクコンプライアンス拡張による反応的・協調的ダンス学習\n   - 📊結果: 実機ヒューマノイドでのパートナーダンス実演に成功\n   - 💡意義: 少量データから物理的インタラクションを学習する新アプローチ\n   - ⚠️限界: 単一ビデオからの学習のため汎化性に課題があり、限られた動作パターンのみ対応\n\n9. **FastOPD: On-Policy Distillation for Lightweight VLA Deployment** | 2 upvotes | https://arxiv.org/abs/2610.02832\n   - 🎯背景: 大規模VLA（Vision-Language-Action）ロボットポリシーの推論コストが実際の展開を妨げている\n   - 🔧手法: 大規模VLAからコンパクトな少ステップ学生モデルへのオンポリシー蒸留\n   - 📊結果: LIBEROベンチマークで教師の性能をほぼ維持しながら推論レイテンシを大幅削減\n   - 💡意義: 大規模VLAの実用展開への障壁を大幅に低減\n   - ⚠️限界: LIBERO環境での評価のみで、より複雑な実世界タスクへの適用性は未検証\n\n10. **DSReg: Provably Recovering Individual World Latents without Reconstruction** | 2 upvotes | https://arxiv.org/abs/2610.09457\n    - 🎯背景: JEPAスタイル表現から個別の世界潜在変数を回復することはデコーダーなしでは困難とされていた\n    - 🔧手法: デコーダー・再構成不要のStructural Diversity条件による世界潜在変数の回復（学習済みチェックポイントに事後適用可能）\n    - 📊結果: 既存の学習済みモデルに事後適用して潜在変数を回復できることを理論的に証明\n    - 💡意義: 再構成なしに表現から意味的潜在変数を抽出できるという理論的基盤の確立\n    - ⚠️限界: Structural Diversity条件の実用的な検証基準が不明確で、適用可能なモデルが限定される可能性\n\n",
+  "fetched_at": "2026-10-08T22:12:55.567769+00:00",
+  "papers": [
+    {
+      "title": "NAMVIS: Next-Scale Autoregressive Multi-View Image Synthesis",
+      "upvotes": 19,
+      "paper_id": "2610.04722",
+      "abstract": "A diffusion-free method for sparse-view multi-view synthesis that uses geometry-conditioned next-scale autoregression. It reports better PSNR, SSIM, and LPIPS than diffusion baselines and runs over 3x faster."
+    },
+    {
+      "title": "Q-Learning with Scalar Adjoint Matching",
+      "upvotes": 15,
+      "paper_id": "2610.10437",
+      "abstract": "Fine-tunes flow policies with off-policy Q-learning, using a closed-form scalar adjoint that avoids per-step Jacobian products plus a value penalty. Tested on OGBench and a real bimanual robot."
+    },
+    {
+      "title": "MIMESIS: Learning User Simulators as Training Environments for Interactive Agents",
+      "upvotes": 10,
+      "paper_id": "2610.09484",
+      "abstract": "A user simulator trained on human conversations with reasoning supervision and realistic behavior patterns. It is used to train agents with multi-turn RL and a coached self-distillation method."
+    },
+    {
+      "title": "A self-learning scientific agent for X-ray diffraction",
+      "upvotes": 9,
+      "paper_id": "2610.07862",
+      "abstract": "An agent for powder X-ray diffraction that turns analytical experience into validated executable skills without retraining the language model. It leads on phase identification benchmarks."
+    },
+    {
+      "title": "Iris-3B: Going Beyond the Latent with Pixel-Space Diffusion Training, Conversion and Fine-Tuning",
+      "upvotes": 7,
+      "paper_id": "2610.09450",
+      "abstract": "A 3B pixel-space text-to-image transformer, plus tests on depth estimation and super-resolution. It finds no clear gain from a pixel-space generative prior over latent models."
+    },
+    {
+      "title": "Composing What Each Teacher Learned: Multi-Teacher On-Policy Distillation through Teacher-Relative Shifts",
+      "upvotes": 7,
+      "paper_id": "2610.10460",
+      "abstract": "Delta-MOPD transfers each teacher's logit shift relative to its base model rather than its endpoint policy. This improves multi-teacher on-policy distillation in both composed and routed settings."
+    },
+    {
+      "title": "Inherit-MAS: Test-Time Evolution of Multi-Agent Systems through Workflow and Execution Inheritance",
+      "upvotes": 4,
+      "paper_id": "2610.02396",
+      "abstract": "Evolves LLM multi-agent workflows at test time by inheriting workflow structure and reusing matched execution results. It improves benchmark scores while reducing token usage."
+    },
+    {
+      "title": "CoDance: Learning Reactive and Compliant Human-Humanoid Interaction from Video",
+      "upvotes": 2,
+      "paper_id": "2610.05324",
+      "abstract": "Learns reactive, compliant partnered dancing between a humanoid and a human from a single video, using multi-link compliance augmentation. Demonstrated on a physical humanoid."
+    },
+    {
+      "title": "FastOPD: On-Policy Distillation for Lightweight VLA Deployment",
+      "upvotes": 2,
+      "paper_id": "2610.02832",
+      "abstract": "Distills large vision-language-action robot policies into compact few-step students. On LIBERO it keeps most of the teacher's performance while cutting inference latency substantially."
+    },
+    {
+      "title": "DSReg: Provably Recovering Individual World Latents without Reconstruction",
+      "upvotes": 2,
+      "paper_id": "2610.09457",
+      "abstract": "Recovers individual world latents from JEPA-style representations without a decoder or reconstruction. It relies on a Structural Diversity condition and applies post hoc to trained checkpoints."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.295",
+      "published_at": "2026-10-08",
+      "body": "What's changed\n\n- Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through\n- Added Program Status Protocol (OSC 7501) support: terminals that implement it can show whether Claude Code is working, waiting on you, or done\n- Added quoted text to the `/copy` picker, so a drafted message copies without its `>` markers\n- Added a warning to `claude plugin install`, `enable`, `disable` and `marketplace add` when the settings file they write to does not load\n- Added a line on…"
+    },
+    {
+      "tag_name": "v2.1.294",
+      "published_at": "2026-10-08",
+      "body": "What's changed\n\n- Fixed `prompt` and `agent` hooks written as instructions (such as \"Block commands that...\") allowing what they should block\n- Improved how `prompt` hooks on Stop and SubagentStop written as instructions (such as \"Carry on if the build is broken\") are judged, so Claude is less likely to stop early"
+    },
+    {
+      "tag_name": "v2.1.293",
+      "published_at": "2026-10-07",
+      "body": "What's changed\n\n- Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100K)\n- Added `agentType` to the `subagentStatusLine` payload, so scripts can tell custom subagent types apart\n- Added `isDeferred` to `$.tool.register` for mods: `false` lists the tool's schema in the prompt from the start instead of behind tool search\n- Fixed Claude sometimes treating its own last actions before a context compaction as done after it, and retracting or redoing finished work\n- Fixed a memory lea…"
+    }
+  ]
+}
