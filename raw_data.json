@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "Rethinking Cross-Tokenizer On-Policy Distillation: From Alignment Coverage to Supervision Reliability",
-      "upvotes": 153,
-      "id": "2610.08448",
-      "abstract": "On-Policy Distillation (OPD) trains a student on its own generations using teacher feedback. With different tokenizers, comparing teacher and student predictions requires alignment at both sequence an"
-    },
-    {
-      "title": "TRACE: Rollout-Guided Quantization-Aware Training for FP4 Reinforcement Learning of MoE Language Models",
-      "upvotes": 70,
-      "id": "2610.07767",
-      "abstract": "Reinforcement learning (RL) for post-training large language models (LLMs) incurs substantial computation and memory overhead during rollout generation, which motivates low-precision rollout for effic"
-    },
-    {
-      "title": "CheckerBench: Can Long-Horizon Agents Synthesize Static-Analysis Checkers?",
-      "upvotes": 52,
-      "id": "2610.07557",
-      "abstract": "Static-analysis checker synthesis requires agents to interpret a defect specification, inspect a repository, implement analyzer-specific logic, and refine the checker through repeated compilation and "
-    },
-    {
-      "title": "From Evidence to Action: How Tool-Using Agents Fail",
-      "upvotes": 34,
-      "id": "2610.07753",
-      "abstract": "Tool-using agents make consequential changes to external state, yet correct outcomes do not guarantee that their actions were supported by evidence established beforehand. We study where this evidence"
-    },
-    {
-      "title": "Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing",
-      "upvotes": 24,
-      "id": "2609.37334",
-      "abstract": "Vision-language-action (VLA) policies often fail when a robot's executed motion deviates from their commanded action. Such execution errors arise from the robot's mechanics and operating conditions, s"
-    },
-    {
-      "title": "World Action Learning via Interaction-Centric Spectral Latent Guidance",
-      "upvotes": 24,
-      "id": "2610.03607",
-      "abstract": "Learning general-purpose robot policies requires large-scale real-world interaction data, yet collecting robot demonstrations remains expensive and difficult to scale. Egocentric videos offer abundant"
-    },
-    {
-      "title": "HuatuoGPT-3: RL-Only Domain Adaptation from Base Models",
-      "upvotes": 21,
-      "id": "2610.05966",
-      "abstract": "Domain adaptation aims to turn a general-purpose large language model (LLM) into an expert for a target domain. While the dominant SFT+RL pipeline offers a convenient cold start, it may reduce explora"
-    },
-    {
-      "title": "UNREAL: Unifying Retrieval and Long-Context with a Single Model",
+      "title": "NAMVIS: Next-Scale Autoregressive Multi-View Image Synthesis",
       "upvotes": 19,
-      "id": "2610.08463",
-      "abstract": "Long-context inference and Retrieval-Augmented Generation (RAG) handle evidence selection at vastly different scales, from a single long prompt to an entire corpus. We ask whether a single model-inter"
+      "paper_id": "2610.04722",
+      "abstract": "A diffusion-free method for sparse-view multi-view synthesis that uses geometry-conditioned next-scale autoregression. It reports better PSNR, SSIM, and LPIPS than diffusion baselines and runs over 3x faster."
     },
     {
-      "title": "AGO AI Quality Gate: Evidence-First Release Decisions for Retrieval-Augmented Generation",
-      "upvotes": 16,
-      "id": "2610.01218",
-      "abstract": "Enterprises adopting retrieval-augmented generation (RAG) face a recurring operational decision: promote, revise, or block a system version. The evidence is incomplete and the metrics come from fallib"
-    },
-    {
-      "title": "MiniCorp: The Last Mile of the AI Agent Firm",
+      "title": "Q-Learning with Scalar Adjoint Matching",
       "upvotes": 15,
-      "id": "2610.05912",
-      "abstract": "The last mile toward enterprise AGI is a company that runs itself. Training and adapting such agents require longitudinal enterprise data, which remain scarce, costly to acquire, and often restricted "
+      "paper_id": "2610.10437",
+      "abstract": "Fine-tunes flow policies with off-policy Q-learning, using a closed-form scalar adjoint that avoids per-step Jacobian products plus a value penalty. Tested on OGBench and a real bimanual robot."
+    },
+    {
+      "title": "MIMESIS: Learning User Simulators as Training Environments for Interactive Agents",
+      "upvotes": 10,
+      "paper_id": "2610.09484",
+      "abstract": "A user simulator trained on human conversations with reasoning supervision and realistic behavior patterns. It is used to train agents with multi-turn RL and a coached self-distillation method."
+    },
+    {
+      "title": "A self-learning scientific agent for X-ray diffraction",
+      "upvotes": 9,
+      "paper_id": "2610.07862",
+      "abstract": "An agent for powder X-ray diffraction that turns analytical experience into validated executable skills without retraining the language model. It leads on phase identification benchmarks."
+    },
+    {
+      "title": "Iris-3B: Going Beyond the Latent with Pixel-Space Diffusion Training, Conversion and Fine-Tuning",
+      "upvotes": 7,
+      "paper_id": "2610.09450",
+      "abstract": "A 3B pixel-space text-to-image transformer, plus tests on depth estimation and super-resolution. It finds no clear gain from a pixel-space generative prior over latent models."
+    },
+    {
+      "title": "Composing What Each Teacher Learned: Multi-Teacher On-Policy Distillation through Teacher-Relative Shifts",
+      "upvotes": 7,
+      "paper_id": "2610.10460",
+      "abstract": "Delta-MOPD transfers each teacher's logit shift relative to its base model rather than its endpoint policy. This improves multi-teacher on-policy distillation in both composed and routed settings."
+    },
+    {
+      "title": "Inherit-MAS: Test-Time Evolution of Multi-Agent Systems through Workflow and Execution Inheritance",
+      "upvotes": 4,
+      "paper_id": "2610.02396",
+      "abstract": "Evolves LLM multi-agent workflows at test time by inheriting workflow structure and reusing matched execution results. It improves benchmark scores while reducing token usage."
+    },
+    {
+      "title": "CoDance: Learning Reactive and Compliant Human-Humanoid Interaction from Video",
+      "upvotes": 2,
+      "paper_id": "2610.05324",
+      "abstract": "Learns reactive, compliant partnered dancing between a humanoid and a human from a single video, using multi-link compliance augmentation. Demonstrated on a physical humanoid."
+    },
+    {
+      "title": "FastOPD: On-Policy Distillation for Lightweight VLA Deployment",
+      "upvotes": 2,
+      "paper_id": "2610.02832",
+      "abstract": "Distills large vision-language-action robot policies into compact few-step students. On LIBERO it keeps most of the teacher's performance while cutting inference latency substantially."
+    },
+    {
+      "title": "DSReg: Provably Recovering Individual World Latents without Reconstruction",
+      "upvotes": 2,
+      "paper_id": "2610.09457",
+      "abstract": "Recovers individual world latents from JEPA-style representations without a decoder or reconstruction. It relies on a Structural Diversity condition and applies post hoc to trained checkpoints."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.295",
+      "published_at": "2026-10-08",
+      "body": "What's changed\n\n- Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through\n- Added Program Status Protocol (OSC 7501) support: terminals that implement it can show whether Claude Code is working, waiting on you, or done\n- Added quoted text to the `/copy` picker, so a drafted message copies without its `>` markers\n- Added a warning to `claude plugin install`, `enable`, `disable` and `marketplace add` when the settings file they write to does not load\n- Added a line on…"
+    },
+    {
+      "tag_name": "v2.1.294",
+      "published_at": "2026-10-08",
+      "body": "What's changed\n\n- Fixed `prompt` and `agent` hooks written as instructions (such as \"Block commands that...\") allowing what they should block\n- Improved how `prompt` hooks on Stop and SubagentStop written as instructions (such as \"Carry on if the build is broken\") are judged, so Claude is less likely to stop early"
+    },
+    {
       "tag_name": "v2.1.293",
       "published_at": "2026-10-07",
-      "body": "What's changed\n* Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok\n* Added `agentType` to the `subagentStatusLine` payload\n* Added `isDeferred` to `$.tool.register` for mods\n* Fixed Claude sometimes treating its own last actions before a context compaction as done after it"
-    },
-    {
-      "tag_name": "v2.1.292",
-      "published_at": "2026-10-06",
-      "body": "What's changed\n* Added `--marketplace <source>` to `claude plugin install`\n* Added an `effort` parameter to the Agent tool\n* Added `CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS` environment variable"
-    },
-    {
-      "tag_name": "v2.1.291",
-      "published_at": "2026-10-06",
-      "body": "What's changed\n* Fixed a regression in 2.1.290 where cloud sessions could drop answers to permission prompts\n* Fixed a regression in 2.1.288 where the last messages of a session could be lost when quitting"
+      "body": "What's changed\n\n- Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100K)\n- Added `agentType` to the `subagentStatusLine` payload, so scripts can tell custom subagent types apart\n- Added `isDeferred` to `$.tool.register` for mods: `false` lists the tool's schema in the prompt from the start instead of behind tool search\n- Fixed Claude sometimes treating its own last actions before a context compaction as done after it, and retracting or redoing finished work\n- Fixed a memory lea…"
     }
   ]
 }
