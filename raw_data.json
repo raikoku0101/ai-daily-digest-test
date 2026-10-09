@@ -1,81 +1,65 @@
 {
   "papers": [
     {
-      "title": "NAMVIS: Next-Scale Autoregressive Multi-View Image Synthesis",
-      "upvotes": 19,
-      "paper_id": "2610.04722",
-      "abstract": "A diffusion-free method for sparse-view multi-view synthesis that uses geometry-conditioned next-scale autoregression. It reports better PSNR, SSIM, and LPIPS than diffusion baselines and runs over 3x faster."
+      "title": "Learn2Play Bench: How Well Do LLM Agents Learn from Experience in Unfamiliar Environments?",
+      "upvotes": 76,
+      "paper_id": "2610.08215",
+      "abstract": "Learning from experience is essential for LLM agents to adapt to unfamiliar and dynmaic environments. Evaluating this ability is therefore important for understanding how effectively agents acquire an"
     },
     {
-      "title": "Q-Learning with Scalar Adjoint Matching",
-      "upvotes": 15,
-      "paper_id": "2610.10437",
-      "abstract": "Fine-tunes flow policies with off-policy Q-learning, using a closed-form scalar adjoint that avoids per-step Jacobian products plus a value penalty. Tested on OGBench and a real bimanual robot."
+      "title": "MiMo-V2.6: Scaling Reinforcement Learning Towards Self-Improvement",
+      "upvotes": 55,
+      "paper_id": "2610.11959",
+      "abstract": "Reinforcement learning (RL) is the central training paradigm for advancing large foundation models towards self-improvement. This report introduces the MiMo-V2.6 series, an omni-modal family that push"
     },
     {
-      "title": "MIMESIS: Learning User Simulators as Training Environments for Interactive Agents",
-      "upvotes": 10,
-      "paper_id": "2610.09484",
-      "abstract": "A user simulator trained on human conversations with reasoning supervision and realistic behavior patterns. It is used to train agents with multi-turn RL and a coached self-distillation method."
+      "title": "Multi-Agent Egocentric World Model with Fine-Grained Embodied Interaction",
+      "upvotes": 42,
+      "paper_id": "2610.12299",
+      "abstract": "Egocentric world models predict first-person observations conditioned on an agent's actions, but most focus on a single agent. Real embodied settings often involve multiple agents that act and interac"
     },
     {
-      "title": "A self-learning scientific agent for X-ray diffraction",
-      "upvotes": 9,
-      "paper_id": "2610.07862",
-      "abstract": "An agent for powder X-ray diffraction that turns analytical experience into validated executable skills without retraining the language model. It leads on phase identification benchmarks."
+      "title": "OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs",
+      "upvotes": 31,
+      "paper_id": "2610.12461",
+      "abstract": "Recent 3D world models generate photorealistic, explorable scenes that remain frozen in time. OuroWorld is a mask-free framework that turns any static 3D Gaussian Splatting scene into a 3D cinemagraph"
     },
     {
-      "title": "Iris-3B: Going Beyond the Latent with Pixel-Space Diffusion Training, Conversion and Fine-Tuning",
-      "upvotes": 7,
-      "paper_id": "2610.09450",
-      "abstract": "A 3B pixel-space text-to-image transformer, plus tests on depth estimation and super-resolution. It finds no clear gain from a pixel-space generative prior over latent models."
+      "title": "Foundations of Large Language Models",
+      "upvotes": 30,
+      "paper_id": "2501.09223",
+      "abstract": "This is a book about large language models. As indicated by the title, it primarily focuses on foundational concepts rather than comprehensive coverage of all cutting-edge technologies. The book is st"
     },
     {
-      "title": "Composing What Each Teacher Learned: Multi-Teacher On-Policy Distillation through Teacher-Relative Shifts",
-      "upvotes": 7,
-      "paper_id": "2610.10460",
-      "abstract": "Delta-MOPD transfers each teacher's logit shift relative to its base model rather than its endpoint policy. This improves multi-teacher on-policy distillation in both composed and routed settings."
+      "title": "U-Space: Uncovering When and Why Uncertainty Arises in Language Models",
+      "upvotes": 29,
+      "paper_id": "2610.09087",
+      "abstract": "Large language models are informing decisions with ever-higher stakes. As the consequences of their errors grow, a central question becomes harder to ignore: how much can we trust an individual answer"
     },
     {
-      "title": "Inherit-MAS: Test-Time Evolution of Multi-Agent Systems through Workflow and Execution Inheritance",
-      "upvotes": 4,
-      "paper_id": "2610.02396",
-      "abstract": "Evolves LLM multi-agent workflows at test time by inheriting workflow structure and reusing matched execution results. It improves benchmark scores while reducing token usage."
+      "title": "TestPrism: Rethinking Test Evaluation Beyond a Single Reference",
+      "upvotes": 28,
+      "paper_id": "2610.12289",
+      "abstract": "Large language model (LLM) coding agents have advanced test generation across diverse programming tasks. However, the common practice of evaluating tests against a single reference solution overlooks "
     },
     {
-      "title": "CoDance: Learning Reactive and Compliant Human-Humanoid Interaction from Video",
-      "upvotes": 2,
-      "paper_id": "2610.05324",
-      "abstract": "Learns reactive, compliant partnered dancing between a humanoid and a human from a single video, using multi-link compliance augmentation. Demonstrated on a physical humanoid."
+      "title": "MC-Sparse: Deconstructing and Closing the Dense-Sparse Attention Gap in Diffusion Transformers",
+      "upvotes": 27,
+      "paper_id": "2610.06801",
+      "abstract": "Sparse attention is a primary approach to reducing the latency of diffusion transformers in long-sequence generation tasks, such as video and high-resolution 3D asset generation. However, existing met"
     },
     {
-      "title": "FastOPD: On-Policy Distillation for Lightweight VLA Deployment",
-      "upvotes": 2,
-      "paper_id": "2610.02832",
-      "abstract": "Distills large vision-language-action robot policies into compact few-step students. On LIBERO it keeps most of the teacher's performance while cutting inference latency substantially."
+      "title": "Beyond Spatio-Temporal Priors: A Generalizable Approach for Dense Correspondence Matching",
+      "upvotes": 25,
+      "paper_id": "2610.12421",
+      "abstract": "Dense correspondence matching has historically been bounded by simplifying spatio-temporal priors, such as smooth motion and rigid geometry. While effective for classical tasks, these assumptions brea"
     },
     {
-      "title": "DSReg: Provably Recovering Individual World Latents without Reconstruction",
-      "upvotes": 2,
-      "paper_id": "2610.09457",
-      "abstract": "Recovers individual world latents from JEPA-style representations without a decoder or reconstruction. It relies on a Structural Diversity condition and applies post hoc to trained checkpoints."
+      "title": "Post-Training Frontier Text-to-Image Models by Composing Preference and Rubric Rewards",
+      "upvotes": 23,
+      "paper_id": "2610.02967",
+      "abstract": "Recent text-to-image generation models have achieved remarkable visual quality, but improving them through post-training remains challenging because no single reward signal captures the full range of "
     }
   ],
-  "cc_updates": [
-    {
-      "tag_name": "v2.1.295",
-      "published_at": "2026-10-08",
-      "body": "What's changed\n\n- Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through\n- Added Program Status Protocol (OSC 7501) support: terminals that implement it can show whether Claude Code is working, waiting on you, or done\n- Added quoted text to the `/copy` picker, so a drafted message copies without its `>` markers\n- Added a warning to `claude plugin install`, `enable`, `disable` and `marketplace add` when the settings file they write to does not load\n- Added a line on…"
-    },
-    {
-      "tag_name": "v2.1.294",
-      "published_at": "2026-10-08",
-      "body": "What's changed\n\n- Fixed `prompt` and `agent` hooks written as instructions (such as \"Block commands that...\") allowing what they should block\n- Improved how `prompt` hooks on Stop and SubagentStop written as instructions (such as \"Carry on if the build is broken\") are judged, so Claude is less likely to stop early"
-    },
-    {
-      "tag_name": "v2.1.293",
-      "published_at": "2026-10-07",
-      "body": "What's changed\n\n- Added Claude Haiku 5.5 (`claude-haiku-5-5`), now the default Haiku model on the Anthropic API — 1M context, $0.10/$0.50 per Mtok ($0.50/$2.50 for prompts over 100K)\n- Added `agentType` to the `subagentStatusLine` payload, so scripts can tell custom subagent types apart\n- Added `isDeferred` to `$.tool.register` for mods: `false` lists the tool's schema in the prompt from the start instead of behind tool search\n- Fixed Claude sometimes treating its own last actions before a context compaction as done after it, and retracting or redoing finished work\n- Fixed a memory lea…"
-    }
-  ]
+  "cc_updates": []
 }
