@@ -1,65 +1,19 @@
 {
   "papers": [
-    {
-      "title": "Learn2Play Bench: How Well Do LLM Agents Learn from Experience in Unfamiliar Environments?",
-      "upvotes": 76,
-      "paper_id": "2610.08215",
-      "abstract": "Learning from experience is essential for LLM agents to adapt to unfamiliar and dynmaic environments. Evaluating this ability is therefore important for understanding how effectively agents acquire an"
-    },
-    {
-      "title": "MiMo-V2.6: Scaling Reinforcement Learning Towards Self-Improvement",
-      "upvotes": 55,
-      "paper_id": "2610.11959",
-      "abstract": "Reinforcement learning (RL) is the central training paradigm for advancing large foundation models towards self-improvement. This report introduces the MiMo-V2.6 series, an omni-modal family that push"
-    },
-    {
-      "title": "Multi-Agent Egocentric World Model with Fine-Grained Embodied Interaction",
-      "upvotes": 42,
-      "paper_id": "2610.12299",
-      "abstract": "Egocentric world models predict first-person observations conditioned on an agent's actions, but most focus on a single agent. Real embodied settings often involve multiple agents that act and interac"
-    },
-    {
-      "title": "OuroWorld: Bringing Any 3D World Alive as Diverse, Endlessly Looping 3D Cinemagraphs",
-      "upvotes": 31,
-      "paper_id": "2610.12461",
-      "abstract": "Recent 3D world models generate photorealistic, explorable scenes that remain frozen in time. OuroWorld is a mask-free framework that turns any static 3D Gaussian Splatting scene into a 3D cinemagraph"
-    },
-    {
-      "title": "Foundations of Large Language Models",
-      "upvotes": 30,
-      "paper_id": "2501.09223",
-      "abstract": "This is a book about large language models. As indicated by the title, it primarily focuses on foundational concepts rather than comprehensive coverage of all cutting-edge technologies. The book is st"
-    },
-    {
-      "title": "U-Space: Uncovering When and Why Uncertainty Arises in Language Models",
-      "upvotes": 29,
-      "paper_id": "2610.09087",
-      "abstract": "Large language models are informing decisions with ever-higher stakes. As the consequences of their errors grow, a central question becomes harder to ignore: how much can we trust an individual answer"
-    },
-    {
-      "title": "TestPrism: Rethinking Test Evaluation Beyond a Single Reference",
-      "upvotes": 28,
-      "paper_id": "2610.12289",
-      "abstract": "Large language model (LLM) coding agents have advanced test generation across diverse programming tasks. However, the common practice of evaluating tests against a single reference solution overlooks "
-    },
-    {
-      "title": "MC-Sparse: Deconstructing and Closing the Dense-Sparse Attention Gap in Diffusion Transformers",
-      "upvotes": 27,
-      "paper_id": "2610.06801",
-      "abstract": "Sparse attention is a primary approach to reducing the latency of diffusion transformers in long-sequence generation tasks, such as video and high-resolution 3D asset generation. However, existing met"
-    },
-    {
-      "title": "Beyond Spatio-Temporal Priors: A Generalizable Approach for Dense Correspondence Matching",
-      "upvotes": 25,
-      "paper_id": "2610.12421",
-      "abstract": "Dense correspondence matching has historically been bounded by simplifying spatio-temporal priors, such as smooth motion and rigid geometry. While effective for classical tasks, these assumptions brea"
-    },
-    {
-      "title": "Post-Training Frontier Text-to-Image Models by Composing Preference and Rubric Rewards",
-      "upvotes": 23,
-      "paper_id": "2610.02967",
-      "abstract": "Recent text-to-image generation models have achieved remarkable visual quality, but improving them through post-training remains challenging because no single reward signal captures the full range of "
-    }
+    {"title": "Memento 3: Model-Based Recursive Self-Improvement through Reflective Rulebooks", "upvotes": 28, "paper_id": "2610.11794", "abstract": "Frozen LLM agents learn explicit world models through external memory, keeping a revisable natural-language rulebook that is compiled into executable code and verified against observed transitions."},
+    {"title": "Pumpire: Unified Benchmark for Metric Distance Estimation", "upvotes": 15, "paper_id": "2610.12423", "abstract": "A benchmark that tests whether 3D foundation models estimate real-world physical distances between point pairs, using 6,400 frames from 100 scenes with measured distances."},
+    {"title": "Opera: A Verbal Critic Framework for Long-horizon Coding Agents", "upvotes": 10, "paper_id": "2609.33987", "abstract": "A critic that tracks each correction as a persistent note until the agent actually resolves the diagnosed problem, improving coding-agent resolve rates on several benchmarks."},
+    {"title": "A GPU-Parallel Framework for Heterogeneous Multi-Task Reinforcement Learning", "upvotes": 8, "paper_id": "2606.03335", "abstract": "Hebero, a GPU-parallel Isaac Lab benchmark of 40 manipulation tasks, plus DGPO and IW-ABC methods for training one multi-task policy from sparse rewards and few demonstrations."},
+    {"title": "Mara Chain: Rethinking Failure as a Stepping Stone for AI System Auto-Evolution", "upvotes": 5, "paper_id": "2609.35855", "abstract": "A refinement method that keeps rejected candidate configurations and iteratively improves them, reducing rollouts needed to optimize prompts, skills, and harnesses."},
+    {"title": "Can AI Agents Make Open-Ended Scientific Discovery? Evidence from Station", "upvotes": 5, "paper_id": "2610.08927", "abstract": "Station, an open-world simulated scientific ecosystem with supervisor and meta-reflection mechanisms, rediscovers a large share of findings from recent ICLR oral papers without web access."},
+    {"title": "A Closer Look at Agentic BBO: Benchmarking LLM Agents for Black-Box Optimization", "upvotes": 4, "paper_id": "2610.12183", "abstract": "AgenticBBO-Bench, a cross-domain benchmark for LLM-agent black-box optimization across five domains, studying the effects of tools, task information, and the LLM's role in search."},
+    {"title": "Synthesis Through Simulation: Generating Coherent Enterprise Data via Scalable Agent-System Interaction", "upvotes": 3, "paper_id": "2610.10549", "abstract": "A schema-free method where an LLM agent generates enterprise data by acting through policy-enforcing simulated APIs, ensuring structural validity and reasonable distributional fidelity."},
+    {"title": "SpecFold: Folding Multi-Branch Redundancy for Faster Speculative Decoding in Diffusion Language Models", "upvotes": 3, "paper_id": "2610.04875", "abstract": "SpecFold reuses parent computation across draft branches in diffusion LLM speculative decoding, using a Triton kernel to reach up to about 2x throughput with comparable task performance."},
+    {"title": "Incremental Open-Ended Deep Research with Structured Harness", "upvotes": 3, "paper_id": "2610.11566", "abstract": "Incremental-OEDR updates existing research reports instead of regenerating them, using structured evidence pools and temporal evaluation to cut token use and search calls."}
   ],
-  "cc_updates": []
+  "cc_updates": [
+    {"tag_name": "v2.1.296", "published_at": "2026-10-09", "body": "What's changed\n\n* Added a `code` key to the Claude apps gateway's `managed.policies[]`: the same settings as `cli`, also applied in Claude Desktop's Code tab; beside `desktop`, it turns on Claude Desktop's gateway mode\n* Added `autoCompactWindow` to subagent frontmatter and `--agents` definitions, so a subagent can auto-compact earlier than the main conversation's window\n* Added `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` to run every workflow agent on one model while other subagents keep theirs\n* Added `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS` environment variable to set a longer maximum delay"},
+    {"tag_name": "v2.1.295", "published_at": "2026-10-08", "body": "What's changed\n\n* Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through\n* Added Program Status Protocol (OSC 7501) support: terminals that implement it can show whether Claude Code is working, waiting on you, or done\n* Added quoted text to the `/copy` picker, so a drafted message copies without its `>` markers\n* Added a warning to `claude plugin install`, `enable`, `disable` and `marketplace add` when the settings file they write to does not load"},
+    {"tag_name": "v2.1.294", "published_at": "2026-10-08", "body": "What's changed\n\n* Fixed `prompt` and `agent` hooks written as instructions allowing what they should block\n* Improved how `prompt` hooks on Stop and SubagentStop written as instructions are judged, so Claude is less likely to stop early"}
+  ]
 }
