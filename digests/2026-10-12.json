@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-12",
+  "content": "# AI Daily Digest — 2026-10-12\n\n## 今日のハイライト\n- **Memento 3がARC-AGI-3を完全クリア**: 凍結LLMエージェントがルールブックベースの世界モデル学習で全25ゲームをクリア。モデル重みを変えずにエージェント能力を向上させる画期的アプローチで、AGI研究の重要マイルストーン。\n- **Claude Code v2.1.294の重要セキュリティ修正**: 自然言語指示形式のフックが意図に反してブロック対象を許可してしまうバグを修正。セキュリティポリシーの信頼性向上に直結する重要な修正。\n- **AIエージェントによる科学的発見がILCRオーラルの62.7%を再現**: Stationベンチマークで、マルチエージェントが既知の科学的知見を大規模に再発見。AI主導の科学探索の実現可能性を示す重要な証拠。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.296 (2026-10-09)\n**主要機能:**\n- **Claude Desktop ゲートウェイモード強化**: `managed.policies[]` に `code` キーが追加。CLI と同じ設定が Claude Desktop の Code タブにも適用され、`desktop` と組み合わせることでゲートウェイモードが有効化される。\n- **サブエージェント自動圧縮**: `autoCompactWindow` が subagent フロントマターと `--agents` 定義に追加。メインの会話より早いタイミングでサブエージェントを自動コンパクト可能。\n- **ワークフローモデル統一**: `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` 環境変数でワークフロー内のすべてのエージェントを単一モデルで実行しつつ、他のサブエージェントは個別設定を維持できる。\n- **過負荷時リトライ改善**: `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS` で 529 エラー時のバックオフ上限を延長可能。\n\n**ユーザーへの影響:** Enterprise 環境での管理ポリシー設定が簡素化。ワークフローのコスト最適化が容易に。\n\n---\n\n### v2.1.295 (2026-10-08)\n**主要機能:**\n- **フック失敗時のブロック**: `onFailure: \"block\"` オプション追加。起動失敗・タイムアウト・予期しない終了コードのフックがアクションをブロックするように。\n- **Program Status Protocol (OSC 7501)**: 対応ターミナルで Claude Code の状態（作業中/待機中/完了）をリアルタイム表示。\n- **`/copy` の改善**: 引用付きテキストが `>` マーカーなしでコピー可能に。\n\n**ユーザーへの影響:** セキュリティフックの信頼性向上。ターミナル連携によるUX改善。\n\n---\n\n### v2.1.294 (2026-10-08)\n**バグ修正:**\n- **重要セキュリティ修正**: 指示形式（「～をブロックして」）で書かれた `prompt` および `agent` フックがブロックすべき操作を許可してしまう問題を修正。\n- **早期停止の改善**: Stop/SubagentStop フックの判定ロジック改善により、意図せず早期停止する問題を緩和。\n\n**ユーザーへの影響:** 自然言語で書いたフック指示が正しく機能するように。セキュリティポリシーの信頼性が向上。\n\n## 注目論文 TOP 10\n\n1. **Memento 3: Model-Based Recursive Self-Improvement through Reflective Rulebooks** | 35 upvotes | https://arxiv.org/abs/2610.11794\n   - 🎯 **背景**: LLMエージェントが明示的な世界モデルを持たないため、複雑なタスクで失敗を繰り返す問題。\n   - 🔧 **手法**: 凍結LLMエージェントが自然言語のルールブックを通じて世界モデルを学習し、検証済み実行可能コードにコンパイル。\n   - 📊 **結果**: ARC-AGI-3の公開25ゲーム全レベルをクリア。\n   - 💡 **意義**: モデルの重みを変更せずにエージェントの能力を再帰的に向上させる新アプローチ。\n   - ⚠️ **限界**: 公開ゲームのみで評価。非公開テストセットへの汎化は未検証。\n\n2. **Pumpire: Unified Benchmark for Metric Distance Estimation** | 18 upvotes | https://arxiv.org/abs/2610.12423\n   - 🎯 **背景**: 3D基盤モデルが実際の物理距離を正確に推定できるかを評価する統一ベンチマークが不足。\n   - 🔧 **手法**: 100シーンから6,400フレームを収集し、実測距離でアノテーション。画像・動画レベルの3Dモデルを評価。\n   - 📊 **結果**: 既存モデルの距離推定精度に大きなばらつきがあることを明示。\n   - 💡 **意義**: 自律走行・ロボティクス向け3Dモデルの定量評価基盤を整備。\n   - ⚠️ **限界**: 屋内・屋外の偏りや距離範囲の制約がある可能性。\n\n3. **Opera: A Verbal Critic Framework for Long-horizon Coding Agents** | 14 upvotes | https://arxiv.org/abs/2609.33987\n   - 🎯 **背景**: 長期コーディングタスクでエージェントが同じ誤りを繰り返す問題。\n   - 🔧 **手法**: 各修正を持続的なノートとして追跡し、診断した問題が解決されるまで追跡を続けるバーバルクリティック。\n   - 📊 **結果**: 複数ベンチマークでコーディングエージェントの解決率が向上。\n   - 💡 **意義**: 外部メモリ機構なしに修正の継続性を確保する軽量アプローチ。\n   - ⚠️ **限界**: クリティックの判断が誤った場合の誤修正リスク。\n\n4. **A GPU-Parallel Framework for Heterogeneous Multi-Task Reinforcement Learning** | 12 upvotes | https://arxiv.org/abs/2606.03335\n   - 🎯 **背景**: 異なる報酬構造・デモンストレーション量を持つ複数タスクの同時学習が困難。\n   - 🔧 **手法**: Isaac Labで40の異種マニピュレーションタスクのベンチマークを構築。DGPO・IW-ABCで疎報酬・限定デモ環境に対応。\n   - 📊 **結果**: GPU並列化により効率的なマルチタスク学習を実現。\n   - 💡 **意義**: 実世界ロボット操作の汎用化に向けた大規模ベンチマーク基盤。\n   - ⚠️ **限界**: シミュレーション評価のみ。実機への転移性は未検証。\n\n5. **Mara Chain: Rethinking Failure as a Stepping Stone for AI System Auto-Evolution** | 9 upvotes | https://arxiv.org/abs/2609.35855\n   - 🎯 **背景**: AIエージェントの失敗した試行が廃棄され、学習に活用されない問題。\n   - 🔧 **手法**: 却下されたプロンプト・スキル・ハーネスを廃棄せず反復的に改良。AppWorld・TerminalBench・MuSiQueで評価。\n   - 📊 **結果**: 少ないロールアウトで性能向上を達成。\n   - 💡 **意義**: 失敗を資源として活用するコスト効率的な自己進化フレームワーク。\n   - ⚠️ **限界**: 改良の収束条件や過学習リスクの詳細な分析が必要。\n\n6. **MIRA: A Musical Intent Refinement Agent for Aligning Text-to-Music Generation with User Intent** | 8 upvotes | https://arxiv.org/abs/2610.10355\n   - 🎯 **背景**: テキストから音楽生成システムがユーザーの意図を正確に反映できない問題。\n   - 🔧 **手法**: テスト時エージェントが音楽リクエストを検証可能なルーブリックに変換し、プロンプト改訂を探索。オープンソース生成器を使用。\n   - 📊 **結果**: 意図アラインメントでオープンソース生成器が商用システムに肉薄。\n   - 💡 **意義**: 高額な商用サービスに頼らず高品質な音楽生成の実現可能性を示す。\n   - ⚠️ **限界**: 主観的な「音楽的意図」の定量評価に固有の限界がある。\n\n7. **Can AI Agents Make Open-Ended Scientific Discovery? Evidence from Station** | 8 upvotes | https://arxiv.org/abs/2610.08927\n   - 🎯 **背景**: AIエージェントが自律的に科学的発見を行えるかを評価する実験環境が不足。\n   - 🔧 **手法**: オープンワールドのマルチエージェント環境でICLRオーラル論文の知見を再発見させる実験。\n   - 📊 **結果**: エージェントが約62.7%の知見を再発見（ベースライン比14〜21%）。\n   - 💡 **意義**: AIによる科学発見の可能性と現状の限界を体系的に評価。\n   - ⚠️ **限界**: 既知の論文の再発見であり、真に新規な発見の評価は課題。\n\n8. **A Closer Look at Agentic BBO: Benchmarking LLM Agents for Black-Box Optimization** | 8 upvotes | https://arxiv.org/abs/2610.12183\n   - 🎯 **背景**: LLMエージェントのブラックボックス最適化能力を体系的に評価するベンチマークが不足。\n   - 🔧 **手法**: 5分野をまたぐクロスドメインベンチマーク。ツール・タスク事前知識・LLMの役割の影響を分析。\n   - 📊 **結果**: LLMエージェントの性能はタスクの性質とツール設計に大きく依存することが判明。\n   - 💡 **意義**: 科学最適化・エンジニアリング設計へのLLM応用の実態を明らかに。\n   - ⚠️ **限界**: ベンチマークの網羅性と実世界タスクへの転移性に課題。\n\n9. **Synthesis Through Simulation: Generating Coherent Enterprise Data via Scalable Agent-System Interaction** | 7 upvotes | https://arxiv.org/abs/2610.10549\n   - 🎯 **背景**: 企業データの合成生成でスキーマ違反や論理的不整合が生じる問題。\n   - 🔧 **手法**: LLMエージェントがポリシー実施APIを通じて操作を実行することでスキーマフリーなデータ合成。\n   - 📊 **結果**: 構造的妥当性を保証しつつコヒーレントな企業データを生成。\n   - 💡 **意義**: AIトレーニング・テスト用の高品質合成データ生成コストを削減。\n   - ⚠️ **限界**: API設計の品質が合成データの品質に直結するため、要注意。\n\n10. **SpecFold: Folding Multi-Branch Redundancy for Faster Speculative Decoding in Diffusion Language Models** | 7 upvotes | https://arxiv.org/abs/2610.04875\n    - 🎯 **背景**: 拡散言語モデルの投機的デコーディングで複数の草稿ブランチ間に冗長性が存在。\n    - 🔧 **手法**: ブランチ間の冗長性を折りたたむことで演算を削減し、スループットを向上。\n    - 📊 **結果**: バニラデコーディング比で最大1.99倍のスループット向上（同等タスク性能を維持）。\n    - 💡 **意義**: 拡散LMの推論効率化により実用化コストを大幅削減。\n    - ⚠️ **限界**: 特定のモデルアーキテクチャに依存する可能性がある。\n\n",
+  "fetched_at": "2026-10-11T22:13:00.410584+00:00",
+  "papers": [
+    {
+      "title": "Memento 3: Model-Based Recursive Self-Improvement through Reflective Rulebooks",
+      "upvotes": 35,
+      "paper_id": "2610.11794",
+      "abstract": "A frozen LLM agent learns explicit world models via a natural-language rulebook compiled into verified executable code, clearing every level of all 25 public ARC-AGI-3 games."
+    },
+    {
+      "title": "Pumpire: Unified Benchmark for Metric Distance Estimation",
+      "upvotes": 18,
+      "paper_id": "2610.12423",
+      "abstract": "Benchmark measuring whether image- and video-level 3D foundation models estimate true physical point-to-point distances, using 6,400 frames from 100 real scenes with measured distances."
+    },
+    {
+      "title": "Opera: A Verbal Critic Framework for Long-horizon Coding Agents",
+      "upvotes": 14,
+      "paper_id": "2609.33987",
+      "abstract": "A critic that tracks each correction as a persistent note until the diagnosed problem is resolved, raising coding agents' resolve rates on several benchmarks."
+    },
+    {
+      "title": "A GPU-Parallel Framework for Heterogeneous Multi-Task Reinforcement Learning",
+      "upvotes": 12,
+      "paper_id": "2606.03335",
+      "abstract": "Isaac Lab benchmark of 40 heterogeneous manipulation tasks, plus DGPO and IW-ABC methods for multi-task RL with sparse rewards and limited demonstrations."
+    },
+    {
+      "title": "Mara Chain: Rethinking Failure as a Stepping Stone for AI System Auto-Evolution",
+      "upvotes": 9,
+      "paper_id": "2609.35855",
+      "abstract": "Iteratively refines rejected candidate prompts, skills, and harnesses instead of discarding them, reaching gains with fewer rollouts on AppWorld, TerminalBench, and MuSiQue."
+    },
+    {
+      "title": "MIRA: A Musical Intent Refinement Agent for Aligning Text-to-Music Generation with User Intent",
+      "upvotes": 8,
+      "paper_id": "2610.10355",
+      "abstract": "Test-time agent that turns music requests into verifiable rubrics and searches prompt revisions, letting an open-source generator approach commercial systems on intent alignment."
+    },
+    {
+      "title": "Can AI Agents Make Open-Ended Scientific Discovery? Evidence from Station",
+      "upvotes": 8,
+      "paper_id": "2610.08927",
+      "abstract": "Open-world multi-agent environment where agents rediscover about 62.7% of findings from ICLR oral papers, compared with roughly 14-21% for baseline systems."
+    },
+    {
+      "title": "A Closer Look at Agentic BBO: Benchmarking LLM Agents for Black-Box Optimization",
+      "upvotes": 8,
+      "paper_id": "2610.12183",
+      "abstract": "Cross-domain benchmark of LLM agents for black-box optimization across five domains, studying how tools, task priors, and the LLM's role affect performance."
+    },
+    {
+      "title": "Synthesis Through Simulation: Generating Coherent Enterprise Data via Scalable Agent-System Interaction",
+      "upvotes": 7,
+      "paper_id": "2610.10549",
+      "abstract": "Schema-free data synthesis in which an LLM agent generates enterprise data by running operations through policy-enforcing APIs, ensuring structural validity by construction."
+    },
+    {
+      "title": "SpecFold: Folding Multi-Branch Redundancy for Faster Speculative Decoding in Diffusion Language Models",
+      "upvotes": 7,
+      "paper_id": "2610.04875",
+      "abstract": "Exploits redundancy across draft branches in speculative decoding for diffusion LLMs, reaching up to 1.99x throughput over vanilla decoding with comparable task performance."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.296",
+      "published_at": "2026-10-09",
+      "body": "What's changed\n\n- Added a `code` key to the Claude apps gateway's `managed.policies[]`: the same settings as `cli`, also applied in Claude Desktop's Code tab; beside `desktop`, it turns on Claude Desktop's gateway mode\n- Added `autoCompactWindow` to subagent frontmatter and `--agents` definitions, so a subagent can auto-compact earlier than the main conversation's window\n- Added `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` to run every workflow agent on one model while other subagents keep theirs\n- Added `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS` to set a longer backoff cap when retrying 529 errors…"
+    },
+    {
+      "tag_name": "v2.1.295",
+      "published_at": "2026-10-08",
+      "body": "What's changed\n\n- Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through\n- Added Program Status Protocol (OSC 7501) support: terminals that implement it can show whether Claude Code is working, waiting on you, or done\n- Added quoted text to the `/copy` picker, so a drafted message copies without its `>` markers\n- Added a warning to `claude plugin install`, `enable`, `disable` and `marketplace add` when the settings file they write to does not load\n- Added a line on stderr, when it is a terminal, that says what a `claude -p` run is waiting for…"
+    },
+    {
+      "tag_name": "v2.1.294",
+      "published_at": "2026-10-08",
+      "body": "What's changed\n\n- Fixed `prompt` and `agent` hooks written as instructions (such as \"Block commands that...\") allowing what they should block\n- Improved how `prompt` hooks on Stop and SubagentStop written as instructions (such as \"Carry on if the build is broken\") are judged, so Claude is less likely to stop early"
+    }
+  ]
+}
