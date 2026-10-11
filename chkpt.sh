@@ -8,4 +8,3 @@ chkpt() {
   git commit -m "chkpt: $label $ts" --allow-empty 2>&1 | tail -1
   git push 2>&1 | tail -1
 }
-export -f chkpt
