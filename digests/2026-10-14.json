@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-14",
+  "content": "# AI Daily Digest — 2026-10-11\n\n## 今日のハイライト\n- **Memento 3 — 再帰的自己改善 (28 upvotes)**: 凍結 LLM がルールブックを通じて追加学習なしに自己改善。エージェント AI のスケーラブルな進化手法として注目。\n- **Claude Code v2.1.295 — フックセキュリティ修正**: 命令形式フックが本来ブロックすべき操作を許可してしまうバグを修正。アクセス制御を利用するユーザーは早急な更新を推奨。\n- **Opera (10 upvotes) — コーディングエージェントの一貫性向上**: 修正履歴を永続追跡するクリティックが、長期タスクでのエラー繰り返しを抑制。実用的なエージェント設計への応用が期待される。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.296 (2026-10-09)\n\n**主要機能:**\n- `managed.policies[]` に `code` キーを追加: Claude Desktop の Code タブにも CLI と同じポリシーが適用され、`desktop` と組み合わせることで Claude Desktop のゲートウェイモードが有効化\n- サブエージェントのフロントマターと `--agents` 定義に `autoCompactWindow` を追加: メイン会話より早いタイミングでサブエージェントの自動コンパクトが可能に\n- `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` 環境変数を追加: ワークフロー内の全エージェントを指定モデルで動作させつつ、他のサブエージェントは独自モデルを維持\n- `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS` 環境変数を追加: 過負荷時の最大リトライ遅延を設定可能\n\n**ユーザーへの影響:** ゲートウェイポリシーの細粒度な制御とワークフローのモデル管理が強化。エンタープライズ向け設定の柔軟性が大幅に向上。\n\n---\n\n### v2.1.295 (2026-10-08)\n\n**主要機能:**\n- `onFailure: \"block\"` をコマンド・HTTP フックに追加: フックが起動失敗・タイムアウト・予期しない終了コードの場合にアクションをブロック\n- Program Status Protocol (OSC 7501) をサポート: 対応ターミナルで Claude Code の作業状態（作業中・待機中・完了）を表示可能\n- `/copy` ピッカーに引用テキストを追加: 下書きメッセージを `>` マーカーなしでコピー\n- プラグイン操作コマンドに警告を追加: 設定ファイルが読み込まれない場合に警告を表示\n\n**ユーザーへの影響:** フックの信頼性向上とターミナル統合の改善。CI/CD パイプラインでのフック失敗検出がより堅牢に。\n\n---\n\n### v2.1.294 (2026-10-08)\n\n**バグ修正:**\n- 命令形式で書かれた `prompt`・`agent` フックが本来ブロックすべき操作を許可してしまう問題を修正\n- Stop・SubagentStop の命令形式フックの判定を改善し、Claude が早期停止しにくくなるよう対応\n\n**ユーザーへの影響:** セキュリティ上重要な修正。フックベースのアクセス制御を利用しているユーザーは早急なアップデートを推奨。\n\n## 注目論文 TOP 10\n\n1. **Memento 3: Model-Based Recursive Self-Improvement through Reflective Rulebooks** | 👍 28 | [arxiv:2610.11794](https://arxiv.org/abs/2610.11794)\n   - 🎯 **背景**: 凍結 LLM エージェントが外部記憶を通じた世界モデル学習で自己改善できるかを探求\n   - 🔧 **手法**: 自然言語ルールブックを管理・更新し、実行可能コードにコンパイル。観測遷移で検証するサイクルを実装\n   - 📊 **結果**: ルールブック改訂によりエージェントが継続的に性能向上。標準ベンチマークで競合手法を上回る\n   - 💡 **意義**: 追加学習なしの再帰的自己改善フレームワーク。AI エージェントの実用的な自律進化への道筋を示す\n   - ⚠️ **限界**: ルールブックの複雑化に伴うスケーラビリティ課題。コード変換の誤りが蓄積するリスク\n\n2. **Pumpire: Unified Benchmark for Metric Distance Estimation** | 👍 15 | [arxiv:2610.12423](https://arxiv.org/abs/2610.12423)\n   - 🎯 **背景**: 3D 基盤モデルが実世界の物理的距離を正確に推定できるか検証するベンチマークが不在\n   - 🔧 **手法**: 100 シーン・6,400 フレームから構成され、ポイントペア間の実測距離を使用した評価基盤を構築\n   - 📊 **結果**: 既存 3D モデルの距離推定能力を系統的に評価。モデル間で大きな性能差を確認\n   - 💡 **意義**: ロボティクスや自律走行に必須の距離推定能力を統一基準で評価可能に\n   - ⚠️ **限界**: 特定シーンへの偏り。屋内環境に限定される可能性\n\n3. **Opera: A Verbal Critic Framework for Long-horizon Coding Agents** | 👍 10 | [arxiv:2609.33987](https://arxiv.org/abs/2609.33987)\n   - 🎯 **背景**: 長期タスクのコーディングエージェントが同じエラーを繰り返す問題を解消する批評機構が必要\n   - 🔧 **手法**: 各修正を永続的なノートとして追跡し、エージェントが実際に問題解決するまで記録を保持するクリティックを実装\n   - 📊 **結果**: 複数ベンチマークでコーディングエージェントの解決率が向上\n   - 💡 **意義**: 自然言語による批評追跡で、エージェントの問題解決の一貫性を向上\n   - ⚠️ **限界**: 複雑な依存関係を持つタスクでの効果は未検証\n\n4. **A GPU-Parallel Framework for Heterogeneous Multi-Task Reinforcement Learning** | 👍 8 | [arxiv:2606.03335](https://arxiv.org/abs/2606.03335)\n   - 🎯 **背景**: 多様なマニピュレーションタスクを一つのポリシーで解くマルチタスク強化学習の評価基盤が不足\n   - 🔧 **手法**: Hebero (40 タスクの GPU 並列 Isaac Lab ベンチマーク) と DGPO・IW-ABC 手法を組み合わせ、疎な報酬と少数デモから学習\n   - 📊 **結果**: 単一マルチタスクポリシーが従来手法と比較して競争力のある成果を達成\n   - 💡 **意義**: ロボット操作における汎用ポリシー学習の標準ベンチマークを提供\n   - ⚠️ **限界**: シミュレーション環境に限定。実機転移の検証が必要\n\n5. **Mara Chain: Rethinking Failure as a Stepping Stone for AI System Auto-Evolution** | 👍 5 | [arxiv:2609.35855](https://arxiv.org/abs/2609.35855)\n   - 🎯 **背景**: AI システムの最適化で棄却された設定が無駄になる問題。失敗を活用する仕組みが未整備\n   - 🔧 **手法**: 棄却された候補設定を保持して反復的に改善。プロンプト・スキル・ハーネスを対象にロールアウト数を削減\n   - 📊 **結果**: 標準的な手法に比べ最適化に必要なロールアウト数が有意に削減\n   - 💡 **意義**: 失敗からの学習を体系化し、AI システムの自律進化コストを低下させる\n   - ⚠️ **限界**: 棄却設定の蓄積によるメモリ負荷。汎化性の検証が限定的\n\n6. **Can AI Agents Make Open-Ended Scientific Discovery? Evidence from Station** | 👍 5 | [arxiv:2610.08927](https://arxiv.org/abs/2610.08927)\n   - 🎯 **背景**: AI エージェントが人間の監督なしにオープンエンドな科学的発見を行えるか検証\n   - 🔧 **手法**: スーパーバイザーとメタリフレクション機構を備えたオープンワールド科学シミュレーション環境 Station を構築\n   - 📊 **結果**: ウェブアクセスなしで ICLR オーラル論文の知見の相当部分を再発見\n   - 💡 **意義**: AI による自律的科学探索の実現可能性を示す重要な実証研究\n   - ⚠️ **限界**: シミュレーション環境に限定。実験的な検証との乖離が存在\n\n7. **A Closer Look at Agentic BBO: Benchmarking LLM Agents for Black-Box Optimization** | 👍 4 | [arxiv:2610.12183](https://arxiv.org/abs/2610.12183)\n   - 🎯 **背景**: LLM エージェントがブラックボックス最適化タスクでどの程度機能するか体系的な評価が不足\n   - 🔧 **手法**: 5 ドメインにわたる AgenticBBO-Bench を構築。ツール・タスク情報・LLM の役割の影響を分析\n   - 📊 **結果**: ドメインとツール設定によって LLM エージェントの性能が大幅に変動することを確認\n   - 💡 **意義**: エンジニアリング最適化や科学研究への LLM 適用の指針を提供\n   - ⚠️ **限界**: ベンチマーク選定の偏り。実世界の複雑な最適化との差異\n\n8. **Synthesis Through Simulation: Generating Coherent Enterprise Data via Scalable Agent-System Interaction** | 👍 3 | [arxiv:2610.10549](https://arxiv.org/abs/2610.10549)\n   - 🎯 **背景**: 企業データの合成生成においてスキーマ不要かつ整合性の高い手法が求められている\n   - 🔧 **手法**: LLM エージェントがポリシー強制シミュレーション API を通じてデータを生成し、構造的妥当性を確保\n   - 📊 **結果**: 既存手法より構造的に一貫したエンタープライズデータを生成\n   - 💡 **意義**: 企業向けデータ拡張・プライバシー保護データ生成のスケーラブルな新アプローチ\n   - ⚠️ **限界**: API シミュレーションの忠実度に依存。実際のシステムとの乖離リスク\n\n9. **SpecFold: Folding Multi-Branch Redundancy for Faster Speculative Decoding in Diffusion Language Models** | 👍 3 | [arxiv:2610.04875](https://arxiv.org/abs/2610.04875)\n   - 🎯 **背景**: 拡散型 LLM の投機的デコーディングで複数草案ブランチの計算重複が効率化の障壁\n   - 🔧 **手法**: 親計算を草案ブランチ全体で再利用する Triton カーネルを実装\n   - 📊 **結果**: 同等のタスク性能を維持しながら約 2x のスループット向上を達成\n   - 💡 **意義**: 拡散型 LLM の実用デプロイを加速する高効率デコーディング手法\n   - ⚠️ **限界**: 特定アーキテクチャへの依存。汎用性の検証が必要\n\n10. **Incremental Open-Ended Deep Research with Structured Harness** | 👍 3 | [arxiv:2610.11566](https://arxiv.org/abs/2610.11566)\n    - 🎯 **背景**: 深層リサーチレポートを毎回ゼロから生成するのはトークンと検索コストが高い\n    - 🔧 **手法**: 構造化エビデンスプールと時間的評価を使用して既存レポートを増分更新\n    - 📊 **結果**: トークン使用量と検索呼び出し回数を大幅に削減しながら同等の品質を維持\n    - 💡 **意義**: 継続的な知識更新が必要なリサーチタスクの効率を根本的に改善\n    - ⚠️ **限界**: 増分更新の蓄積誤差。大規模トピック変化への対応が課題\n\n",
+  "fetched_at": "2026-10-13T22:14:58.277125+00:00",
+  "papers": [
+    {
+      "title": "Memento 3: Model-Based Recursive Self-Improvement through Reflective Rulebooks",
+      "upvotes": 28,
+      "paper_id": "2610.11794",
+      "abstract": "Frozen LLM agents learn explicit world models through external memory, keeping a revisable natural-language rulebook that is compiled into executable code and verified against observed transitions."
+    },
+    {
+      "title": "Pumpire: Unified Benchmark for Metric Distance Estimation",
+      "upvotes": 15,
+      "paper_id": "2610.12423",
+      "abstract": "A benchmark that tests whether 3D foundation models estimate real-world physical distances between point pairs, using 6,400 frames from 100 scenes with measured distances."
+    },
+    {
+      "title": "Opera: A Verbal Critic Framework for Long-horizon Coding Agents",
+      "upvotes": 10,
+      "paper_id": "2609.33987",
+      "abstract": "A critic that tracks each correction as a persistent note until the agent actually resolves the diagnosed problem, improving coding-agent resolve rates on several benchmarks."
+    },
+    {
+      "title": "A GPU-Parallel Framework for Heterogeneous Multi-Task Reinforcement Learning",
+      "upvotes": 8,
+      "paper_id": "2606.03335",
+      "abstract": "Hebero, a GPU-parallel Isaac Lab benchmark of 40 manipulation tasks, plus DGPO and IW-ABC methods for training one multi-task policy from sparse rewards and few demonstrations."
+    },
+    {
+      "title": "Mara Chain: Rethinking Failure as a Stepping Stone for AI System Auto-Evolution",
+      "upvotes": 5,
+      "paper_id": "2609.35855",
+      "abstract": "A refinement method that keeps rejected candidate configurations and iteratively improves them, reducing rollouts needed to optimize prompts, skills, and harnesses."
+    },
+    {
+      "title": "Can AI Agents Make Open-Ended Scientific Discovery? Evidence from Station",
+      "upvotes": 5,
+      "paper_id": "2610.08927",
+      "abstract": "Station, an open-world simulated scientific ecosystem with supervisor and meta-reflection mechanisms, rediscovers a large share of findings from recent ICLR oral papers without web access."
+    },
+    {
+      "title": "A Closer Look at Agentic BBO: Benchmarking LLM Agents for Black-Box Optimization",
+      "upvotes": 4,
+      "paper_id": "2610.12183",
+      "abstract": "AgenticBBO-Bench, a cross-domain benchmark for LLM-agent black-box optimization across five domains, studying the effects of tools, task information, and the LLM's role in search."
+    },
+    {
+      "title": "Synthesis Through Simulation: Generating Coherent Enterprise Data via Scalable Agent-System Interaction",
+      "upvotes": 3,
+      "paper_id": "2610.10549",
+      "abstract": "A schema-free method where an LLM agent generates enterprise data by acting through policy-enforcing simulated APIs, ensuring structural validity and reasonable distributional fidelity."
+    },
+    {
+      "title": "SpecFold: Folding Multi-Branch Redundancy for Faster Speculative Decoding in Diffusion Language Models",
+      "upvotes": 3,
+      "paper_id": "2610.04875",
+      "abstract": "SpecFold reuses parent computation across draft branches in diffusion LLM speculative decoding, using a Triton kernel to reach up to about 2x throughput with comparable task performance."
+    },
+    {
+      "title": "Incremental Open-Ended Deep Research with Structured Harness",
+      "upvotes": 3,
+      "paper_id": "2610.11566",
+      "abstract": "Incremental-OEDR updates existing research reports instead of regenerating them, using structured evidence pools and temporal evaluation to cut token use and search calls."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.296",
+      "published_at": "2026-10-09",
+      "body": "What's changed\n\n* Added a `code` key to the Claude apps gateway's `managed.policies[]`: the same settings as `cli`, also applied in Claude Desktop's Code tab; beside `desktop`, it turns on Claude Desktop's gateway mode\n* Added `autoCompactWindow` to subagent frontmatter and `--agents` definitions, so a subagent can auto-compact earlier than the main conversation's window\n* Added `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` to run every workflow agent on one model while other subagents keep theirs\n* Added `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS` environment variable to set a longer maximum delay"
+    },
+    {
+      "tag_name": "v2.1.295",
+      "published_at": "2026-10-08",
+      "body": "What's changed\n\n* Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through\n* Added Program Status Protocol (OSC 7501) support: terminals that implement it can show whether Claude Code is working, waiting on you, or done\n* Added quoted text to the `/copy` picker, so a drafted message copies without its `>` markers\n* Added a warning to `claude plugin install`, `enable`, `disable` and `marketplace add` when the settings file they write to does not load"
+    },
+    {
+      "tag_name": "v2.1.294",
+      "published_at": "2026-10-08",
+      "body": "What's changed\n\n* Fixed `prompt` and `agent` hooks written as instructions allowing what they should block\n* Improved how `prompt` hooks on Stop and SubagentStop written as instructions are judged, so Claude is less likely to stop early"
+    }
+  ]
+}
