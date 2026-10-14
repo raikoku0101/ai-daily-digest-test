@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-15",
+  "content": "# AI Daily Digest — 2026-10-15\n\n## 今日のハイライト\n- **Jeva システム1型モデル (256 upvotes)**: LLMによるテキスト予測に依存せず、意思決定問題の数学的構造を直接尊重するモデルを提案。低レイテンシーかつ即時的なAI意思決定の実現可能性を示した画期的な研究。\n- **Claude Code v2.1.299/300 (2026-10-14リリース)**: アイドル時の自動コンパクション機能でセッションコストを削減。モッドのUI APIが大幅強化され、`virtualText`やエージェントビュー表示が可能に。\n- **AIコード品質の脆弱性問題 (41 upvotes)**: \"Vibe Coding\"が普及する中、AIコーディングエージェントのセキュアコード生成能力を初めて包括的に評価するベンチマークが登場。実務への直接的影響が大きい。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.300 (2026-10-14)\n**主要機能:**\n- **virtualText**: モッドのプロンプト装飾に追加。プロンプトボックスに表示されるが、実際の送信内容には含まれないテキストを描画可能。UI表示とプロンプト内容を分離できる。\n- **OpenTelemetry拡張**: `cache_creation_5m_tokens` / `cache_creation_1h_tokens` をキャッシュ書き込みライフタイム別に分割してapi_requestイベントに追加。コスト分析が詳細化。\n- **$.ui.view()**: モッドからエージェントのトランスクリプトをメインビューで表示可能。`agentId`指定で対象エージェント選択、`{}`で元のビューに戻る。\n- **dir prop**: モッドのTextコンポーネントで右から左へのテキスト表示をサポート。\n\n**ユーザーへの影響:** モッド開発者は新しいUI APIを活用してより豊かなインターフェースを構築可能。\n\n---\n\n### v2.1.299 (2026-10-14)\n**主要機能:**\n- **CLAUDE_CODE_DISABLE_FILE_MENTIONS**: @ファイルメンションの動作変更。ファイル内容の代わりにパスのみをClaudeに渡す環境変数。大きなファイルのコンテキスト使用を制御可能。\n- **アイドル自動コンパクション**: 200K+トークンの会話が54分アイドル状態になると、1時間キャッシュが切れる前に自動コンパクション。次のメッセージ処理コストを削減。\n- **CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS**: アイドルコンパクションの200Kトークン閾値をカスタマイズ可能。`settings.json`の`\"idleCompaction\": false`で無効化。\n\n**バグ修正:** メディア関連の改善 (`$.prompt.media`)\n\n**ユーザーへの影響:** 長いセッションのコスト最適化が自動化。大きなファイルの参照方法をより細かく制御できる。\n\n---\n\n### v2.1.296 (2026-10-09)\n**主要機能:**\n- **Claude Desktop Codeタブ対応**: `managed.policies[]`に`code`キーを追加。CLIと同じ設定をClaude DesktopのCodeタブにも適用可能。\n- **autoCompactWindow**: サブエージェントフロントマターで早期の自動コンパクトを設定。メインの会話ウィンドウより早くコンパクトできる。\n- **CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL**: ワークフロー内の全エージェントを1モデルで統一実行。他のサブエージェントは個別の設定を維持。\n\n**ユーザーへの影響:** Claude Desktopユーザーの設定統一が容易に。ワークフローのモデル管理が柔軟になった。\n\n## 注目論文 TOP 10\n\n1. **Jeva: System One Models from First Principles** | 256 upvotes | https://arxiv.org/abs/2610.18773\n   - 🎯 **背景**: テキストのシリアル化によるLLM推論は意思決定問題の構造を無視する。低レイテンシーな「システム1型」AIモデルの構築に第一原理からアプローチする。\n   - 🔧 **手法**: 意思決定問題の数学的構造を直接尊重するアーキテクチャを設計。テキスト予測に依存せず、決定変数に直接マッピングするモデルを提案。\n   - 📊 **結果**: 従来のLLMよりも低レイテンシーで直接的な意思決定が可能なシステムを実証。\n   - 💡 **意義**: AIの「考えてから行動」パラダイムを超え、反射的・即時的な意思決定AIへの道を開く。\n   - ⚠️ **限界**: 複雑な推論が必要なタスクでは従来のシステム2型アプローチに劣る可能性。\n\n2. **Agent-Reflex: Teaching Language Agents to Act Reflectively** | 192 upvotes | https://arxiv.org/abs/2610.17953\n   - 🎯 **背景**: 実際のMCPツールサービスはノイズの多いフィードバックを返し、ユーザーも途中で指示を変更することがある。エージェントの反射的行動能力が求められている。\n   - 🔧 **手法**: LLMエージェントがノイズの多い環境でも一貫した行動を取れるよう反射的行動学習のフレームワークを構築。\n   - 📊 **結果**: 実際のデプロイ環境でのロバスト性が向上し、動的な指示変更にも対応可能。\n   - 💡 **意義**: MCPエコシステムが普及する中、実用的なエージェント展開に直結する研究。\n   - ⚠️ **限界**: 特定のノイズパターンへの過学習の可能性あり。\n\n3. **Urbex: Agentic Spatial Grounding for City-Scale 3D Scenes** | 109 upvotes | https://arxiv.org/abs/2610.18356\n   - 🎯 **背景**: 都市スケール3Dグラウンディングは候補ランキング方式が主流だが、事前計算が必要で大規模屋外シーンでは非効率。\n   - 🔧 **手法**: Urbexと名付けたエージェント型ビジョンシステムを提案。事前インスタンス候補なしに都市規模3Dシーンでの空間的グラウンディングを実現。\n   - 📊 **結果**: 都市スケールシーンでの空間参照解決において既存手法を上回る効率性を示す。\n   - 💡 **意義**: 自律走行、ロボティクス、AR/VRの都市スケール適用に向けた基盤技術。\n   - ⚠️ **限界**: 極めて動的な環境（工事中、天候変化など）への適応性は未検証。\n\n4. **GreenWAM: A World Foundation Model for Robotics** | 82 upvotes | https://arxiv.org/abs/2610.18774\n   - 🎯 **背景**: ロボットには行動結果を予測するWorld Modelと行動を選択するPolicyの両方が必要だが、従来モデルはどちらか一方にしか対応していなかった。\n   - 🔧 **手法**: World ModelとPolicyを統合したFoundation Model「GreenWAM」を構築。両方の役割を単一モデルで担う。\n   - 📊 **結果**: 単一モデルで世界予測と行動選択の両方を実現し、汎化性能が向上。\n   - 💡 **意義**: ロボティクス基盤モデルの統合的設計に新しい方向性を示す。\n   - ⚠️ **限界**: モデルサイズと実際のロボットへのデプロイコストのトレードオフが課題。\n\n5. **Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards** | 74 upvotes | https://arxiv.org/abs/2610.18868\n   - 🎯 **背景**: 数時間〜数日規模で自律的に作業する長期間エージェントの訓練では、疎な報酬信号が学習を困難にする。\n   - 🔧 **手法**: Dense Progress Rewards（密な進捗報酬）を用いた長期間エージェント環境のスケーリング手法を提案。\n   - 📊 **結果**: 経済的価値の高いタスクで長期間自律エージェントが効果的に学習できることを実証。\n   - 💡 **意義**: 自動化科学的発見や反復タスクのエージェント化に向けた重要な実用化ステップ。\n   - ⚠️ **限界**: 密な報酬設計には人間の専門知識が必要で、新規ドメインへの適用コストが高い。\n\n6. **EviScene: Beyond \"Is It AI?\" for Agentic Image Factuality Assessment** | 51 upvotes | https://arxiv.org/abs/2610.14609\n   - 🎯 **背景**: 画像がAI生成かどうかを判定するだけでは、描写内容の事実性は確認できない。より高次の「画像事実性評価」が必要。\n   - 🔧 **手法**: 画像とテキストクエリを入力として受け、描写された状況の事実的裏付けを評価するエージェント型システムを構築。\n   - 📊 **結果**: AI生成画像の検出を超えた事実性評価ができることを実証。\n   - 💡 **意義**: フェイクニュース対策、ファクトチェック自動化において重要な技術進歩。\n   - ⚠️ **限界**: 評価の信頼性は外部知識ベースの品質に依存する。\n\n7. **Last Secure Code Benchmark: Is the Code You Vibe Secure?** | 41 upvotes | https://arxiv.org/abs/2610.14766\n   - 🎯 **背景**: AIコーディングエージェントが大量のコードを生成するようになった中、そのコードのセキュリティ品質が問題視されている。\n   - 🔧 **手法**: AIコーディングエージェントによるセキュアコード生成を包括的に評価するベンチマーク「Last Secure Code Benchmark」を構築。\n   - 📊 **結果**: 主要なAIコーディングエージェントのセキュリティ脆弱性生成率を定量化。\n   - 💡 **意義**: 「Vibe Coding」時代におけるセキュリティリスクを定量的に示す、実務直結の研究。\n   - ⚠️ **限界**: ベンチマーク自体の継続的なアップデートが脆弱性トレンドへの追随に必要。\n\n8. **APEX: Asynchronous Prefix Denoising for Extreme Compression** | 41 upvotes | https://arxiv.org/abs/2610.12843\n   - 🎯 **背景**: 拡散モデルの潜在トークン削減は推論コスト削減に有効だが、積極的な圧縮は再構成と生成のジレンマを生む。\n   - 🔧 **手法**: 非同期プレフィックスデノイジング（APEX）を提案。チャンネル追加による再構成改善と生成難易度増加のトレードオフを解消。\n   - 📊 **結果**: 極端な圧縮率でも高品質な再構成と生成を両立。\n   - 💡 **意義**: 拡散モデルの推論効率を大幅に向上させ、モバイルやエッジデバイスへの展開を促進。\n   - ⚠️ **限界**: 非同期処理による実装の複雑さが増す。\n\n9. **FlashVSR+: Efficient Video Super-Resolution via Hybrid Attention and Reward-Yield Distribution Matching** | 33 upvotes | https://arxiv.org/abs/2610.17552\n   - 🎯 **背景**: 拡散蒸留による高速なビデオ超解像モデルが登場しているが、高解像度推論はコストが高く、蒸留モデルは調整が難しい。\n   - 🔧 **手法**: ハイブリッドアテンションとReward-Yield分布マッチングを組み合わせた効率的なビデオ超解像フレームワーク。\n   - 📊 **結果**: 1ステップ生成で高品質なビデオ超解像を効率的に実現。\n   - 💡 **意義**: 動画コンテンツの品質向上を低コストで実現し、ストリーミングサービスやコンテンツ制作に応用可能。\n   - ⚠️ **限界**: 極端な低解像度入力での品質保証が課題。\n\n10. **Self-Distillation with Verbal Regularization** | 29 upvotes | https://arxiv.org/abs/2610.16354\n    - 🎯 **背景**: オンポリシー自己蒸留（OPSD）では、同一モデルから教師と学生を生成するが、過学習や一貫性の問題が生じやすい。\n    - 🔧 **手法**: 言語的正則化（Verbal Regularization）を用いた自己蒸留手法を提案。教師は特権情報で条件付けられ、より良い監督を提供。\n    - 📊 **結果**: 自己蒸留の一貫性と汎化性能が改善。\n    - 💡 **意義**: LLMの自己改善ループの品質向上に寄与し、より効率的な自律的学習が可能に。\n    - ⚠️ **限界**: 特権情報の設計がタスク依存であり、汎用的な適用には工夫が必要。\n\n",
+  "fetched_at": "2026-10-14T22:15:51.547068+00:00",
+  "papers": [
+    {
+      "title": "Jeva: System One Models from First Principles",
+      "upvotes": 256,
+      "paper_id": "2610.18773",
+      "abstract": "System one models enable direct, low-latency decision-making. Yet recent practice of predicting an answer from serialized text does not, by itself, respect the structure of a decision problem. We argu"
+    },
+    {
+      "title": "Agent-Reflex: Teaching Language Agents to Act Reflectively",
+      "upvotes": 192,
+      "paper_id": "2610.17953",
+      "abstract": "Large language models have evolved from single-turn chatbots into interactive agents capable of long-horizon reasoning. In real deployments, MCP tool services can return noisy feedback and users may i"
+    },
+    {
+      "title": "Urbex: Agentic Spatial Grounding for City-Scale 3D Scenes",
+      "upvotes": 109,
+      "paper_id": "2610.18356",
+      "abstract": "City-scale 3D grounding is commonly formulated as candidate ranking, which requires precomputed instance proposals and becomes inefficient in large outdoor scenes. We propose Urbex, an agentic vision-"
+    },
+    {
+      "title": "GreenWAM: A World Foundation Model for Robotics",
+      "upvotes": 82,
+      "paper_id": "2610.18774",
+      "abstract": "A robot needs a world model that predicts how its actions will change the scene and a policy that chooses those actions. Models are usually built and evaluated for only one of these roles, and every r"
+    },
+    {
+      "title": "Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards",
+      "upvotes": 74,
+      "paper_id": "2610.18868",
+      "abstract": "Long-horizon agents have drawn growing attention for their ability to work autonomously -- from hours to days -- on economically valuable tasks, a capability essential to automated discovery and recur"
+    },
+    {
+      "title": "EviScene: Beyond \"Is It AI?\" for Agentic Image Factuality Assessment",
+      "upvotes": 51,
+      "paper_id": "2610.14609",
+      "abstract": "Determining whether an image is AI-generated does not establish whether the situation it depicts is factually supported. We formulate Image Factuality Assessment: given an image and a generic verifica"
+    },
+    {
+      "title": "Last Secure Code Benchmark: Is the Code You Vibe Secure?",
+      "upvotes": 41,
+      "paper_id": "2610.14766",
+      "abstract": "AI coding agents now write much of the code that ships, yet whether that code is secure remains unclear. We introduce the Last Secure Code Benchmark, a comprehensive evaluation of secure code generati"
+    },
+    {
+      "title": "APEX: Asynchronous Prefix Denoising for Extreme Compression",
+      "upvotes": 41,
+      "paper_id": "2610.12843",
+      "abstract": "Fewer latent tokens promise cheaper diffusion. Yet aggressive latent compression creates a reconstruction-generation dilemma: adding channels improves reconstruction but makes generation harder. We in"
+    },
+    {
+      "title": "FlashVSR+: Efficient Video Super-Resolution via Hybrid Attention and Reward-Yield Distribution Matching",
+      "upvotes": 33,
+      "paper_id": "2610.17552",
+      "abstract": "Recent video super-resolution (VSR) models achieve efficient one-step generation through diffusion distillation. However, high-resolution inference remains costly, and distilled models are difficult t"
+    },
+    {
+      "title": "Self-Distillation with Verbal Regularization",
+      "upvotes": 29,
+      "paper_id": "2610.16354",
+      "abstract": "On-policy self-distillation (OPSD) trains a large language model using supervision from a teacher instantiated from the same model as the student. The teacher is conditioned on privileged information "
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.300",
+      "published_at": "2026-10-14",
+      "body": "- Added `virtualText` to a mod's prompt decorations: text drawn in the prompt box that never enters the draft or the submitted prompt\n- Added `cache_creation_5m_tokens` and `cache_creation_1h_tokens` to the OpenTelemetry `api_request` event, splitting cache writes by lifetime\n- Added `$.ui.view({ agentId })` for mods: shows an agent's transcript in the main view when you ask, and `$.ui.view({})` goes back\n- Added a `dir` prop on a mod's `Text` for right-to-left text: on Windows and in VS Code's terminal its rows read in that direction and sit flush right\n- Added `/advisor`…"
+    },
+    {
+      "tag_name": "v2.1.299",
+      "published_at": "2026-10-14",
+      "body": "- Added `CLAUDE_CODE_DISABLE_FILE_MENTIONS` environment variable: Claude gets the paths of `@` file mentions to read with its file tools, not the files' contents\n- Added idle compaction in the terminal: a 200K+ token conversation left idle for about 54 minutes is compacted before its one-hour prompt cache expires, so your next message doesn't reprocess it all\n- Added `CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS` to change idle compaction's 200K-token minimum; `\"idleCompaction\": false` in settings.json turns it off. Both need v2.1.290 or later\n- Added `$.prompt.media`…"
+    },
+    {
+      "tag_name": "v2.1.296",
+      "published_at": "2026-10-09",
+      "body": "- Added a `code` key to the Claude apps gateway's `managed.policies[]`: the same settings as `cli`, also applied in Claude Desktop's Code tab; beside `desktop`, it turns on Claude Desktop's gateway mode\n- Added `autoCompactWindow` to subagent frontmatter and `--agents` definitions, so a subagent can auto-compact earlier than the main conversation's window\n- Added `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` to run every workflow agent on one model while other subagents keep theirs\n- Added `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS`…"
+    }
+  ]
+}
