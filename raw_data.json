@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "Jeva: System One Models from First Principles", "upvotes": 256, "paper_id": "2610.18773", "abstract": "System one models enable direct, low-latency decision-making. Yet recent practice of predicting an answer from serialized text does not, by itself, respect the structure of a decision problem. We argu"},
-    {"title": "Agent-Reflex: Teaching Language Agents to Act Reflectively", "upvotes": 192, "paper_id": "2610.17953", "abstract": "Large language models have evolved from single-turn chatbots into interactive agents capable of long-horizon reasoning. In real deployments, MCP tool services can return noisy feedback and users may i"},
-    {"title": "Urbex: Agentic Spatial Grounding for City-Scale 3D Scenes", "upvotes": 109, "paper_id": "2610.18356", "abstract": "City-scale 3D grounding is commonly formulated as candidate ranking, which requires precomputed instance proposals and becomes inefficient in large outdoor scenes. We propose Urbex, an agentic vision-"},
-    {"title": "GreenWAM: A World Foundation Model for Robotics", "upvotes": 82, "paper_id": "2610.18774", "abstract": "A robot needs a world model that predicts how its actions will change the scene and a policy that chooses those actions. Models are usually built and evaluated for only one of these roles, and every r"},
-    {"title": "Tev: Scaling Long-Horizon Agentic Environments with Dense Progress Rewards", "upvotes": 74, "paper_id": "2610.18868", "abstract": "Long-horizon agents have drawn growing attention for their ability to work autonomously -- from hours to days -- on economically valuable tasks, a capability essential to automated discovery and recur"},
-    {"title": "EviScene: Beyond \"Is It AI?\" for Agentic Image Factuality Assessment", "upvotes": 51, "paper_id": "2610.14609", "abstract": "Determining whether an image is AI-generated does not establish whether the situation it depicts is factually supported. We formulate Image Factuality Assessment: given an image and a generic verifica"},
-    {"title": "Last Secure Code Benchmark: Is the Code You Vibe Secure?", "upvotes": 41, "paper_id": "2610.14766", "abstract": "AI coding agents now write much of the code that ships, yet whether that code is secure remains unclear. We introduce the Last Secure Code Benchmark, a comprehensive evaluation of secure code generati"},
-    {"title": "APEX: Asynchronous Prefix Denoising for Extreme Compression", "upvotes": 41, "paper_id": "2610.12843", "abstract": "Fewer latent tokens promise cheaper diffusion. Yet aggressive latent compression creates a reconstruction-generation dilemma: adding channels improves reconstruction but makes generation harder. We in"},
-    {"title": "FlashVSR+: Efficient Video Super-Resolution via Hybrid Attention and Reward-Yield Distribution Matching", "upvotes": 33, "paper_id": "2610.17552", "abstract": "Recent video super-resolution (VSR) models achieve efficient one-step generation through diffusion distillation. However, high-resolution inference remains costly, and distilled models are difficult t"},
-    {"title": "Self-Distillation with Verbal Regularization", "upvotes": 29, "paper_id": "2610.16354", "abstract": "On-policy self-distillation (OPSD) trains a large language model using supervision from a teacher instantiated from the same model as the student. The teacher is conditioned on privileged information "}
+    {
+      "title": "Waypoint-OPD: Transferring RL-Induced Policy Shifts via Gated On-Policy Distillation",
+      "upvotes": 451,
+      "id": "2610.21601",
+      "abstract": "Policy-shift distillation reuses the difference between a teacher's log probabilities before and after reinforcement learning (RL) as supervision on student-generated trajectories. However, this endpo"
+    },
+    {
+      "title": "OpenGCUA: Toward a Fully Open Stack for Generalist Computer Use",
+      "upvotes": 266,
+      "id": "2610.22200",
+      "abstract": "Computer use has reached a turning point: the focus is expanding from GUI-only interaction to systems that complete tasks on users' computers through visual and programmatic interfaces. We define a ge"
+    },
+    {
+      "title": "FDE-Gym: The Last Mile of AI Delivery",
+      "upvotes": 229,
+      "id": "2610.22350",
+      "abstract": "Existing agent benchmarks typically evaluate agents on well-specified tasks defined by issue reports, specifications, or task tickets. Real-world customer delivery is different: forward-deployed engin"
+    },
+    {
+      "title": "RoTA-Bench: Evaluating 3D Spatial Reasoning through Interactive Projection Alignment",
+      "upvotes": 198,
+      "id": "2610.17665",
+      "abstract": "Can vision-language models turn 2D observations into 3D understanding that supports precise action? This requires inferring object geometry, anticipating the effects of rotation, and refining actions "
+    },
+    {
+      "title": "Self-Evolving Agent Harness",
+      "upvotes": 188,
+      "id": "2610.18813",
+      "abstract": "Harness self-evolution revises an agent's software scaffolding, including prompts, memory, workflows, and executable components, while keeping model weights fixed. We formalize a feedback-driven proce"
+    },
+    {
+      "title": "MJev-Spatial: System One Spatial Intelligence via Native Attention Matching",
+      "upvotes": 140,
+      "id": "2610.22276",
+      "abstract": "Spatial intelligence lets an agent perceive and act in the physical world, and many of its judgments must be made at interaction rates: which spatial relation holds, how far an object is, or where to "
+    },
+    {
+      "title": "MAI-Gym: An Open All-in-One Platform for GUI Agent Evaluation and RL Training across Mobile and Computer Environments",
+      "upvotes": 93,
+      "id": "2610.20939",
+      "abstract": "Online reinforcement learning (RL) with verifiable rewards has driven rapid progress in mathematics, coding, and tool use, but scaling this success to GUI agents remains challenging due to the high co"
+    },
+    {
+      "title": "VLA-Δ: Learning Physical State Transition for Vision-Language-Action Models",
+      "upvotes": 53,
+      "id": "2610.21306",
+      "abstract": "Vision-language-action (VLA) models transfer semantic knowledge acquired through vision-language pretraining to robot control, achieving strong performance across various benchmarks. However, most VLA"
+    },
+    {
+      "title": "Mosaic: Multi-Session Agentic Reinforcement Learning",
+      "upvotes": 48,
+      "id": "2610.22174",
+      "abstract": "Most existing agentic reinforcement learning methods assume single-session trajectories, where interaction proceeds within one continuously accumulated context. However, agentic techniques such as con"
+    },
+    {
+      "title": "Can World and Action Modeling Benefit Each Other under Unified Causal Training?",
+      "upvotes": 31,
+      "id": "2610.21095",
+      "abstract": "World and action modeling are closely related, yet their reciprocal benefits under unified causal training remain unclear. We introduce OneWM, a simple framework for unified causal training that treat"
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.300", "published_at": "2026-10-14", "body": "- Added `virtualText` to a mod's prompt decorations: text drawn in the prompt box that never enters the draft or the submitted prompt\n- Added `cache_creation_5m_tokens` and `cache_creation_1h_tokens` to the OpenTelemetry `api_request` event, splitting cache writes by lifetime\n- Added `$.ui.view({ agentId })` for mods: shows an agent's transcript in the main view when you ask, and `$.ui.view({})` goes back\n- Added a `dir` prop on a mod's `Text` for right-to-left text: on Windows and in VS Code's terminal its rows read in that direction and sit flush right\n- Added `/advisor`…"},
-    {"tag_name": "v2.1.299", "published_at": "2026-10-14", "body": "- Added `CLAUDE_CODE_DISABLE_FILE_MENTIONS` environment variable: Claude gets the paths of `@` file mentions to read with its file tools, not the files' contents\n- Added idle compaction in the terminal: a 200K+ token conversation left idle for about 54 minutes is compacted before its one-hour prompt cache expires, so your next message doesn't reprocess it all\n- Added `CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS` to change idle compaction's 200K-token minimum; `\"idleCompaction\": false` in settings.json turns it off. Both need v2.1.290 or later\n- Added `$.prompt.media`…"},
-    {"tag_name": "v2.1.296", "published_at": "2026-10-09", "body": "- Added a `code` key to the Claude apps gateway's `managed.policies[]`: the same settings as `cli`, also applied in Claude Desktop's Code tab; beside `desktop`, it turns on Claude Desktop's gateway mode\n- Added `autoCompactWindow` to subagent frontmatter and `--agents` definitions, so a subagent can auto-compact earlier than the main conversation's window\n- Added `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` to run every workflow agent on one model while other subagents keep theirs\n- Added `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS`…"}
+    {
+      "tag_name": "v2.1.302",
+      "published_at": "2026-10-16",
+      "body": "Added CLAUDE_CODE_AUTO_MODE_MODEL to choose the model the client-side auto mode classifier uses. Added Idle compaction row to /config for turning idle compaction off or back on. Added notice to /design-sync and /design-login that standalone Claude Design (claude.ai/design) closes by December 14, 2026. Fixed 'Prompt is too long' error when stopping a turn while the conversation was being compacted. Fixed requests failing with 'diagnostics: Extra inputs are not permitted' after switching to Vertex or Bedrock mid-session. Fixed Read tool loading an image file of any size entirely into memory; image sources over 128 MB are now refused. Fixed /autocompact and /effort saving to wrong model when a gateway names Opus 4 or 4.1 with a prefix."
+    },
+    {
+      "tag_name": "v2.1.301",
+      "published_at": "2026-10-15",
+      "body": "Added CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS for unattended retry mode. Added OpenTelemetry tracing guidance to claude-api skill. Added % motion to vim mode. Added rows to a mod's Input for multi-line text fields. Added classifier_verdict and permission_mode to OpenTelemetry tool_decision events. Fixed quitting removing a worktree made by a WorktreeCreate hook without asking."
+    },
+    {
+      "tag_name": "v2.1.300",
+      "published_at": "2026-10-14",
+      "body": "Added virtualText to a mod's prompt decorations. Added cache_creation_5m_tokens and cache_creation_1h_tokens to OpenTelemetry api_request event. Added $.ui.view({ agentId }) for mods. Added dir prop on a mod's Text for right-to-left text. Added /advisor on Claude Platform on AWS. Added OpenTelemetry GenAI semantic-convention attributes to trace spans."
+    }
   ]
 }
