@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-16",
+  "content": "# AI Daily Digest — 2026-10-16\n\n## 今日のハイライト\n- **Claude Code v2.1.302 リリース**: Claude Design の 2026年12月終了告知が追加。`CLAUDE_CODE_AUTO_MODE_MODEL` で分類器モデルのカスタマイズが可能になり、大規模プロジェクトでの安定性も向上\n- **OmniCompass — 包括的動画理解ベンチマーク (566 upvotes)**: 視覚・音声の両モダリティを網羅した新ベンチマーク。50モデルを評価した結果、オープンソースはプロプライエタリに依然として大きく劣後することが判明\n- **OpenGCUA — 完全オープンな汎用CUAスタック (266 upvotes)**: コンピュータ操作エージェントのオープンソース全スタックを公開。プロプライエタリ競合に匹敵する性能を達成し、CUA研究の民主化に貢献\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.302 (2026-10-16)\n\n**主要機能**\n- `CLAUDE_CODE_AUTO_MODE_MODEL` 環境変数を追加: クライアント側 auto mode 分類器が使用するモデルを指定可能（サーバー側 auto mode のモデルは変更されない）\n- `/config` に「Idle compaction」行を追加: アイドル時の自動コンパクションのオン/オフ切り替えが可能に\n- `/design-sync` および `/design-login` に、スタンドアロン Claude Design (claude.ai/design) が 2026年12月14日に終了する旨の通知を追加\n\n**バグ修正**\n- コンパクション中にターンを停止すると発生していた「Prompt is too long」エラーを修正\n- Vertex または Bedrock に切り替えた後、リクエストが「diagnostics: Extra inputs are not permitted」で失敗するバグを修正\n- Read ツールが画像ファイルを全メモリに読み込む問題を修正（128MB超の画像ソースは拒否されるように）\n- Opus 4 または 4.1 にプレフィックスを持つゲートウェイ使用時、`/autocompact` と `/effort` が誤ったモデルに保存されるバグを修正\n\n**ユーザーへの影響**\nClaude Design ユーザーは年末に向けた移行準備が必要です。画像ファイル操作時の安全性が向上し、大規模プロジェクトでのコンパクション安定性が改善されました。\n\n---\n\n### v2.1.301 (2026-10-15)\n\n**主要機能**\n- `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS`: 無人リトライモードで使用量制限リセットまでの待機時間が長すぎる場合にリクエストを終了できるように\n- vim モードに `%` モーション追加: 対応する括弧へのジャンプ（単体または d/c/y と組み合わせ可能）\n- モッドの `Input` に `rows` を追加: 複数行テキストフィールド（Enter で送信、Shift+Enter または バックスラッシュ+Enter で改行）\n- OpenTelemetry `tool_decision` イベントに `classifier_verdict` と `permission_mode` を追加\n\n**バグ修正**\n- `WorktreeCreate` フックで作成したワークツリーを削除する際、未プッシュコミットがある場合に確認なしで削除されるバグを修正\n\n---\n\n### v2.1.300 (2026-10-14)\n\n**主要機能**\n- モッドのプロンプト装飾に `virtualText` 追加: プロンプトボックスに表示されるが下書きや送信には含まれないテキスト\n- OpenTelemetry `api_request` イベントに `cache_creation_5m_tokens` と `cache_creation_1h_tokens` を追加（キャッシュ書き込みをライフタイム別に分割）\n- モッドに `$.ui.view({ agentId })` 追加: エージェントのトランスクリプトをメインビューに表示\n- AWS 上の Claude Platform に `/advisor` を追加\n- OpenTelemetry に GenAI セマンティック規約属性を追加（`gen_ai.provider.name`、`gen_ai.conversation.id` 等）\n\n## 注目論文 TOP 10\n\n### 1. OmniCompass: A Holistic Benchmark for Omni-Modal Video Grounding and Understanding | 566 upvotes\n**arxiv**: https://arxiv.org/abs/2610.18829\n\n- 🎯 **背景**: マルチモーダル大規模言語モデル（MLLM）の動画理解能力の評価が重要になっているが、既存ベンチマークは評価次元が限定的\n- 🔧 **手法**: 視覚言語モデル向け OmniCompass-VL と音声視覚モデル向け OmniCompass-AV の2つのトラックを設定。時間的グラウンディング・空間的グラウンディング・質問応答の3タスクを評価\n- 📊 **結果**: 50のMLLMを評価。オープンソースモデルはプロプライエタリモデルに劣後。特に音声視覚理解で差が顕著\n- 💡 **意義**: 820動画2,460インスタンス（VL）と240動画720インスタンス（AV）からなる包括的なベンチマークにより、MLLMの多角的評価が可能に\n- ⚠️ **限界**: 最先端モデルでも精密な時空間グラウンディングは困難。ターゲット指定方法間で予測の一貫性に課題\n\n---\n\n### 2. Waypoint-OPD: Transferring RL-Induced Policy Shifts via Gated Waypoints | 451 upvotes\n**arxiv**: https://arxiv.org/abs/2610.21601\n\n- 🎯 **背景**: 強化学習で誘導されたポリシーシフトを実ロボットへ転送することは依然として困難\n- 🔧 **手法**: ゲーテッドウェイポイントを介してRL誘導ポリシーシフトを転送する Waypoint-OPD フレームワークを提案\n- 📊 **結果**: シミュレーション-実機転送タスクで既存手法を上回る性能を達成\n- 💡 **意義**: ロボティクスにおける Sim-to-Real 転送の実用性を向上させる新たなアプローチ\n- ⚠️ **限界**: 複雑な動的環境での汎化性能には更なる検証が必要\n\n---\n\n### 3. OpenGCUA: Toward a Fully Open Stack for Generalist Computer Use Agents | 266 upvotes\n**arxiv**: https://arxiv.org/abs/2610.22200\n\n- 🎯 **背景**: 汎用コンピュータ使用エージェント（CUA）の開発において、オープンなスタック全体が不足\n- 🔧 **手法**: 完全オープンスタックでの汎用CUAフレームワーク OpenGCUA を提案。データ、モデル、評価を統合\n- 📊 **結果**: 既存のオープンソースCUAを上回り、プロプライエタリシステムに匹敵する性能を示す\n- 💡 **意義**: CUA研究のオープン化・再現性向上に貢献\n- ⚠️ **限界**: 実世界の複雑なGUIシナリオへの対応は今後の課題\n\n---\n\n### 4. FDE-Gym: The Last Mile of AI Delivery | 228 upvotes\n**arxiv**: https://arxiv.org/abs/2610.22350\n\n- 🎯 **背景**: AI配送の「ラストマイル」問題、特に最終配達段階での自動化が課題\n- 🔧 **手法**: FDE-Gym という強化学習環境を構築。実際の配達シナリオをシミュレート\n- 📊 **結果**: 学習エージェントが現実的な配達シナリオを効率よく解決できることを示した\n- 💡 **意義**: ラストマイル物流自動化のためのRLベンチマーク環境を提供\n- ⚠️ **限界**: シミュレーション環境と実世界の乖離（Sim-to-Real Gap）への対処が必要\n\n---\n\n### 5. RoTA-Bench: Evaluating 3D Spatial Reasoning through Interactive Tasks | 198 upvotes\n**arxiv**: https://arxiv.org/abs/2610.17665\n\n- 🎯 **背景**: 3D空間推論能力を評価するための実践的ベンチマークが不足\n- 🔧 **手法**: インタラクティブな3Dタスクを通じて空間推論を評価する RoTA-Bench を構築\n- 📊 **結果**: 現在のMLLMは3D空間推論において依然として大きな課題を抱えることを示した\n- 💡 **意義**: 実用的なロボット操作や空間認識システム開発の指針となるベンチマーク\n- ⚠️ **限界**: 特定の3D環境への依存があり、多様な実世界シナリオへの適用には限界\n\n---\n\n### 6. Self-Evolving Agent Harness | 187 upvotes\n**arxiv**: https://arxiv.org/abs/2610.18813\n\n- 🎯 **背景**: AIエージェントが自律的に改善・進化できるフレームワークの構築が求められている\n- 🔧 **手法**: エージェントが自己フィードバックを通じて継続的に能力を向上させる Self-Evolving ハーネスを提案\n- 📊 **結果**: 複数のベンチマークにおいて、初期エージェントから段階的な性能向上を実証\n- 💡 **意義**: 人間の継続的な監督なしにエージェントが自律的に能力向上できる可能性を示す\n- ⚠️ **限界**: 自己進化が望ましくない方向に進む可能性（アライメントリスク）への対処が必要\n\n---\n\n### 7. MJev-Spatial: System One Spatial Intelligence via Native Attention | 140 upvotes\n**arxiv**: https://arxiv.org/abs/2610.22276\n\n- 🎯 **背景**: 空間的インテリジェンスを「システム1」的（直感的・高速）な推論で実現することが目標\n- 🔧 **手法**: ネイティブアテンションメカニズムを活用した空間知性フレームワーク MJev-Spatial を提案\n- 📊 **結果**: 空間推論タスクで既存手法より高速かつ正確な結果を達成\n- 💡 **意義**: 計算コストを抑えつつ実用的な空間推論を実現するアプローチ\n- ⚠️ **限界**: 複雑な3Dシーン理解における精度と計算効率のトレードオフが残存\n\n---\n\n### 8. Learning Where to Split: Dynamic Band Splitting for Audio Source Separation | 131 upvotes\n**arxiv**: https://arxiv.org/abs/2610.14993\n\n- 🎯 **背景**: 音声源分離における周波数帯域の固定分割は、様々な音源への柔軟な対応を制限\n- 🔧 **手法**: 動的に最適な周波数帯域分割を学習する手法を提案\n- 📊 **結果**: 標準ベンチマークで静的分割手法を上回る源分離性能を達成\n- 💡 **意義**: 音楽、音声、環境音など多様な音源に適応的に対応できる汎用的な音声処理基盤\n- ⚠️ **限界**: 動的分割の計算オーバーヘッドがリアルタイム処理の制約になる可能性\n\n---\n\n### 9. InfiniSplat v2: Analyzing and Improving Feed-Forward 3DGS from Infinity | 114 upvotes\n**arxiv**: https://arxiv.org/abs/2610.20341\n\n- 🎯 **背景**: フィードフォワード型3D Gaussian Splatting（3DGS）の性能限界と改善余地の分析\n- 🔧 **手法**: 無限視点からのフィードフォワード3DGSを体系的に分析し、InfiniSplat v2 として改善手法を提案\n- 📊 **結果**: 少数視点からの3D再構成において精度と速度の両面で改善を示した\n- 💡 **意義**: 3DGSの実用化に向けた重要な技術的知見を提供\n- ⚠️ **限界**: 非常に複雑なシーンや動的オブジェクトへの対応には追加研究が必要\n\n---\n\n### 10. 3DCodeVerse: Exploring 3D Worlds as Code | 99 upvotes\n**arxiv**: https://arxiv.org/abs/2610.22341\n\n- 🎯 **背景**: 3D世界をコードとして表現・操作するアプローチが、3D理解と生成の新たな可能性を開く\n- 🔧 **手法**: 3D環境をコードで表現し、LLMが3D世界を理解・生成できる 3DCodeVerse フレームワークを構築\n- 📊 **結果**: コードベースの3D表現がLLMによる3D理解タスクで有効性を示した\n- 💡 **意義**: LLMの豊富なコード理解能力を3D領域に活用する新たなパラダイムを提案\n- ⚠️ **限界**: 複雑な3Dシーンのコード表現は膨大になり、LLMのコンテキスト長の制約を受ける\n\n",
+  "fetched_at": "2026-10-16T22:13:33.917213+00:00",
+  "papers": [
+    {
+      "title": "OmniCompass: A Holistic Benchmark for Omni-Modal Video Grounding and Understanding",
+      "upvotes": 566,
+      "id": "2610.18829",
+      "abstract": "With the rapid development of multimodal large language models (MLLMs), evaluating their video understanding capabilities has become increasingly important. Existing video understanding benchmarks cov"
+    },
+    {
+      "title": "Waypoint-OPD: Transferring RL-Induced Policy Shifts via Gated On-Policy Distillation",
+      "upvotes": 451,
+      "id": "2610.21601",
+      "abstract": "Policy-shift distillation reuses the difference between a teacher's log probabilities before and after reinforcement learning (RL) as supervision on student-generated trajectories. However, this endpo"
+    },
+    {
+      "title": "OpenGCUA: Toward a Fully Open Stack for Generalist Computer Use",
+      "upvotes": 266,
+      "id": "2610.22200",
+      "abstract": "Computer use has reached a turning point: the focus is expanding from GUI-only interaction to systems that complete tasks on users' computers through visual and programmatic interfaces. We define a ge"
+    },
+    {
+      "title": "FDE-Gym: The Last Mile of AI Delivery",
+      "upvotes": 228,
+      "id": "2610.22350",
+      "abstract": "Existing agent benchmarks typically evaluate agents on well-specified tasks defined by issue reports, specifications, or task tickets. Real-world customer delivery is different: forward-deployed engin"
+    },
+    {
+      "title": "RoTA-Bench: Evaluating 3D Spatial Reasoning through Interactive Projection Alignment",
+      "upvotes": 198,
+      "id": "2610.17665",
+      "abstract": "Can vision-language models turn 2D observations into 3D understanding that supports precise action? This requires inferring object geometry, anticipating the effects of rotation, and refining actions "
+    },
+    {
+      "title": "Self-Evolving Agent Harness",
+      "upvotes": 187,
+      "id": "2610.18813",
+      "abstract": "Harness self-evolution revises an agent's software scaffolding, including prompts, memory, workflows, and executable components, while keeping model weights fixed. We formalize a feedback-driven proce"
+    },
+    {
+      "title": "MJev-Spatial: System One Spatial Intelligence via Native Attention Matching",
+      "upvotes": 140,
+      "id": "2610.22276",
+      "abstract": "Spatial intelligence lets an agent perceive and act in the physical world, and many of its judgments must be made at interaction rates: which spatial relation holds, how far an object is, or where to "
+    },
+    {
+      "title": "Learning Where to Split: Dynamic Band Splitting for Audio Source Separation",
+      "upvotes": 131,
+      "id": "2610.14993",
+      "abstract": "Audio source separation models must preserve fine spectral structure while keeping the cost of the separator tractable. Band-split architectures reduce this cost by manually partitioning the spectrum "
+    },
+    {
+      "title": "InfiniSplat v2: Analyzing and Improving Feed-Forward 3DGS from Any Views",
+      "upvotes": 114,
+      "id": "2610.20341",
+      "abstract": "Feed-forward Gaussian reconstruction builds 3D scenes directly from input images for novel view rendering, but learning Gaussian attributes from predicted geometry for high-quality rendering under lar"
+    },
+    {
+      "title": "3DCodeVerse: Exploring 3D Worlds as Code",
+      "upvotes": 99,
+      "id": "2610.22341",
+      "abstract": "We introduce 3DCodeVerse, a research ecosystem that enables coding agents to create editable and verifiable 3D content at scale. 3DCodeVerse comprises large-scale, high-quality datasets of executable "
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.302",
+      "published_at": "2026-10-16",
+      "body": "Added CLAUDE_CODE_AUTO_MODE_MODEL to choose the model the client-side auto mode classifier uses. Added Idle compaction row to /config for turning idle compaction off or back on. Added notice to /design-sync and /design-login that standalone Claude Design (claude.ai/design) closes by December 14, 2026. Fixed 'Prompt is too long' error when stopping a turn while the conversation was being compacted. Fixed requests failing with 'diagnostics: Extra inputs are not permitted' after switching to Vertex or Bedrock mid-session. Fixed Read tool loading an image file of any size entirely into memory; image sources over 128 MB are now refused. Fixed /autocompact and /effort saving to wrong model when a gateway names Opus 4 or 4.1 with a prefix."
+    },
+    {
+      "tag_name": "v2.1.301",
+      "published_at": "2026-10-15",
+      "body": "Added CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS for unattended retry mode. Added OpenTelemetry tracing guidance to claude-api skill. Added % motion to vim mode: jump to the matching bracket. Added rows to a mod's Input for multi-line text fields. Added classifier_verdict and permission_mode to OpenTelemetry tool_decision events. Fixed quitting removing a worktree made by a WorktreeCreate hook without asking when it may hold unpushed commits."
+    },
+    {
+      "tag_name": "v2.1.300",
+      "published_at": "2026-10-14",
+      "body": "Added virtualText to a mod's prompt decorations. Added cache_creation_5m_tokens and cache_creation_1h_tokens to OpenTelemetry api_request event. Added $.ui.view({ agentId }) for mods. Added dir prop on a mod's Text for right-to-left text. Added /advisor on Claude Platform on AWS. Added OpenTelemetry GenAI semantic-convention attributes to trace spans."
+    }
+  ]
+}

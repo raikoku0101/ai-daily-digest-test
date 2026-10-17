@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "Memento 3: Model-Based Recursive Self-Improvement through Reflective Rulebooks", "upvotes": 28, "paper_id": "2610.11794", "abstract": "Frozen LLM agents learn explicit world models through external memory, keeping a revisable natural-language rulebook that is compiled into executable code and verified against observed transitions."},
-    {"title": "Pumpire: Unified Benchmark for Metric Distance Estimation", "upvotes": 15, "paper_id": "2610.12423", "abstract": "A benchmark that tests whether 3D foundation models estimate real-world physical distances between point pairs, using 6,400 frames from 100 scenes with measured distances."},
-    {"title": "Opera: A Verbal Critic Framework for Long-horizon Coding Agents", "upvotes": 10, "paper_id": "2609.33987", "abstract": "A critic that tracks each correction as a persistent note until the agent actually resolves the diagnosed problem, improving coding-agent resolve rates on several benchmarks."},
-    {"title": "A GPU-Parallel Framework for Heterogeneous Multi-Task Reinforcement Learning", "upvotes": 8, "paper_id": "2606.03335", "abstract": "Hebero, a GPU-parallel Isaac Lab benchmark of 40 manipulation tasks, plus DGPO and IW-ABC methods for training one multi-task policy from sparse rewards and few demonstrations."},
-    {"title": "Mara Chain: Rethinking Failure as a Stepping Stone for AI System Auto-Evolution", "upvotes": 5, "paper_id": "2609.35855", "abstract": "A refinement method that keeps rejected candidate configurations and iteratively improves them, reducing rollouts needed to optimize prompts, skills, and harnesses."},
-    {"title": "Can AI Agents Make Open-Ended Scientific Discovery? Evidence from Station", "upvotes": 5, "paper_id": "2610.08927", "abstract": "Station, an open-world simulated scientific ecosystem with supervisor and meta-reflection mechanisms, rediscovers a large share of findings from recent ICLR oral papers without web access."},
-    {"title": "A Closer Look at Agentic BBO: Benchmarking LLM Agents for Black-Box Optimization", "upvotes": 4, "paper_id": "2610.12183", "abstract": "AgenticBBO-Bench, a cross-domain benchmark for LLM-agent black-box optimization across five domains, studying the effects of tools, task information, and the LLM's role in search."},
-    {"title": "Synthesis Through Simulation: Generating Coherent Enterprise Data via Scalable Agent-System Interaction", "upvotes": 3, "paper_id": "2610.10549", "abstract": "A schema-free method where an LLM agent generates enterprise data by acting through policy-enforcing simulated APIs, ensuring structural validity and reasonable distributional fidelity."},
-    {"title": "SpecFold: Folding Multi-Branch Redundancy for Faster Speculative Decoding in Diffusion Language Models", "upvotes": 3, "paper_id": "2610.04875", "abstract": "SpecFold reuses parent computation across draft branches in diffusion LLM speculative decoding, using a Triton kernel to reach up to about 2x throughput with comparable task performance."},
-    {"title": "Incremental Open-Ended Deep Research with Structured Harness", "upvotes": 3, "paper_id": "2610.11566", "abstract": "Incremental-OEDR updates existing research reports instead of regenerating them, using structured evidence pools and temporal evaluation to cut token use and search calls."}
+    {
+      "title": "Behavioral Compositionality of Sparse Autoencoder Representations",
+      "upvotes": 105,
+      "paper_id": "2610.21261",
+      "abstract": "Tests whether sparse autoencoder features act additively on model behavior. Learned coordinates compose better than random rotations, yet pairwise interaction terms still improve predictions."
+    },
+    {
+      "title": "Virtual Head Attention",
+      "upvotes": 9,
+      "paper_id": "2610.17959",
+      "abstract": "Proposes an attention variant that cuts KV cache size and training/prefill compute using two lightweight linear operations, while matching or exceeding GQA quality at several model scales."
+    },
+    {
+      "title": "EDEN: Embedding-Space Directional Exploration with Anchored Noise for LLM RLVR",
+      "upvotes": 8,
+      "paper_id": "2610.16105",
+      "abstract": "Improves exploration in reinforcement learning with verifiable rewards by perturbing a prompt's input embedding with anchored noise, boosting solution diversity without changing inference."
+    },
+    {
+      "title": "LEASH: Uncertainty-Aware Weak-to-Strong Escalation and Oversight for Computer-Use Agents",
+      "upvotes": 6,
+      "paper_id": "2610.22280",
+      "abstract": "Routes computer-use tasks from a small agent to a strong one only when the small agent's hidden-state uncertainty is high, then monitors the strong agent, cutting cost with similar success."
+    },
+    {
+      "title": "Mine, Sample, Render: Test-Time Diversity Alignment Of Generative Models",
+      "upvotes": 5,
+      "paper_id": "2610.21185",
+      "abstract": "Mines a categorical schema from real artifacts, samples attribute configurations from corpus statistics, and uses a generative model only to render them, improving diversity and corpus alignment."
+    },
+    {
+      "title": "Gen4P: Video Generators are 4D Perceivers",
+      "upvotes": 5,
+      "paper_id": "2610.22371",
+      "abstract": "Repurposes a pretrained video generator into a single-pass 4D perceiver that recovers geometry and motion from monocular video using on-demand cross-attention queries and a frozen depth prior."
+    },
+    {
+      "title": "Scalable Weak-to-Strong Verifier Hardening for Agent Environments",
+      "upvotes": 4,
+      "paper_id": "2610.15924",
+      "abstract": "Automatically hardens agent-environment verifiers against reward hacking using an isolated sandbox and an iterative hacker-fixer loop, substantially reducing attack success on several benchmarks."
+    },
+    {
+      "title": "LeanPRM: Lean-Grounded Process Supervision for Natural Language Proof Verification",
+      "upvotes": 4,
+      "paper_id": "2610.17697",
+      "abstract": "Uses the Lean proof assistant to label each step of natural-language proofs automatically, producing step-level training data for verifiers without human annotation."
+    },
+    {
+      "title": "Copy-Paste Language Models",
+      "upvotes": 4,
+      "paper_id": "2610.19247",
+      "abstract": "Adds a lightweight copy head alongside the standard language modeling head, improving training efficiency, downstream results, and long-context retrieval with minimal overhead."
+    },
+    {
+      "title": "PathFM: Fast Generative Forecasting of Multivariate Trajectories",
+      "upvotes": 3,
+      "paper_id": "2610.22358",
+      "abstract": "Uses flow matching to generate full future trajectories for time series, distilled to one or two sampling steps, to better model dependence structure than marginal quantile forecasters."
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.296", "published_at": "2026-10-09", "body": "What's changed\n\n* Added a `code` key to the Claude apps gateway's `managed.policies[]`: the same settings as `cli`, also applied in Claude Desktop's Code tab; beside `desktop`, it turns on Claude Desktop's gateway mode\n* Added `autoCompactWindow` to subagent frontmatter and `--agents` definitions, so a subagent can auto-compact earlier than the main conversation's window\n* Added `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` to run every workflow agent on one model while other subagents keep theirs\n* Added `CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS` environment variable to set a longer maximum delay"},
-    {"tag_name": "v2.1.295", "published_at": "2026-10-08", "body": "What's changed\n\n* Added `onFailure: \"block\"` for command and HTTP hooks: a hook that can't start, times out, or exits with an unexpected code blocks the action instead of letting it through\n* Added Program Status Protocol (OSC 7501) support: terminals that implement it can show whether Claude Code is working, waiting on you, or done\n* Added quoted text to the `/copy` picker, so a drafted message copies without its `>` markers\n* Added a warning to `claude plugin install`, `enable`, `disable` and `marketplace add` when the settings file they write to does not load"},
-    {"tag_name": "v2.1.294", "published_at": "2026-10-08", "body": "What's changed\n\n* Fixed `prompt` and `agent` hooks written as instructions allowing what they should block\n* Improved how `prompt` hooks on Stop and SubagentStop written as instructions are judged, so Claude is less likely to stop early"}
+    {
+      "tag_name": "v2.1.302",
+      "published_at": "2026-10-16",
+      "body": "* Added `CLAUDE_CODE_AUTO_MODE_MODEL` to choose the model the client-side auto mode classifier uses; it does not change the model for server-side auto mode\n* Added an `Idle compaction` row to `/config` for turning idle compaction off or back on; the notices shown after an idle compaction now say how to turn it off\n* Added a notice to `/design-sync` and `/design-login` that standalone Claude Design (claude.ai/design) closes by December 14, 2026\n* Fixed a \"Prompt is too long\" error when stopping a turn while the conversation was being compacted\n* Fixed requests failing with diagnostics extra inputs error"
+    },
+    {
+      "tag_name": "v2.1.301",
+      "published_at": "2026-10-15",
+      "body": "* Added `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` so unattended retry mode ends a request at a usage limit that resets too far away instead of waiting\n* Added OpenTelemetry tracing guidance to the `claude-api` skill, including setting up trace destinations with the `ant` CLI\n* Added the `%` motion to vim mode: jump to the matching bracket, alone or with d/c/y\n* Added `rows` to a mod's `Input`: a text field of several lines in the terminal, where Enter submits and Shift+Enter or a backslash before Enter starts a new line"
+    },
+    {
+      "tag_name": "v2.1.300",
+      "published_at": "2026-10-14",
+      "body": "* Added `virtualText` to a mod's prompt decorations: text drawn in the prompt box that never enters the draft or the submitted prompt\n* Added `cache_creation_5m_tokens` and `cache_creation_1h_tokens` to the OpenTelemetry `api_request` event, splitting cache writes by lifetime\n* Added `$.ui.view({ agentId })` for mods: shows an agent's transcript in the main view when you ask, and `$.ui.view({})` goes back\n* Added a `dir` prop on a mod's `Text` for right-to-left text"
+    }
   ]
 }

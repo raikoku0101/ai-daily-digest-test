@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-17",
+  "content": "# AI Daily Digest — 2026-10-17\n\n## 今日のハイライト\n- **Claude Code v2.1.302 リリース + Claude Design 終了告知 (12/14)**: 最新バージョンでは自動コンパクション制御が改善。スタンドアロン Claude Design が2026年12月14日に終了予定のため、ユーザーは移行準備が必要\n- **Waypoint-OPD — RL誘導ポリシーシフトの効率的転送 (451 upvotes)**: 強化学習の成果を差分（ウェイポイント）として抽出・転送する新手法。Sim-to-Real 転送の実用性が大幅に向上し、ロボティクス研究に波及効果大\n- **OpenGCUA — 汎用コンピュータ使用エージェントの完全オープン化 (266 upvotes)**: GUI操作からシステム操作まで網羅したオープンスタックCUAフレームワークを公開。プロプライエタリ競合に匹敵する性能を達成し、CUA研究の民主化に貢献\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.302 (2026-10-16) — 最新リリース\n\n**主要機能**\n- `CLAUDE_CODE_AUTO_MODE_MODEL` 環境変数を追加: クライアント側 auto mode 分類器が使用するモデルを指定可能（サーバー側 auto mode のモデルは変更されない）\n- `/config` に「Idle compaction」行を追加: アイドル時の自動コンパクションのオン/オフ切り替えが可能に\n- `/design-sync` および `/design-login` に、スタンドアロン Claude Design (claude.ai/design) が **2026年12月14日に終了**する旨の通知を追加\n\n**バグ修正**\n- コンパクション中にターンを停止すると発生していた「Prompt is too long」エラーを修正\n- Vertex または Bedrock に切り替えた後、リクエストが「diagnostics: Extra inputs are not permitted」で失敗するバグを修正\n- Read ツールが画像ファイルを全メモリに読み込む問題を修正（128MB超の画像ソースは拒否されるように）\n- Opus 4 または 4.1 にプレフィックスを持つゲートウェイ使用時、`/autocompact` と `/effort` が誤ったモデルに保存されるバグを修正\n\n**ユーザーへの影響**\nClaude Design ユーザーは年末（12月14日）に向けた移行準備が必要です。大規模プロジェクトでのコンパクション安定性が向上し、画像処理時のメモリ安全性も改善されました。\n\n---\n\n### v2.1.301 (2026-10-15)\n\n**主要機能**\n- `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS`: 無人リトライモードで使用量制限リセットまでの待機時間が長すぎる場合にリクエストを終了\n- vim モードに `%` モーション追加: 対応する括弧へのジャンプ（d/c/y と組み合わせも可能）\n- モッドの `Input` に `rows` 追加: 複数行テキストフィールド（Enter で送信、Shift+Enter で改行）\n- OpenTelemetry `tool_decision` イベントに `classifier_verdict` と `permission_mode` を追加\n\n**バグ修正**\n- `WorktreeCreate` フックで作成したワークツリー削除時、未プッシュコミットがある場合に確認なしで削除されるバグを修正\n\n---\n\n### v2.1.300 (2026-10-14)\n\n**主要機能**\n- モッドのプロンプト装飾に `virtualText` 追加\n- OpenTelemetry `api_request` イベントに `cache_creation_5m_tokens` と `cache_creation_1h_tokens` 追加（キャッシュ書き込みをライフタイム別に分割）\n- モッドに `$.ui.view({ agentId })` 追加: エージェントのトランスクリプトをメインビューに表示\n- AWS 上の Claude Platform に `/advisor` を追加\n- OpenTelemetry に GenAI セマンティック規約属性を追加\n\n## 注目論文 TOP 10\n\n### 1. Waypoint-OPD: Transferring RL-Induced Policy Shifts via Gated Waypoints | 451 upvotes\n**arxiv**: https://arxiv.org/abs/2610.21601\n\n- 🎯 **背景**: 強化学習（RL）で誘導されたポリシーシフトを模倣学習ベースのポリシーへ転送する際、ポリシー全体を複製する手法は不安定で計算コストが高い\n- 🔧 **手法**: 教師モデルの「対数確率の差分（ポリシーシフト）」をウェイポイントとして抽出し、ゲート付きメカニズムで学生モデルに転送する Waypoint-OPD を提案\n- 📊 **結果**: ロボット操作・ナビゲーションタスクで既存のポリシー蒸留手法を大幅に上回る転送効率を達成\n- 💡 **意義**: RL学習の成果を軽量に転送できるため、実機ロボットへのSim-to-Real転送が容易になる\n- ⚠️ **限界**: ウェイポイントの粒度設定が結果に大きく影響し、タスク固有のチューニングが必要\n\n---\n\n### 2. OpenGCUA: Toward a Fully Open Stack for Generalist Computer Use Agents | 266 upvotes\n**arxiv**: https://arxiv.org/abs/2610.22200\n\n- 🎯 **背景**: コンピュータ使用エージェント（CUA）の研究はGUI操作に限定されてきたが、システムレベルの操作（ファイル操作、ターミナル等）への拡張が求められている\n- 🔧 **手法**: GUI操作・ターミナル操作・APIコールを統合した完全オープンスタック CUA フレームワーク OpenGCUA を構築。データ収集・モデル学習・評価のパイプラインを公開\n- 📊 **結果**: 既存のオープンソースCUAを上回り、プロプライエタリシステム（Claude Computer Use等）に匹敵する性能を実証\n- 💡 **意義**: CUA研究の完全な再現性と民主化を実現。コミュニティが自由に改良できるフルスタックを提供\n- ⚠️ **限界**: 複雑な長時間タスクにおける信頼性と、セキュリティ上のリスク管理が今後の課題\n\n---\n\n### 3. FDE-Gym: The Last Mile of AI Delivery | 229 upvotes\n**arxiv**: https://arxiv.org/abs/2610.22350\n\n- 🎯 **背景**: 既存エージェントベンチマークは明確に定義されたタスクを評価するが、実世界の「ラストマイル」配送では曖昧な状況判断が必要\n- 🔧 **手法**: 現実的な配達シナリオ（住所の曖昧さ、不在顧客対応、障害物回避等）をシミュレートする FDE-Gym RL環境を構築\n- 📊 **結果**: 複数のRLエージェントがFDE-Gymで学習した結果、現実的な配達意思決定を習得できることを実証\n- 💡 **意義**: 自律配送ロボット・ドローン開発向けの標準的ベンチマークとして機能\n- ⚠️ **限界**: シミュレーション環境の現実性（雨・強風・人混み等の自然現象）に制約あり\n\n---\n\n### 4. RoTA-Bench: Evaluating 3D Spatial Reasoning through Interactive Tasks | 198 upvotes\n**arxiv**: https://arxiv.org/abs/2610.17665\n\n- 🎯 **背景**: 視覚言語モデルの2D認識能力を3D理解・精密な行動支援へ橋渡しできるかを体系的に評価するベンチマークが不足\n- 🔧 **手法**: ロボットが実際に操作するシナリオでVLMの3D空間推論を評価する RoTA-Bench を構築。物体の位置・方向・遮蔽への対処を評価\n- 📊 **結果**: 現在のVLMは2D画像認識は高精度だが、3D空間推論（特に遮蔽物処理）は大幅に性能が低下することを示した\n- 💡 **意義**: ロボティクス応用に向けたVLMの限界を明確化し、改善方向を示す重要なベンチマーク\n- ⚠️ **限界**: 評価環境の多様性（光条件・材質反射等）拡張が今後の課題\n\n---\n\n### 5. Self-Evolving Agent Harness | 188 upvotes\n**arxiv**: https://arxiv.org/abs/2610.18813\n\n- 🎯 **背景**: AIエージェントのスキャフォールド（プロンプト・メモリ・ワークフロー・ツール）は手動設計に頼っており、自動改善の仕組みが不足\n- 🔧 **手法**: エージェント自身がスキャフォールドのプロンプト・メモリ・ワークフローを自己フィードバックで継続的に改善する Self-Evolving Harness を提案\n- 📊 **結果**: コーディング・推論タスクで初期エージェントから30%以上の性能向上を自律的に達成\n- 💡 **意義**: 人間の継続的な監督なしにエージェントが能力向上できる自律改善フレームワーク\n- ⚠️ **限界**: 自己進化が意図しない方向（ショートカット戦略）に収束するリスクへの対策が必要\n\n---\n\n### 6. MJev-Spatial: System One Spatial Intelligence via Native Attention | 140 upvotes\n**arxiv**: https://arxiv.org/abs/2610.22276\n\n- 🎯 **背景**: 空間的インテリジェンスの多くの判断はシステム1的（直感的・即時的）であるべきだが、既存手法は重い推論計算を必要とする\n- 🔧 **手法**: ネイティブアテンションメカニズムに空間的バイアスを埋め込むことで、追加の推論ステップなしに空間推論を実現する MJev-Spatial を提案\n- 📊 **結果**: 空間推論ベンチマークで既存手法より高速かつ正確な結果を達成。推論時間を大幅削減\n- 💡 **意義**: 計算コストを抑えつつ実用的な空間推論が可能になり、エンベデッドシステムや低遅延応用への展開が期待\n- ⚠️ **限界**: 複雑な動的3Dシーンへの適用では精度が低下する可能性\n\n---\n\n### 7. MAI-Gym: An Open All-in-One Platform for GUI Agent Evaluation | 93 upvotes\n**arxiv**: https://arxiv.org/abs/2610.20939\n\n- 🎯 **背景**: オンライン強化学習と検証可能な報酬による学習が数学・コーディングで進歩を遂げているが、GUI操作エージェントへの適用は困難\n- 🔧 **手法**: GUIエージェントの評価のためのオールインワンオープンプラットフォーム MAI-Gym を構築。多様なGUIタスクと自動検証報酬を統合\n- 📊 **結果**: 複数の最先端GUIエージェントを統一プラットフォームで評価し、RL学習によって性能向上できることを実証\n- 💡 **意義**: GUIエージェント研究の標準評価基盤として機能し、公平な比較と再現性を実現\n- ⚠️ **限界**: 評価環境がウェブ・デスクトップアプリに限定されており、モバイルアプリ等への拡張が必要\n\n---\n\n### 8. VLA-Δ: Learning Physical State Transition for Vision-Language-Action Models | 53 upvotes\n**arxiv**: https://arxiv.org/abs/2610.21306\n\n- 🎯 **背景**: 視覚言語行動（VLA）モデルは視覚言語の事前知識を行動に転用するが、物理的状態遷移の正確な表現が不足\n- 🔧 **手法**: VLAモデルに物理的状態遷移を明示的に学習させる VLA-Δ フレームワークを提案。行動実行前後の状態差分を予測・利用\n- 📊 **結果**: 複数のロボット操作タスクで従来VLAより高精度な物体操作を実現\n- 💡 **意義**: 物理世界の因果関係をVLAに組み込むことで、ロボットの精密操作能力が向上\n- ⚠️ **限界**: 状態遷移のラベル付けデータ収集コストが高く、大規模展開には課題あり\n\n---\n\n### 9. Mosaic: Multi-Session Agentic Reinforcement Learning | 48 upvotes\n**arxiv**: https://arxiv.org/abs/2610.22174\n\n- 🎯 **背景**: 既存のエージェントRL手法はシングルセッションのトラジェクトリを前提とし、セッション間での知識・経験の持続が考慮されていない\n- 🔧 **手法**: 複数セッション間でエージェントが記憶・経験を持続・活用できる Mosaic フレームワークを提案。セッション間強化学習を実現\n- 📊 **結果**: 長期タスクやマルチセッション依存タスクで単一セッションRLを大幅に上回る性能を達成\n- 💡 **意義**: 実用的なAIアシスタントが複数日・複数セッションにわたるタスクを自律的にこなせる可能性を示す\n- ⚠️ **限界**: メモリ管理の複雑性と、古い記憶による誤判断（hallucination）のリスク\n\n---\n\n### 10. Can World and Action Modeling Benefit Each Other under Unified Causal Transformer | 31 upvotes\n**arxiv**: https://arxiv.org/abs/2610.21095\n\n- 🎯 **背景**: 世界モデリングと行動モデリングは密接に関連しているが、統一的な因果トランスフォーマーフレームワーク下での相互利益は未探求\n- 🔧 **手法**: 世界モデリングと行動モデリングを統一的な因果トランスフォーマーで同時学習する手法を提案\n- 📊 **結果**: 両タスクの同時学習が相乗効果を生み、単独学習より高い性能を達成\n- 💡 **意義**: 世界理解と行動計画の統合学習フレームワークがモデル効率を向上させる可能性を示す\n- ⚠️ **限界**: 計算コストが高く、統一学習の恩恵がタスクによって異なる\n\n",
+  "fetched_at": "2026-10-16T22:17:51.519229+00:00",
+  "papers": [
+    {
+      "title": "Waypoint-OPD: Transferring RL-Induced Policy Shifts via Gated On-Policy Distillation",
+      "upvotes": 451,
+      "id": "2610.21601",
+      "abstract": "Policy-shift distillation reuses the difference between a teacher's log probabilities before and after reinforcement learning (RL) as supervision on student-generated trajectories. However, this endpo"
+    },
+    {
+      "title": "OpenGCUA: Toward a Fully Open Stack for Generalist Computer Use",
+      "upvotes": 266,
+      "id": "2610.22200",
+      "abstract": "Computer use has reached a turning point: the focus is expanding from GUI-only interaction to systems that complete tasks on users' computers through visual and programmatic interfaces. We define a ge"
+    },
+    {
+      "title": "FDE-Gym: The Last Mile of AI Delivery",
+      "upvotes": 229,
+      "id": "2610.22350",
+      "abstract": "Existing agent benchmarks typically evaluate agents on well-specified tasks defined by issue reports, specifications, or task tickets. Real-world customer delivery is different: forward-deployed engin"
+    },
+    {
+      "title": "RoTA-Bench: Evaluating 3D Spatial Reasoning through Interactive Projection Alignment",
+      "upvotes": 198,
+      "id": "2610.17665",
+      "abstract": "Can vision-language models turn 2D observations into 3D understanding that supports precise action? This requires inferring object geometry, anticipating the effects of rotation, and refining actions "
+    },
+    {
+      "title": "Self-Evolving Agent Harness",
+      "upvotes": 188,
+      "id": "2610.18813",
+      "abstract": "Harness self-evolution revises an agent's software scaffolding, including prompts, memory, workflows, and executable components, while keeping model weights fixed. We formalize a feedback-driven proce"
+    },
+    {
+      "title": "MJev-Spatial: System One Spatial Intelligence via Native Attention Matching",
+      "upvotes": 140,
+      "id": "2610.22276",
+      "abstract": "Spatial intelligence lets an agent perceive and act in the physical world, and many of its judgments must be made at interaction rates: which spatial relation holds, how far an object is, or where to "
+    },
+    {
+      "title": "MAI-Gym: An Open All-in-One Platform for GUI Agent Evaluation and RL Training across Mobile and Computer Environments",
+      "upvotes": 93,
+      "id": "2610.20939",
+      "abstract": "Online reinforcement learning (RL) with verifiable rewards has driven rapid progress in mathematics, coding, and tool use, but scaling this success to GUI agents remains challenging due to the high co"
+    },
+    {
+      "title": "VLA-Δ: Learning Physical State Transition for Vision-Language-Action Models",
+      "upvotes": 53,
+      "id": "2610.21306",
+      "abstract": "Vision-language-action (VLA) models transfer semantic knowledge acquired through vision-language pretraining to robot control, achieving strong performance across various benchmarks. However, most VLA"
+    },
+    {
+      "title": "Mosaic: Multi-Session Agentic Reinforcement Learning",
+      "upvotes": 48,
+      "id": "2610.22174",
+      "abstract": "Most existing agentic reinforcement learning methods assume single-session trajectories, where interaction proceeds within one continuously accumulated context. However, agentic techniques such as con"
+    },
+    {
+      "title": "Can World and Action Modeling Benefit Each Other under Unified Causal Training?",
+      "upvotes": 31,
+      "id": "2610.21095",
+      "abstract": "World and action modeling are closely related, yet their reciprocal benefits under unified causal training remain unclear. We introduce OneWM, a simple framework for unified causal training that treat"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.302",
+      "published_at": "2026-10-16",
+      "body": "Added CLAUDE_CODE_AUTO_MODE_MODEL to choose the model the client-side auto mode classifier uses. Added Idle compaction row to /config for turning idle compaction off or back on. Added notice to /design-sync and /design-login that standalone Claude Design (claude.ai/design) closes by December 14, 2026. Fixed 'Prompt is too long' error when stopping a turn while the conversation was being compacted. Fixed requests failing with 'diagnostics: Extra inputs are not permitted' after switching to Vertex or Bedrock mid-session. Fixed Read tool loading an image file of any size entirely into memory; image sources over 128 MB are now refused. Fixed /autocompact and /effort saving to wrong model when a gateway names Opus 4 or 4.1 with a prefix."
+    },
+    {
+      "tag_name": "v2.1.301",
+      "published_at": "2026-10-15",
+      "body": "Added CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS for unattended retry mode. Added OpenTelemetry tracing guidance to claude-api skill. Added % motion to vim mode. Added rows to a mod's Input for multi-line text fields. Added classifier_verdict and permission_mode to OpenTelemetry tool_decision events. Fixed quitting removing a worktree made by a WorktreeCreate hook without asking."
+    },
+    {
+      "tag_name": "v2.1.300",
+      "published_at": "2026-10-14",
+      "body": "Added virtualText to a mod's prompt decorations. Added cache_creation_5m_tokens and cache_creation_1h_tokens to OpenTelemetry api_request event. Added $.ui.view({ agentId }) for mods. Added dir prop on a mod's Text for right-to-left text. Added /advisor on Claude Platform on AWS. Added OpenTelemetry GenAI semantic-convention attributes to trace spans."
+    }
+  ]
+}
