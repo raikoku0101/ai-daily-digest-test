@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "Waypoint-OPD: Transferring RL-Induced Policy Shifts via Gated On-Policy Distillation",
-      "upvotes": 451,
-      "id": "2610.21601",
-      "abstract": "Policy-shift distillation reuses the difference between a teacher's log probabilities before and after reinforcement learning (RL) as supervision on student-generated trajectories. However, this endpo"
+      "title": "Behavioral Compositionality of Sparse Autoencoder Representations",
+      "upvotes": 105,
+      "paper_id": "2610.21261",
+      "abstract": "Tests whether sparse autoencoder features act additively on model behavior. Learned coordinates compose better than random rotations, yet pairwise interaction terms still improve predictions."
     },
     {
-      "title": "OpenGCUA: Toward a Fully Open Stack for Generalist Computer Use",
-      "upvotes": 266,
-      "id": "2610.22200",
-      "abstract": "Computer use has reached a turning point: the focus is expanding from GUI-only interaction to systems that complete tasks on users' computers through visual and programmatic interfaces. We define a ge"
+      "title": "Virtual Head Attention",
+      "upvotes": 9,
+      "paper_id": "2610.17959",
+      "abstract": "Proposes an attention variant that cuts KV cache size and training/prefill compute using two lightweight linear operations, while matching or exceeding GQA quality at several model scales."
     },
     {
-      "title": "FDE-Gym: The Last Mile of AI Delivery",
-      "upvotes": 229,
-      "id": "2610.22350",
-      "abstract": "Existing agent benchmarks typically evaluate agents on well-specified tasks defined by issue reports, specifications, or task tickets. Real-world customer delivery is different: forward-deployed engin"
+      "title": "EDEN: Embedding-Space Directional Exploration with Anchored Noise for LLM RLVR",
+      "upvotes": 8,
+      "paper_id": "2610.16105",
+      "abstract": "Improves exploration in reinforcement learning with verifiable rewards by perturbing a prompt's input embedding with anchored noise, boosting solution diversity without changing inference."
     },
     {
-      "title": "RoTA-Bench: Evaluating 3D Spatial Reasoning through Interactive Projection Alignment",
-      "upvotes": 198,
-      "id": "2610.17665",
-      "abstract": "Can vision-language models turn 2D observations into 3D understanding that supports precise action? This requires inferring object geometry, anticipating the effects of rotation, and refining actions "
+      "title": "LEASH: Uncertainty-Aware Weak-to-Strong Escalation and Oversight for Computer-Use Agents",
+      "upvotes": 6,
+      "paper_id": "2610.22280",
+      "abstract": "Routes computer-use tasks from a small agent to a strong one only when the small agent's hidden-state uncertainty is high, then monitors the strong agent, cutting cost with similar success."
     },
     {
-      "title": "Self-Evolving Agent Harness",
-      "upvotes": 188,
-      "id": "2610.18813",
-      "abstract": "Harness self-evolution revises an agent's software scaffolding, including prompts, memory, workflows, and executable components, while keeping model weights fixed. We formalize a feedback-driven proce"
+      "title": "Mine, Sample, Render: Test-Time Diversity Alignment Of Generative Models",
+      "upvotes": 5,
+      "paper_id": "2610.21185",
+      "abstract": "Mines a categorical schema from real artifacts, samples attribute configurations from corpus statistics, and uses a generative model only to render them, improving diversity and corpus alignment."
     },
     {
-      "title": "MJev-Spatial: System One Spatial Intelligence via Native Attention Matching",
-      "upvotes": 140,
-      "id": "2610.22276",
-      "abstract": "Spatial intelligence lets an agent perceive and act in the physical world, and many of its judgments must be made at interaction rates: which spatial relation holds, how far an object is, or where to "
+      "title": "Gen4P: Video Generators are 4D Perceivers",
+      "upvotes": 5,
+      "paper_id": "2610.22371",
+      "abstract": "Repurposes a pretrained video generator into a single-pass 4D perceiver that recovers geometry and motion from monocular video using on-demand cross-attention queries and a frozen depth prior."
     },
     {
-      "title": "MAI-Gym: An Open All-in-One Platform for GUI Agent Evaluation and RL Training across Mobile and Computer Environments",
-      "upvotes": 93,
-      "id": "2610.20939",
-      "abstract": "Online reinforcement learning (RL) with verifiable rewards has driven rapid progress in mathematics, coding, and tool use, but scaling this success to GUI agents remains challenging due to the high co"
+      "title": "Scalable Weak-to-Strong Verifier Hardening for Agent Environments",
+      "upvotes": 4,
+      "paper_id": "2610.15924",
+      "abstract": "Automatically hardens agent-environment verifiers against reward hacking using an isolated sandbox and an iterative hacker-fixer loop, substantially reducing attack success on several benchmarks."
     },
     {
-      "title": "VLA-Δ: Learning Physical State Transition for Vision-Language-Action Models",
-      "upvotes": 53,
-      "id": "2610.21306",
-      "abstract": "Vision-language-action (VLA) models transfer semantic knowledge acquired through vision-language pretraining to robot control, achieving strong performance across various benchmarks. However, most VLA"
+      "title": "LeanPRM: Lean-Grounded Process Supervision for Natural Language Proof Verification",
+      "upvotes": 4,
+      "paper_id": "2610.17697",
+      "abstract": "Uses the Lean proof assistant to label each step of natural-language proofs automatically, producing step-level training data for verifiers without human annotation."
     },
     {
-      "title": "Mosaic: Multi-Session Agentic Reinforcement Learning",
-      "upvotes": 48,
-      "id": "2610.22174",
-      "abstract": "Most existing agentic reinforcement learning methods assume single-session trajectories, where interaction proceeds within one continuously accumulated context. However, agentic techniques such as con"
+      "title": "Copy-Paste Language Models",
+      "upvotes": 4,
+      "paper_id": "2610.19247",
+      "abstract": "Adds a lightweight copy head alongside the standard language modeling head, improving training efficiency, downstream results, and long-context retrieval with minimal overhead."
     },
     {
-      "title": "Can World and Action Modeling Benefit Each Other under Unified Causal Training?",
-      "upvotes": 31,
-      "id": "2610.21095",
-      "abstract": "World and action modeling are closely related, yet their reciprocal benefits under unified causal training remain unclear. We introduce OneWM, a simple framework for unified causal training that treat"
+      "title": "PathFM: Fast Generative Forecasting of Multivariate Trajectories",
+      "upvotes": 3,
+      "paper_id": "2610.22358",
+      "abstract": "Uses flow matching to generate full future trajectories for time series, distilled to one or two sampling steps, to better model dependence structure than marginal quantile forecasters."
     }
   ],
   "cc_updates": [
     {
       "tag_name": "v2.1.302",
       "published_at": "2026-10-16",
-      "body": "Added CLAUDE_CODE_AUTO_MODE_MODEL to choose the model the client-side auto mode classifier uses. Added Idle compaction row to /config for turning idle compaction off or back on. Added notice to /design-sync and /design-login that standalone Claude Design (claude.ai/design) closes by December 14, 2026. Fixed 'Prompt is too long' error when stopping a turn while the conversation was being compacted. Fixed requests failing with 'diagnostics: Extra inputs are not permitted' after switching to Vertex or Bedrock mid-session. Fixed Read tool loading an image file of any size entirely into memory; image sources over 128 MB are now refused. Fixed /autocompact and /effort saving to wrong model when a gateway names Opus 4 or 4.1 with a prefix."
+      "body": "* Added `CLAUDE_CODE_AUTO_MODE_MODEL` to choose the model the client-side auto mode classifier uses; it does not change the model for server-side auto mode\n* Added an `Idle compaction` row to `/config` for turning idle compaction off or back on; the notices shown after an idle compaction now say how to turn it off\n* Added a notice to `/design-sync` and `/design-login` that standalone Claude Design (claude.ai/design) closes by December 14, 2026\n* Fixed a \"Prompt is too long\" error when stopping a turn while the conversation was being compacted\n* Fixed requests failing with diagnostics extra inputs error"
     },
     {
       "tag_name": "v2.1.301",
       "published_at": "2026-10-15",
-      "body": "Added CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS for unattended retry mode. Added OpenTelemetry tracing guidance to claude-api skill. Added % motion to vim mode. Added rows to a mod's Input for multi-line text fields. Added classifier_verdict and permission_mode to OpenTelemetry tool_decision events. Fixed quitting removing a worktree made by a WorktreeCreate hook without asking."
+      "body": "* Added `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` so unattended retry mode ends a request at a usage limit that resets too far away instead of waiting\n* Added OpenTelemetry tracing guidance to the `claude-api` skill, including setting up trace destinations with the `ant` CLI\n* Added the `%` motion to vim mode: jump to the matching bracket, alone or with d/c/y\n* Added `rows` to a mod's `Input`: a text field of several lines in the terminal, where Enter submits and Shift+Enter or a backslash before Enter starts a new line"
     },
     {
       "tag_name": "v2.1.300",
       "published_at": "2026-10-14",
-      "body": "Added virtualText to a mod's prompt decorations. Added cache_creation_5m_tokens and cache_creation_1h_tokens to OpenTelemetry api_request event. Added $.ui.view({ agentId }) for mods. Added dir prop on a mod's Text for right-to-left text. Added /advisor on Claude Platform on AWS. Added OpenTelemetry GenAI semantic-convention attributes to trace spans."
+      "body": "* Added `virtualText` to a mod's prompt decorations: text drawn in the prompt box that never enters the draft or the submitted prompt\n* Added `cache_creation_5m_tokens` and `cache_creation_1h_tokens` to the OpenTelemetry `api_request` event, splitting cache writes by lifetime\n* Added `$.ui.view({ agentId })` for mods: shows an agent's transcript in the main view when you ask, and `$.ui.view({})` goes back\n* Added a `dir` prop on a mod's `Text` for right-to-left text"
     }
   ]
 }
