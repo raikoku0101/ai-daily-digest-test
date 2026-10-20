@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "LiveMACE: Process-Aware Evaluation of LLM Agent Capabilities in Evolving Markets",
-      "upvotes": 110,
-      "paper_id": "2610.09872",
-      "abstract": "A benchmark using live financial markets to test persistent LLM agents. It analyzes decision traces, not just returns, and finds that outcomes often mask differences in underlying capability."
+      "title": "ACEdit: Stable Multi-Turn Image Editing via Asymmetric Conditioning",
+      "upvotes": 10,
+      "arxiv_id": "2610.22328",
+      "abstract": "Proposes self-forcing training with teacher distillation and asymmetric conditioning, so multi-turn image editors stay stable and resist quality decay across successive edits."
     },
     {
-      "title": "Scene-Designer: Learning Design Intelligence for Agentic 3D Scene Generation",
-      "upvotes": 49,
-      "paper_id": "2610.23121",
-      "abstract": "An agentic framework that generates and critiques 3D indoor scenes from text. It uses two new datasets and a critic-guided GRPO method to improve physical validity, function, and layout."
-    },
-    {
-      "title": "Xiaomi-Lens-0 Technical Report",
-      "upvotes": 26,
-      "paper_id": "2610.23279",
-      "abstract": "A 4B multimodal model built on Qwen3.5 that predicts segmentation masks from its own visual representations. This improves fine-grained region understanding and referring comprehension."
-    },
-    {
-      "title": "RAP: A Dataset for Paper-to-Poster Generation via Declarative Markup from Human-Crafted Exemplars",
-      "upvotes": 23,
-      "paper_id": "2610.23230",
-      "abstract": "A dataset of over 25K verified paper-poster pairs from ML conferences, with editable HTML/CSS templates. It supports both training-free retrieval-based and trained poster generation."
-    },
-    {
-      "title": "OmniXRef: A Unified Framework for Multimodal Multi-Reference Video Editing",
-      "upvotes": 14,
-      "paper_id": "2610.22744",
-      "abstract": "A video editing framework that combines text, image, and video references to control attributes of a source video. It includes a new training dataset and a benchmark for video-reference transfer."
-    },
-    {
-      "title": "Consistent Distribution Matching for Data-Free Diffusion Distillation",
-      "upvotes": 12,
-      "paper_id": "2610.09221",
-      "abstract": "A simulation-free, data-free distillation method that speeds up diffusion and flow models to one or a few steps. It uses one student network and reaches strong ImageNet FID scores."
-    },
-    {
-      "title": "EvoWeb: A Benchmark for Coding Agents on Evolving Web Applications",
-      "upvotes": 7,
-      "paper_id": "2610.16402",
-      "abstract": "A benchmark of 320 cumulative feature requests across 32 web apps, testing whether coding agents can extend a persistent codebase. Integrating features across requests proves the hardest part."
-    },
-    {
-      "title": "Embeddings Are Overpriced? A Frozen 16 MB Vocabulary for Small and Ternary Language Models",
+      "title": "StopLoss: Teaching Agents to Predict Failure and Stop Early",
       "upvotes": 6,
-      "paper_id": "2610.22428",
-      "abstract": "Replaces a small model's learned embedding table with a frozen binary code table. Performance holds or improves on several benchmarks while model size and CPU inference speed improve."
+      "arxiv_id": "2610.25525",
+      "abstract": "A small fine-tuned external monitor predicts coding-agent failures from recent tool steps and aborts doomed runs early, lowering cost per successful solve on SWE-bench."
     },
     {
-      "title": "MTEdit: Packed Trajectories Beat Rollouts for Multi-Turn Image Editing",
+      "title": "Progress-Aware Distillation for Mitigating Stagnation in Small Language Model Agents",
+      "upvotes": 6,
+      "arxiv_id": "2610.19439",
+      "abstract": "Detects and penalizes stagnation in distilled small language model agents, which get stuck in unproductive loops, improving their success rates and task-completion efficiency."
+    },
+    {
+      "title": "N-Gram Memories at Two Bits: Quantizing Lookup Tables in Large Language Models",
+      "upvotes": 6,
+      "arxiv_id": "2610.21810",
+      "abstract": "Compresses n-gram embedding tables by rebuilding only requested rows from short codes and a shared program, cutting DeepSeek's table storage from 203GB to 51GB."
+    },
+    {
+      "title": "Predicting Privileged Information Effectiveness for On-Policy Self-Distillation",
       "upvotes": 5,
-      "paper_id": "2610.23751",
-      "abstract": "A 500K-trajectory dataset for multi-turn image editing, built by jointly generating editing states to reduce visual drift. It also includes a benchmark and a fine-tuned open-source model."
+      "arxiv_id": "2610.22512",
+      "abstract": "Shows that privileged information content and source shape on-policy self-distillation for multi-turn LLM agents, and that KL-based metrics predict training gains better than utility."
     },
     {
-      "title": "GlobeBench: Evaluating Text-Based World Model Capabilities for Scalable Environment Simulations",
-      "upvotes": 4,
-      "paper_id": "2610.22708",
-      "abstract": "A 1,632-task benchmark across five domains that tests whether LLMs can predict environment responses to actions. The best model succeeds on under half the tasks, and effects that propagate to dependent objects are hardest."
+      "title": "Heterogeneous Agentic Coevolution",
+      "upvotes": 3,
+      "arxiv_id": "2610.16078",
+      "abstract": "Jointly evolves specialized foundation models and LLM agents through reciprocal learning, tuning their interaction harness with evolutionary search across recommendation, protein, and materials tasks."
+    },
+    {
+      "title": "HERA: Harness-Environment Co-Evolution for Reliable Agentic Abstention",
+      "upvotes": 3,
+      "arxiv_id": "2610.06563",
+      "abstract": "Co-evolves agent harnesses and task environments by mutating solvable tasks into infeasible ones, improving abstention and feasible-task completion for tool-using LLM agents."
+    },
+    {
+      "title": "Training Reasoning Models to Generate Diverse Scientific Ideas",
+      "upvotes": 3,
+      "arxiv_id": "2610.22324",
+      "abstract": "Uses a set-level RL objective so an 8B model steers each generated research idea away from earlier ones, raising diversity while keeping quality and executability."
+    },
+    {
+      "title": "CyberArena: Benchmarking AI Agents in Live Symmetric Attack-and-Defense Combat",
+      "upvotes": 3,
+      "arxiv_id": "2610.19005",
+      "abstract": "A dynamic benchmark where two AI agents attack and defend concurrently in isolated sandboxes, scoring 12 frontier LLM agents across 466 matches."
+    },
+    {
+      "title": "Beyond Maliciousness: Static and Runtime Attack-Surface Profiling of Agent Skills",
+      "upvotes": 3,
+      "arxiv_id": "2610.19264",
+      "abstract": "Profiles 6,309 agent skill listings with static analysis and sandbox runs, finding that most gain shell or file access and that declared permissions often understate actual reach."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.305",
+      "published_at": "2026-10-20",
+      "body": "## What's changed\n\n* Added `sandbox.allowNestedUserNamespaces` so sandboxed commands on Linux can create user namespaces (Chromium, rootless podman); this lets them get around the sandbox's file protections\n* Added `CLAUDE_CODE_RETRY_WATCHDOG_USAGE_LIMIT_RECHECK_MS` so unattended retry mode (`CLAUDE_CODE_RETRY_WATCHDOG`) notices a usage limit that was lifted before its reset\n* Fixed every request failing on Vertex, Bedrock and other providers when the endpoint or a gateway rejects tool search, and behind gateways that add latency to every tool-search call\n* Fixed agents losing their context window when a model is unavailable and the session falls back to a different one mid-conversation"
+    },
+    {
       "tag_name": "v2.1.304",
       "published_at": "2026-10-19",
-      "body": "What's changed\n\n- Added a transcript line when a plugin that runs first skips one of your mod's hooks, naming the event and the plugin\n- Added `decider: \"person\"` to a mod's `tool.check` answer: only the permission dialog or a host's callback can approve the ask, and it is refused with the mod's reason where nobody can be asked\n- Added `e.isReadOnly` to a mod's `tool.check` event, set when the tool call is read-only\n- Added `/auto-mode-setup`: a guided setup that reads your project and recent sessions to teach auto mode about your environment, now also available on Bedrock, Vertex, Foundry, Claude apps gateway and telemetry-disabled sessions\n- Added `/claude-api managed-agents-secure`, which compares ..."
+      "body": "## What's changed\n\n* Added a transcript line when a plugin that runs first skips one of your mod's hooks, naming the event and the plugin\n* Added `decider: \"person\"` to a mod's `tool.check` answer: only the permission dialog or a host's callback can approve the ask, and it is refused with the mod's reason where nobody can be asked\n* Added `e.isReadOnly` to a mod's `tool.check` event, set when the tool call is read-only\n* Added `/auto-mode-setup`: a guided setup that reads your project and recent sessions to teach auto mode about your workflow"
     },
     {
       "tag_name": "v2.1.303",
       "published_at": "2026-10-18",
-      "body": "What's changed\n\n- Bug fixes and reliability improvements"
-    },
-    {
-      "tag_name": "v2.1.302",
-      "published_at": "2026-10-16",
-      "body": "What's changed\n\n- Added `CLAUDE_CODE_AUTO_MODE_MODEL` to choose the model the client-side auto mode classifier uses; it does not change the model for server-side auto mode\n- Added an `Idle compaction` row to `/config` for turning idle compaction off or back on; the notices shown after an idle compaction now say how to turn it off\n- Added a notice to `/design-sync` and `/design-login` that standalone Claude Design (claude.ai/design) closes by December 14, 2026\n- Fixed a \"Prompt is too long\" error when stopping a turn while the conversation was being compacted\n- Fixed requests failing with ..."
+      "body": "## What's changed\n\n* Bug fixes and reliability improvements"
     }
   ]
 }
