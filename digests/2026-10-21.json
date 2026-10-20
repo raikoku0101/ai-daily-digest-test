@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-21",
+  "content": "# AI Daily Digest — 2026-10-21\n\n## 今日のハイライト\n- **Claude Code v2.1.305リリース**: Vertex/Bedrockでのツール検索失敗バグを修正。Linuxサンドボックスでのネスト名前空間対応も追加され、Chromiumやrootless Podmanが利用可能に。\n- **エージェント失敗予測「StopLoss」**: コーディングエージェントの失敗を事前予測して早期中断する外部モニターが、SWE-benchの成功コストを削減。自律エージェントの経済性に直結する重要研究。\n- **エージェントスキルの隠れたリスク**: 6,309件のAIスキルを分析した結果、大半がシェル/ファイルアクセスを取得し、宣言パーミッションが実際のリーチを過小申告していることが判明。エコシステム全体のセキュリティ見直しが急務。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.305 (2026-10-20)\n**主要機能**\n- `sandbox.allowNestedUserNamespaces` を追加: Linux のサンドボックス環境で Chromium・rootless Podman などがユーザー名前空間を作成可能に\n- `CLAUDE_CODE_RETRY_WATCHDOG_USAGE_LIMIT_RECHECK_MS` を追加: 無人リトライモードが使用量制限の解除をより早く検知できるように\n\n**バグ修正**\n- Vertex・Bedrock・各種ゲートウェイでツール検索が拒否された際に全リクエストが失敗する問題を修正\n- モデル利用不可でセッション中にフォールバックが発生した際にエージェントのコンテキストウィンドウが失われる問題を修正\n\n**ユーザーへの影響**: サンドボックス環境の互換性向上、エンタープライズ向けプロバイダーでの安定性改善。\n\n---\n\n### v2.1.304 (2026-10-19)\n**主要機能**\n- プラグインがモッドのフックをスキップした際のトランスクリプト通知を追加\n- モッドの `tool.check` に `decider: \"person\"` を追加: 人間の許可ダイアログのみが承認可能に\n- モッドの `tool.check` イベントに `e.isReadOnly` を追加\n- `/auto-mode-setup` を追加: プロジェクトと過去セッションを読み取り、オートモードのワークフローを学習するガイド付きセットアップ\n\n**ユーザーへの影響**: プラグイン開発者向けのデバッグ改善、セキュリティポリシー制御の強化。\n\n---\n\n### v2.1.303 (2026-10-18)\n**内容**: バグ修正と安定性改善\n\n## 注目論文 TOP 10\n\n1. **ACEdit: Stable Multi-Turn Image Editing via Asymmetric Conditioning** | 👍 10 | [arxiv:2610.22328](https://arxiv.org/abs/2610.22328)\n   - 🎯 **背景**: マルチターン画像編集では繰り返し編集により品質が劣化する問題があった\n   - 🔧 **手法**: 自己強制学習 (self-forcing training) と教師蒸留、非対称条件付け (asymmetric conditioning) を組み合わせ\n   - 📊 **結果**: 複数ターンにわたって品質劣化なく安定した編集が実現\n   - 💡 **意義**: プロ品質のインタラクティブ画像編集ツールの実用化に貢献\n   - ⚠️ **限界**: 非常に長いターン数での安定性や複雑なシーン変更への対応は不明\n\n2. **StopLoss: Teaching Agents to Predict Failure and Stop Early** | 👍 6 | [arxiv:2610.25525](https://arxiv.org/abs/2610.25525)\n   - 🎯 **背景**: コーディングエージェントが失敗するタスクに無駄にトークンを消費する問題\n   - 🔧 **手法**: 直近のツール操作ステップから失敗を予測する小型ファインチューニング済み外部モニターを構築し、失敗が見込まれるランを早期中断\n   - 📊 **結果**: SWE-bench での成功1件あたりのコストを削減\n   - 💡 **意義**: エージェント運用コストの大幅削減、特に大規模自律コーディングシステムで有効\n   - ⚠️ **限界**: モニターの予測精度と誤検知率のトレードオフ、新しいタスク分布への汎化\n\n3. **Progress-Aware Distillation for Mitigating Stagnation in Small Language Model Agents** | 👍 6 | [arxiv:2610.19439](https://arxiv.org/abs/2610.19439)\n   - 🎯 **背景**: 蒸留された小型LMエージェントが非生産的なループ (停滞) に陥りやすい\n   - 🔧 **手法**: 停滞を検出してペナルティを付与する進捗認識蒸留フレームワーク\n   - 📊 **結果**: 成功率とタスク完了効率が向上\n   - 💡 **意義**: エッジデバイスや低コスト展開向け小型エージェントの信頼性向上\n   - ⚠️ **限界**: 停滞の定義が特定タスク種別に依存する可能性\n\n4. **N-Gram Memories at Two Bits: Quantizing Lookup Tables in Large Language Models** | 👍 6 | [arxiv:2610.21810](https://arxiv.org/abs/2610.21810)\n   - 🎯 **背景**: LLMのn-gram埋め込みテーブルが非常に大きなストレージを要する (DeepSeekで203GB)\n   - 🔧 **手法**: 短いコードと共有プログラムからリクエストされた行のみを再構築することでテーブルを圧縮\n   - 📊 **結果**: DeepSeekのテーブルストレージを203GBから51GBへ削減 (75%圧縮)\n   - 💡 **意義**: 大規模LLMの展開コストと必要メモリを大幅削減\n   - ⚠️ **限界**: 再構築のレイテンシへの影響、精度の劣化有無\n\n5. **Predicting Privileged Information Effectiveness for On-Policy Self-Distillation** | 👍 5 | [arxiv:2610.22512](https://arxiv.org/abs/2610.22512)\n   - 🎯 **背景**: マルチターンLMエージェントのオンポリシー自己蒸留における特権情報の活用方法が不明確\n   - 🔧 **手法**: 特権情報のコンテンツとソースがトレーニング効果に与える影響を分析; KLベース指標による事前予測\n   - 📊 **結果**: KLベース指標がユーティリティ指標より訓練効果の予測精度が高いことを実証\n   - 💡 **意義**: 効果的な自己蒸留データの事前選別が可能になり、訓練効率向上\n   - ⚠️ **限界**: 特定のエージェントタスクでの検証に限定される可能性\n\n6. **Heterogeneous Agentic Coevolution** | 👍 3 | [arxiv:2610.16078](https://arxiv.org/abs/2610.16078)\n   - 🎯 **背景**: 専門化された基盤モデルとLLMエージェントの協調進化が未開拓\n   - 🔧 **手法**: 相互学習による専門基盤モデルとLLMエージェントの共同進化; 進化的探索でインタラクションを調整\n   - 📊 **結果**: 推薦・タンパク質・材料タスクで性能向上を確認\n   - 💡 **意義**: 異種AIシステムの自律的な相互強化の可能性を示す\n   - ⚠️ **限界**: 進化的探索の計算コストが高い、タスク特化の汎化能力\n\n7. **HERA: Harness-Environment Co-Evolution for Reliable Agentic Abstention** | 👍 3 | [arxiv:2610.06563](https://arxiv.org/abs/2610.06563)\n   - 🎯 **背景**: ツール使用LLMエージェントが実行不能タスクを適切に中断できない問題\n   - 🔧 **手法**: 実行可能タスクを実行不能に変異させることでエージェントハーネスとタスク環境を共同進化\n   - 📊 **結果**: 棄権率と実行可能タスクの完了率が向上\n   - 💡 **意義**: 信頼性の高いエージェントシステム構築における安全性の向上\n   - ⚠️ **限界**: 変異ルールの設計が難しく、実世界の多様なシナリオへの適用が課題\n\n8. **Training Reasoning Models to Generate Diverse Scientific Ideas** | 👍 3 | [arxiv:2610.22324](https://arxiv.org/abs/2610.22324)\n   - 🎯 **背景**: LLMが生成する科学的アイデアが類似した内容に偏りがち\n   - 🔧 **手法**: セットレベルRL目標により8Bモデルが各アイデアを以前のものと異なる方向に誘導\n   - 📊 **結果**: 多様性を高めながら品質と実行可能性を維持\n   - 💡 **意義**: AI支援科学研究の探索空間を拡大し、新発見の可能性を高める\n   - ⚠️ **限界**: 多様性と深さのトレードオフ、評価指標の主観性\n\n9. **CyberArena: Benchmarking AI Agents in Live Symmetric Attack-and-Defense Combat** | 👍 3 | [arxiv:2610.19005](https://arxiv.org/abs/2610.19005)\n   - 🎯 **背景**: AIエージェントのサイバーセキュリティ能力を動的に評価するベンチマークが不足\n   - 🔧 **手法**: 2つのAIエージェントが分離されたサンドボックスで同時に攻撃・防御する動的ベンチマーク; 466試合で12のフロンティアLLMを評価\n   - 📊 **結果**: モデルごとの攻撃/防御バランスの違いが明らかに\n   - 💡 **意義**: セキュリティ分野でのAI能力の客観的・動的評価手法の確立\n   - ⚠️ **限界**: サンドボックス環境と現実の攻撃環境のギャップ\n\n10. **Beyond Maliciousness: Static and Runtime Attack-Surface Profiling of Agent Skills** | 👍 3 | [arxiv:2610.19264](https://arxiv.org/abs/2610.19264)\n    - 🎯 **背景**: エージェントスキル (プラグイン/ツール) の実際の攻撃面が悪意の有無だけでは測れない\n    - 🔧 **手法**: 6,309件のエージェントスキルリストを静的解析とサンドボックス実行でプロファイリング\n    - 📊 **結果**: ほとんどがシェルまたはファイルアクセスを取得; 宣言されたパーミッションが実際のリーチを過小評価\n    - 💡 **意義**: エージェントエコシステムのセキュリティリスクの体系的把握、政策立案への貢献\n    - ⚠️ **限界**: 動的な悪意ある動作の検出には限界あり\n\n",
+  "fetched_at": "2026-10-20T22:07:03.992004+00:00",
+  "papers": [
+    {
+      "title": "ACEdit: Stable Multi-Turn Image Editing via Asymmetric Conditioning",
+      "upvotes": 10,
+      "arxiv_id": "2610.22328",
+      "abstract": "Proposes self-forcing training with teacher distillation and asymmetric conditioning, so multi-turn image editors stay stable and resist quality decay across successive edits."
+    },
+    {
+      "title": "StopLoss: Teaching Agents to Predict Failure and Stop Early",
+      "upvotes": 6,
+      "arxiv_id": "2610.25525",
+      "abstract": "A small fine-tuned external monitor predicts coding-agent failures from recent tool steps and aborts doomed runs early, lowering cost per successful solve on SWE-bench."
+    },
+    {
+      "title": "Progress-Aware Distillation for Mitigating Stagnation in Small Language Model Agents",
+      "upvotes": 6,
+      "arxiv_id": "2610.19439",
+      "abstract": "Detects and penalizes stagnation in distilled small language model agents, which get stuck in unproductive loops, improving their success rates and task-completion efficiency."
+    },
+    {
+      "title": "N-Gram Memories at Two Bits: Quantizing Lookup Tables in Large Language Models",
+      "upvotes": 6,
+      "arxiv_id": "2610.21810",
+      "abstract": "Compresses n-gram embedding tables by rebuilding only requested rows from short codes and a shared program, cutting DeepSeek's table storage from 203GB to 51GB."
+    },
+    {
+      "title": "Predicting Privileged Information Effectiveness for On-Policy Self-Distillation",
+      "upvotes": 5,
+      "arxiv_id": "2610.22512",
+      "abstract": "Shows that privileged information content and source shape on-policy self-distillation for multi-turn LLM agents, and that KL-based metrics predict training gains better than utility."
+    },
+    {
+      "title": "Heterogeneous Agentic Coevolution",
+      "upvotes": 3,
+      "arxiv_id": "2610.16078",
+      "abstract": "Jointly evolves specialized foundation models and LLM agents through reciprocal learning, tuning their interaction harness with evolutionary search across recommendation, protein, and materials tasks."
+    },
+    {
+      "title": "HERA: Harness-Environment Co-Evolution for Reliable Agentic Abstention",
+      "upvotes": 3,
+      "arxiv_id": "2610.06563",
+      "abstract": "Co-evolves agent harnesses and task environments by mutating solvable tasks into infeasible ones, improving abstention and feasible-task completion for tool-using LLM agents."
+    },
+    {
+      "title": "Training Reasoning Models to Generate Diverse Scientific Ideas",
+      "upvotes": 3,
+      "arxiv_id": "2610.22324",
+      "abstract": "Uses a set-level RL objective so an 8B model steers each generated research idea away from earlier ones, raising diversity while keeping quality and executability."
+    },
+    {
+      "title": "CyberArena: Benchmarking AI Agents in Live Symmetric Attack-and-Defense Combat",
+      "upvotes": 3,
+      "arxiv_id": "2610.19005",
+      "abstract": "A dynamic benchmark where two AI agents attack and defend concurrently in isolated sandboxes, scoring 12 frontier LLM agents across 466 matches."
+    },
+    {
+      "title": "Beyond Maliciousness: Static and Runtime Attack-Surface Profiling of Agent Skills",
+      "upvotes": 3,
+      "arxiv_id": "2610.19264",
+      "abstract": "Profiles 6,309 agent skill listings with static analysis and sandbox runs, finding that most gain shell or file access and that declared permissions often understate actual reach."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.305",
+      "published_at": "2026-10-20",
+      "body": "## What's changed\n\n* Added `sandbox.allowNestedUserNamespaces` so sandboxed commands on Linux can create user namespaces (Chromium, rootless podman); this lets them get around the sandbox's file protections\n* Added `CLAUDE_CODE_RETRY_WATCHDOG_USAGE_LIMIT_RECHECK_MS` so unattended retry mode (`CLAUDE_CODE_RETRY_WATCHDOG`) notices a usage limit that was lifted before its reset\n* Fixed every request failing on Vertex, Bedrock and other providers when the endpoint or a gateway rejects tool search, and behind gateways that add latency to every tool-search call\n* Fixed agents losing their context window when a model is unavailable and the session falls back to a different one mid-conversation"
+    },
+    {
+      "tag_name": "v2.1.304",
+      "published_at": "2026-10-19",
+      "body": "## What's changed\n\n* Added a transcript line when a plugin that runs first skips one of your mod's hooks, naming the event and the plugin\n* Added `decider: \"person\"` to a mod's `tool.check` answer: only the permission dialog or a host's callback can approve the ask, and it is refused with the mod's reason where nobody can be asked\n* Added `e.isReadOnly` to a mod's `tool.check` event, set when the tool call is read-only\n* Added `/auto-mode-setup`: a guided setup that reads your project and recent sessions to teach auto mode about your workflow"
+    },
+    {
+      "tag_name": "v2.1.303",
+      "published_at": "2026-10-18",
+      "body": "## What's changed\n\n* Bug fixes and reliability improvements"
+    }
+  ]
+}
