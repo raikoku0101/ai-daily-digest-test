@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "ACEdit: Stable Multi-Turn Image Editing via Asymmetric Conditioning",
+      "title": "SpatialScout: Can VLM Agents Actively Explore and Map 3D Scenes?",
+      "upvotes": 129,
+      "paper_id": "2610.26659",
+      "abstract": "Benchmark of 80 indoor scenes where VLM agents explore and estimate 3D object locations. The top model reaches only about 42% mean overlap, showing a gap between coarse layouts and precise maps."
+    },
+    {
+      "title": "Retrieval Augmented Generation Compositionality",
+      "upvotes": 26,
+      "paper_id": "2610.29722",
+      "abstract": "Tests 450 RAG configurations with the open-source LASAGNA framework. Techniques that help alone often fail to combine well, and the best setup can change as the corpus grows."
+    },
+    {
+      "title": "Quant-Arena: Benchmarking LLM Agents for Quantitative Trading Research",
+      "upvotes": 21,
+      "paper_id": "2610.30113",
+      "abstract": "Benchmark where LLMs build stock-scoring strategies from 2022-2023 A-share data, then get judged on a sealed 2024 period. No evaluated model beat the equal-weight market that year."
+    },
+    {
+      "title": "CompactSplat: Spatially Adaptive Gaussian Distribution for Feedforward Scene Reconstruction",
+      "upvotes": 12,
+      "paper_id": "2610.13177",
+      "abstract": "Feedforward 3D scene reconstruction that allocates Gaussians by image content, using dense primitives on complex regions and fewer on flat ones. Sparsity can be tuned at inference without retraining."
+    },
+    {
+      "title": "From VLM Planners to Robotic Agents: Self-Evolving Harnesses for History-Dependent Manipulation",
+      "upvotes": 11,
+      "paper_id": "2610.29560",
+      "abstract": "SERA pairs an editable VLM planning harness with a fixed VLA executor, revising its plans from execution feedback. It reaches 51.38% success on RoboMME versus 44.38% without self-evolution."
+    },
+    {
+      "title": "WorldStream: Streaming Interactive 3D Worlds with Hierarchical Planning and Persistent State",
       "upvotes": 10,
-      "arxiv_id": "2610.22328",
-      "abstract": "Proposes self-forcing training with teacher distillation and asymmetric conditioning, so multi-turn image editors stay stable and resist quality decay across successive edits."
+      "paper_id": "2610.28827",
+      "abstract": "Open-ended 3D world model that extends terrain as the user moves, responds to language commands, and keeps edits persistent. It uses hierarchical planning and streamed compilation to manage cost."
     },
     {
-      "title": "StopLoss: Teaching Agents to Predict Failure and Stop Early",
-      "upvotes": 6,
-      "arxiv_id": "2610.25525",
-      "abstract": "A small fine-tuned external monitor predicts coding-agent failures from recent tool steps and aborts doomed runs early, lowering cost per successful solve on SWE-bench."
+      "title": "StyleStream 2.0: Fast and Controllable Streaming Voice Style Conversion",
+      "upvotes": 9,
+      "paper_id": "2610.28940",
+      "abstract": "Streaming voice conversion with about 520 ms latency on a consumer GPU, roughly twice as fast as the prior version. Adds text-driven voice design and attribute-specific voice editing."
     },
     {
-      "title": "Progress-Aware Distillation for Mitigating Stagnation in Small Language Model Agents",
-      "upvotes": 6,
-      "arxiv_id": "2610.19439",
-      "abstract": "Detects and penalizes stagnation in distilled small language model agents, which get stuck in unproductive loops, improving their success rates and task-completion efficiency."
+      "title": "From RL Papers to Framework Code: Inclusion and Review in Seven Open-Source Training Frameworks",
+      "upvotes": 9,
+      "paper_id": "2610.28027",
+      "abstract": "Traces seven open-source RL training frameworks and finds only 37 of 1,598 general-method papers were adopted by at least one. Most proposed methods get no public discussion."
     },
     {
-      "title": "N-Gram Memories at Two Bits: Quantizing Lookup Tables in Large Language Models",
-      "upvotes": 6,
-      "arxiv_id": "2610.21810",
-      "abstract": "Compresses n-gram embedding tables by rebuilding only requested rows from short codes and a shared program, cutting DeepSeek's table storage from 203GB to 51GB."
+      "title": "Hidden Messages Between Diffusion Language Model Agents: Causal Evidence for Latent Communication",
+      "upvotes": 7,
+      "paper_id": "2610.28905",
+      "abstract": "Shows diffusion language model agents can pass compact continuous messages that receivers causally use. A single late transfer outperformed four recurrent exchanges on QASC."
     },
     {
-      "title": "Predicting Privileged Information Effectiveness for On-Policy Self-Distillation",
-      "upvotes": 5,
-      "arxiv_id": "2610.22512",
-      "abstract": "Shows that privileged information content and source shape on-policy self-distillation for multi-turn LLM agents, and that KL-based metrics predict training gains better than utility."
-    },
-    {
-      "title": "Heterogeneous Agentic Coevolution",
-      "upvotes": 3,
-      "arxiv_id": "2610.16078",
-      "abstract": "Jointly evolves specialized foundation models and LLM agents through reciprocal learning, tuning their interaction harness with evolutionary search across recommendation, protein, and materials tasks."
-    },
-    {
-      "title": "HERA: Harness-Environment Co-Evolution for Reliable Agentic Abstention",
-      "upvotes": 3,
-      "arxiv_id": "2610.06563",
-      "abstract": "Co-evolves agent harnesses and task environments by mutating solvable tasks into infeasible ones, improving abstention and feasible-task completion for tool-using LLM agents."
-    },
-    {
-      "title": "Training Reasoning Models to Generate Diverse Scientific Ideas",
-      "upvotes": 3,
-      "arxiv_id": "2610.22324",
-      "abstract": "Uses a set-level RL objective so an 8B model steers each generated research idea away from earlier ones, raising diversity while keeping quality and executability."
-    },
-    {
-      "title": "CyberArena: Benchmarking AI Agents in Live Symmetric Attack-and-Defense Combat",
-      "upvotes": 3,
-      "arxiv_id": "2610.19005",
-      "abstract": "A dynamic benchmark where two AI agents attack and defend concurrently in isolated sandboxes, scoring 12 frontier LLM agents across 466 matches."
-    },
-    {
-      "title": "Beyond Maliciousness: Static and Runtime Attack-Surface Profiling of Agent Skills",
-      "upvotes": 3,
-      "arxiv_id": "2610.19264",
-      "abstract": "Profiles 6,309 agent skill listings with static analysis and sandbox runs, finding that most gain shell or file access and that declared permissions often understate actual reach."
+      "title": "ToM2Vec: Continuous Theory-of-Mind Tokens for Multi-Agent Coordination",
+      "upvotes": 7,
+      "paper_id": "2610.29934",
+      "abstract": "Learns continuous latent tokens that model a partner's beliefs and likely actions, improving LLM agent coordination in games and negotiation. Gains transfer to unseen partner models, including GPT-5.4."
     }
   ],
   "cc_updates": [
     {
-      "tag_name": "v2.1.305",
-      "published_at": "2026-10-20",
-      "body": "## What's changed\n\n* Added `sandbox.allowNestedUserNamespaces` so sandboxed commands on Linux can create user namespaces (Chromium, rootless podman); this lets them get around the sandbox's file protections\n* Added `CLAUDE_CODE_RETRY_WATCHDOG_USAGE_LIMIT_RECHECK_MS` so unattended retry mode (`CLAUDE_CODE_RETRY_WATCHDOG`) notices a usage limit that was lifted before its reset\n* Fixed every request failing on Vertex, Bedrock and other providers when the endpoint or a gateway rejects tool search, and behind gateways that add latency to every tool-search call\n* Fixed agents losing their context window when a model is unavailable and the session falls back to a different one mid-conversation"
+      "tag_name": "v2.1.308",
+      "published_at": "2026-10-22",
+      "body": "What's changed\n\n* Bug fixes and reliability improvements"
     },
     {
-      "tag_name": "v2.1.304",
-      "published_at": "2026-10-19",
-      "body": "## What's changed\n\n* Added a transcript line when a plugin that runs first skips one of your mod's hooks, naming the event and the plugin\n* Added `decider: \"person\"` to a mod's `tool.check` answer: only the permission dialog or a host's callback can approve the ask, and it is refused with the mod's reason where nobody can be asked\n* Added `e.isReadOnly` to a mod's `tool.check` event, set when the tool call is read-only\n* Added `/auto-mode-setup`: a guided setup that reads your project and recent sessions to teach auto mode about your workflow"
+      "tag_name": "v2.1.307",
+      "published_at": "2026-10-21",
+      "body": "What's changed\n\n* Added `/claude-api api-version` to move Claude API code to API version `2026-10-21`\n* Added the `claude_code.safety_event` OpenTelemetry event for each tool call a permission rule, auto mode, a safety check, a hook or the sandbox stopped, prompted or sent back\n* Fixed requests failing with a model-not-found error when `CLAUDE_CODE_DISABLE_1M_CONTEXT` is set and the model is an alias with the `[1m]` suffix, such as `opus[1m]`\n* Fixed the `prompt-caching-scope` beta header being sent behind custom `ANTHROPIC_BASE_URL` gateways and on Foundry, where it has no effect"
     },
     {
-      "tag_name": "v2.1.303",
-      "published_at": "2026-10-18",
-      "body": "## What's changed\n\n* Bug fixes and reliability improvements"
+      "tag_name": "v2.1.306",
+      "published_at": "2026-10-21",
+      "body": "What's changed\n\n* Fixed `claude -p` inside cloud sessions reporting \"Not logged in\" when started without the session's environment variables\n* Fixed an API error being replaced by \"prompt is too long\", and an unneeded compaction, in sessions with many MCP tools"
     }
   ]
 }
