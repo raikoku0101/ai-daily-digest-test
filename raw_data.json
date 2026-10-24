@@ -2,63 +2,63 @@
   "papers": [
     {
       "title": "WeVisOne-VL: Unified Visual Perception from Objects to Pixels",
-      "upvotes": 221,
+      "upvotes": 232,
       "paper_id": "2610.31329",
       "abstract": "Existing vision-language models (VLMs) remain unreliable for fine-grained visual perception. In this report, we present WeVisOne-VL (WeChat Vision All-in-One), a powerful VLM that unifies object-level"
     },
     {
+      "title": "Editing Images into Reusable Layers via Compositional Edit-Prior Distillation",
+      "upvotes": 175,
+      "paper_id": "2610.24738",
+      "abstract": "High-quality image editing requires precise modification of target regions while preserving the content of unrelated regions. Existing editing models produce flattened outputs that limit precise local"
+    },
+    {
       "title": "Making MLLM Latents Matter: Factor-Aware Predictive Learning for Cinematic Video Generation",
-      "upvotes": 163,
+      "upvotes": 165,
       "paper_id": "2610.30926",
       "abstract": "Cinematic video generation requires both temporal inference from limited inputs (i.e., sparse rather than frame-by-frame guidance) and factor-aware control of character, scene, action, and camera. Mul"
     },
     {
       "title": "Deep Search in Real-World Web Environments",
-      "upvotes": 149,
+      "upvotes": 154,
       "paper_id": "2610.30181",
       "abstract": "Despite substantial progress in Deep Search agents, their ability to conduct end-to-end research in real-world open Web environments remains insufficiently evaluated. Unlike static retrieval settings,"
     },
     {
-      "title": "Editing Images into Reusable Layers via Compositional Edit-Prior Distillation",
-      "upvotes": 73,
-      "paper_id": "2610.24738",
-      "abstract": "High-quality image editing requires precise modification of target regions while preserving the content of unrelated regions. Existing editing models produce flattened outputs that limit precise local"
-    },
-    {
       "title": "IQuest-Q1: Advancing Foundation Capabilities for Agentic CLI Systems",
-      "upvotes": 53,
+      "upvotes": 86,
       "paper_id": "2610.30949",
       "abstract": "We present IQuest-Q1, a sparse Mixture-of-Experts (MoE) agentic foundation model with 320B total parameters (15B activated). IQuest-Q1 is developed through a three-stage process: (1) stable and effici"
     },
     {
       "title": "Toward Recursive Self-Improvement in Physical AI",
-      "upvotes": 46,
+      "upvotes": 50,
       "paper_id": "2610.29677",
       "abstract": "Recursive self-improvement (RSI) describes a system that improves not only its behavior but also the process by which it improves. Recent digital agents test this idea by rewriting their own code and "
     },
     {
       "title": "Policy-Mask: Budget-Aware Adaptation of Diffusion Features to Discriminative Tasks",
-      "upvotes": 43,
+      "upvotes": 44,
       "paper_id": "2610.28889",
       "abstract": "Selecting intermediate features from a frozen diffusion model for discriminative tasks is non-trivial because the useful signal is distributed across the denoising trajectory, network depth, and chann"
     },
     {
       "title": "Deep Fusion Memory: A Chunk-Level Parametric Memory for Large Language Models",
-      "upvotes": 39,
+      "upvotes": 41,
       "paper_id": "2610.25100",
       "abstract": "Large language models need effective ways to acquire and use external knowledge beyond what they retain from pretraining. Continued pretraining risks catastrophic forgetting, while retrieval at infere"
     },
     {
       "title": "What Generation Knows: Unlocking Fine-Grained Understanding in Unified Multimodal Models",
-      "upvotes": 32,
+      "upvotes": 33,
       "paper_id": "2610.23987",
       "abstract": "Fine-grained visual understanding requires distinguishing subtle differences in local attributes and spatial relations, yet remains challenging for existing vision-language models. Unified multimodal "
     },
     {
-      "title": "LaLa-World: Scaling Latent World Models with Natural Language Actions",
-      "upvotes": 27,
-      "paper_id": "2610.27851",
-      "abstract": "This paper shows that JEPA-style latent world models (LWMs) can learn across diverse domains and data sources by adopting the language-conditioned interface of video generation models. We establish th"
+      "title": "Self-Distilling Future Video Representations for World Action Models",
+      "upvotes": 30,
+      "paper_id": "2610.30320",
+      "abstract": "World Action Models (WAMs) have emerged as a promising approach to learning generalist robot policies using rich spatiotemporal priors from pre-trained video diffusion models. A recent line of WAMs im"
     }
   ],
   "cc_updates": []
