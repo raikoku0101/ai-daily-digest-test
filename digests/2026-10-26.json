@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-26",
+  "content": "# AI Daily Digest — 2026-10-26\n\n## 今日のハイライト\n- **Claude Code v2.1.310 がリリース**: Monitor ツールが Bedrock/Vertex/Foundry 環境に対応。プロキシ経由のリクエスト失敗問題も修正され、エンタープライズ利用者の安定性が向上。\n- **LLMエージェントの情報集約漏洩リスクが実証**: Agent Mosaic 論文が、複数機密文書を扱うエージェントが個々は無害な情報から機密を再構成できることを示す。企業AI導入のセキュリティ設計に直結する重要な知見。\n- **3Dカメラワーク自動生成が現実に**: FilmFlow が4エージェント協調で映画品質のカメラパスを自動生成。映像制作コストの大幅削減と民主化に向けた大きな一歩。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.310 (2026-10-23)\n**主要機能**\n- **Monitor ツール追加**: Bedrock、Vertex、Foundry、テレメトリ無効環境でもプラグインモニターが利用可能に。長時間のフォアグラウンドスリープもブロック対象に追加。\n\n**バグ修正**\n- 一部のゲートウェイやサーバーが `effort-2025-11-24` ベータ値や会話中のシステムメッセージを拒否する問題を修正。これらなしで自動リトライするよう改善。\n- `cleanupPeriodDays` が大きい値の場合、貼り付け画像などの最近のファイルが削除される問題を修正。\n\n**ユーザーへの影響**: 企業向けクラウドインフラ利用者と一部プロキシ環境のユーザーは安定性が向上します。\n\n---\n\n### v2.1.309 (2026-10-22)\n**バグ修正**\n- macOS/Linux でサンドボックス内のBashコマンドがサンドボックス外でシェル起動ファイルを実行していた問題を修正。\n- macOS サンドボックスのシンボリックリンク経由パスで `denyWrite` グロブパターンが正しく適用されない問題を修正。\n- サンドボックスコマンドと自動承認編集が `--mcp-config` で渡された MCP 設定ファイルを変更できた問題を修正。\n- print/SDK セッションで無効化された MCP サーバーが後の権限プロンプトで再接続される問題を修正。\n\n**ユーザーへの影響**: セキュリティ強化。サンドボックス機能を利用している開発者に重要な修正です。\n\n---\n\n### v2.1.308 (2026-10-22)\n- バグ修正と安定性の向上。\n\n## 注目論文 TOP 10\n\n1. **FilmFlow: Agentic System for 3D Virtual Film Cinematography** | 👍 31 | https://arxiv.org/abs/2610.30753\n   - 🎯 **背景**: 映像制作における3Dカメラワークの設計は高度な専門知識を要し、時間コストが高い。\n   - 🔧 **手法**: Director・Interpreter・Scout・Critic の4エージェントが協調し、テキスト指示や参照映像から実行可能な3Dカメラパスを自動生成。新ベンチマーク CinemaBench も導入。\n   - 📊 **結果**: CinemaBench で従来手法を上回る映像品質・指示追従性を達成。\n   - 💡 **意義**: 非専門家でも映画品質のカメラワークを低コストで実現可能に。映像制作AIの実用化を大きく前進させる。\n   - ⚠️ **限界**: 複雑なシーン構成や動的オブジェクトへの対応は限定的。\n\n2. **Agent Mosaic: Recognizing Confidentiality Leaks in Agentic LLM Systems** | 👍 23 | https://arxiv.org/abs/2610.30418\n   - 🎯 **背景**: 複数の機密文書を扱うLLMエージェントが、個々には無害な情報を組み合わせて機密を漏洩する「集約問題」が未解決。\n   - 🔧 **手法**: エージェントの推論軌跡を分析し、複数ソースからの情報集約による機密漏洩パターンを自動検出するフレームワーク。\n   - 📊 **結果**: 分類ヘッダーや集約ルールが存在しても、漏洩は顕著な割合で継続することを実証。\n   - 💡 **意義**: エンタープライズAIシステムのセキュリティ設計に直接影響する重要な脆弱性の体系化。\n   - ⚠️ **限界**: 検出精度はエージェントアーキテクチャに依存する可能性あり。\n\n3. **Different Tasks, Different Timesteps: Temporal Task-Aware Quantization for Diffusion Language Models** | 👍 23 | https://arxiv.org/abs/2610.31198\n   - 🎯 **背景**: 拡散言語モデルの量子化では、デノイジングステップごとに最適な精度が異なるが、均一な量子化が主流だった。\n   - 🔧 **手法**: T2Quant はラベル不要の感度信号を使い、各タイムステップに適切な活性化精度を動的割り当て。\n   - 📊 **結果**: 固定ビット予算下で最大 6.7 ポイントの精度向上を達成。\n   - 💡 **意義**: 推論コストを抑えながら拡散LMの実用精度を向上させる効率化技術。\n   - ⚠️ **限界**: 感度信号のキャリブレーションに追加コストが必要。\n\n4. **EvalResearchBench: Can AI Agents Build Their Own Feedback for Recursive Self-Improvement?** | 👍 22 | https://arxiv.org/abs/2610.04184\n   - 🎯 **背景**: AI の再帰的自己改善には自動評価器の構築が必要だが、エージェントが有効な評価器を設計できるかは未検証。\n   - 🔧 **手法**: AIエージェントが小型評価器を設計するベンチマークを構築。最良の評価器がターゲットベンチマークとどれだけ相関するかを測定。\n   - 📊 **結果**: 最良の評価器でモデルペアを正確にランク付けできる割合は約75%（上限91%）。\n   - 💡 **意義**: AI自己改善ループの実現可能性と現在の限界を定量的に示す先駆的研究。\n   - ⚠️ **限界**: 75% という精度は自律的な自己改善ループには不十分な可能性。\n\n5. **RTAformer: Relation-Transition-Aware Transformer for Video Scene Graph Generation** | 👍 19 | https://arxiv.org/abs/2610.20091\n   - 🎯 **背景**: 動画シーングラフ生成では、時間経過による関係変化が既存モデルで捉えられず、古い予測が持続する問題があった。\n   - 🔧 **手法**: エンティティの持続性と関係の変化を分離してモデル化するワンステージTransformerアーキテクチャ。\n   - 📊 **結果**: Action Genome データセットでリコール指標を改善。\n   - 💡 **意義**: より自然な動画理解に向けた時間的関係モデリングの改善。\n   - ⚠️ **限界**: 計算コストが従来手法より高い可能性。\n\n6. **RIDAR: Safeguarding Research Integrity in Autonomous Research Agents** | 👍 16 | https://arxiv.org/abs/2610.31372\n   - 🎯 **背景**: 自律研究エージェントが研究不正（捏造・改ざん・盗用など）を行うリスクが顕在化しているが、体系的な検出フレームワークが存在しなかった。\n   - 🔧 **手法**: 14種類の研究不正タイプの分類体系を構築し、エージェント軌跡の自動検出とランタイム介入機能を組み合わせたフレームワーク。\n   - 📊 **結果**: ランタイム補正により残存違反を36.8%削減。\n   - 💡 **意義**: 科学研究自動化における倫理・信頼性確保の基盤技術。研究機関のAI導入に必須。\n   - ⚠️ **限界**: 新種の不正パターンへの対応には継続的な更新が必要。\n\n7. **BrickWright: Agentic Creation of Physically Feasible Brick Builds** | 👍 13 | https://arxiv.org/abs/2610.31651\n   - 🎯 **背景**: LLMがLEGOなどの物理的ブロック構造物を生成する際、物理的に成立しない（崩れる）構造を生成してしまう問題。\n   - 🔧 **手法**: コーディングエージェントに LEGO アセンブリ API と物理バリデーターを付与。生成後に物理妥当性を自動検証・修正。\n   - 📊 **結果**: 512プロンプトで物理的妥当性100%を達成しつつ、指示追従性も維持。\n   - 💡 **意義**: AI生成の物理構造物の実用化への重要なステップ。製造・設計分野への応用可能性大。\n   - ⚠️ **限界**: 非常に複雑な構造や大規模な組み立てには計算コストが増大。\n\n8. **The LLM-Attacker: A Unified Red-Team Framework for Privacy Evaluation of Split and Distributed LLM Systems** | 👍 10 | https://arxiv.org/abs/2610.22722\n   - 🎯 **背景**: 分散・分割LLMシステムへのプライバシー攻撃の評価手法が統一されておらず、防御策の比較が困難だった。\n   - 🔧 **手法**: 攻撃者設定とスコアリングルールを記録・標準化するフレームワーク。防御策評価には防御なしベースラインを義務化。\n   - 📊 **結果**: 既存の分散LLMシステムで複数の脆弱性を体系的に発見・分類。\n   - 💡 **意義**: 分散AIシステムのセキュリティ評価の標準化に貢献。プライバシー研究の再現性向上。\n   - ⚠️ **限界**: 評価フレームワークの整備が主目的で、新しい防御手法は提示していない。\n\n9. **Diffusion Language Models Change Speed Across Tasks and Languages** | 👍 10 | https://arxiv.org/abs/2610.25835\n   - 🎯 **背景**: 拡散LMがどのようにタスクや言語に応じて計算資源を配分しているか不明だった。\n   - 🔧 **手法**: フォワードパス数を追跡し、新規・希少な出力と複製テキストへの処理量の違いを分析。速度重み付き投票との組み合わせも検討。\n   - 📊 **結果**: 困難な出力ほど多くのフォワードパスを使用。速度重み付き投票が多数決投票を上回る性能を示す。\n   - 💡 **意義**: 拡散LMの内部動作の解釈可能性向上と効率的なデコード戦略の改善。\n   - ⚠️ **限界**: 言語・タスクの多様性が限定的で、一般化には追加検証が必要。\n\n10. **HyperDrone: Simulation-to-Reality Transfer at Millions of Frames per Second** | 👍 10 | https://arxiv.org/abs/2610.28950\n    - 🎯 **背景**: ドローンの視覚ベース制御ポリシーの学習には大量のシミュレーションデータが必要だが、従来のシミュレーターは低速だった。\n    - 🔧 **手法**: レイトレーシングレンダラー搭載のGPUクアッドロータシミュレーターで毎秒数百万フレームを生成。学習したポリシーを実機Crazyflie ドローンに転用。\n    - 📊 **結果**: シミュレーション→実機転用に成功。従来比で大幅な学習効率向上を達成。\n    - 💡 **意義**: ロボティクスのsim-to-real転用の高速化に向けた革新的アプローチ。ドローン制御AIの実用化を加速。\n    - ⚠️ **限界**: 現状は比較的単純な飛行タスクに限定。複雑な環境での検証が今後の課題。\n\n",
+  "fetched_at": "2026-10-25T22:07:41.680332+00:00",
+  "papers": [
+    {
+      "title": "FilmFlow: Agentic System for 3D Virtual Film Cinematography",
+      "upvotes": 31,
+      "paper_id": "2610.30753",
+      "abstract": "An agent framework that turns text instructions or reference videos into executable 3D camera paths, using Director, Interpreter, Scout, and Critic agents and a new benchmark, CinemaBench."
+    },
+    {
+      "title": "Agent Mosaic: Recognizing Confidentiality Leaks in Agentic LLM Systems",
+      "upvotes": 23,
+      "paper_id": "2610.30418",
+      "abstract": "Agents can combine facts from several confidential documents into a forbidden conclusion. Tests show this leak persists at notable rates even with classification headers and aggregation rules."
+    },
+    {
+      "title": "Different Tasks, Different Timesteps: Temporal Task-Aware Quantization for Diffusion Language Models",
+      "upvotes": 23,
+      "paper_id": "2610.31198",
+      "abstract": "T2Quant allocates activation precision across diffusion denoising steps using a label-free sensitivity signal, improving accuracy under a fixed bit budget by up to 6.7 points."
+    },
+    {
+      "title": "EvalResearchBench: Can AI Agents Build Their Own Feedback for Recursive Self-Improvement?",
+      "upvotes": 22,
+      "paper_id": "2610.04184",
+      "abstract": "A benchmark where AI agents design compact evaluators. The best ones rank candidate model pairs like target benchmarks about 75% of the time, below a 91% ceiling."
+    },
+    {
+      "title": "RTAformer: Relation-Transition-Aware Transformer for Video Scene Graph Generation",
+      "upvotes": 19,
+      "paper_id": "2610.20091",
+      "abstract": "A one-stage transformer that models entity persistence and relation changes separately to fix stale predictions in video scene graphs, improving recall on Action Genome."
+    },
+    {
+      "title": "RIDAR: Safeguarding Research Integrity in Autonomous Research Agents via Automated Detection and Runtime Intervention",
+      "upvotes": 16,
+      "paper_id": "2610.31372",
+      "abstract": "A framework with a 14-type taxonomy for detecting research integrity violations in agent trajectories, plus runtime correction that cuts remaining violations by 36.8%."
+    },
+    {
+      "title": "BrickWright: Agentic Creation of Physically Feasible Brick Builds",
+      "upvotes": 13,
+      "paper_id": "2610.31651",
+      "abstract": "Gives coding agents a LEGO assembly API and physics validator, reaching 100% physical validity on 512 prompts while keeping prompt adherence."
+    },
+    {
+      "title": "The LLM-Attacker: A Unified Red-Team Framework for Privacy Evaluation of Split and Distributed LLM Systems",
+      "upvotes": 10,
+      "paper_id": "2610.22722",
+      "abstract": "A framework that records attacker setup and scoring rules so privacy attacks on split LLMs can be compared, and requires an undefended baseline before a defense can pass."
+    },
+    {
+      "title": "Diffusion Language Models Change Speed Across Tasks and Languages",
+      "upvotes": 10,
+      "paper_id": "2610.25835",
+      "abstract": "Diffusion LMs spend more forward passes on novel or rare output and less on copied text. Decoding effort also tracks correctness, and speed-weighted voting beats majority voting."
+    },
+    {
+      "title": "HyperDrone: Simulation-to-Reality Transfer at Millions of Frames per Second",
+      "upvotes": 10,
+      "paper_id": "2610.28950",
+      "abstract": "A GPU quadrotor simulator with a ray-tracing renderer running at millions of frames per second, used to train a vision-based policy that transfers to a real Crazyflie drone."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.310",
+      "published_at": "2026-10-23",
+      "body": "What's changed\n* Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too\n* Fixed requests failing behind some gateways and compatible servers that reject the effort-2025-11-24 beta value or mid-conversation system messages; Claude Code now retries without them\n* Fixed background cleanup deleting some recent files, such as pasted images, when cleanupPeriodDays is set to a very large value"
+    },
+    {
+      "tag_name": "v2.1.309",
+      "published_at": "2026-10-22",
+      "body": "What's changed\n* Fixed sandboxed Bash commands on macOS and Linux running the shell's startup files outside the sandbox before each command\n* Fixed macOS sandbox denyWrite glob patterns not applying at a path's real location when the pattern's folder is reached through a symlink\n* Fixed sandboxed commands and auto-accepted edits being able to modify the MCP config file passed with --mcp-config\n* Fixed a disabled MCP server being reconnected by a later permission prompt in print and SDK sessions"
+    },
+    {
+      "tag_name": "v2.1.308",
+      "published_at": "2026-10-22",
+      "body": "What's changed\n* Bug fixes and reliability improvements"
+    }
+  ]
+}
