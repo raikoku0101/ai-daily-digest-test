@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-27",
+  "content": "# AI Daily Digest — 2026-10-27\n\n## 今日のハイライト\n- **動画AI統合モデルが213 upvotes でトップ**: 「Reading, Writing, Sharing, and Interacting with the World through Video」は動画の理解・生成・共有・インタラクションを1つのフレームワークに統合した画期的研究。マルチモーダルAIの次世代標準となる可能性を持つ\n- **Claude Code v2.1.311がリリース (2026-10-26)**: セルフホストランナーのアイドル管理改善と重要なバグ修正。CLAUDE.mdの大きなファイルによるフリーズ問題が解消され、1Mコンテキストセッションの安定性も向上\n- **エージェント・身体化AI研究が集中**: 上位10本中5本がエージェント・ロボット・ゲームAI関連。RSIHub（エージェント進化フレームワーク）、RynnUnify（統合身体化脳）、HiSTEVE（ゲームVLAエージェント）など実用化志向の研究が多い\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.311 (2026-10-26) — 最新リリース\n**主要機能追加:**\n- `self-hosted-runner` に `--hold-idle-file` と `--max-hold-min` オプションを追加: ホストがプロセスを実行中と報告している間、アイドルセッションを維持可能\n\n**バグ修正:**\n- CLAUDE.md に非常に長いリストアイテムがある場合の起動時・ファイル読み書き後のフリーズを修正\n- MCP サーバーがリソース読み取りに応答しない、またはスキルのダウンロード中に Claude の割り込みが効かない問題を修正\n- 1M コンテキストのリクエスト実行時に「Usage credits required for 1M context」で停止する問題を修正\n- Explanatory 出力スタイルのヒント表示を追加\n\n**ユーザーへの影響:** セルフホスト環境でのアイドル管理が改善。大きな CLAUDE.md ファイルを使っているユーザーは起動速度が向上します。\n\n---\n\n### v2.1.310 (2026-10-23)\n**主要機能追加:**\n- Bedrock、Vertex、Foundry 環境での Monitor ツールとプラグインモニターを追加（テレメトリ無効時も含む）\n- 長時間のフォアグラウンド sleep もブロック対象に追加\n\n**バグ修正:**\n- `effort-2025-11-24` ベータ値や途中のシステムメッセージを拒否する一部ゲートウェイ・互換サーバーへの対応（リトライ処理追加）\n- `cleanupPeriodDays` が大きな値の場合に最近のファイル（貼り付け画像など）が削除されるバグを修正\n- 高密度テキスト（base64 や SVG）で「Prompt is too long」エラー後のコンパクション問題を修正\n- シンボリックリンクのファイル読み取り権限プロンプトが実リンク先を表示しない問題を修正\n\n**ユーザーへの影響:** クラウド環境での Monitor 機能が利用可能に。ゲートウェイ経由での接続安定性が向上。\n\n---\n\n### v2.1.309 (2026-10-22)\n**バグ修正（セキュリティ関連含む）:**\n- macOS/Linux でサンドボックス化された Bash コマンドが、サンドボックス外でシェルのスタートアップファイルを実行していた問題を修正\n- macOS サンドボックスの `denyWrite` glob パターンがシンボリックリンク経由のパスに適用されない問題を修正\n- サンドボックス化されたコマンドと自動受け入れ編集が `--mcp-config` のMCP設定ファイルを変更できた問題を修正\n- 無効化された MCP サーバーが後続の権限プロンプトで再接続される問題を修正\n\n**ユーザーへの影響:** セキュリティ上重要な修正。サンドボックス環境の整合性が強化されました。\n\n## 注目論文 TOP 10\n\n### 1. Reading, Writing, Sharing, and Interacting with the World through Video | 213 upvotes\n**arxiv:** https://arxiv.org/abs/2610.31668\n\n- 🎯 **背景**: ビデオ基盤モデルは理解・生成において急速に進歩しているが、読む・書く・共有する・インタラクトするという4つの能力を統合したシステムは存在しなかった\n- 🔧 **手法**: 動画を通じた世界との包括的なインタラクションフレームワークを提案。読み取り（動画理解）、書き込み（動画生成）、共有（配信・編集）、インタラクション（リアルタイム対話）の4機能を統合\n- 📊 **結果**: 複数の動画理解・生成ベンチマークで最先端性能を達成し、リアルタイムインタラクションも可能\n- 💡 **意義**: 動画AIの「万能エージェント」への道筋を示す研究。産業応用（教育・エンタメ・ロボット）への波及が大きい\n- ⚠️ **限界**: 計算コストが高く、リアルタイム処理のレイテンシ改善が課題\n\n---\n\n### 2. UserArena: Benchmarking Interactive User Simulation for Long-Horizon Shopping Agents | 47 upvotes\n**arxiv:** https://arxiv.org/abs/2610.30932\n\n- 🎯 **背景**: ショッピングエージェントが長期的な文脈依存のタスクをこなす能力の評価が不十分だった。インタラクティブなユーザーシミュレーションのベンチマークが必要\n- 🔧 **手法**: 複数ステップのショッピングシナリオでエージェントを評価するUserArenaを構築。ユーザーの意図変化や文脈依存の意思決定を含む長期シナリオを設計\n- 📊 **結果**: 既存のエージェントが長期ショッピングタスクで大幅に性能低下することを示し、改善余地を定量化\n- 💡 **意義**: ECサイトのAIエージェント開発に直接活用できる評価基盤。実用的なショッピングAI研究を加速\n- ⚠️ **限界**: 特定ドメイン（ショッピング）に限定。他のドメインへの汎化は未検証\n\n---\n\n### 3. HiSTEVE 1.0: Harnessing Human-Interface VLA Agents for Open-World Games | 38 upvotes\n**arxiv:** https://arxiv.org/abs/2610.31162\n\n- 🎯 **背景**: 人間が操作するゲームインターフェースを直接操作できるオープンワールドゲームエージェントの開発が課題。ピクセルレベルの視覚理解と自然言語指示の統合が必要\n- 🔧 **手法**: Vision-Language-Action (VLA) モデルを人間インターフェース（マウス・キーボード）に適応させ、オープンワールドゲーム環境での行動を学習。HiSTEVEフレームワークを提案\n- 📊 **結果**: Minecraft等のオープンワールドゲームで自律的なタスク完了率が既存手法を上回る成果\n- 💡 **意義**: ゲームAIだけでなく、実世界ロボティクスのGUI操作にも応用可能な汎用フレームワーク\n- ⚠️ **限界**: 特定ゲームタイトルに最適化されており、新しいゲームへの適応にファインチューニングが必要\n\n---\n\n### 4. RSIHub: A Composable Framework for Agent-Evolution Methods | 34 upvotes\n**arxiv:** https://arxiv.org/abs/2610.32253\n\n- 🎯 **背景**: エージェントの進化手法（プロンプト改善・スキル習得・ツール強化）が断片化しており、統一的な評価・比較が困難だった\n- 🔧 **手法**: 実行フィードバックを活用してプロンプト・スキル・ツールを改善するエージェント進化手法の統合フレームワーク「RSIHub」を提案。モジュール式の設計で各手法を組み合わせ可能\n- 📊 **結果**: 複数のエージェント進化手法を統一インターフェースで実装・比較し、手法の組み合わせで単体より高い性能を達成\n- 💡 **意義**: エージェント自己改善研究の標準化に貢献。研究者がアルゴリズムの比較・組み合わせを容易に実施できる\n- ⚠️ **限界**: フレームワークの抽象化により、特定の手法の細かい最適化が制限される可能性\n\n---\n\n### 5. RynnUnify: Towards Unified Embodied Brain | 31 upvotes\n**arxiv:** https://arxiv.org/abs/2610.32965\n\n- 🎯 **背景**: ロボティクスにおける知覚・推論・行動の統合モデルが存在せず、各タスク専用のモデルが必要だった\n- 🔧 **手法**: 16Bパラメータの統合身体化モデル「RynnUnify」を提案。強力な身体化能力と汎用的なインテリジェンスを組み合わせ、多様なロボットタスクを単一モデルで処理\n- 📊 **結果**: 操作・ナビゲーション・対話を含む多様な身体化タスクで、専用モデルと同等以上の性能を単一モデルで達成\n- 💡 **意義**: 「ロボット汎用脳」実現への重要ステップ。産業用ロボットからサービスロボットまで広範な応用が期待\n- ⚠️ **限界**: 16Bパラメータは実機デプロイにはまだ大きく、エッジデバイスへの展開には量子化・蒸留が必要\n\n---\n\n### 6. Omni-Woodpecker: Hallucination Correction via Evidence-Prior Rebalancing for Omni LLMs | 21 upvotes\n**arxiv:** https://arxiv.org/abs/2610.27103\n\n- 🎯 **背景**: 音声・画像・テキストを同時処理するOmni LLMが、マルチモーダル入力での幻覚（誤った情報生成）を頻繁に起こす問題があった\n- 🔧 **手法**: エビデンス事前分布の再バランシングにより幻覚を修正する「Omni-Woodpecker」を提案。マルチモーダルな証拠と言語事前知識のバランスを動的に調整\n- 📊 **結果**: 音声・映像・テキストの複合タスクでの幻覚率を大幅に低減し、複数のベンチマークで最先端性能を達成\n- 💡 **意義**: Omni LLMの信頼性向上に直結。実用的な音声アシスタントや動画理解システムの精度改善に貢献\n- ⚠️ **限界**: 複雑なマルチモーダルシナリオでは計算オーバーヘッドが増加\n\n---\n\n### 7. Every Weight Is a Path of Shared Discrete Decisions | 18 upvotes\n**arxiv:** https://arxiv.org/abs/2610.31931\n\n- 🎯 **背景**: ニューラルネットワークの重みの解釈可能性と効率的な表現が課題。重みの構造的な理解が欠如していた\n- 🔧 **手法**: TWIG（Tree-structured Weights with Inherited Gates）を提案。各重みを共有された離散的な決定のパス（木構造）として表現し、重みを圧縮・解釈可能な形式に変換\n- 📊 **結果**: モデルの圧縮率と解釈可能性の両立を実現。既存の重み共有手法より高い性能を維持しながら大幅な圧縮\n- 💡 **意義**: モデルの軽量化と解釈可能性の双方に貢献。エッジAI展開とAI安全性研究に応用可能\n- ⚠️ **限界**: 木構造の設計が性能に大きく影響し、最適な構造探索に計算コストが必要\n\n---\n\n### 8. Dual Exam: Controlled Evaluation of Multimodal Agents and World Models | 16 upvotes\n**arxiv:** https://arxiv.org/abs/2610.31066\n\n- 🎯 **背景**: マルチモーダルエージェントとワールドモデルの評価が、制御されていない環境で行われており、能力の正確な測定が困難だった\n- 🔧 **手法**: 「Dual Exam」フレームワークを提案。マルチモーダルエージェント（MA）とワールドモデル（WM）を同一のコントロールされた試験環境で評価し、相互の能力を検証\n- 📊 **結果**: MAとWMが互いにサポートし合う場合の性能向上を定量化。単独より統合システムが大幅に高い評価スコアを達成\n- 💡 **意義**: AIエージェント研究の評価標準化に貢献。MAとWMの協調設計の指針を提供\n- ⚠️ **限界**: 試験環境が合成的であり、実世界の複雑さを完全に再現できていない\n\n---\n\n### 9. DirCast: Live Esports Directing and Commentary with a Single Streaming Video-Language Model | 16 upvotes\n**arxiv:** https://arxiv.org/abs/2610.31734\n\n- 🎯 **背景**: ライブeスポーツ放送にはカメラ選択ディレクターとリアルタイム実況解説者の2つの専門的スキルが必要で、AIによる自動化が課題だった\n- 🔧 **手法**: 単一のストリーミング動画言語モデルで、カメラ選択（どのビューを放送するか）と実況解説を同時に行う「DirCast」を提案\n- 📊 **結果**: プロのeスポーツ放送データで訓練し、ディレクタリングと解説の両方でベースラインを上回る自動化を実現\n- 💡 **意義**: eスポーツ・スポーツ放送のAI自動化への実用的アプローチ。ストリーミングメディア産業への応用が期待\n- ⚠️ **限界**: 特定ゲームタイトルへのトレーニングデータ依存。新ゲームへの適応にはデータ収集が必要\n\n---\n\n### 10. TenetBench: A Clause-Anchored Russian Corpus for Evaluating Language Models against Professional Codes of Ethics | 12 upvotes\n**arxiv:** https://arxiv.org/abs/2610.29477\n\n- 🎯 **背景**: 職業倫理コードに対する言語モデルの評価が、ロシア語・専門分野で不十分だった。LLMが専門家の倫理規定に従って行動できるかの検証が必要\n- 🔧 **手法**: ロシア語の職業倫理コードに条項アンカリングされた評価コーパス「TenetBench」を構築。法律・医療・教育等の専門職倫理に対するLLMの応答を評価\n- 📊 **結果**: 主要なLLMが職業倫理コードへの準拠で顕著な弱点を示し、分野・条項によって大きな性能差が判明\n- 💡 **意義**: AIの倫理的整合性評価の多言語・多分野展開に貢献。規制対応AIシステム開発の指針を提供\n- ⚠️ **限界**: ロシア語に特化しており、他言語への直接適用には翻訳・文化的調整が必要\n\n",
+  "fetched_at": "2026-10-26T22:09:00.341698+00:00",
+  "papers": [
+    {
+      "title": "Reading, Writing, Sharing, and Interacting with the World through Video",
+      "upvotes": 213,
+      "paper_id": "2610.31668",
+      "abstract": "Video foundation models have advanced rapidly in understanding and generating visual sequences, while video world models seek to capture the underlying dynamics of the world they depict. Despite their..."
+    },
+    {
+      "title": "UserArena: Benchmarking Interactive User Simulation for Long-Horizon Shopping Agents",
+      "upvotes": 47,
+      "paper_id": "2610.30932",
+      "abstract": "Agentic recommendation pursues shopper goals through sequences of context-dependent decisions. Developing and evaluating such policies requires faithful recommendation world models that capture both t..."
+    },
+    {
+      "title": "HiSTEVE 1.0: Harnessing Human-Interface VLA Agents for Open-World Games",
+      "upvotes": 38,
+      "paper_id": "2610.31162",
+      "abstract": "Building virtual embodied agents that operate in open-ended games like human players is a long-standing goal requiring both long-horizon autonomy and reliable native-interface control. As a procedural..."
+    },
+    {
+      "title": "RSIHub: A Composable Framework for Agent-Evolution Methods",
+      "upvotes": 34,
+      "paper_id": "2610.32253",
+      "abstract": "Agent-evolution methods use execution feedback to improve prompts, skills, tools, and orchestration, but their implementations often rebuild the same experimental machinery. We present RSIHub, an open..."
+    },
+    {
+      "title": "RynnUnify: Towards Unified Embodied Brain",
+      "upvotes": 31,
+      "paper_id": "2610.32965",
+      "abstract": "We introduce RynnUnify, a 16B unified embodied model that combines strong embodied understanding with long-horizon visual planning through interleaved video--language reasoning. With capabilities span..."
+    },
+    {
+      "title": "Omni-Woodpecker: Hallucination Correction via Evidence-Prior Rebalancing for Omni LLMs",
+      "upvotes": 21,
+      "paper_id": "2610.27103",
+      "abstract": "Recent Omni LLMs (OLLMs) have demonstrated remarkable capabilities in joint audio-visual reasoning, yet cross-modal hallucinations remain a major challenge. Existing mitigation methods mainly operate ..."
+    },
+    {
+      "title": "Every Weight Is a Path of Shared Discrete Decisions",
+      "upvotes": 18,
+      "paper_id": "2610.31931",
+      "abstract": "We introduce TWIG (Tree-structured Weights with Inherited Gates), a representation in which every weight of a neural network is the end of a path of small discrete decisions: a sign, a shift by a powe..."
+    },
+    {
+      "title": "Dual Exam: Controlled Evaluation of Multimodal Agents and World Models",
+      "upvotes": 16,
+      "paper_id": "2610.31066",
+      "abstract": "World Models (WMs) can support Multimodal Agents (MAs) through simulated experience, while Agent trajectories can inform World Model refinement. Evaluating this interaction requires separate evidence ..."
+    },
+    {
+      "title": "DirCast: Live Esports Directing and Commentary with a Single Streaming Video-Language Model",
+      "upvotes": 16,
+      "paper_id": "2610.31734",
+      "abstract": "A live esports broadcast needs a director who chooses which camera goes on air and a caster who talks over that choice, every second and without knowing what comes next. Streaming video language model..."
+    },
+    {
+      "title": "TenetBench: A Clause-Anchored Russian Corpus for Evaluating Language Models against Professional Codes of Ethics",
+      "upvotes": 12,
+      "paper_id": "2610.29477",
+      "abstract": "Codes of professional ethics guide and restrict specialists, who increasingly work with assistants built on large language models. Such an assistant can breach the user's code, or help the user breach..."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.311",
+      "published_at": "2026-10-26",
+      "body": "## What's changed\n\n* Added `--hold-idle-file` and `--max-hold-min` to `self-hosted-runner`, to keep an idle session while your host reports processes it left running\n* Added a tip for the Explanatory output style, shown when you ask Claude for explanations\n* Fixed long freezes at startup and after reading or editing files when a CLAUDE.md file holds a very long list item\n* Fixed interrupting Claude not taking effect until a timeout while an MCP server had not answered a resource read or a skill was still downloading\n* Fixed standard-context sessions stopping with \"Usage credits required for 1M context\" when a request ran"
+    },
+    {
+      "tag_name": "v2.1.310",
+      "published_at": "2026-10-23",
+      "body": "## What's changed\n\n* Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too\n* Fixed requests failing behind some gateways and compatible servers that reject the `effort-2025-11-24` beta value or mid-conversation system messages; Claude Code now retries without them\n* Fixed background cleanup deleting some recent files, such as pasted images, when `cleanupPeriodDays` is set to a very large value\n* Fixed compaction after a \"Prompt is too long\" error keeping too much of a conversation with dense text, such as base64 or SVG, so the next request could fail again\n* Fixed file read permission prompts not showing where a symbolic link leads"
+    },
+    {
+      "tag_name": "v2.1.309",
+      "published_at": "2026-10-22",
+      "body": "## What's changed\n\n* Fixed sandboxed Bash commands on macOS and Linux running the shell's startup files outside the sandbox before each command\n* Fixed macOS sandbox `denyWrite` glob patterns not applying at a path's real location when the pattern's folder is reached through a symlink\n* Fixed sandboxed commands and auto-accepted edits being able to modify the MCP config file passed with `--mcp-config`\n* Fixed a disabled MCP server being reconnected by a later permission prompt in print and SDK sessions\n* Fixed the Bash permission check trusting a variable set by a command whose redirect can fail to"
+    }
+  ]
+}
