@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "FilmFlow: Agentic System for 3D Virtual Film Cinematography",
+      "title": "Reading, Writing, Sharing, and Interacting with the World through Video",
+      "upvotes": 213,
+      "paper_id": "2610.31668",
+      "abstract": "Video foundation models have advanced rapidly in understanding and generating visual sequences, while video world models seek to capture the underlying dynamics of the world they depict. Despite their..."
+    },
+    {
+      "title": "UserArena: Benchmarking Interactive User Simulation for Long-Horizon Shopping Agents",
+      "upvotes": 47,
+      "paper_id": "2610.30932",
+      "abstract": "Agentic recommendation pursues shopper goals through sequences of context-dependent decisions. Developing and evaluating such policies requires faithful recommendation world models that capture both t..."
+    },
+    {
+      "title": "HiSTEVE 1.0: Harnessing Human-Interface VLA Agents for Open-World Games",
+      "upvotes": 38,
+      "paper_id": "2610.31162",
+      "abstract": "Building virtual embodied agents that operate in open-ended games like human players is a long-standing goal requiring both long-horizon autonomy and reliable native-interface control. As a procedural..."
+    },
+    {
+      "title": "RSIHub: A Composable Framework for Agent-Evolution Methods",
+      "upvotes": 34,
+      "paper_id": "2610.32253",
+      "abstract": "Agent-evolution methods use execution feedback to improve prompts, skills, tools, and orchestration, but their implementations often rebuild the same experimental machinery. We present RSIHub, an open..."
+    },
+    {
+      "title": "RynnUnify: Towards Unified Embodied Brain",
       "upvotes": 31,
-      "paper_id": "2610.30753",
-      "abstract": "An agent framework that turns text instructions or reference videos into executable 3D camera paths, using Director, Interpreter, Scout, and Critic agents and a new benchmark, CinemaBench."
+      "paper_id": "2610.32965",
+      "abstract": "We introduce RynnUnify, a 16B unified embodied model that combines strong embodied understanding with long-horizon visual planning through interleaved video--language reasoning. With capabilities span..."
     },
     {
-      "title": "Agent Mosaic: Recognizing Confidentiality Leaks in Agentic LLM Systems",
-      "upvotes": 23,
-      "paper_id": "2610.30418",
-      "abstract": "Agents can combine facts from several confidential documents into a forbidden conclusion. Tests show this leak persists at notable rates even with classification headers and aggregation rules."
+      "title": "Omni-Woodpecker: Hallucination Correction via Evidence-Prior Rebalancing for Omni LLMs",
+      "upvotes": 21,
+      "paper_id": "2610.27103",
+      "abstract": "Recent Omni LLMs (OLLMs) have demonstrated remarkable capabilities in joint audio-visual reasoning, yet cross-modal hallucinations remain a major challenge. Existing mitigation methods mainly operate ..."
     },
     {
-      "title": "Different Tasks, Different Timesteps: Temporal Task-Aware Quantization for Diffusion Language Models",
-      "upvotes": 23,
-      "paper_id": "2610.31198",
-      "abstract": "T2Quant allocates activation precision across diffusion denoising steps using a label-free sensitivity signal, improving accuracy under a fixed bit budget by up to 6.7 points."
+      "title": "Every Weight Is a Path of Shared Discrete Decisions",
+      "upvotes": 18,
+      "paper_id": "2610.31931",
+      "abstract": "We introduce TWIG (Tree-structured Weights with Inherited Gates), a representation in which every weight of a neural network is the end of a path of small discrete decisions: a sign, a shift by a powe..."
     },
     {
-      "title": "EvalResearchBench: Can AI Agents Build Their Own Feedback for Recursive Self-Improvement?",
-      "upvotes": 22,
-      "paper_id": "2610.04184",
-      "abstract": "A benchmark where AI agents design compact evaluators. The best ones rank candidate model pairs like target benchmarks about 75% of the time, below a 91% ceiling."
-    },
-    {
-      "title": "RTAformer: Relation-Transition-Aware Transformer for Video Scene Graph Generation",
-      "upvotes": 19,
-      "paper_id": "2610.20091",
-      "abstract": "A one-stage transformer that models entity persistence and relation changes separately to fix stale predictions in video scene graphs, improving recall on Action Genome."
-    },
-    {
-      "title": "RIDAR: Safeguarding Research Integrity in Autonomous Research Agents via Automated Detection and Runtime Intervention",
+      "title": "Dual Exam: Controlled Evaluation of Multimodal Agents and World Models",
       "upvotes": 16,
-      "paper_id": "2610.31372",
-      "abstract": "A framework with a 14-type taxonomy for detecting research integrity violations in agent trajectories, plus runtime correction that cuts remaining violations by 36.8%."
+      "paper_id": "2610.31066",
+      "abstract": "World Models (WMs) can support Multimodal Agents (MAs) through simulated experience, while Agent trajectories can inform World Model refinement. Evaluating this interaction requires separate evidence ..."
     },
     {
-      "title": "BrickWright: Agentic Creation of Physically Feasible Brick Builds",
-      "upvotes": 13,
-      "paper_id": "2610.31651",
-      "abstract": "Gives coding agents a LEGO assembly API and physics validator, reaching 100% physical validity on 512 prompts while keeping prompt adherence."
+      "title": "DirCast: Live Esports Directing and Commentary with a Single Streaming Video-Language Model",
+      "upvotes": 16,
+      "paper_id": "2610.31734",
+      "abstract": "A live esports broadcast needs a director who chooses which camera goes on air and a caster who talks over that choice, every second and without knowing what comes next. Streaming video language model..."
     },
     {
-      "title": "The LLM-Attacker: A Unified Red-Team Framework for Privacy Evaluation of Split and Distributed LLM Systems",
-      "upvotes": 10,
-      "paper_id": "2610.22722",
-      "abstract": "A framework that records attacker setup and scoring rules so privacy attacks on split LLMs can be compared, and requires an undefended baseline before a defense can pass."
-    },
-    {
-      "title": "Diffusion Language Models Change Speed Across Tasks and Languages",
-      "upvotes": 10,
-      "paper_id": "2610.25835",
-      "abstract": "Diffusion LMs spend more forward passes on novel or rare output and less on copied text. Decoding effort also tracks correctness, and speed-weighted voting beats majority voting."
-    },
-    {
-      "title": "HyperDrone: Simulation-to-Reality Transfer at Millions of Frames per Second",
-      "upvotes": 10,
-      "paper_id": "2610.28950",
-      "abstract": "A GPU quadrotor simulator with a ray-tracing renderer running at millions of frames per second, used to train a vision-based policy that transfers to a real Crazyflie drone."
+      "title": "TenetBench: A Clause-Anchored Russian Corpus for Evaluating Language Models against Professional Codes of Ethics",
+      "upvotes": 12,
+      "paper_id": "2610.29477",
+      "abstract": "Codes of professional ethics guide and restrict specialists, who increasingly work with assistants built on large language models. Such an assistant can breach the user's code, or help the user breach..."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.311",
+      "published_at": "2026-10-26",
+      "body": "## What's changed\n\n* Added `--hold-idle-file` and `--max-hold-min` to `self-hosted-runner`, to keep an idle session while your host reports processes it left running\n* Added a tip for the Explanatory output style, shown when you ask Claude for explanations\n* Fixed long freezes at startup and after reading or editing files when a CLAUDE.md file holds a very long list item\n* Fixed interrupting Claude not taking effect until a timeout while an MCP server had not answered a resource read or a skill was still downloading\n* Fixed standard-context sessions stopping with \"Usage credits required for 1M context\" when a request ran"
+    },
+    {
       "tag_name": "v2.1.310",
       "published_at": "2026-10-23",
-      "body": "What's changed\n* Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too\n* Fixed requests failing behind some gateways and compatible servers that reject the effort-2025-11-24 beta value or mid-conversation system messages; Claude Code now retries without them\n* Fixed background cleanup deleting some recent files, such as pasted images, when cleanupPeriodDays is set to a very large value"
+      "body": "## What's changed\n\n* Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too\n* Fixed requests failing behind some gateways and compatible servers that reject the `effort-2025-11-24` beta value or mid-conversation system messages; Claude Code now retries without them\n* Fixed background cleanup deleting some recent files, such as pasted images, when `cleanupPeriodDays` is set to a very large value\n* Fixed compaction after a \"Prompt is too long\" error keeping too much of a conversation with dense text, such as base64 or SVG, so the next request could fail again\n* Fixed file read permission prompts not showing where a symbolic link leads"
     },
     {
       "tag_name": "v2.1.309",
       "published_at": "2026-10-22",
-      "body": "What's changed\n* Fixed sandboxed Bash commands on macOS and Linux running the shell's startup files outside the sandbox before each command\n* Fixed macOS sandbox denyWrite glob patterns not applying at a path's real location when the pattern's folder is reached through a symlink\n* Fixed sandboxed commands and auto-accepted edits being able to modify the MCP config file passed with --mcp-config\n* Fixed a disabled MCP server being reconnected by a later permission prompt in print and SDK sessions"
-    },
-    {
-      "tag_name": "v2.1.308",
-      "published_at": "2026-10-22",
-      "body": "What's changed\n* Bug fixes and reliability improvements"
+      "body": "## What's changed\n\n* Fixed sandboxed Bash commands on macOS and Linux running the shell's startup files outside the sandbox before each command\n* Fixed macOS sandbox `denyWrite` glob patterns not applying at a path's real location when the pattern's folder is reached through a symlink\n* Fixed sandboxed commands and auto-accepted edits being able to modify the MCP config file passed with `--mcp-config`\n* Fixed a disabled MCP server being reconnected by a later permission prompt in print and SDK sessions\n* Fixed the Bash permission check trusting a variable set by a command whose redirect can fail to"
     }
   ]
 }
