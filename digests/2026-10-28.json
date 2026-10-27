@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-28",
+  "content": "# AI Daily Digest — 2026-10-28\n\n## 今日のハイライト\n- **スキル適応メタ学習が自己進化ループで 2〜5pt 向上** (arxiv:2610.33024): モデル能力に合わせてスキルを動的適応させることで、強弱問わずすべてのエージェントのパフォーマンスを改善。パラメータ更新不要で実用的\n- **Claude Code v2.1.312 リリース**: OIDC クレームの柔軟指定（Entra ID `oid` 対応）と、大きな CLAUDE.md の誤上書き修正が含まれる。エンタープライズ利用の信頼性が向上\n- **外部メモリでテスト時訓練を超える** (arxiv:2610.32046): 重み更新なしの外部メモリ更新が数学タスクで TTT を上回り、計算コストを最大 85% 削減。軽量な継続的適応の新手法として注目\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.312 (2026-10-27) — 最新\n\n**主要機能追加:**\n- **OIDC ユーザー ID クレーム対応**: Claude apps ゲートウェイに `oidc.user_id_claim` を追加。Microsoft Entra ID の `oid` など、`sub` 以外の id_token クレームでユーザーを識別可能に\n- **クリック送信**: フルスクリーンモードで、キューに入ったメッセージの「今すぐ送信」ヒントをクリックするだけで即時送信が可能に\n\n**バグ修正:**\n- VS Code 拡張機能からサインインした後、セッション中ずっと managed settings と組織ポリシーが取得されない問題を修正\n- 非常に大きな CLAUDE.md、ルールファイル、またはサブディレクトリの @-include ファイルを先頭部分だけ読んで上書きしていた問題を修正（Write が全体を読むよう変更）\n\n**ユーザーへの影響:** エンタープライズ環境でのSSO/ID管理が改善。大きな設定ファイルの誤上書きリスクが解消。\n\n---\n\n### v2.1.311 (2026-10-26)\n\n**主要機能追加:**\n- **セルフホステッドランナーの改善**: `--hold-idle-file` と `--max-hold-min` オプションを追加。ホストが残留プロセスを報告している間もアイドルセッションを維持可能\n- **説明スタイルのヒント表示**: Claude に説明を求めたときに Explanatory 出力スタイルのヒントを表示\n\n**バグ修正:**\n- CLAUDE.md ファイルに非常に長いリスト項目がある場合の起動時・ファイル読み書き時の長時間フリーズを修正\n- MCP サーバーがリソース読み取りに応答していないとき、またはスキルダウンロード中に Claude への割り込みがタイムアウトまで効かない問題を修正\n\n**ユーザーへの影響:** セルフホステッド環境の安定性向上。大規模な設定ファイルを使うプロジェクトでの応答性が改善。\n\n---\n\n### v2.1.310 (2026-10-23)\n\n**主要機能追加:**\n- **Monitor ツールのプラットフォーム拡張**: Bedrock、Vertex、Foundry でも Monitor ツールとプラグインモニターが利用可能に。テレメトリ・非必須トラフィック無効時も動作\n\n**バグ修正:**\n- `effort-2025-11-24` beta 値または会話中のシステムメッセージを拒否するゲートウェイ/互換サーバーへのリクエスト失敗を修正（これらなしで自動リトライ）\n- `cleanupPeriodDays` に非常に大きな値を設定時、ペーストした画像などの最近のファイルをバックグラウンドクリーンアップが削除する問題を修正\n\n**ユーザーへの影響:** クラウドプロバイダー（AWS/GCP等）での利用がより安定。カスタムゲートウェイ環境での互換性向上。\n\n## 注目論文 TOP 10\n\n1. **Evolving to Match Capabilities: Improving Harness Self-Evolution via Skill Adaptation** | 👍 12 | [arxiv:2610.33024](https://arxiv.org/abs/2610.33024)\n   - 🎯 **背景**: LLM エージェントのハーネス（実行環境）を自動改善するメタスキル学習の問題。強いモデルに効くスキルが弱いモデルには逆効果になる課題があった\n   - 🔧 **手法**: 各エージェントの実行能力を評価し、能力に合わせてスキルを動的に適応させるメタスキルを提案。パラメータ更新なしで動作\n   - 📊 **結果**: 自己進化ループで 2〜5 ポイントの精度向上。各モデルの能力に適応させることで、すべての能力レベルで改善\n   - 💡 **意義**: モデル能力に依存しない汎用的なハーネス改善手法。LLMの性能差を考慮した自動最適化への道を開く\n   - ⚠️ **限界**: 評価は特定のベンチマークに限定。実際の多様なタスクへの汎化性能は未検証\n\n2. **ReGE: Stronger Agents through Experience Synthesis** | 👍 6 | [arxiv:2610.33861](https://arxiv.org/abs/2610.33861)\n   - 🎯 **背景**: エージェントの過去の実行経験を次回の試行に活用する学習なし改善手法の研究\n   - 🔧 **手法**: エージェントの記録された実行経験を、同じベースモデルの新たな試みへのガイダンスに変換（合成）する\n   - 📊 **結果**: 未ガイダンス実行と比較して約 9〜10 ポイントの精度向上、使用トークン数も削減\n   - 💡 **意義**: ファインチューニングなしで経験から学習可能。コストを抑えながらエージェントの継続的改善を実現\n   - ⚠️ **限界**: 同一ベースモデルを前提とするため、モデル間での経験転移には対応していない可能性\n\n3. **iPrefBench: A User-Centric Benchmark for Personalized Mobile Use Agents** | 👍 5 | [arxiv:2610.34735](https://arxiv.org/abs/2610.34735)\n   - 🎯 **背景**: モバイル操作エージェントの個人化能力（ユーザー好みの推論）の評価基準が欠如していた\n   - 🔧 **手法**: 仕様が不足した 130 件のモバイルタスクを含むベンチマーク。エージェントが履歴からユーザー好みを推論するか、ユーザーに確認するかを評価\n   - 📊 **結果**: エージェントは操作実行は得意だが、個人化（好み推論）が苦手であることが判明\n   - 💡 **意義**: ユーザー中心のエージェント設計の課題を定量化。個人化 AI アシスタント開発の指針となる\n   - ⚠️ **限界**: 130 タスクは比較的小規模。特定のモバイル OS/アプリに偏る可能性\n\n4. **CRM-Agent-Bench: Benchmarking Tool-Using Agents in Stateful Enterprise Environments** | 👍 4 | [arxiv:2610.32004](https://arxiv.org/abs/2610.32004)\n   - 🎯 **背景**: ステートフルなエンタープライズ環境（CRM 等）でのツール使用エージェントの評価基準が不足\n   - 🔧 **手法**: 555 件のマルチターン CRM タスクを厳密なコントラクトチェックでスコアリングする実行根拠ベンチマーク\n   - 📊 **結果**: 16 システムが 64〜84% の厳密成功率を達成。コスト面では大きな差異\n   - 💡 **意義**: 実際のビジネスシステムでの AI エージェント評価の新標準を提示\n   - ⚠️ **限界**: CRM に特化しており、他のエンタープライズシステムへの適用可能性は限定的\n\n5. **RoboJev: An Open Vision-Language Judge for Robot Success Detection** | 👍 4 | [arxiv:2610.33718](https://arxiv.org/abs/2610.33718)\n   - 🎯 **背景**: ロボットタスクの成功判定を自動化するオープンな視覚言語モデルが不足していた\n   - 🔧 **手法**: 動画フレームと指示から、ロボットがタスクを成功したかどうかを判定するオープン VLM\n   - 📊 **結果**: 保留エピソードで 95.2% のバランス精度を達成\n   - 💡 **意義**: ロボット学習の評価自動化を可能にし、人手による評価コストを大幅削減\n   - ⚠️ **限界**: 特定のロボットプラットフォームのエピソードで評価。多様なロボット・環境での汎化は未検証\n\n6. **DialFork: Going Beyond Factuality to Evaluate Procedural Hallucination in Conversational Agents** | 👍 4 | [arxiv:2610.21561](https://arxiv.org/abs/2610.21561)\n   - 🎯 **背景**: 会話エージェントの幻覚評価は事実確認に偏り、プロセス（手順）の正確性が見落とされていた\n   - 🔧 **手法**: 手順的幻覚（流暢だが対話プロセスを壊す返答）のベンチマーク。フロー認識指標 FlowKL・FlowScore を提案\n   - 📊 **結果**: 既存エージェントが手順的一貫性で大幅に失敗することを定量化\n   - 💡 **意義**: 対話システムの品質評価を「何を言うか」から「どう進めるか」へ拡張する新視点\n   - ⚠️ **限界**: 特定の会話フロー構造を前提とするため、オープンドメイン対話への適用は要検討\n\n7. **Constrained Decoding: Harmful or Beneficial? Revisiting Its Impact on LLM Performance** | 👍 3 | [arxiv:2610.35328](https://arxiv.org/abs/2610.35328)\n   - 🎯 **背景**: 制約付きデコーディングが LLM の推論性能を低下させるという懸念があったが、実証的な検討が不足\n   - 🔧 **手法**: 制約の種類（有効性制約・推論制約など）別に LLM 性能への影響を系統的に再検証\n   - 📊 **結果**: 制約付きデコーディング自体は推論を損なわない。有効性制約・推論制約はむしろ信頼性・精度を向上させることが多い\n   - 💡 **意義**: 構造化出力や形式制約を使う実装での意思決定に重要な知見。「制約は悪」という思い込みを覆す\n   - ⚠️ **限界**: 制約の実装方法やモデルによって結果が異なる可能性。すべての制約タイプを網羅していない\n\n8. **Can Test-Time Memory Evolution Outperform Test-Time Training for Scientific Discovery?** | 👍 2 | [arxiv:2610.32046](https://arxiv.org/abs/2610.32046)\n   - 🎯 **背景**: 科学的発見タスクにおけるテスト時の適応手法として、モデル重みを更新する TTT の代替を探索\n   - 🔧 **手法**: 発見中にモデル重みではなく外部メモリを更新する TTME（Test-Time Memory Evolution）を提案\n   - 📊 **結果**: 5 つの数学タスクでテスト時訓練を上回る精度。FLOPs を 82〜85%、実行時間を 48〜58% 削減\n   - 💡 **意義**: 軽量な外部メモリで重み更新を代替。コスト効率の高い継続学習の新アプローチ\n   - ⚠️ **限界**: 数学タスクのみの評価。他の科学的発見ドメインへの汎化は未検証\n\n9. **Rethinking Verification in Agent Harnesses** | 👍 2 | [arxiv:2610.34577](https://arxiv.org/abs/2610.34577)\n   - 🎯 **背景**: エージェントハーネスにおける検証の「いつ・誰が・どのように」という設計原則が未整理\n   - 🔧 **手法**: エージェントが自身の作業を検証する時機・主体・方法を体系的に研究。独立クリティックレビューを中心に比較\n   - 📊 **結果**: 独立クリティックレビューが最良の精度・コストトレードオフを実現。コーディングベンチマークで 4〜10 ポイント向上\n   - 💡 **意義**: エージェントシステム設計での検証戦略の選択に実践的な指針を提供\n   - ⚠️ **限界**: コーディングベンチマーク中心の評価。他のドメインへの適用性は要検討\n\n10. **OBB-PBD: Extending Parallel Box Decoding to Oriented Bounding Boxes for Referring Expression Grounding in Aerial Imagery** | 👍 2 | [arxiv:2610.35450](https://arxiv.org/abs/2610.35450)\n    - 🎯 **背景**: 航空画像での参照表現グラウンディングは、回転を考慮した有向バウンディングボックスが必要だが既存手法は未対応\n    - 🔧 **手法**: 並列ボックスデコーディングを有向バウンディングボックスに拡張（OBB-PBD）\n    - 📊 **結果**: AVVG ベンチマークで回転 IoU が 0.125 から 0.303 に向上\n    - 💡 **意義**: 衛星・ドローン画像解析の精度向上に直結。セキュリティ・農業・都市計画等の応用に有益\n    - ⚠️ **限界**: 特定のベンチマーク（AVVG）での評価のみ。実世界の多様な航空画像への適用性は要検証\n\n",
+  "fetched_at": "2026-10-27T22:06:10.605537+00:00",
+  "papers": [
+    {
+      "title": "Evolving to Match Capabilities: Improving Harness Self-Evolution via Skill Adaptation",
+      "upvotes": 12,
+      "paper_id": "2610.33024",
+      "abstract": "Skills that help strong LLM agents can hurt weaker ones. A meta-skill adapts skills to each executor's capability, adding 2-5 points in self-evolution loops without parameter updates."
+    },
+    {
+      "title": "ReGE: Stronger Agents through Experience Synthesis",
+      "upvotes": 6,
+      "paper_id": "2610.33861",
+      "abstract": "Turns an agent's recorded execution experience into guidance for fresh attempts using the same base model. Gains about 9-10 accuracy points over unguided runs, with fewer tokens."
+    },
+    {
+      "title": "iPrefBench: A User-Centric Benchmark for Personalized Mobile Use Agents",
+      "upvotes": 5,
+      "paper_id": "2610.34735",
+      "abstract": "Benchmark of 130 underspecified mobile tasks testing whether agents infer preferences from history or ask the user. Agents execute actions well but personalize poorly."
+    },
+    {
+      "title": "CRM-Agent-Bench: Benchmarking Tool-Using Agents in Stateful Enterprise Environments",
+      "upvotes": 4,
+      "paper_id": "2610.32004",
+      "abstract": "Execution-grounded benchmark of 555 multi-turn CRM tasks scored by strict contract checks. Sixteen systems reach 64-84% strict success, with large differences in cost."
+    },
+    {
+      "title": "RoboJev: An Open Vision-Language Judge for Robot Success Detection",
+      "upvotes": 4,
+      "paper_id": "2610.33718",
+      "abstract": "Open vision-language model that judges from video frames and an instruction whether a robot succeeded. Reports 95.2% balanced accuracy on held-out episodes from the same robot."
+    },
+    {
+      "title": "DialFork: Going Beyond Factuality to Evaluate Procedural Hallucination in Conversational Agents",
+      "upvotes": 4,
+      "paper_id": "2610.21561",
+      "abstract": "Benchmark for procedural hallucination, where agent replies are fluent but break the intended dialogue process. Proposes flow-aware metrics FlowKL and FlowScore."
+    },
+    {
+      "title": "Constrained Decoding: Harmful or Beneficial? Revisiting Its Impact on LLM Performance",
+      "upvotes": 3,
+      "paper_id": "2610.35328",
+      "abstract": "Argues constrained decoding does not inherently hurt reasoning. Effects depend on constraint type; validity and reasoning constraints often improve reliability and accuracy."
+    },
+    {
+      "title": "Can Test-Time Memory Evolution Outperform Test-Time Training for Scientific Discovery?",
+      "upvotes": 2,
+      "paper_id": "2610.32046",
+      "abstract": "Updates an external memory instead of model weights during discovery. Beats test-time training on five math tasks while cutting FLOPs by 82-85% and runtime by 48-58%."
+    },
+    {
+      "title": "Rethinking Verification in Agent Harnesses",
+      "upvotes": 2,
+      "paper_id": "2610.34577",
+      "abstract": "Studies when, who, and how agents verify their work. Independent critic review gives the best accuracy-cost tradeoff, adding 4-10 points on coding benchmarks."
+    },
+    {
+      "title": "OBB-PBD: Extending Parallel Box Decoding to Oriented Bounding Boxes for Referring Expression Grounding in Aerial Imagery",
+      "upvotes": 2,
+      "paper_id": "2610.35450",
+      "abstract": "Extends parallel box decoding to oriented boxes for aerial referring expression grounding. Raises rotated IoU from 0.125 to 0.303 on the AVVG benchmark."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.312",
+      "published_at": "2026-10-27",
+      "body": "What's changed\n\n* Added `oidc.user_id_claim` to the Claude apps gateway, to identify people by an id_token claim other than `sub`, such as Microsoft Entra ID's `oid`\n* Added click to send: in fullscreen, clicking the \"to send now\" hint under a queued message sends it right away, as its key does\n* Fixed managed settings and organization policy not being fetched for the rest of the session after signing in from the VS Code extension\n* Fixed Claude overwriting a very large CLAUDE.md, rules file or @-included file in a subdirectory after seeing only its start; Write now asks Claude to read it all..."
+    },
+    {
+      "tag_name": "v2.1.311",
+      "published_at": "2026-10-26",
+      "body": "What's changed\n\n* Added `--hold-idle-file` and `--max-hold-min` to `self-hosted-runner`, to keep an idle session while your host reports processes it left running\n* Added a tip for the Explanatory output style, shown when you ask Claude for explanations\n* Fixed long freezes at startup and after reading or editing files when a CLAUDE.md file holds a very long list item\n* Fixed interrupting Claude not taking effect until a timeout while an MCP server had not answered a resource read or a skill was still downloading\n* Fixed standard-context sessions stopping with \"Usage credits..."
+    },
+    {
+      "tag_name": "v2.1.310",
+      "published_at": "2026-10-23",
+      "body": "What's changed\n\n* Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too\n* Fixed requests failing behind some gateways and compatible servers that reject the `effort-2025-11-24` beta value or mid-conversation system messages; Claude Code now retries without them\n* Fixed background cleanup deleting some recent files, such as pasted images, when `cleanupPeriodDays` is set to a very large value\n* Fixed compaction after a \"Prompt is too long\" error keeping..."
+    }
+  ]
+}
