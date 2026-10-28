@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-29",
+  "content": "# AI Daily Digest — 2026-10-29\n\n## 今日のハイライト\n- **MPO: 長期エージェント訓練の新基準 (316 upvotes)**: ターンレベルの信用割り当てを整合させるMPOが検索・ツール使用・自動化で大幅改善。複雑なエージェントワークフローの実用化を加速する重要研究。\n- **Claude Code v2.1.312リリース**: OIDC強化でEnterpriseの認証柔軟性が向上。大きなCLAUDE.mdの安全な上書き制御も修正され、実運用の信頼性が大幅改善。\n- **離散視覚トークンの情報損失解決へ (88 upvotes)**: Factorized VQにより離散トークンが連続表現に匹敵。VLMの効率的なビジョン統合に向けた実用的ブレークスルー。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.312 (2026-10-27)\n\n**主要機能**\n- OIDCゲートウェイに `oidc.user_id_claim` を追加 — Microsoft Entra ID の `oid` など `sub` 以外のクレームでユーザーを識別可能に\n- フルスクリーン時の「クリックで送信」機能追加 — キューされたメッセージを即時送信できるように\n\n**バグ修正**\n- VS Code 拡張機能からサインイン後、マネージド設定と組織ポリシーがセッション全体で取得されない問題を修正\n- 非常に大きな CLAUDE.md やインクルードファイルを先頭部分しか見ずに上書きしてしまう問題を修正 (Write が確認を求めるよう改善)\n\n**ユーザーへの影響**: Enterprise ユーザーは OIDC 設定の柔軟性が向上。大規模プロジェクトでの CLAUDE.md 管理が安全に。\n\n---\n\n### v2.1.311 (2026-10-26)\n\n**主要機能**\n- `self-hosted-runner` に `--hold-idle-file` と `--max-hold-min` オプションを追加 — ホストが実行中プロセスを報告している間、アイドルセッションを維持可能\n- Explanatory 出力スタイルのヒントを追加\n\n**バグ修正**\n- CLAUDE.md に非常に長いリストアイテムが含まれる場合の起動・ファイル操作時の長時間フリーズを修正\n- MCP サーバーがリソース読み込みに応答しない間、割り込みがタイムアウトまで効かない問題を修正\n- 200K トークンを超えるリクエストで「Usage credits required for 1M context」エラーが発生する問題を修正 (自動コンパクト対応)\n\n**ユーザーへの影響**: セルフホスト環境の安定性向上。大規模コンテキストでの動作改善。\n\n---\n\n### v2.1.310 (2026-10-23)\n\n**主要機能**\n- Bedrock、Vertex、Foundry でも Monitor ツールとプラグインモニターが利用可能に\n- テレメトリや非必須トラフィック無効時にも長時間のフォアグラウンドスリープをブロック\n\n**バグ修正**\n- `effort-2025-11-24` ベータ値や中断システムメッセージを拒否するゲートウェイ経由でのリクエスト失敗を修正 (自動リトライ)\n- `cleanupPeriodDays` が大きい値の場合、最近のファイル (貼り付け画像など) を誤って削除するバグを修正\n- 長文圧縮後の「Prompt is too long」エラー再発問題を修正\n\n**ユーザーへの影響**: クラウドプラットフォーム利用者はモニタリング機能が全面利用可能に。ゲートウェイ互換性が大幅改善。\n\n## 注目論文 TOP 10\n\n1. **Multiscale Policy Optimization for Long-Horizon LLM Agents** | 👍 316 | [arxiv:2610.35013](https://arxiv.org/abs/2610.35013)\n   - 🎯 **背景**: 長期タスクにおけるLLMエージェントの信用割り当て問題を解決するアプローチが求められていた\n   - 🔧 **手法**: ターンレベルでの信用割り当てとポリシー更新を整合させるMPO (Multiscale Policy Optimization) を提案\n   - 📊 **結果**: 検索・ツール使用・自動化タスクで既存手法を上回る性能を達成\n   - 💡 **意義**: 長期エージェント訓練の効率化により、より複雑なタスクをこなせるAIエージェントの実現に貢献\n   - ⚠️ **限界**: 提案手法の計算コストや、特定ドメイン外への汎化性能については追加検証が必要\n\n2. **VibeVideoBench: Evaluating Multimodal Agents on Code-Driven Video Generation** | 👍 168 | [arxiv:2610.35864](https://arxiv.org/abs/2610.35864)\n   - 🎯 **背景**: コードを書いて動画を生成するマルチモーダルエージェントの評価基準が欠如していた\n   - 🔧 **手法**: 239タスクから成るベンチマークを構築し、エージェントがコードで動画をレンダリングする能力を評価\n   - 📊 **結果**: トップシステムでも視覚品質よりタイミングや配信面での失敗が多いことが判明\n   - 💡 **意義**: 動画生成エージェントの弱点を明確化し、今後の改善方向を示す重要な評価指標を提供\n   - ⚠️ **限界**: 239タスクでの評価範囲に限定されており、実世界の多様なシナリオを完全にカバーしきれない可能性\n\n3. **Can Discrete Tokens Serve as Semantically Lossless Representations of Visual Signals?** | 👍 88 | [arxiv:2610.37662](https://arxiv.org/abs/2610.37662)\n   - 🎯 **背景**: 離散視覚トークンは連続表現と比べ情報損失が大きく、マルチモーダル理解の妨げになっていた\n   - 🔧 **手法**: 相補的な特徴ビューに対して並列コードブックを使うFactorized Vector Quantizationを導入\n   - 📊 **結果**: マルチモーダル理解において離散トークンが連続表現に近い性能を達成\n   - 💡 **意義**: LLMの効率的なビジョンエンコーダとして離散トークンの活用可能性を大幅に拡大\n   - ⚠️ **限界**: 並列コードブックの設計・学習に追加コストが伴い、大規模適用時の効率性に課題がある可能性\n\n4. **Truncate or Not? A Scaling Study of Looped Transformers with Truncated Backpropagation** | 👍 26 | [arxiv:2610.26030](https://arxiv.org/abs/2610.26030)\n   - 🎯 **背景**: ループ型Transformerの訓練において、切り捨てバックプロパゲーションが広く使われているが最適かは不明だった\n   - 🔧 **手法**: 約600回のランを含む大規模スケーリング実験で、完全BPTTvs切り捨てBPTTを同一計算量で比較\n   - 📊 **結果**: 同じ計算量では完全バックプロパゲーションが切り捨て訓練を上回ることを確認\n   - 💡 **意義**: ループ型Transformerの訓練設計に明確な指針を提供し、無駄な近似の排除につながる\n   - ⚠️ **限界**: 非常に長いシーケンスや、メモリ制約が厳しい環境での完全BPTTの実用性には依然制限がある\n\n5. **Zooming without Zooming v2: From Seeing Details to Connecting Evidence for Generalizable Multimodal Perception** | 👍 23 | [arxiv:2610.37037](https://arxiv.org/abs/2610.37037)\n   - 🎯 **背景**: 既存VLMは細部を見ることはできるが、複数領域の視覚的証拠を統合する能力が不十分だった\n   - 🔧 **手法**: 複数領域の視覚的証拠を繋ぎ合わせることを学ぶ訓練データを合成し、VLMをファインチューニング\n   - 📊 **結果**: 空間知覚とマルチモーダル推論の双方で性能が向上\n   - 💡 **意義**: VLMがより自然な「観察と統合」のプロセスを学習できる新しいデータ合成アプローチを確立\n   - ⚠️ **限界**: 合成データの品質に依存するため、実世界の複雑なシナリオへの汎化に限界が生じる可能性がある\n\n6. **EmbeddingGemma 2: Unified and Efficient Multimodal Representations** | 👍 12 | [arxiv:2610.37364](https://arxiv.org/abs/2610.37364)\n   - 🎯 **背景**: テキスト・画像・音声・動画を統一的に扱えるオープンな埋め込みモデルが不足していた\n   - 🔧 **手法**: テキスト、画像、音声、動画を同一の埋め込み空間にマッピングするモデルを開発し、リソース制約環境向けのオプションも提供\n   - 📊 **結果**: 各モダリティ間の統一表現を実現し、様々なリトリーバルタスクで競争力ある性能を示した\n   - 💡 **意義**: オープンなマルチモーダル埋め込みモデルとして、検索・推薦・RAGシステムへの応用が広がる\n   - ⚠️ **限界**: 各モダリティ専門モデルと比べると、特定タスクでの性能は劣る可能性がある\n\n7. **h1: A Taste of the Bitter Lesson in Automated Theorem Proving** | 👍 12 | [arxiv:2610.35962](https://arxiv.org/abs/2610.35962)\n   - 🎯 **背景**: 自動定理証明においては複雑なワークフローや専門的なアーキテクチャが主流だった\n   - 🔧 **手法**: 効率的なLean 4インターフェースを持つシンプルなエージェントループを実装し、既存手法と比較\n   - 📊 **結果**: 最先端の定理証明結果を達成し、シンプルな手法の有効性を示した\n   - 💡 **意義**: AIの「苦い教訓」(シンプルな手法+計算スケールが複雑な設計を凌駕)が定理証明にも適用されることを実証\n   - ⚠️ **限界**: より高度な数学的証明や形式化されていない問題への適用範囲はまだ限られている\n\n8. **Beyond the Estimate: Wiener-Informed Decoding for Easier Training of Pixel-Space Flow Models** | 👍 9 | [arxiv:2610.36192](https://arxiv.org/abs/2610.36192)\n   - 🎯 **背景**: ピクセル空間の拡散デコーダーは訓練が困難で、高品質な生成に多くの計算資源が必要だった\n   - 🔧 **手法**: ピクセル空間拡散デコーダー内にWiener統計推定を組み込み、適度なパラメータオーバーヘッドで訓練を改善\n   - 📊 **結果**: 訓練の高速化と生成品質の向上を同時に実現\n   - 💡 **意義**: 古典的な信号処理手法をDLと組み合わせることで、効率的な画像生成モデル訓練を可能にする\n   - ⚠️ **限界**: Wiener推定の計算精度が結果に影響するため、特定の画像分布での性能保証には追加検証が必要\n\n9. **The Lexical Imprint of Pre-training Data** | 👍 7 | [arxiv:2602.10657](https://arxiv.org/abs/2602.10657)\n   - 🎯 **背景**: 事前学習データとベンチマーク性能の関係を定量的に把握する手法が不足していた\n   - 🔧 **手法**: モデルフリーのユニグラムクロスエントロピー指標を用い、事前学習コーパスとベンチマーク間の単語レベル整合性を計測\n   - 📊 **結果**: 事前学習コーパスとベンチマークの語彙的整合性がゼロショット精度を予測することを示した\n   - 💡 **意義**: LLMの性能がデータ分布に大きく依存することを定量化し、より公正なベンチマーク設計への指針を提供\n   - ⚠️ **限界**: ユニグラム分析はトークン出現頻度のみを捉え、意味的関係や文脈的情報は考慮していない\n\n10. **Rare, Relevant, and Still Wrong: How Memory Fails LLM Group Decisions** | 👍 4 | [arxiv:2610.37624](https://arxiv.org/abs/2610.37624)\n    - 🎯 **背景**: 複数LLMが議論するグループ意思決定システムで、議論を圧縮するメモリ手法の信頼性が問われていた\n    - 🔧 **手法**: 希少性・関連性に基づくLLMグループ議論の圧縮ヒューリスティックを評価し、失敗パターンを分析\n    - 📊 **結果**: 希少性・関連性いずれの選択方法も、デコイや社会的証明バイアスによって失敗することを発見\n    - 💡 **意義**: LLMグループ意思決定における根本的な脆弱性を明らかにし、より堅牢な集合的推論設計が必要なことを示す\n    - ⚠️ **限界**: 特定の議論圧縮手法のみを評価しており、他のメモリ管理戦略との比較が不十分\n\n",
+  "fetched_at": "2026-10-28T22:06:44.446149+00:00",
+  "papers": [
+    {
+      "title": "Multiscale Policy Optimization for Long-Horizon LLM Agents",
+      "upvotes": 316,
+      "paper_id": "2610.35013",
+      "abstract": "Proposes MPO, which aligns credit assignment and policy updates at the turn level for long-horizon LLM agents, with gains on search, tool-use, and automation tasks."
+    },
+    {
+      "title": "VibeVideoBench: Evaluating Multimodal Agents on Code-Driven Video Generation",
+      "upvotes": 168,
+      "paper_id": "2610.35864",
+      "abstract": "A benchmark of 239 tasks testing agents that write code to render videos, finding that top systems often fail on timing and delivery rather than visual quality."
+    },
+    {
+      "title": "Can Discrete Tokens Serve as Semantically Lossless Representations of Visual Signals?",
+      "upvotes": 88,
+      "paper_id": "2610.37662",
+      "abstract": "Introduces Factorized Vector Quantization, which uses parallel codebooks on complementary feature views so discrete visual tokens can approach continuous representations in multimodal understanding."
+    },
+    {
+      "title": "Truncate or Not? A Scaling Study of Looped Transformers with Truncated Backpropagation",
+      "upvotes": 26,
+      "paper_id": "2610.26030",
+      "abstract": "A scaling study of about 600 runs finding that full backpropagation through time beats truncated training at matched compute for looped transformers."
+    },
+    {
+      "title": "Zooming without Zooming v2: From Seeing Details to Connecting Evidence for Generalizable Multimodal Perception",
+      "upvotes": 23,
+      "paper_id": "2610.37037",
+      "abstract": "Synthesizes training data that teaches vision-language models to connect visual evidence across regions, improving spatial perception and multimodal reasoning."
+    },
+    {
+      "title": "EmbeddingGemma 2: Unified and Efficient Multimodal Representations",
+      "upvotes": 12,
+      "paper_id": "2610.37364",
+      "abstract": "An open embedding model that maps text, images, audio, and video into one space, with flexible options for resource-constrained deployment."
+    },
+    {
+      "title": "h1: A Taste of the Bitter Lesson in Automated Theorem Proving",
+      "upvotes": 12,
+      "paper_id": "2610.35962",
+      "abstract": "A simple agentic loop with an efficient Lean 4 interface reaches state-of-the-art theorem-proving results, suggesting the interface matters more than complex workflows."
+    },
+    {
+      "title": "Beyond the Estimate: Wiener-Informed Decoding for Easier Training of Pixel-Space Flow Models",
+      "upvotes": 9,
+      "paper_id": "2610.36192",
+      "abstract": "Uses statistical Wiener estimates inside pixel-space diffusion decoders to speed up training and improve generation quality with modest parameter overhead."
+    },
+    {
+      "title": "The Lexical Imprint of Pre-training Data",
+      "upvotes": 7,
+      "paper_id": "2602.10657",
+      "abstract": "Shows that word-level alignment between pre-training corpora and benchmarks predicts zero-shot accuracy, using a model-free unigram cross-entropy measure."
+    },
+    {
+      "title": "Rare, Relevant, and Still Wrong: How Memory Fails LLM Group Decisions",
+      "upvotes": 4,
+      "paper_id": "2610.37624",
+      "abstract": "Finds that common heuristics for compressing LLM group discussions into memory, selecting by rarity or relevance, both fail due to decoys and social-proof bias."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "2.1.312",
+      "published_at": "2026-10-27",
+      "body": "What's changed\n\n- Added `oidc.user_id_claim` to the Claude apps gateway, to identify people by an id_token claim other than `sub`, such as Microsoft Entra ID's `oid`\n- Added click to send: in fullscreen, clicking the \"to send now\" hint under a queued message sends it right away, as its key does\n- Fixed managed settings and organization policy not being fetched for the rest of the session after signing in from the VS Code extension\n- Fixed Claude overwriting a very large CLAUDE.md, rules file or @-included file in a subdirectory after seeing only its start; Write now asks…"
+    },
+    {
+      "tag_name": "2.1.311",
+      "published_at": "2026-10-26",
+      "body": "What's changed\n\n- Added `--hold-idle-file` and `--max-hold-min` to `self-hosted-runner`, to keep an idle session while your host reports processes it left running\n- Added a tip for the Explanatory output style, shown when you ask Claude for explanations\n- Fixed long freezes at startup and after reading or editing files when a CLAUDE.md file holds a very long list item\n- Fixed interrupting Claude not taking effect until a timeout while an MCP server had not answered a resource read or a skill was still downloading\n- Fixed standard-context sessions stopping with \"Usage credits required for 1M context\" when a request ran over 200K tokens; Claude Code now compacts the conversation and…"
+    },
+    {
+      "tag_name": "2.1.310",
+      "published_at": "2026-10-23",
+      "body": "What's changed\n\n- Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too\n- Fixed requests failing behind some gateways and compatible servers that reject the `effort-2025-11-24` beta value or mid-conversation system messages; Claude Code now retries without them\n- Fixed background cleanup deleting some recent files, such as pasted images, when `cleanupPeriodDays` is set to a very large value\n- Fixed compaction after a \"Prompt is too long\" error keeping too much of a conversation with dense text, such as base64 or SVG, so the next request could fail again\n- Fixed file read permission prompts not showing where a symbolic link leads\n- Fixed a question's auto-continue timeout firing the moment…"
+    }
+  ]
+}
