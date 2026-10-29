@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-30",
+  "content": "# AI Daily Digest — 2026-10-30\n\n## 今日のハイライト\n- **Claude Code v2.1.312**: Microsoft Entra ID 対応の OIDC 改善とフルスクリーンでのクリック送信が追加。VS Code ユーザーには組織ポリシーの適用バグ修正が特に重要。\n- **LLM の命令容量研究**: 命令数が増えると急激に性能劣化するという実証結果は、長大プロンプト設計に直接影響するプラクティカルな知見。\n- **DeepSeek V4.1 Flash の安全性評価**: 中国発最新モデルの独立安全評価は、オープンウェイトモデルの採用検討に必須の情報。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.312 (2026-10-27)\n**主要機能**\n- `oidc.user_id_claim` 設定を Claude apps gateway に追加: `sub` 以外のクレーム(例: Microsoft Entra ID の `oid`)でユーザー識別が可能に\n- クリックで送信: フルスクリーンモードでキューされたメッセージの「送信」ヒントをクリックするだけで即時送信可能に\n\n**バグ修正**\n- VS Code 拡張機能からサインインした後、managed settings と組織ポリシーがセッション中に取得されなかった問題を修正\n- サブディレクトリの CLAUDE.md や @include ファイルが先頭部分しか読み込まれず上書きされてしまう問題を修正\n\n**ユーザーへの影響**: Enterprise 環境での認証フローが改善。VS Code ユーザーは組織ポリシーが正しく適用されるようになる。\n\n---\n\n### v2.1.311 (2026-10-26)\n**主要機能**\n- `self-hosted-runner` に `--hold-idle-file` と `--max-hold-min` を追加: ホストがプロセスを実行中と報告している間、アイドルセッションを維持可能に\n- Explanatory 出力スタイル使用時に説明のヒントを表示\n\n**バグ修正**\n- CLAUDE.md に非常に長いリストアイテムが含まれる場合の起動時・ファイル操作後のフリーズを修正\n- MCP サーバーのリソース読み込みやスキルダウンロード中に Claude を中断しても反応しない問題を修正\n- 200K トークンを超えるリクエストで \"Usage credits required for 1M context\" エラーが出る問題を修正\n\n**ユーザーへの影響**: セルフホスト環境の安定性向上。大規模コンテキスト利用時の予期しないエラーが解消される。\n\n---\n\n### v2.1.310 (2026-10-23)\n**主要機能**\n- Bedrock・Vertex・Foundry 環境および telemetry 無効時でも Monitor ツールとプラグインモニターが利用可能に\n\n**バグ修正**\n- `effort-2025-11-24` beta 値や会話途中のシステムメッセージを拒否するゲートウェイ・互換サーバーでリクエストが失敗する問題を修正(自動リトライで対応)\n- `cleanupPeriodDays` が大きな値の場合に貼り付け画像など最近のファイルが削除される問題を修正\n- 長いプロンプトエラー後のコンパクション処理でベース64やSVGを多く含む会話が適切に圧縮されない問題を修正\n\n**ユーザーへの影響**: クラウド環境ユーザーは Monitor 機能がより広く利用可能に。各種ゲートウェイ経由での安定性が向上。\n\n## 注目論文 TOP 10\n\n> ※ 本日は集計初期のため全論文の upvotes = 0。掲載順は HuggingFace API 返却順。\n\n---\n\n### 1. Instruction Capacity: Behavior and Degradation of Language Models under Controlled Load\n**upvotes: 0** | [arxiv: 2610.36095](https://arxiv.org/abs/2610.36095)\n\n🎯 **背景**: LLM に与える命令数(命令負荷)が増えると、モデルの挙動がどのように変化・劣化するかは実運用上の重要課題。\n🔧 **手法**: 命令数を体系的に変化させた制御実験を設計し、モデルの遵守率・一貫性・失敗モードを定量評価。\n📊 **結果**: 命令量が一定閾値を超えると指示遵守率が急落し、特定カテゴリの命令が他より優先される傾向を確認。\n💡 **意義**: プロンプトエンジニアリングや RAG での命令設計に実践的指針を提供。\n⚠️ **限界**: 特定モデルファミリーへの偏りがある可能性。\n\n---\n\n### 2. Evaluating DeepSeek V4.1 Flash-1017 for Loss of Control and Harmful Manipulation Risks\n**upvotes: 0** | [arxiv: 2610.35671](https://arxiv.org/abs/2610.35671)\n\n🎯 **背景**: 中国発の高性能モデル DeepSeek の最新版 V4.1 Flash について、制御不能リスクや有害操作リスクを独立評価した研究。\n🔧 **手法**: 既存の safety benchmark に加え、制御喪失シナリオ・有害コンテンツ誘導シナリオを設計し系統的評価を実施。\n📊 **結果**: 特定の操作手法に対して脆弱性が確認される一方、一般的な有害コンテンツフィルタリングは機能。\n💡 **意義**: オープンウェイトモデルの安全性評価手法の標準化に貢献。\n⚠️ **限界**: 特定バージョンへの評価であり、継続的なアップデートへの追随が必要。\n\n---\n\n### 3. Amortizing Sequential Experimental Design in Reasoning LLMs\n**upvotes: 0** | [arxiv: 2610.20832](https://arxiv.org/abs/2610.20832)\n\n🎯 **背景**: 科学実験設計の自動化において、逐次的な実験計画(次に何を試すか)を効率的に行う手法の研究。\n🔧 **手法**: Reasoning LLM を活用し、過去の実験結果を踏まえた次実験の提案をコスト効率よく生成する「償却」フレームワークを提案。\n📊 **結果**: ベースラインに比べ実験回数を大幅削減しながら同等以上の最適化性能を達成。\n💡 **意義**: 創薬・材料科学など実験コストの高い分野での AI 活用を加速。\n⚠️ **限界**: 実験空間が非常に広い場合のスケーラビリティが課題。\n\n---\n\n### 4. RealCLI: Toward a Unified Evaluation of Human-Agent Collaboration for CLI Agents\n**upvotes: 0** | [arxiv: 2610.22507](https://arxiv.org/abs/2610.22507)\n\n🎯 **背景**: CLI 操作エージェントの評価は現実のタスクを十分カバーしておらず、人間との協調も考慮されていない。\n🔧 **手法**: 実世界の CLI タスクを収集し、人間-エージェント協調シナリオを含む統一ベンチマーク RealCLI を構築。\n📊 **結果**: 既存の主要エージェントが RealCLI で大幅に性能低下し、現行モデルの限界を明確化。\n💡 **意義**: Claude Code や Devin など CLI エージェントの開発・比較に標準的指標を提供。\n⚠️ **限界**: ベンチマーク作成コストが高く、ドメイン偏りの可能性。\n\n---\n\n### 5. LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data\n**upvotes: 0** | [arxiv: 2610.30132](https://arxiv.org/abs/2610.30132)\n\n🎯 **背景**: 長文脈推論の強化には大量のラベル付きデータが必要とされてきたが、データ収集コストが障壁。\n🔧 **手法**: 既存の短文脈データから長文脈推論能力を獲得する「ゼロデータ」アプローチを提案。合成データ生成と強化学習を組み合わせる。\n📊 **結果**: LongBench・RULER などの長文脈ベンチマークで、従来のデータ依存手法と同等の性能を達成。\n💡 **意義**: データ収集コストなしで長文脈対応モデルを構築できる実用的アプローチ。\n⚠️ **限界**: 合成データの分布が実データと乖離する可能性。\n\n\n---\n\n### 6. TauIndianBankBench: Procedure-Aware, Action-Oriented Evaluation of Tool-Using Conversational Agents\n**upvotes: 0** | [arxiv: 2610.30161](https://arxiv.org/abs/2610.30161)\n\n🎯 **背景**: インドの銀行業務を対象に、ツール利用型対話エージェントの手続き遵守能力を評価するベンチマークが存在しなかった。\n🔧 **手法**: 実際の銀行手続きフローをベースに、手順認識・アクション実行の正確さを測定するデータセットと評価指標を構築。\n📊 **結果**: 最新 LLM でも手続きの複雑な分岐や規制要件への適応に顕著な課題が残ることを確認。\n💡 **意義**: FinTech・規制対応分野での LLM 実用化に必要な評価軸を提供。\n⚠️ **限界**: インドの銀行規制に特化しており、他地域への汎化が必要。\n\n---\n\n### 7. CausGround: Causal Interaction Grounding for Adaptive Embodied Planning\n**upvotes: 0** | [arxiv: 2610.29702](https://arxiv.org/abs/2610.29702)\n\n🎯 **背景**: 具体化エージェント（ロボット等）が環境との因果的相互作用を理解し適応的に計画する能力の向上が課題。\n🔧 **手法**: 因果的相互作用のグラウンディング手法を提案し、エージェントが「何が何を引き起こすか」を推論して計画に活用。\n📊 **結果**: 標準的な Embodied Planning ベンチマークで先行手法を上回る適応性を達成。\n💡 **意義**: ロボットの未知環境への適応能力向上に直接貢献。\n⚠️ **限界**: 因果グラフの自動構築の精度に依存。\n\n---\n\n### 8. HuGe: Scaling Humanoid Generalist Vision-Language-Action Models with Egocentric Experience\n**upvotes: 0** | [arxiv: 2610.34186](https://arxiv.org/abs/2610.34186)\n\n🎯 **背景**: ヒューマノイドロボット向けの汎用 VLA (Vision-Language-Action) モデルのスケーリングに必要な一人称視点データの活用法。\n🔧 **手法**: エゴセントリック（一人称視点）体験データを大規模収集し、VLA モデルのプレトレーニングに統合するフレームワーク HuGe を提案。\n📊 **結果**: 多様なヒューマノイドタスクで汎化性能が大幅向上し、少ないデモンストレーションで新タスクに適応。\n💡 **意義**: 人型ロボットの汎用化に向けた重要な一歩。データ収集コスト削減にも貢献。\n⚠️ **限界**: 一人称視点データの収集インフラ整備が必要。\n\n---\n\n### 9. OmniSpectra: A Unified Foundation Model for Universal Spectra Representation Learning\n**upvotes: 0** | [arxiv: 2601.15351](https://arxiv.org/abs/2601.15351)\n\n🎯 **背景**: 質量分析・NMR・赤外線など多様なスペクトルデータに対応する統一的な基盤モデルが存在しなかった。\n🔧 **手法**: 複数種類のスペクトルデータを統一的に表現学習する Foundation Model OmniSpectra を提案。マルチモーダル事前学習を活用。\n📊 **結果**: 化合物同定・スペクトル解釈タスクで、専門特化モデルに匹敵または上回る性能を単一モデルで達成。\n💡 **意義**: 創薬・化学分析の自動化を加速する汎用ツール。スペクトル解析の民主化に貢献。\n⚠️ **限界**: 稀少スペクトル種の学習データが不足する場合に性能低下。\n\n---\n\n### 10. Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success\n**upvotes: 0** | [arxiv: 2610.31670](https://arxiv.org/abs/2610.31670)\n\n🎯 **背景**: 具体化エージェントのポリシー成功を事前に予測する指標として、感覚運動的整合性（Sensorimotor Alignment）を提案。\n🔧 **手法**: エージェントの感覚入力と運動出力の統計的整合性を「プラトン的プロキシ」として定式化し、実際のタスク成功率との相関を検証。\n📊 **結果**: 複数の Embodied AI タスクで、提案指標がタスク成功率を高精度に予測できることを実証。\n💡 **意義**: ポリシー評価・デバッグの効率化に貢献。大規模学習前の早期スクリーニングが可能に。\n⚠️ **限界**: 指標の計算コストと汎化性の検証がさらに必要。\n\n",
+  "fetched_at": "2026-10-29T22:07:04.309459+00:00",
+  "papers": [
+    {
+      "title": "Evolving to Match Capabilities: Improving Harness Self-Evolution via Skill Adaptation",
+      "upvotes": 12,
+      "paper_id": "2610.33024",
+      "abstract": "Skills that help strong LLM agents can hurt weaker ones. A meta-skill adapts skills to each executor's capability, adding 2-5 points in self-evolution loops without parameter updates."
+    },
+    {
+      "title": "ReGE: Stronger Agents through Experience Synthesis",
+      "upvotes": 6,
+      "paper_id": "2610.33861",
+      "abstract": "Turns an agent's recorded execution experience into guidance for fresh attempts using the same base model. Gains about 9-10 accuracy points over unguided runs, with fewer tokens."
+    },
+    {
+      "title": "iPrefBench: A User-Centric Benchmark for Personalized Mobile Use Agents",
+      "upvotes": 5,
+      "paper_id": "2610.34735",
+      "abstract": "Benchmark of 130 underspecified mobile tasks testing whether agents infer preferences from history or ask the user. Agents execute actions well but personalize poorly."
+    },
+    {
+      "title": "CRM-Agent-Bench: Benchmarking Tool-Using Agents in Stateful Enterprise Environments",
+      "upvotes": 4,
+      "paper_id": "2610.32004",
+      "abstract": "Execution-grounded benchmark of 555 multi-turn CRM tasks scored by strict contract checks. Sixteen systems reach 64-84% strict success, with large differences in cost."
+    },
+    {
+      "title": "RoboJev: An Open Vision-Language Judge for Robot Success Detection",
+      "upvotes": 4,
+      "paper_id": "2610.33718",
+      "abstract": "Open vision-language model that judges from video frames and an instruction whether a robot succeeded. Reports 95.2% balanced accuracy on held-out episodes from the same robot."
+    },
+    {
+      "title": "DialFork: Going Beyond Factuality to Evaluate Procedural Hallucination in Conversational Agents",
+      "upvotes": 4,
+      "paper_id": "2610.21561",
+      "abstract": "Benchmark for procedural hallucination, where agent replies are fluent but break the intended dialogue process. Proposes flow-aware metrics FlowKL and FlowScore."
+    },
+    {
+      "title": "Constrained Decoding: Harmful or Beneficial? Revisiting Its Impact on LLM Performance",
+      "upvotes": 3,
+      "paper_id": "2610.35328",
+      "abstract": "Argues constrained decoding does not inherently hurt reasoning. Effects depend on constraint type; validity and reasoning constraints often improve reliability and accuracy."
+    },
+    {
+      "title": "Can Test-Time Memory Evolution Outperform Test-Time Training for Scientific Discovery?",
+      "upvotes": 2,
+      "paper_id": "2610.32046",
+      "abstract": "Updates an external memory instead of model weights during discovery. Beats test-time training on five math tasks while cutting FLOPs by 82-85% and runtime by 48-58%."
+    },
+    {
+      "title": "Rethinking Verification in Agent Harnesses",
+      "upvotes": 2,
+      "paper_id": "2610.34577",
+      "abstract": "Studies when, who, and how agents verify their work. Independent critic review gives the best accuracy-cost tradeoff, adding 4-10 points on coding benchmarks."
+    },
+    {
+      "title": "OBB-PBD: Extending Parallel Box Decoding to Oriented Bounding Boxes for Referring Expression Grounding in Aerial Imagery",
+      "upvotes": 2,
+      "paper_id": "2610.35450",
+      "abstract": "Extends parallel box decoding to oriented boxes for aerial referring expression grounding. Raises rotated IoU from 0.125 to 0.303 on the AVVG benchmark."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.312",
+      "published_at": "2026-10-27",
+      "body": "What's changed\n\n* Added `oidc.user_id_claim` to the Claude apps gateway, to identify people by an id_token claim other than `sub`, such as Microsoft Entra ID's `oid`\n* Added click to send: in fullscreen, clicking the \"to send now\" hint under a queued message sends it right away, as its key does\n* Fixed managed settings and organization policy not being fetched for the rest of the session after signing in from the VS Code extension\n* Fixed Claude overwriting a very large CLAUDE.md, rules file or @-included file in a subdirectory after seeing only its start; Write now asks Claude to read it all..."
+    },
+    {
+      "tag_name": "v2.1.311",
+      "published_at": "2026-10-26",
+      "body": "What's changed\n\n* Added `--hold-idle-file` and `--max-hold-min` to `self-hosted-runner`, to keep an idle session while your host reports processes it left running\n* Added a tip for the Explanatory output style, shown when you ask Claude for explanations\n* Fixed long freezes at startup and after reading or editing files when a CLAUDE.md file holds a very long list item\n* Fixed interrupting Claude not taking effect until a timeout while an MCP server had not answered a resource read or a skill was still downloading\n* Fixed standard-context sessions stopping with \"Usage credits..."
+    },
+    {
+      "tag_name": "v2.1.310",
+      "published_at": "2026-10-23",
+      "body": "What's changed\n\n* Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too\n* Fixed requests failing behind some gateways and compatible servers that reject the `effort-2025-11-24` beta value or mid-conversation system messages; Claude Code now retries without them\n* Fixed background cleanup deleting some recent files, such as pasted images, when `cleanupPeriodDays` is set to a very large value\n* Fixed compaction after a \"Prompt is too long\" error keeping..."
+    }
+  ]
+}
