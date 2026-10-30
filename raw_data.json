@@ -1,19 +1,65 @@
 {
   "papers": [
-    {"title":"Evolving to Match Capabilities: Improving Harness Self-Evolution via Skill Adaptation","upvotes":12,"paper_id":"2610.33024","abstract":"Skills that help strong LLM agents can hurt weaker ones. A meta-skill adapts skills to each executor's capability, adding 2-5 points in self-evolution loops without parameter updates."},
-    {"title":"ReGE: Stronger Agents through Experience Synthesis","upvotes":6,"paper_id":"2610.33861","abstract":"Turns an agent's recorded execution experience into guidance for fresh attempts using the same base model. Gains about 9-10 accuracy points over unguided runs, with fewer tokens."},
-    {"title":"iPrefBench: A User-Centric Benchmark for Personalized Mobile Use Agents","upvotes":5,"paper_id":"2610.34735","abstract":"Benchmark of 130 underspecified mobile tasks testing whether agents infer preferences from history or ask the user. Agents execute actions well but personalize poorly."},
-    {"title":"CRM-Agent-Bench: Benchmarking Tool-Using Agents in Stateful Enterprise Environments","upvotes":4,"paper_id":"2610.32004","abstract":"Execution-grounded benchmark of 555 multi-turn CRM tasks scored by strict contract checks. Sixteen systems reach 64-84% strict success, with large differences in cost."},
-    {"title":"RoboJev: An Open Vision-Language Judge for Robot Success Detection","upvotes":4,"paper_id":"2610.33718","abstract":"Open vision-language model that judges from video frames and an instruction whether a robot succeeded. Reports 95.2% balanced accuracy on held-out episodes from the same robot."},
-    {"title":"DialFork: Going Beyond Factuality to Evaluate Procedural Hallucination in Conversational Agents","upvotes":4,"paper_id":"2610.21561","abstract":"Benchmark for procedural hallucination, where agent replies are fluent but break the intended dialogue process. Proposes flow-aware metrics FlowKL and FlowScore."},
-    {"title":"Constrained Decoding: Harmful or Beneficial? Revisiting Its Impact on LLM Performance","upvotes":3,"paper_id":"2610.35328","abstract":"Argues constrained decoding does not inherently hurt reasoning. Effects depend on constraint type; validity and reasoning constraints often improve reliability and accuracy."},
-    {"title":"Can Test-Time Memory Evolution Outperform Test-Time Training for Scientific Discovery?","upvotes":2,"paper_id":"2610.32046","abstract":"Updates an external memory instead of model weights during discovery. Beats test-time training on five math tasks while cutting FLOPs by 82-85% and runtime by 48-58%."},
-    {"title":"Rethinking Verification in Agent Harnesses","upvotes":2,"paper_id":"2610.34577","abstract":"Studies when, who, and how agents verify their work. Independent critic review gives the best accuracy-cost tradeoff, adding 4-10 points on coding benchmarks."},
-    {"title":"OBB-PBD: Extending Parallel Box Decoding to Oriented Bounding Boxes for Referring Expression Grounding in Aerial Imagery","upvotes":2,"paper_id":"2610.35450","abstract":"Extends parallel box decoding to oriented boxes for aerial referring expression grounding. Raises rotated IoU from 0.125 to 0.303 on the AVVG benchmark."}
+    {
+      "title": "Intrinsic Distribution Matching",
+      "upvotes": 235,
+      "paper_id": "2610.39633",
+      "abstract": "One-step and few-step text-to-image generation must accurately render the details specified in the prompt despite limited opportunities for refinement. Distribution matching distillation (DMD) uses sc"
+    },
+    {
+      "title": "A-RSI: Adaptive Task Refresh for Zero-Data Multimodal Self-Improvement",
+      "upvotes": 155,
+      "paper_id": "2610.38568",
+      "abstract": "Recursive self-improvement requires models not only to acquire useful training experience, but also to decide when their current experience has ceased to be useful. Existing methods often focus on wha"
+    },
+    {
+      "title": "Your Benchmark Is an Empirical Measure Over Difficulty",
+      "upvotes": 141,
+      "paper_id": "2610.29927",
+      "abstract": "A benchmark is not merely a collection of test questions; it naturally induces an empirical measure over difficulty. In this work, we develop this measure-based view of benchmark evaluation. This pers"
+    },
+    {
+      "title": "Look Only When Needed: Certificate-Guided Visual Routing for Efficient Diffusion VLMs",
+      "upvotes": 90,
+      "paper_id": "2610.36671",
+      "abstract": "Diffusion vision-language models (DVLMs) process their entire input at every denoising step. Since visual tokens make up 89-97% of this input on the benchmarks we study, most of the decoding computati"
+    },
+    {
+      "title": "Youtu-Parsing-Omni: One Encoder, One Schema, All Modalities",
+      "upvotes": 53,
+      "paper_id": "2610.39301",
+      "abstract": "We present Youtu-Parsing-Omni, an omni-modal parser that converts documents, images, audio, and video into structured records grounded in space and time, providing a perception layer for agents that r"
+    },
+    {
+      "title": "Proving and Improving the Platonic Representation Hypothesis with JEPAs",
+      "upvotes": 49,
+      "paper_id": "2610.39302",
+      "abstract": "Whether models trained on different modalities converge to the same representation of the world is central to AI. The Platonic Representation Hypothesis (PRH) conjectures that they do as they scale, b"
+    },
+    {
+      "title": "L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory",
+      "upvotes": 34,
+      "paper_id": "2610.40614",
+      "abstract": "Interactive world models generate visual content conditioned on user actions, yet maintaining spatial consistency over long-horizon exploration in real time remains challenging. Existing approaches re"
+    },
+    {
+      "title": "WorkFactory: Turning Professional Intents into Executable Work for Scalable Agent Training",
+      "upvotes": 30,
+      "paper_id": "2610.37161",
+      "abstract": "Scaling supervised training for working agents requires diverse professional tasks that yield reliable expert demonstrations. However, missing or inconsistent task information can obstruct teacher exe"
+    },
+    {
+      "title": "A Broader Look into MLLM's Retrieval Heads",
+      "upvotes": 28,
+      "paper_id": "2610.32411",
+      "abstract": "Locating relevant evidence in long inputs is a core capability of Multimodal Large Language Models. Prior studies attribute this capability to retrieval heads, a sparse set of attention heads that tra"
+    },
+    {
+      "title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
+      "upvotes": 23,
+      "paper_id": "2610.40647",
+      "abstract": "Pixel-space generative Transformers typically use one token per image patch, so capturing finer detail requires more tokens and makes global attention increasingly expensive. We observe that finer det"
+    }
   ],
-  "cc_updates": [
-    {"tag_name":"v2.1.312","published_at":"2026-10-27","body":"What's changed\n\n* Added `oidc.user_id_claim` to the Claude apps gateway, to identify people by an id_token claim other than `sub`, such as Microsoft Entra ID's `oid`\n* Added click to send: in fullscreen, clicking the \"to send now\" hint under a queued message sends it right away, as its key does\n* Fixed managed settings and organization policy not being fetched for the rest of the session after signing in from the VS Code extension\n* Fixed Claude overwriting a very large CLAUDE.md, rules file or @-included file in a subdirectory after seeing only its start; Write now asks Claude to read it all..."},
-    {"tag_name":"v2.1.311","published_at":"2026-10-26","body":"What's changed\n\n* Added `--hold-idle-file` and `--max-hold-min` to `self-hosted-runner`, to keep an idle session while your host reports processes it left running\n* Added a tip for the Explanatory output style, shown when you ask Claude for explanations\n* Fixed long freezes at startup and after reading or editing files when a CLAUDE.md file holds a very long list item\n* Fixed interrupting Claude not taking effect until a timeout while an MCP server had not answered a resource read or a skill was still downloading\n* Fixed standard-context sessions stopping with \"Usage credits..."},
-    {"tag_name":"v2.1.310","published_at":"2026-10-23","body":"What's changed\n\n* Added the Monitor tool and plugin monitors on Bedrock, Vertex, and Foundry, and when telemetry or nonessential traffic is disabled; long foreground sleeps are now blocked there too\n* Fixed requests failing behind some gateways and compatible servers that reject the `effort-2025-11-24` beta value or mid-conversation system messages; Claude Code now retries without them\n* Fixed background cleanup deleting some recent files, such as pasted images, when `cleanupPeriodDays` is set to a very large value\n* Fixed compaction after a \"Prompt is too long\" error keeping..."}
-  ]
+  "cc_updates": []
 }
