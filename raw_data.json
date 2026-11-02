@@ -1,64 +1,64 @@
 {
   "papers": [
     {
-      "title": "Look Only When Needed: Certificate-Guided Visual Routing for Efficient Diffusion VLMs",
-      "upvotes": 101,
-      "paper_id": "2610.36671",
-      "abstract": "Diffusion vision-language models (DVLMs) process their entire input at every denoising step. Since visual tokens make up 89-97% of this input on the benchmarks we study, most of the decoding computati"
+      "title": "FrameForge: Harnessing Priors of Video Foundation Models for Unified Image Generation",
+      "upvotes": 111,
+      "paper_id": "2610.36545",
+      "abstract": "Unified conditional image generation requires a single model to preserve different aspects of a visual input while producing a target image that follows textual guidance. Pretrained video models provi"
     },
     {
-      "title": "A-RSI: Adaptive Task Refresh for Zero-Data Multimodal Self-Improvement",
-      "upvotes": 71,
-      "paper_id": "2610.38568",
-      "abstract": "Recursive self-improvement requires models not only to acquire useful training experience, but also to decide when their current experience has ceased to be useful. Existing methods often focus on wha"
+      "title": "R^2Orch: Recursive Self-Improvement for Agent Orchestration via Self-Play within a Skill-Internalization Loop",
+      "upvotes": 86,
+      "paper_id": "2610.22740",
+      "abstract": "In recent years, agentic orchestration has been widely applied to solve complex human tasks. However, existing orchestration learning still faces key challenges, including hand-designed curricula, adv"
     },
     {
       "title": "Proving and Improving the Platonic Representation Hypothesis with JEPAs",
-      "upvotes": 64,
+      "upvotes": 70,
       "paper_id": "2610.39302",
       "abstract": "Whether models trained on different modalities converge to the same representation of the world is central to AI. The Platonic Representation Hypothesis (PRH) conjectures that they do as they scale, b"
     },
     {
-      "title": "L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory",
-      "upvotes": 40,
-      "paper_id": "2610.40614",
-      "abstract": "Interactive world models generate visual content conditioned on user actions, yet maintaining spatial consistency over long-horizon exploration in real time remains challenging. Existing approaches re"
+      "title": "Does Scaling Toward AGI Depend on What System-1 Lets System-2 Execute?",
+      "upvotes": 58,
+      "paper_id": "2610.39497",
+      "abstract": "Progress toward artificial general intelligence (AGI) has largely relied on scaling a resource-intensive executive, System-2, through larger models, more data and compute, longer reasoning, and more a"
     },
     {
-      "title": "WorkFactory: Turning Professional Intents into Executable Work for Scalable Agent Training",
-      "upvotes": 37,
-      "paper_id": "2610.37161",
-      "abstract": "Scaling supervised training for working agents requires diverse professional tasks that yield reliable expert demonstrations. However, missing or inconsistent task information can obstruct teacher exe"
+      "title": "REA: A Routed Embodied Agent Runtime for Asynchronous Brain-Cerebellum Control",
+      "upvotes": 43,
+      "paper_id": "2610.42053",
+      "abstract": "Foundation models are becoming remarkably reliable at high-level reasoning, yet they remain too slow and costly to serve as fine-grained controllers. Conversely, fast policies like VLAs and whole-body"
     },
     {
-      "title": "A Broader Look into MLLM's Retrieval Heads",
-      "upvotes": 29,
-      "paper_id": "2610.32411",
-      "abstract": "Locating relevant evidence in long inputs is a core capability of Multimodal Large Language Models. Prior studies attribute this capability to retrieval heads, a sparse set of attention heads that tra"
+      "title": "Apriel Voice 27B Preview: An Open Model for Speech, Reasoning, and Tool Use",
+      "upvotes": 33,
+      "paper_id": "2610.40738",
+      "abstract": "A capable voice assistant must do more than recognize words; it must understand requests, reason over context, sustain conversations, and act through tools. We present Apriel Voice 27B Preview, an ope"
     },
     {
-      "title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
+      "title": "WeFair: Fidelity-Aware Alignment from Human Feedback for Personalized Query Rewriting in Short-Video Search",
+      "upvotes": 26,
+      "paper_id": "2610.16927",
+      "abstract": "Short-video search needs compact query rewriters that recover users' personalized intent from ambiguous queries under strict latency constraints. Existing LLM-based methods have improved rewriting by "
+    },
+    {
+      "title": "Latent Reasoning in Continuous Space for Unified Multimodal Models",
       "upvotes": 24,
-      "paper_id": "2610.40647",
-      "abstract": "Pixel-space generative Transformers typically use one token per image patch, so capturing finer detail requires more tokens and makes global attention increasingly expensive. We observe that finer det"
+      "paper_id": "2610.42149",
+      "abstract": "Unified Multimodal Models (UMMs) achieve remarkable success on diverse multimodal understanding and generation tasks, yet they still struggle to effectively leverage language-based chain-of-thought re"
     },
     {
-      "title": "HairDeck: Animation-Ready Stylized Hair Cards from a Single Image",
-      "upvotes": 23,
-      "paper_id": "2610.40599",
-      "abstract": "The hair of stylized characters in games and avatars is built from hair cards: artist-placed ribbons whose geometry is the visible hair, animated by spring bones. Existing image-based methods produce "
+      "title": "Wizard: Manipulate Any World in Real Time via Agentic Control",
+      "upvotes": 24,
+      "paper_id": "2610.40339",
+      "abstract": "Recent advances in video world models have enabled the generation of increasingly realistic and interactive virtual environments, opening new possibilities for player-customizable gameplay. Agentic fr"
     },
     {
-      "title": "VibeGame: Prompt-to-Game Development with AI-Native Engine and Self-Evolving Adversarial Agent Team",
-      "upvotes": 23,
-      "paper_id": "2610.33106",
-      "abstract": "Large language model agents have enabled software development through natural-language interaction, but extending this paradigm to end-to-end game development remains challenging. Building a playable "
-    },
-    {
-      "title": "Your Benchmark Is an Empirical Measure Over Difficulty",
-      "upvotes": 21,
-      "paper_id": "2610.29927",
-      "abstract": "A benchmark is not merely a collection of test questions; it naturally induces an empirical measure over difficulty. In this work, we develop this measure-based view of benchmark evaluation. This pers"
+      "title": "HiFOR: Hierarchical Foresight with Action-Guided World Grounding for Vision-Language-Action Model",
+      "upvotes": 24,
+      "paper_id": "2610.40373",
+      "abstract": "Vision-Language-Action (VLA) models have demonstrated promising capabilities in robotic manipulation by integrating visual perception, language understanding, and action generation. Recent advances ha"
     }
   ],
   "cc_updates": []
