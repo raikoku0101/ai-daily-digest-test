@@ -1,65 +1,81 @@
 {
   "papers": [
     {
-      "title": "FrameForge: Harnessing Priors of Video Foundation Models for Unified Image Generation",
-      "upvotes": 111,
-      "paper_id": "2610.36545",
-      "abstract": "Unified conditional image generation requires a single model to preserve different aspects of a visual input while producing a target image that follows textual guidance. Pretrained video models provi"
+      "title": "Advances in Agentic Computer Graphics",
+      "upvotes": 100,
+      "paper_id": "2611.01860",
+      "abstract": "Surveys LLM agent systems that generate and iteratively refine graphics code, proposing a unified taxonomy for the field and a literature analysis system to track rapid research growth."
     },
     {
-      "title": "R^2Orch: Recursive Self-Improvement for Agent Orchestration via Self-Play within a Skill-Internalization Loop",
-      "upvotes": 86,
-      "paper_id": "2610.22740",
-      "abstract": "In recent years, agentic orchestration has been widely applied to solve complex human tasks. However, existing orchestration learning still faces key challenges, including hand-designed curricula, adv"
+      "title": "SWE-Trail: History-Guided Trajectory Collection for Coding Agent Training",
+      "upvotes": 34,
+      "paper_id": "2611.02074",
+      "abstract": "Uses earlier coding-agent trajectories to decide where new data collection effort should go, keeping that history out of the agent's context to avoid a train-test mismatch."
     },
     {
-      "title": "Proving and Improving the Platonic Representation Hypothesis with JEPAs",
-      "upvotes": 70,
-      "paper_id": "2610.39302",
-      "abstract": "Whether models trained on different modalities converge to the same representation of the world is central to AI. The Platonic Representation Hypothesis (PRH) conjectures that they do as they scale, b"
+      "title": "PhotoGuider: Composition-Aware Cropping and 360° View Framing with Explainable Photographic Assessments",
+      "upvotes": 28,
+      "paper_id": "2611.02897",
+      "abstract": "Finds the best viewing direction in 360° panoramas and frames it using composition-aware scoring, with camera-parameter output and explanations for the framing choices."
     },
     {
-      "title": "Does Scaling Toward AGI Depend on What System-1 Lets System-2 Execute?",
-      "upvotes": 58,
-      "paper_id": "2610.39497",
-      "abstract": "Progress toward artificial general intelligence (AGI) has largely relied on scaling a resource-intensive executive, System-2, through larger models, more data and compute, longer reasoning, and more a"
-    },
-    {
-      "title": "REA: A Routed Embodied Agent Runtime for Asynchronous Brain-Cerebellum Control",
-      "upvotes": 43,
-      "paper_id": "2610.42053",
-      "abstract": "Foundation models are becoming remarkably reliable at high-level reasoning, yet they remain too slow and costly to serve as fine-grained controllers. Conversely, fast policies like VLAs and whole-body"
-    },
-    {
-      "title": "Apriel Voice 27B Preview: An Open Model for Speech, Reasoning, and Tool Use",
-      "upvotes": 33,
-      "paper_id": "2610.40738",
-      "abstract": "A capable voice assistant must do more than recognize words; it must understand requests, reason over context, sustain conversations, and act through tools. We present Apriel Voice 27B Preview, an ope"
-    },
-    {
-      "title": "WeFair: Fidelity-Aware Alignment from Human Feedback for Personalized Query Rewriting in Short-Video Search",
-      "upvotes": 26,
-      "paper_id": "2610.16927",
-      "abstract": "Short-video search needs compact query rewriters that recover users' personalized intent from ambiguous queries under strict latency constraints. Existing LLM-based methods have improved rewriting by "
-    },
-    {
-      "title": "Latent Reasoning in Continuous Space for Unified Multimodal Models",
+      "title": "Order-Only On-Policy Distillation",
       "upvotes": 24,
-      "paper_id": "2610.42149",
-      "abstract": "Unified Multimodal Models (UMMs) achieve remarkable success on diverse multimodal understanding and generation tasks, yet they still struggle to effectively leverage language-based chain-of-thought re"
+      "paper_id": "2611.02112",
+      "abstract": "Trains a student model to match the teacher's ranking of top tokens rather than its probabilities, which removes temperature tuning and improves math reasoning results."
     },
     {
-      "title": "Wizard: Manipulate Any World in Real Time via Agentic Control",
-      "upvotes": 24,
-      "paper_id": "2610.40339",
-      "abstract": "Recent advances in video world models have enabled the generation of increasingly realistic and interactive virtual environments, opening new possibilities for player-customizable gameplay. Agentic fr"
+      "title": "When Does Latent Prediction Error Support Physical Surprise Claims in Video World Models?",
+      "upvotes": 23,
+      "paper_id": "2611.01815",
+      "abstract": "Tests whether video world model prediction errors reliably signal physical impossibility, finding they often reflect appearance or motion instead of physical surprise."
     },
     {
-      "title": "HiFOR: Hierarchical Foresight with Action-Guided World Grounding for Vision-Language-Action Model",
-      "upvotes": 24,
-      "paper_id": "2610.40373",
-      "abstract": "Vision-Language-Action (VLA) models have demonstrated promising capabilities in robotic manipulation by integrating visual perception, language understanding, and action generation. Recent advances ha"
+      "title": "IdeaTaste: Do LLMs Share the Research Taste of Human Researchers?",
+      "upvotes": 22,
+      "paper_id": "2611.03424",
+      "abstract": "Benchmark that scores LLM research proposals by how closely they match papers published later; LLMs match human communities on broad directions but lag on concrete approaches."
+    },
+    {
+      "title": "LEANGUARD: Lean-Verified Guardrails for Tool-Using Agents",
+      "upvotes": 9,
+      "paper_id": "2611.02332",
+      "abstract": "Runtime that checks each tool call from LLM agents against a Lean4 policy before execution, blocking forbidden actions and offering feedback or proof-guided repair."
+    },
+    {
+      "title": "Cross-Primitive Consistency in Jev",
+      "upvotes": 6,
+      "paper_id": "2610.38623",
+      "abstract": "Introduces PrimaCons, a benchmark for whether LLM decisions stay consistent across query formats, and a residual calibrator that cuts that inconsistency by 58.57%."
+    },
+    {
+      "title": "Multi-Agent Relay Thinking",
+      "upvotes": 6,
+      "paper_id": "2610.35219",
+      "abstract": "Multi-agent framework where reasoning is passed between agents, triggered by confidence and assigned through bidding, improving accuracy at much lower token cost."
+    },
+    {
+      "title": "DR Pixel: Page-Native Deep Research with Vision-Language Models",
+      "upvotes": 5,
+      "paper_id": "2611.03097",
+      "abstract": "Open-source deep research agent that retrieves and reasons over rendered page images rather than OCR text, with counterfactual credit reweighting for training."
     }
   ],
-  "cc_updates": []
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.317",
+      "published_at": "2026-11-03",
+      "body": "What's changed\n\n- Added a warning to `/schedule` when a new cloud scheduled task gets connectors you did not ask for, with how to remove them\n- Added a check that asks before a web or shell tool call sends your account email address to the network\n- Added `onFailure: \"block\"` for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run\n- Added a notice in Claude Desktop's Code tab when your organization's remote managed settings haven't loaded for the session, and another once they do\n- Added a notice when auto mode's check has no answer for a..."
+    },
+    {
+      "tag_name": "v2.1.316",
+      "published_at": "2026-10-31",
+      "body": "What's changed\n\n- Added `CLAUDE_CODE_DISABLE_ULTRATHINK`, which turns the `ultrathink` keyword off\n- Added pooled group budgets to the Claude apps gateway: one monthly budget that a group's members share, on top of each member's own limit, set with `pooled_budget` on the spend limits admin API\n- Added `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP` to keep system cross-certificates that certify each other in a loop, for servers whose private CA needs one\n- Added `CLAUDE_CODE_SUBAGENT_EFFORT` to set the effort level subagents run at when nothing else names one, instead of inheriting the session's\n- Added `managed.policy_mode: layered` to the Claude apps gateway: every policy that matches a developer applies, each merged over the ones listed below it, not only the first\n- Added `guardrail.input_tagging` on Claude apps gateway Bedrock..."
+    },
+    {
+      "tag_name": "v2.1.314",
+      "published_at": "2026-10-30",
+      "body": "What's changed\n\n- Added `permissions.blockWritesOutsideWorkingDirectories`: Write, Edit and NotebookEdit refuse paths outside the working directories in every permission mode\n- Added an optional `groups` list to Claude apps gateway upstreams: only developers in the listed IdP groups are sent to that upstream, on failover too\n- Added `guardrail_trace` to Claude apps gateway Bedrock upstreams, to log which Amazon Bedrock guardrail filter fired on a request, without the matched text\n- Added idle compaction to VS Code and Claude Desktop's Code tab: a 200K+ token conversation left idle is summarized, and the summary is used on your next message if the prompt cache has expired\n- Fixed sessions failing turn after turn with \"Invalid effort level\" when an organization's admin caps a model's effort: Claude Code now lowers the effort, retries, and says which level it uses\n- Fixed `claude -p` exiting with code 0..."
+    }
+  ]
 }
