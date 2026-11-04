@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-01",
+  "content": "# AI Daily Digest — 2026-11-01\n\n## 今日のハイライト\n- **Claude Code v2.1.316リリース**: `CLAUDE_CODE_DISABLE_ULTRATHINK` や `CLAUDE_CODE_SUBAGENT_EFFORT` など管理・制御系の新環境変数が追加。エンタープライズ向けプールバジェット機能も搭載され、チーム利用の柔軟性が大幅に向上。\n- **マルチモーダル統一の理論的突破口 (論文1位・2位)**: 単一エンコーダーで全モダリティを処理する Youtu-Parsing-Omni (67票) と、異モダリティ学習が同一表現空間に収束することを数学的に証明した JEPA 研究 (58票) が同日トップを占め、AI の統一表現理論が加速している。\n- **AI エージェントのインターフェース設計が動作に影響 (論文10位)**: MCP と CLI という同一機能のインターフェースでもエージェントの挙動が変わることを実証。Claude Code のようなツール設計に直接関わる重要な知見で、DART 修正でスコア改善とコスト削減を両立。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.316 (2026-10-31) — 最新\n**主要新機能:**\n- `CLAUDE_CODE_DISABLE_ULTRATHINK` 環境変数追加: `ultrathink` キーワードによる超高思考モードを無効化できるようになった\n- **プールグループバジェット**: Claude apps gateway でグループメンバーが共有できる月次バジェットを追加。`pooled_budget` で管理 API から設定可能\n- `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP`: プライベート CA がループ状の相互認証を必要とするサーバー向けに証明書を保持するオプション\n- `CLAUDE_CODE_SUBAGENT_EFFORT`: サブエージェントの思考レベルをデフォルト設定できる新環境変数\n\n**ユーザーへの影響:** ultrathink の誤発動を防ぎたいチームや、エンタープライズ向けグループバジェット管理が必要な組織に直接的な利点あり。\n\n---\n\n### v2.1.314 (2026-10-30)\n**主要新機能:**\n- `permissions.blockWritesOutsideWorkingDirectories`: Write/Edit/NotebookEdit がワーキングディレクトリ外のパスへの書き込みを全モードで拒否するセキュリティ強化\n- Claude apps gateway の upstream に `groups` リスト追加: 特定 IdP グループのみを特定 upstream に誘導可能に\n- `guardrail_trace`: Bedrock guardrail フィルターの発火ログ（マッチしたテキストなし）を記録\n\n**バグ修正:**\n- VS Code 拡張からサインインした後、managed settings と組織ポリシーがセッション内で取得されなくなる問題を修正\n\n**ユーザーへの影響:** セキュリティ意識の高いチームにとって `blockWritesOutsideWorkingDirectories` は重要な保護機能。VS Code ユーザーには組織ポリシー適用の安定性向上。\n\n---\n\n### v2.1.312 (2026-10-27)\n**主要新機能:**\n- `oidc.user_id_claim`: Microsoft Entra ID の `oid` など `sub` 以外のクレームでユーザーを識別可能に\n- **クリックして送信**: フルスクリーンモードで「今すぐ送信」ヒントをクリックするだけでキューのメッセージを即時送信\n\n**バグ修正:**\n- 大きな CLAUDE.md やルールファイルを途中から読み込み後に上書きしてしまう問題を修正\n- Write ツールが読み込みを先に行うよう改善\n\n**ユーザーへの影響:** エンタープライズ IdP 統合が柔軟化。大型プロジェクトで CLAUDE.md が消えていた問題が解消される重要修正。\n\n---\n\n## 注目論文 TOP 10\n\n### 1. Youtu-Parsing-Omni: One Encoder, One Schema, All Modalities | 👍 67 | [arxiv:2610.39301](https://arxiv.org/abs/2610.39301)\n\n🎯 **背景**: 文書・画像・音声・動画を別々のモデルで処理する現状の複雑さを解消したい。  \n🔧 **手法**: 単一の共有エンコーダーと統一出力スキーマで全モダリティを時空間構造化レコードに変換するオムニモーダルパーサー。  \n📊 **結果**: 複数ベンチマークでトップクラスのスコアを達成。  \n💡 **意義**: マルチモーダルAIの統一化という大きな方向性を実証。実装の簡素化とスケーラビリティ向上に貢献。  \n⚠️ **限界**: 汎用スキーマが特定モダリティに特化した専門モデルのパフォーマンスを上回れるかは継続的な検証が必要。\n\n---\n\n### 2. Proving and Improving the Platonic Representation Hypothesis with JEPAs | 👍 58 | [arxiv:2610.39302](https://arxiv.org/abs/2610.39302)\n\n🎯 **背景**: 異なるモダリティで学習したモデルが同じ表現空間に収束するという「プラトン的表現仮説」を数学的に検証したい。  \n🔧 **手法**: 別々のモダリティで学習した JEPA（Joint Embedding Predictive Architecture）が、適切なポジティブビューを与えると回転まで一致する同一表現に収束することを証明。  \n📊 **結果**: ネクストトークン予測よりも JEPA の方が収束効率が大幅に高いことを実証。  \n💡 **意義**: 表現学習の理論的基盤を強化し、マルチモーダル学習の設計指針を提供する重要な理論的貢献。  \n⚠️ **限界**: 「良いポジティブビュー」の定義が実用的には曖昧で、具体的な実装指針が限られる。\n\n---\n\n### 3. Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers | 👍 36 | [arxiv:2610.40647](https://arxiv.org/abs/2610.40647)\n\n🎯 **背景**: 画像生成の画質向上にはグローバルアテンションのコスト増大が避けられない従来の課題を解決したい。  \n🔧 **手法**: ピクセル空間拡散 Transformer に DCT バンドスロットを追加し、低周波スロットのみをグローバルアテンションに参加させることで細部を強化。  \n📊 **結果**: 低い計算コストで FID を改善。  \n💡 **意義**: 高品質画像生成の計算効率を大幅に改善できる実用的なアーキテクチャ改良。  \n⚠️ **限界**: DCT 分解のパラメータ調整が必要で、異なる解像度への汎化性能は未検証。\n\n---\n\n### 4. PhysInsert: Physically Plausible Object Insertion with Geometric Priors and Bidirectional Object-Scene Interactions | 👍 13 | [arxiv:2610.40453](https://arxiv.org/abs/2610.40453)\n\n🎯 **背景**: 参照画像からオブジェクトをシーンに自然に挿入する際、姿勢・照明・物理的整合性を同時に満たすことが困難。  \n🔧 **手法**: オブジェクトとシーン双方を適応させるジオメトリガイダンスと、Blenderでレンダリングした反実仮想ペアによる学習データを活用。  \n📊 **結果**: 物理的に説得力のある合成結果を達成。  \n💡 **意義**: 映像制作や AR/VR での実用的なオブジェクト合成ツールとして直接応用可能。  \n⚠️ **限界**: Blender レンダリングデータへの依存があり、特定マテリアルでは精度低下の可能性。\n\n---\n\n### 5. Multi-Token Prediction Done Right | 👍 12 | [arxiv:2610.38331](https://arxiv.org/abs/2610.38331)\n\n🎯 **背景**: マルチトークン予測学習における標準的な勾配計算にノイズが含まれており、学習効率を下げている。  \n🔧 **手法**: 勾配残差のノイズを特定し、有用な自己蒸留信号のみを保つ Soft-MTP を提案。コードの変更は1行のみ。  \n📊 **結果**: 追加コストなしで学習効率を改善。  \n💡 **意義**: 既存のマルチトークン予測実装に即適用できる軽量で実践的な改善。  \n⚠️ **限界**: 理論的な保証より経験的な改善に留まり、全アーキテクチャへの汎化が不明確。\n\n---\n\n### 6. Training Foundation Models with a Single Algorithm | 👍 8 | [arxiv:2610.40564](https://arxiv.org/abs/2610.40564)\n\n🎯 **背景**: 事前学習・SFT・RL はそれぞれ別々のアルゴリズムで実行されており、パイプラインが複雑。  \n🔧 **手法**: 3つの学習フェーズを1つの尤度ベースアルゴリズムに統合。静的データと RL 生成データを単一トレーナーで混合。  \n📊 **結果**: 精度-計算コストのトレードオフを改善。  \n💡 **意義**: 基盤モデルの学習パイプラインの大幅な簡素化を実現し、小規模チームでの開発を現実的にする可能性。  \n⚠️ **限界**: 特定ドメインでの微調整精度が専用アルゴリズムに劣る可能性があり、大規模実証が限られる。\n\n---\n\n### 7. Broken on Arrival: Non-Functional Quantized LLM Artifacts in Public Model Registries | 👍 5 | [arxiv:2609.05881](https://arxiv.org/abs/2609.05881)\n\n🎯 **背景**: 公開モデルリポジトリの量子化 LLM が外見上は正常でも機能しない問題が発生している。  \n🔧 **手法**: 公開レジストリ上の量子化コード LLM ファイルを大規模に監査し、機能テストで失敗するケースを特定。  \n📊 **結果**: ファイルとして完全なのに機能テストで失敗する量子化モデルが存在することを確認。  \n💡 **意義**: AI セキュリティ・品質保証の観点から重要な警鐘。量子化モデルの配布前スクリーニングの標準化を促進。  \n⚠️ **限界**: 監査対象が限定的で、問題の全体規模の把握には更なる調査が必要。\n\n---\n\n### 8. OpenFlyV2: An onboard vision-language-action model for aerial perception and navigation | 👍 5 | [arxiv:2610.39287](https://arxiv.org/abs/2610.39287)\n\n🎯 **背景**: ドローンのナビゲーションに VLA モデルを搭載するには、オンボードで低遅延かつシミュレーションから実機への転移が必要。  \n🔧 **手法**: 10 Hz でオンボード動作する VLA モデルを開発し、シミュレーションから実機クアッドロータへゼロショット転移。  \n📊 **結果**: ナビゲーション成功率 48%（ゼロショット転移）。  \n💡 **意義**: ドローン自律化における具現化 AI の実証。エッジ AI と航空ロボティクスの融合点として注目。  \n⚠️ **限界**: 成功率 48% は商用利用には不十分で、複雑な環境や悪天候への対応も未実証。\n\n---\n\n### 9. AB-Attention: Accurate Block Attention for Accelerating Video Diffusion Transformers | 👍 5 | [arxiv:2610.39663](https://arxiv.org/abs/2610.39663)\n\n🎯 **背景**: 動画生成 Transformer の高密度アテンション計算はコストが高く、既存のスパースアテンション手法は精度低下を招く。  \n🔧 **手法**: 訓練不要のスパースアテンション手法で約 90% のアテンションをスキップしつつ高密度アテンションを精度よく近似。  \n📊 **結果**: 最大 2.23x の高速化を達成。  \n💡 **意義**: 動画生成の推論コストを大幅削減でき、既存モデルに学習なしで適用できる即実用的な手法。  \n⚠️ **限界**: 特定フレームレートや動作の激しいシーンでの精度影響が不明確。\n\n---\n\n### 10. Matched Capabilities, Different Behaviors: A Controlled Study of MCP and CLI Interfaces for Language Agents | 👍 4 | [arxiv:2610.34298](https://arxiv.org/abs/2610.34298)\n\n🎯 **背景**: MCP（Model Context Protocol）と CLI インターフェースは同じ機能を持つのに、エージェントの動作が異なる現象の原因究明。  \n🔧 **手法**: 同一機能を持つ MCP と CLI を対照実験で比較し、動作差異を定量化。DART という的を絞った修正手法を導入。  \n📊 **結果**: DART によりベンチマークスコア向上とトークンコスト削減を同時達成。  \n💡 **意義**: Claude Code を含む AI エージェントツールの設計に直接関わる知見。インターフェース設計が AI 動作に影響を与えることの実証的証明。  \n⚠️ **限界**: 特定のベンチマーク環境での結果であり、実運用での汎化性能は追加検証が必要。\n\n",
+  "fetched_at": "2026-10-31T22:06:45.193546+00:00",
+  "papers": [
+    {
+      "title": "Youtu-Parsing-Omni: One Encoder, One Schema, All Modalities",
+      "upvotes": 67,
+      "paper_id": "2610.39301",
+      "abstract": "An omni-modal parser that turns documents, images, audio, and video into space-time structured records using one shared encoder and one output schema, with top benchmark results."
+    },
+    {
+      "title": "Proving and Improving the Platonic Representation Hypothesis with JEPAs",
+      "upvotes": 58,
+      "paper_id": "2610.39302",
+      "abstract": "Proves that JEPAs trained on separate modalities converge to one representation, up to a rotation, when given good positive views. Finds next-token prediction a much less efficient route."
+    },
+    {
+      "title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
+      "upvotes": 36,
+      "paper_id": "2610.40647",
+      "abstract": "A pixel-space diffusion Transformer that adds fine detail through DCT-band slots, keeping only low-frequency slots in global attention, which improves FID at lower compute."
+    },
+    {
+      "title": "PhysInsert: Physically Plausible Object Insertion with Geometric Priors and Bidirectional Object-Scene Interactions",
+      "upvotes": 13,
+      "paper_id": "2610.40453",
+      "abstract": "Reference-based object insertion that adapts both the object and its scene for pose and lighting, using geometry guidance and aligned Blender-rendered counterfactual training pairs."
+    },
+    {
+      "title": "Multi-Token Prediction Done Right",
+      "upvotes": 12,
+      "paper_id": "2610.38331",
+      "abstract": "Finds a noisy gradient residual in standard multi-token prediction training and proposes Soft-MTP, a one-line change keeping only the useful self-distillation signal at no added cost."
+    },
+    {
+      "title": "Training Foundation Models with a Single Algorithm",
+      "upvotes": 8,
+      "paper_id": "2610.40564",
+      "abstract": "Casts pretraining, SFT, and RL as one likelihood-based algorithm, mixing static data with RL generations in a single trainer to improve the accuracy-compute tradeoff."
+    },
+    {
+      "title": "Broken on Arrival: Non-Functional Quantized LLM Artifacts in Public Model Registries and How to Catch Them",
+      "upvotes": 5,
+      "paper_id": "2609.05881",
+      "abstract": "Audits quantized code LLM files in public registries, finding some that are intact yet fail functional tests, and recommends screening and calibrating low-bit releases."
+    },
+    {
+      "title": "OpenFlyV2: An onboard vision-language-action model for aerial perception and navigation",
+      "upvotes": 5,
+      "paper_id": "2610.39287",
+      "abstract": "A vision-language-action model that runs fully onboard a drone at 10 Hz and transfers zero-shot from simulation to real quadrotor flight with a 48% navigation success rate."
+    },
+    {
+      "title": "AB-Attention: Accurate Block Attention for Accelerating Video Diffusion Transformers",
+      "upvotes": 5,
+      "paper_id": "2610.39663",
+      "abstract": "A training-free sparse attention method for video diffusion transformers that skips about 90% of attention while approximating dense attention more accurately, with up to 2.23x speedup."
+    },
+    {
+      "title": "Matched Capabilities, Different Behaviors: A Controlled Study of MCP and CLI Interfaces for Language Agents",
+      "upvotes": 4,
+      "paper_id": "2610.34298",
+      "abstract": "Shows that MCP and CLI interfaces exposing identical capabilities still shift agent behavior, and introduces DART, a targeted repair that raises benchmark scores and cuts token cost."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.316",
+      "published_at": "2026-10-31",
+      "body": "What's changed\n\n* Added `CLAUDE_CODE_DISABLE_ULTRATHINK`, which turns the `ultrathink` keyword off\n* Added pooled group budgets to the Claude apps gateway: one monthly budget that a group's members share, on top of each member's own limit, set with `pooled_budget` on the spend limits admin API\n* Added `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP` to keep system cross-certificates that certify each other in a loop, for servers whose private CA needs one\n* Added `CLAUDE_CODE_SUBAGENT_EFFORT` to set the effort level subagents run at when nothing else names one, instead of inheriting the"
+    },
+    {
+      "tag_name": "v2.1.314",
+      "published_at": "2026-10-30",
+      "body": "What's changed\n\n* Added `permissions.blockWritesOutsideWorkingDirectories`: Write, Edit and NotebookEdit refuse paths outside the working directories in every permission mode\n* Added an optional `groups` list to Claude apps gateway upstreams: only developers in the listed IdP groups are sent to that upstream, on failover too\n* Added `guardrail_trace` to Claude apps gateway Bedrock upstreams, to log which Amazon Bedrock guardrail filter fired on a request, without the matched text\n* Added idle compaction to VS Code and Claude Desktop's Code tab: a 200K+ token conversation left idle is summarized, and the"
+    },
+    {
+      "tag_name": "v2.1.312",
+      "published_at": "2026-10-27",
+      "body": "What's changed\n\n* Added `oidc.user_id_claim` to the Claude apps gateway, to identify people by an id_token claim other than `sub`, such as Microsoft Entra ID's `oid`\n* Added click to send: in fullscreen, clicking the \"to send now\" hint under a queued message sends it right away, as its key does\n* Fixed managed settings and organization policy not being fetched for the rest of the session after signing in from the VS Code extension\n* Fixed Claude overwriting a very large CLAUDE.md, rules file or @-included file in a subdirectory after seeing only its start; Write now asks Claude to read"
+    }
+  ]
+}

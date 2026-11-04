@@ -1,65 +1,81 @@
 {
   "papers": [
     {
-      "title": "Intrinsic Distribution Matching",
-      "upvotes": 235,
-      "paper_id": "2610.39633",
-      "abstract": "One-step and few-step text-to-image generation must accurately render the details specified in the prompt despite limited opportunities for refinement. Distribution matching distillation (DMD) uses sc"
+      "title": "LoCo: Think Less, Locally: Local Preference Learning for Reasoning Compression",
+      "upvotes": 65,
+      "paper_id": "2611.04814",
+      "abstract": "Teaches reasoning models when to stop deliberating by training on state-conditioned preference pairs. Cuts completion length by roughly 23-45% on math and code while keeping or improving accuracy."
     },
     {
-      "title": "A-RSI: Adaptive Task Refresh for Zero-Data Multimodal Self-Improvement",
-      "upvotes": 155,
-      "paper_id": "2610.38568",
-      "abstract": "Recursive self-improvement requires models not only to acquire useful training experience, but also to decide when their current experience has ceased to be useful. Existing methods often focus on wha"
-    },
-    {
-      "title": "Your Benchmark Is an Empirical Measure Over Difficulty",
-      "upvotes": 141,
-      "paper_id": "2610.29927",
-      "abstract": "A benchmark is not merely a collection of test questions; it naturally induces an empirical measure over difficulty. In this work, we develop this measure-based view of benchmark evaluation. This pers"
-    },
-    {
-      "title": "Look Only When Needed: Certificate-Guided Visual Routing for Efficient Diffusion VLMs",
-      "upvotes": 90,
-      "paper_id": "2610.36671",
-      "abstract": "Diffusion vision-language models (DVLMs) process their entire input at every denoising step. Since visual tokens make up 89-97% of this input on the benchmarks we study, most of the decoding computati"
-    },
-    {
-      "title": "Youtu-Parsing-Omni: One Encoder, One Schema, All Modalities",
-      "upvotes": 53,
-      "paper_id": "2610.39301",
-      "abstract": "We present Youtu-Parsing-Omni, an omni-modal parser that converts documents, images, audio, and video into structured records grounded in space and time, providing a perception layer for agents that r"
-    },
-    {
-      "title": "Proving and Improving the Platonic Representation Hypothesis with JEPAs",
+      "title": "DreamX: Video Diffusion Model is a Universal Latent Action Learner",
       "upvotes": 49,
-      "paper_id": "2610.39302",
-      "abstract": "Whether models trained on different modalities converge to the same representation of the world is central to AI. The Platonic Representation Hypothesis (PRH) conjectures that they do as they scale, b"
+      "paper_id": "2611.05377",
+      "abstract": "Repurposes a pretrained video diffusion model to extract compact latent actions that are disentangled from appearance and transfer across human and robot embodiments, enabling cheaper policy learning."
     },
     {
-      "title": "L3G-World: Real-Time Infinite World Generation with Latent 3D Gaussian Memory",
-      "upvotes": 34,
-      "paper_id": "2610.40614",
-      "abstract": "Interactive world models generate visual content conditioned on user actions, yet maintaining spatial consistency over long-horizon exploration in real time remains challenging. Existing approaches re"
+      "title": "FactEmbed: Factorized MLLM Embeddings for Composed Image Retrieval",
+      "upvotes": 42,
+      "paper_id": "2611.05193",
+      "abstract": "Separates understanding a composed query from building retrieval embeddings, using factorized latents that imagine the intended visual change before retrieval. Reports gains over prior composed image retrieval methods."
     },
     {
-      "title": "WorkFactory: Turning Professional Intents into Executable Work for Scalable Agent Training",
-      "upvotes": 30,
-      "paper_id": "2610.37161",
-      "abstract": "Scaling supervised training for working agents requires diverse professional tasks that yield reliable expert demonstrations. However, missing or inconsistent task information can obstruct teacher exe"
-    },
-    {
-      "title": "A Broader Look into MLLM's Retrieval Heads",
-      "upvotes": 28,
-      "paper_id": "2610.32411",
-      "abstract": "Locating relevant evidence in long inputs is a core capability of Multimodal Large Language Models. Prior studies attribute this capability to retrieval heads, a sparse set of attention heads that tra"
-    },
-    {
-      "title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
+      "title": "VidUEU-Agent: A Data-Curation Agent for Multimodal Understanding, Editing, and Unified Tasks",
       "upvotes": 23,
-      "paper_id": "2610.40647",
-      "abstract": "Pixel-space generative Transformers typically use one token per image patch, so capturing finer detail requires more tokens and makes global attention increasingly expensive. We observe that finer det"
+      "paper_id": "2611.04418",
+      "abstract": "An automated pipeline that builds instruction data from raw videos and adjusts its data mix based on downstream training results. Produces the 100K-sample VidUEU-100K dataset, which improves benchmark performance."
+    },
+    {
+      "title": "You don't need long context",
+      "upvotes": 9,
+      "paper_id": "2611.05306",
+      "abstract": "Frequent context compaction keeps task accuracy across long-horizon and long-input tasks, questioning the need for long-context models. Proposes semantic state space models as an alternative."
+    },
+    {
+      "title": "Every Token Needs Its Own Teacher: Multi-teacher Adaptive On-policy Self-distillation",
+      "upvotes": 8,
+      "paper_id": "2610.40574",
+      "abstract": "Lets each token select its preferred teacher from a pool during on-policy self-distillation. On Qwen3 math reasoning, it gains up to +5.9 over the base model and beats fixed-teacher methods."
+    },
+    {
+      "title": "Adversarial Speculative Reasoning Improves Long Horizon Agents",
+      "upvotes": 6,
+      "paper_id": "2611.05345",
+      "abstract": "Trains a draft model to be rejected at critical reasoning points, so the target model verifies those tokens under lower numerical noise. Raises end-to-end success on agentic coding benchmarks."
+    },
+    {
+      "title": "Dory1.0-4B: A Looped Normalized-GPT",
+      "upvotes": 6,
+      "paper_id": "2611.03998",
+      "abstract": "A 4B looped language model whose shared recurrent block can run a variable number of times, so one checkpoint serves different compute budgets. More loops improve accuracy and use fewer tokens on agentic tasks."
+    },
+    {
+      "title": "BEND 2.0: Benchmarking the Capabilities Needed to Design DNA",
+      "upvotes": 2,
+      "paper_id": "2611.03806",
+      "abstract": "A benchmark testing whether DNA language models predict mutation effects and guide sequence design. Linear readouts help, but context-specific and multi-cell design remain difficult."
+    },
+    {
+      "title": "Muon Makes the First Mixture-of-Experts Layer Harder to Balance",
+      "upvotes": 2,
+      "paper_id": "2610.37914",
+      "abstract": "Finds that training MoE language models with Muon increases routing imbalance in the first MoE layer. Centering router inputs or lowering the learning rate reduces the effect."
     }
   ],
-  "cc_updates": []
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.318",
+      "published_at": "2026-11-04",
+      "body": "What's changed\n\n- Added a record of your answer when Claude Code asks to turn on the mods it writes in a session\n- Added `assume_role` on `mantle` upstreams of the Claude apps gateway, for a role in another AWS account and for per-developer AWS cost attribution\n- Added an `effort` option to a mod's `$.model.fork`, so a quick side job can run at `low` whatever effort the session uses; the result reports the effort sent\n- Added the date a stored claude.ai sign-in ends to `claude auth status` (`loginExpiresAt`) and to `claude -p` JSON results (`credential_expires_at`)\n- Added a one-line stderr warning to..."
+    },
+    {
+      "tag_name": "v2.1.317",
+      "published_at": "2026-11-03",
+      "body": "What's changed\n\n- Added a warning to `/schedule` when a new cloud scheduled task gets connectors you did not ask for, with how to remove them\n- Added a check that asks before a web or shell tool call sends your account email address to the network\n- Added `onFailure: \"block\"` for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run\n- Added a notice in Claude Desktop's Code tab when your organization's remote managed settings haven't loaded for the session, and another once they do\n- Added a notice when auto mode's check has no..."
+    },
+    {
+      "tag_name": "v2.1.316",
+      "published_at": "2026-10-31",
+      "body": "What's changed\n\n- Added `CLAUDE_CODE_DISABLE_ULTRATHINK`, which turns the `ultrathink` keyword off\n- Added pooled group budgets to the Claude apps gateway: one monthly budget that a group's members share, on top of each member's own limit, set with `pooled_budget` on the spend limits admin API\n- Added `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP` to keep system cross-certificates that certify each other in a loop, for servers whose private CA needs one\n- Added `CLAUDE_CODE_SUBAGENT_EFFORT` to set the effort level subagents run at when nothing else names one, instead of inheriting the session's..."
+    }
+  ]
 }
