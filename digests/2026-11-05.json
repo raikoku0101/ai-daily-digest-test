@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-05",
+  "content": "# AI Daily Digest — 2026-11-05\n\n## 今日のハイライト\n- **LoCo が推論コストを最大45%削減**: 推論モデルが「考えすぎる」問題を、局所的な選好学習で解決。精度を維持しながら補完長を23〜45%短縮し、LLM運用コスト削減の実用的な突破口となる可能性。\n- **Claude Code v2.1.317〜318 がセキュリティ・コスト管理を強化**: メールアドレス送信チェックやAWSロール引き受け機能など、エンタープライズ利用に直結する機能が連続リリース。組織での安全な運用が一層容易に。\n- **動画拡散モデルがロボット行動学習の汎用基盤に(DreamX)**: ヒトとロボット間でアクション表現を転用可能にする手法で、高コストなロボットデータ収集なしにポリシー学習を実現。ロボティクスAIの民主化につながる成果。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.318 (2026-11-04)\n**主要機能**\n- **Modセッション記録**: Claude Codeがセッション中に作成したModを有効にするかどうかの回答が記録されるようになった\n- **assume_role対応**: `mantle`アップストリームで別AWSアカウントのロールを引き受け可能に。開発者ごとのAWSコスト帰属も実現\n- **fork時のeffort指定**: Modの`$.model.fork`に`effort`オプション追加。サブタスクをセッションのeffortに依存せず`low`などで実行可能\n- **認証期限表示**: `claude auth status`に`loginExpiresAt`、`-p`のJSON出力に`credential_expires_at`が追加され、サインイン有効期限が確認可能に\n\n**ユーザーへの影響**: AWSマルチアカウント環境でのコスト管理が容易になり、エージェントのサブタスク効率化が可能。\n\n---\n\n### v2.1.317 (2026-11-03)\n**主要機能**\n- **スケジュールタスク警告**: `/schedule`で新しいクラウドタスクに不要なコネクターが付く場合に警告表示\n- **メールアドレス送信チェック**: WebやShellツール呼び出し前にアカウントメールアドレスをネットワークへ送信する場合に確認を求める\n- **SDKフック改善**: `onFailure: \"block\"` オプション追加。フック失敗時にアクションをブロック可能\n- **接続状態通知**: Claude DesktopのCodeタブでリモート管理設定の未ロード/ロード完了通知を追加\n\n**ユーザーへの影響**: セキュリティとプライバシーの向上。誤ったコネクター設定に気づきやすくなった。\n\n---\n\n### v2.1.316 (2026-10-31)\n**主要機能**\n- **ultrathinkキーワード無効化**: `CLAUDE_CODE_DISABLE_ULTRATHINK`環境変数で`ultrathink`キーワードをオフにできる\n- **グループ予算プール**: Claude appsゲートウェイにグループメンバーが共有する月次予算追加。`pooled_budget`でAPIから設定\n- **ループ証明書制御**: `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP`でループ証明書を保持できるよう\n- **サブエージェントeffort制御**: `CLAUDE_CODE_SUBAGENT_EFFORT`でサブエージェントのデフォルトeffortを設定可能\n\n**ユーザーへの影響**: 組織のコスト管理機能が強化。エージェントパイプラインのリソース消費を細かく制御できるように。\n\n## 注目論文 TOP 10\n\n### 1. LoCo: Think Less, Locally: Local Preference Learning for Reasoning Compression\n**upvotes: 65** | https://arxiv.org/abs/2611.04814\n\n🎯 **背景**: 推論モデルは問題を考えすぎる傾向があり、不要な計算リソースを消費する。\n🔧 **手法**: 状態に応じた選好ペアで学習し、いつ熟考を止めるかを推論モデルに教える手法を提案。\n📊 **結果**: 数学・コードタスクで補完長を約23〜45%削減しながら、精度を維持または向上。\n💡 **意義**: 推論コストを大幅削減しつつ性能を保てる。実用的なLLMデプロイコスト低減に直結。\n⚠️ **限界**: 複雑な多段階推論タスクでの短縮効果は限定的な可能性がある。\n\n---\n\n### 2. DreamX: Video Diffusion Model is a Universal Latent Action Learner\n**upvotes: 49** | https://arxiv.org/abs/2611.05377\n\n🎯 **背景**: ロボット工学では大規模なアクションラベル付きデータが必要で、異なるエンボディメント間の転用が困難。\n🔧 **手法**: 事前学習済み動画拡散モデルを再利用し、見た目から分離されたコンパクトな潜在アクションを抽出。ヒトとロボットのエンボディメント間で転用可能。\n📊 **結果**: 従来手法より安価なポリシー学習を実現し、クロスエンボディメント転移を達成。\n💡 **意義**: 大規模ラベル付きロボットデータなしで、ヒトの動画からロボット行動を学習できる。\n⚠️ **限界**: リアルタイムロボット制御への適用可能性や遅延の問題は未検証。\n\n---\n\n### 3. FactEmbed: Factorized MLLM Embeddings for Composed Image Retrieval\n**upvotes: 42** | https://arxiv.org/abs/2611.05193\n\n🎯 **背景**: 合成画像検索では「この画像をこう変えたもの」という複合クエリの理解が困難。\n🔧 **手法**: クエリ理解と検索埋め込み構築を分離。意図する視覚変化を想像するFactorized潜在空間を使用。\n📊 **結果**: 既存の合成画像検索手法を上回るベンチマーク性能を報告。\n💡 **意義**: マルチモーダル検索の精度向上に貢献。ECサイトや画像編集ツールへの応用が期待される。\n⚠️ **限界**: FactorizedラテントのFinetuningコストや推論速度のトレードオフが不明確。\n\n---\n\n### 4. VidUEU-Agent: A Data-Curation Agent for Multimodal Understanding, Editing, and Unified Tasks\n**upvotes: 23** | https://arxiv.org/abs/2611.04418\n\n🎯 **背景**: マルチモーダルモデルの学習には大量の高品質指示データが必要だが、収集コストが高い。\n🔧 **手法**: 生動画から自動的に指示データを構築し、学習結果に基づきデータ配分を調整するエージェントパイプライン。\n📊 **結果**: 10万サンプルのVidUEU-100Kデータセットを生成し、ベンチマーク性能を向上。\n💡 **意義**: データキュレーションの自動化により、マルチモーダルモデル学習のコストを大幅削減。\n⚠️ **限界**: 自動生成データの品質管理や偏りの問題は依然として課題。\n\n---\n\n### 5. You don't need long context\n**upvotes: 9** | https://arxiv.org/abs/2611.05306\n\n🎯 **背景**: LLMの長文脈対応は計算コストが高く、本当に必要かが問われている。\n🔧 **手法**: 頻繁なコンテキスト圧縮で長期タスクの精度を維持できることを実証。セマンティック状態空間モデルを代替として提案。\n📊 **結果**: 長期水平・長文入力タスクにおいて、長文脈モデルなしで同等の精度を達成。\n💡 **意義**: 長文脈モデルの必要性に疑問を呈し、より効率的なアーキテクチャへの移行を促す。\n⚠️ **限界**: すべての長文脈ユースケース（法律文書分析など）でコンテキスト圧縮が有効かは不明。\n\n### 6. Every Token Needs Its Own Teacher: Multi-teacher Adaptive On-policy Self-distillation\n**upvotes: 8** | https://arxiv.org/abs/2610.40574\n\n🎯 **背景**: 自己蒸留では単一の教師モデルを使うが、トークンごとに最適な教師は異なる可能性がある。\n🔧 **手法**: オンポリシー自己蒸留中に各トークンが教師プールから好みの教師を選択する手法を提案。\n📊 **結果**: Qwen3数学推論で基本モデル比+5.9を達成。固定教師手法を上回る。\n💡 **意義**: 蒸留効率の向上。小型モデルの推論能力を最大限に引き出すための新アプローチ。\n⚠️ **限界**: 複数教師モデルの維持にメモリ・計算コストが増大する可能性がある。\n\n---\n\n### 7. Adversarial Speculative Reasoning Improves Long Horizon Agents\n**upvotes: 6** | https://arxiv.org/abs/2611.05345\n\n🎯 **背景**: 長期エージェントタスクでは重要な推論ポイントでの誤りが連鎖する問題がある。\n🔧 **手法**: 重要な推論ポイントで拒否されるようにドラフトモデルを訓練し、ターゲットモデルが低数値ノイズ下でそれらトークンを検証する。\n📊 **結果**: エージェントコーディングベンチマークでのエンドツーエンド成功率が向上。\n💡 **意義**: 投機的実行の安全性向上。長期エージェントタスクの信頼性を高める新アプローチ。\n⚠️ **限界**: 訓練コストとドラフトモデルの品質に結果が左右される。\n\n---\n\n### 8. Dory1.0-4B: A Looped Normalized-GPT\n**upvotes: 6** | https://arxiv.org/abs/2611.03998\n\n🎯 **背景**: 異なる計算予算に対応するために複数モデルを維持するのはコストがかかる。\n🔧 **手法**: 共有された再帰ブロックを可変回数実行できる4Bのループ型言語モデル。1つのチェックポイントで様々な計算予算に対応。\n📊 **結果**: ループ回数を増やすほど精度向上し、エージェントタスクで使用トークンを削減。\n💡 **意義**: 単一モデルで効率性と能力のトレードオフを実現時に調整できる革新的アーキテクチャ。\n⚠️ **限界**: ループ数の最適化は問題依存的で、自動調整メカニズムはまだ研究段階。\n\n---\n\n### 9. BEND 2.0: Benchmarking the Capabilities Needed to Design DNA\n**upvotes: 2** | https://arxiv.org/abs/2611.03806\n\n🎯 **背景**: DNAシーケンス設計のためのAIモデルの能力評価が体系的に行われていない。\n🔧 **手法**: DNA言語モデルが変異効果を予測しシーケンス設計を導けるかをテストするベンチマーク。\n📊 **結果**: 線形読み出しは有効だが、コンテキスト固有・マルチセル設計は依然困難。\n💡 **意義**: バイオインフォマティクス分野でのAI能力を体系的に評価する基準を提供。\n⚠️ **限界**: 実際の生物学的コンテキストでの検証が不十分な可能性がある。\n\n---\n\n### 10. Muon Makes the First Mixture-of-Experts Layer Harder to Balance\n**upvotes: 2** | https://arxiv.org/abs/2610.37914\n\n🎯 **背景**: MoEモデルの学習において最適化器の選択がルーティングバランスに影響を与える可能性がある。\n🔧 **手法**: MuonオプティマイザーでMoE言語モデルを学習すると最初のMoE層でルーティング不均衡が増加することを発見。\n📊 **結果**: ルーター入力のセンタリングまたは学習率低下で効果を軽減できる。\n💡 **意義**: MoEモデル訓練における最適化器選択の重要性を示す実用的な知見。\n⚠️ **限界**: 特定のモデルアーキテクチャでの観察であり、一般化には追加検証が必要。\n\n",
+  "fetched_at": "2026-11-04T22:06:27.493875+00:00",
+  "papers": [
+    {
+      "title": "LoCo: Think Less, Locally: Local Preference Learning for Reasoning Compression",
+      "upvotes": 65,
+      "paper_id": "2611.04814",
+      "abstract": "Teaches reasoning models when to stop deliberating by training on state-conditioned preference pairs. Cuts completion length by roughly 23-45% on math and code while keeping or improving accuracy."
+    },
+    {
+      "title": "DreamX: Video Diffusion Model is a Universal Latent Action Learner",
+      "upvotes": 49,
+      "paper_id": "2611.05377",
+      "abstract": "Repurposes a pretrained video diffusion model to extract compact latent actions that are disentangled from appearance and transfer across human and robot embodiments, enabling cheaper policy learning."
+    },
+    {
+      "title": "FactEmbed: Factorized MLLM Embeddings for Composed Image Retrieval",
+      "upvotes": 42,
+      "paper_id": "2611.05193",
+      "abstract": "Separates understanding a composed query from building retrieval embeddings, using factorized latents that imagine the intended visual change before retrieval. Reports gains over prior composed image retrieval methods."
+    },
+    {
+      "title": "VidUEU-Agent: A Data-Curation Agent for Multimodal Understanding, Editing, and Unified Tasks",
+      "upvotes": 23,
+      "paper_id": "2611.04418",
+      "abstract": "An automated pipeline that builds instruction data from raw videos and adjusts its data mix based on downstream training results. Produces the 100K-sample VidUEU-100K dataset, which improves benchmark performance."
+    },
+    {
+      "title": "You don't need long context",
+      "upvotes": 9,
+      "paper_id": "2611.05306",
+      "abstract": "Frequent context compaction keeps task accuracy across long-horizon and long-input tasks, questioning the need for long-context models. Proposes semantic state space models as an alternative."
+    },
+    {
+      "title": "Every Token Needs Its Own Teacher: Multi-teacher Adaptive On-policy Self-distillation",
+      "upvotes": 8,
+      "paper_id": "2610.40574",
+      "abstract": "Lets each token select its preferred teacher from a pool during on-policy self-distillation. On Qwen3 math reasoning, it gains up to +5.9 over the base model and beats fixed-teacher methods."
+    },
+    {
+      "title": "Adversarial Speculative Reasoning Improves Long Horizon Agents",
+      "upvotes": 6,
+      "paper_id": "2611.05345",
+      "abstract": "Trains a draft model to be rejected at critical reasoning points, so the target model verifies those tokens under lower numerical noise. Raises end-to-end success on agentic coding benchmarks."
+    },
+    {
+      "title": "Dory1.0-4B: A Looped Normalized-GPT",
+      "upvotes": 6,
+      "paper_id": "2611.03998",
+      "abstract": "A 4B looped language model whose shared recurrent block can run a variable number of times, so one checkpoint serves different compute budgets. More loops improve accuracy and use fewer tokens on agentic tasks."
+    },
+    {
+      "title": "BEND 2.0: Benchmarking the Capabilities Needed to Design DNA",
+      "upvotes": 2,
+      "paper_id": "2611.03806",
+      "abstract": "A benchmark testing whether DNA language models predict mutation effects and guide sequence design. Linear readouts help, but context-specific and multi-cell design remain difficult."
+    },
+    {
+      "title": "Muon Makes the First Mixture-of-Experts Layer Harder to Balance",
+      "upvotes": 2,
+      "paper_id": "2610.37914",
+      "abstract": "Finds that training MoE language models with Muon increases routing imbalance in the first MoE layer. Centering router inputs or lowering the learning rate reduces the effect."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.318",
+      "published_at": "2026-11-04",
+      "body": "What's changed\n\n- Added a record of your answer when Claude Code asks to turn on the mods it writes in a session\n- Added `assume_role` on `mantle` upstreams of the Claude apps gateway, for a role in another AWS account and for per-developer AWS cost attribution\n- Added an `effort` option to a mod's `$.model.fork`, so a quick side job can run at `low` whatever effort the session uses; the result reports the effort sent\n- Added the date a stored claude.ai sign-in ends to `claude auth status` (`loginExpiresAt`) and to `claude -p` JSON results (`credential_expires_at`)\n- Added a one-line stderr warning to..."
+    },
+    {
+      "tag_name": "v2.1.317",
+      "published_at": "2026-11-03",
+      "body": "What's changed\n\n- Added a warning to `/schedule` when a new cloud scheduled task gets connectors you did not ask for, with how to remove them\n- Added a check that asks before a web or shell tool call sends your account email address to the network\n- Added `onFailure: \"block\"` for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run\n- Added a notice in Claude Desktop's Code tab when your organization's remote managed settings haven't loaded for the session, and another once they do\n- Added a notice when auto mode's check has no..."
+    },
+    {
+      "tag_name": "v2.1.316",
+      "published_at": "2026-10-31",
+      "body": "What's changed\n\n- Added `CLAUDE_CODE_DISABLE_ULTRATHINK`, which turns the `ultrathink` keyword off\n- Added pooled group budgets to the Claude apps gateway: one monthly budget that a group's members share, on top of each member's own limit, set with `pooled_budget` on the spend limits admin API\n- Added `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP` to keep system cross-certificates that certify each other in a loop, for servers whose private CA needs one\n- Added `CLAUDE_CODE_SUBAGENT_EFFORT` to set the effort level subagents run at when nothing else names one, instead of inheriting the session's..."
+    }
+  ]
+}
