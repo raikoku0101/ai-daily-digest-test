@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-07",
+  "content": "# AI Daily Digest — 2026-11-07\n\n## 今日のハイライト\n- **エージェント意思決定の新パラダイム (Decoupled Predictive Decision Making)**: パラメータ更新なしに複数タスクへ対応できる共有条件付き予測器を提案。upvotes 113 とコミュニティの最大注目を集め、汎化性とコスト効率の両立を実現。\n- **Claude Code v2.1.319 リリース**: LLMゲートウェイ環境でのauto mode動作が変更。企業でClaude Codeを運用している場合は `CLAUDE_CODE_AUTO_MODE_SERVER` 環境変数の設定確認が必要です。\n- **MoEモデルの解釈性向上 (SAE Interprets MoE)**: スパースオートエンコーダを使ってMoEエキスパートの専門性が人間に解釈可能なレベルまで可視化できることを示した。LLM解釈性研究の重要な前進。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.319 (2026-11-06) — 最新\n**主要機能:**\n- **auto モードのサーバーサイドチェック変更**: テレメトリやフィーチャーフラグがオフの環境（LLMゲートウェイ含む）では、サーバーが確認できない呼び出しは確認要求またはブロックされるようになりました。フォールバックとして内蔵分類器は使用されません。従来の動作を保持するには `CLAUDE_CODE_AUTO_MODE_SERVER=0` を設定してください（Bedrock、Vertex、Foundryは変更なし）。\n- **LLMゲートウェイ環境での新フラグ**: `CLAUDE_CODE_AUTO_MODE_SERVER=1` で `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` が設定されていてもサーバーサイドチェックが有効になります。\n- **ターミナルでのMCPタスクサポート追加**: MCPサーバーがツール呼び出しをタスクとして実行する際、Claude Codeがターミナル上でタスクとして表示するようになりました。\n\n**ユーザーへの影響:** LLMゲートウェイ経由でClaude Codeを利用している組織は、auto mode の動作変更に対応するための設定確認が必要です。\n\n---\n\n### v2.1.318 (2026-11-04)\n**主要機能:**\n- **mod有効化の回答記録**: セッション中にClaude CodeがModの有効化を尋ねた際の回答が記録されるようになりました。\n- **mantle upstreamへの `assume_role` サポート**: 別のAWSアカウントのロールや開発者ごとのAWSコスト帰属が可能になりました。\n- **modの `$.model.fork` に `effort` オプション追加**: サイドジョブを `low` effort で実行できるようになりました。\n- **サインイン有効期限の表示**: `claude auth status` と `claude -p` のJSON出力に有効期限が追加されました。\n- **有効期限警告**: サインインの有効期限10日前からstderrに警告メッセージが表示されます。\n- **バグ修正**: `--continue` オプションで不正なメッセージの後に以前の会話が失われる問題を修正。\n\n**ユーザーへの影響:** AWS利用者にとってコスト管理が改善されます。有効期限警告により認証切れを事前に把握できます。\n\n---\n\n### v2.1.317 (2026-11-03)\n**主要機能:**\n- **`/schedule` への警告追加**: 新しいクラウドスケジュールタスクが意図しないコネクタを取得した場合に警告が表示されます。\n- **メールアドレス送信の確認チェック**: WebやShellツール呼び出しがアカウントのメールアドレスをネットワークに送信しようとする前に確認を求めるようになりました。\n- **Agent SDK hookコールバックの `onFailure: \"block\"` サポート追加**: コールバック失敗時にアクションをブロックできるようになりました。\n- **Claude Desktop の Code タブへの通知追加**: 組織のリモートマネージド設定が読み込まれていない場合の通知が追加されました。\n\n**ユーザーへの影響:** セキュリティが向上し、スケジュールタスクやhookの制御が細かくできるようになりました。\n\n## 注目論文 TOP 10\n\n1. **Decoupled Predictive Decision Making: A Shared Conditional Predictor for Agents** | 👍 113 | https://arxiv.org/abs/2611.02075\n   - 🎯 **背景**: エージェントの意思決定は各タスクに特化したモデルを必要とし、汎化性と効率性の両立が困難だった\n   - 🔧 **手法**: エージェントの決定を「条件付き予測」として定式化。凍結された共有事前学習済み予測器が言語モデル埋め込みを用いて過去の記録からタスク目標を予測（パラメータ更新なし）\n   - 📊 **結果**: パラメータ更新なしで精度向上を実現し、汎化性が改善\n   - 💡 **意義**: 単一の共有予測器で複数エージェントタスクに対応できる可能性を示す。訓練コストの大幅削減に貢献\n   - ⚠️ **限界**: 凍結予測器の表現力に依存するため、全く新しいタスクへの適応性が課題\n\n2. **TailSteer: Trajectory-Tail Steering for Drift-Resistant Multi-turn Image Editing** | 👍 35 | https://arxiv.org/abs/2611.06741\n   - 🎯 **背景**: 拡散モデルによる多ターン画像編集では、繰り返し編集のたびに視覚的ドリフトが蓄積し品質が低下する問題があった\n   - 🔧 **手法**: 早期ノイズ除去ステップをベースモデルに近く保ち、軌跡の末尾付近で保持を修正する最終段階学習手法を提案\n   - 📊 **結果**: 15〜20ターンの編集にわたって視覚的ドリフトが大幅に削減\n   - 💡 **意義**: インタラクティブな画像編集ツールの実用性を高め、長期セッションでの品質維持が可能に\n   - ⚠️ **限界**: 大幅なスタイル変換を伴う編集での効果には限界がある可能性\n\n3. **On the Opportunities and Challenges of Prefill-to-Autoregressive Cross-Model Transfer** | 👍 12 | https://arxiv.org/abs/2611.06976\n   - 🎯 **背景**: 大型プリフィルモデルの知識を小型自己回帰生成器に転移させることで、推論コストを削減しながら性能向上が期待できる\n   - 🔧 **手法**: PLatourフレームワークで大型プリフィルモデルと小型生成器を学習可能なブリッジで接続。制御実験でPACT-Checkを提案して擬陽性ゲインを排除\n   - 📊 **結果**: 一部のゲインが非情報的なシグナルに起因することを発見し、より厳密な評価手法を提案\n   - 💡 **意義**: モデル蒸留・転移学習の評価手法の信頼性向上に貢献する重要な研究\n   - ⚠️ **限界**: ブリッジの設計と訓練コスト、スケーラビリティの検証が必要\n\n4. **HeLM: Hierarchical Explicit Language Memory for Non-Markovian Manipulation** | 👍 7 | https://arxiv.org/abs/2611.02660\n   - 🎯 **背景**: ロボット操作タスクの多くはマルコフ性を持たず（過去の履歴に依存）、既存のVLA系モデルが苦手としていた\n   - 🔧 **手法**: タスク履歴を明示的な言語として保持し、検出イベントで更新する階層的ビジョン-言語-行動フレームワーク\n   - 📊 **結果**: 非マルコフ型の実世界操作タスクで成功率が向上し、メモリ使用量も削減\n   - 💡 **意義**: 長期依存関係を持つ実世界ロボットタスクへの対応能力を改善する実用的な手法\n   - ⚠️ **限界**: 言語による履歴表現の粒度と複雑な状態変化への対応が課題\n\n5. **SAE Interprets MoE: Sparse AutoEncoders Reveal That MoE Experts Exhibit Human-Interpretable Fine-Grained Specialization** | 👍 6 | https://arxiv.org/abs/2611.08089\n   - 🎯 **背景**: MoE（Mixture of Experts）モデルの各エキスパートが何を専門とするかの解釈性が低く、ブラックボックス化していた\n   - 🔧 **手法**: MoEレイヤーの出力にスパースオートエンコーダを学習させ、潜在特徴を個々のエキスパートに帰属\n   - 📊 **結果**: ルーティング情報より特徴寄与度の方が集中していることを発見。エキスパートは粗いドメイン以下で専門化していることが判明\n   - 💡 **意義**: LLMの解釈性研究を前進させ、MoEモデルの設計と改善に具体的な知見を提供\n   - ⚠️ **限界**: 特定のモデルアーキテクチャへの依存性と、より大規模なモデルへの適用性が未検証\n\n6. **Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling** | 👍 5 | https://arxiv.org/abs/2611.08237\n   - 🎯 **背景**: 数学的モデリング能力を検証するエージェント向けの信頼性の高いベンチマークが存在しなかった\n   - 🔧 **手法**: 18のコンテスト数学モデリング問題をコンテナ化したベンチマーク。エージェントはJSON形式で回答し、複数の専門家論文との照合と実行可能性検証でスコアを判定\n   - 📊 **結果**: 自動検証可能な厳密なエージェント評価が可能になった\n   - 💡 **意義**: 数学的推論AIの能力評価に新たな基準を提供し、研究の再現性と公平性を向上\n   - ⚠️ **限界**: 18問という限られた問題数と、コンテスト問題特有のバイアスが懸念される\n\n7. **From Autonomous Agents to Cognitive Symbionts: Toward AI-Augmented Human Intelligence** | 👍 5 | https://arxiv.org/abs/2611.05376\n   - 🎯 **背景**: AIは自律エージェントとして設計されることが多いが、人間の認知能力を補完・拡張する方向性が重要と主張\n   - 🔧 **手法**: ワーキングメモリの制限に対処する、生涯学習型でプロアクティブな認知コンパニオンとしてのAI設計を提案\n   - 📊 **結果**: ポジションペーパーとして議論を整理し、ガバナンスリスクも提示\n   - 💡 **意義**: AI開発の方向性に関する重要な哲学的・実践的議論を提起\n   - ⚠️ **限界**: 実験的検証のないポジションペーパーであり、主張の実証が今後の課題\n\n8. **Muir: Linear Attention with Sensitivity-Allocated Gating and Matched-Filter Readout** | 👍 4 | https://arxiv.org/abs/2611.08376\n   - 🎯 **背景**: 線形アテンションはクアドラティックアテンションより効率的だが、長文脈のリコール精度で劣る課題があった\n   - 🔧 **手法**: 感度によるゲートパラメータの再配分、読み出し時の状態行の再重み付け、安定した並列更新を組み合わせた線形アテンションアーキテクチャ\n   - 📊 **結果**: ベースラインと比較してパープレキシティと長文脈リコールが改善\n   - 💡 **意義**: 長文書処理の効率化に向けた線形アテンションの改善に貢献\n   - ⚠️ **限界**: 実際のプロダクション規模での評価と、より多様なタスクへの適用性が必要\n\n9. **SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization** | 👍 3 | https://arxiv.org/abs/2611.08483\n   - 🎯 **背景**: 複雑な数学・科学問題の探索は多様なアイデアの並列探索を必要とするが、コストが高い\n   - 🔧 **手法**: 数百の低コストエージェントが潜在空間で推論しKVキャッシュを共有。新規性フィルターで多様なアイデアを維持\n   - 📊 **結果**: 21の数学・科学問題で最高スコアを達成し、他のフレームワークより大幅に高速\n   - 💡 **意義**: 大規模並列AIによる科学的発見の加速に向けた新しいアプローチを提示\n   - ⚠️ **限界**: 潜在空間推論の解釈性と、より複雑な実世界問題への適用性が課題\n\n10. **StepX-OPD: Rethinking Multi-Teacher On-Policy Distillation in Diffusion Models** | 👍 2 | https://arxiv.org/abs/2611.04386\n    - 🎯 **背景**: テキスト→画像拡散モデルの能力蒸留と少ステップ蒸留は別々のトレーニングステージを必要とし、コストが高かった\n    - 🔧 **手法**: 凍結した専門教師モデルを学習者自身のロールアウトに適用し、能力蒸留と少ステップ蒸留を単一トレーニングステージに統合\n    - 📊 **結果**: GPU時間を約37%削減しながら性能を維持\n    - 💡 **意義**: 画像生成モデルの蒸留効率化により、高品質モデルの開発コストを削減\n    - ⚠️ **限界**: 特定の教師モデルへの依存性と、動画生成への適用性が未検証\n\n",
+  "fetched_at": "2026-11-06T22:09:52.767294+00:00",
+  "papers": [
+    {
+      "title": "Decoupled Predictive Decision Making: A Shared Conditional Predictor for Agents",
+      "upvotes": 113,
+      "paper_id": "2611.02075",
+      "abstract": "Frames agent decisions as conditional prediction. A frozen, shared pretrained predictor uses language-model embeddings of past records to forecast task targets, with no parameter updates, and raises accuracy."
+    },
+    {
+      "title": "TailSteer: Trajectory-Tail Steering for Drift-Resistant Multi-turn Image Editing",
+      "upvotes": 35,
+      "paper_id": "2611.06741",
+      "abstract": "A final-stage training method that keeps early denoising close to the base model and corrects preservation near the trajectory tail, reducing visual drift over 15-20 editing turns."
+    },
+    {
+      "title": "On the Opportunities and Challenges of Prefill-to-Autoregressive Cross-Model Transfer",
+      "upvotes": 12,
+      "paper_id": "2611.06976",
+      "abstract": "Introduces PLatour, a framework linking a large prefill model to a small generator via trainable bridges. Controlled tests show some gains can come from non-informative signals, so the authors propose PACT-Check."
+    },
+    {
+      "title": "HeLM: Hierarchical Explicit Language Memory for Non-Markovian Manipulation",
+      "upvotes": 7,
+      "paper_id": "2611.02660",
+      "abstract": "A hierarchical vision-language-action framework that keeps task history as explicit language, updated on detected events. It improves success on non-Markovian real-world manipulation tasks while using less memory."
+    },
+    {
+      "title": "SAE Interprets MoE: Sparse AutoEncoders Reveal That MoE Experts Exhibit Human-Interpretable Fine-Grained Specialization",
+      "upvotes": 6,
+      "paper_id": "2611.08089",
+      "abstract": "Trains sparse autoencoders on MoE layer outputs to attribute latent features to individual experts. Finds contribution is more concentrated than routing, with experts specializing below coarse domains."
+    },
+    {
+      "title": "Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling",
+      "upvotes": 5,
+      "paper_id": "2611.08237",
+      "abstract": "A containerized benchmark of 18 contest modeling problems where agents return a JSON answer. Scores are checked against multiple expert papers and gated by feasibility verification."
+    },
+    {
+      "title": "From Autonomous Agents to Cognitive Symbionts: Toward AI-Augmented Human Intelligence",
+      "upvotes": 5,
+      "paper_id": "2611.05376",
+      "abstract": "A position paper arguing for AI-augmented human intelligence through lifelong, proactive cognitive companions that address working-memory limits, along with governance risks they introduce."
+    },
+    {
+      "title": "Muir: Linear Attention with Sensitivity-Allocated Gating and Matched-Filter Readout",
+      "upvotes": 4,
+      "paper_id": "2611.08376",
+      "abstract": "A linear attention architecture that reallocates gate parameters by sensitivity, reweights state rows at readout, and uses a stable parallel update. It improves perplexity and long-context recall over baselines."
+    },
+    {
+      "title": "SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization",
+      "upvotes": 3,
+      "paper_id": "2611.08483",
+      "abstract": "Hundreds of low-cost agents reason in latent space and share KV caches, with a novelty filter keeping distinct ideas. It reaches top scores on 21 math and science problems much faster than other frameworks."
+    },
+    {
+      "title": "StepX-OPD: Rethinking Multi-Teacher On-Policy Distillation in Diffusion Models",
+      "upvotes": 2,
+      "paper_id": "2611.04386",
+      "abstract": "Merges capability distillation and few-step distillation for text-to-image diffusion into one training stage, using frozen specialist teachers on the student's own rollouts. Cuts GPU-hours by about 37%."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.319",
+      "published_at": "2026-11-06",
+      "body": "What's changed\n\n* Changed auto mode with telemetry or feature flags off, including behind LLM gateways: calls the server can't check are asked about or denied, with no fallback to the built-in classifier; set `CLAUDE_CODE_AUTO_MODE_SERVER=0` to keep using it (Bedrock, Vertex and Foundry are unchanged)\n* Changed auto mode behind an LLM gateway: `CLAUDE_CODE_AUTO_MODE_SERVER=1` turns on the server-side check even with `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` set; if managed settings set the latter, they must set the `1` too\n* Added support for MCP tasks in the terminal: when an MCP server runs a tool call as a task, Claude Code moves it..."
+    },
+    {
+      "tag_name": "v2.1.318",
+      "published_at": "2026-11-04",
+      "body": "What's changed\n\n* Added a record of your answer when Claude Code asks to turn on the mods it writes in a session\n* Added `assume_role` on `mantle` upstreams of the Claude apps gateway, for a role in another AWS account and for per-developer AWS cost attribution\n* Added an `effort` option to a mod's `$.model.fork`, so a quick side job can run at `low` whatever effort the session uses; the result reports the effort sent\n* Added the date a stored claude.ai sign-in ends to `claude auth status` (`loginExpiresAt`) and to `claude -p` JSON results (`credential_expires_at`)\n* Added a one-line stderr warning to `claude -p` text output, starting 10 days before a stored claude.ai sign-in ends\n* Fixed `--continue` sometimes losing the earlier conversation after a malformed..."
+    },
+    {
+      "tag_name": "v2.1.317",
+      "published_at": "2026-11-03",
+      "body": "What's changed\n\n* Added a warning to `/schedule` when a new cloud scheduled task gets connectors you did not ask for, with how to remove them\n* Added a check that asks before a web or shell tool call sends your account email address to the network\n* Added `onFailure: \"block\"` for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run\n* Added a notice in Claude Desktop's Code tab when your organization's remote managed settings haven't loaded for the session, and another once they do\n* Added a notice when auto mode's check has no answer for a subagent's tool call, which used to leave..."
+    }
+  ]
+}
