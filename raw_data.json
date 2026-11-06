@@ -1,81 +1,19 @@
 {
   "papers": [
-    {
-      "title": "LoCo: Think Less, Locally: Local Preference Learning for Reasoning Compression",
-      "upvotes": 65,
-      "paper_id": "2611.04814",
-      "abstract": "Teaches reasoning models when to stop deliberating by training on state-conditioned preference pairs. Cuts completion length by roughly 23-45% on math and code while keeping or improving accuracy."
-    },
-    {
-      "title": "DreamX: Video Diffusion Model is a Universal Latent Action Learner",
-      "upvotes": 49,
-      "paper_id": "2611.05377",
-      "abstract": "Repurposes a pretrained video diffusion model to extract compact latent actions that are disentangled from appearance and transfer across human and robot embodiments, enabling cheaper policy learning."
-    },
-    {
-      "title": "FactEmbed: Factorized MLLM Embeddings for Composed Image Retrieval",
-      "upvotes": 42,
-      "paper_id": "2611.05193",
-      "abstract": "Separates understanding a composed query from building retrieval embeddings, using factorized latents that imagine the intended visual change before retrieval. Reports gains over prior composed image retrieval methods."
-    },
-    {
-      "title": "VidUEU-Agent: A Data-Curation Agent for Multimodal Understanding, Editing, and Unified Tasks",
-      "upvotes": 23,
-      "paper_id": "2611.04418",
-      "abstract": "An automated pipeline that builds instruction data from raw videos and adjusts its data mix based on downstream training results. Produces the 100K-sample VidUEU-100K dataset, which improves benchmark performance."
-    },
-    {
-      "title": "You don't need long context",
-      "upvotes": 9,
-      "paper_id": "2611.05306",
-      "abstract": "Frequent context compaction keeps task accuracy across long-horizon and long-input tasks, questioning the need for long-context models. Proposes semantic state space models as an alternative."
-    },
-    {
-      "title": "Every Token Needs Its Own Teacher: Multi-teacher Adaptive On-policy Self-distillation",
-      "upvotes": 8,
-      "paper_id": "2610.40574",
-      "abstract": "Lets each token select its preferred teacher from a pool during on-policy self-distillation. On Qwen3 math reasoning, it gains up to +5.9 over the base model and beats fixed-teacher methods."
-    },
-    {
-      "title": "Adversarial Speculative Reasoning Improves Long Horizon Agents",
-      "upvotes": 6,
-      "paper_id": "2611.05345",
-      "abstract": "Trains a draft model to be rejected at critical reasoning points, so the target model verifies those tokens under lower numerical noise. Raises end-to-end success on agentic coding benchmarks."
-    },
-    {
-      "title": "Dory1.0-4B: A Looped Normalized-GPT",
-      "upvotes": 6,
-      "paper_id": "2611.03998",
-      "abstract": "A 4B looped language model whose shared recurrent block can run a variable number of times, so one checkpoint serves different compute budgets. More loops improve accuracy and use fewer tokens on agentic tasks."
-    },
-    {
-      "title": "BEND 2.0: Benchmarking the Capabilities Needed to Design DNA",
-      "upvotes": 2,
-      "paper_id": "2611.03806",
-      "abstract": "A benchmark testing whether DNA language models predict mutation effects and guide sequence design. Linear readouts help, but context-specific and multi-cell design remain difficult."
-    },
-    {
-      "title": "Muon Makes the First Mixture-of-Experts Layer Harder to Balance",
-      "upvotes": 2,
-      "paper_id": "2610.37914",
-      "abstract": "Finds that training MoE language models with Muon increases routing imbalance in the first MoE layer. Centering router inputs or lowering the learning rate reduces the effect."
-    }
+    {"title": "Decoupled Predictive Decision Making: A Shared Conditional Predictor for Agents", "upvotes": 113, "paper_id": "2611.02075", "abstract": "Frames agent decisions as conditional prediction. A frozen, shared pretrained predictor uses language-model embeddings of past records to forecast task targets, with no parameter updates, and raises accuracy."},
+    {"title": "TailSteer: Trajectory-Tail Steering for Drift-Resistant Multi-turn Image Editing", "upvotes": 35, "paper_id": "2611.06741", "abstract": "A final-stage training method that keeps early denoising close to the base model and corrects preservation near the trajectory tail, reducing visual drift over 15-20 editing turns."},
+    {"title": "On the Opportunities and Challenges of Prefill-to-Autoregressive Cross-Model Transfer", "upvotes": 12, "paper_id": "2611.06976", "abstract": "Introduces PLatour, a framework linking a large prefill model to a small generator via trainable bridges. Controlled tests show some gains can come from non-informative signals, so the authors propose PACT-Check."},
+    {"title": "HeLM: Hierarchical Explicit Language Memory for Non-Markovian Manipulation", "upvotes": 7, "paper_id": "2611.02660", "abstract": "A hierarchical vision-language-action framework that keeps task history as explicit language, updated on detected events. It improves success on non-Markovian real-world manipulation tasks while using less memory."},
+    {"title": "SAE Interprets MoE: Sparse AutoEncoders Reveal That MoE Experts Exhibit Human-Interpretable Fine-Grained Specialization", "upvotes": 6, "paper_id": "2611.08089", "abstract": "Trains sparse autoencoders on MoE layer outputs to attribute latent features to individual experts. Finds contribution is more concentrated than routing, with experts specializing below coarse domains."},
+    {"title": "Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling", "upvotes": 5, "paper_id": "2611.08237", "abstract": "A containerized benchmark of 18 contest modeling problems where agents return a JSON answer. Scores are checked against multiple expert papers and gated by feasibility verification."},
+    {"title": "From Autonomous Agents to Cognitive Symbionts: Toward AI-Augmented Human Intelligence", "upvotes": 5, "paper_id": "2611.05376", "abstract": "A position paper arguing for AI-augmented human intelligence through lifelong, proactive cognitive companions that address working-memory limits, along with governance risks they introduce."},
+    {"title": "Muir: Linear Attention with Sensitivity-Allocated Gating and Matched-Filter Readout", "upvotes": 4, "paper_id": "2611.08376", "abstract": "A linear attention architecture that reallocates gate parameters by sensitivity, reweights state rows at readout, and uses a stable parallel update. It improves perplexity and long-context recall over baselines."},
+    {"title": "SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization", "upvotes": 3, "paper_id": "2611.08483", "abstract": "Hundreds of low-cost agents reason in latent space and share KV caches, with a novelty filter keeping distinct ideas. It reaches top scores on 21 math and science problems much faster than other frameworks."},
+    {"title": "StepX-OPD: Rethinking Multi-Teacher On-Policy Distillation in Diffusion Models", "upvotes": 2, "paper_id": "2611.04386", "abstract": "Merges capability distillation and few-step distillation for text-to-image diffusion into one training stage, using frozen specialist teachers on the student's own rollouts. Cuts GPU-hours by about 37%."}
   ],
   "cc_updates": [
-    {
-      "tag_name": "v2.1.318",
-      "published_at": "2026-11-04",
-      "body": "What's changed\n\n- Added a record of your answer when Claude Code asks to turn on the mods it writes in a session\n- Added `assume_role` on `mantle` upstreams of the Claude apps gateway, for a role in another AWS account and for per-developer AWS cost attribution\n- Added an `effort` option to a mod's `$.model.fork`, so a quick side job can run at `low` whatever effort the session uses; the result reports the effort sent\n- Added the date a stored claude.ai sign-in ends to `claude auth status` (`loginExpiresAt`) and to `claude -p` JSON results (`credential_expires_at`)\n- Added a one-line stderr warning to..."
-    },
-    {
-      "tag_name": "v2.1.317",
-      "published_at": "2026-11-03",
-      "body": "What's changed\n\n- Added a warning to `/schedule` when a new cloud scheduled task gets connectors you did not ask for, with how to remove them\n- Added a check that asks before a web or shell tool call sends your account email address to the network\n- Added `onFailure: \"block\"` for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run\n- Added a notice in Claude Desktop's Code tab when your organization's remote managed settings haven't loaded for the session, and another once they do\n- Added a notice when auto mode's check has no..."
-    },
-    {
-      "tag_name": "v2.1.316",
-      "published_at": "2026-10-31",
-      "body": "What's changed\n\n- Added `CLAUDE_CODE_DISABLE_ULTRATHINK`, which turns the `ultrathink` keyword off\n- Added pooled group budgets to the Claude apps gateway: one monthly budget that a group's members share, on top of each member's own limit, set with `pooled_budget` on the spend limits admin API\n- Added `CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP` to keep system cross-certificates that certify each other in a loop, for servers whose private CA needs one\n- Added `CLAUDE_CODE_SUBAGENT_EFFORT` to set the effort level subagents run at when nothing else names one, instead of inheriting the session's..."
-    }
+    {"tag_name": "v2.1.319", "published_at": "2026-11-06", "body": "What's changed\n\n* Changed auto mode with telemetry or feature flags off, including behind LLM gateways: calls the server can't check are asked about or denied, with no fallback to the built-in classifier; set `CLAUDE_CODE_AUTO_MODE_SERVER=0` to keep using it (Bedrock, Vertex and Foundry are unchanged)\n* Changed auto mode behind an LLM gateway: `CLAUDE_CODE_AUTO_MODE_SERVER=1` turns on the server-side check even with `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` set; if managed settings set the latter, they must set the `1` too\n* Added support for MCP tasks in the terminal: when an MCP server runs a tool call as a task, Claude Code moves it..."},
+    {"tag_name": "v2.1.318", "published_at": "2026-11-04", "body": "What's changed\n\n* Added a record of your answer when Claude Code asks to turn on the mods it writes in a session\n* Added `assume_role` on `mantle` upstreams of the Claude apps gateway, for a role in another AWS account and for per-developer AWS cost attribution\n* Added an `effort` option to a mod's `$.model.fork`, so a quick side job can run at `low` whatever effort the session uses; the result reports the effort sent\n* Added the date a stored claude.ai sign-in ends to `claude auth status` (`loginExpiresAt`) and to `claude -p` JSON results (`credential_expires_at`)\n* Added a one-line stderr warning to `claude -p` text output, starting 10 days before a stored claude.ai sign-in ends\n* Fixed `--continue` sometimes losing the earlier conversation after a malformed..."},
+    {"tag_name": "v2.1.317", "published_at": "2026-11-03", "body": "What's changed\n\n* Added a warning to `/schedule` when a new cloud scheduled task gets connectors you did not ask for, with how to remove them\n* Added a check that asks before a web or shell tool call sends your account email address to the network\n* Added `onFailure: \"block\"` for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run\n* Added a notice in Claude Desktop's Code tab when your organization's remote managed settings haven't loaded for the session, and another once they do\n* Added a notice when auto mode's check has no answer for a subagent's tool call, which used to leave..."}
   ]
 }
