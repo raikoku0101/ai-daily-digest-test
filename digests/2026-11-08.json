@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-08",
+  "content": "# AI Daily Digest — 2026-11-08\n\n## 今日のハイライト\n- **VFlash が視覚的計画に革新 (👍99)**: ロボティクス・自動運転向けに視覚的プリミティブ（点・軌跡・バウンディングボックス）を高速デコードする新手法を提案。物理 AI のリアルタイム展開における推論速度ボトルネックを解消し、実用化を加速する可能性がある。\n- **Claude Code v2.1.319 が LLM ゲートウェイ対応を強化**: auto モードがテレメトリ・フィーチャーフラグオフ環境でも安全に動作するよう変更。企業内 LLM ゲートウェイ利用者は設定確認が必要。MCP タスクのバックグラウンド対応も追加され、エージェント型ワークフローの効率が向上。\n- **AI の方向性を巡る重要な議論 (👍71)**: 「自律エージェント」から「認知共生体」へのパラダイムシフトを提唱する論文が注目を集める。AI を人間の代替ではなく人間の認知を増強するものと捉え直す視点は、今後のエージェント設計に影響を与えると考えられる。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.319 (2026-11-06)\n**主要機能詳細**\n- **Auto モード変更 (LLM ゲートウェイ対応)**: テレメトリやフィーチャーフラグがオフの場合、サーバー側チェックができないツール呼び出しは確認が求められるか拒否されるように変更。フォールバックとして内蔵分類器は使用されなくなった。`CLAUDE_CODE_AUTO_MODE_SERVER=0` を設定することで以前の動作を維持可能（Bedrock、Vertex、Foundry は変更なし）。\n- **MCP タスクのバックグラウンド対応**: MCP サーバーがタスクとしてツール呼び出しを実行する場合、Claude Code は即座にバックグラウンドへ移動させ、完了時に結果を Claude に通知するように対応。\n\n**バグ修正・その他**\n- `CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND` 環境変数を追加（MCP タスクをバックグラウンドではなくツール呼び出し内で待機させる）\n\n**ユーザーへの影響**\nLLM ゲートウェイ経由で Claude Code を使用している場合、auto モードの動作が変わる可能性があります。エンタープライズ環境での利用者は設定の確認を推奨します。\n\n---\n\n### v2.1.318 (2026-11-04)\n**主要機能詳細**\n- **セッションモッド記録**: Claude Code がセッションで作成したモッドをオンにするよう求めた際の回答が記録されるように\n- **AWS コスト帰属**: mantle ゲートウェイの `assume_role` に対応。別 AWS アカウントのロールや開発者ごとの AWS コスト帰属が可能に\n- **モッドの effort オプション**: `$.model.fork` に `effort` オプションを追加\n\n**バグ修正**\n- `--continue` が誤ったツール呼び出しのリトライ後に以前の会話を失うバグを修正（2.1.314 のリグレッション）\n- macOS で多数の Bash コマンドが実行中のセッションでメモリ増加によりスタールするバグを修正\n\n**ユーザーへの影響**\nAWS 環境での認証・コスト管理が改善されます。\n\n---\n\n### v2.1.317 (2026-11-03)\n**主要機能詳細**\n- **スケジュールタスクの警告**: `/schedule` で新しいクラウドタスクにリクエストしていないコネクターが追加される場合に警告を表示\n- **メールアドレス送信チェック**: ウェブやシェルのツール呼び出しがアカウントのメールアドレスをネットワークに送信する前に確認を求めるチェックを追加\n- **SDK フック改善**: `onFailure: \"block\"` を Agent SDK フックコールバックに追加。コールバックが失敗した場合にアクションをブロックできるように\n\n**ユーザーへの影響**\nプライバシーとセキュリティが強化されます。スケジュール機能利用者は意図しないコネクター追加への警告が受けられます。\n\n## 注目論文 TOP 10\n\n1. **VFlash: Fast, Accurate Visual Planning via Flash Primitive Decoding** | 👍 99 | [arxiv 2611.08449](https://arxiv.org/abs/2611.08449)\n   - 🎯 **背景**: ロボティクスや自動運転など物理 AI タスクでは、言語だけでなく視覚的計画（点・バウンディングボックス・軌跡）が必要。しかし視覚的プリミティブのデコードは既存モデルでは遅い。\n   - 🔧 **手法**: 「Flash Primitive Decoding」という高速デコード手法を提案。視覚的プリミティブを効率的に並列デコードし、推論速度を大幅に向上させる。\n   - 📊 **結果**: 従来手法比で大幅な速度向上を達成しつつ、精度も維持または改善。物理 AI タスクのリアルタイム要件を満たす。\n   - 💡 **意義**: 視覚的計画を現実の物理システムに組み込む際のボトルネック（推論速度）を解消し、実用展開を加速する。\n   - ⚠️ **限界**: 特定の視覚的プリミティブタイプに最適化されており、より複雑なシーン理解への汎化は今後の課題。\n\n2. **SLA: Scaling Spatial-Language-Action Model via Continual Pre-training** | 👍 81 | [arxiv 2611.08373](https://arxiv.org/abs/2611.08373)\n   - 🎯 **背景**: 信頼性の高いロボット操作には意味的理解と3次元空間での精密制御が必要。しかし既存の Vision-Language-Action (VLA) モデルは2次元視覚表現を継承しており、3D 空間認識が弱い。\n   - 🔧 **手法**: 継続的事前学習（Continual Pre-training）により、空間-言語-アクションモデルをスケーリング。3D 空間理解を強化しつつ既存の言語能力を維持する。\n   - 📊 **結果**: 操作タスクにおける精度と汎化性能が向上。複雑な3D 操作シナリオでの成功率が改善。\n   - 💡 **意義**: ロボット基盤モデルに3D 空間認識を組み込む実践的アプローチを示し、汎用ロボット AI への道筋を開く。\n   - ⚠️ **限界**: 継続的事前学習のコストと、特定の操作ドメインへの過適合リスクが課題。\n\n3. **Decoupled Predictive Decision Making: A Shared Conditional Predictor for Agents** | 👍 79 | [arxiv 2611.02075](https://arxiv.org/abs/2611.02075)\n   - 🎯 **背景**: エージェントの意思決定は、タスク記述だけでは解決できない経験的関係に依存する。展開中の観察からこの関係を学習する効率的な方法が必要。\n   - 🔧 **手法**: DPDM（Decoupled Predictive Decision Making）アーキテクチャを提案。条件付き予測器を共有することで、観察から経験的関係を効率的に学習・活用する。\n   - 📊 **結果**: 複数のエージェントタスクで意思決定精度が向上。特に情報が不完全な状況での性能改善が顕著。\n   - 💡 **意義**: エージェントが展開環境から自律的に学習できる新しいアーキテクチャパラダイムを確立し、適応的 AI エージェントの実現に貢献。\n   - ⚠️ **限界**: 共有予測器の設計が複雑であり、新規タスクへの迅速な適応に課題が残る。\n\n4. **From Autonomous Agents to Cognitive Symbionts: Toward AI-Augmented Human Intelligence** | 👍 71 | [arxiv 2611.05376](https://arxiv.org/abs/2611.05376)\n   - 🎯 **背景**: この10年間、AI の進歩は「機械が単独でどれだけできるか」で測られてきた。大規模基盤モデルはコード生成やマルチステップタスクを実行できるが、自律性追求の弊害が見えてきた。\n   - 🔧 **手法**: 自律エージェントから「認知共生体（Cognitive Symbiont）」へのパラダイムシフトを提案。人間の認知能力を代替ではなく増強する AI システムの設計原則を論じる。\n   - 📊 **結果**: 人間-AI 協働の具体的なフレームワークを提示。人間の強みと AI の強みを組み合わせる設計パターンを示す。\n   - 💡 **意義**: AI 研究の方向性を「自律性」から「人間増強」へ転換する重要な議論。エージェント設計の哲学的基盤を提供する。\n   - ⚠️ **限界**: 理論的・哲学的考察が中心で、具体的な実装指針は今後の研究が必要。\n\n5. **Harness-S: Learning from Sibling Harnesses for Generalizable Agent Training** | 👍 63 | [arxiv 2611.04277](https://arxiv.org/abs/2611.04277)\n   - 🎯 **背景**: エージェント学習用ハーネスは共通ベースから進化し、異なる失敗を修正する変形版が生まれる。ポリシーが学習するにつれてその有用性も変化する（非定常性）という課題がある。\n   - 🔧 **手法**: 兄弟ハーネス（共通ベースから派生した複数のハーネス変形）から学習する「Harness-S」を提案。局所性・補完性・非定常性を考慮したエージェント訓練フレームワーク。\n   - 📊 **結果**: 汎化性能が向上し、単一ハーネスでの訓練より多様なタスクへの適応能力が改善。\n   - 💡 **意義**: マルチタスクエージェント訓練の新しいアプローチを提供し、実世界展開に向けた汎化性能の向上に貢献。\n   - ⚠️ **限界**: 複数のハーネス変形の維持管理コストと、最適な兄弟ハーネスの選択戦略に課題。\n\n\n6. **Random Is Almost Enough? Stable and Low-Cost Benchmark Compression via BestRand** | 👍 49 | [arxiv 2611.00883](https://arxiv.org/abs/2611.00883)\n   - 🎯 **背景**: モデル評価のベンチマークは時間とコストが非常に高い。ベンチマークの一部サブセットで評価しても全体結果に近い精度が得られるか検証が必要。\n   - 🔧 **手法**: BestRand を提案。ランダムサンプリングベースのベンチマーク圧縮手法で、推定誤差の定量化と安定性を重視した低コストな評価フレームワーク。\n   - 📊 **結果**: ランダムサンプリングが意外に高性能であることを示し、小さなサブセットでも全ベンチマークに近い結果が安定して得られることを実証。\n   - 💡 **意義**: LLM 評価コストを大幅削減できる実用的手法。研究コミュニティの評価効率化に直結する。\n   - ⚠️ **限界**: 特定ベンチマーク構造への依存性と、極端に小さいサブセットでの精度低下が課題。\n\n7. **WeLM-Image: A Unified Image Generation Model towards Visual Intelligence** | 👍 42 | [arxiv 2611.07392](https://arxiv.org/abs/2611.07392)\n   - 🎯 **背景**: 画像生成・編集・マルチリファレンス合成を統合した基盤モデルが求められている。既存モデルはこれらを個別に処理しており、統合的な視覚知能には至っていない。\n   - 🔧 **手法**: WeLM-Image は、テキスト→画像生成・指示ガイド編集・マルチリファレンス合成を統合した統一基盤モデル。マルチモーダル理解を画像生成に組み込んでいる。\n   - 📊 **結果**: 各タスクで競争力のある性能を達成し、統合アーキテクチャの有効性を実証。\n   - 💡 **意義**: 視覚 AI の汎用基盤モデル化への重要な一歩。単一モデルで多様な視覚タスクに対応できる。\n   - ⚠️ **限界**: 統合アーキテクチャの複雑さと、個別特化モデルと比べた際の特定タスクでのパフォーマンスギャップ。\n\n8. **TailSteer: Trajectory-Tail Steering for Drift-Resistant Multi-turn Image Editing** | 👍 39 | [arxiv 2611.06741](https://arxiv.org/abs/2611.06741)\n   - 🎯 **背景**: 優れた単一ターン編集性能がマルチターン対話での信頼性を保証しない。編集出力が繰り返し再利用されると、小さな意図しない変化が蓄積して深刻な視覚ドリフトが発生する。\n   - 🔧 **手法**: TailSteer（軌跡末尾ステアリング）を提案。過去の編集軌跡の末尾情報を活用して、マルチターン編集でのドリフトを抑制する。\n   - 📊 **結果**: マルチターン編集での視覚的一貫性が大幅に向上。ドリフト量が従来手法比で削減。\n   - 💡 **意義**: 長期的な画像編集セッションの実用性を高める。チャットベースの画像編集インターフェースに直接応用可能。\n   - ⚠️ **限界**: 軌跡履歴の保持コストと、全く異なるスタイル変更が必要な場合の柔軟性低下。\n\n9. **Halley: A Predictive Control Plane for Optical AI Data Center Networks** | 👍 32 | [arxiv 2611.04408](https://arxiv.org/abs/2611.04408)\n   - 🎯 **背景**: フロンティア AI モデルの学習では数万の GPU/TPU がネットワークで接続され、各訓練ステップの終わりに全デバイスが一斉にデータ交換する。この通信ボトルネックを光ネットワークで解決する試みがある。\n   - 🔧 **手法**: Halley は光学式 AI データセンターネットワーク向けの予測型コントロールプレーン。訓練パターンを予測して光スイッチング設定を事前最適化する。\n   - 📊 **結果**: ネットワーク輻輳を削減し、大規模 AI 訓練のスループットが向上。光ネットワークの再設定レイテンシを隠蔽。\n   - 💡 **意義**: 次世代 AI データセンターインフラの基盤技術。光ネットワークの高速・低遅延特性を AI 訓練に最大活用できる。\n   - ⚠️ **限界**: 訓練パターンの予測精度に依存し、不規則な通信パターンへの対応が課題。\n\n10. **EvoMemState: Evolving Memory State for Personal Agents** | 👍 26 | [arxiv 2611.03743](https://arxiv.org/abs/2611.03743)\n    - 🎯 **背景**: 長期記憶は LLM エージェントが継続的かつパーソナライズされた支援を提供するために不可欠。ユーザー情報をセッション間で保持する必要があるが、既存システムには課題がある。\n    - 🔧 **手法**: EvoMemState（進化する記憶状態）を提案。エージェントの記憶状態を対話を通じて継続的に進化させ、個人化に適応する動的記憶管理システム。\n    - 📊 **結果**: パーソナルエージェントのタスクで記憶精度と関連情報の想起率が向上。\n    - 💡 **意義**: 真の個人化 AI アシスタント実現への重要な技術的貢献。長期的な人間-AI 関係構築を支援。\n    - ⚠️ **限界**: 記憶の更新・削除判断の正確性と、プライバシー保護との兼ね合いが課題。\n\n",
+  "fetched_at": "2026-11-07T22:06:47.552592+00:00",
+  "papers": [
+    {
+      "title": "VFlash: Fast, Accurate Visual Planning via Flash Primitive Decoding",
+      "upvotes": 99,
+      "id": "2611.08449",
+      "abstract": "Models for physical AI tasks, such as robotics and autonomous driving, need not reason solely in language. They can use visual plans--points, bounding boxes, and trajectories--to represent spatial goa"
+    },
+    {
+      "title": "SLA: Scaling Spatial-Language-Action Model via Continual Pre-training",
+      "upvotes": 81,
+      "id": "2611.08373",
+      "abstract": "Reliable robotic manipulation requires both semantic understanding and precise control in three-dimensional space. However, vision-language-action (VLA) foundations largely inherit visual representati"
+    },
+    {
+      "title": "Decoupled Predictive Decision Making: A Shared Conditional Predictor for Agents",
+      "upvotes": 79,
+      "id": "2611.02075",
+      "abstract": "Agent decisions depend on empirical relationships that deployment observations reveal and task descriptions alone may leave unresolved. We introduce Decoupled Predictive Decision Making (DPDM), an arc"
+    },
+    {
+      "title": "From Autonomous Agents to Cognitive Symbionts: Toward AI-Augmented Human Intelligence",
+      "upvotes": 71,
+      "id": "2611.05376",
+      "abstract": "For a decade, progress in artificial intelligence has been measured by how much a machine can do on its own. Large foundation models now write code and run multistep tasks, and personal agents act on "
+    },
+    {
+      "title": "Harness-S: Learning from Sibling Harnesses for Generalizable Agent Training",
+      "upvotes": 63,
+      "id": "2611.04277",
+      "abstract": "Harness evolution from a common base exhibits Locality, Complementarity, and Nonstationarity: variants repair different failures, and their utility changes as the policy learns. Rather than seeking a "
+    },
+    {
+      "title": "Random Is Almost Enough? Stable and Low-Cost Benchmark Compression via BestRand",
+      "upvotes": 49,
+      "id": "2611.00883",
+      "abstract": "Benchmark compression reduces the often prohibitive time and cost of model evaluation by evaluating models on a small benchmark subset that closely matches full-benchmark results. To quantify estimati"
+    },
+    {
+      "title": "WeLM-Image: A Unified Image Generation Model towards Visual Intelligence",
+      "upvotes": 42,
+      "id": "2611.07392",
+      "abstract": "We present WeLM-Image, a unified image foundation model that integrates multimodal understanding into text-to-image generation, instruction-guided editing, and multi-reference synthesis. Designed for "
+    },
+    {
+      "title": "TailSteer: Trajectory-Tail Steering for Drift-Resistant Multi-turn Image Editing",
+      "upvotes": 39,
+      "id": "2611.06741",
+      "abstract": "Strong single-turn editing performance does not guarantee reliable multi-turn interaction: as edited outputs are repeatedly reused, small unintended changes can accumulate into severe visual drift. Th"
+    },
+    {
+      "title": "Halley: A Predictive Control Plane for Optical AI Data Center Networks",
+      "upvotes": 32,
+      "id": "2611.04408",
+      "abstract": "A frontier AI model is trained in an AI data center, on tens of thousands of accelerators joined by a dedicated network, and every training step ends with all of them exchanging data at once. Between "
+    },
+    {
+      "title": "EvoMemState: Evolving Memory State for Personal Agents",
+      "upvotes": 26,
+      "id": "2611.03743",
+      "abstract": "Long-term memory enables large language model (LLM) agents to provide continuous personalized assistance by retaining user information across interactions. Existing systems support this process throug"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.319",
+      "published_at": "2026-11-06",
+      "body": "What's changed\n- Changed auto mode with telemetry or feature flags off, including behind LLM gateways: calls the server can't check are asked about or denied, with no fallback to the built-in classifier; set CLAUDE_CODE_AUTO_MODE_SERVER=0 to keep using it (Bedrock, Vertex and Foundry are unchanged)\n- Changed auto mode behind an LLM gateway: CLAUDE_CODE_AUTO_MODE_SERVER=1 turns on the server-side check even with CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS set\n- Added support for MCP tasks in the terminal: when an MCP server runs a tool call as a task, Claude Code moves it to the background right away\n- Added the CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND environment variable to make Claude Code wait for an MCP task inside its tool call instead"
+    },
+    {
+      "tag_name": "v2.1.318",
+      "published_at": "2026-11-04",
+      "body": "What's changed\n- Added a record of your answer when Claude Code asks to turn on the mods it writes in a session\n- Added assume_role on mantle upstreams of the Claude apps gateway, for a role in another AWS account and for per-developer AWS cost attribution\n- Added an effort option to a mod's $.model.fork, so a quick side job can run at low whatever effort the session uses\n- Added the date a stored claude.ai sign-in ends to claude auth status (loginExpiresAt)\n- Fixed --continue sometimes losing the earlier conversation after a malformed tool call's retries ran out (regression in 2.1.314)\n- Fixed macOS sessions with many running Bash commands stalling while memory grew"
+    },
+    {
+      "tag_name": "v2.1.317",
+      "published_at": "2026-11-03",
+      "body": "What's changed\n- Added a warning to /schedule when a new cloud scheduled task gets connectors you did not ask for\n- Added a check that asks before a web or shell tool call sends your account email address to the network\n- Added onFailure: \"block\" for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run\n- Added a notice in Claude Desktop's Code tab when your organization's remote managed settings haven't loaded\n- Added anthropic.plan, anthropic.seat_type, anthropic.provider and anthropic.custom_base_url to OTel metrics, events and spans"
+    }
+  ]
+}
