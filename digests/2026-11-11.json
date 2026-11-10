@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-11",
+  "content": "# AI Daily Digest — 2026-11-11\n\n## 今日のハイライト\n- **Claude Fable 5.2 リリース (v2.1.321)**: 1M コンテキストを持つ新デフォルト Fable モデルが登場。MCP OAuth のセキュリティ脆弱性修正も含む重要アップデート。\n- **LLM 自己改善で学習インフラを 2.75x 高速化 (InfraRSI)**: エージェント AI が分散学習を自律最適化する手法が実証され、AI 開発コスト削減への新たな道筋を示した。\n- **マイナー言語 SWE ベンチマーク (Longtail-SWE)**: 13言語・202タスクの高品質コーディングベンチマークが公開。Python 偏重な AI 評価の刷新につながる重要な基盤整備。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.322 (2026-11-10)\n**主要機能**\n- Vertex AI のグローバル・US・EU リージョンで **fast mode** をサポート。Vertex が拒否した場合は自動で標準速度にフォールバック。\n\n**ユーザーへの影響**: Vertex AI を使用している場合、追加設定なしでより高速なレスポンスが得られる可能性があります。\n\n---\n\n### v2.1.321 (2026-11-09)\n**主要機能**\n- **Claude Fable 5.2** (`claude-fable-5-2`) を追加。Fable シリーズのデフォルトモデルに昇格。コンテキスト長 1M トークン、料金 $8/$40 per Mtok（キャッシュ読み取り $0.20/Mtok）。\n- `claude remote-control` に `--settings <file>` オプションを追加。起動するすべてのセッションにカスタム設定を適用可能。ファイルが変更されると新セッション開始前に再起動が必要。\n\n**バグ修正**\n- MCP OAuth リクエストがリダイレクト先ホストに refresh token 等の機密情報を送信してしまうセキュリティ問題を修正。\n- 読み取り専用 Bash コマンドがサンドボックス外で許可プロンプトなしに実行されるケースを修正。\n\n**ユーザーへの影響**: セキュリティ上重要なパッチを含むため、早急なアップデートを推奨します。MCP + OAuth を使用しているユーザーは特に注意。\n\n---\n\n### v2.1.319 (2026-11-06)\n**主要機能**\n- LLM ゲートウェイ利用時の **auto mode** 動作を変更: テレメトリ/フィーチャーフラグが無効の場合、フォールバックなしでリクエストを拒否または確認要求するように変更。`CLAUDE_CODE_AUTO_MODE_SERVER=0` で旧動作に戻せる（Bedrock/Vertex/Foundry は変更なし）。\n- **MCP タスクのターミナル対応**: MCP サーバーがツールを実行する際にターミナル表示をサポート。\n\n**ユーザーへの影響**: LLM ゲートウェイ経由で Claude Code を使用している場合、auto mode の挙動が変わる可能性があります。環境変数の確認を推奨します。\n\n## 注目論文 TOP 10\n\n1. **Longtail-SWE: High-Quality SWE Tasks for Underrepresented Languages** | ⬆️ 19 | [arxiv 2611.10304](https://arxiv.org/abs/2611.10304)\n   - 🎯**背景**: Python/JavaScript 以外のプログラミング言語向けの SWE ベンチマークは極めて少なく、コード AI モデルの評価に偏りがあった。\n   - 🔧**手法**: solver-judge-repairer パイプラインを用いて13言語・202タスクの高品質なリポジトリレベル issue 解決タスクを構築。欠陥のあるテストや問題文を自動修正。\n   - 📊**結果**: 多様な言語をカバーした高品質ベンチマークを公開。既存 SWE-bench 系との差別化に成功。\n   - 💡**意義**: マイナー言語対応 AI コーディングツールの開発・評価基盤を提供。グローバルな開発者コミュニティへの貢献が期待される。\n   - ⚠️**限界**: 202タスクと規模が小さい。各言語のカバレッジが均等ではない可能性。\n\n2. **InfraRSI: Harnessing Recursive Self-Improvement for Training Infrastructure** | ⬆️ 14 | [arxiv 2611.11558](https://arxiv.org/abs/2611.11558)\n   - 🎯**背景**: 大規模 LLM の分散学習における最適化は複雑で専門家に依存しており、自動化が困難だった。\n   - 🔧**手法**: エージェント型ハーネスが学習インフラの最適化案（起動設定・コードパッチ）を検証し、メモリとランタイムをモデル化しながら再帰的に自己改善。\n   - 📊**結果**: 最大 2.75x のスピードアップを達成。得られた知見は他の設定にも転用可能。\n   - 💡**意義**: LLM トレーニング自体を AI が最適化する「再帰的自己改善」の実用的デモンストレーション。AI 開発コスト削減に直結。\n   - ⚠️**限界**: 特定のインフラ設定に依存する可能性。汎化性能の検証が今後の課題。\n\n3. **MotionGraphicsBench: Evaluating Motion Graphics Generation with Programmatic Verification** | ⬆️ 7 | [arxiv 2611.10592](https://arxiv.org/abs/2611.10592)\n   - 🎯**背景**: SVG アニメーション生成 AI の評価は主観的な判断に頼っており、再現性の高い定量評価が不足していた。\n   - 🔧**手法**: 専門家がキュレーションした100タスクを、参照アニメーションや VLM ではなく決定論的な検証プログラムでスコアリング。\n   - 📊**結果**: 人間の評価と 93.3% の一致率を達成。客観的かつ自動化されたベンチマークを実現。\n   - 💡**意義**: モーショングラフィックス生成の標準評価基盤を確立。UI/UX 分野への AI 応用研究を加速する。\n   - ⚠️**限界**: タスク数が100件と限定的。現実の多様なアニメーション要件を完全にはカバーしない可能性。\n\n4. **LCM-Promo: An LLM-Based Uplift Model for Promotion Allocation** | ⬆️ 4 | [arxiv 2610.37570](https://arxiv.org/abs/2610.37570)\n   - 🎯**背景**: EC プロモーションの最適配分は因果推論（アップリフトモデリング）を必要とするが、従来手法は特徴量エンジニアリングに依存していた。\n   - 🔧**手法**: 取引データでファインチューニングした商用 LLM がプロモーション反応を予測。A/B テストで本番環境での有効性を検証。\n   - 📊**結果**: 本番 A/B テストでコンバージョン +1%、プロモーションコスト -6% を達成。\n   - 💡**意義**: LLM の実ビジネス価値を定量的に実証。EC 領域でのアップリフトモデリングへの LLM 活用の先駆け。\n   - ⚠️**限界**: 特定プラットフォームでの結果。他のコマースドメインへの汎化は未検証。\n\n5. **Auriga Technical Report: A Task-Agnostic Agent Harness for Zero-Shot Embodied Manipulation** | ⬆️ 4 | [arxiv 2611.01112](https://arxiv.org/abs/2611.01112)\n   - 🎯**背景**: ロボット操作タスクへの VLM 適用は、タスク固有の学習なしでの汎化が困難だった。\n   - 🔧**手法**: 3D 計測・双腕制御・実行チェックを通じて VLM をロボットコントローラとして機能させるタスク非依存ハーネスを設計。\n   - 📊**結果**: 追加学習なしで RoboDojo にて 57.7% の成功率を達成。\n   - 💡**意義**: ゼロショットで複雑なロボット操作を実現するフレームワークの提示。ロボット工学への VLM 応用を促進。\n   - ⚠️**限界**: RoboDojo という特定ベンチマークでの評価のみ。実世界環境での性能は未検証。\n\n\n6. **Training Vision Transformers to Focus: Emergence of Spatial Attention Head Specialization** | ⬆️ 4 | [arxiv 2611.11890](https://arxiv.org/abs/2611.11890)\n   - 🎯**背景**: ViT のアテンションヘッドは空間的に特化されにくく、ラベルなし設定でのセグメンテーション性能が限られていた。\n   - 🔧**手法**: 2つのビジュアルフォーカシング損失を導入し、ViT アテンションを特定画像領域に整合させ、ラベルなしで空間特化したアテンションヘッドを創出。\n   - 📊**結果**: DINO スタイルモデルでゼロショットセグメンテーション性能を向上。空間特化ヘッドの自発的出現を確認。\n   - 💡**意義**: ラベルなし学習でアテンション構造を誘導する新手法。自己教師あり学習の発展に貢献。\n   - ⚠️**限界**: DINO ベースモデルへの依存。他のアーキテクチャへの適用可能性は未検証。\n\n7. **SWAM: Scaling World Action Models with Cross-Modal Alignment** | ⬆️ 3 | [arxiv 2611.12870](https://arxiv.org/abs/2611.12870)\n   - 🎯**背景**: 動画とロボットアクションを統合予測するモデルのスケーリング則が不明で、適切なデータ・学習戦略が確立されていなかった。\n   - 🔧**手法**: 約47,000時間の混合動画データを使用し、言語-動画アライメントを維持しながら動画とアクションを同時予測するモデルのデータ・学習選択を体系的に研究。重みを公開。\n   - 📊**結果**: クロスモーダルアライメントを維持しながらワールドアクションモデルのスケーリングに関する知見を提供。\n   - 💡**意義**: 大規模動画データを活用したロボット学習の基盤研究。オープンな重みにより再現性確保。\n   - ⚠️**限界**: 実ロボット環境での検証が限定的。47,000時間のデータ収集コストが高い。\n\n8. **SkinMind: Equipping Agentic RAG with Human-Inspired Graph Probing for Reliable Dermatology AI** | ⬆️ 3 | [arxiv 2611.08935](https://arxiv.org/abs/2611.08935)\n   - 🎯**背景**: 皮膚科 AI は単純な QA では信頼性に欠け、テキストと画像を組み合わせた専門的な根拠が必要とされていた。\n   - 🔧**手法**: 大規模皮膚科知識グラフ上でグラフプロービングツールを使用するマルチモーダルエージェント型 RAG システムを構築。テキストと画像の両証拠を収集。\n   - 📊**結果**: VQA ベンチマークで直接回答方式を上回る性能を達成。\n   - 💡**意義**: 医療 AI における信頼性確保の新アプローチ。知識グラフ×エージェント型 RAG の医療応用の先駆け。\n   - ⚠️**限界**: 皮膚科特化のため他の医療分野への汎化は未評価。知識グラフの更新・保守コストが課題。\n\n9. **onóna: Twin Embeddings with Tied Unembeddings** | ⬆️ 2 | [arxiv 2611.10556](https://arxiv.org/abs/2611.10556)\n   - 🎯**背景**: 言語モデルの出力層（unembedding）の重み共有戦略は性能向上の余地があった。\n   - 🔧**手法**: 2つのテーブルで重みを共有し、トークン条件付きゲートで2つの softmax 出力分布を混合する設計を提案。\n   - 📊**結果**: テスト済みの大半の設定で検証損失を低下させることに成功。\n   - 💡**意義**: モデルアーキテクチャの小さな変更で性能改善を実現。実装コストが低く実用的。\n   - ⚠️**限界**: 大規模モデルでの検証が不十分。設定によって効果が出ない場合がある。\n\n10. **RidgeFill: Training-Free Late-Layer Cache Fill for Faster Prefill** | ⬆️ 2 | [arxiv 2611.09709](https://arxiv.org/abs/2611.09709)\n    - 🎯**背景**: LLM のプロンプト prefill では上位レイヤの計算が大半を占め、初回トークン生成までの時間（TTFT）が長くなる問題があった。\n    - 🔧**手法**: 閉形式のリッジ回帰で上位レイヤへの入力を予測し、ほとんどの上位レイヤ計算をスキップするトレーニング不要の手法を提案。\n    - 📊**結果**: 小さな精度コストで TTFT を短縮。追加学習不要で既存モデルに適用可能。\n    - 💡**意義**: 推論高速化のためのプラグイン的アプローチ。本番環境への導入障壁が低い。\n    - ⚠️**限界**: 精度低下があるため精度重視タスクへの適用は慎重に。リッジ回帰の汎化性能が設定依存。\n\n",
+  "fetched_at": "2026-11-10T22:06:20.421810+00:00",
+  "papers": [
+    {
+      "title": "Longtail-SWE: High-Quality SWE Tasks for Underrepresented Languages",
+      "upvotes": 19,
+      "paper_id": "2611.10304",
+      "abstract": "A benchmark of 202 repository-level issue-resolution tasks across 13 less-covered programming languages, refined by a solver-judge-repairer pipeline that fixes faulty tests and task descriptions."
+    },
+    {
+      "title": "InfraRSI: Harnessing Recursive Self-Improvement for Training Infrastructure",
+      "upvotes": 14,
+      "paper_id": "2611.11558",
+      "abstract": "An agentic harness that verifies distributed LLM training optimizations across launch settings and code patches, modeling memory and runtime, with up to 2.75x speedup and transferable experience."
+    },
+    {
+      "title": "MotionGraphicsBench: Evaluating Motion Graphics Generation with Programmatic Verification",
+      "upvotes": 7,
+      "paper_id": "2611.10592",
+      "abstract": "An expert-curated benchmark of 100 tasks for animating static SVGs, scored by deterministic verification programs rather than reference animations or VLM judges, with 93.3% agreement with humans."
+    },
+    {
+      "title": "LCM-Promo: An LLM-Based Uplift Model for Promotion Allocation",
+      "upvotes": 4,
+      "paper_id": "2610.37570",
+      "abstract": "A finetuned commerce LLM that predicts promotion response from transaction data; in a production A/B test it raised conversion by 1% and cut promotion cost by 6%."
+    },
+    {
+      "title": "Auriga Technical Report: A Task-Agnostic Agent Harness for Zero-Shot Embodied Manipulation",
+      "upvotes": 4,
+      "paper_id": "2611.01112",
+      "abstract": "A task-agnostic harness that helps vision-language models act as robot controllers through 3D measurements, dual-arm control, and execution checks, reaching 57.7% success on RoboDojo without training."
+    },
+    {
+      "title": "Training Vision Transformers to Focus: Emergence of Spatial Attention Head Specialization",
+      "upvotes": 4,
+      "paper_id": "2611.11890",
+      "abstract": "Two visual focusing losses align ViT attention with image regions, yielding specialized spatial attention heads without labels and better zero-shot segmentation on DINO-style models."
+    },
+    {
+      "title": "SWAM: Scaling World Action Models with Cross-Modal Alignment",
+      "upvotes": 3,
+      "paper_id": "2611.12870",
+      "abstract": "A study of data and training choices for models that jointly predict video and robot actions while keeping language-video alignment intact, using about 47,000 hours of mixed video; weights released."
+    },
+    {
+      "title": "SkinMind: Equipping Agentic RAG with Human-Inspired Graph Probing for Reliable Dermatology AI",
+      "upvotes": 3,
+      "paper_id": "2611.08935",
+      "abstract": "A multimodal agentic retrieval system that uses graph-probing tools over a large dermatology knowledge graph to gather text and image evidence, outperforming direct answering on VQA benchmarks."
+    },
+    {
+      "title": "onóna: Twin Embeddings with Tied Unembeddings",
+      "upvotes": 2,
+      "paper_id": "2611.10556",
+      "abstract": "A two-table weight-sharing design for language models that mixes two softmax output distributions with a token-conditioned gate, lowering validation loss in most tested settings."
+    },
+    {
+      "title": "RidgeFill: Training-Free Late-Layer Cache Fill for Faster Prefill",
+      "upvotes": 2,
+      "paper_id": "2611.09709",
+      "abstract": "A training-free method that skips computing most upper layers during prompt prefill by predicting their inputs with a closed-form ridge regression, speeding time to first token with small accuracy costs."
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.322",
+      "published_at": "2026-11-10",
+      "body": "What's changed\n\n* Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it"
+    },
+    {
+      "tag_name": "v2.1.321",
+      "published_at": "2026-11-09",
+      "body": "What's changed\n\n* Added Claude Fable 5.2 (`claude-fable-5-2`), now the default Fable model — 1M context, $8/$40 per Mtok with $0.20/Mtok cache reads\n* Added `--settings <file>` to `claude remote-control`, which applies a settings file to every session it starts; if the file changes, no new session starts until you restart `claude remote-control`\n* Fixed MCP OAuth requests sending secrets such as refresh tokens to another host when a server redirected them\n* Fixed a case where a read-only Bash command ran outside the sandbox without a permission prompt"
+    },
+    {
+      "tag_name": "v2.1.319",
+      "published_at": "2026-11-06",
+      "body": "What's changed\n\n* Changed auto mode with telemetry or feature flags off, including behind LLM gateways: calls the server can't check are asked about or denied, with no fallback to the built-in classifier; set `CLAUDE_CODE_AUTO_MODE_SERVER=0` to keep using it (Bedrock, Vertex and Foundry are unchanged)\n* Changed auto mode behind an LLM gateway: `CLAUDE_CODE_AUTO_MODE_SERVER=1` turns on the server-side check even with `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` set; if managed settings set the latter, they must set the `1` too\n* Added support for MCP tasks in the terminal: when an MCP server runs a tool..."
+    }
+  ]
+}
