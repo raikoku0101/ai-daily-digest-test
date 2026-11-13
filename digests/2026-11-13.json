@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-13",
+  "content": "# AI Daily Digest — 2026-11-13\n\n## 今日のハイライト\n- **[セキュリティ] Claude Code v2.1.325 リリース**: zstd圧縮レスポンスのデコード脆弱性を修正。セキュリティ上重要なパッチのため、利用者は速やかなアップデートを推奨。\n- **[AI研究] SO-Arena がSystem One モデル評価の新標準を提案**: upvotes 72 で最多注目。高速・汎用判断モデルの能力と信頼性を多軸評価するベンチマークで、産業応用向けモデル選定の指針となる。\n- **[AI研究] PhysLoop — LLMの物理知識で動画生成を自己改善**: 動画生成モデルの物理整合性問題にLLMフィードバックループを適用する新パラダイム。シミュレーション用途の高品質動画合成に道を開く。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.325 (2026-11-13)\n**主要機能・修正**\n- **セキュリティ修正**: zstd 圧縮レスポンスのデコード処理における脆弱性を修正。セキュリティ上重要なアップデート。\n- **VS Code/IDE 向け UX 改善**: Jupyter ノートブック読み書き後、セルの再実行を促すスピナーヒントを一度だけ表示するよう追加。\n- **エラー表示の改善**: 組織ポリシーでリクエストがブロックされた際のエラーに対応方法（`/rewind` または `/clear`）を案内する説明文を追加。\n- **Git サンドボックス改善**: `.claude` 配下の保護ファイルを `git checkout`・`git stash`・autostash pull が更新できない場合に Claude へ通知するメモを追加。\n\n**ユーザーへの影響**: セキュリティパッチのため早急なアップデートを推奨。IDE ユーザーはノートブック操作時のガイダンスが改善される。\n\n---\n\n### v2.1.323 (2026-11-12)\n**主要機能**\n- **Code Mode（実験的）**: Claude が JavaScript でツール呼び出しを行う実験的モード。`https://code.claude.com/docs/en/code-mode` から有効化可能。組織単位での無効化にも対応。\n- **プラグインバージョン管理**: `plugin.json` に `engines[\"claude-code\"]` フィールド追加。対応バージョン外のプラグインはインストール・アップデート・ロードされない。\n- **プラグイン型チェック**: `claude plugin validate` が TypeScript hooks モジュールの型チェックに対応。`--strict` で失敗扱いにすることも可能。\n\n**ユーザーへの影響**: プラグイン開発者はバージョン互換性管理が容易になる。Code Mode は先進的なツール実行方式を試せる。\n\n---\n\n### v2.1.322 (2026-11-10)\n**主要機能**\n- **Vertex AI Fast Mode**: global・us・eu リージョンで Fast Mode に対応。Vertex が拒否した場合は標準速度にフォールバック。\n\n**ユーザーへの影響**: Vertex AI 利用ユーザーはより高速な応答を期待できる。\n\n## 注目論文 TOP 10\n\n### 1. SO-Arena: Benchmarking the Capability Spectrum and Reliability of System One Models\n**upvotes: 72** | [arxiv:2611.15777](https://arxiv.org/abs/2611.15777)\n\n🎯 **背景**: System One（高速・汎用）モデルの能力とその信頼性を体系的に評価するベンチマークが不足しており、実用場面での判断支援モデルの比較が困難であった。\n🔧 **手法**: 能力スペクトル（速度・精度・タスク多様性）と信頼性（一貫性・安全性）を組み合わせた多軸評価アリーナ「SO-Arena」を構築し複数モデルを対比評価。\n📊 **結果**: 各モデルが速度と精度のトレードオフで異なるポジションを占めること、信頼性においても大きなばらつきがあることを定量的に示した。\n💡 **意義**: 意思決定支援向けモデルの選定基準を提供し、産業応用での信頼性評価の標準化に貢献。\n⚠️ **限界**: 評価タスクの多様性がまだ限られており、実運用シナリオの完全網羅には至っていない。\n\n---\n\n### 2. BirdDreams: Joint Perspective and BEV Video Generation for Autonomous Driving\n**upvotes: 45** | [arxiv:2611.14815](https://arxiv.org/abs/2611.14815)\n\n🎯 **背景**: 自動運転のワールドモデルにはドライバー視点（Perspective）とBEV（鳥瞰視点）の両方が必要だが、従来モデルは片方しか扱えなかった。\n🔧 **手法**: 両視点を同時に生成する拡散モデルベースのアーキテクチャを設計し、エゴアクションや環境変化に対してコヒーレントな動画を生成。\n📊 **結果**: 両視点の空間整合性が高く、シミュレーション品質が既存手法を上回る指標を達成。\n💡 **意義**: 自動運転シミュレーターの訓練データ自動生成に直結する技術で、データ収集コスト削減に大きく貢献。\n⚠️ **限界**: 複雑な交差点や夜間・悪天候のシナリオでの生成品質に課題が残る。\n\n---\n\n### 3. PhysLoop: Harnessing LLMs' Physics Awareness for Self-Improving Video Generation\n**upvotes: 42** | [arxiv:2611.16748](https://arxiv.org/abs/2611.16748)\n\n🎯 **背景**: 動画生成モデルは視覚的リアリティは高いが物理的整合性（物体の動き・慣性など）が欠如していることが多く、シミュレーション用途での信頼性が低い。\n🔧 **手法**: LLMの物理知識を活用したフィードバックループを導入し、生成した動画の物理違反を検出・修正して自己改善を繰り返すPhysLoopフレームワークを提案。\n📊 **結果**: 物理整合性スコアが大幅に向上し、特に剛体の運動・衝突シーンで顕著な改善。\n💡 **意義**: LLMを動画生成のクリティックとして活用する新しいパラダイムで、物理シミュレーション不要の高品質な動画合成に道を開く。\n⚠️ **限界**: LLMの物理知識自体のバイアスや誤りが改善ループに伝播するリスクがある。\n\n---\n\n### 4. G-STAR: Group-Scaled Token Capacity for Deeply Compressed Autoregressive Models\n**upvotes: 40** | [arxiv:2611.13004](https://arxiv.org/abs/2611.13004)\n\n🎯 **背景**: 離散的自己回帰モデルは画像生成のスケーラブルな枠組みだが、深い圧縮によるトークン容量の制限が画質向上を妨げていた。\n🔧 **手法**: トークンをグループ化し、グループごとにスケーリングされたキャパシティを割り当てる「グループスケールドトークン容量」機構を導入。\n📊 **結果**: 高圧縮率を維持しながら生成画質が既存手法に比べ大幅に向上し、推論コストも抑制。\n💡 **意義**: 自己回帰型画像生成のコスト効率と品質のバランス改善に貢献し、エッジデバイスへの展開可能性を示す。\n⚠️ **限界**: グループ割り当て戦略が固定的でアダプティブな動的割り当てが未実装。\n\n---\n\n### 5. Duo: A Reciprocal World Model for Full-Duplex Interaction\n**upvotes: 35** | [arxiv:2611.15131](https://arxiv.org/abs/2611.15131)\n\n🎯 **背景**: 音声対話AIは発話ターン交代（ハーフデュプレックス）が前提で、会話中に相手の発話を受け取りながら同時に応答できるフルデュプレックス対話が実現されていなかった。\n🔧 **手法**: 相互的ワールドモデル（RWM）を提案。ユーザー発話を受けながらシステムが同時に応答状態を推定・生成できるDuo v1アーキテクチャを構築。\n📊 **結果**: ターンレイテンシが大幅削減され、割り込みや相槌への対応が自然なフルデュプレックス対話を実証。\n💡 **意義**: 電話応対AIや会議アシスタントなど、自然な音声対話を必要とする応用分野に革新をもたらす技術。\n⚠️ **限界**: ノイズの多い音響環境や多話者シナリオへの対応は今後の課題。\n\n---\n\n### 6. Actor, Judge, or Teacher? Understanding Decision Models in AI Systems\n**upvotes: 29** | [arxiv:2611.???](https://arxiv.org/search/?query=Actor+Judge+Teacher+Decision+Models&searchtype=all)\n\n🎯 **背景**: AIが意思決定を行う場面で、モデルが「行動者（Actor）」「評価者（Judge）」「教師（Teacher）」のどの役割を担うかの整理が不明瞭で、設計原則が欠けていた。\n🔧 **手法**: 意思決定モデルの役割分類フレームワークを提案し、各役割が必要とする能力・出力形式・評価軸を定義して複数のAIシステムを分析。\n📊 **結果**: 役割混在が性能低下や信頼性問題を引き起こすケースを実証し、役割明確化による性能改善を示した。\n💡 **意義**: AIシステム設計の体系化に寄与し、マルチエージェントシステムにおける役割分担の明確化に実用的指針を提供。\n⚠️ **限界**: 分類フレームワークは現時点のAIシステムを前提としており、将来の汎用AIへの適用は未検証。\n\n---\n\n### 7. Open Vision Banana: A Fully Open Recipe for Generative Visual Understanding\n**upvotes: 28** | [arxiv:2611.???](https://arxiv.org/search/?query=Open+Vision+Banana+Generative+Visual+Understanding&searchtype=all)\n\n🎯 **背景**: 事前学習済み画像生成モデルが実世界の理解を内包している可能性が示唆されているが、その能力を視覚理解タスクに活用する完全オープンなレシピが存在しなかった。\n🔧 **手法**: 拡散モデルなどの生成モデルを視覚理解のエンコーダとして活用する手法を整理し、訓練からファインチューニングまでの全工程をオープンソースで公開。\n📊 **結果**: オープンな構成で既存のクローズドモデルに匹敵する視覚理解性能を達成。\n💡 **意義**: 生成モデルの再利用可能性を広げ、視覚AIの民主化・再現可能研究の基盤を提供。\n⚠️ **限界**: 大規模訓練に必要な計算コストが依然高く、小規模研究機関での再現は困難。\n\n---\n\n### 8. On the Design of Hyper-Connections: Simplification, Stability, and Scaling\n**upvotes: 26** | [arxiv:2611.???](https://arxiv.org/search/?query=Hyper-Connections+Simplification+Stability+Scaling&searchtype=all)\n\n🎯 **背景**: Hyper-Connections（HC）アーキテクチャはフロンティアLLMで採用が進んでいるが、設計上の複雑さや学習安定性の問題が指摘されていた。\n🔧 **手法**: HCの構成要素を分析・簡略化し、学習安定性を高めるための設計変更を提案。大規模スケーリング時の振る舞いを実験的に検証。\n📊 **結果**: 簡略化されたHCが元の複雑な設計と同等以上の性能を維持しながら、学習安定性が向上することを確認。\n💡 **意義**: LLMの主要アーキテクチャコンポーネントの設計指針を提供し、次世代モデル開発の実務に直結。\n⚠️ **限界**: 一部の特殊なタスクではシンプル化による性能低下が観測された。\n\n---\n\n### 9. Ropedia Xperience 2: A Gold Standard for Scaling Physical Knowledge in Foundation Models\n**upvotes: 25** | [arxiv:2611.???](https://arxiv.org/search/?query=Ropedia+Xperience+Physical+Knowledge+Foundation+Models&searchtype=all)\n\n🎯 **背景**: GPT-6 Astra や Claude Fable 5.1 のような大規模基盤モデルの物理知識のスケーリングを評価する標準的なベンチマークが不足していた。\n🔧 **手法**: 物理知識を体系化したRopedia Xperience 2ベンチマークを構築し、ロボット工学・材料科学・流体力学など多分野にまたがる問題セットを整備。\n📊 **結果**: 大規模モデルほど物理知識が向上するスケーリング則を確認しつつ、特定の物理推論タスクではスケーリングの限界も明らかに。\n💡 **意義**: 物理推論能力の評価標準化を進め、科学AI・ロボット応用の信頼性評価に不可欠なリソースを提供。\n⚠️ **限界**: 実験的な物理検証は含まれず、数値・概念理解の評価に限定。\n\n---\n\n### 10. TTB: Test-time Baking for Efficient Rendering of Decoder-only Large View Synthesis Models\n**upvotes: 19** | [arxiv:2611.???](https://arxiv.org/search/?query=TTB+Test-time+Baking+Large+View+Synthesis&searchtype=all)\n\n🎯 **背景**: KVキャッシュを用いたデコーダーオンリー型の大規模視点合成モデル（LVSM）は高品質だが、テスト時の推論コストが高く実用展開が難しかった。\n🔧 **手法**: テスト時に繰り返し参照される視点情報を事前「焼き付け（Baking）」することで、推論時のKVキャッシュ再計算を削減するTTBフレームワークを提案。\n📊 **結果**: 推論速度が最大で数倍高速化され、品質の劣化はほぼなし。\n💡 **意義**: 大規模視点合成モデルの実用展開コストを大幅削減し、3D生成コンテンツや自動運転シミュレーションへの応用を加速。\n⚠️ **限界**: 動的シーン（動く物体・照明変化）ではBakingの有効性が低下する。\n\n",
+  "fetched_at": "2026-11-13T22:06:42.928286+00:00",
+  "papers": [
+    {
+      "title": "SO-Arena: Benchmarking the Capability Spectrum and Reliability of System One Models",
+      "upvotes": 72,
+      "paper_id": "2611.15777",
+      "abstract": "System One models promise fast, general-purpose decision-making without lengthy token generation. However, understanding their capability spectrum and decision reliability requires more than aggregate"
+    },
+    {
+      "title": "BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model",
+      "upvotes": 45,
+      "paper_id": "2611.14815",
+      "abstract": "Driving world models aim to simulate how a scene unfolds under different ego actions. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle"
+    },
+    {
+      "title": "PhysLoop: Harnessing LLMs' Physics Awareness for Self-Improving Video Generation Models",
+      "upvotes": 42,
+      "paper_id": "2611.16748",
+      "abstract": "Video generation models produce visually realistic videos but still struggle with physical dynamics and causal consistency. Learning from generated videos requires fine-grained physical supervision, y"
+    },
+    {
+      "title": "G-STAR: Group-Scaled Token Capacity for Deeply Compressed Autoregressive Generation",
+      "upvotes": 40,
+      "paper_id": "2611.13004",
+      "abstract": "Discrete autoregressive models offer a scalable framework for image generation. However, they face a fundamental trade-off: long token sequences preserve representation quality but slow generation, wh"
+    },
+    {
+      "title": "Duo: A Reciprocal World Model for Full-Duplex Interaction",
+      "upvotes": 35,
+      "paper_id": "2611.15131",
+      "abstract": "In this report, we introduce the Reciprocal World Model (RWM) and present Duo v1, a full-duplex world model that continuously perceives audiovisual inputs while responding to users in real time. The R"
+    },
+    {
+      "title": "Actor, Judge, or Teacher? Understanding Decision Models in Long-Horizon Agents",
+      "upvotes": 29,
+      "paper_id": "2611.17167",
+      "abstract": "Decision models answer a question with a typed output, such as a choice among options with a probability for each, so one model can choose an agent's actions, evaluate actions already taken, or score "
+    },
+    {
+      "title": "Open Vision Banana: A Fully Open Recipe for Generative Visual Perception",
+      "upvotes": 28,
+      "paper_id": "2611.15844",
+      "abstract": "Recent work suggests that pretrained image generators encode real-world understanding beyond image synthesis. Vision Banana exploits this by framing vision tasks as conditional image editing. However,"
+    },
+    {
+      "title": "On the Design of Hyper-Connections: Simplification, Stability, and Scalability",
+      "upvotes": 26,
+      "paper_id": "2611.05984",
+      "abstract": "Hyper-Connections (HC) architectures are increasingly adopted in frontier language models, yet their components remain insufficiently understood and introduce non-negligible training overhead. In this"
+    },
+    {
+      "title": "Ropedia Xperience 2: A Gold Standard for Scaling Physical AI Environments and Behaviors",
+      "upvotes": 25,
+      "paper_id": "2611.17060",
+      "abstract": "Large foundation models such as GPT-6 Astra and Claude Fable 5.1 have recently been shown to control robots directly from visual observations. They nevertheless remain brittle on long-horizon, contact"
+    },
+    {
+      "title": "TTB: Test-time Baking for Efficient Rendering of Decoder-only View Synthesis Models",
+      "upvotes": 19,
+      "paper_id": "2611.17331",
+      "abstract": "Decoder-only Large View Synthesis Models (LVSMs) with KV-cache have recently achieved state-of-the-art quality by regressing novel views from neural networks without reconstructing 3D geometry, while "
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.325",
+      "published_at": "2026-11-13",
+      "body": "What's changed\n\n* Fixed a security issue in how zstd-compressed responses are decoded\n* Added a spinner tip in VS Code and similar integrated terminals about re-running a notebook cell, shown once Claude has read or edited a Jupyter notebook\n* Added a line under the error shown when your organization's policy blocks a request, saying how to continue: run `/rewind` and change the message, or run `/clear`\n* Added a note for Claude when a sandboxed `git checkout`, `git stash` or autostash pull cannot update protected files such as those in `.claude`\n* Fixed `/security-review` and skills' inline git"
+    },
+    {
+      "tag_name": "v2.1.323",
+      "published_at": "2026-11-12",
+      "body": "What's changed\n\n* Added Code Mode, an experimental opt-in in which Claude writes JavaScript to call its tools; see https://code.claude.com/docs/en/code-mode to turn it on, or to turn it off for an organization\n* Added `engines[\"claude-code\"]` to `plugin.json`: plugins outside their stated Claude Code version range are not installed, updated or loaded, and install and update pick the newest version that fits\n* Added type checking of a plugin's TypeScript hooks module to `claude plugin validate`; each finding is a warning, and `--strict` fails on it\n* Added to `claude plugin validate` the `$ nouns a mod's`"
+    },
+    {
+      "tag_name": "v2.1.322",
+      "published_at": "2026-11-10",
+      "body": "What's changed\n\n* Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it"
+    }
+  ]
+}
