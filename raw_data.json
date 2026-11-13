@@ -1,19 +1,81 @@
 {
   "papers": [
-    {"title": "Longtail-SWE: High-Quality SWE Tasks for Underrepresented Languages", "upvotes": 19, "paper_id": "2611.10304", "abstract": "A benchmark of 202 repository-level issue-resolution tasks across 13 less-covered programming languages, refined by a solver-judge-repairer pipeline that fixes faulty tests and task descriptions."},
-    {"title": "InfraRSI: Harnessing Recursive Self-Improvement for Training Infrastructure", "upvotes": 14, "paper_id": "2611.11558", "abstract": "An agentic harness that verifies distributed LLM training optimizations across launch settings and code patches, modeling memory and runtime, with up to 2.75x speedup and transferable experience."},
-    {"title": "MotionGraphicsBench: Evaluating Motion Graphics Generation with Programmatic Verification", "upvotes": 7, "paper_id": "2611.10592", "abstract": "An expert-curated benchmark of 100 tasks for animating static SVGs, scored by deterministic verification programs rather than reference animations or VLM judges, with 93.3% agreement with humans."},
-    {"title": "LCM-Promo: An LLM-Based Uplift Model for Promotion Allocation", "upvotes": 4, "paper_id": "2610.37570", "abstract": "A finetuned commerce LLM that predicts promotion response from transaction data; in a production A/B test it raised conversion by 1% and cut promotion cost by 6%."},
-    {"title": "Auriga Technical Report: A Task-Agnostic Agent Harness for Zero-Shot Embodied Manipulation", "upvotes": 4, "paper_id": "2611.01112", "abstract": "A task-agnostic harness that helps vision-language models act as robot controllers through 3D measurements, dual-arm control, and execution checks, reaching 57.7% success on RoboDojo without training."},
-    {"title": "Training Vision Transformers to Focus: Emergence of Spatial Attention Head Specialization", "upvotes": 4, "paper_id": "2611.11890", "abstract": "Two visual focusing losses align ViT attention with image regions, yielding specialized spatial attention heads without labels and better zero-shot segmentation on DINO-style models."},
-    {"title": "SWAM: Scaling World Action Models with Cross-Modal Alignment", "upvotes": 3, "paper_id": "2611.12870", "abstract": "A study of data and training choices for models that jointly predict video and robot actions while keeping language-video alignment intact, using about 47,000 hours of mixed video; weights released."},
-    {"title": "SkinMind: Equipping Agentic RAG with Human-Inspired Graph Probing for Reliable Dermatology AI", "upvotes": 3, "paper_id": "2611.08935", "abstract": "A multimodal agentic retrieval system that uses graph-probing tools over a large dermatology knowledge graph to gather text and image evidence, outperforming direct answering on VQA benchmarks."},
-    {"title": "onóna: Twin Embeddings with Tied Unembeddings", "upvotes": 2, "paper_id": "2611.10556", "abstract": "A two-table weight-sharing design for language models that mixes two softmax output distributions with a token-conditioned gate, lowering validation loss in most tested settings."},
-    {"title": "RidgeFill: Training-Free Late-Layer Cache Fill for Faster Prefill", "upvotes": 2, "paper_id": "2611.09709", "abstract": "A training-free method that skips computing most upper layers during prompt prefill by predicting their inputs with a closed-form ridge regression, speeding time to first token with small accuracy costs."}
+    {
+      "title": "SO-Arena: Benchmarking the Capability Spectrum and Reliability of System One Models",
+      "upvotes": 72,
+      "paper_id": "2611.15777",
+      "abstract": "System One models promise fast, general-purpose decision-making without lengthy token generation. However, understanding their capability spectrum and decision reliability requires more than aggregate"
+    },
+    {
+      "title": "BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model",
+      "upvotes": 45,
+      "paper_id": "2611.14815",
+      "abstract": "Driving world models aim to simulate how a scene unfolds under different ego actions. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle"
+    },
+    {
+      "title": "Scaling Mathematical Proof Supervision from Structured Textbooks",
+      "upvotes": 44,
+      "paper_id": "2610.40394",
+      "abstract": "Mathematical supervision for language models is typically flattened into isolated problem-solution pairs, discarding the curricular organization and evidential structure of the original sources. We in"
+    },
+    {
+      "title": "PhysLoop: Harnessing LLMs' Physics Awareness for Self-Improving Video Generation Models",
+      "upvotes": 42,
+      "paper_id": "2611.16748",
+      "abstract": "Video generation models produce visually realistic videos but still struggle with physical dynamics and causal consistency. Learning from generated videos requires fine-grained physical supervision, y"
+    },
+    {
+      "title": "G-STAR: Group-Scaled Token Capacity for Deeply Compressed Autoregressive Generation",
+      "upvotes": 40,
+      "paper_id": "2611.13004",
+      "abstract": "Discrete autoregressive models offer a scalable framework for image generation. However, they face a fundamental trade-off: long token sequences preserve representation quality but slow generation, wh"
+    },
+    {
+      "title": "Duo: A Reciprocal World Model for Full-Duplex Interaction",
+      "upvotes": 35,
+      "paper_id": "2611.15131",
+      "abstract": "In this report, we introduce the Reciprocal World Model (RWM) and present Duo v1, a full-duplex world model that continuously perceives audiovisual inputs while responding to users in real time. The R"
+    },
+    {
+      "title": "SteerDistill: Quantizing LLM Agents via Closed-Loop Teacher Steering",
+      "upvotes": 35,
+      "paper_id": "2611.13410",
+      "abstract": "Low-bit quantization reduces the inference cost of LLM agents but can compromise task success. Examining failed rollouts, we find that quantized agents overlook task requirements or environmental cond"
+    },
+    {
+      "title": "Actor, Judge, or Teacher? Understanding Decision Models in Long-Horizon Agents",
+      "upvotes": 29,
+      "paper_id": "2611.17167",
+      "abstract": "Decision models answer a question with a typed output, such as a choice among options with a probability for each, so one model can choose an agent's actions, evaluate actions already taken, or score "
+    },
+    {
+      "title": "Open Vision Banana: A Fully Open Recipe for Generative Visual Perception",
+      "upvotes": 28,
+      "paper_id": "2611.15844",
+      "abstract": "Recent work suggests that pretrained image generators encode real-world understanding beyond image synthesis. Vision Banana exploits this by framing vision tasks as conditional image editing. However,"
+    },
+    {
+      "title": "On the Design of Hyper-Connections: Simplification, Stability, and Scalability",
+      "upvotes": 26,
+      "paper_id": "2611.05984",
+      "abstract": "Hyper-Connections (HC) architectures are increasingly adopted in frontier language models, yet their components remain insufficiently understood and introduce non-negligible training overhead. In this"
+    }
   ],
   "cc_updates": [
-    {"tag_name": "v2.1.322", "published_at": "2026-11-10", "body": "What's changed\n\n* Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it"},
-    {"tag_name": "v2.1.321", "published_at": "2026-11-09", "body": "What's changed\n\n* Added Claude Fable 5.2 (`claude-fable-5-2`), now the default Fable model — 1M context, $8/$40 per Mtok with $0.20/Mtok cache reads\n* Added `--settings <file>` to `claude remote-control`, which applies a settings file to every session it starts; if the file changes, no new session starts until you restart `claude remote-control`\n* Fixed MCP OAuth requests sending secrets such as refresh tokens to another host when a server redirected them\n* Fixed a case where a read-only Bash command ran outside the sandbox without a permission prompt"},
-    {"tag_name": "v2.1.319", "published_at": "2026-11-06", "body": "What's changed\n\n* Changed auto mode with telemetry or feature flags off, including behind LLM gateways: calls the server can't check are asked about or denied, with no fallback to the built-in classifier; set `CLAUDE_CODE_AUTO_MODE_SERVER=0` to keep using it (Bedrock, Vertex and Foundry are unchanged)\n* Changed auto mode behind an LLM gateway: `CLAUDE_CODE_AUTO_MODE_SERVER=1` turns on the server-side check even with `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` set; if managed settings set the latter, they must set the `1` too\n* Added support for MCP tasks in the terminal: when an MCP server runs a tool..."}
+    {
+      "tag_name": "v2.1.325",
+      "published_at": "2026-11-13",
+      "body": "What's changed\n\n* Fixed a security issue in how zstd-compressed responses are decoded\n* Added a spinner tip in VS Code and similar integrated terminals about re-running a notebook cell, shown once Claude has read or edited a Jupyter notebook\n* Added a line under the error shown when your organization's policy blocks a request, saying how to continue: run `/rewind` and change the message, or run `/clear`\n* Added a note for Claude when a sandboxed `git checkout`, `git stash` or autostash pull cannot update protected files such as those in `.claude`\n* Fixed `/security-review` and skills' inline git"
+    },
+    {
+      "tag_name": "v2.1.323",
+      "published_at": "2026-11-12",
+      "body": "What's changed\n\n* Added Code Mode, an experimental opt-in in which Claude writes JavaScript to call its tools; see https://code.claude.com/docs/en/code-mode to turn it on, or to turn it off for an organization\n* Added `engines[\"claude-code\"]` to `plugin.json`: plugins outside their stated Claude Code version range are not installed, updated or loaded, and install and update pick the newest version that fits\n* Added type checking of a plugin's TypeScript hooks module to `claude plugin validate`; each finding is a warning, and `--strict` fails on it"
+    },
+    {
+      "tag_name": "v2.1.322",
+      "published_at": "2026-11-10",
+      "body": "What's changed\n\n* Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it"
+    }
   ]
 }
