@@ -2,80 +2,64 @@
   "papers": [
     {
       "title": "SO-Arena: Benchmarking the Capability Spectrum and Reliability of System One Models",
-      "upvotes": 72,
+      "upvotes": 134,
       "paper_id": "2611.15777",
-      "abstract": "System One models promise fast, general-purpose decision-making without lengthy token generation. However, understanding their capability spectrum and decision reliability requires more than aggregate"
+      "abstract": "SO-Arena evaluates System One models across domains and capability families, revealing that scaling and reasoning gains vary and that high overall accuracy does not ensure reliable decision-making."
     },
     {
       "title": "BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model",
-      "upvotes": 45,
+      "upvotes": 50,
       "paper_id": "2611.14815",
       "abstract": "Driving world models aim to simulate how a scene unfolds under different ego actions. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle"
     },
     {
       "title": "Scaling Mathematical Proof Supervision from Structured Textbooks",
-      "upvotes": 44,
+      "upvotes": 47,
       "paper_id": "2610.40394",
-      "abstract": "Mathematical supervision for language models is typically flattened into isolated problem-solution pairs, discarding the curricular organization and evidential structure of the original sources. We in"
+      "abstract": "A large-scale corpus of structured proof-supervision records derived from university mathematics textbooks improves language model mathematical reasoning by 16.7 percentage points over a base model wh"
     },
     {
       "title": "PhysLoop: Harnessing LLMs' Physics Awareness for Self-Improving Video Generation Models",
-      "upvotes": 42,
+      "upvotes": 46,
       "paper_id": "2611.16748",
-      "abstract": "Video generation models produce visually realistic videos but still struggle with physical dynamics and causal consistency. Learning from generated videos requires fine-grained physical supervision, y"
+      "abstract": "PhysLoop leverages large language models to guide video generation, selection, and correction, enabling physically consistent self-improvement and controllable data construction for video models."
     },
     {
       "title": "G-STAR: Group-Scaled Token Capacity for Deeply Compressed Autoregressive Generation",
-      "upvotes": 40,
+      "upvotes": 45,
       "paper_id": "2611.13004",
       "abstract": "Discrete autoregressive models offer a scalable framework for image generation. However, they face a fundamental trade-off: long token sequences preserve representation quality but slow generation, wh"
     },
     {
       "title": "Duo: A Reciprocal World Model for Full-Duplex Interaction",
-      "upvotes": 35,
+      "upvotes": 40,
       "paper_id": "2611.15131",
-      "abstract": "In this report, we introduce the Reciprocal World Model (RWM) and present Duo v1, a full-duplex world model that continuously perceives audiovisual inputs while responding to users in real time. The R"
+      "abstract": "A reciprocal world model enables real-time full-duplex audiovisual interaction by jointly modeling intent and realization using autoregressive reasoning, synchronized attention, and dual rollout disti"
     },
     {
       "title": "SteerDistill: Quantizing LLM Agents via Closed-Loop Teacher Steering",
-      "upvotes": 35,
+      "upvotes": 36,
       "paper_id": "2611.13410",
-      "abstract": "Low-bit quantization reduces the inference cost of LLM agents but can compromise task success. Examining failed rollouts, we find that quantized agents overlook task requirements or environmental cond"
-    },
-    {
-      "title": "Actor, Judge, or Teacher? Understanding Decision Models in Long-Horizon Agents",
-      "upvotes": 29,
-      "paper_id": "2611.17167",
-      "abstract": "Decision models answer a question with a typed output, such as a choice among options with a probability for each, so one model can choose an agent's actions, evaluate actions already taken, or score "
+      "abstract": "Low-bit quantized LLM agents can recover much of their task success through closed-loop guidance from a full-precision teacher, followed by unassisted student training on corrected and reference turns"
     },
     {
       "title": "Open Vision Banana: A Fully Open Recipe for Generative Visual Perception",
-      "upvotes": 28,
+      "upvotes": 32,
       "paper_id": "2611.15844",
       "abstract": "Recent work suggests that pretrained image generators encode real-world understanding beyond image synthesis. Vision Banana exploits this by framing vision tasks as conditional image editing. However,"
     },
     {
+      "title": "Actor, Judge, or Teacher? Understanding Decision Models in Long-Horizon Agents",
+      "upvotes": 32,
+      "paper_id": "2611.17167",
+      "abstract": "A decision model that acts poorly can still teach reinforcement learning policies effectively by judging complete action trajectories, improving success on ALFWorld and WebShop."
+    },
+    {
       "title": "On the Design of Hyper-Connections: Simplification, Stability, and Scalability",
-      "upvotes": 26,
+      "upvotes": 28,
       "paper_id": "2611.05984",
-      "abstract": "Hyper-Connections (HC) architectures are increasingly adopted in frontier language models, yet their components remain insufficiently understood and introduce non-negligible training overhead. In this"
+      "abstract": "A systematic study of Hyper-Connections architectures identifies the simpler efficient design SimpleHC, which removes residual mixing and uses shared memory access to match mHC performance while addin"
     }
   ],
-  "cc_updates": [
-    {
-      "tag_name": "v2.1.325",
-      "published_at": "2026-11-13",
-      "body": "What's changed\n\n* Fixed a security issue in how zstd-compressed responses are decoded\n* Added a spinner tip in VS Code and similar integrated terminals about re-running a notebook cell, shown once Claude has read or edited a Jupyter notebook\n* Added a line under the error shown when your organization's policy blocks a request, saying how to continue: run `/rewind` and change the message, or run `/clear`\n* Added a note for Claude when a sandboxed `git checkout`, `git stash` or autostash pull cannot update protected files such as those in `.claude`\n* Fixed `/security-review` and skills' inline git"
-    },
-    {
-      "tag_name": "v2.1.323",
-      "published_at": "2026-11-12",
-      "body": "What's changed\n\n* Added Code Mode, an experimental opt-in in which Claude writes JavaScript to call its tools; see https://code.claude.com/docs/en/code-mode to turn it on, or to turn it off for an organization\n* Added `engines[\"claude-code\"]` to `plugin.json`: plugins outside their stated Claude Code version range are not installed, updated or loaded, and install and update pick the newest version that fits\n* Added type checking of a plugin's TypeScript hooks module to `claude plugin validate`; each finding is a warning, and `--strict` fails on it"
-    },
-    {
-      "tag_name": "v2.1.322",
-      "published_at": "2026-11-10",
-      "body": "What's changed\n\n* Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it"
-    }
-  ]
+  "cc_updates": []
 }
