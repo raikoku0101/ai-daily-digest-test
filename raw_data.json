@@ -2,27 +2,27 @@
   "papers": [
     {
       "title": "SO-Arena: Benchmarking the Capability Spectrum and Reliability of System One Models",
-      "upvotes": 134,
+      "upvotes": 137,
       "paper_id": "2611.15777",
-      "abstract": "SO-Arena evaluates System One models across domains and capability families, revealing that scaling and reasoning gains vary and that high overall accuracy does not ensure reliable decision-making."
+      "abstract": "System One models promise fast, general-purpose decision-making without lengthy token generation. However, understanding their capability spectrum and decision reliability requires more than aggregate"
     },
     {
       "title": "BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model",
-      "upvotes": 50,
+      "upvotes": 51,
       "paper_id": "2611.14815",
       "abstract": "Driving world models aim to simulate how a scene unfolds under different ego actions. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle"
     },
     {
       "title": "Scaling Mathematical Proof Supervision from Structured Textbooks",
-      "upvotes": 47,
+      "upvotes": 48,
       "paper_id": "2610.40394",
-      "abstract": "A large-scale corpus of structured proof-supervision records derived from university mathematics textbooks improves language model mathematical reasoning by 16.7 percentage points over a base model wh"
+      "abstract": "Mathematical supervision for language models is typically flattened into isolated problem-solution pairs, discarding the curricular organization and evidential structure of the original sources. We in"
     },
     {
       "title": "PhysLoop: Harnessing LLMs' Physics Awareness for Self-Improving Video Generation Models",
       "upvotes": 46,
       "paper_id": "2611.16748",
-      "abstract": "PhysLoop leverages large language models to guide video generation, selection, and correction, enabling physically consistent self-improvement and controllable data construction for video models."
+      "abstract": "Video generation models produce visually realistic videos but still struggle with physical dynamics and causal consistency. Learning from generated videos requires fine-grained physical supervision, y"
     },
     {
       "title": "G-STAR: Group-Scaled Token Capacity for Deeply Compressed Autoregressive Generation",
@@ -32,33 +32,33 @@
     },
     {
       "title": "Duo: A Reciprocal World Model for Full-Duplex Interaction",
-      "upvotes": 40,
+      "upvotes": 43,
       "paper_id": "2611.15131",
-      "abstract": "A reciprocal world model enables real-time full-duplex audiovisual interaction by jointly modeling intent and realization using autoregressive reasoning, synchronized attention, and dual rollout disti"
+      "abstract": "In this report, we introduce the Reciprocal World Model (RWM) and present Duo v1, a full-duplex world model that continuously perceives audiovisual inputs while responding to users in real time. The R"
     },
     {
       "title": "SteerDistill: Quantizing LLM Agents via Closed-Loop Teacher Steering",
-      "upvotes": 36,
+      "upvotes": 37,
       "paper_id": "2611.13410",
-      "abstract": "Low-bit quantized LLM agents can recover much of their task success through closed-loop guidance from a full-precision teacher, followed by unassisted student training on corrected and reference turns"
+      "abstract": "Low-bit quantization reduces the inference cost of LLM agents but can compromise task success. Examining failed rollouts, we find that quantized agents overlook task requirements or environmental cond"
     },
     {
       "title": "Open Vision Banana: A Fully Open Recipe for Generative Visual Perception",
-      "upvotes": 32,
+      "upvotes": 36,
       "paper_id": "2611.15844",
       "abstract": "Recent work suggests that pretrained image generators encode real-world understanding beyond image synthesis. Vision Banana exploits this by framing vision tasks as conditional image editing. However,"
     },
     {
       "title": "Actor, Judge, or Teacher? Understanding Decision Models in Long-Horizon Agents",
-      "upvotes": 32,
+      "upvotes": 34,
       "paper_id": "2611.17167",
-      "abstract": "A decision model that acts poorly can still teach reinforcement learning policies effectively by judging complete action trajectories, improving success on ALFWorld and WebShop."
+      "abstract": "Decision models answer a question with a typed output, such as a choice among options with a probability for each, so one model can choose an agent's actions, evaluate actions already taken, or score "
     },
     {
-      "title": "On the Design of Hyper-Connections: Simplification, Stability, and Scalability",
-      "upvotes": 28,
-      "paper_id": "2611.05984",
-      "abstract": "A systematic study of Hyper-Connections architectures identifies the simpler efficient design SimpleHC, which removes residual mixing and uses shared memory access to match mHC performance while addin"
+      "title": "Ropedia Xperience 2: A Gold Standard for Scaling Physical AI Environments and Behaviors",
+      "upvotes": 30,
+      "paper_id": "2611.17060",
+      "abstract": "Large foundation models such as GPT-6 Astra and Claude Fable 5.1 have recently been shown to control robots directly from visual observations. They nevertheless remain brittle on long-horizon, contact"
     }
   ],
   "cc_updates": []
