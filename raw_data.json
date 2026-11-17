@@ -1,1 +1,65 @@
-{"papers": [{"title": "DySENSE: Dynamic Spatiotemporal ENergy Synthesis and Emulation with Satellite Imagery", "upvotes": 20, "paper_id": "2611.17878", "abstract": "Cities account for over two-thirds of the world's energy and more than 70% of global carbon dioxide emissions. City energy is essential for achieving the 2050 net-zero target and the UN's Sustainable "}, {"title": "OneSteer: Unlocking Steerable General Humanoid Motion Tracking via One-Step Diffusion Whole-Body Control", "upvotes": 12, "paper_id": "2610.41354", "abstract": "Deployment objectives often specify desired outcomes without providing revised trajectories, while parts of the original reference must still be followed. We present OneSteer, a one-step diffusion who"}, {"title": "Continual-ARC: Measuring Skill Acquisition over a Working Lifetime", "upvotes": 10, "paper_id": "2611.14505", "abstract": "Agent harnesses have emerged as a promising mechanism for continual learning, alongside test-time parametric learning. However, the current benchmarks have several limitations: they generally focus on"}, {"title": "WebArena-Pro: A Heterogeneous, Multimodal, Reproducible Benchmark for Web Agents", "upvotes": 10, "paper_id": "2611.17955", "abstract": "Web agents powered by large language and vision-language models are increasingly applied to realistic browser work that spans heterogeneous applications, multimodal content, and stateful workflows. Ho"}, {"title": "Interpreting Coding Agents Through Their Behavioral Trajectories", "upvotes": 7, "paper_id": "2611.17440", "abstract": "Standard coding-agent benchmarks primarily evaluate binary task success, treating execution as a black box and obscuring the behaviors that produce those outcomes. We analyze a large corpus of 143,209"}, {"title": "Re-Search: Dissecting LLM Ideation Through a Two-Player Questioning Game", "upvotes": 6, "paper_id": "2611.14487", "abstract": "Research ideation is iterative: researchers refine their ideas step by step based on feedback. Yet existing evaluations obscure this search process, making it difficult to understand how LLMs explore "}, {"title": "MemInStream: Memorizing or Merely Recognizing? Rethinking Streaming Video Memory Evaluation", "upvotes": 5, "paper_id": "2611.15640", "abstract": "Streaming video understanding aims to continuously process incoming visual observations, making the retention and retrieval of relevant information increasingly important as the video history grows. A"}, {"title": "eDMD: Endpoint Distribution Matching for Few-Step Diffusion Distillation", "upvotes": 5, "paper_id": "2611.17194", "abstract": "Distribution matching distillation (DMD) has emerged as a leading paradigm for distilling diffusion models into few-step students, where an auxiliary fake score model tracks the student's distribution"}, {"title": "Parsed, Plausible, Wrong: Output Format Controls Silent Errors in Small-Model Semantic Parsing", "upvotes": 3, "paper_id": "2611.17169", "abstract": "A small fine-tuned parser that emits a well-formed but wrong tree fails silently: nothing downstream can tell. We ask whether the output format, a free design choice, controls how often this happens. "}, {"title": "LuthorSQL: A One-Pass Text-to-SQL Model as System 1 for a Slower LLM Agent", "upvotes": 2, "paper_id": "2611.17780", "abstract": "Frontier LLM agents that query databases with tools are among the most accurate text-to-SQL systems, but per-query calls to a hosted model are slow, costly, and expose sensitive organizational queries"}], "cc_updates": []}
+{
+  "papers": [
+    {
+      "title": "Sage S2.1 Flash Technical Report",
+      "upvotes": 85,
+      "paper_id": "2611.21072",
+      "abstract": "We introduce Sage S1.5 Flash, a 320-billion-parameter general-purpose mixture-of-experts model designed to reason over scientific evidence and act in interactive environments. Sage Sci-Perception uses"
+    },
+    {
+      "title": "K2-Horizon: A Frontier Fleet of Open Source Language Models",
+      "upvotes": 67,
+      "paper_id": "2611.21003",
+      "abstract": "We present K2-Horizon, a fleet of six fully open language models, from a 0.9B dense model to a 375B-A23B MoE, built for general-purpose reasoning and agentic work across math and science, software eng"
+    },
+    {
+      "title": "AllocFlow: End-to-End Portfolio Trading Action Generation from Raw Market Data",
+      "upvotes": 67,
+      "paper_id": "2611.19937",
+      "abstract": "Real-world portfolio management requires converting noisy market observations into coordinated, simultaneous allocations across multiple assets under shared capital constraints. Advances in forecastin"
+    },
+    {
+      "title": "InclusionMed: Benchmarking AI for Inclusive Healthcare",
+      "upvotes": 62,
+      "paper_id": "2611.21218",
+      "abstract": "Advancing medical AI for inclusive healthcare requires evaluation across diverse healthcare roles, tasks, and care settings, but benchmark coverage remains uneven. We introduce InclusionMed, an open m"
+    },
+    {
+      "title": "SPILLWAY: Separating Target Admission from Sanitization to Defend Tool-Using Agents against Prompt Injection",
+      "upvotes": 49,
+      "paper_id": "2611.07222",
+      "abstract": "Tool-using agents act on email, files, and payments, so an instruction hidden in a web page or a shared document can make an agent send data or money to an attacker. Many runtime defenses put a langua"
+    },
+    {
+      "title": "SWE-CoWork: Benchmarking Coding Agents as Digital Employees in Organizations",
+      "upvotes": 44,
+      "paper_id": "2611.20218",
+      "abstract": "A coding agent working within a software organization must establish what to build, collaborate with colleagues, and verify what it delivers. We introduce SWE-CoWork, a benchmark comprising 101 develo"
+    },
+    {
+      "title": "ScaleVLA: Scaling Vision-Language-Action Models to 552 Billion Parameters",
+      "upvotes": 41,
+      "paper_id": "2611.21607",
+      "abstract": "Frontier Vision-Language Models (VLMs) such as GPT-6 Astra have demonstrated remarkable capabilities in robot control, suggesting that broad pretraining provides knowledge valuable for physical action"
+    },
+    {
+      "title": "PaperCritic: Training AI Reviewers to Assess the Soundness of Papers",
+      "upvotes": 26,
+      "paper_id": "2611.17834",
+      "abstract": "As AI conference submissions grow rapidly, AI reviewers are being considered as an alternative. However, simply imitating human reviewing is problematic because reviewing serves multiple purposes, inc"
+    },
+    {
+      "title": "VoxMel TTS Technical Report",
+      "upvotes": 22,
+      "paper_id": "2611.20254",
+      "abstract": "Continuous autoregressive TTS relies on an acoustic target that enables stable next-latent modeling while preserving fine-grained acoustic details. While existing approaches employ learned compressed "
+    },
+    {
+      "title": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
+      "upvotes": 16,
+      "paper_id": "2611.20882",
+      "abstract": "Application optimization requires coding agents to discover useful changes and coordinate them across a complete program while preserving the required computation. We introduce Accelerate Bench, a ben"
+    }
+  ],
+  "cc_updates": []
+}
