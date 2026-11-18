@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-19",
+  "content": "# AI Daily Digest — 2026-11-19\n\n## 今日のハイライト\n- **Xing4がAscendチップで中国国産LLMの突破口**: upvotes 149のトップ論文。国産チップと自社フレームワークでフロンティアモデルに匹敵する性能を達成し、AI自立化戦略の実現可能性を示した。\n- **Claude Code v2.1.327でセキュリティとDX向上**: MCPサーバー設定でのトークン漏洩リスクを低減するstdin入力対応と、`/status`による設定問題の一覧表示が追加。日常運用の安全性と効率が向上。\n- **Transformerに依存しない重みプログラミングの可能性**: 「AIがAIの重みを書く」重みプログラミングにおいてTransformerが必須でないことを示し、次世代AIアーキテクチャの設計空間を大幅に拡張する研究。\n\n\n## Claude Code / Anthropic アップデート\n\n### v2.1.327 (2025-11-17)\n**主要機能:**\n- `/install-github-app` でリポジトリ変更前に確認ダイアログを追加（誤操作防止）\n- `claude mcp add-json <name> -` でstdinからJSON読み込み可能に（トークンをコマンドラインに残さず安全に設定）\n- `/status` にブロークンファイル・設定エラー一覧を表示（agent/skill/commandファイルの問題を素早く発見）\n\n**バグ修正:**\n- 再開セッションで以前のメッセージが読み込めない場合のメッセージ改善\n\n**ユーザーへの影響:** セキュリティとデバッグ体験が向上。MCPサーバーの設定がより安全に行えるようになった。\n\n---\n\n### v2.1.326 (2025-11-16)\n**主要機能:**\n- Agentチームが有効な状態でCodeモード切り替えが可能に\n- `--allowedTools`/`--disallowedTools` の不完全なルール検出時に起動時警告を表示\n- `/status` にプロバイダーや環境変数で機能が無効化されている場合の行を追加\n\n**ユーザーへの影響:** チームモードとCodeモードを組み合わせたワークフローが実現。設定ミスの早期発見が容易になった。\n\n---\n\n### v2.1.325 (2025-11-13)\n**主要機能:**\n- zstd圧縮レスポンスのデコードにおけるセキュリティ問題を修正\n- VS Codeなど統合ターミナルでJupyterノートブック編集後にセルの再実行ヒントを表示\n- 組織ポリシーでブロックされた際のエラーメッセージに対処方法を追加（`/rewind`または`/clear`を案内）\n\n**ユーザーへの影響:** セキュリティ強化が重要。Jupyterユーザーのワークフロー改善。ベアリポジトリのワークツリーでの不具合修正。\n\n## 注目論文 TOP 10\n\n### 1. TeleChat to Xing4: Advancing Frontier Agentic Models on Domestic Chips and Frameworks\n**upvotes: 149** | [arxiv: 2611.22115](https://arxiv.org/abs/2611.22115)\n\n🎯 **背景**: 中国国内チップ(Ascend)上で動作する大規模言語モデルの開発は、海外依存からの脱却という国家戦略と直結する重要課題。\n🔧 **手法**: TeleChatシリーズをベースに、Ascendチップ向けにアーキテクチャと学習インフラを最適化。エージェント能力を強化し、Xing 4として進化。\n📊 **結果**: フロンティアモデルに匹敵するエージェンティックな性能を、国産ハードウェア上で実現。\n💡 **意義**: 中国の自立したAIスタックの実現可能性を示す研究。地政学的に重要な意味を持つ。\n⚠️ **限界**: 国産チップへの依存で、エコシステムのサポートが海外製より限定的になる可能性。\n\n---\n\n### 2. AscendGYM: A Cost-Aware Kernel Optimization Benchmark for Real-World Workloads on Ascend NPUs\n**upvotes: 91** | [arxiv: 2611.17621](https://arxiv.org/abs/2611.17621)\n\n🎯 **背景**: LLMの学習・推論効率化においてカーネル最適化は不可欠。Ascend NPU向けの現実的ベンチマークが不足していた。\n🔧 **手法**: コスト認識型のカーネル最適化ベンチマークを構築。実際のワークロードを用いてRLエージェントの評価基盤を提供。\n📊 **結果**: 実環境に近い条件での最適化評価が可能になり、より実用的な性能改善を実現。\n💡 **意義**: Ascend向け最適化研究のギャップを埋めるインフラ整備。再現可能な研究環境を提供。\n⚠️ **限界**: Ascend NPU固有のベンチマークであり、他ハードウェアへの直接適用は困難。\n\n---\n\n### 3. Weight-Space Programming Doesn't Need Transformers\n**upvotes: 47** | [arxiv: 2611.22055](https://arxiv.org/abs/2611.22055)\n\n🎯 **背景**: 重みプログラミング（LLMが別のモデルの重みを生成する）においてTransformerが必須と思われていたが、その前提を疑う研究。\n🔧 **手法**: 勾配降下学習向けに設計されたTransformerに代わる、重みプログラミングに特化したアーキテクチャを探索。\n📊 **結果**: Transformer以外のアーキテクチャでも重みプログラミングが実現可能であることを示した。\n💡 **意義**: AIが自己改善・他AIを制御するパラダイムにおける設計空間の拡張。\n⚠️ **限界**: 大規模実験での検証や、実用的なスケールアップには更なる研究が必要。\n\n---\n\n### 4. Multi-Branch Transformer\n**upvotes: 43** | [arxiv: 2611.19800](https://arxiv.org/abs/2611.19800)\n\n🎯 **背景**: LLMのスケーリングは幅や深さを増やす方向が主流だが、並列化という第三の道を探索。\n🔧 **手法**: 完全なTransformerブロックを並列に分岐させる「Multi-Branch」アーキテクチャを提案。\n📊 **結果**: 同じパラメータ数での性能向上や、スケーリング特性の改善が見込まれる。\n💡 **意義**: 次世代LLMアーキテクチャの設計に新たな選択肢を提示。\n⚠️ **限界**: 分岐構造は計算グラフの複雑化を招き、既存ハードウェア最適化との相性が課題。\n\n---\n\n### 5. ForceHarness: Turning Force into Action and Physics for Frozen Frontier Models\n**upvotes: 38** | [arxiv: 2611.21099](https://arxiv.org/abs/2611.21099)\n\n🎯 **背景**: フロンティアマルチモーダルモデルは画像から零ショットでロボット制御が可能だが、画像には触覚力情報が含まれず操作タスクに限界がある。\n🔧 **手法**: API経由の凍結モデルに力センサー情報を提供するフレームワークを構築。物理的接触を言語・行動に変換。\n📊 **結果**: 力情報を活用することで、繊細な操作タスクの成功率が向上。\n💡 **意義**: ロボット操作AIの重要な制約を解消する実用的アプローチ。\n⚠️ **限界**: 力センサーの較正精度や、異なるロボット機構への汎化が課題。\n\n---\n\n### 6. Beyond Answering: Learning to Speak First and Act in Streaming Video\n**upvotes: 33** | [arxiv: 2611.21099](https://arxiv.org/abs/2611.22115)\n\n🎯 **背景**: 現在のAIアシスタントはユーザーに促されて応答するだけで、ストリーミング動画中の重要な瞬間を自ら発言する能力がない。\n🔧 **手法**: AIが能動的に発言タイミングを学習するフレームワークを構築。動画ストリームのイベントを検出して先回りで会話を開始。\n📊 **結果**: 純粋なユーザー主導の対話を超えた、自律的な動画コンパニオンとしての動作を実現。\n💡 **意義**: インタラクティブな動画AI体験の質的転換。教育・エンターテインメント分野への応用が期待。\n⚠️ **限界**: 不適切なタイミングでの発言が体験を妨げる可能性があり、介入タイミングの精度が重要。\n\n---\n\n### 7. Breath-Dx: A Time Series Classification Benchmark for Disease Screening with eNose\n**upvotes: 32** | [arxiv: 2611.17621](https://arxiv.org/abs/2611.17621)\n\n🎯 **背景**: 電子鼻(eNose)による呼気分析は非侵襲的な疾患スクリーニングに有望だが、体系的なベンチマークが不足。\n🔧 **手法**: 呼気データの時系列分類ベンチマークを構築。異なる疾患スクリーニングシナリオを統一的に評価。\n📊 **結果**: eNoseデータに適した分類手法の体系的な比較が可能になり、最良手法の特定に成功。\n💡 **意義**: 低コストな医療診断AIの発展を加速するインフラ整備。途上国での医療アクセス改善に貢献可能。\n⚠️ **限界**: 環境条件や個人差がeNoseデータに大きく影響するため、実臨床での汎化が課題。\n\n---\n\n### 8. Self-Improvement Memory Enables Continual Recursive Self-Improvement\n**upvotes: 28** | [arxiv: 2611.22055](https://arxiv.org/abs/2611.22055)\n\n🎯 **背景**: 継続的な再帰的自己改善において、ポリシーモデルやベンチマークが変わるたびに最適化器が一から学習し直す問題がある。\n🔧 **手法**: 以前の進化ハーネスから何を再利用し何を改訂するかを決定する自己改善メモリ機構を導入。\n📊 **結果**: 継続的な自己改善ループで蓄積した知識を効率的に活用し、パフォーマンスが向上。\n💡 **意義**: AIの自己改善ループの効率化。再帰的に賢くなるAIシステムの実現に近づく。\n⚠️ **限界**: 蓄積したメモリが不正確な場合、誤った改善方向に収束するリスクがある。\n\n---\n\n### 9. TCP4D: A Unified Tool-Center-Point Tracking and Generation Model for Robot Manipulation\n**upvotes: 23** | [arxiv: 2611.19800](https://arxiv.org/abs/2611.19800)\n\n🎯 **背景**: ロボット操作動画からのアクションアノテーション取得は依然困難で、エンボディメントに依存しない表現が求められている。\n🔧 **手法**: ツール中心点(TCP)のトラッキングと生成を統一したモデルを構築。RGBのみの観測からグリッパー状態を推定。\n📊 **結果**: 多様なロボット形状に汎化できるアクション表現を実現し、操作データの活用効率を向上。\n💡 **意義**: ロボット学習データの収集コストを大幅削減。多様なロボット間での知識転移を促進。\n⚠️ **限界**: 複雑なオクルージョンや反射面など、視覚的に困難な状況での精度低下が課題。\n\n---\n\n### 10. FastFrames: Video Generation at Interactive Latency\n**upvotes: 21** | [arxiv: 2611.21099](https://arxiv.org/abs/2611.21099)\n\n🎯 **背景**: 自己回帰的な動画拡散モデルはインタラクティブな視覚体験に有望だが、既存モデルは桁違いに遅くリアルタイム利用が困難。\n🔧 **手法**: インタラクティブなレイテンシで動画生成を実現する高速化手法を提案。推論の最適化と段階的生成を組み合わせる。\n📊 **結果**: 従来モデルに比べて大幅な速度向上を達成し、インタラクティブレイテンシでの動画生成を実現。\n💡 **意義**: ゲーム・VR・インタラクティブメディアにおけるリアルタイムAI動画生成の扉を開く。\n⚠️ **限界**: 速度向上と映像品質のトレードオフが存在し、高品質生成では依然レイテンシが課題。\n\n",
+  "fetched_at": "2026-11-18T22:06:10.703499+00:00",
+  "papers": [
+    {
+      "title": "TeleChat to Xing4: Advancing Frontier Agentic Models on Domestic Chips and Frameworks",
+      "upvotes": 149,
+      "paper_id": "2611.22115",
+      "abstract": "We present Xing 4, a series of large language models that extends the TeleChat lineage through coordinated advances in model architecture and training infrastructure on Ascend. This report describes t"
+    },
+    {
+      "title": "AscendGYM: A Cost-Aware Kernel Optimization Benchmark for Real-World Workloads on Ascend NPUs",
+      "upvotes": 91,
+      "paper_id": "2611.17621",
+      "abstract": "Kernel optimization is essential for efficient large language model (LLM) training and inference on Ascend NPUs. Existing Ascend kernel benchmarks primarily focus on kernel generation, with less empha"
+    },
+    {
+      "title": "Weight-Space Programming Doesn't Need Transformers",
+      "upvotes": 47,
+      "paper_id": "2611.22055",
+      "abstract": "Standard neural architectures such as the Transformer were chosen because they train well with gradient descent and run fast on GPUs. In weight-space programming, a large language model (LLM) writes t"
+    },
+    {
+      "title": "Multi-Branch Transformer",
+      "upvotes": 43,
+      "paper_id": "2611.19800",
+      "abstract": "Transformer language models are commonly scaled by making their blocks wider or stacking them deeper. In this work, we explore a complementary path: branching, the parallel composition of full Transfo"
+    },
+    {
+      "title": "ForceHarness: Turning Force into Action and Physics for Frozen Frontier Models",
+      "upvotes": 38,
+      "paper_id": "2611.21099",
+      "abstract": "Frontier multimodal models can now control robots zero-shot from images, yet many manipulation tasks depend on contact forces that images cannot show. Bringing force to an API-only frozen model raises"
+    },
+    {
+      "title": "Beyond Answering: Learning to Speak First and Act in Streaming Video",
+      "upvotes": 33,
+      "paper_id": "2611.17048",
+      "abstract": "Most AI assistants respond only when prompted, remaining silent even when events in the video stream offer meaningful opportunities for conversation. To move beyond purely user-driven interaction, we "
+    },
+    {
+      "title": "Breath-Dx: A Time Series Classification Benchmark for Disease Screening with eNose",
+      "upvotes": 32,
+      "paper_id": "2611.15348",
+      "abstract": "Electronic nose (eNose) technology offers a portable, non-invasive route for disease screening via exhaled breath analysis. However, progress in the field is hindered by the lack of systematic benchma"
+    },
+    {
+      "title": "Self-Improvement Memory Enables Continual Recursive Self-Improvement",
+      "upvotes": 28,
+      "paper_id": "2611.18856",
+      "abstract": "Harness optimization is often studied with a fixed policy model and benchmark. When either changes, the optimizer must decide which parts of an evolved harness to reuse or revise, but the harness alon"
+    },
+    {
+      "title": "TCP4D: A Unified Tool-Center-Point Tracking and Generation Model for Robot Manipulation",
+      "upvotes": 23,
+      "paper_id": "2611.23143",
+      "abstract": "Robot manipulation videos provide a rich visual experience, yet recovering robot action and gripper-state annotations from RGB observations still remains challenging. Using the embodiment-agnostic too"
+    },
+    {
+      "title": "FastFrames: Video Generation at Interactive Latency",
+      "upvotes": 21,
+      "paper_id": "2611.23226",
+      "abstract": "Autoregressive video diffusion models generate frames based on new observations and inputs, making them a promising medium for interactive visual experiences. However, existing models are orders of ma"
+    }
+  ],
+  "cc_updates": [
+    {
+      "tag_name": "v2.1.327",
+      "published_at": "2025-11-17",
+      "body": "What's changed\n\n* Added a confirmation before `/install-github-app` changes a repository\n* Added `claude mcp add-json <name> -` to read the server's JSON from stdin, so tokens can stay off the command line; not available inside a Claude Code session\n* Added a line when a resumed session's earlier messages can't be loaded\n* Added a list in `/status` of broken agent, skill, command and output style files, keybinding errors, an unavailable sandbox, ignored permission settings and hook matchers that never match\n* Added a note in `/config`..."
+    },
+    {
+      "tag_name": "v2.1.326",
+      "published_at": "2025-11-16",
+      "body": "What's changed\n\n* Added support for turning on Code Mode while agent teams are enabled; if you already turned it on, sessions with teams on now start in Code Mode\n* Added a startup warning when an `--allowedTools`, `--disallowedTools` or `--tools` value has an entry that doesn't look like a complete rule\n* Added a message explaining why MCP servers stop loading when an administrator adds `managed-mcp.json` during a session\n* Added a row to `/status` that says when your provider or an environment variable such as `DISABLE_TELEMETRY` turns features off..."
+    },
+    {
+      "tag_name": "v2.1.325",
+      "published_at": "2025-11-13",
+      "body": "What's changed\n\n* Fixed a security issue in how zstd-compressed responses are decoded\n* Added a spinner tip in VS Code and similar integrated terminals about re-running a notebook cell, shown once Claude has read or edited a Jupyter notebook\n* Added a line under the error shown when your organization's policy blocks a request, saying how to continue: run `/rewind` and change the message, or run `/clear`\n* Added a note for Claude when a sandboxed `git checkout`, `git stash` or autostash pull cannot update protected files such as those in `.claude`\n* Fixed `/security-review` and skills' inline git commands stopping with an error in worktrees of bare repositories..."
+    }
+  ]
+}
