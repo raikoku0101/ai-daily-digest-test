@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-20",
+  "content": "# AI Daily Digest — 2026-11-20\n\n## 今日のハイライト\n- **Jeveration が生成AIの新地平を開く (110 upvotes)**: System One（予測型）アーキテクチャを生成タスクに初めて応用し、高速・高品質な画像生成を実現。推論特化モデルの活用範囲を根本から拡張する可能性を持つ。\n- **エージェント自律進化の理論化 (Resolution Hypothesis, 35 upvotes)**: AIエージェントが自己改善ループを安定して回すための「解像度」概念を定式化。AGIへの道筋を具体化する理論的基盤として注目。\n- **ストリーミング動画LLMの双方向化 (ALIVE, 32 upvotes)**: 一方的な観察にとどまっていた動画AIを、ユーザーがリアルタイムで介入・質問できる双方向モデルに進化させた。監視・教育・エンターテインメントへの応用が広がる。\n\n\n## 注目論文 TOP 10\n\n### 1. Jeveration: System One Models Now Generate\n**upvotes: 110** | [arxiv: 2611.24738](https://arxiv.org/abs/2611.24738)\n\n🎯 **背景**: System One（予測型）モデルは高速並列推論で知られるが、生成タスクへの応用は限られていた。\n🔧 **手法**: Jeveration フレームワークを導入し、同一の決定論的パラダイムを画像生成に適用。並列予測ストリームを生成プロセスに転用。\n📊 **結果**: 高品質画像を従来の拡散モデルと同等以上のクオリティで生成可能と実証。\n💡 **意義**: 推論特化型アーキテクチャが生成AIにも活用できることを示し、効率的なマルチタスクモデルの可能性を開く。\n⚠️ **限界**: 動画・音声生成への汎化はまだ未検証、計算コスト削減効果の定量評価が不十分。\n\n---\n\n### 2. The Resolution Hypothesis: Agent Evolution's Key Is Identifying Improvements\n**upvotes: 35** | [arxiv: 2611.23068](https://arxiv.org/abs/2611.23068)\n\n🎯 **背景**: エージェント進化はプロポーザー→セレクターのループで実装されるが、実践上の障壁が不明確だった。\n🔧 **手法**: 「解像度仮説」を提唱：候補改善案を高精度に識別・評価できる解像度（Resolution）の質が進化速度を決定すると定式化。\n📊 **結果**: 解像度向上により、エージェントのプロンプト・スキル・記憶の自動改善ループが安定的に機能することを実験的に確認。\n💡 **意義**: AIエージェントの自律的な自己改善の理論的基盤を提供し、AGI研究への重要な示唆を与える。\n⚠️ **限界**: 解像度の定量化手法がまだ粗く、複雑な実世界タスクへの適用性は未検証。\n\n---\n\n### 3. ALIVE: Making Streaming Video Models Interactive\n**upvotes: 32** | [arxiv: 2611.21366](https://arxiv.org/abs/2611.21366)\n\n🎯 **背景**: ストリーミング動画LLMは継続的な世界観察が可能だが、ユーザーリクエストを孤立的に処理しており双方向性が欠如していた。\n🔧 **手法**: ALIVEフレームワークを導入：プロアクティブモニタリング、ストリーミング対話、動的指示追跡を統合した双方向動画モデル。\n📊 **結果**: リアルタイム動画ストリームに対してユーザーが介入・質問できるインタラクティブな体験を実現。\n💡 **意義**: 動画AIの「観察者」から「参加者」への転換を実現し、監視・ライブ解説・リアルタイム教育への応用を広げる。\n⚠️ **限界**: 低遅延環境での安定性、長時間ストリームでのコンテキスト保持に課題。\n\n---\n\n### 4. PROLA: Principal-Orthogonal Low-rank Adaptation for Predictive Spatiotemporal Weather Downscaling\n**upvotes: 27** | [arxiv: 2611.11318](https://arxiv.org/abs/2611.11318)\n\n🎯 **背景**: 高解像度気象予測はローカルな大気パターン解析に不可欠だが、粗いグローバルモデルからの細分化（ダウンスケーリング）は精度と計算コストのトレードオフがあった。\n🔧 **手法**: PROLAは主成分直交低ランク適応を提案：事前学習済み気象バックボーンに対し、空間・時間特徴を保存する低ランク行列で効率的にファインチューニング。\n📊 **結果**: 従来のダウンスケーリング手法を上回る予測精度を達成しつつ、パラメータ数を大幅削減。\n💡 **意義**: 大規模気象モデルを地域スケールに効率適応させる汎用手法として、気候科学への実用的インパクト大。\n⚠️ **限界**: 特定の気象変数（降水量、温度）に限定、極端気象イベントでの検証不足。\n\n---\n\n### 5. Game2Player: Scaling Gameplay Experience for Visual Agents through Environment-Player Co-Development\n**upvotes: 25** | [arxiv: 2611.24154](https://arxiv.org/abs/2611.24154)\n\n🎯 **背景**: ゲームは視覚エージェントの優れたテストベッドだが、人間のゲームプレイ収集は高コストで、ゲームプレイ動画からの学習も複雑だった。\n🔧 **手法**: 環境とプレイヤーエージェントを共同進化させるGame2Playerフレームワーク：エージェントが遊びやすい環境を自動生成し、同時にエージェント能力も向上。\n📊 **結果**: 人間データなしで高品質なゲームプレイ体験を大規模にスケールさせることに成功。\n💡 **意義**: 視覚エージェント訓練データの自動生成パイプラインとして、コスト削減と性能向上を両立。\n⚠️ **限界**: 生成される環境の多様性・品質管理、実ゲームとのギャップ評価が課題。\n\n\n### 6. CurvDelta: Low-Curvature Delta Modeling For Surgical Learning and Unlearning\n**upvotes: 22** | [arxiv: 2611.24654](https://arxiv.org/abs/2611.24654)\n\n🎯 **背景**: LLMの適応において、ターゲット能力獲得が他の汎用能力を劣化させる「能力保存問題」が深刻な課題だった。\n🔧 **手法**: CurvDeltaは低曲率デルタモデリングを導入：損失曲率が低い（汎用能力に影響しにくい）方向のみでパラメータ更新を行うスケーラブルな手法。\n📊 **結果**: ターゲット適応精度を維持しながら、既存能力の劣化を大幅に抑制することを多数のベンチマークで実証。\n💡 **意義**: LLMの安全なファインチューニングと能力削除（アンラーニング）の両方に適用でき、実用的なモデル管理手法として価値が高い。\n⚠️ **限界**: 曲率計算のオーバーヘッドが大きく、超大規模モデルへのスケーラビリティが課題。\n\n---\n\n### 7. HINT-WAM: Hindsight-Informed Training for World Action Models\n**upvotes: 22** | [arxiv: 2611.24789](https://arxiv.org/abs/2611.24789)\n\n🎯 **背景**: World Action Models（WAM）はロボット操作の汎化と効率でポテンシャルを示すが、現実環境への転用の際にアクション精度が低下するという問題があった。\n🔧 **手法**: HINT-WAM（後知恵情報を活用した訓練）：過去の成功・失敗エピソードを回顧的に分析し、アクション生成と視覚ダイナミクス予測を共同最適化。\n📊 **結果**: 標準的なロボット操作ベンチマークで従来WAMを上回る成功率、特に複雑な多段階タスクで顕著な改善。\n💡 **意義**: 後知恵情報の訓練活用というシンプルな原理で大幅性能向上、データ効率の高いロボット学習への新たなアプローチ。\n⚠️ **限界**: シミュレーション環境でのみ評価、実物ロボットへの転移性能は未検証。\n\n---\n\n### 8. LightTAR: Light and Fast Target-Aware Representations for Multimodal Tabular Learning\n**upvotes: 20** | [arxiv: 2611.17600](https://arxiv.org/abs/2611.17600)\n\n🎯 **背景**: マルチモーダル表形式学習（数値・カテゴリ・テキスト・画像混在）では、非構造データの特徴量抽出に高コストな大規模モデルが必要だった。\n🔧 **手法**: LightTARは目標タスクを考慮したターゲット認識表現を軽量モデルで生成：テキスト・画像エンコードを目標変数に依存した低次元表現に圧縮。\n📊 **結果**: 大規模エンコーダを使用した手法と同等の精度を達成しながら、推論速度を数倍向上。\n💡 **意義**: 産業界で多用される表形式データへのマルチモーダルAI適用を、限られたリソースでも実現可能にする。\n⚠️ **限界**: 極端に不均一なデータ分布や超高次元表形式データへの対応が課題。\n\n---\n\n### 9. WorldRuler: Interactive World Modeling under Configurable Rules\n**upvotes: 18** | [arxiv: 2611.24869](https://arxiv.org/abs/2611.24869)\n\n🎯 **背景**: インタラクティブな世界モデルにおいて、ルールによってゲームプレイ体験が変わるが、既存の生成モデルはカスタマイズ可能なルール対応が困難だった。\n🔧 **手法**: WorldRulerは設定可能なルール下での世界モデリングを実現：自然言語でルールを定義し、ゲームエンジンと生成モデルを統合したアーキテクチャ。\n📊 **結果**: 同一のシーン・行動空間でも異なるルールセットに基づく多様なゲームプレイ体験を生成可能に。\n💡 **意義**: カスタマイズ可能なゲームAI・シミュレーション環境構築の新パラダイムを提供し、エージェント訓練への応用が期待される。\n⚠️ **限界**: 複雑・矛盾するルール体系への対応、長期ゲームプレイでの一貫性維持が未解決。\n\n---\n\n### 10. Code World Model 2.0: Towards Infinite Controllable Video Generation\n**upvotes: 14** | [arxiv: 2611.22925](https://arxiv.org/abs/2611.22925)\n\n🎯 **背景**: 視覚プロキシによる明示的な世界状態シミュレーションと写真品質の動画合成の分離は有望だが、既存手法は制御可能性と長期一貫性に限界があった。\n🔧 **手法**: Code World Model 2.0はコード化されたビジュアルプロキシを活用し、無限長かつ高度に制御可能な動画生成を実現。オフラインクリップ制作とリアルタイムインタラクティブストリーミングの両方に対応。\n📊 **結果**: 従来モデルを大幅に超える長期的一貫性と制御精度、リアルタイムストリーミング生成での実用的な動作速度を達成。\n💡 **意義**: 映像制作・ゲーム・シミュレーション全般に応用可能な次世代動画生成基盤技術として注目度が高い。\n⚠️ **限界**: 動的シーンの急激な変化への対応、物理的に正確なシミュレーションとの整合性に改善余地。\n\n",
+  "fetched_at": "2026-11-19T22:07:22.808199+00:00",
+  "papers": [
+    {
+      "title": "Jeveration: System One Models Now Generate",
+      "upvotes": 110,
+      "paper_id": "2611.24738",
+      "abstract": "System One models such as Jev return decisions through fast, parallel prediction. In this paper, we introduce Jeveration, showing that the same decision paradigm can also generate high-quality images "
+    },
+    {
+      "title": "The Resolution Hypothesis: Agent Evolution's Key Is Identifying Improvements",
+      "upvotes": 35,
+      "paper_id": "2611.23068",
+      "abstract": "Agent evolution follows a simple loop: a proposer writes candidate artifacts (prompts, skills, memories) and selection accepts those that score higher. This loop has shown promise, yet practitioners f"
+    },
+    {
+      "title": "ALIVE: Making Streaming Video Models Interactive",
+      "upvotes": 32,
+      "paper_id": "2611.21366",
+      "abstract": "Streaming video LLMs can continuously observe the world, yet often handle user requests in isolation. We introduce ALIVE, an interactive streaming video model supporting proactive monitoring, streamin"
+    },
+    {
+      "title": "PROLA: Principal-Orthogonal Low-rank Adaptation for Predictive Spatiotemporal Weather Downscaling",
+      "upvotes": 27,
+      "paper_id": "2611.11318",
+      "abstract": "High-resolution weather prediction is important for resolving local atmospheric patterns missed by coarse global forecasts. Large pretrained weather backbones have improved global forecasting, but ada"
+    },
+    {
+      "title": "Game2Player: Scaling Gameplay Experience for Visual Agents through Environment-Player Co-Development",
+      "upvotes": 25,
+      "paper_id": "2611.24154",
+      "abstract": "Games are a rich testbed for visual agents, demanding perception, long-horizon planning, and precise control. However, collecting human gameplay is costly, and learning from gameplay videos requires i"
+    },
+    {
+      "title": "CurvDelta: Low-Curvature Delta Modeling For Surgical Learning and Unlearning",
+      "upvotes": 22,
+      "paper_id": "2611.24654",
+      "abstract": "A central challenge in adapting large language models (LLMs) is capability preservation: an adaptation can achieve its target while degrading general capabilities. We introduce CurvDelta, a scalable f"
+    },
+    {
+      "title": "HINT-WAM: Hindsight-Informed Training for World Action Models",
+      "upvotes": 22,
+      "paper_id": "2611.24789",
+      "abstract": "World action models (WAMs) have shown promising generalization and data efficiency in robot manipulation by coupling action generation with predictions of future visual dynamics. Translating these cap"
+    },
+    {
+      "title": "LightTAR: Light and Fast Target-Aware Representations for Multimodal Tabular Learning",
+      "upvotes": 20,
+      "paper_id": "2611.17600",
+      "abstract": "Multimodal tabular learning involves classification and regression on tables combining structured numerical and categorical features with unstructured text and images. These unstructured fields are co"
+    },
+    {
+      "title": "WorldRuler: Interactive World Modeling under Configurable Rules",
+      "upvotes": 18,
+      "paper_id": "2611.24869",
+      "abstract": "Rules govern how player actions change interactive worlds. Different rules create distinct gameplay experiences within similar scenes and action spaces. For customizable gameplay, generative world mod"
+    },
+    {
+      "title": "Code World Model 2.0: Towards Infinite Controllable Video Generation",
+      "upvotes": 14,
+      "paper_id": "2611.22925",
+      "abstract": "Visual proxies decouple explicit world-state simulation from photorealistic video synthesis, offering a controllable interface for both offline clip creation and real-time interactive streaming. Yet a"
+    }
+  ],
+  "cc_updates": []
+}
