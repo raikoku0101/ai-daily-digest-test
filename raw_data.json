@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "TeleChat to Xing4: Advancing Frontier Agentic Models on Domestic Chips and Frameworks",
-      "upvotes": 149,
-      "paper_id": "2611.22115",
-      "abstract": "We present Xing 4, a series of large language models that extends the TeleChat lineage through coordinated advances in model architecture and training infrastructure on Ascend. This report describes t"
+      "title": "AltRA-Test: An Alternative Annotator Test for LLM Judges Without Shared Annotators",
+      "upvotes": 20,
+      "paper_id": "2611.26073",
+      "abstract": "Statistical test for deciding when LLMs can replace human annotators, comparing inter-annotator agreement in resampled mixed human-LLM panels; about 100 items often suffice."
     },
     {
-      "title": "AscendGYM: A Cost-Aware Kernel Optimization Benchmark for Real-World Workloads on Ascend NPUs",
-      "upvotes": 91,
-      "paper_id": "2611.17621",
-      "abstract": "Kernel optimization is essential for efficient large language model (LLM) training and inference on Ascend NPUs. Existing Ascend kernel benchmarks primarily focus on kernel generation, with less empha"
+      "title": "RL Post-Training in Diffusion Transformers Is Activation Steering",
+      "upvotes": 14,
+      "paper_id": "2611.26627",
+      "abstract": "A fixed set of steering vectors added to a frozen diffusion transformer recovers most RL post-training reward gains, suggesting a constant shift drives much of the improvement."
     },
     {
-      "title": "Weight-Space Programming Doesn't Need Transformers",
-      "upvotes": 47,
-      "paper_id": "2611.22055",
-      "abstract": "Standard neural architectures such as the Transformer were chosen because they train well with gradient descent and run fast on GPUs. In weight-space programming, a large language model (LLM) writes t"
+      "title": "Training Vision Models for LLM-Driven Weight-Space Programming",
+      "upvotes": 12,
+      "paper_id": "2611.26408",
+      "abstract": "Edit-Ready Training prepares vision networks so LLMs can edit their weights more successfully than with standard or gradient-based editable training."
     },
     {
-      "title": "Multi-Branch Transformer",
-      "upvotes": 43,
-      "paper_id": "2611.19800",
-      "abstract": "Transformer language models are commonly scaled by making their blocks wider or stacking them deeper. In this work, we explore a complementary path: branching, the parallel composition of full Transfo"
+      "title": "Online Mistake Detection in Instruction-Conditioned Procedural Video",
+      "upvotes": 9,
+      "paper_id": "2611.25567",
+      "abstract": "Online detector for egocentric video that checks actions against task instructions as they unfold, classifying mistakes such as slips, corrections, and modified steps."
     },
     {
-      "title": "ForceHarness: Turning Force into Action and Physics for Frozen Frontier Models",
-      "upvotes": 38,
-      "paper_id": "2611.21099",
-      "abstract": "Frontier multimodal models can now control robots zero-shot from images, yet many manipulation tasks depend on contact forces that images cannot show. Bringing force to an API-only frozen model raises"
+      "title": "Twice-Told Critiques: Claim-Level Homogenization of Peer Review in the LLM Era",
+      "upvotes": 9,
+      "paper_id": "2611.26286",
+      "abstract": "Measures rising critique overlap across peer reviews at ICLR and other venues, finding LLM-flagged reviews of the same paper are less distinct from each other."
     },
     {
-      "title": "Beyond Answering: Learning to Speak First and Act in Streaming Video",
-      "upvotes": 33,
-      "paper_id": "2611.17048",
-      "abstract": "Most AI assistants respond only when prompted, remaining silent even when events in the video stream offer meaningful opportunities for conversation. To move beyond purely user-driven interaction, we "
+      "title": "Accord: Universal Online Metric Localization and Dense Mapping from one Camera and an IMU",
+      "upvotes": 8,
+      "paper_id": "2611.25279",
+      "abstract": "Builds online dense metric maps from one camera and an IMU by anchoring depth predictions to VIO-triangulated points and fusing submaps in a factor graph."
     },
     {
-      "title": "Breath-Dx: A Time Series Classification Benchmark for Disease Screening with eNose",
-      "upvotes": 32,
-      "paper_id": "2611.15348",
-      "abstract": "Electronic nose (eNose) technology offers a portable, non-invasive route for disease screening via exhaled breath analysis. However, progress in the field is hindered by the lack of systematic benchma"
+      "title": "Language Models Can Rewrite Their Own Weights",
+      "upvotes": 4,
+      "paper_id": "2611.21885",
+      "abstract": "A 27B model diagnoses its own failures and edits its weights without gradients or training, becoming more accurate on problems it never saw during the study."
     },
     {
-      "title": "Self-Improvement Memory Enables Continual Recursive Self-Improvement",
-      "upvotes": 28,
-      "paper_id": "2611.18856",
-      "abstract": "Harness optimization is often studied with a fixed policy model and benchmark. When either changes, the optimizer must decide which parts of an evolved harness to reuse or revise, but the harness alon"
+      "title": "Direct3D-V3: Latent-Free Diffusion Transformers in the Native Voxel Domain",
+      "upvotes": 4,
+      "paper_id": "2611.26511",
+      "abstract": "A diffusion transformer that drops the VAE and models raw SDF voxel grids directly for 3D generation, aiming to remove the reconstruction bottleneck and add local detail."
     },
     {
-      "title": "TCP4D: A Unified Tool-Center-Point Tracking and Generation Model for Robot Manipulation",
-      "upvotes": 23,
-      "paper_id": "2611.23143",
-      "abstract": "Robot manipulation videos provide a rich visual experience, yet recovering robot action and gripper-state annotations from RGB observations still remains challenging. Using the embodiment-agnostic too"
+      "title": "System 1 agents: a method for local, reliable and fast agentic AI",
+      "upvotes": 3,
+      "paper_id": "2611.21053",
+      "abstract": "Local agents select tools by answering compiled multiple-choice questions rather than generating text, avoiding invented values and reaching 97.0% accuracy on biomedical tasks."
     },
     {
-      "title": "FastFrames: Video Generation at Interactive Latency",
-      "upvotes": 21,
-      "paper_id": "2611.23226",
-      "abstract": "Autoregressive video diffusion models generate frames based on new observations and inputs, making them a promising medium for interactive visual experiences. However, existing models are orders of ma"
+      "title": "Phantom Success, Silent Failure: Auditing the Success Checkers of Simulated Manipulation Benchmarks",
+      "upvotes": 3,
+      "paper_id": "2611.25179",
+      "abstract": "An LLM-based pipeline, SimAudit, audits simulated robot benchmark success checkers against task instructions, finding 61 defects including false successes and false failures."
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.329",
+      "published_at": "2025-11-19",
+      "body": "What's changed\n\n* Added a trust dialog warning that says where a folder's hooks are declared\n* Added a warning in the conversation, in Claude Desktop and other non-interactive hosts, when hooks in managed settings fail to load\n* Added this session's scheduled tasks, `/loop` wakeups, the goal and this conversation's forks to `/tasks`; x stops one after asking\n* Added a \"Server message\" row to a server's page in `/mcp` that shows the JSON-RPC error message of a remote HTTP MCP server that refuses the connection\n* Added a \"Marketplace auto-update\" row to `/status` that names..."
+    },
+    {
+      "tag_name": "v2.1.328",
+      "published_at": "2025-11-19",
+      "body": "What's changed\n\n* Added auto mode for Claude Opus 4.6 and Sonnet 4.6 on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry and Claude apps gateway; interactive sessions with no permission mode start in it\n* Added \"onFailure\": \"block\" for `mcp_tool` hooks, as for command and HTTP hooks: a hook whose call fails blocks the action\n* Added a warning when a message from a session that skips permission prompts may be held and dropped by a cloud session\n* Added a notice in `/status` and `claude doctor` when an OpenTelemetry exporter has no endpoint and its data would likely be lost..."
+    },
+    {
       "tag_name": "v2.1.327",
       "published_at": "2025-11-17",
-      "body": "What's changed\n\n* Added a confirmation before `/install-github-app` changes a repository\n* Added `claude mcp add-json <name> -` to read the server's JSON from stdin, so tokens can stay off the command line; not available inside a Claude Code session\n* Added a line when a resumed session's earlier messages can't be loaded\n* Added a list in `/status` of broken agent, skill, command and output style files, keybinding errors, an unavailable sandbox, ignored permission settings and hook matchers that never match\n* Added a note in `/config`..."
-    },
-    {
-      "tag_name": "v2.1.326",
-      "published_at": "2025-11-16",
-      "body": "What's changed\n\n* Added support for turning on Code Mode while agent teams are enabled; if you already turned it on, sessions with teams on now start in Code Mode\n* Added a startup warning when an `--allowedTools`, `--disallowedTools` or `--tools` value has an entry that doesn't look like a complete rule\n* Added a message explaining why MCP servers stop loading when an administrator adds `managed-mcp.json` during a session\n* Added a row to `/status` that says when your provider or an environment variable such as `DISABLE_TELEMETRY` turns features off..."
-    },
-    {
-      "tag_name": "v2.1.325",
-      "published_at": "2025-11-13",
-      "body": "What's changed\n\n* Fixed a security issue in how zstd-compressed responses are decoded\n* Added a spinner tip in VS Code and similar integrated terminals about re-running a notebook cell, shown once Claude has read or edited a Jupyter notebook\n* Added a line under the error shown when your organization's policy blocks a request, saying how to continue: run `/rewind` and change the message, or run `/clear`\n* Added a note for Claude when a sandboxed `git checkout`, `git stash` or autostash pull cannot update protected files such as those in `.claude`\n* Fixed `/security-review` and skills' inline git commands stopping with an error in worktrees of bare repositories..."
+      "body": "What's changed\n\n* Added a confirmation before `/install-github-app` changes a repository\n* Added `claude mcp add-json <name> -` to read the server's JSON from stdin, so tokens can stay off the command line; not available inside a Claude Code session\n* Added a line when a resumed session's earlier messages can't be loaded\n* Added a list in `/status` of broken agent, skill, command and output style files, keybinding errors, an unavailable sandbox, ignored permission settings and hook matchers that never match\n* Added a note in `/config` when other settings override a row"
     }
   ]
 }
