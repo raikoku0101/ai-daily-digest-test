@@ -2,51 +2,51 @@
   "papers": [
     {
       "title": "WeVisForensics: Self-Evolving Agent for Omni AI-Generated Video Detection",
-      "upvotes": 52,
+      "upvotes": 56,
       "paper_id": "2611.21373",
       "abstract": "Recent advances in video generation call for reliable detection grounded in explicit forensic evidence. However, current methods primarily depend on single-pass chain-of-thought reasoning that overloo"
     },
     {
       "title": "Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation",
-      "upvotes": 50,
+      "upvotes": 53,
       "paper_id": "2611.26444",
       "abstract": "Embodied intelligence aims to let robots perform complex physical tasks with human-like adaptability and reliability, which requires three complementary capabilities: history-based cognitive reasoning"
     },
     {
       "title": "WeMM-Video: Pushing the Frontiers of Open-Source Omni-Modal Video Understanding",
-      "upvotes": 44,
+      "upvotes": 45,
       "paper_id": "2611.26409",
       "abstract": "Video understanding, particularly with accompanying audio, remains a central challenge in multimodal intelligence. In this report, we introduce WeMM-Video, a family of Chinese-English bilingual omni-m"
     },
     {
       "title": "Probing the \"Conscious\" Mind: Selective Access and Global Workspace in Vision-Language Models",
-      "upvotes": 42,
+      "upvotes": 43,
       "paper_id": "2611.26590",
       "abstract": "Vision-language models (VLMs) integrate visual and textual information, but their outputs do not reveal internal concept representations. Global workspace theory (GWT) proposes that information is sel"
     },
     {
       "title": "Posterior Matching Distillation",
-      "upvotes": 37,
+      "upvotes": 39,
       "paper_id": "2611.26629",
       "abstract": "Diffusion distillation accelerates image and video generation by compressing a pretrained teacher's iterative sampling process into a few network evaluations. Distribution-based methods achieve this b"
     },
     {
       "title": "Coda-DaVinci: Reimagining Video Generation with Code2Video",
-      "upvotes": 35,
+      "upvotes": 39,
       "paper_id": "2611.26595",
       "abstract": "Code2Video uses agent-authored 3D proxies to guide video generation, enabling explicit control over structure and dynamics. However, how to construct proxies and prompts for optimal downstream quality"
     },
     {
-      "title": "The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation",
-      "upvotes": 32,
-      "paper_id": "2611.21383",
-      "abstract": "3D Gaussian Splatting enables object-level operations on Gaussian primitives, yet existing segmentation methods are largely trained and evaluated through rendered views. This mismatch can produce accu"
-    },
-    {
       "title": "Depth Pro 2: Sharp and Temporally Consistent Metric Monocular Depth",
-      "upvotes": 30,
+      "upvotes": 34,
       "paper_id": "2611.26603",
       "abstract": "We present Depth Pro 2, an approach to estimating dense metric depth for images and video at full resolution. By analyzing prior methods for monocular depth estimation, we find that they commonly trad"
+    },
+    {
+      "title": "The Mask Is Not the Object: Volumetric Supervision for 3D Gaussian Segmentation",
+      "upvotes": 33,
+      "paper_id": "2611.21383",
+      "abstract": "3D Gaussian Splatting enables object-level operations on Gaussian primitives, yet existing segmentation methods are largely trained and evaluated through rendered views. This mismatch can produce accu"
     },
     {
       "title": "HiUni: Harmonizing Understanding and Generation in Shared Visual Space",
