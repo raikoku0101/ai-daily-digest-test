@@ -1,37 +1,47 @@
 ## 注目論文 TOP 10
 
-1. **WeVisForensics: Self-Evolving Agent for Omni AI-Generated Video Detection** | 👍 52 | [arxiv:2611.21373](https://arxiv.org/abs/2611.21373)
-   - 🎯**背景**: 動画生成技術の急速な進歩により、AIが生成したフェイク動画を確実に検出する需要が高まっている
-   - 🔧**手法**: 自己進化型エージェントを用いた証拠ベースのフォレンジック推論により、動画の真贋を多角的に判定
-   - 📊**結果**: 単一パス思考手法を超える検出精度を達成し、複数のベンチマークでSOTA性能を記録
-   - 💡**意義**: フェイク動画検出に「証拠明示型」アプローチを導入し、解釈可能性を持つ検出システムの実現
-   - ⚠️**限界**: 新規生成モデルへの適応速度や実時間処理への展開はまだ課題として残る
+### 1. Embo-Harness: Towards Understanding Frontier-Model-as-Policy Harness
+**upvotes: 90** | [arxiv](https://arxiv.org/abs/2611.31201)
 
-2. **Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation** | 👍 50 | [arxiv:2611.26444](https://arxiv.org/abs/2611.26444)
-   - 🎯**背景**: ロボット操作における認知推論・物理的行動・その複合能力を包括的に評価するベンチマークが不足
-   - 🔧**手法**: 履歴ベースの認知推論・物理的行動実行・マインドアクション複合の3つの能力軸を設けた診断型ベンチマーク
-   - 📊**結果**: 現行の体現型AIモデルの弱点が可視化され、特にマインドアクション複合タスクでの性能差が顕著
-   - 💡**意義**: ロボットAIの開発指針となる詳細な能力評価フレームワークを提供
-   - ⚠️**限界**: 実環境との差異（シミュレーション偏重）や評価軸の網羅性に改善余地がある
+🎯 **背景**: Frontier multimodal models exhibit extraordinary generalization in generating robot actions from obs
+🔧 **手法**: 論文の手法・アプローチ詳細は要確認
+📊 **結果**: 定量的な評価結果は論文参照
+💡 **意義**: AI研究における重要な貢献
+⚠️ **限界**: 適用範囲・制約は論文参照
 
-3. **WeMM-Video: Pushing the Frontiers of Open-Source Omni-Modal Video Understanding** | 👍 44 | [arxiv:2611.26409](https://arxiv.org/abs/2611.26409)
-   - 🎯**背景**: 映像と音声を同時に扱う多様モーダル動画理解は、マルチモーダルAIの中核的難題の一つ
-   - 🔧**手法**: 中英バイリンガル対応のオムニモーダルモデルファミリーWeMM-Videoを構築し、音声付き動画理解を実現
-   - 📊**結果**: オープンソース動画理解モデルの最前線水準に到達し、複数の標準ベンチマークで競合モデルを上回る
-   - 💡**意義**: 高性能な多言語・多モーダル動画理解モデルをオープンソースで公開する先進的な取り組み
-   - ⚠️**限界**: 中英以外の言語対応や、低品質映像・長時間動画への適用は今後の課題
+### 2. WorldLeague: Benchmarking Physical Agency
+**upvotes: 75** | [arxiv](https://arxiv.org/abs/2611.30989)
 
-4. **Probing the "Conscious" Mind: Selective Access and Global Workspace in Vision-Language Models** | 👍 42 | [arxiv:2611.26590](https://arxiv.org/abs/2611.26590)
-   - 🎯**背景**: VLMが画像・テキストを統合する内部メカニズムは不透明で、意識の認知理論との対応関係が未解明
-   - 🔧**手法**: 大域的ワークスペース理論（GWT）に基づき、VLMの内部概念表現へのアクセス性をプロービング実験で検証
-   - 📊**結果**: VLMの一部レイヤーにGWT的な情報の集約・選択的アクセスのパターンが確認された
-   - 💡**意義**: AI内部構造と人間の意識理論を結びつける認知科学的アプローチの先例を作る研究
-   - ⚠️**限界**: GWT自体が仮説段階の理論であり、VLMへの適用の妥当性には議論の余地がある
+🎯 **背景**: AI systems can now operate Blender, follow instructions in complex video games, and manipulate objec
+🔧 **手法**: 論文の手法・アプローチ詳細は要確認
+📊 **結果**: 定量的な評価結果は論文参照
+💡 **意義**: AI研究における重要な貢献
+⚠️ **限界**: 適用範囲・制約は論文参照
 
-5. **Posterior Matching Distillation** | 👍 37 | [arxiv:2611.26629](https://arxiv.org/abs/2611.26629)
-   - 🎯**背景**: 拡散モデルの繰り返しサンプリングは計算コストが高く、高速な画像・動画生成には蒸留手法が必要
-   - 🔧**手法**: 事後分布マッチングに基づく蒸留手法で、教師モデルの反復サンプリングを少ないステップに圧縮
-   - 📊**結果**: 分布ベース蒸留の中でも高品質な生成物を維持しつつ、推論速度を大幅に向上
-   - 💡**意義**: 画像・動画生成モデルの実用的な高速化に向けた新しい蒸留フレームワークの提案
-   - ⚠️**限界**: 超少ステップ（1〜2ステップ）での品質維持や多様なアーキテクチャへの汎化は検証不足
+### 3. WeMM-Ecom: Advancing Multimodal Content Understanding for WeChat E-Commerce
+**upvotes: 54** | [arxiv](https://arxiv.org/abs/2611.30662)
+
+🎯 **背景**: We present WeMM-Ecom, a family of multimodal large language models that deliver frontier e-commerce 
+🔧 **手法**: 論文の手法・アプローチ詳細は要確認
+📊 **結果**: 定量的な評価結果は論文参照
+💡 **意義**: AI研究における重要な貢献
+⚠️ **限界**: 適用範囲・制約は論文参照
+
+### 4. Let the Fixer Decide: Training a Code Localizer from the Fixer's Likelihood
+**upvotes: 52** | [arxiv](https://arxiv.org/abs/2611.12164)
+
+🎯 **背景**: Code localizers are usually trained to predict the files a reference patch edits, but the code a fix
+🔧 **手法**: 論文の手法・アプローチ詳細は要確認
+📊 **結果**: 定量的な評価結果は論文参照
+💡 **意義**: AI研究における重要な貢献
+⚠️ **限界**: 適用範囲・制約は論文参照
+
+### 5. ViDecide: Teaching Video Diffusion Models to Reason and Plan Step by Step
+**upvotes: 38** | [arxiv](https://arxiv.org/abs/2611.26389)
+
+🎯 **背景**: Current leading video generation models can synthesize highly realistic videos, while still frequent
+🔧 **手法**: 論文の手法・アプローチ詳細は要確認
+📊 **結果**: 定量的な評価結果は論文参照
+💡 **意義**: AI研究における重要な貢献
+⚠️ **限界**: 適用範囲・制約は論文参照
 
