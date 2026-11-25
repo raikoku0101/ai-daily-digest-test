@@ -1,81 +1,81 @@
 {
   "papers": [
     {
-      "title": "cmHC: Balancing Stream Mixing in Hyper-Connections via Geometric Contraction",
+      "title": "Antom 3-in-1 Transformer: A Payment Foundation Model",
+      "upvotes": 101,
+      "paper_id": "2611.25403",
+      "abstract": "We report the development of Antom 3-in-1 Transformer, a payment foundation model that integrates sequence, tabular, and graph representations for payment risk detection. The model contains approximat"
+    },
+    {
+      "title": "Lazy Agents Answer Against Their Own Beliefs: Reinforcement Learning with Verifiable Beliefs Teaches Them to Act on What They Believe",
+      "upvotes": 87,
+      "paper_id": "2611.32884",
+      "abstract": "AI agents working on long tasks often commit to an answer before they have enough evidence, a behavior called laziness. In our evaluations, they frequently commit even while their stated belief still "
+    },
+    {
+      "title": "Rewirable Circuits in Transformers with Loom Attention",
       "upvotes": 86,
-      "paper_id": "2611.27193",
-      "abstract": "Manifold-constrained Hyper-Connections (mHC) extends residual connections to multiple streams and stabilizes residual propagation by constraining stream-mixing residual matrices to the Birkhoff polyto"
+      "paper_id": "2611.30634",
+      "abstract": "We propose loom attention, which allows a Transformer to dynamically rewire its circuits at every token by interweaving a head's vertical attention over the outputs of earlier heads (to obtain its que"
     },
     {
-      "title": "Non-penetrating World Models",
-      "upvotes": 54,
-      "paper_id": "2611.27963",
-      "abstract": "We study a new problem of preventing object penetration in interactive video world models. To understand how existing models handle this, we introduce NoPeBench, a benchmark that evaluates how world m"
+      "title": "Don't Sleep, Keep Watch: Proactive Perception for Computer-Use Agents",
+      "upvotes": 84,
+      "paper_id": "2611.28947",
+      "abstract": "Computer-use agents (CUAs) built on vision-language models are increasingly entrusted with long-horizon tasks in live desktop, web, and mobile environments, where the screen keeps changing on its own."
     },
     {
-      "title": "Clover-35B-A3B-Preview Technical Report",
-      "upvotes": 36,
-      "paper_id": "2611.24636",
-      "abstract": "We introduce Clover-35B-A3B-Preview (Clover), a mixture-of-experts diffusion language model with 35 billion total parameters and 3 billion activated parameters, supporting thinking-mode generation. Cl"
+      "title": "Nemotron-Labs-VisualCreation: Pixel as Code for Agentic Visual Creation",
+      "upvotes": 80,
+      "paper_id": "2611.31358",
+      "abstract": "Visual creation demands expressive imagery together with precise control over text, layout, and structure. We introduce Nemotron-Labs-VisualCreation, an agentic framework that connects these capabilit"
     },
     {
-      "title": "Probing the \"Conscious\" Mind: Selective Access and Global Workspace in Vision-Language Models",
-      "upvotes": 36,
-      "paper_id": "2611.26590",
-      "abstract": "Vision-language models (VLMs) integrate visual and textual information, but their outputs do not reveal internal concept representations. Global workspace theory (GWT) proposes that information is sel"
+      "title": "ACAP: Asynchronous Coding Agents for Efficient Robot Control",
+      "upvotes": 61,
+      "paper_id": "2611.31205",
+      "abstract": "Coding agents can construct and revise robot behavior during execution, but using one agent for the whole robot can delay otherwise independent work. We introduce Asynchronous Coding Agents as Policy "
     },
     {
-      "title": "HiUni: Harmonizing Understanding and Generation in Shared Visual Space",
-      "upvotes": 25,
-      "paper_id": "2611.26107",
-      "abstract": "Unified multimodal models aim to support visual understanding and generation within a single framework. However, prevailing approaches often separate their visual representations or backbone computati"
+      "title": "Self-Evolving Evaluation Environments for Computer-Use Agents",
+      "upvotes": 45,
+      "paper_id": "2611.30962",
+      "abstract": "Computer-use agents (CUAs) are rapidly improving, yet their evaluation remains largely static. Existing benchmarks provide a strong foundation, but fixed difficulty ceilings, limited feature coverage,"
     },
     {
-      "title": "AltRA-Test: An Alternative Annotator Test for LLM Judges Without Shared Annotators",
-      "upvotes": 24,
-      "paper_id": "2611.26073",
-      "abstract": "Large language models (LLMs) are increasingly used as judges and graders to replace human annotators, raising the question of when such replacement is statistically justified. To support such decision"
+      "title": "LingSante MedGuard Technical Report",
+      "upvotes": 34,
+      "paper_id": "2611.25509",
+      "abstract": "As medical AI is increasingly used for patient consultation and clinical decision support, identifying harmful, non-compliant, or ethically problematic responses is essential for responsible deploymen"
     },
     {
-      "title": "RL Post-Training in Diffusion Transformers Is Activation Steering",
-      "upvotes": 22,
-      "paper_id": "2611.26627",
-      "abstract": "Reinforcement learning (RL) post-training substantially improves the visual quality, text rendering, and compositional accuracy of diffusion transformers. Because capabilities such as rendering reques"
+      "title": "PartAgent: Agentic 3D Part Segmentation via Expert Integration and Closed-Loop Refinement",
+      "upvotes": 33,
+      "paper_id": "2611.32554",
+      "abstract": "Segmenting a 3D object into semantically meaningful parts requires joint reasoning about geometric structure and semantic context. Pretrained 3D experts provide spatially grounded region proposals, wh"
     },
     {
-      "title": "Reading the Unreadable: Text-Aware Image Super-Resolution Needs Reasoning",
-      "upvotes": 21,
-      "paper_id": "2611.15449",
-      "abstract": "Text-aware image super-resolution (TAISR) aims to recover high-resolution images from low-resolution inputs while preserving textual content. Existing methods treat this as a visual restoration proble"
-    },
-    {
-      "title": "Duopra: From Full-Duplex Conversation to Full-Duplex Agency",
-      "upvotes": 21,
-      "paper_id": "2611.25773",
-      "abstract": "Full-duplex interaction models exhibit strong conversational agency, enabling natural, low-latency turn-taking, backchannels, and interruptions. However, completing tasks further requires task agency:"
-    },
-    {
-      "title": "Language Models Can Rewrite Their Own Weights",
-      "upvotes": 21,
-      "paper_id": "2611.21885",
-      "abstract": "Language models are trained once, frozen and deployed: improving one again takes another training run, and a prompt, a scaffold or extra computation at inference is gone once the task ends. A frontier"
+      "title": "Embodied AI Fails the Mirror Test: How a Simple Mirror Breaks Robot Policies",
+      "upvotes": 28,
+      "paper_id": "2611.33010",
+      "abstract": "Can a simple mirror expose the limitations of today's robotic manipulation policies? Inspired by the mirror self-recognition test in animal cognition, we investigate whether robot policies can reliably"
     }
   ],
   "cc_updates": [
     {
+      "tag_name": "v2.1.332",
+      "published_at": "2025-11-25",
+      "body": "What's changed\n\n* Added skills from MCP servers (beta). They show as `server:skill` in the `/` menu; other skills keep their names\n* Added a `PreSkillShellCommand` hook event that can refuse a skill or command's inline shell commands as it loads; on 2.1.331 and older, a settings file naming it opens a dialog at start\n* Added \"Always deliver\" to the prompt for held messages from other sessions\n* Added a footer line that stays while a flagged message has your session on a different model, until you pick one with `/model`\n* Added an OpenTelemetry `assistant_response` event for text Claude sends through SendUserMessage or Cowork's message tool"
+    },
+    {
       "tag_name": "v2.1.331",
-      "published_at": "2026-11-23",
-      "body": "What's changed\n* Added Code Mode support in terminal sessions on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry and Claude Platform on AWS\n* Added `oidc.groups_jsonpath` to the Claude apps gateway, to read groups from the matching entries of a list of objects with a small subset of JSONPath (RFC 9535)\n* Added an API connectivity section to `claude doctor` that reports whether the API can be reached, with the HTTP status or the error, or says why it wasn't tested\n* Added a notice when tap-mode voice dictation stops by itself, after 15 seconds without recognized speech or at its 2-minute limit\n* Added `CLAUDE_CODE_DISABLE_RESPONSE_COMPRESSION` to ask for uncompressed model responses behind a proxy that cuts compressed ones off"
+      "published_at": "2025-11-23",
+      "body": "What's changed\n\n* Added Code Mode support in terminal sessions on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry and Claude Platform on AWS\n* Added `oidc.groups_jsonpath` to the Claude apps gateway, to read groups from the matching entries of a list of objects with a small subset of JSONPath (RFC 9535)\n* Added an API connectivity section to `claude doctor` that reports whether the API can be reached, with the HTTP status or the error, or says why it wasn't tested\n* Added a notice when tap-mode voice dictation stops by itself, after 15 seconds without recognized speech or at its 2-minute limit"
     },
     {
       "tag_name": "v2.1.330",
-      "published_at": "2026-11-20",
-      "body": "What's changed\n* Added sign-in to organizations managed in Anthropic's Enterprise Admin Console: after `claude auth login`, Claude Code applies the organization's settings and uses its cloud provider or gateway\n* Added easel, a built-in mod that draws charts when asked and under MCP metrics results, on Pro, Max and, where available, Team and Enterprise on macOS and Linux; turn automatic charts off in `/config`\n* Added `CLAUDE_CODE_FULL_SIGN_IN_LINK=1` to print the full sign-in link, if the short one shows an error or a script reads values from it\n* Self-hosted runner: Added `--start-dir` / `SELF_HOSTED_RUNNER_START_DIR` to have Claude start its work in a folder"
-    },
-    {
-      "tag_name": "v2.1.329",
-      "published_at": "2026-11-19",
-      "body": "What's changed\n* Added a trust dialog warning that says where a folder's hooks are declared\n* Added a warning in the conversation, in Claude Desktop and other non-interactive hosts, when hooks in managed settings fail to load\n* Added this session's scheduled tasks, `/loop` wakeups, the goal and this conversation's forks to `/tasks`; x stops one after asking\n* Added a \"Server message\" row to a server's page in `/mcp` that shows the JSON-RPC error message of a remote HTTP MCP server that refuses the connection\n* Added a \"Marketplace auto-update\" row to `/status` that names managed marketplaces"
+      "published_at": "2025-11-20",
+      "body": "What's changed\n\n* Added sign-in to organizations managed in Anthropic's Enterprise Admin Console: after `claude auth login`, Claude Code applies the organization's settings and uses its cloud provider or gateway\n* Added easel, a built-in mod that draws charts when asked and under MCP metrics results, on Pro, Max and, where available, Team and Enterprise on macOS and Linux; turn automatic charts off in `/config`\n* Self-hosted runner: Added `--start-dir` / `SELF_HOSTED_RUNNER_START_DIR` to have Claude start its work in a folder of a repository"
     }
   ]
 }
