@@ -1,0 +1,174 @@
+{
+  "date": "2026-11-27",
+  "content": "# AI Daily Digest — 2026-11-27\n\n## 今日のハイライト\n- **Real2SimLab (101 votes)**: リアル映像からシミュレーション環境を自動構築する統合プラットフォーム。ロボティクス・自律システム研究のボトルネックだったデータ取得を大幅に効率化し、実世界AIの開発サイクルを加速する可能性がある。\n- **Sage-Med (84 votes)**: 医療マルチモーダルLLMのスケーリング則を体系的に解明。医療AI実用化に向けたデータ・モデルサイズの最適設計指針を提供し、診断支援システムの信頼性向上に直結する重要研究。\n- **Mixture-of-Loops Transformer (57 votes)**: 共有レイヤーを再利用するLooped Transformerの表現力を保ちながら効率性を改善。LLMの推論コスト削減・モデル軽量化に向けた新しいアーキテクチャ設計の方向性を示す。\n\n\n## 注目論文 TOP 10\n\n### 1. Real2SimLab: A Unified Platform for Real-to-Simulation Transfer\n**upvotes: 101** | https://arxiv.org/abs/2611.34849\n\n🎯 **背景**: Real-to-simulation transfer, which builds simulations from real-world observations, has long been studied in research an\n🔧 **手法**: Recently, coding agents have become capable of generating simulation programs from video recordings, and several benchma\n📊 **結果**: However\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: However\n\n### 2. Sage-Med: Scaling Medical Multimodal Intelligence\n**upvotes: 84** | https://arxiv.org/abs/2611.34575\n\n🎯 **背景**: Establishing effective scaling laws for medical multimodal large language models (MLLMs) remains a persistent and fundam\n🔧 **手法**: Our systematic evaluation shows that existing medical MLLMs tend to underperform frontier general-purpose MLLMs across a\n📊 **結果**: 既存手法を上回る性能\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: Our systematic evaluation shows that existing medical MLLMs tend to underperform frontier general-purpose MLLMs across a\n\n### 3. Mixture-of-Loops Transformer\n**upvotes: 57** | https://arxiv.org/abs/2611.34923\n\n🎯 **背景**: Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency\n🔧 **手法**: Pushing their expressivity-efficiency frontier requires rethinking the core mechanism connecting adjacent loops: What sh\n📊 **結果**: 既存手法を上回る性能\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: Pushing their expressivity-efficiency frontier requires rethinking the core mechanism connecting adjacent loops: What sh\n\n### 4. VibeVideoAgent: Closing the Perceptual Loop for Code-Driven Video Generation\n**upvotes: 54** | https://arxiv.org/abs/2611.34237\n\n🎯 **背景**: Code-driven video generation asks a coding agent to write and run rendering programs\n🔧 **手法**: This gives exact control over typography, data visualizations, synchronized audio, and multi-shot scenes, and it leaves \n📊 **結果**: A program that exits cleanly can still render overlapping labels,\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: A program that exits cleanly can still render overlapping labels,\n\n### 5. Improving and Expanding Video Editing Capabilities Without Videos\n**upvotes: 43** | https://arxiv.org/abs/2611.34941\n\n🎯 **背景**: Image editing models can follow a wide range of instructions, but video editing models still lag behind, limited in part\n🔧 **手法**: Is it possible to transfer advanced image editing capabilities to video editors without new paired videos? We intr\n📊 **結果**: 既存手法を上回る性能\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: Is it possible to transfer advanced image editing capabilities to video editors without new paired videos? We intr\n### 6. DocSEAM: Bidirectional Cross-Page Encoding for Multi-Page Document Understanding\n**upvotes: 26** | https://arxiv.org/abs/2611.34420\n\n🎯 **背景**: Multi-page document vision-language models encode each page independently, creating a feature-level discontinuity at pag\n🔧 **手法**: We intro\n📊 **結果**: 既存手法を上回る性能\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: We intro\n\n### 7. Let Vision-Language Models Generate Images through Their Representations\n**upvotes: 24** | https://arxiv.org/abs/2611.31237\n\n🎯 **背景**: Recent unified multimodal models aim to combine visual understanding and generation within a single model, yet effective\n🔧 **手法**: Leveraging pretrained vision-language models offers a way to build on already learned multimodal knowledge, but making t\n📊 **結果**: 既存手法を上回る性能\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: Leveraging pretrained vision-language models offers a way to build on already learned multimodal knowledge, but making t\n\n### 8. HOG-WAM: Improving Visual Robustness through Future Gradient Prediction\n**upvotes: 22** | https://arxiv.org/abs/2611.34811\n\n🎯 **背景**: World-action models jointly predict future observations and actions, yet visual corruption can disrupt the resulting pol\n🔧 **手法**: We introduce HOG-WAM, which adds future Histograms of Oriented Gradients (HOG) as structural supervision derived directl\n📊 **結果**: An auxiliary HOG diffusi\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: An auxiliary HOG diffusi\n\n### 9. EgoUseBench: Benchmarking Computer-Use Agents under Evolving First-Person Contexts\n**upvotes: 19** | https://arxiv.org/abs/2611.34466\n\n🎯 **背景**: AI wearables, such as smart glasses, extend the context available to agents beyond digital environments to users' physic\n🔧 **手法**: With these devices, computer tasks can originate from users' ongoing activities rather than solely from explicit instruc\n📊 **結果**: Through first-person observations, a\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: Through first-person observations, a\n\n### 10. DexEngine: Scaling Human Demonstrations into Physically Executable Whole-Robot Data\n**upvotes: 18** | https://arxiv.org/abs/2611.33579\n\n🎯 **背景**: A growing body of recent work addresses the retargeting of human hand-object demonstrations to robotic hands\n🔧 **手法**: To train whole-robot policies, however, the retargeted motions must be kinematically feasible and physically executable,\n📊 **結果**: We present DexEngine, a simulat\n💡 **意義**: AI研究への貢献\n⚠️ **限界**: We present DexEngine, a simulat\n",
+  "fetched_at": "2026-11-26T22:05:17.554299+00:00",
+  "papers": [
+    {
+      "title": "Real2SimLab: A Unified Platform for Real-to-Simulation Transfer",
+      "upvotes": 101,
+      "id": "2611.34849",
+      "abstract": "Real-to-simulation transfer, which builds simulations from real-world observations, has long been studied in research and industry. Recently, coding agents have become capable of generating simulation programs from video recordings, and several benchmarks have been proposed to evaluate them. However",
+      "ai_summary": "",
+      "ai_keywords": []
+    },
+    {
+      "title": "Sage-Med: Scaling Medical Multimodal Intelligence",
+      "upvotes": 84,
+      "id": "2611.34575",
+      "abstract": "Establishing effective scaling laws for medical multimodal large language models (MLLMs) remains a persistent and fundamental challenge. Our systematic evaluation shows that existing medical MLLMs tend to underperform frontier general-purpose MLLMs across a range of medical tasks, while scaling mode",
+      "ai_summary": "",
+      "ai_keywords": []
+    },
+    {
+      "title": "Mixture-of-Loops Transformer",
+      "upvotes": 57,
+      "id": "2611.34923",
+      "abstract": "Looped Transformers boost expressivity by reusing shared layers across loops, yet at the cost of efficiency. Pushing their expressivity-efficiency frontier requires rethinking the core mechanism connecting adjacent loops: What should be passed as a Transformer loops? We introduce Mixture-of-Loops Tr",
+      "ai_summary": "A Mixture-of-Loops Transformer reuses key-value memory across loops and depths, and its U-shaped variant improves pretraining efficiency and inference latency.",
+      "ai_keywords": [
+        "Looped Transformers",
+        "Mixture-of-Loops Transformer (MoLT)",
+        "Mixture-of-Loops Attention (MoLA)",
+        "keys and values (KV) memory",
+        "loop residual",
+        "MoLT-R",
+        "loop KV",
+        "MoLT-KV",
+        "loop forcing",
+        "parallel training",
+        "single-traversal Mixture-of-Loops (MoL) decoding",
+        "U-shaped MoLT (U-MoLT)",
+        "memory construction",
+        "prediction readout",
+        "decoder traversals",
+        "OLMo3",
+        "dense models",
+        "Mixture-of-Experts (MoE)",
+        "validation cross-entropy token efficiency",
+        "perplexity",
+        "continued pretraining",
+        "Qwen3.5-0.8B-Base",
+        "inference latency",
+        "MoL-Hybrid-2"
+      ]
+    },
+    {
+      "title": "VibeVideoAgent: Closing the Perceptual Loop for Code-Driven Video Generation",
+      "upvotes": 54,
+      "id": "2611.34237",
+      "abstract": "Code-driven video generation asks a coding agent to write and run rendering programs. This gives exact control over typography, data visualizations, synchronized audio, and multi-shot scenes, and it leaves an editable project behind. A program that exits cleanly can still render overlapping labels, ",
+      "ai_summary": "",
+      "ai_keywords": []
+    },
+    {
+      "title": "Improving and Expanding Video Editing Capabilities Without Videos",
+      "upvotes": 43,
+      "id": "2611.34941",
+      "abstract": "Image editing models can follow a wide range of instructions, but video editing models still lag behind, limited in part by the difficulty of collecting paired source and edited videos. Is it possible to transfer advanced image editing capabilities to video editors without new paired videos? We intr",
+      "ai_summary": "Image-to-Video Transfer improves pretrained video editors by training them as image editors on single images, enabling new video editing tasks and state-of-the-art results on OpenVE-Bench and OpenVE++.",
+      "ai_keywords": [
+        "Image-to-Video Transfer (I2VT)",
+        "pretrained video editors",
+        "image editor",
+        "post-training",
+        "denoising step",
+        "temporal consistency",
+        "one-frame video",
+        "OpenVE-Bench",
+        "OpenVE++",
+        "action changes",
+        "expression changes",
+        "body movements",
+        "scene relighting"
+      ]
+    },
+    {
+      "title": "DocSEAM: Bidirectional Cross-Page Encoding for Multi-Page Document Understanding",
+      "upvotes": 26,
+      "id": "2611.34420",
+      "abstract": "Multi-page document vision-language models encode each page independently, creating a feature-level discontinuity at page boundaries: visual tokens are formed without access to content on adjacent pages, and the language model must reason over these page representations formed in isolation. We intro",
+      "ai_summary": "DocSEAM is a lightweight module between a pretrained vision encoder and language model that enriches page visual tokens with neighboring-page context via center-anchored masked self-attention, improving multi-page document VQA and reducing boundary sensitivity.",
+      "ai_keywords": [
+        "vision-language models",
+        "vision encoder",
+        "language model",
+        "visual tokens",
+        "feature-level discontinuity",
+        "page representations",
+        "DocSEAM",
+        "center-anchored masked self-attention",
+        "directional salience gates",
+        "cross-page context",
+        "visual representations",
+        "enriched center-page tokens",
+        "supervised cross-page warm-up",
+        "multi-page fine-tuning",
+        "multi-page document VQA",
+        "boundary placement",
+        "cross-page span localization"
+      ]
+    },
+    {
+      "title": "Let Vision-Language Models Generate Images through Their Representations",
+      "upvotes": 24,
+      "id": "2611.31237",
+      "abstract": "Recent unified multimodal models aim to combine visual understanding and generation within a single model, yet effectively integrating the two capabilities remains challenging. Leveraging pretrained vision-language models offers a way to build on already learned multimodal knowledge, but making this",
+      "ai_summary": "Integral converts a pretrained vision-language model into a unified multimodal model by constructing a shared visual representation space, preserving understanding while enabling strong visual generation.",
+      "ai_keywords": [
+        "unified multimodal models",
+        "visual understanding",
+        "visual generation",
+        "pretrained vision-language models",
+        "heterogeneous visual representations",
+        "shared visual representation space",
+        "shared visual tokens",
+        "hierarchical representations",
+        "frozen vision encoder",
+        "Abstraction Fusion",
+        "Block-wise MoT",
+        "lightweight generative stream",
+        "block boundaries",
+        "generative learning",
+        "reconstruction fidelity"
+      ]
+    },
+    {
+      "title": "HOG-WAM: Improving Visual Robustness through Future Gradient Prediction",
+      "upvotes": 22,
+      "id": "2611.34811",
+      "abstract": "World-action models jointly predict future observations and actions, yet visual corruption can disrupt the resulting policies. We introduce HOG-WAM, which adds future Histograms of Oriented Gradients (HOG) as structural supervision derived directly from demonstration images. An auxiliary HOG diffusi",
+      "ai_summary": "HOG-WAM improves visually robust control in world-action models by adding future Histograms of Oriented Gradients as auxiliary structural supervision through a training-only HOG diffusion transformer, yielding higher success under observation corruptions while preserving the original RGB-to-action i",
+      "ai_keywords": [
+        "world-action models",
+        "Histograms of Oriented Gradients (HOG)",
+        "structural supervision",
+        "HOG diffusion transformer (DiT)",
+        "asymmetric attention",
+        "RGB features",
+        "visual representation",
+        "RGB-to-action architecture",
+        "observation corruptions",
+        "representation ablation",
+        "future-gradient prediction",
+        "visually robust control"
+      ]
+    },
+    {
+      "title": "EgoUseBench: Benchmarking Computer-Use Agents under Evolving First-Person Contexts",
+      "upvotes": 19,
+      "id": "2611.34466",
+      "abstract": "AI wearables, such as smart glasses, extend the context available to agents beyond digital environments to users' physical surroundings. With these devices, computer tasks can originate from users' ongoing activities rather than solely from explicit instructions. Through first-person observations, a",
+      "ai_summary": "",
+      "ai_keywords": []
+    },
+    {
+      "title": "DexEngine: Scaling Human Demonstrations into Physically Executable Whole-Robot Data",
+      "upvotes": 18,
+      "id": "2611.33579",
+      "abstract": "A growing body of recent work addresses the retargeting of human hand-object demonstrations to robotic hands. To train whole-robot policies, however, the retargeted motions must be kinematically feasible and physically executable, and be produced efficiently at scale. We present DexEngine, a simulat",
+      "ai_summary": "",
+      "ai_keywords": []
+    }
+  ],
+  "cc_updates": []
+}
