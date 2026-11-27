@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-28",
+  "content": "# AI Daily Digest — 2026-11-28\n\n## 今日のハイライト\n- **線形アテンションの安定化 (Stable GDN-2, 👍126)**: 再帰状態の不安定性を解決し、長文シーケンス処理の実用化が大きく前進。LLMの推論効率化に直結する成果。\n- **汎用コンピューター使用エージェントの評価 (OS-Omni, 👍102)**: Web・iOS・デスクトップ横断の長期タスクで既存エージェントの限界を明らかにし、次世代AIアシスタント開発の指針を提供。\n- **コードで視覚推論を解く (Solve Vision with Code, 👍59)**: コーディングエージェントが動画モデルより視覚推論で優れることを示し、記号的アプローチの有効性を再認識させる重要な発見。\n\n\n## 注目論文 TOP 10\n\n1. **Stable Gated DeltaNet-2: Understanding and Mitigating Recurrent State Instability** | 👍 126 | https://arxiv.org/abs/2611.34051\n   - 🎯背景: 線形アテンション（Linear Attention）はシーケンス長に対して線形計算量を持つが、再帰状態の不安定性が問題であった。\n   - 🔧手法: Gated DeltaNet-2 (GDN-2) にチャンネルごとの独立した制御ゲートを導入し、状態の安定性を理論的に分析・改善。\n   - 📊結果: 長文シーケンスモデリングにおいて安定した学習と高い性能を達成し、既存の線形アテンションモデルを上回る。\n   - 💡意義: 大規模言語モデルの効率化に向けた線形アテンションの実用化を大きく前進させる研究。\n   - ⚠️限界: チャンネルごとの制御が計算コストを若干増加させる可能性がある。\n\n2. **OS-Omni: Benchmarking Generalist Computer-Using Agents on Long-Horizon Workflows Across Platforms** | 👍 102 | https://arxiv.org/abs/2611.34232\n   - 🎯背景: コンピューター使用エージェントはウェブ・モバイル・デスクトップなど異なる環境を横断した長期ワークフローへの対応が求められている。\n   - 🔧手法: Web・iOS・デスクトップを横断する統合ベンチマークを構築し、複数ステップにわたる現実的なユーザーゴールを評価。\n   - 📊結果: 既存エージェントは長期・クロスプラットフォームのタスクで大幅に性能が低下することを明らかに。\n   - 💡意義: 汎用AIエージェントの実用化に向けた評価基盤として重要なベンチマーク。\n   - ⚠️限界: プラットフォーム間の環境構築が複雑で再現性に課題がある。\n\n3. **Solve Vision with Code: Coding Agents Are Stronger Visual Reasoners Than Video Models** | 👍 59 | https://arxiv.org/abs/2611.34813\n   - 🎯背景: 視覚的推論タスクにおいて動画生成モデルが評価されているが、コーディングエージェントとの比較は未検討だった。\n   - 🔧手法: コーディングエージェントがコードを生成・実行することで視覚的推論を解くアプローチと、動画モデルを比較評価。\n   - 📊結果: コーディングエージェントが動画生成モデルよりも視覚的推論タスクで有意に優れた性能を示した。\n   - 💡意義: 視覚推論にはモデルの直接生成よりも記号的・プログラム的アプローチが有効であることを示す。\n   - ⚠️限界: コード実行環境が必要で、リアルタイム応用には制約がある。\n\n4. **What a Forecasting Leaderboard Can Establish: Resolution Reporting for Zero-Shot Time-Series Models** | 👍 57 | https://arxiv.org/abs/2611.31619\n   - 🎯背景: 時系列基盤モデルはゼロショットで未見データを予測するが、評価データセットが少なく公平な比較が難しい。\n   - 🔧手法: 解像度（Resolution）報告という新しい評価フレームワークを提案し、リーダーボードが実際に何を証明できるかを分析。\n   - 📊結果: 既存リーダーボードの多くが限られた証拠しか提供しておらず、過大評価のリスクがあることを示した。\n   - 💡意義: 時系列AI評価の信頼性向上に向けた重要な方法論的貢献。\n   - ⚠️限界: 解像度報告の標準化には研究コミュニティ全体の合意が必要。\n\n5. **ProxyGenBench: Benchmarking Proxy-Guided Video Generation** | 👍 36 | https://arxiv.org/abs/2611.34457\n   - 🎯背景: 動画生成モデルの品質は向上しているが、シーンの展開を制御することが依然として難しい。\n   - 🔧手法: アニメーション3Dブロックアウトなどの構造的プロキシを用いてビデオ生成を誘導するベンチマークを構築・評価。\n   - 📊結果: プロキシ誘導生成は制御性を向上させるが、既存手法はまだシーン構造の完全な再現に課題あり。\n   - 💡意義: 映画制作・VFXなど実用的な動画制作ワークフローへのAI統合を促進する評価基盤。\n   - ⚠️限界: プロキシ作成コスト自体が高く、一般ユーザーには敷居が高い。\n\n\n6. **Entangle: Scaling Human-Video In-Context World-Action Models across Unseen Tasks and Contexts** | 👍 34 | https://arxiv.org/abs/2611.28732\n   - 🎯背景: インコンテキスト学習（ICL）はパラメータ更新なしで未知タスクを解けるが、ロボット操作での活用は未開拓だった。\n   - 🔧手法: 人間のデモ動画をコンテキストとして与え、ロボットが未見タスクを学習するワールド・アクションモデルを大規模にスケール。\n   - 📊結果: 未見タスクや新しいコンテキストへの汎化性能が既存手法を上回ることを示した。\n   - 💡意義: 少数の人間デモから多様なロボットタスクへの転移学習を可能にし、ロボット工学の実用化を加速。\n   - ⚠️限界: 高品質な人間動画の収集コストが高く、スケールアップに課題がある。\n\n7. **DocSEAM: Bidirectional Cross-Page Encoding for Multi-Page Document Understanding** | 👍 28 | https://arxiv.org/abs/2611.34420\n   - 🎯背景: 複数ページの文書理解では各ページが独立してエンコードされるため、ページ境界での文脈断絶が問題だった。\n   - 🔧手法: 双方向クロスページエンコーディングにより隣接ページの情報を相互参照してビジュアルトークンを生成。\n   - 📊結果: 複数ページにまたがる理解タスクにおいて既存の単一ページエンコーディング手法を大幅に上回る性能。\n   - 💡意義: 長い文書（契約書・レポート・学術論文等）をAIで処理する実務応用に直結する重要な改善。\n   - ⚠️限界: 長いページ数になるほど計算コストが増大する可能性がある。\n\n8. **StateWeaver: Multi-Agent Coordination of Story-State Transitions for Long-Horizon Video Generation** | 👍 27 | https://arxiv.org/abs/2611.34290\n   - 🎯背景: 動画基盤モデルは短いクリップの品質は高いが、長期動画でのイベント駆動型状態変化の一貫性維持が困難だった。\n   - 🔧手法: マルチエージェントがストーリーの状態遷移を協調管理することで、長期動画生成の一貫性を確保するフレームワーク。\n   - 📊結果: 長時間動画におけるストーリーの一貫性とビジュアル品質が既存手法を上回ることを実証。\n   - 💡意義: 映画・ゲーム・教育コンテンツなど長尺動画の自動生成に向けた重要なステップ。\n   - ⚠️限界: 複数エージェントの協調には高い計算リソースが必要。\n\n9. **Let Vision-Language Models Generate Images through Their Representations** | 👍 27 | https://arxiv.org/abs/2611.31237\n   - 🎯背景: 統合マルチモーダルモデルは視覚理解と画像生成を単一モデルに統合しようとしているが、両能力の効果的な統合が難しかった。\n   - 🔧手法: 事前学習済みVLMの内部表現を直接活用して画像生成を行う新しいアーキテクチャを提案。\n   - 📊結果: 理解と生成の両タスクで競合する専用モデルに匹敵する性能を単一モデルで達成。\n   - 💡意義: 理解と生成を統一した汎用マルチモーダルAIの実現に向けた重要な方向性を示す。\n   - ⚠️限界: 生成品質は依然として専用生成モデルには及ばない部分がある。\n\n10. **DRBench Pro: A Knowledge-Centric Benchmark for Professional Deep Research Agents** | 👍 24 | https://arxiv.org/abs/2611.34852\n    - 🎯背景: ディープリサーチエージェントは複数情報源からレポートを生成するが、専門的知識の質を評価するベンチマークが不足していた。\n    - 🔧手法: 知識中心の評価軸（正確性・深度・専門性）に基づく専門家レベルのベンチマークを構築。\n    - 📊結果: 現在のAIリサーチエージェントは専門家と比べて知識の深度と正確性に大きな差があることを示した。\n    - 💡意義: 専門職（医療・法律・科学研究等）でのAI活用に向けた現状把握と改善指針を提供。\n    - ⚠️限界: 専門家評価者の確保が難しく、ベンチマークの継続的更新に課題がある。\n\n",
+  "fetched_at": "2026-11-27T22:06:15.687692+00:00",
+  "papers": [
+    {
+      "title": "Stable Gated DeltaNet-2: Understanding and Mitigating Recurrent State Instability",
+      "upvotes": 126,
+      "paper_id": "2611.34051",
+      "abstract": "Linear attention offers an efficient solution for long-sequence modeling via linear complexity and fixed-size recurrent states. Gated DeltaNet-2 (GDN-2) introduces independent channel-wise control ove"
+    },
+    {
+      "title": "OS-Omni: Benchmarking Generalist Computer-Using Agents on Long-Horizon Workflows Across Platforms",
+      "upvotes": 102,
+      "paper_id": "2611.34232",
+      "abstract": "Computer-using agents are increasingly expected to complete realistic user goals rather than isolated GUI actions. However, existing benchmarks typically isolate web, mobile, or desktop environments, "
+    },
+    {
+      "title": "Solve Vision with Code: Coding Agents Are Stronger Visual Reasoners Than Video Models",
+      "upvotes": 59,
+      "paper_id": "2611.34813",
+      "abstract": "Video generation models are increasingly evaluated as visual reasoners: given a first frame and a natural-language prompt, can the model produce the video in which the specified task is carried out? T"
+    },
+    {
+      "title": "What a Forecasting Leaderboard Can Establish: Resolution Reporting for Zero-Shot Time-Series Models",
+      "upvotes": 57,
+      "paper_id": "2611.31619",
+      "abstract": "A foundation model for time series is pretrained once and then asked to forecast series it has never seen, so the evidence for it is its score on held-out datasets. Such datasets are scarce, and a few"
+    },
+    {
+      "title": "ProxyGenBench: Benchmarking Proxy-Guided Video Generation",
+      "upvotes": 36,
+      "paper_id": "2611.34457",
+      "abstract": "Recent video generators produce realistic videos, yet controlling how scenes unfold remains challenging. Structural proxies, such as animated 3D blockouts, guide generation by specifying scene layout,"
+    },
+    {
+      "title": "Entangle: Scaling Human-Video In-Context World-Action Models across Unseen Tasks and Contexts",
+      "upvotes": 34,
+      "paper_id": "2611.28732",
+      "abstract": "In-context learning (ICL) enables foundation models to perform unseen tasks from context without parameter updates. In robotic manipulation, a human video provides the context that specifies how a tas"
+    },
+    {
+      "title": "DocSEAM: Bidirectional Cross-Page Encoding for Multi-Page Document Understanding",
+      "upvotes": 28,
+      "paper_id": "2611.34420",
+      "abstract": "Multi-page document vision-language models encode each page independently, creating a feature-level discontinuity at page boundaries: visual tokens are formed without access to content on adjacent pag"
+    },
+    {
+      "title": "StateWeaver: Multi-Agent Coordination of Story-State Transitions for Long-Horizon Video Generation",
+      "upvotes": 27,
+      "paper_id": "2611.34290",
+      "abstract": "Modern video foundation models generate high-quality short clips, but preserving long-video consistency and correctly depicting event-driven state changes remain challenging. Existing agentic workflow"
+    },
+    {
+      "title": "Let Vision-Language Models Generate Images through Their Representations",
+      "upvotes": 27,
+      "paper_id": "2611.31237",
+      "abstract": "Recent unified multimodal models aim to combine visual understanding and generation within a single model, yet effectively integrating the two capabilities remains challenging. Leveraging pretrained v"
+    },
+    {
+      "title": "DRBench Pro: A Knowledge-Centric Benchmark for Professional Deep Research Agents",
+      "upvotes": 24,
+      "paper_id": "2611.34852",
+      "abstract": "Deep research agents gather information from multiple sources and synthesize it into reports on complex, open-ended questions. Existing benchmarks assess report quality along several dimensions, but l"
+    }
+  ],
+  "cc_updates": []
+}

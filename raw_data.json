@@ -1,81 +1,65 @@
 {
   "papers": [
     {
-      "title": "Antom 3-in-1 Transformer: A Payment Foundation Model",
-      "upvotes": 101,
-      "paper_id": "2611.25403",
-      "abstract": "We report the development of Antom 3-in-1 Transformer, a payment foundation model that integrates sequence, tabular, and graph representations for payment risk detection. The model contains approximat"
+      "title": "Stable Gated DeltaNet-2: Understanding and Mitigating Recurrent State Instability",
+      "upvotes": 126,
+      "paper_id": "2611.34051",
+      "abstract": "Linear attention offers an efficient solution for long-sequence modeling via linear complexity and fixed-size recurrent states. Gated DeltaNet-2 (GDN-2) introduces independent channel-wise control ove"
     },
     {
-      "title": "Lazy Agents Answer Against Their Own Beliefs: Reinforcement Learning with Verifiable Beliefs Teaches Them to Act on What They Believe",
-      "upvotes": 87,
-      "paper_id": "2611.32884",
-      "abstract": "AI agents working on long tasks often commit to an answer before they have enough evidence, a behavior called laziness. In our evaluations, they frequently commit even while their stated belief still "
+      "title": "OS-Omni: Benchmarking Generalist Computer-Using Agents on Long-Horizon Workflows Across Platforms",
+      "upvotes": 102,
+      "paper_id": "2611.34232",
+      "abstract": "Computer-using agents are increasingly expected to complete realistic user goals rather than isolated GUI actions. However, existing benchmarks typically isolate web, mobile, or desktop environments, "
     },
     {
-      "title": "Rewirable Circuits in Transformers with Loom Attention",
-      "upvotes": 86,
-      "paper_id": "2611.30634",
-      "abstract": "We propose loom attention, which allows a Transformer to dynamically rewire its circuits at every token by interweaving a head's vertical attention over the outputs of earlier heads (to obtain its que"
+      "title": "Solve Vision with Code: Coding Agents Are Stronger Visual Reasoners Than Video Models",
+      "upvotes": 59,
+      "paper_id": "2611.34813",
+      "abstract": "Video generation models are increasingly evaluated as visual reasoners: given a first frame and a natural-language prompt, can the model produce the video in which the specified task is carried out? T"
     },
     {
-      "title": "Don't Sleep, Keep Watch: Proactive Perception for Computer-Use Agents",
-      "upvotes": 84,
-      "paper_id": "2611.28947",
-      "abstract": "Computer-use agents (CUAs) built on vision-language models are increasingly entrusted with long-horizon tasks in live desktop, web, and mobile environments, where the screen keeps changing on its own."
+      "title": "What a Forecasting Leaderboard Can Establish: Resolution Reporting for Zero-Shot Time-Series Models",
+      "upvotes": 57,
+      "paper_id": "2611.31619",
+      "abstract": "A foundation model for time series is pretrained once and then asked to forecast series it has never seen, so the evidence for it is its score on held-out datasets. Such datasets are scarce, and a few"
     },
     {
-      "title": "Nemotron-Labs-VisualCreation: Pixel as Code for Agentic Visual Creation",
-      "upvotes": 80,
-      "paper_id": "2611.31358",
-      "abstract": "Visual creation demands expressive imagery together with precise control over text, layout, and structure. We introduce Nemotron-Labs-VisualCreation, an agentic framework that connects these capabilit"
+      "title": "ProxyGenBench: Benchmarking Proxy-Guided Video Generation",
+      "upvotes": 36,
+      "paper_id": "2611.34457",
+      "abstract": "Recent video generators produce realistic videos, yet controlling how scenes unfold remains challenging. Structural proxies, such as animated 3D blockouts, guide generation by specifying scene layout,"
     },
     {
-      "title": "ACAP: Asynchronous Coding Agents for Efficient Robot Control",
-      "upvotes": 61,
-      "paper_id": "2611.31205",
-      "abstract": "Coding agents can construct and revise robot behavior during execution, but using one agent for the whole robot can delay otherwise independent work. We introduce Asynchronous Coding Agents as Policy "
-    },
-    {
-      "title": "Self-Evolving Evaluation Environments for Computer-Use Agents",
-      "upvotes": 45,
-      "paper_id": "2611.30962",
-      "abstract": "Computer-use agents (CUAs) are rapidly improving, yet their evaluation remains largely static. Existing benchmarks provide a strong foundation, but fixed difficulty ceilings, limited feature coverage,"
-    },
-    {
-      "title": "LingSante MedGuard Technical Report",
+      "title": "Entangle: Scaling Human-Video In-Context World-Action Models across Unseen Tasks and Contexts",
       "upvotes": 34,
-      "paper_id": "2611.25509",
-      "abstract": "As medical AI is increasingly used for patient consultation and clinical decision support, identifying harmful, non-compliant, or ethically problematic responses is essential for responsible deploymen"
+      "paper_id": "2611.28732",
+      "abstract": "In-context learning (ICL) enables foundation models to perform unseen tasks from context without parameter updates. In robotic manipulation, a human video provides the context that specifies how a tas"
     },
     {
-      "title": "PartAgent: Agentic 3D Part Segmentation via Expert Integration and Closed-Loop Refinement",
-      "upvotes": 33,
-      "paper_id": "2611.32554",
-      "abstract": "Segmenting a 3D object into semantically meaningful parts requires joint reasoning about geometric structure and semantic context. Pretrained 3D experts provide spatially grounded region proposals, wh"
-    },
-    {
-      "title": "Embodied AI Fails the Mirror Test: How a Simple Mirror Breaks Robot Policies",
+      "title": "DocSEAM: Bidirectional Cross-Page Encoding for Multi-Page Document Understanding",
       "upvotes": 28,
-      "paper_id": "2611.33010",
-      "abstract": "Can a simple mirror expose the limitations of today's robotic manipulation policies? Inspired by the mirror self-recognition test in animal cognition, we investigate whether robot policies can reliably"
+      "paper_id": "2611.34420",
+      "abstract": "Multi-page document vision-language models encode each page independently, creating a feature-level discontinuity at page boundaries: visual tokens are formed without access to content on adjacent pag"
+    },
+    {
+      "title": "StateWeaver: Multi-Agent Coordination of Story-State Transitions for Long-Horizon Video Generation",
+      "upvotes": 27,
+      "paper_id": "2611.34290",
+      "abstract": "Modern video foundation models generate high-quality short clips, but preserving long-video consistency and correctly depicting event-driven state changes remain challenging. Existing agentic workflow"
+    },
+    {
+      "title": "Let Vision-Language Models Generate Images through Their Representations",
+      "upvotes": 27,
+      "paper_id": "2611.31237",
+      "abstract": "Recent unified multimodal models aim to combine visual understanding and generation within a single model, yet effectively integrating the two capabilities remains challenging. Leveraging pretrained v"
+    },
+    {
+      "title": "DRBench Pro: A Knowledge-Centric Benchmark for Professional Deep Research Agents",
+      "upvotes": 24,
+      "paper_id": "2611.34852",
+      "abstract": "Deep research agents gather information from multiple sources and synthesize it into reports on complex, open-ended questions. Existing benchmarks assess report quality along several dimensions, but l"
     }
   ],
-  "cc_updates": [
-    {
-      "tag_name": "v2.1.332",
-      "published_at": "2025-11-25",
-      "body": "What's changed\n\n* Added skills from MCP servers (beta). They show as `server:skill` in the `/` menu; other skills keep their names\n* Added a `PreSkillShellCommand` hook event that can refuse a skill or command's inline shell commands as it loads; on 2.1.331 and older, a settings file naming it opens a dialog at start\n* Added \"Always deliver\" to the prompt for held messages from other sessions\n* Added a footer line that stays while a flagged message has your session on a different model, until you pick one with `/model`\n* Added an OpenTelemetry `assistant_response` event for text Claude sends through SendUserMessage or Cowork's message tool"
-    },
-    {
-      "tag_name": "v2.1.331",
-      "published_at": "2025-11-23",
-      "body": "What's changed\n\n* Added Code Mode support in terminal sessions on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry and Claude Platform on AWS\n* Added `oidc.groups_jsonpath` to the Claude apps gateway, to read groups from the matching entries of a list of objects with a small subset of JSONPath (RFC 9535)\n* Added an API connectivity section to `claude doctor` that reports whether the API can be reached, with the HTTP status or the error, or says why it wasn't tested\n* Added a notice when tap-mode voice dictation stops by itself, after 15 seconds without recognized speech or at its 2-minute limit"
-    },
-    {
-      "tag_name": "v2.1.330",
-      "published_at": "2025-11-20",
-      "body": "What's changed\n\n* Added sign-in to organizations managed in Anthropic's Enterprise Admin Console: after `claude auth login`, Claude Code applies the organization's settings and uses its cloud provider or gateway\n* Added easel, a built-in mod that draws charts when asked and under MCP metrics results, on Pro, Max and, where available, Team and Enterprise on macOS and Linux; turn automatic charts off in `/config`\n* Self-hosted runner: Added `--start-dir` / `SELF_HOSTED_RUNNER_START_DIR` to have Claude start its work in a folder of a repository"
-    }
-  ]
+  "cc_updates": []
 }
